@@ -3,10 +3,27 @@ module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        body: 'Montserrat',
+        display: 'Playfair Display',
+      },
+      colors: {
+        brand: {
+          bg: '#EFE7DB',
+          bronze: '#E3BB7D',
+          red: '#A76D60',
+          green: '#3A4F49',
+          gray: '#444444',
+        },
+      },
+    },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
-}
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/line-clamp'),
+  ],
+};
