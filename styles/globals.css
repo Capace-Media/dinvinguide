@@ -82,6 +82,18 @@
 .rich-text p {
   @apply mb-5;
 }
+.rich-text h1 {
+  @apply text-5xl mb-5;
+}
+.rich-text h2 {
+  @apply text-4xl mb-5;
+}
 .rich-text h3 {
   @apply text-3xl mb-5;
+}
+.rich-text figure {
+  @apply mb-5;
+}
+.rich-text figcaption {
+  @apply mt-3;
 }
