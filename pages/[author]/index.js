@@ -13,7 +13,7 @@ export default function AuthorPage({ data }) {
     <Fragment>
       <div className='contain section text-center'>
         <div className='relative w-52 h-52 rounded-full overflow-hidden mx-auto row'>
-          <Image src={author.image} layout='fill' objectFit='cover' />
+          <Image src={author.image} layout='fill' objectFit='cover' priority />
         </div>
         <h1 className='row'>{author.name}</h1>
         <p

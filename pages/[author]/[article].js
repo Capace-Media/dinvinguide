@@ -30,7 +30,7 @@ export default function Article({ data }) {
             </a>
           </Link>
           <h1 className='text-brand-red'>{article.title}</h1>
-          <p className='mt-10'>{article.acf_posts.ingress}</p>
+          <p className='mt-10 text-lg mb-20'>{article.acf_posts.ingress}</p>
         </div>
       </div>
       <div>
