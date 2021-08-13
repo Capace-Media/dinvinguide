@@ -26,7 +26,13 @@ export default function PostBlocks({ items }) {
     }
     if (index === 1) {
       return (
-        <Link href='/'>
+        <Link
+          href={
+            item.authorSlug
+              ? `/${item.authorSlug}/${item.slug}`
+              : `/${item.slug}`
+          }
+        >
           <a className={`col-span-1 row-span-2 ${containerClasses}`}>
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
               <Image src={item.image} layout='fill' objectFit='cover' />
@@ -43,7 +49,13 @@ export default function PostBlocks({ items }) {
     }
     if (index === 4) {
       return (
-        <Link href='/'>
+        <Link
+          href={
+            item.authorSlug
+              ? `/${item.authorSlug}/${item.slug}`
+              : `/${item.slug}`
+          }
+        >
           <a className={`col-span-1 row-span-2 ${containerClasses}`}>
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
               <Image src={item.image} layout='fill' objectFit='cover' />
@@ -60,7 +72,13 @@ export default function PostBlocks({ items }) {
     }
     if (index === 6) {
       return (
-        <Link href='/'>
+        <Link
+          href={
+            item.authorSlug
+              ? `/${item.authorSlug}/${item.slug}`
+              : `/${item.slug}`
+          }
+        >
           <a className={`col-span-2 row-span-2 ${containerClasses}`}>
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
               <Image src={item.image} layout='fill' objectFit='cover' />
@@ -77,7 +95,13 @@ export default function PostBlocks({ items }) {
     }
     if (index === 8) {
       return (
-        <Link href='/'>
+        <Link
+          href={
+            item.authorSlug
+              ? `/${item.authorSlug}/${item.slug}`
+              : `/${item.slug}`
+          }
+        >
           <a className={`col-span-2 row-span-2 ${containerClasses}`}>
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
               <Image src={item.image} layout='fill' objectFit='cover' />
@@ -94,7 +118,13 @@ export default function PostBlocks({ items }) {
     }
     if (index === 9) {
       return (
-        <Link href='/'>
+        <Link
+          href={
+            item.authorSlug
+              ? `/${item.authorSlug}/${item.slug}`
+              : `/${item.slug}`
+          }
+        >
           <a className={`col-span-1 row-span-2 ${containerClasses}`}>
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
               <Image src={item.image} layout='fill' objectFit='cover' />
@@ -111,7 +141,13 @@ export default function PostBlocks({ items }) {
     }
     if (index === 12) {
       return (
-        <Link href='/'>
+        <Link
+          href={
+            item.authorSlug
+              ? `/${item.authorSlug}/${item.slug}`
+              : `/${item.slug}`
+          }
+        >
           <a className={`col-span-1 row-span-2 ${containerClasses}`}>
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
               <Image src={item.image} layout='fill' objectFit='cover' />
@@ -128,7 +164,13 @@ export default function PostBlocks({ items }) {
     }
     if (index === 14) {
       return (
-        <Link href='/'>
+        <Link
+          href={
+            item.authorSlug
+              ? `/${item.authorSlug}/${item.slug}`
+              : `/${item.slug}`
+          }
+        >
           <a className={`col-span-2 row-span-2 ${containerClasses}`}>
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
               <Image src={item.image} layout='fill' objectFit='cover' />
@@ -145,7 +187,11 @@ export default function PostBlocks({ items }) {
     }
 
     return (
-      <Link href='/'>
+      <Link
+        href={
+          item.authorSlug ? `/${item.authorSlug}/${item.slug}` : `/${item.slug}`
+        }
+      >
         <a className={`h-56 row-span-1 col-span-1 ${containerClasses}`}>
           <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
             <Image src={item.image} layout='fill' objectFit='cover' />
