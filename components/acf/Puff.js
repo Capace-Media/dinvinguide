@@ -67,7 +67,7 @@ const RecipePuff = ({ content }) => {
             {content.acf_recipe && (
               <div className='space-x-1 lg:space-x-2 flex flex-wrap justify-center mb-3 text-xs lg:text-base'>
                 <strong>Passar till:</strong>
-                {content.acf_recipe.passarTill.map((item, index) => {
+                {content.acf_recipe?.passarTill?.map((item, index) => {
                   if (index <= 3) {
                     return (
                       <span className="after:content-[','] last:after:content-['']">
@@ -76,7 +76,7 @@ const RecipePuff = ({ content }) => {
                     );
                   }
                 })}
-                {content.acf_recipe.passarTill.length >= 3 && (
+                {content.acf_recipe.passarTill?.length >= 3 && (
                   <span>m.fl.</span>
                 )}
               </div>
