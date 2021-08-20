@@ -53,11 +53,17 @@
   h2 {
     @apply text-xl lg:text-2xl uppercase;
   }
+  blockquote {
+    @apply text-2xl lg:text-4xl leading-loose;
+  }
 }
 
 @layer components {
   .contain {
     @apply max-w-screen-2xl mx-auto w-[85%];
+  }
+  .contain-sm {
+    @apply max-w-4xl mx-auto w-[85%];
   }
   .section {
     @apply py-10 lg:py-20;
@@ -78,9 +84,11 @@
   display: grid;
   grid-template-areas: 'tall smallone big big' 'tall smalltwo big big';
 }
-
 .rich-text p {
   @apply mb-5;
+}
+.rich-text a {
+  @apply inline-block;
 }
 .rich-text h1 {
   @apply text-5xl mb-5;
@@ -95,11 +103,10 @@
   @apply text-2xl mb-5;
 }
 .rich-text figure {
-  @apply mb-5;
+  @apply mb-5 !w-full;
 }
 .rich-text figcaption {
   @apply mt-3;
 }
-.rich-text p img {
-  @apply lg:float-right w-full lg:w-auto;
+.rich-text p {
 }

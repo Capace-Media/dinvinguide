@@ -5,7 +5,7 @@ export default function Featured({ items }) {
   console.log(items);
   const containerClasses = `group relative flex items-start justify-center bg-black p-5 overflow-hidden`;
   const contentClasses = `z-20 border-l-4 border-brand-bronze px-2 w-full`;
-  const titleClasses = `uppercase font-semibold`;
+  const titleClasses = `text-lg uppercase font-semibold`;
   const subTitleClasses = ``;
 
   const renderBlock = (item, index) => {
@@ -24,13 +24,7 @@ export default function Featured({ items }) {
     }
     if (index === 1) {
       return (
-        <Link
-          href={
-            item.authorSlug
-              ? `/${item.authorSlug}/${item.slug}`
-              : `/${item.slug}`
-          }
-        >
+        <Link href={item.uri}>
           <a className={`col-span-1 row-span-2 ${containerClasses}`}>
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
               <Image src={item.image} layout='fill' objectFit='cover' />

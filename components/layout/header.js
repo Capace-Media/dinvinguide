@@ -5,7 +5,7 @@ import Logo from '../../public/dvg-logo.svg';
 import SweFlag from '../../public/images/SWEFlag.png';
 export default function Header() {
   const links = [
-    { content: 'Skribenter', href: '/' },
+    { content: 'Skribenter', href: '/skribenter' },
     { content: 'Guide', href: '/' },
     {
       content: (
@@ -15,6 +15,7 @@ export default function Header() {
           objectFit='contain'
           src={Logo}
           priority
+          className='cursor-pointer'
         />
       ),
       href: '/',
