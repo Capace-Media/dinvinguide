@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 export default function Puff({ content }) {
-  const data = content.extraPuff[0];
+  const data = content && content.extraPuff && content.extraPuff[0];
 
   switch (data.__typename) {
     case 'Grape':

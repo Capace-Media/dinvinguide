@@ -74,6 +74,7 @@ export const getStaticPaths = async (props) => {
 };
 export const getStaticProps = async ({ params }) => {
   const article = await getArticle(params.article);
+
   return {
     props: {
       data: { article },
