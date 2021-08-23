@@ -1,3 +1,4 @@
+import Fact from '../components/acf/Fact';
 import Image from 'next/image';
 import Img from '../components/acf/Img';
 import Puff from '../components/acf/Puff';
@@ -21,6 +22,9 @@ export const renderSection = (section) => {
     case 'Post_AcfPosts_Sektioner_StorBild':
       return section ? <Img content={section} style='full' /> : null;
       // return <div className='bg-gray-300 aspect-w-16 aspect-h-9'></div>;
+      break;
+    case 'Post_AcfPosts_Sektioner_Faktalada':
+      return section ? <Fact content={section} /> : null;
       break;
     default:
       return <div>{section.fieldGroupName}</div>;

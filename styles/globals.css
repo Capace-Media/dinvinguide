@@ -48,13 +48,13 @@
     @apply font-semibold uppercase;
   }
   h1 {
-    @apply text-2xl lg:text-4xl uppercase;
+    @apply text-2xl uppercase lg:text-4xl;
   }
   h2 {
-    @apply text-xl lg:text-2xl uppercase;
+    @apply text-xl uppercase lg:text-2xl;
   }
   blockquote {
-    @apply text-2xl lg:text-4xl leading-loose;
+    @apply text-2xl leading-loose lg:text-4xl;
   }
 }
 
@@ -91,16 +91,16 @@
   @apply inline-block;
 }
 .rich-text h1 {
-  @apply text-5xl mb-5;
+  @apply mb-5 text-5xl;
 }
 .rich-text h2 {
-  @apply text-4xl mb-5;
+  @apply mb-5 text-4xl;
 }
 .rich-text h3 {
-  @apply text-3xl mb-5;
+  @apply mb-5 text-3xl;
 }
 .rich-text h4 {
-  @apply text-2xl mb-5;
+  @apply mb-5 text-2xl;
 }
 .rich-text figure {
   @apply mb-5 !w-full;
@@ -109,4 +109,7 @@
   @apply mt-3;
 }
 .rich-text p {
+}
+.fact-block a {
+  @apply underline;
 }
