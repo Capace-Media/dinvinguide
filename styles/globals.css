@@ -88,13 +88,12 @@
   @apply mb-5;
 }
 .rich-text a {
-  @apply inline-block;
 }
 .rich-text h1 {
   @apply mb-5 text-5xl;
 }
 .rich-text h2 {
-  @apply mb-5 text-4xl;
+  @apply mt-20 mb-5 text-4xl;
 }
 .rich-text h3 {
   @apply mb-5 text-3xl;
@@ -108,7 +107,11 @@
 .rich-text figcaption {
   @apply mt-3;
 }
-.rich-text p {
+.rich-text img.alignleft {
+  @apply inline-block lg:float-left lg:mr-10;
+}
+.rich-text img.alignright {
+  @apply inline-block lg:float-right lg:ml-10;
 }
 .fact-block a {
   @apply underline;
