@@ -41,7 +41,7 @@ const GrapePuff = ({ content }) => {
         </div>
         {content.featuredImage && (
           <Link href={content.uri}>
-            <a className='relative block h-56 lg:min-h-[300px] lg:h-auto'>
+            <a className='relative block h-56 lg:min-h-[350px] lg:h-auto'>
               <Image
                 src={content.featuredImage.node.mediaItemUrl}
                 layout='fill'
@@ -96,7 +96,7 @@ const RecipePuff = ({ content }) => {
         </div>
         {content.featuredImage && (
           <Link href={content.uri}>
-            <a className='relative block h-56 lg:h-auto'>
+            <a className='relative block h-56 lg:h-[350px]'>
               <Image
                 src={content.featuredImage.node.mediaItemUrl}
                 layout='fill'

@@ -3,8 +3,8 @@ import { getAuthorData, getAuthorPaths } from '../../lib/api/authors';
 
 import Ad from '../../components/ads/Ad';
 import Image from 'next/image';
-import { getAds } from '../../lib/api/ads';
 import Link from 'next/link';
+import { getAds } from '../../lib/api/ads';
 
 export default function AuthorPage({ data }) {
   const [isReadMore, setIsReadMore] = useState(false);
@@ -152,12 +152,15 @@ export default function AuthorPage({ data }) {
               return (
                 <Link href={post.uri}>
                   <a className='relative block w-full overflow-hidden bg-black group aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-9'>
-                    <Image
-                      src={post.featuredImage.node.mediaItemUrl}
-                      layout='fill'
-                      objectFit='cover'
-                      className='transition-all transform group-hover:scale-110 opacity-70'
-                    />
+                    {post.featuredImage && post.featuredImage.node && (
+                      <Image
+                        src={post.featuredImage.node.mediaItemUrl}
+                        layout='fill'
+                        objectFit='cover'
+                        className='transition-all transform group-hover:scale-110 opacity-70'
+                      />
+                    )}
+
                     <div className='absolute top-0 left-0 p-3 text-left lg:p-5 '>
                       <div className='px-2 border-l-4 lg:px-3 border-brand-bronze'>
                         <h4 className='text-white uppercase lg:text-base'>

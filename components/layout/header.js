@@ -20,12 +20,12 @@ export default function Header() {
       ),
       href: '/',
     },
-    { content: 'Recept', href: '/' },
+    { content: 'Recept', href: '/recept' },
     { content: 'Topplistor', href: '/' },
   ];
   return (
     <header className='fixed top-0 left-0 z-50 w-screen font-bold uppercase bg-brand-bg font-display'>
-      <nav className='items-center justify-between hidden py-5  contain lg:flex'>
+      <nav className='items-center justify-between hidden py-5 contain lg:flex'>
         <div className='flex items-center w-24 space-x-2'>
           <a
             href='http://translate.google.com/translate?sl=auto&tl=en&js=n&prev=_t&hl=en&ie=UTF-8&u=https%3A%2F%2Fdinvinguide.se%2F&act=url'

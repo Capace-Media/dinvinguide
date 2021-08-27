@@ -1,6 +1,18 @@
+import { useEffect, useState } from 'react';
+
 import Image from 'next/image';
-import { useState } from 'react';
-export default function Ad({ ads, position }) {
+import { useInView } from 'react-intersection-observer';
+
+export default function Ad({ ads, position, triggerInView, triggerOnce }) {
+  const { ref, inView } = useInView({
+    threshold: 0,
+    triggerOnce: triggerOnce,
+  });
+  useEffect(() => {
+    if (triggerInView && inView) {
+      triggerInView();
+    }
+  }, [inView]);
   const renderAd = () => {
     if (!ads[position].current.desktop) {
       return (
@@ -19,9 +31,10 @@ export default function Ad({ ads, position }) {
       />
     );
   };
+
   return (
     <div className='flex flex-col items-center'>
-      <div>Annons:</div>
+      <div ref={triggerInView ? ref : null}>Annons:</div>
       <div className='mt-5'>
         <div className='w-[980px] h-[200px] relative'>{renderAd()}</div>
       </div>

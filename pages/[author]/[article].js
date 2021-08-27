@@ -24,13 +24,13 @@ export default function Article({ data }) {
         <div className='max-w-4xl mx-auto w-[85%]'>
           <div className='text-center'>
             <Link href={`/${article.author.node.nicename}`}>
-              <a className='mb-3 inline-block '>
+              <a className='inline-block mb-3 '>
                 Skriven av{' '}
                 <span className='underline'>{article.author.node.name}</span>
               </a>
             </Link>
             <h1 className='text-brand-red'>{article.title}</h1>
-            <p className='mt-10 text-lg mb-20'>{article.acf_posts.ingress}</p>
+            <p className='mt-10 mb-20 text-lg'>{article.acf_posts.ingress}</p>
           </div>
         </div>
         <div>
@@ -38,7 +38,7 @@ export default function Article({ data }) {
         </div>
       </article>
       <div className='row max-w-4xl mx-auto w-[85%] text-center flex flex-col items-center lg:text-left lg:grid lg:grid-cols-[100px,1fr] gap-10 mt-5 lg:mt-10'>
-        <div className='relative rounded-full overflow-hidden w-24 h-24 mb-10 lg:mb-0'>
+        <div className='relative w-24 h-24 mb-10 overflow-hidden rounded-full lg:mb-0'>
           <Image
             src={article.author.node.acf_user.bild.mediaItemUrl}
             layout='fill'
@@ -46,14 +46,14 @@ export default function Article({ data }) {
           />
         </div>
         <div className=''>
-          <h3 className='text-brand-red text-xl lg:text-3xl mb-3'>
+          <h3 className='mb-3 text-xl text-brand-red lg:text-3xl'>
             {article.author.node.name}
           </h3>
           <p className='text-base'>
             {article.author.node.acf_user.kortBeskrivning}
           </p>
           <Link href={`/${article.author.node.nicename}`}>
-            <a className='text-brand-red mt-4 inline-block'>
+            <a className='inline-block mt-4 text-brand-red'>
               Läs mer om {article.author.node.firstName}
             </a>
           </Link>
@@ -74,6 +74,12 @@ export const getStaticPaths = async (props) => {
 };
 export const getStaticProps = async ({ params }) => {
   const article = await getArticle(params.article);
+
+  if (!article) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {

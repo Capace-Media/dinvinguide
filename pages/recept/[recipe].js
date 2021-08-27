@@ -1,0 +1,111 @@
+import { getRecipe, getRecipePaths } from '../../lib/api/recipes';
+
+import Ad from '../../components/ads/Ad';
+import { Fragment } from 'react';
+import Image from 'next/image';
+import ReactHtmlParser from 'react-html-parser';
+import { getAds } from '../../lib/api/ads';
+
+export default function RecipePage({ data }) {
+  const { ads, recipe } = data;
+  console.log(recipe);
+  return (
+    <Fragment>
+      <Ad ads={ads} position='top' />
+      <div className='mx-auto max-w-7xl w-[90%] recipe-layout row'>
+        <div
+          style={{ gridArea: 'img' }}
+          className='relative w-full h-96 md:h-full'
+        >
+          <Image
+            src={recipe.featuredImage.node.mediaItemUrl}
+            layout='fill'
+            objectFit='cover'
+          />
+        </div>
+        <div
+          style={{ gridArea: 'meta' }}
+          className='my-10 text-center lg:p-10 lg:my-0 lg:text-left'
+        >
+          <p>
+            Recept av{' '}
+            {recipe.acf_recipe.skrivetAv.name
+              ? recipe.acf_recipe.skrivetAv.name
+              : 'Redaktionen'}
+          </p>
+          <h1 className='mb-5 text-xl normal-case lg:text-3xl text-brand-red'>
+            {recipe.title}
+          </h1>
+
+          <p>{recipe.acf_recipe.desc}</p>
+        </div>
+        <div style={{ gridArea: 'ingredients' }} className='bg-white'>
+          <div className='flex items-center justify-between p-5 border-b'>
+            <h2 className='text-brand-red'>Ingredienser</h2>
+            <div>Portioner</div>
+          </div>
+          <ul className='p-5 space-y-4'>
+            {recipe.acf_recipe.receptdelar.map((part) => {
+              console.log(part);
+              return (
+                <li key={part.rubrik}>
+                  <strong>{part.rubrik}</strong>
+                  <ul className='mt-3'>
+                    {part.ingredienser.map((i) => (
+                      <li className='grid grid-cols-2'>
+                        <span>{`${i.antal} ${i.enhet.name}`}</span>
+                        <span>{i.namn}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              );
+            })}
+            <li>{ReactHtmlParser(recipe.acf_recipe.ingredienserOvrigt)}</li>
+          </ul>
+        </div>
+        <div
+          style={{ gridArea: 'instructions' }}
+          className='mt-10 lg:p-10 rich-text lg:mt-0'
+        >
+          {ReactHtmlParser(recipe.acf_recipe.processen)}
+        </div>
+      </div>
+    </Fragment>
+  );
+}
+export const getStaticPaths = async () => {
+  const paths = await getRecipePaths();
+
+  return {
+    paths: [
+      {
+        params: {
+          recipe:
+            'tartar-pa-betor-med-friterade-potatisnystan-och-vegansk-majonnas',
+        },
+      },
+    ],
+    fallback: 'blocking',
+  };
+};
+
+export const getStaticProps = async ({ params }) => {
+  const recipe = await getRecipe(params.recipe);
+  const ads = await getAds();
+
+  if (!recipe) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      data: {
+        recipe,
+        ads,
+      },
+    },
+  };
+};

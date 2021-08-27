@@ -76,14 +76,7 @@
 .pattern {
   background: repeat url('../public/images/monster-dvg100.png');
 }
-.grid-area {
-  display: grid;
-  grid-template-areas: 'big big tall smallone' 'big big tall smalltwo';
-}
-.grid-area-reverse {
-  display: grid;
-  grid-template-areas: 'tall smallone big big' 'tall smalltwo big big';
-}
+
 .rich-text p {
   @apply mb-5;
 }
@@ -115,4 +108,14 @@
 }
 .fact-block a {
   @apply underline;
+}
+
+.recipe-layout {
+  grid-template-areas: 'img' 'meta' 'ingredients' 'instructions';
+  @apply grid;
+}
+@media (min-width: 800px) {
+  .recipe-layout {
+    grid-template-areas: 'img meta' 'img instructions' 'ingredients instructions' 'ingredients instructions';
+  }
 }
