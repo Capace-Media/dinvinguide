@@ -2,6 +2,7 @@ import { Fragment, useState } from 'react';
 import { getRecipe, getRecipePaths } from '../../lib/api/recipes';
 
 import Ad from '../../components/ads/Ad';
+import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
 import Image from 'next/image';
 import ReactHtmlParser from 'react-html-parser';
 import { getAds } from '../../lib/api/ads';
@@ -22,7 +23,9 @@ export default function RecipePage({ data }) {
     } else {
       const floor = Math.floor(baseValue);
       //Handle decimals
-
+      if (baseValue % 1 <= 0.1) {
+        return floor !== 0 ? floor + ' ⅕' : '⅕';
+      }
       if (baseValue % 1 <= 0.25) {
         return floor !== 0 ? floor + ' ¼' : '¼';
       }
@@ -43,7 +46,14 @@ export default function RecipePage({ data }) {
 
   return (
     <Fragment>
+      <BreadCrumbs
+        crumbs={[
+          { text: 'Recept', href: '/recept' },
+          { text: recipe.title, href: recipe.slug, current: true },
+        ]}
+      />
       <Ad ads={ads} position='top' />
+
       <div className='mx-auto max-w-7xl w-[90%] recipe-layout row'>
         <div
           style={{ gridArea: 'img' }}

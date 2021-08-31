@@ -2,6 +2,7 @@ import { Fragment, useState } from 'react';
 import { getAuthorData, getAuthorPaths } from '../../lib/api/authors';
 
 import Ad from '../../components/ads/Ad';
+import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getAds } from '../../lib/api/ads';
@@ -12,6 +13,12 @@ export default function AuthorPage({ data }) {
 
   return (
     <Fragment>
+      <BreadCrumbs
+        crumbs={[
+          { text: 'Skribenter', href: '/skribenter' },
+          { text: author.name, href: '/' + author.slug, current: true },
+        ]}
+      />
       <div className='text-center contain section'>
         <div className='relative mx-auto overflow-hidden rounded-full w-52 h-52 row'>
           <Image
@@ -119,7 +126,7 @@ export default function AuthorPage({ data }) {
             artiklar
           </h2>
         </div>
-        <div className='max-w-6xl mx-auto w-[85%]'>
+        <div className='contain'>
           {author.posts.edges.map(({ node: post }, index) => {
             console.log(post);
             if (index === 0) {
@@ -146,7 +153,7 @@ export default function AuthorPage({ data }) {
             }
           })}
         </div>
-        <div className='max-w-6xl mx-auto w-[85%] grid md:grid-cols-2 lg:grid-cols-3 gap-3 row'>
+        <div className='grid gap-3 contain md:grid-cols-2 lg:grid-cols-3 row'>
           {author.posts.edges.map(({ node: post }, index) => {
             if (index > 0) {
               return (

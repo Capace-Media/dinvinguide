@@ -1,5 +1,6 @@
 import { getArticle, getArticlePaths } from '../../lib/api/articles';
 
+import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
 import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,10 +9,20 @@ import { renderSection } from '../../utils/acf';
 
 export default function Article({ data }) {
   const { article } = data;
-
+  console.log(article.author.node);
   return (
     <Fragment>
       <article>
+        <BreadCrumbs
+          crumbs={[
+            { text: 'Skribenter', href: '/skribenter' },
+            {
+              text: article.author.node.name,
+              href: '/' + article.author.node.nicename,
+            },
+            { current: true, text: article.title, href: article.uri },
+          ]}
+        />
         <div className='row max-w-7xl mx-auto w-[85%] grid'>
           <div className='relative aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-9'>
             <Image

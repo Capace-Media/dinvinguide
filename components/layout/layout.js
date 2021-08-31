@@ -9,7 +9,7 @@ export default function Layout({ children }) {
   return (
     <Fragment>
       <Header />
-      <div className='contain flex justify-center mt-[105px] space-x-3'>
+      <div className='contain flex justify-center mt-[111px] space-x-3'>
         <div>
           <Image src={BCLogo} priority />
         </div>
