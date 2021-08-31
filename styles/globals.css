@@ -60,7 +60,7 @@
 
 @layer components {
   .contain {
-    @apply max-w-screen-2xl mx-auto w-[85%];
+    @apply max-w-screen-2xl mx-auto w-[90%];
   }
   .contain-sm {
     @apply max-w-4xl mx-auto w-[85%];

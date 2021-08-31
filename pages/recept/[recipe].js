@@ -111,7 +111,7 @@ export default function RecipePage({ data }) {
                     <strong>{part.rubrik}</strong>
                     <ul className='mt-3 space-y-2'>
                       {part.ingredienser.map((i) => (
-                        <li className='grid grid-cols-2'>
+                        <li key={i.namn} className='grid grid-cols-2'>
                           <span>{`${renderAmount(i.antal)} ${
                             i.enhet.name
                           }`}</span>

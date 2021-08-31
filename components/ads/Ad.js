@@ -13,11 +13,11 @@ export default function Ad({ ads, position, triggerInView, triggerOnce }) {
       triggerInView();
     }
   }, [inView]);
-  const renderAd = () => {
-    if (!ads[position].current.desktop) {
+  const renderAd = (device) => {
+    if (!ads[position].current[device]) {
       return (
         <Image
-          src={ads[position].fallback.desktop}
+          src={ads[position].fallback[device]}
           layout='fill'
           objectFit='contain'
         />
@@ -25,7 +25,7 @@ export default function Ad({ ads, position, triggerInView, triggerOnce }) {
     }
     return (
       <Image
-        src={ads[position].current.desktop}
+        src={ads[position].current[device]}
         layout='fill'
         objectFit='contain'
       />
@@ -36,7 +36,12 @@ export default function Ad({ ads, position, triggerInView, triggerOnce }) {
     <div className='flex flex-col items-center'>
       <div ref={triggerInView ? ref : null}>Annons:</div>
       <div className='mt-5'>
-        <div className='w-[980px] h-[200px] relative'>{renderAd()}</div>
+        <div className='hidden lg:block w-[980px] h-[200px] relative'>
+          {renderAd('desktop')}
+        </div>
+        <div className='relative block w-screen h-64 lg:hidden'>
+          {renderAd('mobile')}
+        </div>
       </div>
     </div>
   );
