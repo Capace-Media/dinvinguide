@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 export default function Puff({ content }) {
-  console.log('🚀 ~ file: Puff.js ~ line 4 ~ Puff ~ content', content);
   const data = content && content.extraPuff && content.extraPuff[0];
 
   switch (data.__typename) {
@@ -20,7 +19,6 @@ export default function Puff({ content }) {
 }
 
 const GrapePuff = ({ content }) => {
-  console.log(content);
   return (
     <div className='row'>
       <div
@@ -56,7 +54,6 @@ const GrapePuff = ({ content }) => {
 };
 
 const RecipePuff = ({ content }) => {
-  console.log(content);
   return (
     <div className='row'>
       <div
@@ -72,10 +69,10 @@ const RecipePuff = ({ content }) => {
             </a>
           </Link>
           <div>
-            {content.acf_recipe && (
+            {content && (
               <div className='flex flex-wrap justify-center mb-3 space-x-1 text-xs lg:space-x-2 lg:text-base'>
                 <strong>Passar till:</strong>
-                {content.acf_recipe?.passarTill?.map((item, index) => {
+                {content.passarTills.edges.map(({ node: item }, index) => {
                   if (index <= 3) {
                     return (
                       <span className="after:content-[','] last:after:content-['']">
@@ -84,9 +81,7 @@ const RecipePuff = ({ content }) => {
                     );
                   }
                 })}
-                {content.acf_recipe.passarTill?.length >= 3 && (
-                  <span>m.fl.</span>
-                )}
+                {content.passarTills.edges.length >= 3 && <span>m.fl.</span>}
               </div>
             )}
           </div>
@@ -111,7 +106,6 @@ const RecipePuff = ({ content }) => {
 };
 
 const DrinkPuff = ({ content }) => {
-  console.log(content);
   return (
     <div className='row'>
       <div

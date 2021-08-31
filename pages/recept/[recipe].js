@@ -1,27 +1,61 @@
+import { Fragment, useState } from 'react';
 import { getRecipe, getRecipePaths } from '../../lib/api/recipes';
 
 import Ad from '../../components/ads/Ad';
-import { Fragment } from 'react';
 import Image from 'next/image';
 import ReactHtmlParser from 'react-html-parser';
 import { getAds } from '../../lib/api/ads';
 
 export default function RecipePage({ data }) {
   const { ads, recipe } = data;
-  console.log(recipe);
+  const [portions, setPortions] = useState(
+    parseInt(recipe.acf_recipe.antalPortioner)
+  );
+  const availablePortions = [1, 2, 4, 6, 8];
+
+  const renderAmount = (amount) => {
+    const baseValue = (amount / recipe.acf_recipe.antalPortioner) * portions;
+
+    if (baseValue % 1 === 0) {
+      //If no decimals, return value
+      return baseValue;
+    } else {
+      const floor = Math.floor(baseValue);
+      //Handle decimals
+
+      if (baseValue % 1 <= 0.25) {
+        return floor !== 0 ? floor + ' ¼' : '¼';
+      }
+      if (baseValue % 1 <= 0.375) {
+        return floor !== 0 ? floor + ' ⅓' : '⅓';
+      }
+      if (baseValue % 1 <= 0.5) {
+        return floor !== 0 ? floor + ' ½' : '½';
+      }
+      if (baseValue % 1 <= 0.67) {
+        return floor !== 0 ? floor + ' ⅔' : '⅔';
+      }
+      if (baseValue % 1 <= 0.99) {
+        return floor !== 0 ? floor + ' ¾' : '¾';
+      }
+    }
+  };
+
   return (
     <Fragment>
       <Ad ads={ads} position='top' />
       <div className='mx-auto max-w-7xl w-[90%] recipe-layout row'>
         <div
           style={{ gridArea: 'img' }}
-          className='relative w-full h-96 md:h-full'
+          className='relative w-full lg:w-[550px] aspect-w-16 aspect-h-10'
         >
-          <Image
-            src={recipe.featuredImage.node.mediaItemUrl}
-            layout='fill'
-            objectFit='cover'
-          />
+          {recipe.featuredImage && (
+            <Image
+              src={recipe.featuredImage.node.mediaItemUrl}
+              layout='fill'
+              objectFit='cover'
+            />
+          )}
         </div>
         <div
           style={{ gridArea: 'meta' }}
@@ -29,7 +63,7 @@ export default function RecipePage({ data }) {
         >
           <p>
             Recept av{' '}
-            {recipe.acf_recipe.skrivetAv.name
+            {recipe.acf_recipe.skrivetAv && recipe.acf_recipe.skrivetAv.name
               ? recipe.acf_recipe.skrivetAv.name
               : 'Redaktionen'}
           </p>
@@ -39,28 +73,55 @@ export default function RecipePage({ data }) {
 
           <p>{recipe.acf_recipe.desc}</p>
         </div>
-        <div style={{ gridArea: 'ingredients' }} className='bg-white'>
+        <div
+          style={{ gridArea: 'ingredients' }}
+          className='bg-white lg:w-[550px]'
+        >
           <div className='flex items-center justify-between p-5 border-b'>
             <h2 className='text-brand-red'>Ingredienser</h2>
-            <div>Portioner</div>
+            <div>
+              <label htmlFor='portions'>Portioner:</label>{' '}
+              <select
+                name='portions'
+                onChange={(e) => setPortions(e.target.value)}
+              >
+                {availablePortions.map((portion) => {
+                  console.log(portion, portions);
+                  return (
+                    <option
+                      value={parseInt(portion)}
+                      selected={parseInt(portion) === portions}
+                    >
+                      {portion}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
           </div>
           <ul className='p-5 space-y-4'>
-            {recipe.acf_recipe.receptdelar.map((part) => {
-              console.log(part);
-              return (
-                <li key={part.rubrik}>
-                  <strong>{part.rubrik}</strong>
-                  <ul className='mt-3'>
-                    {part.ingredienser.map((i) => (
-                      <li className='grid grid-cols-2'>
-                        <span>{`${i.antal} ${i.enhet.name}`}</span>
-                        <span>{i.namn}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              );
-            })}
+            {recipe.acf_recipe &&
+              recipe.acf_recipe.receptdelar &&
+              recipe.acf_recipe.receptdelar.map((part) => {
+                return (
+                  <li
+                    className='pb-5 border-b-2 border-brand-bronze'
+                    key={part.rubrik}
+                  >
+                    <strong>{part.rubrik}</strong>
+                    <ul className='mt-3 space-y-2'>
+                      {part.ingredienser.map((i) => (
+                        <li className='grid grid-cols-2'>
+                          <span>{`${renderAmount(i.antal)} ${
+                            i.enhet.name
+                          }`}</span>
+                          <span>{i.namn}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                );
+              })}
             <li>{ReactHtmlParser(recipe.acf_recipe.ingredienserOvrigt)}</li>
           </ul>
         </div>
