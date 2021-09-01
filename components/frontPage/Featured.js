@@ -25,7 +25,7 @@ export default function Featured({ items }) {
       return (
         <Link href={item.uri}>
           <a
-            className={`${containerClasses} lg:h-full lg:col-span-1 lg:row-span-2 `}
+            className={`lg:col-span-1 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
               <Image src={item.image} layout='fill' objectFit='cover' />

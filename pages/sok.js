@@ -1,0 +1,102 @@
+import { Fragment, useEffect, useState } from 'react';
+
+import { NextSeo } from 'next-seo';
+import Results from '../components/search/Results';
+import { getArticles } from '../lib/api/articles';
+import { getRecipes } from '../lib/api/recipes';
+
+const filterItemClasses = `w-full p-1 lg:p-2 mt-5 text-sm lg:text-base flex items-center justify-center border-2 first:border-l-2 border-l-0 border-brand-red font-semibold cursor-pointer`;
+const activeFilterItemClass = `bg-brand-red text-white`;
+export default function SearchPage({ data }) {
+  const [types, setTypes] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const [searchInput, setSearchInput] = useState('');
+
+  const typeArray = [
+    { text: 'Artiklar', value: 'articles' },
+    { text: 'Recept', value: 'recipes' },
+    { text: 'Drycker', value: 'drinks' },
+  ];
+  const handleTypeSelection = (selection) => {
+    if (types.includes(selection)) {
+      const i = types.indexOf(selection);
+      const tempArray = [...types];
+      tempArray.splice(i, 1);
+      setTypes(tempArray);
+    } else {
+      const tempArray = [...types, selection];
+      setTypes(tempArray);
+    }
+  };
+  useEffect(() => {
+    let filterTimeout;
+
+    filterTimeout = setTimeout(() => {
+      console.log('Timeout Triggered!');
+      setSearchInput(inputValue.toLowerCase());
+      // setMaxCount(27);
+    }, 500);
+    return () => clearTimeout(filterTimeout);
+  }, [inputValue]);
+  return (
+    <Fragment>
+      <NextSeo title='Sök på DinVinguide' />
+      <div className='text-center contain-sm row'>
+        <h1 className='text-brand-red'>Sök på dinvinguide</h1>
+        <input
+          type='text'
+          placeholder='Sök här...'
+          className='w-full px-5 py-3 mt-5'
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <ul className='flex items-center justify-between'>
+          <li
+            className={`${filterItemClasses} ${
+              types.length === 0 && activeFilterItemClass
+            } `}
+            onClick={() => setTypes([])}
+          >
+            Allt
+          </li>
+          {typeArray.map((item) => (
+            <li
+              className={`${filterItemClasses} ${
+                types.includes(item.value) && activeFilterItemClass
+              }`}
+              onClick={() => setTypes([item.value])}
+            >
+              {item.text}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className='space-y-10 contain-sm row'>
+        {typeArray.map((item) => {
+          if (searchInput) {
+            if (types.includes(item.value) || types.length === 0) {
+              return (
+                <Results
+                  heading={item.text}
+                  data={data[item.value]}
+                  search={searchInput}
+                />
+              );
+            }
+          }
+        })}
+      </div>
+    </Fragment>
+  );
+}
+export const getStaticProps = async () => {
+  const recipes = await getRecipes();
+  const articles = await getArticles();
+  return {
+    props: {
+      data: {
+        recipes,
+        articles,
+      },
+    },
+  };
+};

@@ -4,6 +4,7 @@ import { getRecipe, getRecipePaths } from '../../lib/api/recipes';
 import Ad from '../../components/ads/Ad';
 import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 import ReactHtmlParser from 'react-html-parser';
 import { getAds } from '../../lib/api/ads';
 
@@ -46,6 +47,7 @@ export default function RecipePage({ data }) {
 
   return (
     <Fragment>
+      <NextSeo title={`${recipe.title} - Recept`} />
       <BreadCrumbs
         crumbs={[
           { text: 'Recept', href: '/recept' },
@@ -57,7 +59,7 @@ export default function RecipePage({ data }) {
       <div className='mx-auto max-w-7xl w-[90%] recipe-layout row'>
         <div
           style={{ gridArea: 'img' }}
-          className='relative w-full lg:w-[550px] aspect-w-16 aspect-h-10'
+          className='relative w-full lg:w-[550px] aspect-w-16 aspect-h-10 bg-brand-red'
         >
           {recipe.featuredImage && (
             <Image
@@ -71,7 +73,7 @@ export default function RecipePage({ data }) {
           style={{ gridArea: 'meta' }}
           className='my-10 text-center lg:p-10 lg:my-0 lg:text-left'
         >
-          <p>
+          <p className='mb-3'>
             Recept av{' '}
             {recipe.acf_recipe.skrivetAv && recipe.acf_recipe.skrivetAv.name
               ? recipe.acf_recipe.skrivetAv.name
@@ -96,7 +98,6 @@ export default function RecipePage({ data }) {
                 onChange={(e) => setPortions(e.target.value)}
               >
                 {availablePortions.map((portion) => {
-                  console.log(portion, portions);
                   return (
                     <option
                       value={parseInt(portion)}

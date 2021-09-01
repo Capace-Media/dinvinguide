@@ -1,17 +1,20 @@
+import { ArticleJsonLd, NextSeo } from 'next-seo';
 import { getArticle, getArticlePaths } from '../../lib/api/articles';
 
 import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
 import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import ReactHtmlParser from 'react-html-parser';
 import ReadMorePosts from '../../components/article/ReadMorePosts';
 import { renderSection } from '../../utils/acf';
 
 export default function Article({ data }) {
   const { article } = data;
-  console.log(article.author.node);
+  console.log(article);
   return (
     <Fragment>
+      <NextSeo title={article.title} />
       <article>
         <BreadCrumbs
           crumbs={[
@@ -23,12 +26,13 @@ export default function Article({ data }) {
             { current: true, text: article.title, href: article.uri },
           ]}
         />
-        <div className='row max-w-7xl mx-auto w-[85%] grid'>
+        <div className='grid row contain-sm'>
           <div className='relative aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-9'>
             <Image
               src={article.featuredImage.node.mediaItemUrl}
               layout='fill'
               objectFit='cover'
+              priority
             />
           </div>
         </div>
@@ -44,8 +48,16 @@ export default function Article({ data }) {
             <p className='mt-10 mb-20 text-lg'>{article.acf_posts.ingress}</p>
           </div>
         </div>
+
         <div>
-          {article.acf_posts.sektioner.map((section) => renderSection(section))}
+          {article.acf_posts.sektioner &&
+          article.acf_posts.sektioner.length > 0 ? (
+            article.acf_posts.sektioner.map((section) => renderSection(section))
+          ) : (
+            <div className='contain-sm rich-text'>
+              {ReactHtmlParser(article.content)}
+            </div>
+          )}
         </div>
       </article>
       <div className='row max-w-4xl mx-auto w-[85%] text-center flex flex-col items-center lg:text-left lg:grid lg:grid-cols-[100px,1fr] gap-10 mt-5 lg:mt-10'>

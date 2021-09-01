@@ -5,6 +5,7 @@ import Ad from '../../components/ads/Ad';
 import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
 import Image from 'next/image';
 import Link from 'next/link';
+import { NextSeo } from 'next-seo';
 import { getAds } from '../../lib/api/ads';
 
 export default function AuthorPage({ data }) {
@@ -13,6 +14,7 @@ export default function AuthorPage({ data }) {
 
   return (
     <Fragment>
+      <NextSeo title={`${author.name} - Skribent`} />
       <BreadCrumbs
         crumbs={[
           { text: 'Skribenter', href: '/skribenter' },
@@ -126,7 +128,7 @@ export default function AuthorPage({ data }) {
             artiklar
           </h2>
         </div>
-        <div className='contain'>
+        <div className='contain-md'>
           {author.posts.edges.map(({ node: post }, index) => {
             console.log(post);
             if (index === 0) {
@@ -153,7 +155,7 @@ export default function AuthorPage({ data }) {
             }
           })}
         </div>
-        <div className='grid gap-3 contain md:grid-cols-2 lg:grid-cols-3 row'>
+        <div className='grid gap-3 contain-md md:grid-cols-2 lg:grid-cols-3 row'>
           {author.posts.edges.map(({ node: post }, index) => {
             if (index > 0) {
               return (

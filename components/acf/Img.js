@@ -3,12 +3,12 @@ import Image from 'next/image';
 export default function Img({ content, style }) {
   if (!style && content.img) {
     return (
-      <div className='row max-w-4xl mx-auto w-[85%]'>
-        <div className='aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-10'>
+      <div className='row contain'>
+        <div className='relative flex justify-center'>
           <Image
             src={content.img.mediaItemUrl}
-            layout='fill'
-            objectFit='cover'
+            width={content.img.mediaDetails.width}
+            height={content.img.mediaDetails.height}
           />
         </div>
       </div>
@@ -16,11 +16,11 @@ export default function Img({ content, style }) {
   }
   if (style === 'full') {
     return (
-      <div className='contain aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-9 row'>
+      <div className='flex justify-center w-full row'>
         <Image
           src={content.img.mediaItemUrl}
-          layout='fill'
-          objectFit='contain'
+          width={content.img.mediaDetails.width}
+          height={content.img.mediaDetails.height}
         />
       </div>
     );

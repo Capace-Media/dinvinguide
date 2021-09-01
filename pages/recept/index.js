@@ -5,6 +5,7 @@ import FilterMessage from '../../components/recipes/FilterMessage';
 import Fuse from 'fuse.js';
 import Image from 'next/image';
 import Link from 'next/link';
+import { NextSeo } from 'next-seo';
 import RecipeCard from '../../components/recipes/RecipeCard';
 import chunkArrayWithAds from '../../utils/chunkArray';
 import debounce from 'lodash.debounce';
@@ -52,6 +53,7 @@ export default function RecipePage({ data }) {
 
   return (
     <Fragment>
+      <NextSeo title='Recept' />
       <div className='row contain'>
         <div className='text-center'>
           <h1 className='mb-5 text-brand-red'>Recept</h1>

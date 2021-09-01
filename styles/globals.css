@@ -62,8 +62,11 @@
   .contain {
     @apply max-w-screen-2xl mx-auto w-[90%];
   }
+  .contain-md {
+    @apply max-w-7xl mx-auto w-[90%];
+  }
   .contain-sm {
-    @apply max-w-4xl mx-auto w-[85%];
+    @apply max-w-4xl mx-auto w-[90%];
   }
   .section {
     @apply py-10 lg:py-20;
@@ -96,6 +99,9 @@
 }
 .rich-text figure {
   @apply mb-5 !w-full;
+}
+.rich-text img {
+  @apply mx-auto;
 }
 .rich-text figcaption {
   @apply mt-3;
