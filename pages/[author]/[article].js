@@ -27,14 +27,16 @@ export default function Article({ data }) {
           ]}
         />
         <div className='grid row contain-sm'>
-          <div className='relative aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-9'>
-            <Image
-              src={article.featuredImage.node.mediaItemUrl}
-              layout='fill'
-              objectFit='cover'
-              priority
-            />
-          </div>
+          {article.featuredImage && (
+            <div className='relative aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-9'>
+              <Image
+                src={article.featuredImage.node.mediaItemUrl}
+                layout='fill'
+                objectFit='cover'
+                priority
+              />
+            </div>
+          )}
         </div>
         <div className='max-w-4xl mx-auto w-[85%]'>
           <div className='text-center'>
@@ -62,12 +64,15 @@ export default function Article({ data }) {
       </article>
       <div className='row max-w-4xl mx-auto w-[85%] text-center flex flex-col items-center lg:text-left lg:grid lg:grid-cols-[100px,1fr] gap-10 mt-5 lg:mt-10'>
         <div className='relative w-24 h-24 mb-10 overflow-hidden rounded-full lg:mb-0'>
-          <Image
-            src={article.author.node.acf_user.bild.mediaItemUrl}
-            layout='fill'
-            objectFit='cover'
-          />
+          {article?.author?.node?.acf_user?.bild?.mediaItemUrl && (
+            <Image
+              src={article.author.node.acf_user.bild.mediaItemUrl}
+              layout='fill'
+              objectFit='cover'
+            />
+          )}
         </div>
+
         <div className=''>
           <h3 className='mb-3 text-xl text-brand-red lg:text-3xl'>
             {article.author.node.name}

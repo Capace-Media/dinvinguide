@@ -17,7 +17,7 @@ const ResultsItem = ({ item, maxCount, index, triggerInView }) => {
     >
       <Link href={item.uri}>
         <a className='p-2 lg:p-3 grid gap-5 grid-cols-[80px,1fr] lg:grid-cols-[80px,1fr,100px] bg-white cursor-pointer'>
-          <figure className='relative w-20 h-20 bg-brand-bronze'>
+          <figure className='relative w-20 h-20 bg-black/10'>
             {item.featuredImage && (
               <Image
                 src={item.featuredImage.node.mediaItemUrl}

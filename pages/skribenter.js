@@ -6,14 +6,15 @@ import ReactHtmlParser from 'react-html-parser';
 import { getAuthors } from '../lib/api/authors';
 export default function SkribenterPage({ data }) {
   const { authors } = data;
-  console.log(authors);
+  const { skribenter, medarbetare } = authors;
+
   return (
     <Fragment>
       <NextSeo title='Skribenter i redaktionen' />
-      <div className='max-w-6xl mx-auto w-[85%]'>
+      <div className='contain-md'>
         <h1 className='text-center row text-brand-red'>Redaktionen</h1>
         <div className='space-y-20 row'>
-          {authors.map((author, i) => {
+          {skribenter.map((author, i) => {
             if (i % 2 === 0) {
               return (
                 <div className='grid lg:grid-cols-[1fr,3fr] gap-10 lg:gap-20'>
@@ -202,6 +203,23 @@ export default function SkribenterPage({ data }) {
               );
             }
           })}
+        </div>
+        <div className='text-center row contain-md'>
+          <h3 className='text-3xl text-brand-red'>Medarbetare</h3>
+        </div>
+        <div className='grid gap-10 lg:grid-cols-4 row contain-md'>
+          {medarbetare.map((author, i) => (
+            <div className='text-center'>
+              <figure className='relative overflow-hidden rounded-full aspect-w-1 aspect-h-1'>
+                <Image
+                  src={author.acf_user.bild.mediaItemUrl}
+                  layout='fill'
+                  objectFit='cover'
+                />
+              </figure>
+              <h4 className='my-5'>{author.name}</h4>
+            </div>
+          ))}
         </div>
       </div>
     </Fragment>
