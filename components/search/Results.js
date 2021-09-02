@@ -3,7 +3,7 @@ import Link from 'next/link';
 import ResultsItem from './ResultsItem';
 import { useState } from 'react';
 
-const Results = ({ heading, data, search }) => {
+const Results = ({ heading, data, search, currentFilter, value }) => {
   if (!data) {
     return null;
   } else {
@@ -19,7 +19,7 @@ const Results = ({ heading, data, search }) => {
       setMaxCount((prev) => prev + incrementCount);
     };
 
-    return (
+    return results.length > 0 ? (
       <div>
         <h2 className='mb-5'>
           {heading}{' '}
@@ -36,6 +36,7 @@ const Results = ({ heading, data, search }) => {
                   item={item}
                   maxCount={maxCount}
                   index={i}
+                  type={value}
                 />
               );
             }
@@ -52,7 +53,9 @@ const Results = ({ heading, data, search }) => {
           )}
         </div>
       </div>
-    );
+    ) : currentFilter === value ? (
+      <h2>Inga resultat</h2>
+    ) : null;
   }
 };
 export default Results;

@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 const RecipeCard = React.memo(({ recipe, index, last }) => {
-  console.log('RENDERED');
   return (
     <Link href={recipe.uri}>
       <a

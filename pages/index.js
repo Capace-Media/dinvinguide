@@ -26,14 +26,13 @@ export default function Home({ data }) {
   );
 }
 export const getStaticProps = async () => {
-  const ads = await getAds();
-  const page = await getFrontPageData();
+  const resolved = await Promise.all([getAds(), getFrontPageData()]);
 
   return {
     props: {
       data: {
-        ads,
-        page,
+        ads: resolved[0],
+        page: resolved[1],
       },
     },
   };

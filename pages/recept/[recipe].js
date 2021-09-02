@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import { getRecipe, getRecipePaths } from '../../lib/api/recipes';
+import { getRecipe, getRecipePaths, getRecipes } from '../../lib/api/recipes';
 
 import Ad from '../../components/ads/Ad';
 import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
@@ -163,10 +163,9 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const recipe = await getRecipe(params.recipe);
-  const ads = await getAds();
+  const resolved = await Promise.all([getRecipe(params.recipe), getAds()]);
 
-  if (!recipe) {
+  if (!resolved[0]) {
     return {
       notFound: true,
     };
@@ -175,8 +174,8 @@ export const getStaticProps = async ({ params }) => {
   return {
     props: {
       data: {
-        recipe,
-        ads,
+        recipe: resolved[0],
+        ads: resolved[1],
       },
     },
   };

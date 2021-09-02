@@ -113,14 +113,12 @@ export default function RecipePage({ data }) {
 }
 
 export const getStaticProps = async () => {
-  const recipes = await getRecipes();
-  const ads = await getAds();
-
+  const resolved = await Promise.all([getRecipes(), getAds()]);
   return {
     props: {
       data: {
-        ads,
-        recipes,
+        ads: resolved[1],
+        recipes: resolved[0],
       },
     },
   };
