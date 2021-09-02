@@ -16,11 +16,13 @@ const DryckPage = ({ data }) => {
         <div>
           <figure className='relative aspect-w-1 aspect-h-1'>
             <figure className='absolute bottom-0 left-0 w-full h-full scale-90 translate-y-5 rounded-full bg-brand-red' />
-            <Image
-              src={drink.featuredImage.node.mediaItemUrl}
-              layout='fill'
-              objectFit='contain'
-            />
+            {drink?.featuredImage?.node?.mediaItemUrl && (
+              <Image
+                src={drink.featuredImage.node.mediaItemUrl}
+                layout='fill'
+                objectFit='contain'
+              />
+            )}
           </figure>
         </div>
         <div>
