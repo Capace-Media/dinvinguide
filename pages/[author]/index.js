@@ -1,5 +1,9 @@
 import { Fragment, useState } from 'react';
-import { getAuthorData, getAuthorPaths } from '../../lib/api/authors';
+import {
+  getAuthorData,
+  getAuthorPaths,
+  getPostsByAuthor,
+} from '../../lib/api/authors';
 
 import Ad from '../../components/ads/Ad';
 import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
@@ -9,8 +13,10 @@ import { NextSeo } from 'next-seo';
 import { getAds } from '../../lib/api/ads';
 
 export default function AuthorPage({ data }) {
+  const incrementNum = 24;
   const [isReadMore, setIsReadMore] = useState(false);
-  const { author, ads } = data;
+  const [maxCount, setMaxCount] = useState(25);
+  const { author, posts, ads } = data;
 
   return (
     <Fragment>
@@ -129,7 +135,7 @@ export default function AuthorPage({ data }) {
           </h2>
         </div>
         <div className='contain-md'>
-          {author.posts.edges.map(({ node: post }, index) => {
+          {posts.map(({ node: post }, index) => {
             console.log(post);
             if (index === 0) {
               return (
@@ -156,8 +162,8 @@ export default function AuthorPage({ data }) {
           })}
         </div>
         <div className='grid gap-3 contain-md md:grid-cols-2 lg:grid-cols-3 row'>
-          {author.posts.edges.map(({ node: post }, index) => {
-            if (index > 0) {
+          {posts.map(({ node: post }, index) => {
+            if (index > 0 && index < maxCount) {
               return (
                 <Link href={post.uri}>
                   <a className='relative block w-full overflow-hidden bg-black group aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-9'>
@@ -184,6 +190,14 @@ export default function AuthorPage({ data }) {
             }
           })}
         </div>
+        <div className='contain row'>
+          <button
+            onClick={() => setMaxCount((prev) => prev + incrementNum)}
+            className='px-5 py-3 text-white uppercase cursor-pointer bg-brand-red'
+          >
+            Visa fler artiklar
+          </button>
+        </div>
       </div>
     </Fragment>
   );
@@ -198,10 +212,13 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const author = await getAuthorData(params.author);
-  const ads = await getAds();
+  const resolved = await Promise.all([
+    getAuthorData(params.author),
+    getPostsByAuthor(params.author),
+    getAds(),
+  ]);
 
-  if (!author) {
+  if (!resolved[0]) {
     return {
       notFound: true,
     };
@@ -209,7 +226,7 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     props: {
-      data: { author, ads },
+      data: { author: resolved[0], posts: resolved[1], ads: resolved[2] },
     },
   };
 };

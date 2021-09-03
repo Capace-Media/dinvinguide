@@ -22,11 +22,11 @@ const GrapePuff = ({ content }) => {
   return (
     <div className='row'>
       <div
-        className={`grid p-5 lg:p-10 bg-white/50 max-w-5xl mx-auto w-[85%] gap-5 lg:gap-10 ${
+        className={`grid  bg-white/50 max-w-5xl mx-auto w-[85%] gap-5 lg:gap-10 ${
           content.featuredImage ? 'lg:grid-cols-2' : 'lg:grid-cols-1'
         }`}
       >
-        <div className='flex flex-col items-center justify-center text-center '>
+        <div className='flex flex-col items-center justify-center p-5 text-center lg:p-10'>
           <p className='mb-3 text-brand-red'>Druva</p>
           <Link href={content.uri}>
             <a className=''>
@@ -39,7 +39,7 @@ const GrapePuff = ({ content }) => {
         </div>
         {content.featuredImage && (
           <Link href={content.uri}>
-            <a className='relative block h-56 lg:min-h-[350px] lg:h-auto'>
+            <a className='relative block h-56 lg:min-h-[300px] lg:h-auto'>
               <Image
                 src={content.featuredImage.node.mediaItemUrl}
                 layout='fill'
@@ -57,11 +57,11 @@ const RecipePuff = ({ content }) => {
   return (
     <div className='row'>
       <div
-        className={`grid p-5 lg:p-10 bg-white/50 max-w-5xl mx-auto w-[85%] gap-10 ${
+        className={`grid  bg-white/50 max-w-5xl mx-auto w-[85%] gap-10 ${
           content.featuredImage ? 'lg:grid-cols-2' : 'lg:grid-cols-1'
         }`}
       >
-        <div className='flex flex-col items-center justify-center text-center '>
+        <div className='flex flex-col items-center justify-center p-5 text-center lg:p-10 '>
           <p className='mb-3 text-brand-red'>Recept</p>
           <Link href={content.uri}>
             <a className=''>
@@ -109,11 +109,11 @@ const DrinkPuff = ({ content }) => {
   return (
     <div className='row'>
       <div
-        className={`grid p-5 lg:p-10 bg-white/50 max-w-5xl mx-auto w-[85%] gap-5 lg:gap-10 ${
+        className={`grid bg-white/50 max-w-5xl mx-auto w-[85%] gap-5 lg:gap-10 ${
           content.featuredImage ? 'lg:grid-cols-2' : 'lg:grid-cols-1'
         }`}
       >
-        <div className='flex flex-col items-center justify-center text-center '>
+        <div className='flex flex-col items-center justify-center text-center lg:p-10'>
           <p className='mb-3 text-brand-red'>
             {content.drinkTypes.edges.length > 0
               ? content.drinkTypes.edges[0].node.name
