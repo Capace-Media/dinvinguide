@@ -12,7 +12,7 @@ module.exports = {
         brand: {
           bg: '#EFE7DB',
           bronze: '#E3BB7D',
-          red: '#A76D60',
+          red: '#B38175',
           green: '#3A4F49',
           gray: '#444444',
         },

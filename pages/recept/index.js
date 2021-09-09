@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
 
 import Ad from '../../components/ads/Ad';
+import { Client } from '../../lib/apollo';
 import FilterMessage from '../../components/recipes/FilterMessage';
 import Fuse from 'fuse.js';
 import Image from 'next/image';
@@ -11,9 +12,10 @@ import chunkArrayWithAds from '../../utils/chunkArray';
 import debounce from 'lodash.debounce';
 import { getAds } from '../../lib/api/ads';
 import { getRecipes } from '../../lib/api/recipes';
+import { gql } from '@apollo/client';
 
 export default function RecipePage({ data }) {
-  const { recipes, ads } = data;
+  const { recipes, ads, page } = data;
   const [searchInput, setSearchInput] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [maxCount, setMaxCount] = useState(27);
@@ -56,11 +58,17 @@ export default function RecipePage({ data }) {
       <NextSeo title='Recept' />
       <div className='row contain'>
         <div className='text-center'>
-          <h1 className='mb-5 text-brand-red'>Recept</h1>
-          <p>Utforska våra härliga recept.</p>
+          <h1 className='mb-5 text-brand-red'>{page.title}</h1>
+          <p>{page.acf_explorer.slogan}</p>
         </div>
       </div>
-      <div className='text-center row'>Bild kommer här</div>
+      <div className='relative mb-10 text-center aspect-w-16 aspect-h-5'>
+        <Image
+          src={page.acf_explorer.bkgResults.mediaItemUrl}
+          layout='fill'
+          objectFit='cover'
+        />
+      </div>
       <div className='flex flex-col items-center contain '>
         <input
           type='text'
@@ -113,12 +121,42 @@ export default function RecipePage({ data }) {
 }
 
 export const getStaticProps = async () => {
-  const resolved = await Promise.all([getRecipes(), getAds()]);
+  const getRecipePageData = async () => {
+    try {
+      const res = await Client.query({
+        query: gql`
+          query fetchRecipePageData {
+            pageBy(uri: "recept") {
+              title
+              acf_explorer {
+                slogan
+                bkgResults {
+                  mediaItemUrl
+                }
+              }
+            }
+          }
+        `,
+      });
+      console.log(res);
+      return res.data.pageBy;
+    } catch (error) {
+      console.log('recipePageData ERROR =>', error);
+      return;
+    }
+  };
+  const resolved = await Promise.all([
+    getRecipes(),
+    getAds(),
+    getRecipePageData(),
+  ]);
+
   return {
     props: {
       data: {
         ads: resolved[1],
         recipes: resolved[0],
+        page: resolved[2],
       },
     },
   };
