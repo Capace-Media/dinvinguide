@@ -21,16 +21,12 @@ const ToplistsPage = ({ data }) => {
           console.log('TOPLIST =>', toplist);
           return (
             <div className='text-center'>
-              <Link href='/'>
-                <h2 className='mb-5 text-base cursor-pointer text-brand-red'>
-                  {toplist.acf_toplists.ekologiskt
-                    ? `Ekologiska drycker`
-                    : toplist.acf_toplists.dryckestyper[0].name.includes(
-                        'Alkoholfritt'
-                      )
-                    ? `Alkoholfria drycker`
-                    : `${toplist.acf_toplists.dryckestyper[0].name} på ${toplist.acf_toplists.forpackningar[0].name}`}
-                </h2>
+              <Link href={toplist.uri}>
+                <a>
+                  <h2 className='mb-5 text-base cursor-pointer text-brand-red'>
+                    {toplist.acf_toplists.slogan}
+                  </h2>
+                </a>
               </Link>
 
               {currentDrinks.length > 0 ? (

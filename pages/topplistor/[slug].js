@@ -1,9 +1,11 @@
+import { getToplistPaths, getToplists } from '../../lib/api/toplists';
+
 import Ad from '../../components/ads/Ad';
 import { Fragment } from 'react';
-import { getAds } from '../../lib/api/ads';
-import { getToplists } from '../../lib/api/toplists';
-import ToplistItem from '../../components/toplists/ToplistItem';
 import Toplist from '../../components/toplists/Toplist';
+import ToplistItem from '../../components/toplists/ToplistItem';
+import { getAds } from '../../lib/api/ads';
+import slugify from 'slugify';
 
 const SingleToplistPage = ({ data }) => {
   const { ads, toplist } = data;
@@ -26,8 +28,9 @@ const SingleToplistPage = ({ data }) => {
 export default SingleToplistPage;
 
 export const getStaticPaths = async () => {
+  const paths = await getToplistPaths();
   return {
-    paths: [{ params: { slug: 'flaska-vitt' } }],
+    paths,
     fallback: 'blocking',
   };
 };
@@ -35,23 +38,39 @@ export const getStaticProps = async ({ params }) => {
   const slugArray = params.slug.includes('-')
     ? params.slug.split('-')
     : params.slug;
-  const packaging = slugArray[0];
-  const type = slugArray[1];
 
+  const isArray = Array.isArray(slugArray);
+
+  console.log(isArray);
   const resolved = await Promise.all([getAds(), getToplists()]);
   const toplist = resolved[1].filter((toplist) => {
-    if (
-      toplist.toplist.acf_toplists.dryckestyper[0].name
-        .toLowerCase()
-        .includes(type.split(' ')[0]) &&
-      toplist.toplist.acf_toplists.forpackningar[0].name
-        .toLowerCase()
-        .includes(packaging.split(' ')[0])
-    ) {
-      return true;
+    const isEco = toplist.toplist.acf_toplists.ekologiskt;
+    const toplistType = slugify(
+      toplist.toplist.acf_toplists.dryckestyper[0].name.toLowerCase()
+    );
+    const toplistPackaging = slugify(
+      toplist.toplist.acf_toplists.forpackningar[0].name.toLowerCase()
+    );
+    //TODO: Slugify everything to make sure it matches
+
+    if (isArray) {
+      if (
+        toplistType.includes(slugArray[1].split(' ')[0]) &&
+        toplistPackaging.includes(slugArray[0].split(' ')[0])
+      ) {
+        return true;
+      }
+    } else {
+      if (slugArray === 'ekologiskt' && isEco) {
+        return true;
+      } else {
+        if (toplistType.includes(slugArray)) {
+          return true;
+        }
+      }
     }
   });
-  console.log(toplist);
+
   return {
     props: {
       data: {

@@ -1,43 +1,52 @@
-import ReactHtmlParser from 'react-html-parser';
 import Image from 'next/image';
 import Link from 'next/link';
 import MedalOne from '../../public/images/no1.png';
-import MedalTwo from '../../public/images/no2.png';
 import MedalThree from '../../public/images/no3.png';
+import MedalTwo from '../../public/images/no2.png';
+import ReactHtmlParser from 'react-html-parser';
 import dayjs from 'dayjs';
 const ToplistItem = ({ data, index }) => {
-  console.log('Recept =>', data.acf_drinks.passarTillRecept);
   return (
-    <div className='grid grid-cols-2 gap-20 contain-sm'>
+    <div className='grid grid-cols-2 gap-10 contain-sm'>
       <div className='relative' style={{ order: index % 2 === 0 ? 1 : 0 }}>
         {data.featuredImage && data.featuredImage.node && (
-          <div>
-            <figure className='relative aspect-w-1 aspect-h-1'>
-              <figure className='absolute w-full h-full scale-75 translate-y-16 rounded-full bg-brand-red' />
-              <Image
-                src={data.featuredImage.node.mediaItemUrl}
-                layout='fill'
-                objectFit='contain'
-              />
-            </figure>
-            {index <= 3 && (
-              <div className='absolute right-0 w-32 h-32 top-64'>
+          <Link href={data.uri}>
+            <a>
+              <figure className='relative aspect-w-1 aspect-h-1'>
+                <figure className='absolute w-full h-full scale-75 translate-y-16 rounded-full bg-brand-red' />
                 <Image
-                  src={
-                    index === 1 ? MedalOne : index === 2 ? MedalTwo : MedalThree
-                  }
+                  src={data.featuredImage.node.mediaItemUrl}
+                  layout='fill'
                   objectFit='contain'
                 />
-              </div>
-            )}
-          </div>
+              </figure>
+              {index <= 3 && (
+                <div className='absolute right-0 w-32 h-32 top-64'>
+                  <Image
+                    src={
+                      index === 1
+                        ? MedalOne
+                        : index === 2
+                        ? MedalTwo
+                        : MedalThree
+                    }
+                    objectFit='contain'
+                  />
+                </div>
+              )}
+            </a>
+          </Link>
         )}
       </div>
       <div>
         <strong className='block mb-5 text-2xl uppercase text-brand-red'>
           Nr {index}
         </strong>
-        <h2 className='normal-case text-brand-red'>{data.title}</h2>
+        <Link href={data.uri}>
+          <a>
+            <h2 className='normal-case text-brand-red'>{data.title}</h2>
+          </a>
+        </Link>
         <p className='mt-5 space-x-1'>
           {data.acf_drinks.land && <span>{data?.acf_drinks?.land}</span>}
           {data.acf_drinks.argang && <span>{data?.acf_drinks?.argang}</span>}
@@ -88,7 +97,8 @@ const ToplistItem = ({ data, index }) => {
           </Link>
         )}
         <small className='block mt-5'>
-          {dayjs(data.date).format('D MMMM YYYY')} - {data.acf_drinks.betyg}
+          {dayjs(data.date).format('D MMMM YYYY')} - {data.acf_drinks.betyg} -{' '}
+          {data.acf_drinks.ekologiskt ? 'ECO' : 'NOT ECO'}
         </small>
       </div>
     </div>

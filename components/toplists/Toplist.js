@@ -3,13 +3,13 @@ import ToplistItem from './ToplistItem';
 
 const Toplist = ({ data, ads }) => {
   const currentCount = data.currentDrinks.length;
-  console.log('CURRENT COUNT =>', currentCount);
+
   const array = [
     ...data.currentDrinks,
     { node: { ad: true, component: <Ad ads={ads} position='top' /> } },
     ...data.fallbackDrinks,
   ];
-  console.log(array);
+
   let num = 0;
 
   return (
