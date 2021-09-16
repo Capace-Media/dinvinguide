@@ -22,7 +22,7 @@ export default function Header() {
       mobile: true,
     },
     { content: 'Recept', href: '/recept' },
-    { content: 'Topplistor', href: '/topplistor' },
+    { content: 'Topplistor', href: '/dryckeslistan' },
   ];
   return (
     <header className='fixed top-0 left-0 z-50 w-screen font-bold uppercase bg-brand-bg font-display'>

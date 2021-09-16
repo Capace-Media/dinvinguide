@@ -7,6 +7,7 @@ const Toplist = ({ data, ads }) => {
   const array = [
     ...data.currentDrinks,
     { node: { ad: true, component: <Ad ads={ads} position='top' /> } },
+    ...data.previousDrinks,
     ...data.fallbackDrinks,
   ];
 

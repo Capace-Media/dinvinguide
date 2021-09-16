@@ -69,33 +69,34 @@ const ToplistItem = ({ data, index }) => {
             {ReactHtmlParser(data.acf_drinks.recension)}
           </div>
         )}
-        {data.acf_drinks.passarTillRecept && (
-          <Link href={data.acf_drinks.passarTillRecept[0].uri}>
-            <a className='relative block group'>
-              <div className='mt-5 overflow-hidden bg-black'>
-                <figure className='relative transition-all aspect-w-16 aspect-h-8 opacity-70 group-hover:scale-110'>
-                  <Image
-                    src={
-                      data.acf_drinks?.passarTillRecept[0].featuredImage?.node
-                        ?.mediaItemUrl
-                        ? data.acf_drinks.passarTillRecept[0].featuredImage.node
-                            .mediaItemUrl
-                        : '/images/recipe-placeholder.jpg'
-                    }
-                    layout='fill'
-                    objectFit='cover'
-                  />
-                </figure>
-                <div className='absolute top-0 left-0 p-3 text-white'>
-                  <p>Passar med</p>
-                  <strong className='block'>
-                    {data.acf_drinks.passarTillRecept[0].title}
-                  </strong>
+        {data.acf_drinks.passarTillRecept &&
+          data.acf_drinks.passarTillRecept.length > 0 && (
+            <Link href={data.acf_drinks.passarTillRecept[0].uri}>
+              <a className='relative block group'>
+                <div className='mt-5 overflow-hidden bg-black'>
+                  <figure className='relative transition-all aspect-w-16 aspect-h-8 opacity-70 group-hover:scale-110'>
+                    <Image
+                      src={
+                        data.acf_drinks?.passarTillRecept[0].featuredImage?.node
+                          ?.mediaItemUrl
+                          ? data.acf_drinks.passarTillRecept[0].featuredImage
+                              .node.mediaItemUrl
+                          : '/images/recipe-placeholder.jpg'
+                      }
+                      layout='fill'
+                      objectFit='cover'
+                    />
+                  </figure>
+                  <div className='absolute top-0 left-0 p-3 text-white'>
+                    <p>Passar med</p>
+                    <strong className='block'>
+                      {data.acf_drinks.passarTillRecept[0].title}
+                    </strong>
+                  </div>
                 </div>
-              </div>
-            </a>
-          </Link>
-        )}
+              </a>
+            </Link>
+          )}
         <small className='block mt-5'>
           {dayjs(data.date).format('D MMMM YYYY')} - {data.acf_drinks.betyg} -{' '}
           {data.acf_drinks.ekologiskt ? 'ECO' : 'NOT ECO'}

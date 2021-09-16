@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import MedalImage from '../../public/images/no1.png';
 import dayjs from 'dayjs';
-const ToplistPuff = ({ data }) => {
+const ToplistPuff = ({ data, toplistUri }) => {
   return (
     <div className='relative'>
       <figure className='relative block mb-5 aspect-w-1 aspect-h-1'>
@@ -35,17 +35,20 @@ const ToplistPuff = ({ data }) => {
         {data.acf_drinks.pris && (
           <p className='text-xl text-brand-red'>{data.acf_drinks.pris}:-</p>
         )}
-        {data.acf_drinks.passarTillRecept && (
-          <p>
-            Passar till receptet:
-            <span className='block font-semibold'>
-              {data.acf_drinks.passarTillRecept[0].title}
-            </span>
-          </p>
-        )}
-        <small className='block'>
-          {dayjs(data.date).format('D MMMM YYYY')} - {data.acf_drinks.betyg}
-        </small>
+        {data.acf_drinks.passarTillRecept &&
+          data.acf_drinks.passarTillRecept[0] && (
+            <p>
+              Passar till receptet:
+              <span className='block font-semibold'>
+                {data.acf_drinks.passarTillRecept[0].title}
+              </span>
+            </p>
+          )}
+        <Link href={toplistUri}>
+          <a className='inline-block px-5 py-3 text-white rounded bg-brand-red'>
+            Till topplistan
+          </a>
+        </Link>
       </div>
     </div>
   );
