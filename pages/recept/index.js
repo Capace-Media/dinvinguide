@@ -69,7 +69,7 @@ export default function RecipePage({ data }) {
           objectFit='cover'
         />
       </div>
-      <div className='flex flex-col items-center contain '>
+      <div className='flex flex-col items-center mb-5 contain '>
         <input
           type='text'
           placeholder='Sök recept'
@@ -78,11 +78,7 @@ export default function RecipePage({ data }) {
           className='p-5 w-96'
         />
       </div>
-      <FilterMessage
-        totalCount={recipes.length}
-        currentCount={filteredRecipes.length}
-        searchTerm={searchInput}
-      />
+
       <Ad ads={ads} position='top' />
       <div className='grid-cols-4 gap-3 lg:grid contain row auto-cols-auto'>
         {filteredRecipes.map(({ node: recipe }, i) => {

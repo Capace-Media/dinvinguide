@@ -6,10 +6,12 @@ const Toplist = ({ data, ads }) => {
 
   const array = [
     ...data.currentDrinks,
-    { node: { ad: true, component: <Ad ads={ads} position='top' /> } },
     ...data.previousDrinks,
     ...data.fallbackDrinks,
   ];
+  array.splice(3, 0, {
+    node: { ad: true, component: <Ad ads={ads} position='top' /> },
+  });
 
   let num = 0;
 

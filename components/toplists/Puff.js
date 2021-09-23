@@ -18,7 +18,11 @@ const ToplistPuff = ({ data, toplistUri }) => {
       <figure className='absolute right-0 w-24 h-24 top-10'>
         <Image src={MedalImage} width={100} height={100} objectFit='contain' />
       </figure>
-      <h3 className='normal-case text-brand-red'>{data.title}</h3>
+      <Link href={toplistUri}>
+        <a>
+          <h3 className='normal-case text-brand-red'>{data.title}</h3>
+        </a>
+      </Link>
       <div className='space-y-3'>
         <p className='space-x-2'>
           {data.acf_drinks.land && <span>{data.acf_drinks.land}</span>}

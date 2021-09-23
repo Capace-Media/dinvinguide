@@ -6,7 +6,7 @@ import SweFlag from '../../public/images/SWEFlag.png';
 export default function Header() {
   const links = [
     { content: 'Skribenter', href: '/skribenter' },
-    { content: 'Guide', href: '/' },
+    { content: 'Guide', href: '/guide' },
     {
       content: (
         <Image
@@ -53,6 +53,7 @@ export default function Header() {
           {links.map((link) => (
             <Link href={link.href}>
               <a
+                key={link.href}
                 className={
                   link.mobile ? 'inherit lg:inherit' : 'hidden lg:flex'
                 }
