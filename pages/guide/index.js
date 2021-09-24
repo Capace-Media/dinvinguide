@@ -1,3 +1,4 @@
+import ExplorerLinks from '../../components/common/explorer/explorerLinks';
 import Link from 'next/link';
 const GuidePage = () => {
   return (
@@ -35,6 +36,7 @@ const GuidePage = () => {
           </a>
         </Link>
       </div>
+      <ExplorerLinks />
     </>
   );
 };
