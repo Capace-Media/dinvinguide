@@ -110,10 +110,10 @@ const DryckPage = ({ data }) => {
 export default DryckPage;
 
 export const getStaticPaths = async () => {
-  const paths = await getDrinkPaths();
+  // const paths = await getDrinkPaths();
 
   return {
-    paths,
+    paths: [],
     fallback: 'blocking',
   };
 };

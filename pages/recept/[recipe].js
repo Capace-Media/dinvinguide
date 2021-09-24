@@ -147,17 +147,10 @@ export default function RecipePage({ data }) {
   );
 }
 export const getStaticPaths = async () => {
-  const paths = await getRecipePaths();
+  // const paths = await getRecipePaths();
 
   return {
-    paths: [
-      {
-        params: {
-          recipe:
-            'tartar-pa-betor-med-friterade-potatisnystan-och-vegansk-majonnas',
-        },
-      },
-    ],
+    paths: [],
     fallback: 'blocking',
   };
 };

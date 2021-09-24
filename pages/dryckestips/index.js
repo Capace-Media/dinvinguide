@@ -15,9 +15,11 @@ const DryckesTipsPage = ({ ads, drinks }) => {
         <input
           type='text'
           value={searchInput}
-          onChange={({ target }) => setSearchInput(target.value)}
+          onChange={({ target }) => {
+            setSearchInput(target.value);
+          }}
           placeholder='Sök...'
-          className='px-5 py-3 w-96'
+          className='w-full px-5 py-3 lg:w-96'
         />
       </div>
       <DrinktipsList searchInput={searchInput} drinks={drinks} />
