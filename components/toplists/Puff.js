@@ -43,9 +43,11 @@ const ToplistPuff = ({ data, toplistUri }) => {
           data.acf_drinks.passarTillRecept[0] && (
             <p>
               Passar till receptet:
-              <span className='block font-semibold'>
-                {data.acf_drinks.passarTillRecept[0].title}
-              </span>
+              <Link href={data.acf_drinks.passarTillRecept[0].uri}>
+                <a className='block font-semibold'>
+                  {data.acf_drinks.passarTillRecept[0].title}
+                </a>
+              </Link>
             </p>
           )}
         <Link href={toplistUri}>

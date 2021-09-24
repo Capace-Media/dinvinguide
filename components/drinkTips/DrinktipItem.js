@@ -21,14 +21,16 @@ const DrinktipItem = ({
   console.log(acf_dryckestips);
   return (
     <li className='text-center' ref={index === maxNodes ? ref : null}>
-      <div className='aspect-w-1 aspect-h-1'>
-        <figure className='absolute top-0 left-0 w-full h-full scale-90 translate-y-4 rounded-full bg-brand-red' />
-        <Image
-          src={featuredImage.node.mediaItemUrl}
-          layout='fill'
-          objectFit='contain'
-        />
-      </div>
+      <Link href={uri}>
+        <a className='block aspect-w-1 aspect-h-1'>
+          <figure className='absolute top-0 left-0 w-full h-full scale-90 translate-y-4 rounded-full bg-brand-red' />
+          <Image
+            src={featuredImage.node.mediaItemUrl}
+            layout='fill'
+            objectFit='contain'
+          />
+        </a>
+      </Link>
       <h3 className='mt-5 normal-case text-brand-red'>
         <Link href={uri}>
           <a>{title}</a>

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 const DrinkListItem = ({ dryck, loadMore, maxNodes, index }) => {
-  console.log(dryck);
   const { ref, inView } = useInView();
   useEffect(() => {
     if (inView) {
@@ -14,6 +13,7 @@ const DrinkListItem = ({ dryck, loadMore, maxNodes, index }) => {
     <div
       ref={index === maxNodes ? ref : null}
       className='grid grid-cols-3 gap-5 p-5 bg-white rounded-sm'
+      key={dryck.title}
     >
       <div className='relative col-span-1 aspect-w-1 aspect-h-1'>
         <figure>

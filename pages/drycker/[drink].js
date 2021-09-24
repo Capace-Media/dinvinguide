@@ -98,7 +98,7 @@ const DryckPage = ({ data }) => {
                 rel='noopener noreferrer'
                 className='px-5 py-3 text-white bg-brand-red'
               >
-                Systembolaget
+                Beställ på Systembolaget
               </a>
             )}
           </div>

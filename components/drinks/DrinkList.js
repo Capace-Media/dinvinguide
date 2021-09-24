@@ -6,7 +6,6 @@ const DrinkList = ({ drycker }) => {
   const [searchInput, setSearchInput] = useState('');
   const [onlyEco, setOnlyEco] = useState(false);
   const [alcoholFree, setAlcoholFree] = useState(false);
-  console.log(drycker.length);
 
   const handleLoadMore = () => {
     setMaxNodes((prev) => prev + 23);

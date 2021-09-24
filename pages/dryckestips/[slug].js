@@ -1,6 +1,11 @@
 import Ad from '../../components/ads/Ad';
+import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
+import DryckesutforskarenImage from '../../public/images/dryckesutforskaren.jpg';
+import ExplorerLinks from '../../components/common/explorer/explorerLinks';
 import Image from 'next/image';
+import Link from 'next/link';
 import ReactHtmlParser from 'react-html-parser';
+import ReceptutforskarenImage from '../../public/images/receptutforskaren.jpg';
 import dayjs from 'dayjs';
 import { fetchDrinktipsBySlug } from '../../lib/api/drinkTips/fetchDrinktipBySlug';
 import { getAds } from '../../lib/api/ads';
@@ -21,6 +26,14 @@ const DryckesTipsSinglePage = ({ ads, drink }) => {
     <>
       <div className='contain row'>
         <Ad ads={ads} position='top' />
+      </div>
+      <div>
+        <BreadCrumbs
+          crumbs={[
+            { text: 'Dryckestips', href: '/dryckestips' },
+            { text: drink.title, current: true, href: '/' },
+          ]}
+        />
       </div>
       <div className='grid gap-10 lg:grid-cols-3 contain-md row'>
         <div className='relative'>
@@ -73,7 +86,29 @@ const DryckesTipsSinglePage = ({ ads, drink }) => {
             })}
           </ul>
         </div>
+        <div></div>
+        <div className='space-x-3'>
+          {drink.acf_dryckestips.bolagetAdress && (
+            <a
+              href={drink.acf_dryckestips.bolagetAdress}
+              target='_blank'
+              className='px-6 py-3 uppercase bg-brand-red text-brand-bg'
+            >
+              Beställ på Systembolaget
+            </a>
+          )}
+          {drink.acf_dryckestips.knappUrl && (
+            <a
+              href={drink.acf_dryckestips.knappUrl}
+              target='_blank'
+              className='px-6 py-3 uppercase bg-brand-red text-brand-bg'
+            >
+              Kan beställas här
+            </a>
+          )}
+        </div>
       </div>
+      <ExplorerLinks />
     </>
   );
 };
