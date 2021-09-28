@@ -7,7 +7,7 @@ const GuidePage = () => {
         <h1 className='text-brand-red'>Guider</h1>
       </div>
       <div className='grid grid-cols-4 gap-5 row contain'>
-        <Link href='/'>
+        <Link href='/druvguiden'>
           <a className='flex items-center justify-center block p-10 bg-brand-red text-brand-bg'>
             <span className='py-3 font-semibold text-center uppercase border-t-4 border-b-4 border-brand-bg'>
               Druvguiden

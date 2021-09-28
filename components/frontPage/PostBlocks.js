@@ -12,7 +12,9 @@ export default function PostBlocks({ items }) {
         <Link href={item.uri}>
           <a className='relative block p-5 overflow-hidden bg-black group h-96 lg:col-span-2 lg:row-span-2 lg:h-full'>
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -31,7 +33,9 @@ export default function PostBlocks({ items }) {
             className={`${containerClasses} lg:h-full lg:col-span-1 lg:row-span-2 `}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -50,7 +54,9 @@ export default function PostBlocks({ items }) {
             className={`${containerClasses} lg:h-full lg:col-span-1 lg:row-span-2 `}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -69,7 +75,9 @@ export default function PostBlocks({ items }) {
             className={`lg:col-span-2 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -88,7 +96,9 @@ export default function PostBlocks({ items }) {
             className={`lg:col-span-2 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -107,7 +117,9 @@ export default function PostBlocks({ items }) {
             className={`lg:col-span-1 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -126,7 +138,9 @@ export default function PostBlocks({ items }) {
             className={`lg:col-span-1 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -145,7 +159,9 @@ export default function PostBlocks({ items }) {
             className={`lg:col-span-2 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -162,7 +178,9 @@ export default function PostBlocks({ items }) {
       <Link href={item.uri}>
         <a className={`h-56 lg:row-span-1 lg:col-span-1 ${containerClasses}`}>
           <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-            <Image src={item.image} layout='fill' objectFit='cover' />
+            {item.image && (
+              <Image src={item.image} layout='fill' objectFit='cover' />
+            )}
           </div>
           <div className={`${contentClasses}`}>
             <h2 className={`${titleClasses}`}>{item.title}</h2>

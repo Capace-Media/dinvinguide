@@ -23,7 +23,7 @@ export default function DruvorPage({ data }) {
           <h1 className='text-center'>{grape.title}</h1>
           <Text content={grape} />
           <div className='text-center'>
-            <Link href='/alla-druvor'>
+            <Link href='/druvguiden'>
               <a className='underline '>Till alla druvor</a>
             </Link>
           </div>

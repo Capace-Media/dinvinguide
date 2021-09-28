@@ -17,7 +17,10 @@ export default function SkribenterPage({ data }) {
           {skribenter.map((author, i) => {
             if (i % 2 === 0) {
               return (
-                <div className='grid lg:grid-cols-[1fr,3fr] gap-10 lg:gap-20'>
+                <div
+                  key={author.name}
+                  className='grid lg:grid-cols-[1fr,3fr] gap-10 lg:gap-20'
+                >
                   <div>
                     <div className='relative overflow-hidden rounded-full aspect-w-1 aspect-h-1'>
                       <Image
@@ -110,7 +113,10 @@ export default function SkribenterPage({ data }) {
               );
             } else {
               return (
-                <div className='flex flex-col-reverse lg:grid lg:grid-cols-[3fr,1fr] gap-10 lg:gap-20'>
+                <div
+                  key={author.name}
+                  className='flex flex-col-reverse lg:grid lg:grid-cols-[3fr,1fr] gap-10 lg:gap-20'
+                >
                   <div className='lg:text-right'>
                     <h2 className='mb-5'>{author.name}</h2>
                     <p style={{ whiteSpace: 'break-spaces' }}>
@@ -209,7 +215,7 @@ export default function SkribenterPage({ data }) {
         </div>
         <div className='grid gap-10 lg:grid-cols-4 row contain-md'>
           {medarbetare.map((author, i) => (
-            <div className='text-center'>
+            <div key={author.name} className='text-center'>
               <figure className='relative overflow-hidden rounded-full aspect-w-1 aspect-h-1'>
                 <Image
                   src={author.acf_user.bild.mediaItemUrl}

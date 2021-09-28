@@ -51,7 +51,7 @@ export default function Header() {
         </div>
         <div className='flex items-center flex-1 justify-evenly'>
           {links.map((link) => (
-            <Link href={link.href}>
+            <Link key={link.href} href={link.href}>
               <a
                 key={link.href}
                 className={

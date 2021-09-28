@@ -12,7 +12,9 @@ export default function Featured({ items }) {
       return (
         <div className='relative flex items-center justify-center p-5 bg-black h-96 lg:col-span-2 lg:row-span-2 lg:h-full'>
           <div className='absolute top-0 left-0 z-10 w-full h-full opacity-80'>
-            <Image src={item.image} layout='fill' objectFit='cover' />
+            {item.image && (
+              <Image src={item.image} layout='fill' objectFit='cover' />
+            )}
           </div>
           <div className={`z-20 text-5xl  font-semibold text-center`}>
             <h1 className='mb-3'>Välkommen till</h1>
@@ -28,7 +30,9 @@ export default function Featured({ items }) {
             className={`lg:col-span-1 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -53,7 +57,9 @@ export default function Featured({ items }) {
             className={`${containerClasses} lg:h-full lg:col-span-1 lg:row-span-2 `}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -78,7 +84,9 @@ export default function Featured({ items }) {
             className={`${containerClasses} lg:h-full lg:col-span-2 lg:row-span-2`}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -103,7 +111,9 @@ export default function Featured({ items }) {
             className={`lg:col-span-2 lg:row-span-2 lg:h-full ${containerClasses}`}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -128,7 +138,9 @@ export default function Featured({ items }) {
             className={`lg:h-full lg:col-span-1 lg:row-span-2 ${containerClasses}`}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -153,7 +165,9 @@ export default function Featured({ items }) {
             className={`lg:h-full lg:col-span-1 lg:row-span-2 ${containerClasses}`}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -178,7 +192,9 @@ export default function Featured({ items }) {
             className={`lg:h-full lg:col-span-2 lg:row-span-2 ${containerClasses}`}
           >
             <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              {item.image && (
+                <Image src={item.image} layout='fill' objectFit='cover' />
+              )}
             </div>
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
@@ -199,7 +215,9 @@ export default function Featured({ items }) {
       >
         <a className={`h-56 lg:row-span-1 lg:col-span-1 ${containerClasses}`}>
           <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
-            <Image src={item.image} layout='fill' objectFit='cover' />
+            {item.image && (
+              <Image src={item.image} layout='fill' objectFit='cover' />
+            )}
           </div>
           <div className={`${contentClasses}`}>
             <h2 className={`${titleClasses}`}>{item.title}</h2>
