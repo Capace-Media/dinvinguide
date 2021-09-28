@@ -92,11 +92,9 @@ export default function Article({ data }) {
     </Fragment>
   );
 }
-export const getStaticPaths = async (props) => {
-  const paths = await getArticlePaths();
-
+export const getStaticPaths = async () => {
   return {
-    paths,
+    paths: [],
     fallback: 'blocking',
   };
 };
