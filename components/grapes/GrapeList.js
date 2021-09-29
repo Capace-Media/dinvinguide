@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import Ad from '../ads/Ad';
 import GrapeListItem from './GrapeListItem';
 const increment = 16;
-const GrapeList = ({ grapes }) => {
+const GrapeList = ({ grapes, ads }) => {
   const [nodeCount, setNodeCount] = useState(increment);
   const [searchInput, setSearchInput] = useState('');
   const [filterString, setFilterString] = useState('');

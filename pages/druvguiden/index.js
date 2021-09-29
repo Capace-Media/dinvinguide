@@ -22,7 +22,7 @@ const DruvguidenPage = ({ ads, grapes }) => {
           </p>
         </div>
         <Ad ads={ads} position='top' />
-        <GrapeList grapes={grapes} />
+        <GrapeList ads={ads} grapes={grapes} />
       </GuideLayout>
     </>
   );
