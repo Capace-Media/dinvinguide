@@ -1,7 +1,7 @@
-import GuideLayout from '../../components/layout/GuideLayout';
-import { fetchOverviewPage } from '../../lib/api/pages/pageData';
+import GuideLayout from '../../../components/layout/GuideLayout';
+import { fetchOverviewPage } from '../../../lib/api/pages/pageData';
 import ReactHtmlParser from 'react-html-parser';
-import AtlasList from '../../components/atlas/AtlasList';
+import AtlasList from '../../../components/atlas/AtlasList';
 
 const VinAtlasPage = ({ page }) => {
   return (

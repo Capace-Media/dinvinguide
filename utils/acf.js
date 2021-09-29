@@ -10,6 +10,9 @@ export const renderSection = (section) => {
     case 'Post_AcfPosts_Sektioner_Brodtext':
       return <Text content={section} />;
       break;
+    case 'Page_AcfPosts_Sektioner_Brodtext':
+      return <Text content={section} />;
+      break;
     case 'Post_AcfPosts_Sektioner_Citat':
       return <Quote content={section} />;
       break;

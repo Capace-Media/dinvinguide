@@ -1,0 +1,49 @@
+import Ad from '../../../components/ads/Ad';
+import { fetchAtlasPage } from '../../../lib/api/pages/pageData';
+import ReactHtmlParser from 'react-html-parser';
+import { renderSection } from '../../../utils/acf';
+import Image from 'next/image';
+import { getAds } from '../../../lib/api/ads';
+
+const SingleAtlasPage = ({ page, ads }) => {
+  return (
+    <>
+      <div className='text-center contain-sm row'>
+        {page.featuredImage && (
+          <figure className='relative aspect-w-16 aspect-h-9'>
+            <Image
+              src={page.featuredImage.node.mediaItemUrl}
+              layout='fill'
+              objectFit='cover'
+            />
+          </figure>
+        )}
+        <h1 className='mt-10 mb-5 text-brand-red'>{page.title}</h1>
+        {ReactHtmlParser(page.acf_posts.ingress)}
+      </div>
+      <Ad ads={ads} position='top' />
+      <div className='contain-sm row'>
+        {page.acf_posts.sektioner.map((section) => renderSection(section))}
+      </div>
+    </>
+  );
+};
+
+export default SingleAtlasPage;
+
+export const getStaticPaths = async () => {
+  return {
+    fallback: true,
+    paths: [],
+  };
+};
+export const getStaticProps = async ({ params }) => {
+  const resolved = await Promise.all([fetchAtlasPage(params.slug), getAds()]);
+  console.log(resolved[0]);
+  return {
+    props: {
+      page: resolved[0],
+      ads: resolved[1],
+    },
+  };
+};
