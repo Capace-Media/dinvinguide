@@ -33,7 +33,7 @@ export default SingleAtlasPage;
 
 export const getStaticPaths = async () => {
   return {
-    fallback: true,
+    fallback: 'blocking',
     paths: [],
   };
 };
