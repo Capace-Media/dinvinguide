@@ -18,7 +18,7 @@ const DruvguidenPage = ({ ads, grapes }) => {
             upp DinVinguides egen druvguide. Du kan med lätthet hitta de mest
             populära druvor som används i vintillverkning här. Vissa av druvorna
             har inte komplett information, och vissa druvor saknas fortfarande.
-            Detta är en guide under utveckling..
+            Detta är en guide under utveckling.
           </p>
         </div>
         <Ad ads={ads} position='top' />
