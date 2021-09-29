@@ -1,9 +1,9 @@
 import Ad from '../../../components/ads/Ad';
-import { fetchAtlasPage } from '../../../lib/api/pages/pageData';
-import ReactHtmlParser from 'react-html-parser';
-import { renderSection } from '../../../utils/acf';
 import Image from 'next/image';
+import ReactHtmlParser from 'react-html-parser';
+import { fetchAtlasPage } from '../../../lib/api/pages/pageData';
 import { getAds } from '../../../lib/api/ads';
+import { renderSection } from '../../../utils/acf';
 
 const SingleAtlasPage = ({ page, ads }) => {
   return (
@@ -40,6 +40,11 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
   const resolved = await Promise.all([fetchAtlasPage(params.slug), getAds()]);
   console.log(resolved[0]);
+  if (!resolved[0]) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: {
       page: resolved[0],
