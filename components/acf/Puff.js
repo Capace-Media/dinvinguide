@@ -2,19 +2,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 export default function Puff({ content }) {
   const data = content && content.extraPuff && content.extraPuff[0];
-
-  switch (data.__typename) {
-    case 'Grape':
-      return <GrapePuff content={data} />;
-      break;
-    case 'Recipe':
-      return <RecipePuff content={data} />;
-    case 'Drink':
-      return <DrinkPuff content={data} />;
-      break;
-    default:
-      return <div>Hello</div>;
-      break;
+  if (data) {
+    switch (data.__typename) {
+      case 'Grape':
+        return <GrapePuff content={data} />;
+        break;
+      case 'Recipe':
+        return <RecipePuff content={data} />;
+      case 'Drink':
+        return <DrinkPuff content={data} />;
+        break;
+      default:
+        return <div>Hello</div>;
+        break;
+    }
+  } else {
+    return null;
   }
 }
 

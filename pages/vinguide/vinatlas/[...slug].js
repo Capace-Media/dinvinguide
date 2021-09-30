@@ -1,5 +1,6 @@
 import Ad from '../../../components/ads/Ad';
 import Image from 'next/image';
+import Link from 'next/link';
 import ReactHtmlParser from 'react-html-parser';
 import { fetchAtlasPage } from '../../../lib/api/pages/pageData';
 import { getAds } from '../../../lib/api/ads';
@@ -18,9 +19,16 @@ const SingleAtlasPage = ({ page, ads }) => {
             />
           </figure>
         )}
-        <h1 className='mt-10 mb-5 text-brand-red'>{page.title}</h1>
+        <p className='pt-10'>
+          Skriven av{' '}
+          <Link href={`/${page.author.node.nicename}`}>
+            <a className='underline'>Magnus Reuterdahl</a>
+          </Link>
+        </p>
+        <h1 className='mt-5 mb-5 text-brand-red'>{page.title}</h1>
         {ReactHtmlParser(page.acf_posts.ingress)}
       </div>
+
       <Ad ads={ads} position='top' />
       <div className='contain-sm row'>
         {page.acf_posts.sektioner.map((section) => renderSection(section))}
@@ -38,8 +46,11 @@ export const getStaticPaths = async () => {
   };
 };
 export const getStaticProps = async ({ params }) => {
-  const resolved = await Promise.all([fetchAtlasPage(params.slug), getAds()]);
-  console.log(resolved[0]);
+  const resolved = await Promise.all([
+    fetchAtlasPage(params.slug.join('/')),
+    getAds(),
+  ]);
+
   if (!resolved[0]) {
     return {
       notFound: true,

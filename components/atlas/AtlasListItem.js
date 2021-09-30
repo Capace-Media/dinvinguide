@@ -1,7 +1,6 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 const AtlasListItem = ({ post }) => {
-  console.log(post);
   return (
     <li className='relative overflow-hidden bg-black group'>
       <Link href={post.uri}>
