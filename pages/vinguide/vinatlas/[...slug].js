@@ -1,12 +1,15 @@
 import Ad from '../../../components/ads/Ad';
 import Image from 'next/image';
 import Link from 'next/link';
+import MoreArticles from '../../../components/article/MoreArticles/MoreArticles';
 import ReactHtmlParser from 'react-html-parser';
+import ReadMorePosts from '../../../components/article/ReadMorePosts';
 import { fetchAtlasPage } from '../../../lib/api/pages/pageData';
 import { getAds } from '../../../lib/api/ads';
+import { getArticles } from '../../../lib/api/articles';
 import { renderSection } from '../../../utils/acf';
 
-const SingleAtlasPage = ({ page, ads }) => {
+const SingleAtlasPage = ({ page, ads, articles }) => {
   return (
     <>
       <div className='text-center contain-sm row'>
@@ -33,6 +36,9 @@ const SingleAtlasPage = ({ page, ads }) => {
       <div className='contain-sm row'>
         {page.acf_posts.sektioner.map((section) => renderSection(section))}
       </div>
+
+      <ReadMorePosts posts={page.acf_posts.lasMer} />
+      <MoreArticles articles={articles} />
     </>
   );
 };
@@ -49,6 +55,7 @@ export const getStaticProps = async ({ params }) => {
   const resolved = await Promise.all([
     fetchAtlasPage(params.slug.join('/')),
     getAds(),
+    getArticles(),
   ]);
 
   if (!resolved[0]) {
@@ -60,6 +67,7 @@ export const getStaticProps = async ({ params }) => {
     props: {
       page: resolved[0],
       ads: resolved[1],
+      articles: resolved[2],
     },
   };
 };
