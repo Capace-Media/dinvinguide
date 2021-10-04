@@ -1,3 +1,7 @@
+import {
+  ARTICLE_SINGLE,
+  ARTICLE_SINGLE_PREVIEW,
+} from '../../lib/fragments/articles';
 import { ArticleJsonLd, NextSeo } from 'next-seo';
 import { getArticle, getArticlePaths } from '../../lib/api/articles';
 
@@ -8,9 +12,9 @@ import Link from 'next/link';
 import ReactHtmlParser from 'react-html-parser';
 import ReadMorePosts from '../../components/article/ReadMorePosts';
 import { renderSection } from '../../utils/acf';
+import wpFetch from '../../lib/wpFetch';
 
-export default function Article({ data }) {
-  const { article } = data;
+export default function Article({ article }) {
   console.log(article);
   return (
     <Fragment>
@@ -98,18 +102,36 @@ export const getStaticPaths = async () => {
     fallback: 'blocking',
   };
 };
-export const getStaticProps = async ({ params }) => {
-  const article = await getArticle(params.article);
+export const getStaticProps = async (context) => {
+  if (context.preview) {
+    const data = await wpFetch(ARTICLE_SINGLE_PREVIEW, {
+      slug: context.params.article,
+    });
+    if (!data) {
+      return {
+        notFound: true,
+      };
+    }
 
-  if (!article) {
     return {
-      notFound: true,
+      props: {
+        article: data.post.preview.node,
+      },
+    };
+  } else {
+    const data = await wpFetch(ARTICLE_SINGLE, {
+      slug: context.params.article,
+    });
+    if (!data) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: {
+        article: data.post,
+      },
     };
   }
-
-  return {
-    props: {
-      data: { article },
-    },
-  };
 };

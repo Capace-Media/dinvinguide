@@ -1,4 +1,8 @@
 import { Fragment, useState } from 'react';
+import {
+  RECIPE_SINGLE,
+  RECIPE_SINGLE_PREVIEW,
+} from '../../lib/fragments/recipes';
 import { getRecipe, getRecipePaths, getRecipes } from '../../lib/api/recipes';
 
 import Ad from '../../components/ads/Ad';
@@ -7,9 +11,9 @@ import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 import ReactHtmlParser from 'react-html-parser';
 import { getAds } from '../../lib/api/ads';
+import wpFetch from '../../lib/wpFetch';
 
-export default function RecipePage({ data }) {
-  const { ads, recipe } = data;
+export default function RecipePage({ ads, recipe }) {
   const [portions, setPortions] = useState(
     parseInt(recipe.acf_recipe.antalPortioner)
   );
@@ -155,10 +159,22 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }) => {
-  const resolved = await Promise.all([getRecipe(params.recipe), getAds()]);
+export const getStaticProps = async (context) => {
+  let data;
+  if (context.preview) {
+    const res = await wpFetch(RECIPE_SINGLE_PREVIEW, {
+      slug: context.params.recipe,
+    });
+    console.log('PREVIEW RES =>', res);
+    data = res.recipe.preview.node;
+  } else {
+    const res = await wpFetch(RECIPE_SINGLE, { slug: context.params.recipe });
+    console.log('RES =>', res);
+    data = res.recipe;
+  }
+  const ads = await getAds();
 
-  if (!resolved[0]) {
+  if (!data) {
     return {
       notFound: true,
     };
@@ -166,10 +182,8 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     props: {
-      data: {
-        recipe: resolved[0],
-        ads: resolved[1],
-      },
+      recipe: data,
+      ads,
     },
   };
 };

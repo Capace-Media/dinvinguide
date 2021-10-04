@@ -1,3 +1,8 @@
+import {
+  DRINKTIP_SINGLE,
+  DRINKTIP_SINGLE_PREVIEW,
+} from '../../lib/fragments/drinks';
+
 import Ad from '../../components/ads/Ad';
 import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
 import DryckesutforskarenImage from '../../public/images/dryckesutforskaren.jpg';
@@ -9,8 +14,10 @@ import ReceptutforskarenImage from '../../public/images/receptutforskaren.jpg';
 import dayjs from 'dayjs';
 import { fetchDrinktipsBySlug } from '../../lib/api/drinkTips/fetchDrinktipBySlug';
 import { getAds } from '../../lib/api/ads';
+import wpFetch from '../../lib/wpFetch';
 
 const DryckesTipsSinglePage = ({ ads, drink }) => {
+  console.log(drink);
   const details = [
     {
       label: 'Ekologiskt',
@@ -121,21 +128,35 @@ export const getStaticPaths = async () => {
     fallback: 'blocking',
   };
 };
-export const getStaticProps = async ({ params }) => {
-  const resolved = await Promise.all([
-    getAds(),
-    fetchDrinktipsBySlug(params.slug),
-  ]);
+export const getStaticProps = async (context) => {
+  console.log(context);
+  let data;
+  if (context.preview) {
+    const res = await wpFetch(DRINKTIP_SINGLE_PREVIEW, {
+      slug: context.params.slug,
+    });
+    if (!res.drinktip.preview) {
+      data = null;
+    } else {
+      data = res.drinktip.preview.node;
+    }
+  } else {
+    const res = await wpFetch(DRINKTIP_SINGLE, { slug: context.params.slug });
+    data = res.drinktip;
+  }
 
-  if (!resolved[1]) {
+  const ads = await getAds();
+
+  if (!data) {
     return {
       notFound: true,
     };
   }
+
   return {
     props: {
-      ads: resolved[0],
-      drink: resolved[1],
+      ads,
+      drink: data,
     },
   };
 };

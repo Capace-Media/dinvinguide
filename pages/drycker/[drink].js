@@ -1,5 +1,6 @@
 import 'dayjs/locale/sv';
 
+import { DRINK_SINGLE, DRINK_SINGLE_PREVIEW } from '../../lib/fragments/drinks';
 import { getDrink, getDrinkPaths } from '../../lib/api/drinks';
 
 import Ad from '../../components/ads/Ad';
@@ -7,9 +8,9 @@ import { Fragment } from 'react';
 import Image from 'next/image';
 import dayjs from 'dayjs';
 import { getAds } from '../../lib/api/ads';
+import wpFetch from '../../lib/wpFetch';
 
-const DryckPage = ({ data }) => {
-  const { drink, ads } = data;
+const DryckPage = ({ drink, ads }) => {
   console.log(drink);
   const details = [
     { label: 'Betyg', value: `${drink.acf_drinks.betyg} / 100` },
@@ -117,21 +118,34 @@ export const getStaticPaths = async () => {
     fallback: 'blocking',
   };
 };
-export const getStaticProps = async ({ params }) => {
-  const resolved = await Promise.all([getDrink(params.drink), getAds()]);
+export const getStaticProps = async (context) => {
+  let data;
 
-  if (!resolved[0]) {
+  if (context.preview) {
+    const res = await wpFetch(DRINK_SINGLE_PREVIEW, {
+      slug: context.params.drink,
+    });
+    if (!res.drink.preview) {
+      data = null;
+    }
+    data = res.drink.preview.node;
+  } else {
+    const res = await wpFetch(DRINK_SINGLE, { slug: context.params.drink });
+    data = res.drink;
+  }
+
+  const ads = await getAds();
+
+  if (!data) {
     return {
       notFound: true,
     };
   }
-
+  console.log(data);
   return {
     props: {
-      data: {
-        drink: resolved[0],
-        ads: resolved[1],
-      },
+      drink: data,
+      ads,
     },
   };
 };
