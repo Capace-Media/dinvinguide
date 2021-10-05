@@ -6,6 +6,7 @@ import { RECIPE_SLUGCHECK } from '../../../lib/fragments/recipes';
 import wpFetch from '../../../lib/wpFetch';
 
 const handler = async (req, res) => {
+  console.log('ACTIVATE PREVIEW');
   if (
     req.query.secret !== process.env.PREVIEW_TOKEN ||
     !req.query.slug ||
@@ -20,7 +21,7 @@ const handler = async (req, res) => {
       if (!data) {
         return res.status(401).json({ message: 'Invalid slug' });
       }
-      res.setPreviewData({ uri: data.grape.uri });
+      res.setPreviewData({});
       res.redirect(data.grape.uri);
       break;
     case 'post':
@@ -28,7 +29,7 @@ const handler = async (req, res) => {
       if (!data) {
         return res.status(401).json({ message: 'Invalid slug' });
       }
-      res.setPreviewData({ uri: data.post.uri });
+      res.setPreviewData({});
       res.redirect(data.post.uri);
       break;
     case 'dryck':
@@ -36,7 +37,7 @@ const handler = async (req, res) => {
       if (!data) {
         return res.status(401).json({ message: 'Invalid slug' });
       }
-      res.setPreviewData({ uri: data.drink.uri });
+      res.setPreviewData({});
       res.redirect(data.drink.uri);
       break;
     case 'dryckestips':
@@ -44,7 +45,7 @@ const handler = async (req, res) => {
       if (!data) {
         return res.status(401).json({ message: 'Invalid slug' });
       }
-      res.setPreviewData({ uri: data.drinktip.uri });
+      res.setPreviewData({});
       res.redirect(data.drinktip.uri);
       break;
     case 'recipe':
@@ -52,7 +53,7 @@ const handler = async (req, res) => {
       if (!data) {
         return res.status(401).json({ message: 'Invalid slug' });
       }
-      res.setPreviewData({ uri: data.recipe.uri });
+      res.setPreviewData({});
       res.redirect(data.recipe.uri);
   }
 

@@ -1,7 +1,7 @@
 const handler = async (_, res) => {
   try {
     await res.clearPreviewData();
-    res.end();
+    res.redirect('/');
   } catch (error) {
     console.log(error);
     return;

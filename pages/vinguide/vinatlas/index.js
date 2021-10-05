@@ -1,27 +1,37 @@
-import GuideLayout from '../../../components/layout/GuideLayout';
-import { fetchOverviewPage } from '../../../lib/api/pages/pageData';
-import ReactHtmlParser from 'react-html-parser';
 import AtlasList from '../../../components/atlas/AtlasList';
+import GuideLayout from '../../../components/layout/GuideLayout';
+import List from '../../../components/common/lists/List';
+import PageIntro from '../../../components/common/PageIntro';
+import ReactHtmlParser from 'react-html-parser';
+import { fetchOverviewPage } from '../../../lib/api/pages/pageData';
+import { getAds } from '../../../lib/api/ads';
 
-const VinAtlasPage = ({ page }) => {
+const VinAtlasPage = ({ page, ads }) => {
   return (
-    <GuideLayout>
-      <div className='text-center contain row'>
-        <h1 className='mb-5 text-brand-red'>{page.title}</h1>
-        <p>{ReactHtmlParser(page.acf_overviewPage.ingress)}</p>
-      </div>
-      <AtlasList posts={page.acf_overviewPage.sidor} />
-    </GuideLayout>
+    <>
+      <GuideLayout>
+        <PageIntro
+          ads={ads}
+          title={page.title}
+          text={page.acf_overviewPage.ingress}
+        />
+        <List array={page.acf_overviewPage.sidor} />
+      </GuideLayout>
+    </>
   );
 };
 
 export default VinAtlasPage;
 
 export const getStaticProps = async () => {
-  const resolved = await Promise.all([fetchOverviewPage('vinguide/vinatlas')]);
+  const resolved = await Promise.all([
+    fetchOverviewPage('vinguide/vinatlas'),
+    getAds(),
+  ]);
   return {
     props: {
       page: resolved[0],
+      ads: resolved[1],
     },
   };
 };

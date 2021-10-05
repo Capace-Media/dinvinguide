@@ -125,9 +125,7 @@ export const getStaticProps = async (context) => {
     const res = await wpFetch(DRINK_SINGLE_PREVIEW, {
       slug: context.params.drink,
     });
-    if (!res.drink.preview) {
-      data = null;
-    }
+
     data = res.drink.preview.node;
   } else {
     const res = await wpFetch(DRINK_SINGLE, { slug: context.params.drink });

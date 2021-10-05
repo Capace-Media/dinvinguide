@@ -1,5 +1,6 @@
 import Ad from '../../components/ads/Ad';
 import DrinktipsList from '../../components/drinkTips/DrinktipsList';
+import PageIntro from '../../components/common/PageIntro';
 import { fetchDrinkTips } from '../../lib/api/drinkTips/fetchDrinkTips';
 import { getAds } from '../../lib/api/ads';
 import { useState } from 'react';
@@ -7,9 +8,7 @@ const DryckesTipsPage = ({ ads, drinks }) => {
   const [searchInput, setSearchInput] = useState('');
   return (
     <>
-      <div className='text-center row contain'>
-        <h1 className='text-brand-red'>Exklusiva dryckestips</h1>
-      </div>
+      <PageIntro title='Exklusiva dryckestips' />
       <Ad ads={ads} position='top' />
       <div className='text-center row contain'>
         <input
