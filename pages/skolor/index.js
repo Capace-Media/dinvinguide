@@ -14,7 +14,7 @@ const SchoolPage = ({ page, ads }) => {
           title={page.title}
           text={page.acf_overviewPage.ingress}
         />
-        <List array={page.acf_overviewPage.sidor} />
+        <List array={page.acf_overviewPage.sidor} ads={ads} />
       </GuideLayout>
     </>
   );
