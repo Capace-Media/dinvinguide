@@ -7,7 +7,6 @@ import { getAds } from '../../lib/api/ads';
 import wpFetch from '../../lib/wpFetch';
 
 const SingleSchoolPage = ({ page, ads }) => {
-  console.log(page);
   return (
     <GuideLayout>
       <PageIntro

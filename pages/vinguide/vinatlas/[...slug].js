@@ -2,12 +2,13 @@ import Ad from '../../../components/ads/Ad';
 import Image from 'next/image';
 import Link from 'next/link';
 import MoreArticles from '../../../components/article/MoreArticles/MoreArticles';
+import { PAGE_OVERVIEW } from '../../../lib/fragments/pages';
 import ReactHtmlParser from 'react-html-parser';
 import ReadMorePosts from '../../../components/article/ReadMorePosts';
-import { fetchAtlasPage } from '../../../lib/api/pages/pageData';
 import { getAds } from '../../../lib/api/ads';
 import { getArticles } from '../../../lib/api/articles';
 import { renderSection } from '../../../utils/acf';
+import wpFetch from '../../../lib/wpFetch';
 
 const SingleAtlasPage = ({ page, ads, articles }) => {
   return (
@@ -53,7 +54,7 @@ export const getStaticPaths = async () => {
 };
 export const getStaticProps = async ({ params }) => {
   const resolved = await Promise.all([
-    fetchAtlasPage(params.slug.join('/')),
+    wpFetch(PAGE_OVERVIEW, { id: params.slug.join('/') }),
     getAds(),
     getArticles(),
   ]);
@@ -65,7 +66,7 @@ export const getStaticProps = async ({ params }) => {
   }
   return {
     props: {
-      page: resolved[0],
+      page: resolved[0].page,
       ads: resolved[1],
       articles: resolved[2],
     },

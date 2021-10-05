@@ -1,8 +1,6 @@
-import AtlasList from '../../../components/atlas/AtlasList';
 import GuideLayout from '../../../components/layout/GuideLayout';
 import List from '../../../components/common/lists/List';
 import PageIntro from '../../../components/common/PageIntro';
-import ReactHtmlParser from 'react-html-parser';
 import { fetchOverviewPage } from '../../../lib/api/pages/pageData';
 import { getAds } from '../../../lib/api/ads';
 
