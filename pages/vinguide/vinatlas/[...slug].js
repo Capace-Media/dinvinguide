@@ -44,7 +44,14 @@ const SingleAtlasPage = ({ page, ads, articles }) => {
       </div>
 
       <ReadMorePosts posts={page.acf_posts.lasMer} />
-      <List array={articles} subtitle='author.node.nicename' search={false} />
+
+      <List
+        array={articles}
+        subtitle='author.node.nicename'
+        search={false}
+        columns={3}
+        heading='Läs mer'
+      />
     </>
   );
 };

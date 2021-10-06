@@ -1,16 +1,13 @@
 import { GRAPE_SINGLE, GRAPE_SINGLE_PREVIEW } from '../../lib/fragments/grapes';
-import { getGrape, getGrapePaths } from '../../lib/api/grapes';
 
 import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import Text from '../../components/acf/Text';
-import { useRouter } from 'next/dist/client/router';
 import wpFetch from '../../lib/wpFetch';
 
 export default function DruvorPage({ data }) {
-  console.log(data);
   return (
     <Fragment>
       <NextSeo title={`${data.title} - Druva`} />
@@ -39,10 +36,8 @@ export default function DruvorPage({ data }) {
   );
 }
 export const getStaticPaths = async () => {
-  const paths = await getGrapePaths();
-
   return {
-    paths,
+    paths: [],
     fallback: 'blocking',
   };
 };

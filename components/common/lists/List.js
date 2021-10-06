@@ -12,6 +12,8 @@ const List = ({
   filterKeys = ['title'],
   subtitle = null,
   search = true,
+  chunksize = columns * 5,
+  heading = '',
 }) => {
   const [nodeCount, setNodeCount] = useState(maxNodes);
   const [searchInput, setSearchInput] = useState('');
@@ -48,6 +50,11 @@ const List = ({
 
   return (
     <>
+      {heading && (
+        <div className='text-center contain'>
+          <h2 className='text-brand-red'>{heading}</h2>
+        </div>
+      )}
       {search && (
         <div className='text-center contain'>
           <input
@@ -83,8 +90,21 @@ const List = ({
           })
           .map((item, index) => {
             if (index < nodeCount) {
-              if (item === 'ad') {
-                return <div className='col-span-full'>Ad</div>;
+              if ((index + 1) % chunksize === 0) {
+                return (
+                  <>
+                    <ListItem
+                      data={flattenObject(item)}
+                      maxNodes={maxNodes}
+                      last={index + 1 === nodeCount ? true : false}
+                      increment={incrementNodeCount}
+                      subtitle={subtitle}
+                    />
+                    <li className='col-span-full row'>
+                      <Ad ads={ads} position='mid' />
+                    </li>
+                  </>
+                );
               } else {
                 return (
                   <ListItem
@@ -98,11 +118,6 @@ const List = ({
               }
             }
           })}
-        {ads && (
-          <li className='block col-span-full row'>
-            <Ad ads={ads} position='top' />
-          </li>
-        )}
       </ul>
     </>
   );

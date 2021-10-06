@@ -1,7 +1,6 @@
 import 'dayjs/locale/sv';
 
 import { DRINK_SINGLE, DRINK_SINGLE_PREVIEW } from '../../lib/fragments/drinks';
-import { getDrink, getDrinkPaths } from '../../lib/api/drinks';
 
 import Ad from '../../components/ads/Ad';
 import { Fragment } from 'react';

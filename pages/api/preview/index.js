@@ -17,7 +17,7 @@ const handler = async (req, res) => {
   let data;
   switch (req.query.type) {
     case 'druva':
-      data = await wpFetch(GRAPE_SLUGCHECK, { slug: req.query.slug });
+      data = await wpFetch(GRAPE_SLUGCHECK, { id: req.query.slug });
       if (!data) {
         return res.status(401).json({ message: 'Invalid slug' });
       }
@@ -25,7 +25,7 @@ const handler = async (req, res) => {
       res.redirect(data.grape.uri);
       break;
     case 'post':
-      data = await wpFetch(ARTICLE_SLUGCHECK, { slug: req.query.slug });
+      data = await wpFetch(ARTICLE_SLUGCHECK, { id: req.query.slug });
       if (!data) {
         return res.status(401).json({ message: 'Invalid slug' });
       }
@@ -33,7 +33,7 @@ const handler = async (req, res) => {
       res.redirect(data.post.uri);
       break;
     case 'dryck':
-      data = await wpFetch(DRINK_SLUGCHECK, { slug: req.query.slug });
+      data = await wpFetch(DRINK_SLUGCHECK, { id: req.query.slug });
       if (!data) {
         return res.status(401).json({ message: 'Invalid slug' });
       }
@@ -41,7 +41,7 @@ const handler = async (req, res) => {
       res.redirect(data.drink.uri);
       break;
     case 'dryckestips':
-      data = await wpFetch(DRINKTIP_SLUGCHECK, { slug: req.query.slug });
+      data = await wpFetch(DRINKTIP_SLUGCHECK, { id: req.query.slug });
       if (!data) {
         return res.status(401).json({ message: 'Invalid slug' });
       }
@@ -49,7 +49,7 @@ const handler = async (req, res) => {
       res.redirect(data.drinktip.uri);
       break;
     case 'recipe':
-      data = await wpFetch(RECIPE_SLUGCHECK, { slug: req.query.slug });
+      data = await wpFetch(RECIPE_SLUGCHECK, { id: req.query.slug });
       if (!data) {
         return res.status(401).json({ message: 'Invalid slug' });
       }

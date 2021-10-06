@@ -9,6 +9,7 @@ import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
 import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import List from '../../components/common/lists/List';
 import ReactHtmlParser from 'react-html-parser';
 import ReadMorePosts from '../../components/article/ReadMorePosts';
 import { renderSection } from '../../utils/acf';
@@ -92,7 +93,13 @@ export default function Article({ article }) {
         </div>
       </div>
 
-      <ReadMorePosts posts={article.acf_posts.lasMer} />
+      <List
+        array={article.acf_posts.lasMer}
+        search={false}
+        heading='Läs mer'
+        columns={3}
+        subtitle='author.node.name'
+      />
     </Fragment>
   );
 }
@@ -105,7 +112,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   if (context.preview) {
     const data = await wpFetch(ARTICLE_SINGLE_PREVIEW, {
-      slug: context.params.article,
+      id: context.params.article,
     });
     if (!data) {
       return {
@@ -120,7 +127,7 @@ export const getStaticProps = async (context) => {
     };
   } else {
     const data = await wpFetch(ARTICLE_SINGLE, {
-      slug: context.params.article,
+      id: context.params.article,
     });
     if (!data) {
       return {
