@@ -163,12 +163,14 @@ export const getStaticProps = async (context) => {
   let data;
   if (context.preview) {
     const res = await wpFetch(RECIPE_SINGLE_PREVIEW, {
-      slug: context.params.recipe,
+      id: context.params.recipe,
     });
     console.log('PREVIEW RES =>', res);
     data = res.recipe.preview.node;
   } else {
-    const res = await wpFetch(RECIPE_SINGLE, { slug: context.params.recipe });
+    const res = await wpFetch(RECIPE_SINGLE, {
+      id: context.params.recipe,
+    });
     console.log('RES =>', res);
     data = res.recipe;
   }

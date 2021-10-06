@@ -123,12 +123,14 @@ export const getStaticProps = async (context) => {
 
   if (context.preview) {
     const res = await wpFetch(DRINK_SINGLE_PREVIEW, {
-      slug: context.params.drink,
+      id: context.params.drink,
     });
 
     data = res.drink.preview.node;
   } else {
-    const res = await wpFetch(DRINK_SINGLE, { slug: context.params.drink });
+    const res = await wpFetch(DRINK_SINGLE, {
+      id: context.params.drink,
+    });
     data = res.drink;
   }
 

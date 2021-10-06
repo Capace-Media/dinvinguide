@@ -13,10 +13,10 @@ const DrinkList = ({ drycker }) => {
   return (
     <>
       <div className='flex flex-col items-center contain row'>
-        <div>
+        <div className='w-full text-center'>
           <input
             type='text'
-            className='px-6 py-4 w-80'
+            className='w-full max-w-lg px-5 py-3 rounded-sm'
             placeholder='Sök drycker'
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}

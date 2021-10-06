@@ -11,6 +11,7 @@ const List = ({
   ads,
   filterKeys = ['title'],
   subtitle = null,
+  search = true,
 }) => {
   const [nodeCount, setNodeCount] = useState(maxNodes);
   const [searchInput, setSearchInput] = useState('');
@@ -47,15 +48,18 @@ const List = ({
 
   return (
     <>
-      <div className='text-center contain'>
-        <input
-          type='text'
-          value={searchInput}
-          placeholder='Sök...'
-          onChange={(e) => setSearchInput(e.target.value)}
-          className='w-full max-w-lg px-5 py-3 rounded-sm'
-        />
-      </div>
+      {search && (
+        <div className='text-center contain'>
+          <input
+            type='text'
+            value={searchInput}
+            placeholder='Sök...'
+            onChange={(e) => setSearchInput(e.target.value)}
+            className='w-full max-w-lg px-5 py-3 rounded-sm'
+          />
+        </div>
+      )}
+
       <ul className={`grid gap-2 row contain ${printColumns()}`}>
         {array
           .filter((item) => {
@@ -94,9 +98,11 @@ const List = ({
               }
             }
           })}
-        <li className='block col-span-full row'>
-          <Ad ads={ads} position='top' />
-        </li>
+        {ads && (
+          <li className='block col-span-full row'>
+            <Ad ads={ads} position='top' />
+          </li>
+        )}
       </ul>
     </>
   );

@@ -133,7 +133,7 @@ export const getStaticProps = async (context) => {
   let data;
   if (context.preview) {
     const res = await wpFetch(DRINKTIP_SINGLE_PREVIEW, {
-      slug: context.params.slug,
+      id: context.params.slug,
     });
     if (!res.drinktip.preview) {
       data = null;
@@ -141,7 +141,9 @@ export const getStaticProps = async (context) => {
       data = res.drinktip.preview.node;
     }
   } else {
-    const res = await wpFetch(DRINKTIP_SINGLE, { slug: context.params.slug });
+    const res = await wpFetch(DRINKTIP_SINGLE, {
+      id: context.params.slug,
+    });
     data = res.drinktip;
   }
 

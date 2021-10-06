@@ -51,7 +51,7 @@ export const getStaticProps = async (context) => {
   console.log(context);
   if (context.preview) {
     const data = await wpFetch(GRAPE_SINGLE_PREVIEW, {
-      slug: context.params.druva,
+      id: context.params.druva,
     });
     return {
       props: {
@@ -59,7 +59,7 @@ export const getStaticProps = async (context) => {
       },
     };
   } else {
-    const data = await wpFetch(GRAPE_SINGLE, { slug: context.params.druva });
+    const data = await wpFetch(GRAPE_SINGLE, { id: context.params.druva });
     if (!data) {
       return {
         notFound: true,

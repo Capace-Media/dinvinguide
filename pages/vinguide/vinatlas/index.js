@@ -1,8 +1,10 @@
 import GuideLayout from '../../../components/layout/GuideLayout';
 import List from '../../../components/common/lists/List';
+import { PAGE_OVERVIEW } from '../../../lib/fragments/pages';
 import PageIntro from '../../../components/common/PageIntro';
 import { fetchOverviewPage } from '../../../lib/api/pages/pageData';
 import { getAds } from '../../../lib/api/ads';
+import wpFetch from '../../../lib/wpFetch';
 
 const VinAtlasPage = ({ page, ads }) => {
   return (
@@ -23,12 +25,12 @@ export default VinAtlasPage;
 
 export const getStaticProps = async () => {
   const resolved = await Promise.all([
-    fetchOverviewPage('vinguide/vinatlas'),
+    wpFetch(PAGE_OVERVIEW, { id: 'vinguide/vinatlas' }),
     getAds(),
   ]);
   return {
     props: {
-      page: resolved[0],
+      page: resolved[0].page,
       ads: resolved[1],
     },
   };

@@ -1,16 +1,20 @@
+import { DRINKS } from '../../lib/fragments/drinks';
 import DrinkList from '../../components/drinks/DrinkList';
-import { getDrinks } from '../../lib/api/drinks';
+import { PAGE_EXPLORER } from '../../lib/fragments/pages';
+import PageIntro from '../../components/common/PageIntro';
+import flattenObject from '../../utils/flattenObject';
+import { getAds } from '../../lib/api/ads';
+import wpFetch from '../../lib/wpFetch';
 
-const DryckesUtforskarenPage = ({ drycker }) => {
+const DryckesUtforskarenPage = ({ drycker, page, ads }) => {
+  console.log(page);
   return (
     <>
-      <div className='text-center contain row'>
-        <h1 className='mb-5 text-brand-red'>Dryckesutforskaren</h1>
-        <p>
-          Här i dryckesutforskaren hittar du alla drycker som redaktionen har
-          testat. Även de som inte ligger på topplistorna.
-        </p>
-      </div>
+      <PageIntro
+        ads={ads}
+        title={page.title}
+        text={page['acf_explorer.slogan']}
+      />
 
       <DrinkList drycker={drycker} />
     </>
@@ -20,10 +24,17 @@ const DryckesUtforskarenPage = ({ drycker }) => {
 export default DryckesUtforskarenPage;
 
 export const getStaticProps = async () => {
-  const resolved = await Promise.all([getDrinks()]);
+  const resolved = await Promise.all([
+    wpFetch(DRINKS, { batch: 200, type: 'drinks' }),
+    wpFetch(PAGE_EXPLORER, { id: 'dryckesutforskaren' }),
+    getAds(),
+  ]);
+
   return {
     props: {
       drycker: resolved[0],
+      page: flattenObject(resolved[1].page),
+      ads: resolved[2],
     },
   };
 };
