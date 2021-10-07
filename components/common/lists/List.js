@@ -100,9 +100,11 @@ const List = ({
                       increment={incrementNodeCount}
                       subtitle={subtitle}
                     />
-                    <li className='col-span-full row'>
-                      <Ad ads={ads} position='mid' />
-                    </li>
+                    {ads && (
+                      <li className='col-span-full row'>
+                        <Ad ads={ads} position='mid' />
+                      </li>
+                    )}
                   </>
                 );
               } else {

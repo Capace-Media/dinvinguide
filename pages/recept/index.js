@@ -7,12 +7,15 @@ import Fuse from 'fuse.js';
 import Image from 'next/image';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
+import { PAGE_EXPLORER } from '../../lib/fragments/pages';
+import { RECIPES } from '../../lib/fragments/recipes';
 import RecipeCard from '../../components/recipes/RecipeCard';
 import chunkArrayWithAds from '../../utils/chunkArray';
 import debounce from 'lodash.debounce';
 import { getAds } from '../../lib/api/ads';
 import { getRecipes } from '../../lib/api/recipes';
 import { gql } from '@apollo/client';
+import wpFetch from '../../lib/wpFetch';
 
 export default function RecipePage({ data }) {
   const { recipes, ads, page } = data;
@@ -75,7 +78,7 @@ export default function RecipePage({ data }) {
           placeholder='Sök recept'
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
-          className='p-5 w-96'
+          className='w-full max-w-lg px-5 py-3 rounded-sm'
         />
       </div>
 
@@ -117,34 +120,10 @@ export default function RecipePage({ data }) {
 }
 
 export const getStaticProps = async () => {
-  const getRecipePageData = async () => {
-    try {
-      const res = await Client.query({
-        query: gql`
-          query fetchRecipePageData {
-            pageBy(uri: "recept") {
-              title
-              acf_explorer {
-                slogan
-                bkgResults {
-                  mediaItemUrl
-                }
-              }
-            }
-          }
-        `,
-      });
-      console.log(res);
-      return res.data.pageBy;
-    } catch (error) {
-      console.log('recipePageData ERROR =>', error);
-      return;
-    }
-  };
   const resolved = await Promise.all([
-    getRecipes(),
+    wpFetch(RECIPES, { batch: 200, type: 'recipes' }),
     getAds(),
-    getRecipePageData(),
+    wpFetch(PAGE_EXPLORER, { id: 'recept' }),
   ]);
 
   return {
@@ -152,7 +131,7 @@ export const getStaticProps = async () => {
       data: {
         ads: resolved[1],
         recipes: resolved[0],
-        page: resolved[2],
+        page: resolved[2].page,
       },
     },
   };

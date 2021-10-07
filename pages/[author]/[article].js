@@ -5,11 +5,13 @@ import {
 import { ArticleJsonLd, NextSeo } from 'next-seo';
 import { getArticle, getArticlePaths } from '../../lib/api/articles';
 
+import Blocks from '../../components/common/content/Blocks';
 import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
 import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import List from '../../components/common/lists/List';
+import OldContent from '../../components/common/content/OldContent';
 import ReactHtmlParser from 'react-html-parser';
 import ReadMorePosts from '../../components/article/ReadMorePosts';
 import { renderSection } from '../../utils/acf';
@@ -52,18 +54,24 @@ export default function Article({ article }) {
               </a>
             </Link>
             <h1 className='text-brand-red'>{article.title}</h1>
-            <p className='mt-10 mb-20 text-lg'>{article.acf_posts.ingress}</p>
+            <p className='mx-auto mt-10 mb-20 prose lg:prose-xl'>
+              {ReactHtmlParser(article.acf_posts.ingress)}
+            </p>
           </div>
         </div>
 
         <div>
           {article.acf_posts.sektioner &&
-          article.acf_posts.sektioner.length > 0 ? (
-            article.acf_posts.sektioner.map((section) => renderSection(section))
-          ) : (
+            article.acf_posts.sektioner.length > 0 && (
+              <Blocks blocks={article.acf_posts.sektioner} />
+            )}
+          {article.content && (
             <div className='contain-sm rich-text'>
               {ReactHtmlParser(article.content)}
             </div>
+          )}
+          {article.acf_oldcontent && article.acf_oldcontent.oldContentAcf && (
+            <OldContent content={article.acf_oldcontent.oldContentAcf} />
           )}
         </div>
       </article>
@@ -92,14 +100,15 @@ export default function Article({ article }) {
           </Link>
         </div>
       </div>
-
-      <List
-        array={article.acf_posts.lasMer}
-        search={false}
-        heading='Läs mer'
-        columns={3}
-        subtitle='author.node.name'
-      />
+      {article.acf_posts.lasMer && (
+        <List
+          array={article.acf_posts.lasMer}
+          search={false}
+          heading='Läs mer'
+          columns={3}
+          subtitle='author.node.name'
+        />
+      )}
     </Fragment>
   );
 }

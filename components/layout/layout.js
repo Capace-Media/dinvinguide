@@ -3,7 +3,7 @@ import DryckeslistanLogo from '../../public/images/dryckeslistanlogo-1.png';
 import Footer from './footer';
 import Header from './header';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 
 export default function Layout({ children }) {
@@ -17,13 +17,16 @@ export default function Layout({ children }) {
     <>
       <Header />
       <div className='contain flex justify-center mt-[111px] space-x-3'>
-        <div>
+        <a href='https://bestchampagne.se'>
           <Image src={BCLogo} priority />
-        </div>
+        </a>
+
         <div>|</div>
-        <div>
-          <Image src={DryckeslistanLogo} priority />
-        </div>
+        <Link href='/dryckeslistan'>
+          <a>
+            <Image src={DryckeslistanLogo} priority />
+          </a>
+        </Link>
       </div>
       <main className='pattern'>{children}</main>
       <Footer />

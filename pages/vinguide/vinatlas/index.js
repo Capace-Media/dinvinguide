@@ -1,8 +1,7 @@
 import GuideLayout from '../../../components/layout/GuideLayout';
 import List from '../../../components/common/lists/List';
 import { PAGE_OVERVIEW } from '../../../lib/fragments/pages';
-import PageIntro from '../../../components/common/PageIntro';
-import { fetchOverviewPage } from '../../../lib/api/pages/pageData';
+import PageIntro from '../../../components/common/content/PageIntro';
 import { getAds } from '../../../lib/api/ads';
 import wpFetch from '../../../lib/wpFetch';
 

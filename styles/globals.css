@@ -48,7 +48,7 @@
     @apply font-semibold uppercase;
   }
   h1 {
-    @apply text-2xl uppercase lg:text-4xl;
+    @apply text-4xl uppercase lg:text-5xl;
   }
   h2 {
     @apply text-xl uppercase lg:text-2xl;
@@ -78,6 +78,12 @@
 
 .pattern {
   background: repeat url('../public/images/monster-dvg100.png');
+}
+.prose p,
+.prose-sm p,
+.prose,
+.prose-sm {
+  @apply text-black;
 }
 
 .rich-text p {
