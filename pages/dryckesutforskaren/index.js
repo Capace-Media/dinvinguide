@@ -1,7 +1,7 @@
 import { DRINKS } from '../../lib/fragments/drinks';
 import DrinkList from '../../components/drinks/DrinkList';
 import { PAGE_EXPLORER } from '../../lib/fragments/pages';
-import PageIntro from '../../components/common/PageIntro';
+import PageIntro from '../../components/common/content/PageIntro';
 import flattenObject from '../../utils/flattenObject';
 import { getAds } from '../../lib/api/ads';
 import wpFetch from '../../lib/wpFetch';
