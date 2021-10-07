@@ -1,8 +1,7 @@
 import Ad from '../../components/ads/Ad';
 import { DRINKTIPS } from '../../lib/fragments/drinks';
 import DrinktipsList from '../../components/drinkTips/DrinktipsList';
-import PageIntro from '../../components/common/PageIntro';
-import { fetchDrinkTips } from '../../lib/api/drinkTips/fetchDrinkTips';
+import PageIntro from '../../components/common/content/PageIntro';
 import { getAds } from '../../lib/api/ads';
 import { useState } from 'react';
 import wpFetch from '../../lib/wpFetch';

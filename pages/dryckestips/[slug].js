@@ -5,15 +5,11 @@ import {
 
 import Ad from '../../components/ads/Ad';
 import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
-import DryckesutforskarenImage from '../../public/images/dryckesutforskaren.jpg';
 import ExplorerLinks from '../../components/common/explorer/explorerLinks';
 import Image from 'next/image';
-import Link from 'next/link';
-import ReactHtmlParser from 'react-html-parser';
-import ReceptutforskarenImage from '../../public/images/receptutforskaren.jpg';
 import dayjs from 'dayjs';
-import { fetchDrinktipsBySlug } from '../../lib/api/drinkTips/fetchDrinktipBySlug';
 import { getAds } from '../../lib/api/ads';
+import parse from 'html-react-parser';
 import wpFetch from '../../lib/wpFetch';
 
 const DryckesTipsSinglePage = ({ ads, drink }) => {
@@ -77,7 +73,7 @@ const DryckesTipsSinglePage = ({ ads, drink }) => {
           {drink.acf_dryckestips.recension && (
             <div className='mt-5 '>
               <strong className='font-semibold'>Recension</strong>
-              <p>{ReactHtmlParser(drink.acf_dryckestips.recension)}</p>
+              <p>{parse(drink.acf_dryckestips.recension)}</p>
             </div>
           )}
           <ul className='space-y-2 mt-7'>

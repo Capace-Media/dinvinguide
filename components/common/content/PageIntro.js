@@ -10,8 +10,8 @@ const PageIntro = ({ title, text, ads }) => {
         </div>
       )}
       <div className='text-center contain-sm row'>
-        <h1 className='mb-5  text-brand-red'>{title}</h1>
-        <Intro content={text} />
+        <h1 className='mb-5 text-brand-red'>{title}</h1>
+        {text && <Intro content={text} />}
       </div>
     </>
   );
