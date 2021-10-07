@@ -6,8 +6,10 @@ import FilterMessage from '../../components/recipes/FilterMessage';
 import Fuse from 'fuse.js';
 import Image from 'next/image';
 import Link from 'next/link';
+import List from '../../components/common/lists/List';
 import { NextSeo } from 'next-seo';
 import { PAGE_EXPLORER } from '../../lib/fragments/pages';
+import PageIntro from '../../components/common/content/PageIntro';
 import { RECIPES } from '../../lib/fragments/recipes';
 import RecipeCard from '../../components/recipes/RecipeCard';
 import chunkArrayWithAds from '../../utils/chunkArray';
@@ -22,6 +24,7 @@ export default function RecipePage({ data }) {
   const [searchInput, setSearchInput] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [maxCount, setMaxCount] = useState(27);
+  const recipeArray = recipes.map(({ node: recipe }) => recipe);
 
   const chunkSize = 9;
   let index = 1;
@@ -59,20 +62,18 @@ export default function RecipePage({ data }) {
   return (
     <Fragment>
       <NextSeo title='Recept' />
-      <div className='row contain'>
-        <div className='text-center'>
-          <h1 className='mb-5 text-brand-red'>{page.title}</h1>
-          <p>{page.acf_explorer.slogan}</p>
-        </div>
-      </div>
-      <div className='relative mb-10 text-center aspect-w-16 aspect-h-5'>
+      <Ad ads={ads} position='top' />
+
+      <PageIntro title={page.title} text={page.acf_explorer.slogan} />
+
+      {/* <div className='relative mb-10 text-center aspect-w-16 aspect-h-5'>
         <Image
           src={page.acf_explorer.bkgResults.mediaItemUrl}
           layout='fill'
           objectFit='cover'
         />
-      </div>
-      <div className='flex flex-col items-center mb-5 contain '>
+      </div> */}
+      {/* <div className='flex flex-col items-center mb-5 contain '>
         <input
           type='text'
           placeholder='Sök recept'
@@ -82,7 +83,6 @@ export default function RecipePage({ data }) {
         />
       </div>
 
-      <Ad ads={ads} position='top' />
       <div className='grid-cols-4 gap-3 lg:grid contain row auto-cols-auto'>
         {filteredRecipes.map(({ node: recipe }, i) => {
           if (i < maxCount) {
@@ -99,7 +99,7 @@ export default function RecipePage({ data }) {
                   <div className='col-span-4 row'>
                     <Ad
                       ads={ads}
-                      position='top'
+                      position='mid'
                       triggerInView={updateCount}
                       triggerOnce={!searchTerm ? true : false}
                     />
@@ -114,7 +114,8 @@ export default function RecipePage({ data }) {
             }
           }
         })}
-      </div>
+      </div> */}
+      <List array={recipeArray} columns={4} ads={ads} />
     </Fragment>
   );
 }

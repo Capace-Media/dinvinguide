@@ -56,6 +56,9 @@
   blockquote {
     @apply text-2xl leading-loose lg:text-4xl;
   }
+  p iframe {
+    @apply mx-auto;
+  }
 }
 
 @layer components {

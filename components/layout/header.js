@@ -68,7 +68,7 @@ export default function Header() {
               <Image src={SweFlag} priority />
             </a>
           </div>
-          <div className='flex items-center flex-1 justify-evenly'>
+          <div className='flex items-center lg:flex-1 justify-evenly'>
             {links.map((link) => (
               <Link key={link.href} href={link.href}>
                 <a
@@ -114,6 +114,7 @@ export default function Header() {
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 24 24'
               className='block w-8 h-8 cursor-pointer lg:hidden'
+              onClick={() => setMobileMenuOpen(false)}
             >
               <path d='M0 0h24v24H0V0z' fill='none' />
               <path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z' />

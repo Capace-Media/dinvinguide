@@ -1,5 +1,6 @@
 import { GRAPE_SINGLE, GRAPE_SINGLE_PREVIEW } from '../../lib/fragments/grapes';
 
+import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
 import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,7 +10,13 @@ import wpFetch from '../../lib/wpFetch';
 
 export default function DruvorPage({ data }) {
   return (
-    <Fragment>
+    <>
+      <BreadCrumbs
+        crumbs={[
+          { text: 'Druvor', href: '/druvguiden' },
+          { current: true, text: data.title, href: data.uri },
+        ]}
+      />
       <NextSeo title={`${data.title} - Druva`} />
       <div className='contain-sm row'>
         {data.featuredImage && (
@@ -23,7 +30,7 @@ export default function DruvorPage({ data }) {
         )}
 
         <div className='row '>
-          <h1 className='text-center'>{data.title}</h1>
+          <h1 className='text-center text-brand-red'>{data.title}</h1>
           <Text content={data.acf_grape} />
           <div className='text-center'>
             <Link href='/druvguiden'>
@@ -32,7 +39,7 @@ export default function DruvorPage({ data }) {
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 }
 export const getStaticPaths = async () => {

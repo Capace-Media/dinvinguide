@@ -13,6 +13,10 @@ const VinAtlasPage = ({ page, ads }) => {
           ads={ads}
           title={page.title}
           text={page.acf_overviewPage.ingress}
+          crumbs={[
+            { text: 'Guider', href: '/guide' },
+            { current: true, text: page.title, href: page.uri },
+          ]}
         />
         <List array={page.acf_overviewPage.sidor} ads={ads} />
       </GuideLayout>

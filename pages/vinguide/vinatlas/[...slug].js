@@ -1,19 +1,26 @@
 import { ARTICLES } from '../../../lib/fragments/articles';
 import Ad from '../../../components/ads/Ad';
+import BreadCrumbs from '../../../components/common/BreadCrumbs/Breadcrumbs';
 import Image from 'next/image';
+import Intro from '../../../components/common/content/Intro';
 import Link from 'next/link';
 import List from '../../../components/common/lists/List';
-import MoreArticles from '../../../components/article/MoreArticles/MoreArticles';
 import { PAGE_SINGLE } from '../../../lib/fragments/pages';
-import ReactHtmlParser from 'react-html-parser';
 import ReadMorePosts from '../../../components/article/ReadMorePosts';
 import { getAds } from '../../../lib/api/ads';
+import parse from 'html-react-parser';
 import { renderSection } from '../../../utils/acf';
 import wpFetch from '../../../lib/wpFetch';
 
 const SingleAtlasPage = ({ page, ads, articles }) => {
   return (
     <>
+      <BreadCrumbs
+        crumbs={[
+          { text: 'Vinatlas', href: '/vinguide/vinatlas' },
+          { current: true, text: page.title, href: page.uri },
+        ]}
+      />
       <div className='text-center contain-sm row'>
         {page.featuredImage && (
           <figure className='relative aspect-w-16 aspect-h-9'>
@@ -31,26 +38,30 @@ const SingleAtlasPage = ({ page, ads, articles }) => {
           </Link>
         </p>
         <h1 className='mt-5 mb-5 text-brand-red'>{page.title}</h1>
-        {ReactHtmlParser(page.acf_posts.ingress)}
+        {page.acf_posts.ingress && <Intro content={page.acf_posts.ingress} />}
       </div>
 
       <Ad ads={ads} position='top' />
       <div className='contain-sm row'>
         {page.acf_posts.sektioner &&
           page.acf_posts.sektioner.map((section) => renderSection(section))}
-        {page.content && (
-          <div className='rich-text'>{ReactHtmlParser(page.content)}</div>
-        )}
+        {page.content && <div className='rich-text'>{parse(page.content)}</div>}
       </div>
 
-      <ReadMorePosts posts={page.acf_posts.lasMer} />
+      <List
+        array={page.acf_posts.lasMer}
+        columns={3}
+        subtitle='author.node.name'
+        heading='Läs mer'
+        search={false}
+      />
 
       <List
         array={articles}
-        subtitle='author.node.nicename'
+        subtitle='author.node.name'
         search={false}
         columns={3}
-        heading='Läs mer'
+        heading='Fler artiklar'
       />
     </>
   );

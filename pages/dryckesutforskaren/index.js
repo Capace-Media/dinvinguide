@@ -14,6 +14,10 @@ const DryckesUtforskarenPage = ({ drycker, page, ads }) => {
         ads={ads}
         title={page.title}
         text={page['acf_explorer.slogan']}
+        crumbs={[
+          { text: 'Guider', href: '/guide' },
+          { current: true, text: page.title, href: page.uri },
+        ]}
       />
 
       <DrinkList drycker={drycker} />

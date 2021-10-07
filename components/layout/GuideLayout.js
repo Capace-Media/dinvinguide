@@ -23,7 +23,7 @@ const GuideLayout = ({ children }) => {
             <span className={textClasses}>Vinskola</span>
           </a>
         </Link>
-        <Link href='/'>
+        <Link href='/vin-tv'>
           <a className='flex items-center justify-center block p-5 lg:p-10 bg-brand-red text-brand-bg'>
             <span className={textClasses}>Vin TV</span>
           </a>

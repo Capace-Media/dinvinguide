@@ -1,7 +1,8 @@
 import Ad from '../../ads/Ad';
+import BreadCrumbs from '../BreadCrumbs/Breadcrumbs';
 import Intro from './Intro';
-import ReactHtmlParser from 'react-html-parser';
-const PageIntro = ({ title, text, ads }) => {
+
+const PageIntro = ({ title, text, ads, crumbs }) => {
   return (
     <>
       {ads && (
@@ -9,6 +10,7 @@ const PageIntro = ({ title, text, ads }) => {
           <Ad ads={ads} position='top' />
         </div>
       )}
+      {crumbs && <BreadCrumbs crumbs={crumbs} />}
       <div className='text-center contain-sm row'>
         <h1 className='mb-5 text-brand-red'>{title}</h1>
         {text && <Intro content={text} />}

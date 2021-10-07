@@ -20,6 +20,10 @@ const DruvguidenPage = ({ ads, grapes, page }) => {
           ads={ads}
           title={page.title}
           text={page['acf_explorer.slogan']}
+          crumbs={[
+            { text: 'Guider', href: '/guide' },
+            { current: true, text: page.title, href: page.uri },
+          ]}
         />
         <List
           array={grapes}
