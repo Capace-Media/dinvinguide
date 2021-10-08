@@ -57,6 +57,7 @@ const PlaylistPlayer = ({
                   src={settings.vintvBillboardBild.mediaItemUrl}
                   layout='fill'
                   objectFit='contain'
+                  priority
                 />
               </a>
               <p>Videon spelar snart</p>
