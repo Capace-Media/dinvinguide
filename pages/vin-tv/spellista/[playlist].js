@@ -43,11 +43,7 @@ const PlaylistPage = ({ playlist, settings }) => {
           ]}
         />
 
-        <PageIntro
-          type='Spellista'
-          title={playlist.name}
-          text={playlist.acf_tvSpellistor.desc}
-        />
+        <PageIntro type='Spellista' title={playlist.name} />
         <EpisodesList
           handlePlaylist={handlePlaylist}
           episodes={playlist.episodes.edges}
