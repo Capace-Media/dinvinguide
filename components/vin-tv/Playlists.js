@@ -6,7 +6,7 @@ const Playlists = ({ playlists }) => {
       <div className='text-center contain row'>
         <h2 className='text-3xl text-brand-red'>Spellistor</h2>
       </div>
-      <ul className='grid gap-3 contain row md:grid-cols-2 lg:grid-cols-2'>
+      <ul className='grid gap-3 contain row md:grid-cols-2 lg:grid-cols-3'>
         {playlists
           .sort((a, b) => {
             if (a.node.episodes.edges.length < b.node.episodes.edges.length) {

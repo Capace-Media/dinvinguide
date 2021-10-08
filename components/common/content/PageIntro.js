@@ -2,7 +2,7 @@ import Ad from '../../ads/Ad';
 import BreadCrumbs from '../BreadCrumbs/Breadcrumbs';
 import Intro from './Intro';
 
-const PageIntro = ({ title, text, ads, crumbs }) => {
+const PageIntro = ({ title, text, ads, crumbs, type }) => {
   return (
     <>
       {ads && (
@@ -12,6 +12,7 @@ const PageIntro = ({ title, text, ads, crumbs }) => {
       )}
       {crumbs && <BreadCrumbs crumbs={crumbs} />}
       <div className='text-center contain-sm row'>
+        {type && <p className='mb-5'>{type}</p>}
         <h1 className='mb-5 text-brand-red'>{title}</h1>
         {text && <Intro content={text} />}
       </div>
