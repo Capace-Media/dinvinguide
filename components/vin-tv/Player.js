@@ -4,15 +4,13 @@ import Image from 'next/image';
 import Script from 'next/script';
 import Video from './Video';
 
-const PlaylistPlayer = ({
-  playlist,
-  currentEpisode,
-  handlePlaylist,
-  settings,
-}) => {
+const Player = ({ playlist, currentEpisode, handlePlaylist, settings }) => {
+  console.log(playlist);
   const [episodeIndex, setEpisodeIndex] = useState(currentEpisode);
   const [isAd, setIsAd] = useState(false);
-  const maxIndex = playlist.episodes.edges.length - 1;
+  const maxIndex = playlist.episodes
+    ? playlist.episodes.edges.length - 1
+    : playlist.length;
   const handlePreviousVideo = () => {
     setEpisodeIndex((prev) => prev - 1);
   };
@@ -65,14 +63,20 @@ const PlaylistPlayer = ({
                 <p>Videon spelar snart</p>
               </div>
             ) : (
-              <Video episode={playlist.episodes.edges[episodeIndex]} />
+              <Video
+                episode={
+                  playlist.episodes
+                    ? playlist.episodes.edges[episodeIndex]
+                    : playlist[episodeIndex]
+                }
+              />
             )}
           </div>
         </div>
         <div className='fixed bottom-0 left-0 flex items-center justify-between w-screen p-5'>
           {episodeIndex !== 0 ? (
             <button
-              className='flex items-center px-5 py-3 space-x-3 rounded bg-black/10 hover:bg-black/20'
+              className='flex items-center px-3 py-1 space-x-3 rounded md:px-5 md:py-3 bg-black/10 hover:bg-black/20'
               onClick={() => handlePreviousVideo()}
             >
               <svg
@@ -91,7 +95,7 @@ const PlaylistPlayer = ({
           )}
           {episodeIndex !== maxIndex && (
             <button
-              className='flex items-center px-5 py-3 space-x-3 rounded bg-black/10 hover:bg-black/20'
+              className='flex items-center px-3 py-1 space-x-3 rounded md:px-5 md:py-3 bg-black/10 hover:bg-black/20'
               onClick={() => handleNextVideo()}
             >
               <span>Nästa</span>
@@ -112,4 +116,4 @@ const PlaylistPlayer = ({
   );
 };
 
-export default PlaylistPlayer;
+export default Player;

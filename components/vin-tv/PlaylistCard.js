@@ -20,10 +20,10 @@ const PlaylistCard = ({ playlist }) => {
             </svg>
           </figure>
           <div className='flex flex-col justify-center p-5'>
-            <h3 className='font-semibold normal-case line-clamp-1'>
+            <h3 className='text-sm font-semibold normal-case lg:text-base line-clamp-1'>
               {playlist.name}
             </h3>
-            <p className='text-sm text-black/60'>
+            <p className='text-xs lg:text-sm text-black/60'>
               <span>{playlist.episodes.edges.length} videos</span>
             </p>
           </div>

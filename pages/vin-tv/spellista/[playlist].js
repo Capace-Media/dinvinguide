@@ -5,7 +5,7 @@ import BreadCrumbs from '../../../components/common/BreadCrumbs/Breadcrumbs';
 import EpisodesList from '../../../components/vin-tv/EpisodesList';
 import GuideLayout from '../../../components/layout/GuideLayout';
 import PageIntro from '../../../components/common/content/PageIntro';
-import PlaylistPlayer from '../../../components/vin-tv/PlaylistPlayer';
+import Player from '../../../components/vin-tv/Player';
 import wpFetch from '../../../lib/wpFetch';
 
 const PlaylistPage = ({ playlist, settings }) => {
@@ -50,7 +50,7 @@ const PlaylistPage = ({ playlist, settings }) => {
         />
       </GuideLayout>
       {playerOpen && (
-        <PlaylistPlayer
+        <Player
           handlePlaylist={handlePlaylist}
           currentEpisode={currentEpisodeIndex}
           playlist={playlist}
