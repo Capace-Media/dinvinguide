@@ -7,8 +7,10 @@ import ReactHtmlParser from 'react-html-parser';
 import dayjs from 'dayjs';
 const ToplistItem = ({ data, index }) => {
   return (
-    <div className='grid grid-cols-2 gap-10 contain-sm'>
-      <div className='relative' style={{ order: index % 2 === 0 ? 1 : 0 }}>
+    <div className='flex flex-col grid-cols-2 gap-10 lg:grid contain-sm'>
+      <div
+        className={`relative ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-0'}`}
+      >
         {data.featuredImage && data.featuredImage.node && (
           <Link href={data.uri}>
             <a>
@@ -97,10 +99,6 @@ const ToplistItem = ({ data, index }) => {
               </a>
             </Link>
           )}
-        <small className='block mt-5'>
-          {dayjs(data.date).format('D MMMM YYYY')} - {data.acf_drinks.betyg} -{' '}
-          {data.acf_drinks.ekologiskt ? 'ECO' : 'NOT ECO'}
-        </small>
       </div>
     </div>
   );

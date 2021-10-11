@@ -88,6 +88,10 @@
 .prose-sm {
   @apply text-black;
 }
+.prose ul > li:before,
+.prose-sm ul > li:before {
+  @apply !bg-brand-red;
+}
 
 .rich-text p {
   @apply mb-5;
