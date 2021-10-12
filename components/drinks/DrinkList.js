@@ -1,15 +1,26 @@
+import { useEffect, useState } from 'react';
+
 import DrinkListItem from './DrinkListItem';
-import { useState } from 'react';
 
 const DrinkList = ({ drycker }) => {
   const [maxNodes, setMaxNodes] = useState(23);
   const [searchInput, setSearchInput] = useState('');
+  const [filterString, setFilterString] = useState('');
   const [onlyEco, setOnlyEco] = useState(false);
   const [alcoholFree, setAlcoholFree] = useState(false);
 
   const handleLoadMore = () => {
     setMaxNodes((prev) => prev + 23);
   };
+
+  useEffect(() => {
+    let filterTimeout;
+    filterTimeout = setTimeout(() => {
+      setFilterString(searchInput.toLowerCase());
+    }, 300);
+    return () => clearTimeout(filterTimeout);
+  }, [searchInput]);
+
   return (
     <>
       <div className='flex flex-col items-center contain row'>
@@ -46,20 +57,18 @@ const DrinkList = ({ drycker }) => {
       <div className='grid gap-5 lg:grid-cols-3 area row contain'>
         {drycker
           .filter(({ node: dryck }) => {
-            if (searchInput) {
+            if (filterString) {
               if (
                 (dryck.title &&
-                  dryck.title
-                    .toLowerCase()
-                    .includes(searchInput.toLowerCase())) ||
+                  dryck.title.toLowerCase().includes(searchInput)) ||
                 (dryck.acf_drinks.dryckestyper &&
                   dryck.acf_drinks.dryckestyper.name
                     .toLowerCase()
-                    .includes(searchInput.toLowerCase())) ||
+                    .includes(searchInput)) ||
                 (dryck.acf_drinks.forpackningar &&
                   dryck.acf_drinks.forpackningar.name
                     .toLowerCase()
-                    .includes(searchInput.toLowerCase()))
+                    .includes(searchInput))
               ) {
                 if (onlyEco && alcoholFree) {
                   if (
