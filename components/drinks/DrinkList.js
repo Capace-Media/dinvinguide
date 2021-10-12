@@ -57,7 +57,7 @@ const DrinkList = ({ drycker, ads }) => {
           </span>
         </div>
       </div>
-      <ul className='grid gap-5 lg:grid-cols-3 area row contain'>
+      <ul className='grid gap-2 lg:gap-5 lg:grid-cols-3 area row contain'>
         {drycker
           .filter(({ node: dryck }) => {
             if (filterString) {

@@ -13,7 +13,7 @@ const PageIntro = ({ title, text, ads, crumbs, type }) => {
       {crumbs && <BreadCrumbs crumbs={crumbs} />}
       <div className='text-center contain-sm row'>
         {type && <p className='mb-5'>{type}</p>}
-        <h1 className='mb-5 text-brand-red'>{title}</h1>
+        <h1 className='mb-5 break-words text-brand-red'>{title}</h1>
         {text && <Intro content={text} />}
       </div>
     </>

@@ -16,19 +16,31 @@ export default function Ad({ ads, position, triggerInView, triggerOnce }) {
   const renderAd = (device) => {
     if (!ads[position].current[device]) {
       return (
-        <Image
-          src={ads[position].fallback[device]}
-          layout='fill'
-          objectFit='contain'
-        />
+        <a
+          href={ads[position].fallback.href}
+          target='_blank'
+          className='block w-full h-full'
+        >
+          <Image
+            src={ads[position].fallback[device]}
+            layout='fill'
+            objectFit='contain'
+          />
+        </a>
       );
     }
     return (
-      <Image
-        src={ads[position].current[device]}
-        layout='fill'
-        objectFit='contain'
-      />
+      <a
+        href={ads[position].current.href}
+        target='_blank'
+        className='block w-full h-full'
+      >
+        <Image
+          src={ads[position].current[device]}
+          layout='fill'
+          objectFit='contain'
+        />
+      </a>
     );
   };
 
@@ -39,7 +51,7 @@ export default function Ad({ ads, position, triggerInView, triggerOnce }) {
         <div className='hidden lg:block w-[980px] h-[200px] relative'>
           {renderAd('desktop')}
         </div>
-        <div className='relative block w-screen h-64 lg:hidden'>
+        <div className='relative block w-[280px] h-64 lg:hidden'>
           {renderAd('mobile')}
         </div>
       </div>

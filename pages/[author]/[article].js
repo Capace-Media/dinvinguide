@@ -14,10 +14,11 @@ import List from '../../components/common/lists/List';
 import OldContent from '../../components/common/content/OldContent';
 import ReactHtmlParser from 'react-html-parser';
 import ReadMorePosts from '../../components/article/ReadMorePosts';
+import { getAds } from '../../lib/api/ads';
 import { renderSection } from '../../utils/acf';
 import wpFetch from '../../lib/wpFetch';
 
-export default function Article({ article }) {
+export default function Article({ article, ads }) {
   console.log(article);
   return (
     <Fragment>
@@ -63,7 +64,7 @@ export default function Article({ article }) {
         <div>
           {article.acf_posts.sektioner &&
             article.acf_posts.sektioner.length > 0 && (
-              <Blocks blocks={article.acf_posts.sektioner} />
+              <Blocks ads={ads} blocks={article.acf_posts.sektioner} />
             )}
           {article.content && (
             <div className='contain-sm rich-text'>
@@ -143,10 +144,12 @@ export const getStaticProps = async (context) => {
         notFound: true,
       };
     }
+    const ads = await getAds();
 
     return {
       props: {
         article: data.post,
+        ads: ads,
       },
     };
   }

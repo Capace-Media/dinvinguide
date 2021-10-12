@@ -16,6 +16,9 @@ export const renderSection = (section) => {
     case 'Post_AcfPosts_Sektioner_Citat':
       return <Quote content={section} />;
       break;
+    case 'Page_AcfPosts_Sektioner_Citat':
+      return <Quote content={section} />;
+      break;
     case 'Post_AcfPosts_Sektioner_ExtraPuff':
       return section.extraPuff ? <Puff content={section} /> : null;
       break;
@@ -27,6 +30,9 @@ export const renderSection = (section) => {
       // return <div className='bg-gray-300 aspect-w-16 aspect-h-9'></div>;
       break;
     case 'Post_AcfPosts_Sektioner_Faktalada':
+      return section ? <Fact content={section} /> : null;
+      break;
+    case 'Page_AcfPosts_Sektioner_Faktalada':
       return section ? <Fact content={section} /> : null;
       break;
     default:

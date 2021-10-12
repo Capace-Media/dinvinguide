@@ -14,7 +14,7 @@ const DrinkListItem = React.memo(({ dryck, loadMore, last }) => {
   return (
     <li
       ref={last ? ref : null}
-      className='grid grid-cols-3 gap-5 p-5 bg-white rounded-sm'
+      className='grid grid-cols-[1fr,2fr] gap-5 p-5 bg-white rounded-sm'
       key={dryck.title}
     >
       <div className='relative col-span-1 aspect-w-1 aspect-h-1'>
@@ -29,8 +29,8 @@ const DrinkListItem = React.memo(({ dryck, loadMore, last }) => {
           )}
         </figure>
       </div>
-      <div className='col-span-2'>
-        <small className='font-semibold uppercase'>
+      <div className=''>
+        <small className='text-xs font-semibold uppercase lg:text-xs'>
           Betyg {dryck.acf_drinks.betyg}
         </small>
         <Link href={dryck.uri}>
