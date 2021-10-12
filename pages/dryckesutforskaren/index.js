@@ -20,7 +20,7 @@ const DryckesUtforskarenPage = ({ drycker, page, ads }) => {
         ]}
       />
 
-      <DrinkList drycker={drycker} />
+      <DrinkList ads={ads} drycker={drycker} />
     </>
   );
 };

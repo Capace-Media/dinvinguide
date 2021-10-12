@@ -99,6 +99,7 @@ const List = ({
                       last={index + 1 === nodeCount ? true : false}
                       increment={incrementNodeCount}
                       subtitle={subtitle}
+                      key={item.id}
                     />
                     {ads && (
                       <li className='col-span-full row'>
@@ -115,6 +116,7 @@ const List = ({
                     last={index + 1 === nodeCount ? true : false}
                     increment={incrementNodeCount}
                     subtitle={subtitle}
+                    key={item.id}
                   />
                 );
               }

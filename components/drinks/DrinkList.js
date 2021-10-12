@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
 
+import Ad from '../ads/Ad';
 import DrinkListItem from './DrinkListItem';
+import flattenObject from '../../utils/flattenObject';
 
-const DrinkList = ({ drycker }) => {
+const DrinkList = ({ drycker, ads }) => {
   const [maxNodes, setMaxNodes] = useState(23);
   const [searchInput, setSearchInput] = useState('');
   const [filterString, setFilterString] = useState('');
   const [onlyEco, setOnlyEco] = useState(false);
   const [alcoholFree, setAlcoholFree] = useState(false);
+  const chunksize = 3 * 5;
 
   const handleLoadMore = () => {
     setMaxNodes((prev) => prev + 23);
@@ -54,102 +57,48 @@ const DrinkList = ({ drycker }) => {
           </span>
         </div>
       </div>
-      <div className='grid gap-5 lg:grid-cols-3 area row contain'>
+      <ul className='grid gap-5 lg:grid-cols-3 area row contain'>
         {drycker
           .filter(({ node: dryck }) => {
             if (filterString) {
-              if (
-                (dryck.title &&
-                  dryck.title.toLowerCase().includes(searchInput)) ||
-                (dryck.acf_drinks.dryckestyper &&
-                  dryck.acf_drinks.dryckestyper.name
-                    .toLowerCase()
-                    .includes(searchInput)) ||
-                (dryck.acf_drinks.forpackningar &&
-                  dryck.acf_drinks.forpackningar.name
-                    .toLowerCase()
-                    .includes(searchInput))
-              ) {
-                if (onlyEco && alcoholFree) {
-                  if (
-                    dryck.acf_drinks.ekologiskt &&
-                    dryck.acf_drinks.dryckestyper &&
-                    dryck.acf_drinks.dryckestyper.name === 'Alkoholfritt'
-                  ) {
-                    return true;
-                  } else {
-                    return false;
-                  }
-                } else {
-                  if (onlyEco) {
-                    if (dryck.acf_drinks.ekologiskt) {
-                      return true;
-                    } else {
-                      return false;
-                    }
-                  }
-                  if (alcoholFree) {
-                    if (
-                      dryck.acf_drinks.dryckestyper &&
-                      dryck.acf_drinks.dryckestyper.name === 'Alkoholfritt'
-                    ) {
-                      return true;
-                    } else {
-                      return false;
-                    }
-                  }
-                }
-
+              if (dryck.title.toLowerCase().includes(filterString)) {
                 return true;
+              } else {
+                return false;
               }
             } else {
-              if (onlyEco && alcoholFree) {
-                if (
-                  dryck.acf_drinks.ekologiskt &&
-                  dryck.acf_drinks.dryckestyper &&
-                  dryck.acf_drinks.dryckestyper.name === 'Alkoholfritt'
-                ) {
-                  return true;
-                } else {
-                  return false;
-                }
-              } else {
-                if (onlyEco) {
-                  if (dryck.acf_drinks.ekologiskt) {
-                    return true;
-                  } else {
-                    return false;
-                  }
-                }
-                if (alcoholFree) {
-                  if (
-                    dryck.acf_drinks.dryckestyper &&
-                    dryck.acf_drinks.dryckestyper.name === 'Alkoholfritt'
-                  ) {
-                    return true;
-                  } else {
-                    return false;
-                  }
-                }
-              }
-
               return true;
             }
           })
           .map(({ node: dryck }, index) => {
             if (index <= maxNodes) {
-              return (
-                <DrinkListItem
-                  key={dryck.title}
-                  dryck={dryck}
-                  loadMore={handleLoadMore}
-                  maxNodes={maxNodes}
-                  index={index}
-                />
-              );
+              if ((index + 1) % chunksize === 0) {
+                return (
+                  <>
+                    <DrinkListItem
+                      key={dryck.id}
+                      dryck={dryck}
+                      loadMore={handleLoadMore}
+                      last={index + 1 === maxNodes ? true : false}
+                    />
+                    <li className='col-span-full row'>
+                      <Ad ads={ads} position='mid' />
+                    </li>
+                  </>
+                );
+              } else {
+                return (
+                  <DrinkListItem
+                    key={dryck.id}
+                    dryck={dryck}
+                    loadMore={handleLoadMore}
+                    last={index + 1 === maxNodes ? true : false}
+                  />
+                );
+              }
             }
           })}
-      </div>
+      </ul>
     </>
   );
 };

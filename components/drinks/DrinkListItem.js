@@ -1,8 +1,10 @@
+import React, { useEffect } from 'react';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-const DrinkListItem = ({ dryck, loadMore, maxNodes, index }) => {
+
+const DrinkListItem = React.memo(({ dryck, loadMore, last }) => {
   const { ref, inView } = useInView();
   useEffect(() => {
     if (inView) {
@@ -10,8 +12,8 @@ const DrinkListItem = ({ dryck, loadMore, maxNodes, index }) => {
     }
   }, [inView]);
   return (
-    <div
-      ref={index === maxNodes ? ref : null}
+    <li
+      ref={last ? ref : null}
       className='grid grid-cols-3 gap-5 p-5 bg-white rounded-sm'
       key={dryck.title}
     >
@@ -48,8 +50,8 @@ const DrinkListItem = ({ dryck, loadMore, maxNodes, index }) => {
           {dryck.acf_drinks.ekologiskt && 'Ekologisk'}
         </p>
       </div>
-    </div>
+    </li>
   );
-};
+});
 
 export default DrinkListItem;
