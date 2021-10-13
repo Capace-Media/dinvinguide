@@ -3,7 +3,13 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
 
-export default function Ad({ ads, position, triggerInView, triggerOnce }) {
+export default function Ad({
+  ads,
+  position,
+  triggerInView,
+  triggerOnce,
+  priority,
+}) {
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: triggerOnce,
@@ -25,6 +31,7 @@ export default function Ad({ ads, position, triggerInView, triggerOnce }) {
             src={ads[position].fallback[device]}
             layout='fill'
             objectFit='contain'
+            priority={priority ? true : false}
           />
         </a>
       );
@@ -39,6 +46,7 @@ export default function Ad({ ads, position, triggerInView, triggerOnce }) {
           src={ads[position].current[device]}
           layout='fill'
           objectFit='contain'
+          priority={priority ? true : false}
         />
       </a>
     );

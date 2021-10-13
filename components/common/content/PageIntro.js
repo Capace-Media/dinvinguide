@@ -7,7 +7,7 @@ const PageIntro = ({ title, text, ads, crumbs, type }) => {
     <>
       {ads && (
         <div className='mb-10'>
-          <Ad ads={ads} position='top' />
+          <Ad ads={ads} position='top' priority />
         </div>
       )}
       {crumbs && <BreadCrumbs crumbs={crumbs} />}
