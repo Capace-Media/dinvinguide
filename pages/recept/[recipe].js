@@ -10,6 +10,7 @@ import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 import ReactHtmlParser from 'react-html-parser';
+import RecipePlaceholder from '../../public/images/recipe-placeholder.jpg';
 import { getAds } from '../../lib/api/ads';
 import wpFetch from '../../lib/wpFetch';
 
@@ -65,12 +66,14 @@ export default function RecipePage({ ads, recipe }) {
           style={{ gridArea: 'img' }}
           className='relative w-full lg:w-[550px] aspect-w-16 aspect-h-10 bg-brand-red'
         >
-          {recipe.featuredImage && (
+          {recipe.featuredImage ? (
             <Image
               src={recipe.featuredImage.node.mediaItemUrl}
               layout='fill'
               objectFit='cover'
             />
+          ) : (
+            <Image src={RecipePlaceholder} layout='fill' objectFit='cover' />
           )}
         </div>
         <div

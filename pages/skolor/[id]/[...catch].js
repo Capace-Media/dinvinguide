@@ -1,13 +1,13 @@
 import Blocks from '../../../components/common/content/Blocks';
 import Content from '../../../components/common/content/content';
 import GuideLayout from '../../../components/layout/GuideLayout';
+import OldContent from '../../../components/common/content/OldContent';
 import { PAGE_SINGLE } from '../../../lib/fragments/pages';
 import PageIntro from '../../../components/common/content/PageIntro';
 import { getAds } from '../../../lib/api/ads';
 import wpFetch from '../../../lib/wpFetch';
 
 const SchoolCatchAll = ({ page, ads }) => {
-  console.log(page);
   return (
     <>
       <GuideLayout>
@@ -21,6 +21,10 @@ const SchoolCatchAll = ({ page, ads }) => {
         {page && page.content && <Content content={page.content} />}
         {page && page.acf_posts && page.acf_posts.sektioner && (
           <Blocks ads={ads} blocks={page.acf_posts.sektioner} />
+        )}
+        {page && page.content && <Content content={page.content} />}
+        {page && page.acf_oldcontent && page.acf_oldcontent.oldContentAcf && (
+          <OldContent content={page.acf_oldcontent.oldContentAcf} />
         )}
       </GuideLayout>
     </>
