@@ -13,7 +13,12 @@ export default function Featured({ items }) {
         <div className='relative flex items-center justify-center p-5 bg-black h-96 lg:col-span-2 lg:row-span-2 lg:h-full'>
           <div className='absolute top-0 left-0 z-10 w-full h-full opacity-80'>
             {item.image && (
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              <Image
+                src={item.image}
+                layout='fill'
+                objectFit='cover'
+                priority
+              />
             )}
           </div>
           <div className={`z-20 text-5xl  font-semibold text-center`}>

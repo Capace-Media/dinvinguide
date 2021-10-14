@@ -2,6 +2,7 @@ import { getToplistPaths, getToplists } from '../../lib/api/toplists';
 
 import Ad from '../../components/ads/Ad';
 import { Fragment } from 'react';
+import PageIntro from '../../components/common/content/PageIntro';
 import Toplist from '../../components/toplists/Toplist';
 import ToplistItem from '../../components/toplists/ToplistItem';
 import { getAds } from '../../lib/api/ads';
@@ -9,15 +10,23 @@ import slugify from 'slugify';
 
 const SingleToplistPage = ({ data }) => {
   const { ads, toplist } = data;
+  console.log(toplist);
 
   return (
     <Fragment>
-      <div className='row'>
-        <Ad ads={ads} position='top' />
-      </div>
-      <div className='text-center row contain'>
-        <h1 className='text-brand-red'>{toplist.toplist.title}</h1>
-      </div>
+      <PageIntro
+        title={toplist.toplist.title}
+        ads={ads}
+        crumbs={[
+          { href: '/dryckeslistan', text: 'Topplistor' },
+          {
+            href: toplist.toplist.uri,
+            text: toplist.toplist.title,
+            current: true,
+          },
+        ]}
+      />
+
       <div className='row '>
         <Toplist ads={ads} data={toplist} />
       </div>
