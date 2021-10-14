@@ -23,7 +23,7 @@ export default function Featured({ items }) {
           </div>
           <div className={`z-20 text-5xl  font-semibold text-center`}>
             <h1 className='mb-3'>Välkommen till</h1>
-            <Image src={LogoWhite} />
+            <Image src={LogoWhite} priority />
           </div>
         </div>
       );

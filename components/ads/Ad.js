@@ -10,6 +10,7 @@ export default function Ad({
   triggerOnce,
   priority,
 }) {
+  const [isSmall, setIsSmall] = useState(true);
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: triggerOnce,
@@ -51,17 +52,23 @@ export default function Ad({
       </a>
     );
   };
+  useEffect(() => {
+    setIsSmall(window.innerWidth < 600 ? true : false);
+  }, []);
 
   return (
     <div className='flex flex-col items-center'>
       <div ref={triggerInView ? ref : null}>Annons:</div>
       <div className='mt-5'>
-        <div className='hidden lg:block w-[980px] h-[200px] relative'>
-          {renderAd('desktop')}
-        </div>
-        <div className='relative block w-[280px] h-64 lg:hidden'>
-          {renderAd('mobile')}
-        </div>
+        {isSmall ? (
+          <div className='relative block w-[280px] h-64 lg:hidden'>
+            {renderAd('mobile')}
+          </div>
+        ) : (
+          <div className='hidden lg:block w-[980px] h-[200px] relative'>
+            {renderAd('desktop')}
+          </div>
+        )}
       </div>
     </div>
   );
