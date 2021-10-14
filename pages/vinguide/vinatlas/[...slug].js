@@ -48,21 +48,25 @@ const SingleAtlasPage = ({ page, ads, articles }) => {
         {page.content && <div className='rich-text'>{parse(page.content)}</div>}
       </div>
 
-      <List
-        array={page.acf_posts.lasMer}
-        columns={3}
-        subtitle='author.node.name'
-        heading='Läs mer'
-        search={false}
-      />
+      {page.acf_posts && page.acf_posts.lasMer && (
+        <List
+          array={page.acf_posts.lasMer}
+          columns={3}
+          subtitle='author.node.name'
+          heading='Läs mer'
+          search={false}
+        />
+      )}
 
-      <List
-        array={articles}
-        subtitle='author.node.name'
-        search={false}
-        columns={3}
-        heading='Fler artiklar'
-      />
+      {articles && (
+        <List
+          array={articles}
+          subtitle='author.node.name'
+          search={false}
+          columns={3}
+          heading='Fler artiklar'
+        />
+      )}
     </>
   );
 };

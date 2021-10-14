@@ -25,6 +25,9 @@ export const renderSection = (section) => {
     case 'Post_AcfPosts_Sektioner_Mellanbild':
       return <Img content={section} />;
       break;
+    case 'Page_AcfPosts_Sektioner_Mellanbild':
+      return <Img content={section} />;
+      break;
     case 'Post_AcfPosts_Sektioner_StorBild':
       return section ? <Img content={section} style='full' /> : null;
       // return <div className='bg-gray-300 aspect-w-16 aspect-h-9'></div>;

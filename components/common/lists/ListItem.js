@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 
 const ListItem = React.memo(({ data, last, increment, subtitle }) => {
-  console.log(data);
   const { ref, inView } = useInView();
   useEffect(() => {
     if (inView) {

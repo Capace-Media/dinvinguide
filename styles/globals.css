@@ -59,12 +59,16 @@
   p iframe {
     @apply mx-auto;
   }
+  /* .prose-sm img.alignright {
+    @apply block float-right;
+  } */
 }
 
 @layer components {
   .contain {
     @apply max-w-screen-2xl mx-auto w-[90%];
   }
+
   .contain-md {
     @apply max-w-7xl mx-auto w-[90%];
   }
@@ -86,7 +90,7 @@
 .prose-sm p,
 .prose,
 .prose-sm {
-  @apply text-black;
+  @apply !text-black;
 }
 .prose ul > li:before,
 .prose-sm ul > li:before {
