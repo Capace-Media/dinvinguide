@@ -2,9 +2,12 @@ import { ARTICLE_SLUGCHECK } from '../../../lib/fragments/articles';
 import { DRINKTIP_SLUGCHECK } from '../../../lib/fragments/drinks';
 import { DRINK_SLUGCHECK } from '../../../lib/fragments/drinks';
 import { GRAPE_SLUGCHECK } from '../../../lib/fragments/grapes';
+import { PAGE_SLUGCHECK } from '../../../lib/fragments/pages';
 import { RECIPE_SLUGCHECK } from '../../../lib/fragments/recipes';
 import wpFetch from '../../../lib/wpFetch';
-
+const pagePrefixes = {
+  gin: 'vinguide/sprit',
+};
 const handler = async (req, res) => {
   console.log('ACTIVATE PREVIEW');
   if (
@@ -55,6 +58,17 @@ const handler = async (req, res) => {
       }
       res.setPreviewData({});
       res.redirect(data.recipe.uri);
+    case 'page':
+      if (req.query.slug === 'gin') {
+        data = await wpFetch(PAGE_SLUGCHECK, {
+          id: 'vinguide/sprit/' + req.query.slug,
+        });
+      }
+      if (!data) {
+        return res.status(401).json({ message: 'Invalid slug' });
+      }
+      res.setPreviewData({});
+      res.redirect(data.page.uri);
   }
 
   console.log('PREVIEW DATA =>', data);
