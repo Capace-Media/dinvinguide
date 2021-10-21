@@ -8,7 +8,7 @@ const DrinktipsList = ({ drinks, searchInput }) => {
     setMaxNodes((prev) => prev + nodeIncrement);
   };
   return (
-    <ul className='grid gap-10 md:grid-cols-3 lg:grid-cols-5 contain row'>
+    <ul className='grid gap-10 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 contain row'>
       {drinks
         .filter((drink) => {
           if (searchInput !== '') {

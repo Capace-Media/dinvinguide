@@ -29,7 +29,7 @@ const DrinkListItem = React.memo(({ dryck, loadMore, last }) => {
           )}
         </figure>
       </div>
-      <div className=''>
+      <div className='flex flex-col justify-center'>
         <small className='text-xs font-semibold uppercase lg:text-xs'>
           Betyg {dryck.acf_drinks.betyg}
         </small>

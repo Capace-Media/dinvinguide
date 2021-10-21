@@ -7,6 +7,8 @@ import { getRecipe, getRecipePaths, getRecipes } from '../../lib/api/recipes';
 
 import Ad from '../../components/ads/Ad';
 import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
+import DrinkList from '../../components/drinks/DrinkList';
+import DrinkListItem from '../../components/drinks/DrinkListItem';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 import ReactHtmlParser from 'react-html-parser';
@@ -18,6 +20,7 @@ export default function RecipePage({ ads, recipe }) {
   const [portions, setPortions] = useState(
     parseInt(recipe.acf_recipe.antalPortioner)
   );
+  console.log(recipe);
   const availablePortions = [1, 2, 4, 6, 8];
 
   const renderAmount = (amount) => {
@@ -150,6 +153,24 @@ export default function RecipePage({ ads, recipe }) {
           {ReactHtmlParser(recipe.acf_recipe.processen)}
         </div>
       </div>
+      {recipe.acf_recipe.passandeDrycker && (
+        <>
+          <div className='text-center row contain'>
+            <h2 className='text-brand-red'>Passande drycker</h2>
+          </div>
+          <div
+            className={`grid gap-5 row contain ${
+              recipe.acf_recipe.passandeDrycker.length > 2
+                ? 'md:grid-cols-3'
+                : 'md:grid-cols-2'
+            }`}
+          >
+            {recipe.acf_recipe.passandeDrycker.map((drink) => {
+              return <DrinkListItem key={drink.id} dryck={drink} />;
+            })}
+          </div>
+        </>
+      )}
     </Fragment>
   );
 }
