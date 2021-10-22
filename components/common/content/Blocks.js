@@ -5,7 +5,7 @@ const Blocks = ({ blocks, ads }) => {
   return (
     <>
       {blocks.map((block, i) => {
-        const mid = Math.floor((blocks.length - 1) / 2);
+        const mid = Math.floor(blocks.length / 2) - 2;
         if (ads) {
           if (i === mid) {
             return (

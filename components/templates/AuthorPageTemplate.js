@@ -1,27 +1,18 @@
-import { Fragment, useState } from 'react';
-import {
-  getAuthorData,
-  getAuthorPaths,
-  getPostsByAuthor,
-} from '../../lib/api/authors';
-
-import Ad from '../../components/ads/Ad';
-import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
+import Ad from '../ads/Ad';
+import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import Image from 'next/image';
 import Link from 'next/link';
-import List from '../../components/common/lists/List';
-import { NextSeo } from 'next-seo';
-import { getAds } from '../../lib/api/ads';
+import List from '../common/lists/List';
+import { useState } from 'react';
 
-export default function AuthorPage({ data }) {
+const AuthorPageTemplate = ({ data }) => {
   const incrementNum = 24;
   const [isReadMore, setIsReadMore] = useState(false);
   const [maxCount, setMaxCount] = useState(25);
-  const { author, posts, ads } = data;
+  const { ads, author, posts } = data;
   const postArray = posts.map(({ node: post }) => post);
   return (
-    <Fragment>
-      <NextSeo title={`${author.name} - Skribent`} />
+    <>
       <BreadCrumbs
         crumbs={[
           { text: 'Skribenter', href: '/skribenter' },
@@ -135,7 +126,7 @@ export default function AuthorPage({ data }) {
             artiklar
           </h2>
         </div>
-        <div className='contain-md'>
+        <div className='contain'>
           {posts.map(({ node: post }, index) => {
             console.log(post);
             if (index === 0) {
@@ -171,34 +162,10 @@ export default function AuthorPage({ data }) {
           />
         </div>
       </div>
-    </Fragment>
+    </>
   );
+};
+
+export default AuthorPageTemplate;
+{
 }
-
-export const getStaticPaths = async () => {
-  const paths = await getAuthorPaths();
-  return {
-    paths,
-    fallback: 'blocking',
-  };
-};
-
-export const getStaticProps = async ({ params }) => {
-  const resolved = await Promise.all([
-    getAuthorData(params.author),
-    getPostsByAuthor(params.author),
-    getAds(),
-  ]);
-
-  if (!resolved[0]) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      data: { author: resolved[0], posts: resolved[1], ads: resolved[2] },
-    },
-  };
-};

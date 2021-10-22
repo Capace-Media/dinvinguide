@@ -59,15 +59,17 @@ const handler = async (req, res) => {
       res.setPreviewData({});
       res.redirect(data.recipe.uri);
     case 'page':
-      if (req.query.slug === 'gin') {
-        data = await wpFetch(PAGE_SLUGCHECK, {
-          id: 'vinguide/sprit/' + req.query.slug,
-        });
-      }
-      if (!data) {
-        return res.status(401).json({ message: 'Invalid slug' });
-      }
+      // if (req.query.slug === 'gin') {
+      //   data = await wpFetch(PAGE_SLUGCHECK, {
+      //     id: 'vinguide/sprit/' + req.query.slug,
+      //   });
+      // }
+      // if (!data) {
+      //   return res.status(401).json({ message: 'Invalid slug' });
+      // }
+      data = await wpFetch(PAGE_SLUGCHECK, { id: req.query.slug });
       res.setPreviewData({});
+      console.log('SLUG =>', req.query.slug);
       res.redirect(data.page.uri);
   }
 
