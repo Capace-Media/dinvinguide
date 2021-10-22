@@ -1,4 +1,13 @@
 import {
+  ARTICLE_SINGLE,
+  ARTICLE_SINGLE_PREVIEW,
+} from '../../lib/fragments/articles';
+import {
+  GRAPES,
+  GRAPE_SINGLE,
+  GRAPE_SINGLE_PREVIEW,
+} from '../../lib/fragments/grapes';
+import {
   PAGE_EXPLORER,
   PAGE_EXPLORER_PREVIEW,
   PAGE_OVERVIEW,
@@ -14,9 +23,10 @@ import {
 
 import AuthorPageTemplate from '../../components/templates/AuthorPageTemplate';
 import ExplorerPageTemplate from '../../components/templates/ExplorerPageTemplate';
-import { GRAPES } from '../../lib/fragments/grapes';
+import GrapePageTemplate from '../../components/templates/GrapePageTemplate';
 import OverviewPageTemplate from '../../components/templates/OverviewPageTemplate';
 import PageTemplate from '../../components/templates/PageTemplate';
+import PostPageTemplate from '../../components/templates/PostPageTemplate';
 import { RECIPES } from '../../lib/fragments/recipes';
 import fetchTemplate from '../../lib/util/fetchTemplate';
 import { getAds } from '../../lib/api/ads';
@@ -30,11 +40,20 @@ const PagePostHandler = ({ routeType, data }) => {
     case 'Default':
       return <PageTemplate data={data} />;
       break;
+    case 'page':
+      return <PageTemplate data={data} />;
+      break;
     case 'Översiktssida':
       return <OverviewPageTemplate data={data} />;
       break;
     case 'Utforskarsida':
       return <ExplorerPageTemplate data={data} />;
+    case 'post':
+      return <PostPageTemplate data={data} />;
+      break;
+    case 'grape':
+      return <GrapePageTemplate data={data} />;
+      break;
   }
 };
 
@@ -48,47 +67,81 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  console.log('CONTEXT =>', context);
+  const queries = {
+    page: {
+      Default: {
+        live: PAGE_SINGLE,
+        preview: PAGE_SINGLE_PREVIEW,
+      },
+      Översiktssida: {
+        live: PAGE_OVERVIEW,
+        preview: PAGE_OVERVIEW_PREVIEW,
+      },
+      Utforskarsida: {
+        live: PAGE_EXPLORER,
+        preview: PAGE_EXPLORER_PREVIEW,
+      },
+    },
+    post: {
+      Default: {
+        live: ARTICLE_SINGLE,
+        preview: ARTICLE_SINGLE_PREVIEW,
+      },
+    },
+    grape: {
+      Default: {
+        live: GRAPE_SINGLE,
+        preview: GRAPE_SINGLE_PREVIEW,
+      },
+    },
+  };
+  const uri = context.params.uri.join('/');
+
   const isPreview = context.preview ? true : false;
-  let type = 'Default';
+  let type = '';
   let data = null;
+
+  //FIGURE OUT THE PAGE TYPE
 
   //Get author paths to see if page is an author page
   const authorPaths = await getAuthorPaths();
   const authorSlugs = authorPaths.map((author) => author.params.author);
-  if (authorSlugs.includes(context.params.slug)) {
+
+  if (authorSlugs.includes(uri)) {
     type = 'author';
     const resolved = await Promise.all([
-      getAuthorData(context.params.slug),
-      getPostsByAuthor(context.params.slug),
+      getAuthorData(uri),
+      getPostsByAuthor(uri),
       getAds(),
     ]);
     data = { author: resolved[0], posts: resolved[1], ads: resolved[2] };
   } else {
     //If not an author page, check the pagetemplate in order to do the correct query
-    const template = await fetchTemplate(context.params.slug);
-    type = template;
-    console.log(template);
-
+    const content = await fetchTemplate(uri);
+    const { template, contentType } = content;
+    type = contentType;
+    console.log(uri, content);
     //Fetch correct data for the template, real or preview
 
-    //HANDLE DEFAULT PAGE
+    //HANDLE DEFAULT TEMPLATE
     if (template === 'Default') {
-      //HANDLE DEFAULT PAGE PREVIEW
+      //HANDLE DEFAULT PREVIEW
       if (isPreview) {
         const resolved = await Promise.all([
-          wpFetch(PAGE_SINGLE_PREVIEW, { id: context.params.slug }),
+          wpFetch(queries[type][template].preview, { id: uri }),
           getAds(),
         ]);
 
-        data = { page: resolved[0].page.preview.node, ads: resolved[1] };
+        data = { page: resolved[0][type].preview.node, ads: resolved[1] };
       } else {
-        //HANDLE DEFAULT PAGE [NOT PREVIEW]
+        //HANDLE DEFAULT LIVE
+
         const resolved = await Promise.all([
-          wpFetch(PAGE_SINGLE, { id: context.params.slug }),
+          wpFetch(queries[type][template].live, { id: uri }),
           getAds(),
         ]);
-        data = { page: resolved[0].page, ads: resolved[1] };
+
+        data = { page: resolved[0][type], ads: resolved[1] };
       }
     }
     //HANDLE OVERVIEW PAGE
@@ -96,17 +149,18 @@ export const getStaticProps = async (context) => {
       //HANDLE OVERVIEW PREVIEW
       if (isPreview) {
         const resolved = await Promise.all([
-          wpFetch(PAGE_OVERVIEW_PREVIEW, { id: context.params.slug }),
+          wpFetch(queries[type][template].preview, { id: context.params.slug }),
           getAds(),
         ]);
         data = { page: resolved[0].page.preview.node, ads: resolved[1] };
       } else {
         //HANDLE OVERVIEW [NOT PREVIEW]
         const resolved = await Promise.all([
-          wpFetch(PAGE_OVERVIEW, { id: context.params.slug }),
+          wpFetch(queries[type][template].live, { id: uri }),
           getAds(),
         ]);
         data = { page: resolved[0].page, ads: resolved[1] };
+        type = template;
       }
     }
 
@@ -115,14 +169,16 @@ export const getStaticProps = async (context) => {
       let array, subtitle;
       let filterKeys = ['title'];
       let res;
+
       //HANDLE EXPLORER PREVIEW
       if (isPreview) {
         const resolved = await Promise.all([
-          wpFetch(PAGE_EXPLORER_PREVIEW, { id: context.params.slug }),
+          wpFetch(PAGE_EXPLORER_PREVIEW, { id: uri }),
           getAds(),
         ]);
-        const explorerType = resolved[0].page.preview.node.acf_explorer.plural;
-        console.log(explorerType);
+        const explorerType =
+          resolved[0]['page'].preview.node.acf_explorer.plural;
+
         let queryData;
         switch (explorerType) {
           case 'druvor':
@@ -153,12 +209,12 @@ export const getStaticProps = async (context) => {
       } else {
         //HANDLE EXPLORER [NOT PREVIEW]
         const resolved = await Promise.all([
-          wpFetch(PAGE_EXPLORER, { id: context.params.slug }),
+          wpFetch(queries['page'][template].live, { id: uri }),
           getAds(),
         ]);
-        const explorerType = resolved[0].page.acf_explorer.plural;
-        console.log(explorerType);
-        let queryData;
+        console.log(resolved);
+        const explorerType = resolved[0]['page'].acf_explorer.plural;
+
         switch (explorerType) {
           case 'druvor':
             res = await Promise.all([
@@ -179,20 +235,23 @@ export const getStaticProps = async (context) => {
         }
 
         data = {
-          page: resolved[0].page,
+          page: resolved[0][type],
           ads: resolved[1],
-          array: array,
+          array,
           filterKeys,
           subtitle,
         };
+        type = template;
       }
     }
   }
+
   if (!data) {
     return {
       notFound: true,
     };
   }
+  console.log(data);
   return {
     props: {
       routeType: type,
