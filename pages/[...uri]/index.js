@@ -1,36 +1,20 @@
 import {
-  ARTICLE_SINGLE,
-  ARTICLE_SINGLE_PREVIEW,
-} from '../../lib/fragments/articles';
-import {
-  GRAPES,
-  GRAPE_SINGLE,
-  GRAPE_SINGLE_PREVIEW,
-} from '../../lib/fragments/grapes';
-import {
-  PAGE_EXPLORER,
-  PAGE_EXPLORER_PREVIEW,
-  PAGE_OVERVIEW,
-  PAGE_OVERVIEW_PREVIEW,
-  PAGE_SINGLE,
-  PAGE_SINGLE_PREVIEW,
-} from '../../lib/fragments/pages';
-import {
   getAuthorData,
   getAuthorPaths,
   getPostsByAuthor,
 } from '../../lib/api/authors';
 
 import AuthorPageTemplate from '../../components/templates/AuthorPageTemplate';
+import DrinkPageTemplate from '../../components/templates/DrinkPageTemplate';
 import ExplorerPageTemplate from '../../components/templates/ExplorerPageTemplate';
 import GrapePageTemplate from '../../components/templates/GrapePageTemplate';
 import OverviewPageTemplate from '../../components/templates/OverviewPageTemplate';
 import PageTemplate from '../../components/templates/PageTemplate';
 import PostPageTemplate from '../../components/templates/PostPageTemplate';
-import { RECIPES } from '../../lib/fragments/recipes';
+import RecipePageTemplate from '../../components/templates/RecipePageTemplate';
 import fetchTemplate from '../../lib/util/fetchTemplate';
 import { getAds } from '../../lib/api/ads';
-import wpFetch from '../../lib/wpFetch';
+import resolveTemplate from '../../lib/resolveTemplate';
 
 const PagePostHandler = ({ routeType, data }) => {
   switch (routeType) {
@@ -54,6 +38,12 @@ const PagePostHandler = ({ routeType, data }) => {
     case 'grape':
       return <GrapePageTemplate data={data} />;
       break;
+    case 'drink':
+      return <DrinkPageTemplate data={data} />;
+      break;
+    case 'recipe':
+      return <RecipePageTemplate data={data} />;
+      break;
   }
 };
 
@@ -67,36 +57,8 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  const queries = {
-    page: {
-      Default: {
-        live: PAGE_SINGLE,
-        preview: PAGE_SINGLE_PREVIEW,
-      },
-      Översiktssida: {
-        live: PAGE_OVERVIEW,
-        preview: PAGE_OVERVIEW_PREVIEW,
-      },
-      Utforskarsida: {
-        live: PAGE_EXPLORER,
-        preview: PAGE_EXPLORER_PREVIEW,
-      },
-    },
-    post: {
-      Default: {
-        live: ARTICLE_SINGLE,
-        preview: ARTICLE_SINGLE_PREVIEW,
-      },
-    },
-    grape: {
-      Default: {
-        live: GRAPE_SINGLE,
-        preview: GRAPE_SINGLE_PREVIEW,
-      },
-    },
-  };
   const uri = context.params.uri.join('/');
-
+  console.log('URI =>', uri);
   const isPreview = context.preview ? true : false;
   let type = '';
   let data = null;
@@ -106,7 +68,7 @@ export const getStaticProps = async (context) => {
   //Get author paths to see if page is an author page
   const authorPaths = await getAuthorPaths();
   const authorSlugs = authorPaths.map((author) => author.params.author);
-  
+
   if (authorSlugs.includes(uri)) {
     type = 'author';
     const resolved = await Promise.all([
@@ -120,129 +82,26 @@ export const getStaticProps = async (context) => {
     const content = await fetchTemplate(uri);
     const { template, contentType } = content;
     type = contentType;
-    console.log(uri, content);
+    console.log(content);
     //Fetch correct data for the template, real or preview
 
+    if (template === 'Recipe') {
+      data = await resolveTemplate(template, type, uri, isPreview);
+    }
     //HANDLE DEFAULT TEMPLATE
     if (template === 'Default') {
-      //HANDLE DEFAULT PREVIEW
-      if (isPreview) {
-        const resolved = await Promise.all([
-          wpFetch(queries[type][template].preview, { id: uri }),
-          getAds(),
-        ]);
-
-        data = { page: resolved[0][type].preview.node, ads: resolved[1] };
-      } else {
-        //HANDLE DEFAULT LIVE
-
-        const resolved = await Promise.all([
-          wpFetch(queries[type][template].live, { id: uri }),
-          getAds(),
-        ]);
-
-        data = { page: resolved[0][type], ads: resolved[1] };
-      }
+      data = await resolveTemplate(template, type, uri, isPreview);
     }
     //HANDLE OVERVIEW PAGE
     if (template === 'Översiktssida') {
-      //HANDLE OVERVIEW PREVIEW
-      if (isPreview) {
-        const resolved = await Promise.all([
-          wpFetch(queries[type][template].preview, { id: context.params.slug }),
-          getAds(),
-        ]);
-        data = { page: resolved[0].page.preview.node, ads: resolved[1] };
-      } else {
-        //HANDLE OVERVIEW [NOT PREVIEW]
-        const resolved = await Promise.all([
-          wpFetch(queries[type][template].live, { id: uri }),
-          getAds(),
-        ]);
-        data = { page: resolved[0].page, ads: resolved[1] };
-        type = template;
-      }
+      data = await resolveTemplate(template, type, uri, isPreview);
+      type = 'Översiktssida';
     }
 
     //HANDLE EXPLORER PAGE
     if (template === 'Utforskarsida') {
-      let array, subtitle;
-      let filterKeys = ['title'];
-      let res;
-
-      //HANDLE EXPLORER PREVIEW
-      if (isPreview) {
-        const resolved = await Promise.all([
-          wpFetch(PAGE_EXPLORER_PREVIEW, { id: uri }),
-          getAds(),
-        ]);
-        const explorerType =
-          resolved[0]['page'].preview.node.acf_explorer.plural;
-
-        let queryData;
-        switch (explorerType) {
-          case 'druvor':
-            res = await Promise.all([
-              wpFetch(GRAPES, { batch: 200, type: 'grapes' }),
-            ]);
-            array = res[0].map(({ node: item }) => item);
-            filterKeys = ['title', 'acf_grape.druvtyp.name'];
-            subtitle = 'acf_grape.druvtyp.name';
-            break;
-          case 'recept':
-            res = await Promise.all([
-              wpFetch(RECIPES, { batch: 200, type: 'recipes' }),
-            ]);
-            array = res[0].map(({ node: item }) => item);
-            filterKeys = ['title'];
-            subtitle = '';
-            break;
-        }
-
-        data = {
-          page: resolved[0].page.preview.node,
-          ads: resolved[1],
-          array: array,
-          filterKeys,
-          subtitle,
-        };
-      } else {
-        //HANDLE EXPLORER [NOT PREVIEW]
-        const resolved = await Promise.all([
-          wpFetch(queries['page'][template].live, { id: uri }),
-          getAds(),
-        ]);
-        console.log(resolved);
-        const explorerType = resolved[0]['page'].acf_explorer.plural;
-
-        switch (explorerType) {
-          case 'druvor':
-            res = await Promise.all([
-              wpFetch(GRAPES, { batch: 200, type: 'grapes' }),
-            ]);
-            array = res[0].map(({ node: item }) => item);
-            filterKeys = ['title', 'acf_grape.druvtyp.name'];
-            subtitle = 'acf_grape.druvtyp.name';
-            break;
-          case 'recept':
-            res = await Promise.all([
-              wpFetch(RECIPES, { batch: 200, type: 'recipes' }),
-            ]);
-            array = res[0].map(({ node: item }) => item);
-            filterKeys = ['title'];
-            subtitle = '';
-            break;
-        }
-
-        data = {
-          page: resolved[0][type],
-          ads: resolved[1],
-          array,
-          filterKeys,
-          subtitle,
-        };
-        type = template;
-      }
+      data = await resolveTemplate(template, type, uri, isPreview);
+      type = 'Utforskarsida';
     }
   }
 
@@ -251,7 +110,7 @@ export const getStaticProps = async (context) => {
       notFound: true,
     };
   }
-  console.log(data);
+
   return {
     props: {
       routeType: type,
