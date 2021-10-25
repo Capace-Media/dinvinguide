@@ -106,7 +106,7 @@ export const getStaticProps = async (context) => {
   //Get author paths to see if page is an author page
   const authorPaths = await getAuthorPaths();
   const authorSlugs = authorPaths.map((author) => author.params.author);
-
+  
   if (authorSlugs.includes(uri)) {
     type = 'author';
     const resolved = await Promise.all([
