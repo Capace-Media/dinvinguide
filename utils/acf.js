@@ -1,10 +1,10 @@
+import Drink from '../components/acf/Drink';
 import Fact from '../components/acf/Fact';
 import Image from 'next/image';
 import Img from '../components/acf/Img';
 import Puff from '../components/acf/Puff';
 import Quote from '../components/acf/Quote';
 import Text from '../components/acf/Text';
-
 export const renderSection = (section) => {
   switch (section.fieldGroupName) {
     case 'Post_AcfPosts_Sektioner_Brodtext':
@@ -18,6 +18,9 @@ export const renderSection = (section) => {
       break;
     case 'Page_AcfPosts_Sektioner_Citat':
       return <Quote content={section} />;
+      break;
+    case 'Post_AcfPosts_Sektioner_Dryck':
+      return <Drink data={section} />;
       break;
     case 'Post_AcfPosts_Sektioner_ExtraPuff':
       return section.extraPuff ? <Puff content={section} /> : null;
