@@ -1,4 +1,15 @@
+import Ad from '../ads/Ad';
+import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
+import DrinkListItem from '../drinks/DrinkListItem';
+import Image from 'next/image';
+import Link from 'next/link';
+import { NextSeo } from 'next-seo';
+import parse from 'html-react-parser';
+import { useState } from 'react';
 const RecipePageTemplate = ({ data }) => {
+  const { page: recipe, ads } = data;
+  console.log(recipe);
+
   const [portions, setPortions] = useState(
     parseInt(recipe.acf_recipe.antalPortioner)
   );
@@ -121,16 +132,26 @@ const RecipePageTemplate = ({ data }) => {
                   </li>
                 );
               })}
-            <li>{ReactHtmlParser(recipe.acf_recipe.ingredienserOvrigt)}</li>
+            <li>{parse(recipe.acf_recipe.ingredienserOvrigt)}</li>
           </ul>
         </div>
         <div
           style={{ gridArea: 'instructions' }}
           className='mt-10 lg:p-10 rich-text lg:mt-0'
         >
-          {ReactHtmlParser(recipe.acf_recipe.processen)}
+          {parse(recipe.acf_recipe.processen)}
         </div>
       </div>
+      {recipe.acf_recipe.passandeDrycker.length > 0 && (
+        <div className='contain row'>
+          <h2 className='text-center text-brand-red'>Passande drycker</h2>
+          <ul className='grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 row'>
+            {recipe.acf_recipe.passandeDrycker.map((dryck) => {
+              return <DrinkListItem dryck={dryck} />;
+            })}
+          </ul>
+        </div>
+      )}
     </>
   );
 };

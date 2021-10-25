@@ -85,11 +85,8 @@ export const getStaticProps = async (context) => {
     console.log(content);
     //Fetch correct data for the template, real or preview
 
-    if (template === 'Recipe') {
-      data = await resolveTemplate(template, type, uri, isPreview);
-    }
     //HANDLE DEFAULT TEMPLATE
-    if (template === 'Default') {
+    if (template === 'Default' || template === 'Recipe') {
       data = await resolveTemplate(template, type, uri, isPreview);
     }
     //HANDLE OVERVIEW PAGE
