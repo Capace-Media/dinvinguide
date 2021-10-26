@@ -54,7 +54,7 @@ export const getStaticPaths = async () => {
     paths: [
       {
         params: {
-          uri: 'recept',
+          uri: '/recept',
         },
       },
     ],
