@@ -1,7 +1,6 @@
 import Image from 'next/image';
 
 export default function Img({ content, style, handleGallery }) {
-  console.log(content);
   if (content && content.img && content.img.mediaDetails) {
     if (!style && content.img) {
       return (
@@ -15,7 +14,7 @@ export default function Img({ content, style, handleGallery }) {
             {content && content.iGalleri && (
               <button
                 style={{ transform: 'translateX(-50%)' }}
-                className='border-2 border-brand-red text-brand-red rounded box-border absolute block px-4 py-2 bottom-10 md:bottom-20 transform left-[50%] hover:text-white hover:bg-brand-red'
+                className='border-2 border-brand-red text-brand-red rounded box-border absolute block px-4 py-2 bottom-5 md:bottom-14 transform left-[50%] hover:text-white hover:bg-brand-red'
                 onClick={() => handleGallery(content.img.mediaItemUrl)}
               >
                 Visa galleri
@@ -36,7 +35,7 @@ export default function Img({ content, style, handleGallery }) {
           {content && content.iGalleri && (
             <button
               style={{ transform: 'translateX(-50%)' }}
-              className='border-2 border-brand-red text-brand-red rounded box-border absolute block px-4 py-2 bottom-10 md:bottom-20 transform left-[50%] hover:text-white hover:bg-brand-red'
+              className='border-2 border-brand-red text-brand-red rounded box-border absolute block px-4 py-2 bottom-5 md:bottom-14 transform left-[50%] hover:text-white hover:bg-brand-red'
               onClick={() => handleGallery(content.img.mediaItemUrl)}
             >
               Visa galleri

@@ -16,15 +16,18 @@ const PostPageTemplate = ({ data }) => {
   let galleryImages = [];
   page?.acf_posts?.flerBilder?.forEach((img) => {
     galleryImages.push(img.mediaItemUrl);
-    console.log(img);
   });
   page.acf_posts.sektioner
     .filter(
-      (section) => section.fieldGroupName.includes('Bild') && section.iGalleri
+      (section) =>
+        section.fieldGroupName.toLowerCase().includes('bild') &&
+        section.iGalleri
     )
     .forEach((img) => {
       galleryImages.push(img.img.mediaItemUrl);
     });
+  console.log(galleryIndex, galleryImages);
+  console.log(page);
 
   const handleGallery = (index) => {
     if (Number.isInteger(index)) {
@@ -148,7 +151,7 @@ const PostPageTemplate = ({ data }) => {
           <svg
             xmlns='http://www.w3.org/2000/svg'
             viewBox='0 0 24 24'
-            className='fixed z-50 w-8 h-8 fill-current top-5 right-5'
+            className='fixed z-50 w-8 h-8 cursor-pointer fill-current top-5 right-5'
             onClick={() => setIsGallery(false)}
           >
             <path d='M0 0h24v24H0V0z' fill='none' />
