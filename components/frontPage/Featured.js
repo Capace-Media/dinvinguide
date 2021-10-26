@@ -13,12 +13,17 @@ export default function Featured({ items }) {
         <div className='relative flex items-center justify-center p-5 bg-black h-96 lg:col-span-2 lg:row-span-2 lg:h-full'>
           <div className='absolute top-0 left-0 z-10 w-full h-full opacity-80'>
             {item.image && (
-              <Image src={item.image} layout='fill' objectFit='cover' />
+              <Image
+                src={item.image}
+                layout='fill'
+                objectFit='cover'
+                priority
+              />
             )}
           </div>
           <div className={`z-20 text-5xl  font-semibold text-center`}>
             <h1 className='mb-3'>Välkommen till</h1>
-            <Image src={LogoWhite} />
+            <Image src={LogoWhite} priority />
           </div>
         </div>
       );
@@ -29,7 +34,7 @@ export default function Featured({ items }) {
           <a
             className={`lg:col-span-1 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
-            <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
+            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
               {item.image && (
                 <Image src={item.image} layout='fill' objectFit='cover' />
               )}
@@ -56,7 +61,7 @@ export default function Featured({ items }) {
           <a
             className={`${containerClasses} lg:h-full lg:col-span-1 lg:row-span-2 `}
           >
-            <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
+            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
               {item.image && (
                 <Image src={item.image} layout='fill' objectFit='cover' />
               )}
@@ -83,7 +88,7 @@ export default function Featured({ items }) {
           <a
             className={`${containerClasses} lg:h-full lg:col-span-2 lg:row-span-2`}
           >
-            <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
+            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
               {item.image && (
                 <Image src={item.image} layout='fill' objectFit='cover' />
               )}
@@ -110,7 +115,7 @@ export default function Featured({ items }) {
           <a
             className={`lg:col-span-2 lg:row-span-2 lg:h-full ${containerClasses}`}
           >
-            <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
+            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
               {item.image && (
                 <Image src={item.image} layout='fill' objectFit='cover' />
               )}
@@ -137,7 +142,7 @@ export default function Featured({ items }) {
           <a
             className={`lg:h-full lg:col-span-1 lg:row-span-2 ${containerClasses}`}
           >
-            <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
+            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
               {item.image && (
                 <Image src={item.image} layout='fill' objectFit='cover' />
               )}
@@ -164,7 +169,7 @@ export default function Featured({ items }) {
           <a
             className={`lg:h-full lg:col-span-1 lg:row-span-2 ${containerClasses}`}
           >
-            <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
+            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
               {item.image && (
                 <Image src={item.image} layout='fill' objectFit='cover' />
               )}
@@ -191,7 +196,7 @@ export default function Featured({ items }) {
           <a
             className={`lg:h-full lg:col-span-2 lg:row-span-2 ${containerClasses}`}
           >
-            <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
+            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
               {item.image && (
                 <Image src={item.image} layout='fill' objectFit='cover' />
               )}
@@ -214,7 +219,7 @@ export default function Featured({ items }) {
         }
       >
         <a className={`h-56 lg:row-span-1 lg:col-span-1 ${containerClasses}`}>
-          <div className='absolute top-0 left-0 w-full h-full z-10 opacity-70 transform transition-all group-hover:scale-[1.1]'>
+          <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
             {item.image && (
               <Image src={item.image} layout='fill' objectFit='cover' />
             )}

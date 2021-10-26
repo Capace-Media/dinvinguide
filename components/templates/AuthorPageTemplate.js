@@ -1,26 +1,18 @@
-import { Fragment, useState } from 'react';
-import {
-  getAuthorData,
-  getAuthorPaths,
-  getPostsByAuthor,
-} from '../../lib/api/authors';
-
-import Ad from '../../components/ads/Ad';
-import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
+import Ad from '../ads/Ad';
+import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import Image from 'next/image';
 import Link from 'next/link';
-import { NextSeo } from 'next-seo';
-import { getAds } from '../../lib/api/ads';
+import List from '../common/lists/List';
+import { useState } from 'react';
 
-export default function AuthorPage({ data }) {
+const AuthorPageTemplate = ({ data }) => {
   const incrementNum = 24;
   const [isReadMore, setIsReadMore] = useState(false);
   const [maxCount, setMaxCount] = useState(25);
-  const { author, posts, ads } = data;
-
+  const { ads, author, posts } = data;
+  const postArray = posts.map(({ node: post }) => post);
   return (
-    <Fragment>
-      <NextSeo title={`${author.name} - Skribent`} />
+    <>
       <BreadCrumbs
         crumbs={[
           { text: 'Skribenter', href: '/skribenter' },
@@ -39,7 +31,7 @@ export default function AuthorPage({ data }) {
         <h1 className='row'>{author.name}</h1>
         <p
           style={{ whiteSpace: 'break-spaces' }}
-          className={`max-w-4xl mx-auto ${
+          className={`max-w-prose prose mx-auto ${
             isReadMore ? 'line-clamp-none' : 'line-clamp-3'
           }`}
         >
@@ -134,7 +126,7 @@ export default function AuthorPage({ data }) {
             artiklar
           </h2>
         </div>
-        <div className='contain-md'>
+        <div className='contain'>
           {posts.map(({ node: post }, index) => {
             console.log(post);
             if (index === 0) {
@@ -142,7 +134,11 @@ export default function AuthorPage({ data }) {
                 <Link href={post.uri}>
                   <a className='relative block w-full overflow-hidden bg-black group aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-9 '>
                     <Image
-                      src={post.featuredImage.node.mediaItemUrl}
+                      src={
+                        post.featuredImage
+                          ? post.featuredImage.node.mediaItemUrl
+                          : '/images/recipe-placeholder'
+                      }
                       layout='fill'
                       objectFit='cover'
                       className='transition-all transform group-hover:scale-110 opacity-70'
@@ -161,72 +157,19 @@ export default function AuthorPage({ data }) {
             }
           })}
         </div>
-        <div className='grid gap-3 contain-md md:grid-cols-2 lg:grid-cols-3 row'>
-          {posts.map(({ node: post }, index) => {
-            if (index > 0 && index < maxCount) {
-              return (
-                <Link href={post.uri}>
-                  <a className='relative block w-full overflow-hidden bg-black group aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-9'>
-                    {post.featuredImage && post.featuredImage.node && (
-                      <Image
-                        src={post.featuredImage.node.mediaItemUrl}
-                        layout='fill'
-                        objectFit='cover'
-                        className='transition-all transform group-hover:scale-110 opacity-70'
-                      />
-                    )}
-
-                    <div className='absolute top-0 left-0 p-3 text-left lg:p-5 '>
-                      <div className='px-2 border-l-4 lg:px-3 border-brand-bronze'>
-                        <h4 className='text-white uppercase lg:text-base'>
-                          {post.title}
-                        </h4>
-                        <p className='text-white'>{author.name}</p>
-                      </div>
-                    </div>
-                  </a>
-                </Link>
-              );
-            }
-          })}
-        </div>
-        <div className='contain row'>
-          <button
-            onClick={() => setMaxCount((prev) => prev + incrementNum)}
-            className='px-5 py-3 text-white uppercase cursor-pointer bg-brand-red'
-          >
-            Visa fler artiklar
-          </button>
+        <div className='mt-10 text-left'>
+          <List
+            array={postArray}
+            ads={ads}
+            columns={3}
+            subtitle='author.node.name'
+          />
         </div>
       </div>
-    </Fragment>
+    </>
   );
+};
+
+export default AuthorPageTemplate;
+{
 }
-
-export const getStaticPaths = async () => {
-  const paths = await getAuthorPaths();
-  return {
-    paths,
-    fallback: 'blocking',
-  };
-};
-
-export const getStaticProps = async ({ params }) => {
-  const resolved = await Promise.all([
-    getAuthorData(params.author),
-    getPostsByAuthor(params.author),
-    getAds(),
-  ]);
-
-  if (!resolved[0]) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      data: { author: resolved[0], posts: resolved[1], ads: resolved[2] },
-    },
-  };
-};

@@ -1,19 +1,15 @@
-import { Fragment, useState } from 'react';
-import {
-  RECIPE_SINGLE,
-  RECIPE_SINGLE_PREVIEW,
-} from '../../lib/fragments/recipes';
-import { getRecipe, getRecipePaths, getRecipes } from '../../lib/api/recipes';
-
-import Ad from '../../components/ads/Ad';
-import BreadCrumbs from '../../components/common/BreadCrumbs/Breadcrumbs';
+import Ad from '../ads/Ad';
+import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
+import DrinkListItem from '../drinks/DrinkListItem';
 import Image from 'next/image';
+import Link from 'next/link';
 import { NextSeo } from 'next-seo';
-import ReactHtmlParser from 'react-html-parser';
-import { getAds } from '../../lib/api/ads';
-import wpFetch from '../../lib/wpFetch';
+import parse from 'html-react-parser';
+import { useState } from 'react';
+const RecipePageTemplate = ({ data }) => {
+  const { page: recipe, ads } = data;
+  console.log(recipe);
 
-export default function RecipePage({ ads, recipe }) {
   const [portions, setPortions] = useState(
     parseInt(recipe.acf_recipe.antalPortioner)
   );
@@ -48,9 +44,8 @@ export default function RecipePage({ ads, recipe }) {
       }
     }
   };
-
   return (
-    <Fragment>
+    <>
       <NextSeo title={`${recipe.title} - Recept`} />
       <BreadCrumbs
         crumbs={[
@@ -137,53 +132,28 @@ export default function RecipePage({ ads, recipe }) {
                   </li>
                 );
               })}
-            <li>{ReactHtmlParser(recipe.acf_recipe.ingredienserOvrigt)}</li>
+            <li>{parse(recipe.acf_recipe.ingredienserOvrigt)}</li>
           </ul>
         </div>
         <div
           style={{ gridArea: 'instructions' }}
           className='mt-10 lg:p-10 rich-text lg:mt-0'
         >
-          {ReactHtmlParser(recipe.acf_recipe.processen)}
+          {parse(recipe.acf_recipe.processen)}
         </div>
       </div>
-    </Fragment>
+      {recipe?.acf_recipe?.passandeDrycker?.length > 0 && (
+        <div className='contain row'>
+          <h2 className='text-center text-brand-red'>Passande drycker</h2>
+          <ul className='grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 row'>
+            {recipe.acf_recipe.passandeDrycker.map((dryck) => {
+              return <DrinkListItem dryck={dryck} />;
+            })}
+          </ul>
+        </div>
+      )}
+    </>
   );
-}
-export const getStaticPaths = async () => {
-  // const paths = await getRecipePaths();
-
-  return {
-    paths: [],
-    fallback: 'blocking',
-  };
 };
 
-export const getStaticProps = async (context) => {
-  let data;
-  if (context.preview) {
-    const res = await wpFetch(RECIPE_SINGLE_PREVIEW, {
-      slug: context.params.recipe,
-    });
-    console.log('PREVIEW RES =>', res);
-    data = res.recipe.preview.node;
-  } else {
-    const res = await wpFetch(RECIPE_SINGLE, { slug: context.params.recipe });
-    console.log('RES =>', res);
-    data = res.recipe;
-  }
-  const ads = await getAds();
-
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      recipe: data,
-      ads,
-    },
-  };
-};
+export default RecipePageTemplate;

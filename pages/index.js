@@ -11,7 +11,7 @@ export default function Home({ data }) {
   return (
     <div className='mb-5'>
       <div className='row'>
-        <Ad ads={ads} position='top' />
+        <Ad ads={ads} position='top' priority />
       </div>
       <Featured items={page.first} />
       <div className='row'>

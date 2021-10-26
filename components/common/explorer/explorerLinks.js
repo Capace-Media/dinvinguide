@@ -12,7 +12,7 @@ const ExplorerLinks = () => {
               objectFit='cover'
             />
           </figure>
-          <div className='p-10'>
+          <div className='p-5 lg:p-10'>
             <h3 className='pl-5 text-white border-l-4 lg:text-2xl border-brand-bronze'>
               Dryckesutforskaren
             </h3>
@@ -28,7 +28,7 @@ const ExplorerLinks = () => {
               objectFit='cover'
             />
           </figure>
-          <div className='p-10'>
+          <div className='p-5 lg:p-10'>
             <h3 className='pl-5 text-white border-l-4 lg:text-2xl border-brand-bronze'>
               Receptutforskaren
             </h3>

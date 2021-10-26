@@ -1,9 +1,10 @@
 import Ad from '../../components/ads/Ad';
+import { DRINKTIPS } from '../../lib/fragments/drinks';
 import DrinktipsList from '../../components/drinkTips/DrinktipsList';
-import PageIntro from '../../components/common/PageIntro';
-import { fetchDrinkTips } from '../../lib/api/drinkTips/fetchDrinkTips';
+import PageIntro from '../../components/common/content/PageIntro';
 import { getAds } from '../../lib/api/ads';
 import { useState } from 'react';
+import wpFetch from '../../lib/wpFetch';
 const DryckesTipsPage = ({ ads, drinks }) => {
   const [searchInput, setSearchInput] = useState('');
   return (
@@ -29,12 +30,15 @@ const DryckesTipsPage = ({ ads, drinks }) => {
 export default DryckesTipsPage;
 
 export const getStaticProps = async () => {
-  const resolved = await Promise.all([getAds(), fetchDrinkTips()]);
-
+  const resolved = await Promise.all([
+    getAds(),
+    wpFetch(DRINKTIPS, { batch: 200, type: 'drinktips' }),
+  ]);
+  const drinks = resolved[1].map(({ node: drink }) => drink);
   return {
     props: {
       ads: resolved[0],
-      drinks: resolved[1],
+      drinks,
     },
   };
 };

@@ -1,10 +1,14 @@
+import { DRINKS, DRINKTIPS } from '../lib/fragments/drinks';
 import { Fragment, useEffect, useState } from 'react';
 
+import { ARTICLES } from '../lib/fragments/articles';
 import { NextSeo } from 'next-seo';
+import { RECIPES } from '../lib/fragments/recipes';
 import Results from '../components/search/Results';
 import { getArticles } from '../lib/api/articles';
 import { getDrinks } from '../lib/api/drinks';
 import { getRecipes } from '../lib/api/recipes';
+import wpFetch from '../lib/wpFetch';
 
 const filterItemClasses = `w-full p-1 lg:p-2 mt-5 text-sm lg:text-base flex items-center justify-center border-2 first:border-l-2 border-l-0 border-brand-red font-semibold cursor-pointer`;
 const activeFilterItemClass = `bg-brand-red text-white`;
@@ -17,6 +21,7 @@ export default function SearchPage({ data }) {
     { text: 'Artiklar', value: 'articles' },
     { text: 'Recept', value: 'recipes' },
     { text: 'Drycker', value: 'drinks' },
+    { text: 'Dryckestips', value: 'drinktips' },
   ];
 
   useEffect(() => {
@@ -85,10 +90,12 @@ export default function SearchPage({ data }) {
 }
 export const getStaticProps = async () => {
   const resolved = await Promise.all([
-    getArticles(),
-    getRecipes(),
-    getDrinks(),
+    wpFetch(ARTICLES, { batch: 300, type: 'posts' }),
+    wpFetch(RECIPES, { batch: 300, type: 'recipes' }),
+    wpFetch(DRINKS, { batch: 300, type: 'drinks' }),
+    wpFetch(DRINKTIPS, { batch: 300, type: 'drinktips' }),
   ]);
+  console.log(resolved);
 
   return {
     props: {
@@ -96,6 +103,7 @@ export const getStaticProps = async () => {
         articles: resolved[0],
         recipes: resolved[1],
         drinks: resolved[2],
+        drinktips: resolved[3],
       },
     },
   };

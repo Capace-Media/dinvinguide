@@ -1,22 +1,36 @@
-import DrinkListItem from './DrinkListItem';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const DrinkList = ({ drycker }) => {
+import Ad from '../ads/Ad';
+import DrinkListItem from './DrinkListItem';
+import flattenObject from '../../utils/flattenObject';
+
+const DrinkList = ({ drycker, ads }) => {
   const [maxNodes, setMaxNodes] = useState(23);
   const [searchInput, setSearchInput] = useState('');
+  const [filterString, setFilterString] = useState('');
   const [onlyEco, setOnlyEco] = useState(false);
   const [alcoholFree, setAlcoholFree] = useState(false);
+  const chunksize = 3 * 5;
 
   const handleLoadMore = () => {
     setMaxNodes((prev) => prev + 23);
   };
+
+  useEffect(() => {
+    let filterTimeout;
+    filterTimeout = setTimeout(() => {
+      setFilterString(searchInput.toLowerCase());
+    }, 300);
+    return () => clearTimeout(filterTimeout);
+  }, [searchInput]);
+
   return (
     <>
       <div className='flex flex-col items-center contain row'>
-        <div>
+        <div className='w-full text-center'>
           <input
             type='text'
-            className='px-6 py-4 w-80'
+            className='w-full max-w-lg px-5 py-3 rounded-sm'
             placeholder='Sök drycker'
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
@@ -43,23 +57,23 @@ const DrinkList = ({ drycker }) => {
           </span>
         </div>
       </div>
-      <div className='grid gap-5 lg:grid-cols-3 area row contain'>
+      <ul className='grid gap-2 lg:gap-5 lg:grid-cols-3 area row contain'>
         {drycker
           .filter(({ node: dryck }) => {
-            if (searchInput) {
+            if (filterString) {
               if (
                 (dryck.title &&
                   dryck.title
                     .toLowerCase()
-                    .includes(searchInput.toLowerCase())) ||
+                    .includes(filterString.toLowerCase())) ||
                 (dryck.acf_drinks.dryckestyper &&
                   dryck.acf_drinks.dryckestyper.name
                     .toLowerCase()
-                    .includes(searchInput.toLowerCase())) ||
+                    .includes(filterString.toLowerCase())) ||
                 (dryck.acf_drinks.forpackningar &&
                   dryck.acf_drinks.forpackningar.name
                     .toLowerCase()
-                    .includes(searchInput.toLowerCase()))
+                    .includes(filterString.toLowerCase()))
               ) {
                 if (onlyEco && alcoholFree) {
                   if (
@@ -129,18 +143,33 @@ const DrinkList = ({ drycker }) => {
           })
           .map(({ node: dryck }, index) => {
             if (index <= maxNodes) {
-              return (
-                <DrinkListItem
-                  key={dryck.title}
-                  dryck={dryck}
-                  loadMore={handleLoadMore}
-                  maxNodes={maxNodes}
-                  index={index}
-                />
-              );
+              if ((index + 1) % chunksize === 0) {
+                return (
+                  <>
+                    <DrinkListItem
+                      key={dryck.id}
+                      dryck={dryck}
+                      loadMore={handleLoadMore}
+                      last={index + 1 === maxNodes ? true : false}
+                    />
+                    <li className='col-span-full row'>
+                      <Ad ads={ads} position='mid' />
+                    </li>
+                  </>
+                );
+              } else {
+                return (
+                  <DrinkListItem
+                    key={dryck.id}
+                    dryck={dryck}
+                    loadMore={handleLoadMore}
+                    last={index + 1 === maxNodes ? true : false}
+                  />
+                );
+              }
             }
           })}
-      </div>
+      </ul>
     </>
   );
 };
