@@ -134,7 +134,11 @@ const AuthorPageTemplate = ({ data }) => {
                 <Link href={post.uri}>
                   <a className='relative block w-full overflow-hidden bg-black group aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-9 '>
                     <Image
-                      src={post.featuredImage.node.mediaItemUrl}
+                      src={
+                        post.featuredImage
+                          ? post.featuredImage.node.mediaItemUrl
+                          : '/images/recipe-placeholder'
+                      }
                       layout='fill'
                       objectFit='cover'
                       className='transition-all transform group-hover:scale-110 opacity-70'

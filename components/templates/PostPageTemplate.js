@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import Blocks from '../common/content/Blocks';
 import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import Image from 'next/dist/client/image';
@@ -6,8 +8,48 @@ import List from '../common/lists/List';
 import { NextSeo } from 'next-seo';
 import OldContent from '../common/content/OldContent';
 import parse from 'html-react-parser';
+
 const PostPageTemplate = ({ data }) => {
   const { page, ads } = data;
+  const [isGallery, setIsGallery] = useState(false);
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  let galleryImages = [];
+  page?.acf_posts?.flerBilder?.forEach((img) => {
+    galleryImages.push(img.mediaItemUrl);
+    console.log(img);
+  });
+  page.acf_posts.sektioner
+    .filter(
+      (section) => section.fieldGroupName.includes('Bild') && section.iGalleri
+    )
+    .forEach((img) => {
+      galleryImages.push(img.img.mediaItemUrl);
+    });
+
+  const handleGallery = (index) => {
+    if (Number.isInteger(index)) {
+      setGalleryIndex(index ? index : 0);
+    } else {
+      const imgIndex = galleryImages.indexOf(index);
+      console.log(imgIndex);
+      setGalleryIndex(imgIndex);
+    }
+    setIsGallery(!isGallery);
+  };
+  const handleNextImage = () => {
+    setGalleryIndex((prev) => prev + 1);
+  };
+  const handlePrevImage = () => {
+    setGalleryIndex((prev) => prev - 1);
+  };
+  useEffect(() => {
+    if (isGallery) {
+      console.log(galleryImages.length);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  });
   return (
     <>
       <NextSeo title={page.title} />
@@ -51,12 +93,14 @@ const PostPageTemplate = ({ data }) => {
 
         <div>
           {page.acf_posts.sektioner && page.acf_posts.sektioner.length > 0 && (
-            <Blocks ads={ads} blocks={page.acf_posts.sektioner} />
+            <Blocks
+              ads={ads}
+              blocks={page.acf_posts.sektioner}
+              handleGallery={handleGallery}
+            />
           )}
           {page.content && (
-            <div className='contain-sm rich-text'>
-              {ReactHtmlParser(page.content)}
-            </div>
+            <div className='contain-sm rich-text'>{parse(page.content)}</div>
           )}
           {page.acf_oldcontent && page.acf_oldcontent.oldContentAcf && (
             <OldContent content={page.acf_oldcontent.oldContentAcf} />
@@ -96,6 +140,62 @@ const PostPageTemplate = ({ data }) => {
           columns={3}
           subtitle='author.node.name'
         />
+      )}
+      {isGallery && (
+        <div
+          className={`fixed top-0 left-0 w-screen h-screen bg-[#181818] text-white z-50`}
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            viewBox='0 0 24 24'
+            className='fixed z-50 w-8 h-8 fill-current top-5 right-5'
+            onClick={() => setIsGallery(false)}
+          >
+            <path d='M0 0h24v24H0V0z' fill='none' />
+            <path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z' />
+          </svg>
+          <div className='w-full h-full p-5 md:p-10'>
+            <figure className='relative w-full h-full'>
+              <Image
+                src={galleryImages[galleryIndex]}
+                layout='fill'
+                objectFit='contain'
+              />
+            </figure>
+            {galleryIndex < galleryImages.length - 1 && (
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                enable-background='new 0 0 24 24'
+                viewBox='0 0 24 24'
+                className='fill-current fixed top-[50%] right-5 w-12 h-12'
+                onClick={() => handleNextImage()}
+              >
+                <g>
+                  <path d='M0,0h24v24H0V0z' fill='none' />
+                </g>
+                <g>
+                  <polygon points='6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12' />
+                </g>
+              </svg>
+            )}
+            {galleryIndex !== 0 && (
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                enable-background='new 0 0 24 24'
+                viewBox='0 0 24 24'
+                className='fill-current fixed top-[50%] left-5 rotate-180 w-12 h-12'
+                onClick={() => handlePrevImage()}
+              >
+                <g>
+                  <path d='M0,0h24v24H0V0z' fill='none' />
+                </g>
+                <g>
+                  <polygon points='6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12' />
+                </g>
+              </svg>
+            )}
+          </div>
+        </div>
       )}
     </>
   );

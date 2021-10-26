@@ -1,7 +1,7 @@
 import Ad from '../../ads/Ad';
 import { renderSection } from '../../../utils/acf';
 
-const Blocks = ({ blocks, ads }) => {
+const Blocks = ({ blocks, ads, handleGallery }) => {
   return (
     <>
       {blocks.map((block, i) => {
@@ -10,17 +10,17 @@ const Blocks = ({ blocks, ads }) => {
           if (i === mid) {
             return (
               <>
-                {renderSection(block)}
+                {renderSection(block, handleGallery)}
                 <div className='contain row'>
                   <Ad ads={ads} position='mid' />
                 </div>
               </>
             );
           } else {
-            return renderSection(block);
+            return renderSection(block, handleGallery);
           }
         } else {
-          return renderSection(block);
+          return renderSection(block, handleGallery);
         }
       })}
     </>
