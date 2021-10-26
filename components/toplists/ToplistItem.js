@@ -12,32 +12,34 @@ const ToplistItem = ({ data, index }) => {
         className={`relative ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-0'}`}
       >
         {data.featuredImage && data.featuredImage.node && (
-          <Link href={data.uri}>
-            <a>
-              <figure className='relative aspect-w-1 aspect-h-1'>
-                <figure className='absolute w-full h-full scale-75 translate-y-16 rounded-full bg-brand-red' />
-                <Image
-                  src={data.featuredImage.node.mediaItemUrl}
-                  layout='fill'
-                  objectFit='contain'
-                />
-              </figure>
-              {index <= 3 && (
-                <div className='absolute right-0 w-32 h-32 top-64'>
+          <>
+            <Link href={data.uri}>
+              <a>
+                <figure className='relative aspect-w-1 aspect-h-1'>
+                  <figure className='absolute w-full h-full scale-75 translate-y-16 rounded-full bg-brand-red' />
                   <Image
-                    src={
-                      index === 1
-                        ? MedalOne
-                        : index === 2
-                        ? MedalTwo
-                        : MedalThree
-                    }
+                    src={data.featuredImage.node.mediaItemUrl}
+                    layout='fill'
                     objectFit='contain'
                   />
-                </div>
-              )}
-            </a>
-          </Link>
+                </figure>
+                {index <= 3 && (
+                  <div className='absolute right-0 w-32 h-32 top-64'>
+                    <Image
+                      src={
+                        index === 1
+                          ? MedalOne
+                          : index === 2
+                          ? MedalTwo
+                          : MedalThree
+                      }
+                      objectFit='contain'
+                    />
+                  </div>
+                )}
+              </a>
+            </Link>
+          </>
         )}
       </div>
       <div>
@@ -73,31 +75,33 @@ const ToplistItem = ({ data, index }) => {
         )}
         {data.acf_drinks.passarTillRecept &&
           data.acf_drinks.passarTillRecept.length > 0 && (
-            <Link href={data.acf_drinks.passarTillRecept[0].uri}>
-              <a className='relative block group'>
-                <div className='mt-5 overflow-hidden bg-black'>
-                  <figure className='relative transition-all aspect-w-16 aspect-h-8 opacity-70 group-hover:scale-110'>
-                    <Image
-                      src={
-                        data.acf_drinks?.passarTillRecept[0].featuredImage?.node
-                          ?.mediaItemUrl
-                          ? data.acf_drinks.passarTillRecept[0].featuredImage
-                              .node.mediaItemUrl
-                          : '/images/recipe-placeholder.jpg'
-                      }
-                      layout='fill'
-                      objectFit='cover'
-                    />
-                  </figure>
-                  <div className='absolute top-0 left-0 p-3 text-white'>
-                    <p>Passar med</p>
-                    <strong className='block'>
-                      {data.acf_drinks.passarTillRecept[0].title}
-                    </strong>
+            <>
+              <Link href={data.acf_drinks.passarTillRecept[0].uri}>
+                <a className='relative block group'>
+                  <div className='mt-5 overflow-hidden bg-black'>
+                    <figure className='relative transition-all aspect-w-16 aspect-h-8 opacity-70 group-hover:scale-110'>
+                      <Image
+                        src={
+                          data.acf_drinks?.passarTillRecept[0].featuredImage
+                            ?.node?.mediaItemUrl
+                            ? data.acf_drinks.passarTillRecept[0].featuredImage
+                                .node.mediaItemUrl
+                            : '/images/recipe-placeholder.jpg'
+                        }
+                        layout='fill'
+                        objectFit='cover'
+                      />
+                    </figure>
+                    <div className='absolute top-0 left-0 p-3 text-white'>
+                      <p>Passar med</p>
+                      <strong className='block'>
+                        {data.acf_drinks.passarTillRecept[0].title}
+                      </strong>
+                    </div>
                   </div>
-                </div>
-              </a>
-            </Link>
+                </a>
+              </Link>
+            </>
           )}
       </div>
     </div>

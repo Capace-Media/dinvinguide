@@ -17,6 +17,7 @@ import { getAds } from '../../lib/api/ads';
 import resolveTemplate from '../../lib/resolveTemplate';
 
 const PagePostHandler = ({ routeType, data }) => {
+  console.log(data);
   switch (routeType) {
     case 'author':
       return <AuthorPageTemplate data={data} />;
