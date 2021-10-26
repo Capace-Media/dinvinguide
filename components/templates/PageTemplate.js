@@ -11,7 +11,7 @@ const PageTemplate = ({ data }) => {
 
   return (
     <>
-      <NextSeo title={page.title} />
+      <NextSeo title={page.seo.title} description={page.seo.metaDesc} />
       <PageIntro
         image={page.featuredImage.node.mediaItemUrl}
         title={page.title}

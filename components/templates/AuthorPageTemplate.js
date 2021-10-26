@@ -3,6 +3,7 @@ import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import Image from 'next/image';
 import Link from 'next/link';
 import List from '../common/lists/List';
+import { NextSeo } from 'next-seo';
 import { useState } from 'react';
 
 const AuthorPageTemplate = ({ data }) => {
@@ -13,6 +14,10 @@ const AuthorPageTemplate = ({ data }) => {
   const postArray = posts.map(({ node: post }) => post);
   return (
     <>
+      <NextSeo
+        title={`${author.name} - Skribent - `}
+        description={author.description}
+      />
       <BreadCrumbs
         crumbs={[
           { text: 'Skribenter', href: '/skribenter' },
@@ -128,7 +133,6 @@ const AuthorPageTemplate = ({ data }) => {
         </div>
         <div className='contain'>
           {posts.map(({ node: post }, index) => {
-            console.log(post);
             if (index === 0) {
               return (
                 <Link href={post.uri}>
