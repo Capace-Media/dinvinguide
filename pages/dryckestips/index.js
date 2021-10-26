@@ -40,5 +40,6 @@ export const getStaticProps = async () => {
       ads: resolved[0],
       drinks,
     },
+    revalidate: 60,
   };
 };

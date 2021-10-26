@@ -40,5 +40,6 @@ export const getStaticProps = async () => {
       page: flattenObject(resolved[1].page),
       ads: resolved[2],
     },
+    revalidate: 60,
   };
 };
