@@ -74,15 +74,22 @@ const List = ({
 
             if (filterString) {
               let match = false;
-              filterKeys.map((key) => {
-                console.log(item[key]);
-                if (
-                  item[key] &&
-                  item[key].toLowerCase().includes(filterString)
-                ) {
+              if (filterString === 'no:image') {
+                if (!item['featuredImage.node.mediaItemUrl']) {
                   match = true;
                 }
-              });
+              } else {
+                filterKeys.map((key) => {
+                  console.log(item[key]);
+                  if (
+                    item[key] &&
+                    item[key].toLowerCase().includes(filterString)
+                  ) {
+                    match = true;
+                  }
+                });
+              }
+
               return match;
             } else {
               return true;

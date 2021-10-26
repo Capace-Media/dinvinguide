@@ -49,9 +49,10 @@ const DrinkPageTemplate = ({ data }) => {
               <span>{drink.acf_drinks.forpackningar.name}</span>
             )}
           </p>
-          <p className='mt-6 text-3xl'>
-            {drink.acf_drinks.pris && `${drink.acf_drinks.pris}:-`}
-          </p>
+          {drink.acf_drinks.pris && (
+            <p className='mt-6 text-3xl'>{drink.acf_drinks.pris}:-</p>
+          )}
+
           {drink.acf_drinks.beskrivning && (
             <div className='mt-5'>
               <strong className='font-semibold'>Beskrivning</strong>

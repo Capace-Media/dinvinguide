@@ -60,21 +60,61 @@ const DrinkList = ({ drycker, ads }) => {
       <ul className='grid gap-2 lg:gap-5 lg:grid-cols-3 area row contain'>
         {drycker
           .filter(({ node: dryck }) => {
-            if (filterString) {
-              if (
-                (dryck.title &&
-                  dryck.title
-                    .toLowerCase()
-                    .includes(filterString.toLowerCase())) ||
-                (dryck.acf_drinks.dryckestyper &&
-                  dryck.acf_drinks.dryckestyper.name
-                    .toLowerCase()
-                    .includes(filterString.toLowerCase())) ||
-                (dryck.acf_drinks.forpackningar &&
-                  dryck.acf_drinks.forpackningar.name
-                    .toLowerCase()
-                    .includes(filterString.toLowerCase()))
-              ) {
+            if (filterString === 'no:image') {
+              if (!dryck.featuredImage) {
+                return true;
+              } else {
+                return false;
+              }
+            } else {
+              if (filterString) {
+                if (
+                  (dryck.title &&
+                    dryck.title
+                      .toLowerCase()
+                      .includes(filterString.toLowerCase())) ||
+                  (dryck.acf_drinks.dryckestyper &&
+                    dryck.acf_drinks.dryckestyper.name
+                      .toLowerCase()
+                      .includes(filterString.toLowerCase())) ||
+                  (dryck.acf_drinks.forpackningar &&
+                    dryck.acf_drinks.forpackningar.name
+                      .toLowerCase()
+                      .includes(filterString.toLowerCase()))
+                ) {
+                  if (onlyEco && alcoholFree) {
+                    if (
+                      dryck.acf_drinks.ekologiskt &&
+                      dryck.acf_drinks.dryckestyper &&
+                      dryck.acf_drinks.dryckestyper.name === 'Alkoholfritt'
+                    ) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  } else {
+                    if (onlyEco) {
+                      if (dryck.acf_drinks.ekologiskt) {
+                        return true;
+                      } else {
+                        return false;
+                      }
+                    }
+                    if (alcoholFree) {
+                      if (
+                        dryck.acf_drinks.dryckestyper &&
+                        dryck.acf_drinks.dryckestyper.name === 'Alkoholfritt'
+                      ) {
+                        return true;
+                      } else {
+                        return false;
+                      }
+                    }
+                  }
+
+                  return true;
+                }
+              } else {
                 if (onlyEco && alcoholFree) {
                   if (
                     dryck.acf_drinks.ekologiskt &&
@@ -107,38 +147,6 @@ const DrinkList = ({ drycker, ads }) => {
 
                 return true;
               }
-            } else {
-              if (onlyEco && alcoholFree) {
-                if (
-                  dryck.acf_drinks.ekologiskt &&
-                  dryck.acf_drinks.dryckestyper &&
-                  dryck.acf_drinks.dryckestyper.name === 'Alkoholfritt'
-                ) {
-                  return true;
-                } else {
-                  return false;
-                }
-              } else {
-                if (onlyEco) {
-                  if (dryck.acf_drinks.ekologiskt) {
-                    return true;
-                  } else {
-                    return false;
-                  }
-                }
-                if (alcoholFree) {
-                  if (
-                    dryck.acf_drinks.dryckestyper &&
-                    dryck.acf_drinks.dryckestyper.name === 'Alkoholfritt'
-                  ) {
-                    return true;
-                  } else {
-                    return false;
-                  }
-                }
-              }
-
-              return true;
             }
           })
           .map(({ node: dryck }, index) => {
