@@ -2,7 +2,9 @@ import 'dayjs/locale/sv';
 
 import Ad from '../ads/Ad';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 import dayjs from 'dayjs';
+
 const DrinkPageTemplate = ({ data }) => {
   const { page: drink, ads } = data;
   const details = [
@@ -16,6 +18,7 @@ const DrinkPageTemplate = ({ data }) => {
   ];
   return (
     <>
+      <NextSeo title={drink.seo.title} description={drink.seo.metaDesc} />
       <div className='contain row'>
         <Ad ads={ads} position='top' />
       </div>

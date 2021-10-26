@@ -55,7 +55,7 @@ const PostPageTemplate = ({ data }) => {
   });
   return (
     <>
-      <NextSeo title={page.title} />
+      <NextSeo title={page.seo.title} description={page.seo.metaDesc} />
       <article>
         <BreadCrumbs
           crumbs={[

@@ -106,5 +106,6 @@ export const getStaticProps = async () => {
         drinktips: resolved[3],
       },
     },
+    revalidate: 60,
   };
 };

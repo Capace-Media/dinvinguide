@@ -7,7 +7,7 @@ const GrapePageTemplate = ({ data }) => {
   const { page } = data;
   return (
     <>
-      <NextSeo title={`${page.title} - Druva`} />
+      <NextSeo title={page.seo.title} description={page.seo.metaDesc} />
       <BreadCrumbs
         crumbs={[
           { text: 'Druvor', href: '/druvguiden' },

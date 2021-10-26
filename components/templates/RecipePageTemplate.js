@@ -44,9 +44,10 @@ const RecipePageTemplate = ({ data }) => {
       }
     }
   };
+  console.log(recipe.seo);
   return (
     <>
-      <NextSeo title={`${recipe.title} - Recept`} />
+      <NextSeo title={recipe.seo.title} description={recipe.seo.metaDesc} />
       <BreadCrumbs
         crumbs={[
           { text: 'Recept', href: '/recept' },

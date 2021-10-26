@@ -26,7 +26,11 @@ const ResultsItem = ({ item, maxCount, index, triggerInView, type }) => {
               <Image
                 src={item.featuredImage.node.mediaItemUrl}
                 layout='fill'
-                objectFit={type === 'drinks' ? 'contain' : 'cover'}
+                objectFit={
+                  type === 'drinks' || type === 'drinktips'
+                    ? 'contain'
+                    : 'cover'
+                }
               />
             )}
           </figure>
