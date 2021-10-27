@@ -36,7 +36,7 @@ export default function SearchPage({ data }) {
 
   return (
     <Fragment>
-      <NextSeo title='Sök på DinVinguide' />
+      <NextSeo title='Sök på DinVinguide -' />
       <div className='text-center contain-sm row'>
         <h1 className='text-brand-red'>Sök på dinvinguide</h1>
 

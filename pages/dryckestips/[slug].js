@@ -156,5 +156,6 @@ export const getStaticProps = async (context) => {
       ads,
       drink: data,
     },
+    revalidate: 60,
   };
 };
