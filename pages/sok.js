@@ -27,7 +27,6 @@ export default function SearchPage({ data }) {
   useEffect(() => {
     let filterTimeout;
     filterTimeout = setTimeout(() => {
-      console.log('Timeout Triggered!');
       setSearchInput(inputValue.toLowerCase());
       // setMaxCount(27);
     }, 500);
