@@ -7,6 +7,7 @@ import {
 import AuthorPageTemplate from '../../components/templates/AuthorPageTemplate';
 import DrinkPageTemplate from '../../components/templates/DrinkPageTemplate';
 import ExplorerPageTemplate from '../../components/templates/ExplorerPageTemplate';
+import FallbackTemplate from '../../components/templates/FallbackTemplate';
 import GrapePageTemplate from '../../components/templates/GrapePageTemplate';
 import OverviewPageTemplate from '../../components/templates/OverviewPageTemplate';
 import PageTemplate from '../../components/templates/PageTemplate';
@@ -15,9 +16,13 @@ import RecipePageTemplate from '../../components/templates/RecipePageTemplate';
 import fetchTemplate from '../../lib/util/fetchTemplate';
 import { getAds } from '../../lib/api/ads';
 import resolveTemplate from '../../lib/resolveTemplate';
+import { useRouter } from 'next/dist/client/router';
 
 const PagePostHandler = ({ routeType, data }) => {
-  console.log(data);
+  const router = useRouter();
+  if (router.isFallback) {
+    return <FallbackTemplate />;
+  }
   switch (routeType) {
     case 'author':
       return <AuthorPageTemplate data={data} />;
@@ -53,7 +58,7 @@ export default PagePostHandler;
 export const getStaticPaths = async () => {
   return {
     paths: [],
-    fallback: 'blocking',
+    fallback: true,
   };
 };
 
