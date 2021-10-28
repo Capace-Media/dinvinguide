@@ -10,7 +10,6 @@ import slugify from 'slugify';
 
 const SingleToplistPage = ({ data }) => {
   const { ads, toplist } = data;
-  console.log(toplist);
 
   return (
     <Fragment>
@@ -50,7 +49,6 @@ export const getStaticProps = async ({ params }) => {
 
   const isArray = Array.isArray(slugArray);
 
-  console.log(isArray);
   const resolved = await Promise.all([getAds(), getToplists()]);
   const toplist = resolved[1].filter((toplist) => {
     const isEco = toplist.toplist.acf_toplists.ekologiskt;

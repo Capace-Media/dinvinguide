@@ -18,7 +18,7 @@ const DrinktipItem = ({
       loadMore();
     }
   }, [inView]);
-  console.log(acf_dryckestips);
+
   return (
     <li className='text-center' ref={index === maxNodes ? ref : null}>
       <Link href={uri}>
