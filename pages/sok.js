@@ -21,7 +21,6 @@ export default function SearchPage({ data }) {
     { text: 'Artiklar', value: 'articles' },
     { text: 'Recept', value: 'recipes' },
     { text: 'Drycker', value: 'drinks' },
-    { text: 'Dryckestips', value: 'drinktips' },
   ];
 
   useEffect(() => {
@@ -89,12 +88,10 @@ export default function SearchPage({ data }) {
 }
 export const getStaticProps = async () => {
   const resolved = await Promise.all([
-    wpFetch(ARTICLES, { batch: 300, type: 'posts' }),
-    wpFetch(RECIPES, { batch: 300, type: 'recipes' }),
-    wpFetch(DRINKS, { batch: 300, type: 'drinks' }),
-    wpFetch(DRINKTIPS, { batch: 300, type: 'drinktips' }),
+    wpFetch(ARTICLES, { batch: 200, type: 'posts' }),
+    wpFetch(RECIPES, { batch: 200, type: 'recipes' }),
+    wpFetch(DRINKS, { batch: 200, type: 'drinks' }),
   ]);
-  console.log(resolved);
 
   return {
     props: {
@@ -102,9 +99,7 @@ export const getStaticProps = async () => {
         articles: resolved[0],
         recipes: resolved[1],
         drinks: resolved[2],
-        drinktips: resolved[3],
       },
     },
-    revalidate: 60,
   };
 };

@@ -80,7 +80,6 @@ const List = ({
                 }
               } else {
                 filterKeys.map((key) => {
-                  console.log(item[key]);
                   if (
                     item[key] &&
                     item[key].toLowerCase().includes(filterString)
