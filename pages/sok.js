@@ -94,7 +94,6 @@ export const getStaticProps = async () => {
     wpFetch(DRINKS, { batch: 100, type: 'drinks' }),
     wpFetch(DRINKTIPS, { batch: 100, type: 'drinktips' }),
   ]);
-  console.log(resolved);
 
   return {
     props: {
