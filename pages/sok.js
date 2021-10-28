@@ -53,7 +53,7 @@ const SearchPage = () => {
         {types.map((item) => (
           <li key={item.value}>
             <button
-              className={`px-3 py-1  text-center block w-full ${
+              className={`px-1 md:px-3 py-1 text-xs md:text-base text-center block w-full ${
                 item.value === type && 'bg-brand-red text-white'
               }`}
               onClick={() => changeType(item.value)}

@@ -17,7 +17,7 @@ const ListItem = React.memo(({ data, last, increment, subtitle }) => {
       className='block overflow-hidden text-white bg-black group'
     >
       <Link href={data.uri}>
-        <a className='relative block aspect-w-16 aspect-h-5 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-16 lg:aspect-h-10'>
+        <a className='relative block aspect-w-16 aspect-h-8 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-16 lg:aspect-h-10'>
           <figure className='transition-all opacity-60 group-hover:scale-105'>
             {data['featuredImage.node.mediaItemUrl'] && (
               <Image
