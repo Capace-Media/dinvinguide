@@ -22,6 +22,7 @@ const PostPageTemplate = ({ data }) => {
       (section) =>
         section.fieldGroupName.toLowerCase().includes('bild') &&
         section.iGalleri &&
+        section.img &&
         section.img.mediaItemUrl
     )
     .forEach((img) => {
