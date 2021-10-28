@@ -21,11 +21,13 @@ const PostPageTemplate = ({ data }) => {
     .filter(
       (section) =>
         section.fieldGroupName.toLowerCase().includes('bild') &&
-        section.iGalleri
+        section.iGalleri &&
+        section.img.mediaItemUrl
     )
     .forEach((img) => {
       galleryImages.push(img.img.mediaItemUrl);
     });
+
   console.log(galleryIndex, galleryImages);
   console.log(page);
 
