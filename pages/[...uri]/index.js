@@ -59,7 +59,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const uri = context.params.uri.join('/');
-  console.log('URI =>', uri);
+
   const isPreview = context.preview ? true : false;
   let type = '';
   let data = null;
@@ -83,7 +83,7 @@ export const getStaticProps = async (context) => {
     const content = await fetchTemplate(uri);
     const { template, contentType } = content;
     type = contentType;
-    console.log(content);
+
     //Fetch correct data for the template, real or preview
 
     //HANDLE DEFAULT TEMPLATE
