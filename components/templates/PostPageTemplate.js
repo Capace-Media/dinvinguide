@@ -29,15 +29,12 @@ const PostPageTemplate = ({ data }) => {
       galleryImages.push(img.img.mediaItemUrl);
     });
 
-  console.log(galleryIndex, galleryImages);
-  console.log(page);
-
   const handleGallery = (index) => {
     if (Number.isInteger(index)) {
       setGalleryIndex(index ? index : 0);
     } else {
       const imgIndex = galleryImages.indexOf(index);
-      console.log(imgIndex);
+
       setGalleryIndex(imgIndex);
     }
     setIsGallery(!isGallery);
@@ -50,7 +47,6 @@ const PostPageTemplate = ({ data }) => {
   };
   useEffect(() => {
     if (isGallery) {
-      console.log(galleryImages.length);
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
