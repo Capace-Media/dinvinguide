@@ -89,10 +89,10 @@ export default function SearchPage({ data }) {
 }
 export const getStaticProps = async () => {
   const resolved = await Promise.all([
-    wpFetch(ARTICLES, { batch: 300, type: 'posts' }),
-    wpFetch(RECIPES, { batch: 300, type: 'recipes' }),
-    wpFetch(DRINKS, { batch: 300, type: 'drinks' }),
-    wpFetch(DRINKTIPS, { batch: 300, type: 'drinktips' }),
+    wpFetch(ARTICLES, { batch: 200, type: 'posts' }),
+    wpFetch(RECIPES, { batch: 200, type: 'recipes' }),
+    wpFetch(DRINKS, { batch: 200, type: 'drinks' }),
+    wpFetch(DRINKTIPS, { batch: 200, type: 'drinktips' }),
   ]);
   console.log(resolved);
 
