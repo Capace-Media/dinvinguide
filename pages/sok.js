@@ -1,105 +1,76 @@
-import { DRINKS, DRINKTIPS } from '../lib/fragments/drinks';
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { ARTICLES } from '../lib/fragments/articles';
-import { NextSeo } from 'next-seo';
-import { RECIPES } from '../lib/fragments/recipes';
-import Results from '../components/search/Results';
-import { getArticles } from '../lib/api/articles';
-import { getDrinks } from '../lib/api/drinks';
-import { getRecipes } from '../lib/api/recipes';
-import wpFetch from '../lib/wpFetch';
+import PageIntro from '../components/common/content/PageIntro';
+import SearchResults from '../components/search/SearchResults';
+import useSearch from '../hooks/useSearch';
 
-const filterItemClasses = `w-full p-1 lg:p-2 mt-5 text-sm lg:text-base flex items-center justify-center border-2 first:border-l-2 border-l-0 border-brand-red font-semibold cursor-pointer`;
-const activeFilterItemClass = `bg-brand-red text-white`;
-export default function SearchPage({ data }) {
-  const [type, setType] = useState('');
-  const [inputValue, setInputValue] = useState('');
-  const [searchInput, setSearchInput] = useState('');
+const types = [
+  { label: 'Drycker', value: 'drinks' },
+  { label: 'Dryckestips', value: 'drinktips' },
+  { label: 'Artiklar', value: 'posts' },
+  { label: 'Recept', value: 'recipes' },
+];
+const SearchPage = () => {
+  const {
+    results,
+    type,
+    changeType,
+    searchInput,
+    setSearchInput,
+    isSearching,
+    hasMore,
+    search,
+  } = useSearch();
 
-  const typeArray = [
-    { text: 'Artiklar', value: 'articles' },
-    { text: 'Recept', value: 'recipes' },
-    { text: 'Drycker', value: 'drinks' },
-  ];
-
-  useEffect(() => {
-    let filterTimeout;
-    filterTimeout = setTimeout(() => {
-      setSearchInput(inputValue.toLowerCase());
-      // setMaxCount(27);
-    }, 500);
-    return () => clearTimeout(filterTimeout);
-  }, [inputValue]);
-
+  const handleInView = () => {
+    search();
+  };
   return (
-    <Fragment>
-      <NextSeo title='Sök på DinVinguide -' />
-      <div className='text-center contain-sm row'>
-        <h1 className='text-brand-red'>Sök på dinvinguide</h1>
-
+    <>
+      <PageIntro title='Sök på DinVinguide' />
+      <div className='flex items-center px-5 py-3 mb-5 space-x-3 text-center bg-white rounded contain-sm'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          viewBox='0 0 24 24'
+          className='w-5 h-5 fill-current text-black/50'
+        >
+          <path d='M0 0h24v24H0V0z' fill='none' />
+          <path d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z' />
+        </svg>
         <input
           type='text'
-          placeholder='Sök här...'
-          className='w-full px-5 py-3 mt-5'
-          onChange={(e) => setInputValue(e.target.value)}
+          value={searchInput}
+          placeholder='Sök...'
+          className='w-full outline-none appearance-none'
+          onChange={(event) => setSearchInput(event.target.value)}
         />
-        <ul className='flex items-center justify-between'>
-          <li
-            className={`${filterItemClasses} ${
-              type === '' && activeFilterItemClass
-            } `}
-            onClick={() => setType('')}
-          >
-            Allt
-          </li>
-          {typeArray.map((item) => (
-            <li
-              key={item.value}
-              className={`${filterItemClasses} ${
-                type === item.value && activeFilterItemClass
+        {isSearching && (
+          <figure className='block w-4 h-4 border-2 rounded-full border-black/20 border-t-black animate-spin' />
+        )}
+      </div>
+      <ul className='grid grid-cols-4 mb-5 border-2 rounded contain-sm border-brand-red'>
+        {types.map((item) => (
+          <li key={item.value}>
+            <button
+              className={`px-3 py-1  text-center block w-full ${
+                item.value === type && 'bg-brand-red text-white'
               }`}
-              onClick={() => setType(item.value)}
+              onClick={() => changeType(item.value)}
             >
-              {item.text}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className='space-y-10 contain-sm row'>
-        {typeArray.map((item) => {
-          if (searchInput) {
-            if (type === item.value || type === '') {
-              return (
-                <Results
-                  heading={item.text}
-                  data={data[item.value]}
-                  value={item.value}
-                  search={searchInput}
-                  currentFilter={type}
-                />
-              );
-            }
-          }
-        })}
-      </div>
-    </Fragment>
+              {item.label}
+            </button>
+          </li>
+        ))}
+      </ul>
+      <SearchResults
+        type={type}
+        isSearching={isSearching}
+        hasMore={hasMore}
+        results={results}
+        inViewFn={handleInView}
+      />
+    </>
   );
-}
-export const getStaticProps = async () => {
-  const resolved = await Promise.all([
-    wpFetch(ARTICLES, { batch: 200, type: 'posts' }),
-    wpFetch(RECIPES, { batch: 200, type: 'recipes' }),
-    wpFetch(DRINKS, { batch: 200, type: 'drinks' }),
-  ]);
-
-  return {
-    props: {
-      data: {
-        articles: resolved[0],
-        recipes: resolved[1],
-        drinks: resolved[2],
-      },
-    },
-  };
 };
+
+export default SearchPage;
