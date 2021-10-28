@@ -1,6 +1,7 @@
 module.exports = {
   images: {
     domains: [process.env.CMS_BASE_URL, 'i.ytimg.com'],
+    formats: ['image/avif', 'image/webp'],
   },
   webpack: (config, { dev, isServer }) => {
     // Replace React with Preact only in client production build
