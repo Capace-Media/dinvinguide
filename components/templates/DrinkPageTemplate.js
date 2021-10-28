@@ -9,9 +9,12 @@ import parse from 'html-react-parser';
 const DrinkPageTemplate = ({ data }) => {
   const { page: drink, ads } = data;
   const details = [
-    { label: 'Betyg', value: `${drink.acf_drinks.betyg} / 100` },
-    { label: 'Ekologiskt', value: drink.acf_drinks.ekologiskt ? 'Ja' : 'Nej' },
-    { label: 'Veganvin', value: drink.acf_drinks.vagn ? 'Ja' : 'Nej' },
+    {
+      label: 'Betyg',
+      value: drink.acf_drinks?.betyg ? `${drink.acf_drinks.betyg} / 100` : null,
+    },
+    { label: 'Ekologiskt', value: drink.acf_drinks?.ekologiskt ? 'Ja' : 'Nej' },
+    { label: 'Veganvin', value: drink.acf_drinks?.vagn ? 'Ja' : 'Nej' },
     {
       label: 'Publiceringsdatum',
       value: dayjs(drink.date).locale('sv').format('D MMMM, YYYY'),
@@ -50,17 +53,17 @@ const DrinkPageTemplate = ({ data }) => {
               <span>{drink.acf_drinks.forpackningar.name}</span>
             )}
           </p>
-          {drink.acf_drinks.pris && (
+          {drink.acf_drinks?.pris && (
             <p className='mt-6 text-3xl'>{drink.acf_drinks.pris}:-</p>
           )}
 
-          {drink.acf_drinks.beskrivning && (
+          {drink.acf_drinks?.beskrivning && (
             <div className='mt-5'>
               <strong className='block font-semibold'>Beskrivning</strong>
               {parse(drink.acf_drinks.beskrivning)}
             </div>
           )}
-          {drink.acf_drinks.recension && (
+          {drink.acf_drinks?.recension && (
             <div className='mt-5 '>
               <strong className='block font-semibold'>Recension</strong>
               {parse(drink.acf_drinks.recension)}
@@ -78,8 +81,8 @@ const DrinkPageTemplate = ({ data }) => {
               }
             })}
           </ul>
-          <div className='row'>Social Share</div>
-          <div className='flex items-center'>
+
+          <div className='flex items-center row'>
             {drink.acf_drinks.knappUrl && (
               <a
                 href={drink.acf_drinks.knappUrl}

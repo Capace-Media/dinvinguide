@@ -6,6 +6,7 @@ import {
 
 import AuthorPageTemplate from '../../components/templates/AuthorPageTemplate';
 import DrinkPageTemplate from '../../components/templates/DrinkPageTemplate';
+import DrinktipPageTemplate from '../../components/templates/DrinktipPageTemplate';
 import ExplorerPageTemplate from '../../components/templates/ExplorerPageTemplate';
 import FallbackTemplate from '../../components/templates/FallbackTemplate';
 import GrapePageTemplate from '../../components/templates/GrapePageTemplate';
@@ -46,6 +47,9 @@ const PagePostHandler = ({ routeType, data }) => {
       break;
     case 'drink':
       return <DrinkPageTemplate data={data} />;
+      break;
+    case 'drinktip':
+      return <DrinktipPageTemplate data={data} />;
       break;
     case 'recipe':
       return <RecipePageTemplate data={data} />;
@@ -113,7 +117,7 @@ export const getStaticProps = async (context) => {
       notFound: true,
     };
   }
-
+  console.log(data);
   return {
     props: {
       routeType: type,
