@@ -1,6 +1,7 @@
 import {
   SEARCH_DRINKS,
   SEARCH_DRINKTIPS,
+  SEARCH_GRAPES,
   SEARCH_POSTS,
   SEARCH_RECIPES,
 } from '../../../lib/fragments/search';
@@ -12,6 +13,7 @@ const queryMapping = {
   drinktips: SEARCH_DRINKTIPS,
   posts: SEARCH_POSTS,
   recipes: SEARCH_RECIPES,
+  grapes: SEARCH_GRAPES,
 };
 export const handler = async (req, res) => {
   const { input, batch, cursor, type } = JSON.parse(req.body);

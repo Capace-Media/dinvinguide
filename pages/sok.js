@@ -9,6 +9,7 @@ const types = [
   { label: 'Dryckestips', value: 'drinktips' },
   { label: 'Artiklar', value: 'posts' },
   { label: 'Recept', value: 'recipes' },
+  { label: 'Druvor', value: 'grapes' },
 ];
 const SearchPage = () => {
   const {
@@ -48,7 +49,7 @@ const SearchPage = () => {
           <figure className='block w-4 h-4 border-2 rounded-full border-black/20 border-t-black animate-spin' />
         )}
       </div>
-      <ul className='grid grid-cols-4 mb-5 border-2 rounded contain-sm border-brand-red'>
+      <ul className='grid grid-cols-5 mb-5 border-2 rounded contain-sm border-brand-red'>
         {types.map((item) => (
           <li key={item.value}>
             <button
