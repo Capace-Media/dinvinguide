@@ -4,6 +4,7 @@ import Ad from '../ads/Ad';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 import dayjs from 'dayjs';
+import parse from 'html-react-parser';
 
 const DrinkPageTemplate = ({ data }) => {
   const { page: drink, ads } = data;
@@ -55,14 +56,14 @@ const DrinkPageTemplate = ({ data }) => {
 
           {drink.acf_drinks.beskrivning && (
             <div className='mt-5'>
-              <strong className='font-semibold'>Beskrivning</strong>
-              <p>{drink.acf_drinks.beskrivning}</p>
+              <strong className='block font-semibold'>Beskrivning</strong>
+              {parse(drink.acf_drinks.beskrivning)}
             </div>
           )}
           {drink.acf_drinks.recension && (
             <div className='mt-5 '>
-              <strong className='font-semibold'>Recension</strong>
-              <p>{drink.acf_drinks.recension}</p>
+              <strong className='block font-semibold'>Recension</strong>
+              {parse(drink.acf_drinks.recension)}
             </div>
           )}
           <ul className='space-y-2 mt-7'>
