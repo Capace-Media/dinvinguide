@@ -4,9 +4,11 @@ import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Newsletter from '../../components/section/Newsletter';
-import ToplistPuff from '../../components/toplists/Puff';
+import dynamic from 'next/dynamic';
 import { getAds } from '../../lib/api/ads';
 import { getToplists } from '../../lib/api/toplists';
+
+const ToplistPuff = dynamic(() => import('../../components/toplists/Puff'));
 
 const ToplistsPage = ({ data }) => {
   const { ads, toplists } = data;

@@ -47,6 +47,9 @@
   h6 {
     @apply font-semibold uppercase;
   }
+  a {
+    @apply break-words;
+  }
   h1 {
     @apply text-4xl uppercase lg:text-5xl;
   }
