@@ -40,6 +40,7 @@ const DrinktipPageTemplate = ({ data }) => {
                 src={drink.featuredImage.node.mediaItemUrl}
                 layout='fill'
                 objectFit='contain'
+                priority
                 alt={
                   drink.featuredImage.node.altText
                     ? drink.featuredImage.node.altText

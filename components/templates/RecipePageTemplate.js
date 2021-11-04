@@ -66,6 +66,7 @@ const RecipePageTemplate = ({ data }) => {
               src={recipe.featuredImage.node.mediaItemUrl}
               layout='fill'
               objectFit='cover'
+              priority
               alt={
                 recipe.featuredImage.node.altText
                   ? recipe.featuredImage.node.altText
