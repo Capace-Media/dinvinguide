@@ -26,33 +26,73 @@ const PagePostHandler = ({ routeType, data }) => {
   }
   switch (routeType) {
     case 'author':
-      return <AuthorPageTemplate data={data} />;
+      return (
+        <article>
+          <AuthorPageTemplate data={data} />
+        </article>
+      );
       break;
     case 'Default':
-      return <PageTemplate data={data} />;
+      return (
+        <article>
+          <PageTemplate data={data} />
+        </article>
+      );
       break;
     case 'page':
-      return <PageTemplate data={data} />;
+      return (
+        <article>
+          <PageTemplate data={data} />
+        </article>
+      );
       break;
     case 'Översiktssida':
-      return <OverviewPageTemplate data={data} />;
+      return (
+        <article>
+          <OverviewPageTemplate data={data} />
+        </article>
+      );
       break;
     case 'Utforskarsida':
-      return <ExplorerPageTemplate data={data} />;
+      return (
+        <article>
+          <ExplorerPageTemplate data={data} />
+        </article>
+      );
     case 'post':
-      return <PostPageTemplate data={data} />;
+      return (
+        <article>
+          <PostPageTemplate data={data} />
+        </article>
+      );
       break;
     case 'grape':
-      return <GrapePageTemplate data={data} />;
+      return (
+        <article>
+          <GrapePageTemplate data={data} />
+        </article>
+      );
       break;
     case 'drink':
-      return <DrinkPageTemplate data={data} />;
+      return (
+        <article>
+          <DrinkPageTemplate data={data} />
+        </article>
+      );
       break;
     case 'drinktip':
-      return <DrinktipPageTemplate data={data} />;
+      return (
+        <article>
+          <DrinktipPageTemplate data={data} />
+        </article>
+      );
       break;
     case 'recipe':
-      return <RecipePageTemplate data={data} />;
+      return (
+        <article>
+          <RecipePageTemplate data={data} />
+        </article>
+      );
       break;
   }
 };
