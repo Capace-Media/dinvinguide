@@ -20,6 +20,7 @@ const List = ({
   const [filterString, setFilterString] = useState('');
 
   const incrementNodeCount = () => {
+    console.log('=> INCREMENT TRIGGERED <=');
     setNodeCount((prev) => prev + maxNodes);
   };
 

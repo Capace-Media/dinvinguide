@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 
 const imageClasses = `transition-all opacity-60 group-hover:scale-105`;
 const ListItem = React.memo(({ data, last, increment, subtitle }) => {
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ triggerOnce: true });
   useEffect(() => {
     if (inView) {
       increment();
@@ -15,7 +15,7 @@ const ListItem = React.memo(({ data, last, increment, subtitle }) => {
   return (
     <li
       ref={last ? ref : null}
-      className='block overflow-hidden text-white bg-black group'
+      className='relative block overflow-hidden text-white bg-black group'
     >
       <Link href={data.uri}>
         <a className='relative block aspect-w-16 aspect-h-8 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-16 lg:aspect-h-10'>

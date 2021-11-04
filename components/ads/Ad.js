@@ -1,15 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
-import { useInView } from 'react-intersection-observer';
 
-export default function Ad({
-  ads,
-  position,
-
-  triggerOnce,
-  priority,
-}) {
+export default function Ad({ ads, position, priority }) {
   const [isSmall, setIsSmall] = useState(true);
 
   const renderAd = (device) => {
