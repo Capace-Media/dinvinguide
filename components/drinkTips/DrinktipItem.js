@@ -6,21 +6,20 @@ import { useInView } from 'react-intersection-observer';
 const DrinktipItem = ({
   title,
   featuredImage,
-  index,
   loadMore,
-  maxNodes,
   acf_dryckestips,
   uri,
+  last,
 }) => {
   const { ref, inView } = useInView({ triggerOnce: true });
   useEffect(() => {
-    if (inView) {
+    if (inView && last) {
       loadMore();
     }
-  }, [inView, loadMore]);
+  }, [inView, loadMore, last]);
 
   return (
-    <li className='text-center' ref={index === maxNodes ? ref : null}>
+    <li className='text-center' ref={last ? ref : null}>
       <Link href={uri}>
         <a className='block aspect-w-1 aspect-h-1'>
           <figure className='absolute top-0 left-0 w-full h-full scale-90 translate-y-4 rounded-full bg-brand-red' />

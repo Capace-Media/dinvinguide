@@ -36,7 +36,7 @@ const DrinktipsList = ({ drinks, searchInput }) => {
                 key={drink.title}
                 {...drink}
                 index={index}
-                maxNodes={maxNodes}
+                last={index + 1 === maxNodes ? true : false}
                 loadMore={handleLoadMoreNodes}
               />
             );
