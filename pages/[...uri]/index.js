@@ -31,9 +31,7 @@ const GrapePageTemplate = dynamic(() =>
 const OverviewPageTemplate = dynamic(() =>
   import('../../components/templates/OverviewPageTemplate')
 );
-const ExplorerPageTemplate = dynamic(() =>
-  import('../../components/templates/ExplorerPageTemplate')
-);
+
 const PageTemplate = dynamic(() =>
   import('../../components/templates/PageTemplate')
 );
