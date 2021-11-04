@@ -2,12 +2,12 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 const VideoCard = ({ video, last, onLast, handlePlaylist, index }) => {
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ triggerOnce: true });
   useEffect(() => {
     if (inView) {
       onLast();
     }
-  }, [inView, onLast]);
+  }, [inView, onLast, last]);
   return (
     <li
       ref={last ? ref : null}
