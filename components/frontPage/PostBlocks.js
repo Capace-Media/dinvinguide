@@ -6,16 +6,21 @@ export default function PostBlocks({ items }) {
   const contentClasses = `relative z-20 border-l-4 border-brand-bronze px-2 w-full`;
   const titleClasses = `text-lg uppercase font-semibold`;
   const subTitleClasses = ``;
+  const imageClasses = `transition-all transform opacity-70 group-hover:scale-105`;
   const renderBlock = (item, index) => {
     if (index === 0) {
       return (
         <Link href={item.uri}>
           <a className='relative block p-5 overflow-hidden bg-black group h-96 lg:col-span-2 lg:row-span-2 lg:h-full'>
-            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
-              {item.image && (
-                <Image src={item.image} layout='fill' objectFit='cover' />
-              )}
-            </div>
+            {item.image && (
+              <Image
+                src={item.image}
+                layout='fill'
+                objectFit='cover'
+                className={`${imageClasses}`}
+              />
+            )}
+
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
               {item.subTitle && (
@@ -32,11 +37,15 @@ export default function PostBlocks({ items }) {
           <a
             className={`${containerClasses} lg:h-full lg:col-span-1 lg:row-span-2 `}
           >
-            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
-              {item.image && (
-                <Image src={item.image} layout='fill' objectFit='cover' />
-              )}
-            </div>
+            {item.image && (
+              <Image
+                src={item.image}
+                layout='fill'
+                objectFit='cover'
+                className={`${imageClasses}`}
+              />
+            )}
+
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
               {item.subTitle && (
@@ -53,11 +62,15 @@ export default function PostBlocks({ items }) {
           <a
             className={`${containerClasses} lg:h-full lg:col-span-1 lg:row-span-2 `}
           >
-            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
-              {item.image && (
-                <Image src={item.image} layout='fill' objectFit='cover' />
-              )}
-            </div>
+            {item.image && (
+              <Image
+                src={item.image}
+                layout='fill'
+                objectFit='cover'
+                className={`${imageClasses}`}
+              />
+            )}
+
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
               {item.subTitle && (
@@ -74,11 +87,15 @@ export default function PostBlocks({ items }) {
           <a
             className={`lg:col-span-2 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
-            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
-              {item.image && (
-                <Image src={item.image} layout='fill' objectFit='cover' />
-              )}
-            </div>
+            {item.image && (
+              <Image
+                src={item.image}
+                layout='fill'
+                objectFit='cover'
+                className={`${imageClasses}`}
+              />
+            )}
+
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
               {item.subTitle && (
@@ -95,11 +112,15 @@ export default function PostBlocks({ items }) {
           <a
             className={`lg:col-span-2 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
-            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
-              {item.image && (
-                <Image src={item.image} layout='fill' objectFit='cover' />
-              )}
-            </div>
+            {item.image && (
+              <Image
+                src={item.image}
+                layout='fill'
+                objectFit='cover'
+                className={`${imageClasses}`}
+              />
+            )}
+
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
               {item.subTitle && (
@@ -116,11 +137,15 @@ export default function PostBlocks({ items }) {
           <a
             className={`lg:col-span-1 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
-            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
-              {item.image && (
-                <Image src={item.image} layout='fill' objectFit='cover' />
-              )}
-            </div>
+            {item.image && (
+              <Image
+                src={item.image}
+                layout='fill'
+                objectFit='cover'
+                className={`${imageClasses}`}
+              />
+            )}
+
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
               {item.subTitle && (
@@ -137,11 +162,15 @@ export default function PostBlocks({ items }) {
           <a
             className={`lg:col-span-1 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
-            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
-              {item.image && (
-                <Image src={item.image} layout='fill' objectFit='cover' />
-              )}
-            </div>
+            {item.image && (
+              <Image
+                src={item.image}
+                layout='fill'
+                objectFit='cover'
+                className={`${imageClasses}`}
+              />
+            )}
+
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
               {item.subTitle && (
@@ -158,11 +187,15 @@ export default function PostBlocks({ items }) {
           <a
             className={`lg:col-span-2 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
-            <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
-              {item.image && (
-                <Image src={item.image} layout='fill' objectFit='cover' />
-              )}
-            </div>
+            {item.image && (
+              <Image
+                src={item.image}
+                layout='fill'
+                objectFit='cover'
+                className={`${imageClasses}`}
+              />
+            )}
+
             <div className={`${contentClasses}`}>
               <h2 className={`${titleClasses}`}>{item.title}</h2>
               {item.subTitle && (
@@ -177,11 +210,15 @@ export default function PostBlocks({ items }) {
     return (
       <Link href={item.uri}>
         <a className={`h-56 lg:row-span-1 lg:col-span-1 ${containerClasses}`}>
-          <div className='absolute top-0 left-0 z-10 w-full h-full transition-all transform opacity-70 group-hover:scale-105'>
-            {item.image && (
-              <Image src={item.image} layout='fill' objectFit='cover' />
-            )}
-          </div>
+          {item.image && (
+            <Image
+              src={item.image}
+              layout='fill'
+              objectFit='cover'
+              className={`${imageClasses}`}
+            />
+          )}
+
           <div className={`${contentClasses}`}>
             <h2 className={`${titleClasses}`}>{item.title}</h2>
             {item.subTitle && (
