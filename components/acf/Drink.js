@@ -16,6 +16,7 @@ const Drink = ({ data }) => {
         className={`aspect-w-1 aspect-h-1 ${
           layout === 'left' ? 'order-0' : 'order-0 md:order-1'
         }`}
+        alt={data.bild.bild.altText}
       />
 
       <div className='flex flex-col justify-center'>

@@ -40,6 +40,11 @@ const DrinktipPageTemplate = ({ data }) => {
                 src={drink.featuredImage.node.mediaItemUrl}
                 layout='fill'
                 objectFit='contain'
+                alt={
+                  drink.featuredImage.node.altText
+                    ? drink.featuredImage.node.altText
+                    : drink.seo.title
+                }
               />
             )}
           </figure>

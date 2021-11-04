@@ -22,6 +22,11 @@ const GrapePageTemplate = ({ data }) => {
               src={page.featuredImage.node.mediaItemUrl}
               layout='fill'
               objectFit='cover'
+              alt={
+                page.featuredImage.node.altText
+                  ? page.featuredImage.node.altText
+                  : page.seo.title
+              }
             />
           </div>
         )}

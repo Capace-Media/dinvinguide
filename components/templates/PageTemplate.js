@@ -17,6 +17,11 @@ const PageTemplate = ({ data }) => {
         title={page.title}
         ads={ads}
         text={page.acf_posts.ingress}
+        alt={
+          page.featuredImage.node.altText
+            ? page.featuredImage.node.altText
+            : page.title
+        }
       />
 
       {page.acf_posts.sektioner && (

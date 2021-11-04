@@ -3,7 +3,7 @@ import BreadCrumbs from '../BreadCrumbs/Breadcrumbs';
 import Image from 'next/image';
 import Intro from './Intro';
 
-const PageIntro = ({ title, text, ads, crumbs, type, image }) => {
+const PageIntro = ({ title, text, ads, crumbs, type, image, alt }) => {
   return (
     <>
       {ads && (
@@ -15,7 +15,7 @@ const PageIntro = ({ title, text, ads, crumbs, type, image }) => {
       <div className='text-center contain-sm row'>
         {image && (
           <figure className='relative mb-10 aspect-w-16 aspect-h-9'>
-            <Image src={image} layout='fill' objectFit='cover' />
+            <Image src={image} layout='fill' objectFit='cover' alt={alt} />
           </figure>
         )}
         {type && <p className='mb-5'>{type}</p>}

@@ -47,6 +47,7 @@ const GrapePuff = ({ content }) => {
                 src={content.featuredImage.node.mediaItemUrl}
                 layout='fill'
                 objectFit='cover'
+                alt={content.featuredImage.node.altText}
               />
             </a>
           </Link>

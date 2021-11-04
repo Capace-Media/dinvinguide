@@ -66,6 +66,11 @@ const RecipePageTemplate = ({ data }) => {
               src={recipe.featuredImage.node.mediaItemUrl}
               layout='fill'
               objectFit='cover'
+              alt={
+                recipe.featuredImage.node.altText
+                  ? recipe.featuredImage.node.altText
+                  : recipe.seo.title
+              }
             />
           )}
         </div>

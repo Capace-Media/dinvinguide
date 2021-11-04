@@ -74,6 +74,11 @@ const PostPageTemplate = ({ data }) => {
                 layout='fill'
                 objectFit='cover'
                 priority
+                alt={
+                  page.featuredImage.node.altText
+                    ? page.featuredImage.node.altText
+                    : page.seo.title
+                }
               />
             </div>
           )}

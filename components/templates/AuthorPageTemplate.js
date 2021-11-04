@@ -31,6 +31,11 @@ const AuthorPageTemplate = ({ data }) => {
             layout='fill'
             objectFit='cover'
             priority
+            alt={
+              author.acf_user.bild.altText
+                ? author.acf_user.bild.altText
+                : author.name
+            }
           />
         </div>
         <h1 className='row'>{author.name}</h1>

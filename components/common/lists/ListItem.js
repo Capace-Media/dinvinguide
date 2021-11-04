@@ -25,6 +25,11 @@ const ListItem = React.memo(({ data, last, increment, subtitle }) => {
               layout='fill'
               objectFit='cover'
               className={`${imageClasses}`}
+              alt={
+                data['featuredImage.node.altText']
+                  ? data['featuredImage.node.altText']
+                  : data.title
+              }
             />
           )}
 

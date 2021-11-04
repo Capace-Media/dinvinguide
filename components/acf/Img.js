@@ -10,6 +10,7 @@ export default function Img({ content, style, handleGallery }) {
               src={content.img.mediaItemUrl}
               width={content.img.mediaDetails.width}
               height={content.img.mediaDetails.height}
+              alt={content.img.mediaItemUrl.altText}
             />
             {content && content.iGalleri && (
               <button
@@ -31,6 +32,7 @@ export default function Img({ content, style, handleGallery }) {
             src={content.img.mediaItemUrl}
             width={content.img.mediaDetails.width}
             height={content.img.mediaDetails.height}
+            alt={content.img.mediaItemUrl.altText}
           />
           {content && content.iGalleri && (
             <button
