@@ -12,7 +12,7 @@ const DrinktipItem = ({
   acf_dryckestips,
   uri,
 }) => {
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ triggerOnce: true });
   useEffect(() => {
     if (inView) {
       loadMore();

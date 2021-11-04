@@ -5,12 +5,12 @@ import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 
 const DrinkListItem = React.memo(({ dryck, loadMore, last }) => {
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ triggerOnce: true });
   useEffect(() => {
-    if (inView) {
+    if (inView && last) {
       loadMore();
     }
-  }, [inView, loadMore]);
+  }, [inView, loadMore, last]);
   return (
     <li
       ref={last ? ref : null}
