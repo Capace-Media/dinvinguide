@@ -65,6 +65,9 @@
   /* .prose-sm img.alignright {
     @apply block float-right;
   } */
+  img.alignnone {
+    @apply float-left;
+  }
 }
 
 @layer components {
@@ -81,7 +84,7 @@
     @apply py-10 lg:py-20;
   }
   .row {
-    @apply py-5 lg:py-10;
+    @apply clear-both py-5 lg:py-10;
   }
 }
 
@@ -139,6 +142,14 @@
   grid-template-areas: 'img' 'meta' 'ingredients' 'instructions';
   @apply grid;
 }
+img.alignnone,
+img.alignleft {
+  @apply mt-0 md:mr-3 md:float-left after:clear-both before:clear-both;
+}
+img.alignright {
+  @apply mt-0 md:ml-3 md:float-right after:clear-both before:clear-both;
+}
+
 @media (min-width: 800px) {
   .recipe-layout {
     grid-template-areas: 'img meta' 'img instructions' 'ingredients instructions' 'ingredients instructions';
