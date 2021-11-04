@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 const VideoCard = ({ video, last, onLast, handlePlaylist, index }) => {
   const { ref, inView } = useInView({ triggerOnce: true });
   useEffect(() => {
-    if (inView) {
+    if (inView && last) {
       onLast();
     }
   }, [inView, onLast, last]);
