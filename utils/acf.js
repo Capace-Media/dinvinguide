@@ -1,10 +1,13 @@
 import Drink from '../components/acf/Drink';
-import Fact from '../components/acf/Fact';
 import Image from 'next/image';
-import Img from '../components/acf/Img';
-import Puff from '../components/acf/Puff';
-import Quote from '../components/acf/Quote';
 import Text from '../components/acf/Text';
+import dynamic from 'next/dynamic';
+
+const Quote = dynamic(() => import('../components/acf/Quote'));
+const Fact = dynamic(() => import('../components/acf/Fact'));
+const Img = dynamic(() => import('../components/acf/Img'));
+const Puff = dynamic(() => import('../components/acf/Puff'));
+
 export const renderSection = (section, handleGallery) => {
   switch (section.fieldGroupName) {
     case 'Post_AcfPosts_Sektioner_Brodtext':
