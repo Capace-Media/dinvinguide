@@ -35,5 +35,6 @@ export const getStaticProps = async () => {
         page: resolved[1],
       },
     },
+    revalidate: 60,
   };
 };
