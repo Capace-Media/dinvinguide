@@ -5,13 +5,13 @@ import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 
 const imageClasses = `transition-all opacity-60 group-hover:scale-105`;
-const ListItem = React.memo(({ data, last, increment, subtitle }) => {
+const ListItem = ({ data, last, increment, subtitle }) => {
   const { ref, inView } = useInView({ triggerOnce: true });
   useEffect(() => {
-    if (inView) {
+    if (inView && last) {
       increment();
     }
-  }, [inView, increment]);
+  }, [inView, increment, last]);
   return (
     <li
       ref={last ? ref : null}
@@ -43,7 +43,6 @@ const ListItem = React.memo(({ data, last, increment, subtitle }) => {
       </Link>
     </li>
   );
-});
-ListItem.displayName = 'ListItem';
+};
 
 export default ListItem;
