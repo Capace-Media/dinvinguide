@@ -8,7 +8,6 @@ import { useState } from 'react';
 
 const RecipePageTemplate = ({ data }) => {
   const { page: recipe, ads } = data;
-  console.log(recipe);
 
   const [portions, setPortions] = useState(
     parseInt(recipe.acf_recipe.antalPortioner)
