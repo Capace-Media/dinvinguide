@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 export default function Footer() {
   return (
-    <footer className='bg-brand-green text-brand-bg text-center py-20'>
+    <footer className='py-20 text-center bg-brand-green text-brand-bg'>
       <div className='contain '>
         <div className='flex justify-center'>
           <div className='w-72'>
@@ -11,20 +11,22 @@ export default function Footer() {
           </div>
         </div>
         <div className='text-center'>
-          <p className='max-w-5xl mt-5 mx-auto'>
+          <p className='max-w-5xl mx-auto mt-5'>
             DinVinguide.se är en guide för människor som har mat, dryck, vin och
             livsnjutning som intressen. Våra namnkunniga skribenter inspirerar,
             utbildar och rapporterar om trender, nyheter och traditioner inom
             vinvärlden. Välkommen till DinVinguide.se!
           </p>
-          <Link href='/kontakt'>
-            <a className='mt-10 inline-block font-bold underline'>
-              Kontakta oss
-            </a>
-          </Link>
+
+          <a
+            href='https://winepublishing.se'
+            className='inline-block mt-10 font-bold underline'
+          >
+            Kontakta oss
+          </a>
         </div>
       </div>
-      <div className='contain border-t border-brand-bg grid grid-cols-3 mt-10 py-5'>
+      <div className='grid grid-cols-3 py-5 mt-10 border-t contain border-brand-bg'>
         <div className='flex justify-start'>
           {new Date().getFullYear()} © Copyright - DinVinguide.se - All rights
           reserved
