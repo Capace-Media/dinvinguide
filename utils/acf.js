@@ -1,9 +1,8 @@
-import Drink from '../components/acf/Drink';
-import Image from 'next/image';
 import Text from '../components/acf/Text';
 import dynamic from 'next/dynamic';
 
 const Quote = dynamic(() => import('../components/acf/Quote'));
+const Drink = dynamic(() => import('../components/acf/Drink'));
 const Fact = dynamic(() => import('../components/acf/Fact'));
 const Img = dynamic(() => import('../components/acf/Img'));
 const Puff = dynamic(() => import('../components/acf/Puff'));
