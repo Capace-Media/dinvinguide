@@ -12,7 +12,7 @@ const Videos = ({ episodes, settings, ads }) => {
   const [playerOpen, setPlayerOpen] = useState(false);
   const [playerVideo, setPlayerVideo] = useState(0);
   const chunkSize = 16;
-  console.log(episodes);
+
   useEffect(() => {
     let filterTimeout;
     filterTimeout = setTimeout(() => {

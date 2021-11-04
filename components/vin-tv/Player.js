@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Video from './Video';
 
 const Player = ({ playlist, currentEpisode, handlePlaylist, settings }) => {
-  console.log(playlist);
   const [episodeIndex, setEpisodeIndex] = useState(currentEpisode);
   const [isAd, setIsAd] = useState(false);
   const maxIndex = playlist.episodes
