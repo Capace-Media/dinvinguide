@@ -12,11 +12,22 @@ const ToplistPuff = ({ data, toplistUri }) => {
             src={data.featuredImage.node.mediaItemUrl}
             layout='fill'
             objectFit='contain'
+            alt={
+              data.featuredImage.node.altText
+                ? data.featuredImage.node.altText
+                : data.title
+            }
           />
         )}
       </figure>
       <figure className='absolute right-0 w-24 h-24 top-10'>
-        <Image src={MedalImage} width={100} height={100} objectFit='contain' />
+        <Image
+          src={MedalImage}
+          width={100}
+          height={100}
+          objectFit='contain'
+          alt='Medalj guld'
+        />
       </figure>
       <Link href={toplistUri}>
         <a>

@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import Image from 'next/image';
-import Script from 'next/script';
 import Video from './Video';
 
 const Player = ({ playlist, currentEpisode, handlePlaylist, settings }) => {
@@ -17,18 +16,18 @@ const Player = ({ playlist, currentEpisode, handlePlaylist, settings }) => {
   const handleNextVideo = () => {
     setEpisodeIndex((prev) => prev + 1);
   };
-  const playAd = () => {
+  const playAd = useCallback(() => {
     setIsAd(true);
     let adTimer;
     adTimer = setTimeout(() => {
       setIsAd(false);
     }, settings.vintvBillboardDelay * 1000);
     return () => clearTimeout(adTimer);
-  };
+  }, [settings.vintvBillboardDelay]);
   useEffect(() => {
     //When changing video, play ad
     playAd();
-  }, [episodeIndex]);
+  }, [episodeIndex, playAd]);
 
   return (
     <>
@@ -52,12 +51,18 @@ const Player = ({ playlist, currentEpisode, handlePlaylist, settings }) => {
                   href={settings.vintvBillboardLink}
                   target='_blank'
                   className='relative block w-full h-56 max-w-3xl mx-auto'
+                  rel='noreferrer'
                 >
                   <Image
                     src={settings.vintvBillboardBild.mediaItemUrl}
                     layout='fill'
                     objectFit='contain'
                     priority
+                    alt={
+                      settings.vintvBillboardBild.altText
+                        ? settings.vintvBillboardBild.altText
+                        : 'Annons'
+                    }
                   />
                 </a>
                 <p>Videon spelar snart</p>
@@ -81,7 +86,6 @@ const Player = ({ playlist, currentEpisode, handlePlaylist, settings }) => {
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                enable-background='new 0 0 24 24'
                 viewBox='0 0 24 24'
                 className='w-5 h-5 rotate-180 fill-current'
               >
@@ -101,7 +105,6 @@ const Player = ({ playlist, currentEpisode, handlePlaylist, settings }) => {
               <span>Nästa</span>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                enable-background='new 0 0 24 24'
                 viewBox='0 0 24 24'
                 className='w-5 h-5 fill-current'
               >

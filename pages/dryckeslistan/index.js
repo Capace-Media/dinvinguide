@@ -26,7 +26,7 @@ const ToplistsPage = ({ data }) => {
           ({ toplist, currentDrinks, previousDrinks, fallbackDrinks }) => {
             console.log('TOPLIST =>', toplist);
             return (
-              <div className='text-center'>
+              <div key={toplist.uri} className='text-center'>
                 <Link href={toplist.uri}>
                   <a>
                     <h2 className='mb-5 text-base cursor-pointer text-brand-red hover:underline'>

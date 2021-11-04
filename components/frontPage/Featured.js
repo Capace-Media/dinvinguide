@@ -19,12 +19,13 @@ export default function Featured({ items }) {
               objectFit='cover'
               priority
               className='opacity-80'
+              alt='Välkommen till DinVinguide'
             />
           )}
 
           <div className={`z-20 text-5xl  font-semibold text-center`}>
             <h1 className='mb-3'>Välkommen till</h1>
-            <Image src={LogoWhite} priority />
+            <Image src={LogoWhite} priority alt='Logo DinVinguide - Vit' />
           </div>
         </div>
       );
@@ -41,6 +42,7 @@ export default function Featured({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -72,6 +74,7 @@ export default function Featured({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -103,6 +106,7 @@ export default function Featured({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -134,6 +138,7 @@ export default function Featured({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -165,6 +170,7 @@ export default function Featured({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -196,6 +202,7 @@ export default function Featured({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -227,6 +234,7 @@ export default function Featured({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -254,6 +262,7 @@ export default function Featured({ items }) {
               layout='fill'
               objectFit='cover'
               className={`${imageClasses}`}
+              alt={item.title}
             />
           )}
 

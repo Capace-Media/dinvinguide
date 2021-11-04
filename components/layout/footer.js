@@ -7,7 +7,7 @@ export default function Footer() {
       <div className='contain '>
         <div className='flex justify-center'>
           <div className='w-72'>
-            <Image src={DVLogoFooter} />
+            <Image src={DVLogoFooter} alt='DinVinguide logo - sidfot' />
           </div>
         </div>
         <div className='text-center'>

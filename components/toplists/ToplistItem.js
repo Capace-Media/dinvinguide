@@ -21,6 +21,11 @@ const ToplistItem = ({ data, index }) => {
                     src={data.featuredImage.node.mediaItemUrl}
                     layout='fill'
                     objectFit='contain'
+                    alt={
+                      data.featuredImage.node.altText
+                        ? data.featuredImage.node.altText
+                        : data.title
+                    }
                   />
                 </figure>
                 {index <= 3 && (
@@ -34,6 +39,7 @@ const ToplistItem = ({ data, index }) => {
                           : MedalThree
                       }
                       objectFit='contain'
+                      alt='Medalj'
                     />
                   </div>
                 )}
@@ -90,6 +96,13 @@ const ToplistItem = ({ data, index }) => {
                         }
                         layout='fill'
                         objectFit='cover'
+                        alt={
+                          data.acf_drinks.passarTillRecept[0].featuredImage
+                            ?.node.altText
+                            ? data.acf_drinks.passarTillRecept[0].featuredImage
+                                .node.altText
+                            : data.acf_drinks.passarTillRecept[0].title
+                        }
                       />
                     </figure>
                     <div className='absolute top-0 left-0 p-3 text-white'>

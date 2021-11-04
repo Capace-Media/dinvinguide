@@ -11,7 +11,7 @@ const ListItem = React.memo(({ data, last, increment, subtitle }) => {
     if (inView) {
       increment();
     }
-  }, [inView]);
+  }, [inView, increment]);
   return (
     <li
       ref={last ? ref : null}
@@ -44,5 +44,6 @@ const ListItem = React.memo(({ data, last, increment, subtitle }) => {
     </li>
   );
 });
+ListItem.displayName = 'ListItem';
 
 export default ListItem;

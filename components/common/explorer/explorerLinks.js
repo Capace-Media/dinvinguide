@@ -10,6 +10,7 @@ const ExplorerLinks = () => {
               src={'/images/dryckesutforskaren.jpg'}
               layout='fill'
               objectFit='cover'
+              alt='Dryckesutforskaren'
             />
           </figure>
           <div className='p-5 lg:p-10'>
@@ -26,6 +27,7 @@ const ExplorerLinks = () => {
               src={'/images/receptutforskaren.jpg'}
               layout='fill'
               objectFit='cover'
+              alt='Receptutforskaren'
             />
           </figure>
           <div className='p-5 lg:p-10'>

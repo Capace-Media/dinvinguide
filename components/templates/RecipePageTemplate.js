@@ -105,6 +105,7 @@ const RecipePageTemplate = ({ data }) => {
                 {availablePortions.map((portion) => {
                   return (
                     <option
+                      key={portion}
                       value={parseInt(portion)}
                       selected={parseInt(portion) === portions}
                     >
@@ -153,7 +154,7 @@ const RecipePageTemplate = ({ data }) => {
           <h2 className='text-center text-brand-red'>Passande drycker</h2>
           <ul className='grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 row'>
             {recipe.acf_recipe.passandeDrycker.map((dryck) => {
-              return <DrinkListItem dryck={dryck} />;
+              return <DrinkListItem key={dryck.title} dryck={dryck} />;
             })}
           </ul>
         </div>

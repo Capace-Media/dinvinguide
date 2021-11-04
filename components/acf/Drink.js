@@ -26,6 +26,7 @@ const Drink = ({ data }) => {
           className='inline self-start !text-brand-red !no-underline font-bold'
           href={data.other.linkSystembolaget}
           target='_blank'
+          rel='noreferrer'
         >
           Läs mer
         </a>

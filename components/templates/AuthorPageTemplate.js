@@ -56,7 +56,11 @@ const AuthorPageTemplate = ({ data }) => {
         <div className='flex justify-center'>
           <div className='flex space-x-5'>
             {author.acf_user.facebook && (
-              <a href={author.acf_user.facebook} target='_blank'>
+              <a
+                href={author.acf_user.facebook}
+                rel='noreferrer'
+                target='_blank'
+              >
                 <svg
                   width='100%'
                   height='100%'
@@ -70,7 +74,11 @@ const AuthorPageTemplate = ({ data }) => {
               </a>
             )}
             {author.acf_user.instagram && (
-              <a href={author.acf_user.instagram} target='_blank'>
+              <a
+                href={author.acf_user.instagram}
+                rel='noreferrer'
+                target='_blank'
+              >
                 <svg
                   width='100%'
                   height='100%'
@@ -88,7 +96,11 @@ const AuthorPageTemplate = ({ data }) => {
               </a>
             )}
             {author.acf_user.twitter && (
-              <a href={author.acf_user.twitter} target='_blank'>
+              <a
+                href={author.acf_user.twitter}
+                rel='noreferrer'
+                target='_blank'
+              >
                 <svg
                   width='100%'
                   height='100%'
@@ -105,7 +117,11 @@ const AuthorPageTemplate = ({ data }) => {
               </a>
             )}
             {author.acf_user.email && (
-              <a href={'mailto:' + author.acf_user.email} target='_blank'>
+              <a
+                href={'mailto:' + author.acf_user.email}
+                rel='noreferrer'
+                target='_blank'
+              >
                 <svg
                   width='100%'
                   height='100%'
@@ -151,6 +167,11 @@ const AuthorPageTemplate = ({ data }) => {
                       layout='fill'
                       objectFit='cover'
                       className='transition-all transform group-hover:scale-110 opacity-70'
+                      alt={
+                        post.featuredImage.node.altText
+                          ? post.featuredImage.node.altText
+                          : post.title
+                      }
                     />
                     <div className='absolute top-0 left-0 p-5 m-2 text-left'>
                       <div className='px-2 border-l-4 lg:px-5 border-brand-bronze'>

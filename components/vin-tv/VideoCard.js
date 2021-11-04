@@ -7,7 +7,7 @@ const VideoCard = ({ video, last, onLast, handlePlaylist, index }) => {
     if (inView) {
       onLast();
     }
-  }, [inView]);
+  }, [inView, onLast]);
   return (
     <li
       ref={last ? ref : null}
@@ -19,6 +19,7 @@ const VideoCard = ({ video, last, onLast, handlePlaylist, index }) => {
           src={video.acf_episode.thumbnail}
           layout='fill'
           objectFit='cover'
+          alt={video.title}
         />
       </figure>
       <div className='p-4'>

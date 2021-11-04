@@ -22,5 +22,6 @@ const SearchResults = React.memo(
     );
   }
 );
+SearchResults.displayName = 'SearchResults';
 
 export default SearchResults;

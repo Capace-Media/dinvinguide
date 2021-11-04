@@ -17,7 +17,7 @@ const DrinktipItem = ({
     if (inView) {
       loadMore();
     }
-  }, [inView]);
+  }, [inView, loadMore]);
 
   return (
     <li className='text-center' ref={index === maxNodes ? ref : null}>
@@ -29,6 +29,9 @@ const DrinktipItem = ({
               src={featuredImage.node.mediaItemUrl}
               layout='fill'
               objectFit='contain'
+              alt={
+                featuredImage.node.altText ? featuredImage.node.altText : title
+              }
             />
           )}
         </a>

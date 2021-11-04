@@ -18,6 +18,7 @@ export default function PostBlocks({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -43,6 +44,7 @@ export default function PostBlocks({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -68,6 +70,7 @@ export default function PostBlocks({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -93,6 +96,7 @@ export default function PostBlocks({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -118,6 +122,7 @@ export default function PostBlocks({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -143,6 +148,7 @@ export default function PostBlocks({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -168,6 +174,7 @@ export default function PostBlocks({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -193,6 +200,7 @@ export default function PostBlocks({ items }) {
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
+                alt={item.title}
               />
             )}
 
@@ -216,6 +224,7 @@ export default function PostBlocks({ items }) {
               layout='fill'
               objectFit='cover'
               className={`${imageClasses}`}
+              alt={item.title}
             />
           )}
 

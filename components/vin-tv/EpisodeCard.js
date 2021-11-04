@@ -12,6 +12,7 @@ const EpisodeCard = ({ episode, index, handlePlaylist }) => {
           src={episode.acf_episode.thumbnail}
           layout='fill'
           objectFit='cover'
+          alt={episode.title}
         />
       </figure>
       <div className='flex flex-col justify-center p-5 lg:p-5'>

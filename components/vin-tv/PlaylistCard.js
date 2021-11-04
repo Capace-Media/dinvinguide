@@ -10,6 +10,7 @@ const PlaylistCard = ({ playlist }) => {
               src={playlist.acf_tvSpellistor.thumbnail}
               layout='fill'
               objectFit='cover'
+              alt={playlist.name}
             />
             <svg
               xmlns='http://www.w3.org/2000/svg'

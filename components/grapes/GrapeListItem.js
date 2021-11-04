@@ -1,14 +1,14 @@
-import Link from 'next/link';
 import Image from 'next/image';
-import { useInView } from 'react-intersection-observer';
+import Link from 'next/link';
 import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 const GrapeListItem = ({ grape, last, incrementNodes }) => {
   const { ref, inView } = useInView({ triggerOnce: true });
   useEffect(() => {
     if (inView) {
       incrementNodes();
     }
-  }, [inView]);
+  }, [inView, incrementNodes]);
   return (
     <li
       ref={last ? ref : null}
@@ -23,6 +23,11 @@ const GrapeListItem = ({ grape, last, incrementNodes }) => {
                 src={grape.featuredImage.node.mediaItemUrl}
                 layout='fill'
                 objectFit='cover'
+                alt={
+                  grape.featuredImage.node.altText
+                    ? grape.featuredImage.node.altText
+                    : grape.title
+                }
               />
             )}
           </figure>

@@ -10,7 +10,12 @@ export default function Newsletter() {
         </div>
       </div>
       <div className='relative h-96'>
-        <Image src={ImageOne} layout='fill' objectFit='cover' />
+        <Image
+          src={ImageOne}
+          layout='fill'
+          objectFit='cover'
+          alt='DinVinguides nyhetsbrev'
+        />
       </div>
     </div>
   );

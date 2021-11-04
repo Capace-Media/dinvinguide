@@ -19,7 +19,7 @@ export default function Ad({
     if (triggerInView && inView) {
       triggerInView();
     }
-  }, [inView]);
+  }, [inView, triggerInView]);
   const renderAd = (device) => {
     if (!ads[position].current[device]) {
       return (
@@ -27,12 +27,14 @@ export default function Ad({
           href={ads[position].fallback.href}
           target='_blank'
           className='block w-full h-full'
+          rel='noreferrer'
         >
           <Image
             src={ads[position].fallback[device]}
             layout='fill'
             objectFit='contain'
             priority={priority ? true : false}
+            alt='Annons'
           />
         </a>
       );
@@ -42,12 +44,14 @@ export default function Ad({
         href={ads[position].current.href}
         target='_blank'
         className='block w-full h-full'
+        rel='noreferrer'
       >
         <Image
           src={ads[position].current[device]}
           layout='fill'
           objectFit='contain'
           priority={priority ? true : false}
+          alt='Annons'
         />
       </a>
     );

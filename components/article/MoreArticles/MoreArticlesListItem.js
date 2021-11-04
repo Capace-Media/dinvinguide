@@ -9,7 +9,7 @@ const MoreArticlesListItem = ({ article, incrementNodes, last }) => {
     if (inView) {
       incrementNodes();
     }
-  }, [inView]);
+  }, [inView, incrementNodes]);
   return (
     <li className='overflow-hidden bg-black group'>
       <Link href={`/`}>
@@ -20,6 +20,11 @@ const MoreArticlesListItem = ({ article, incrementNodes, last }) => {
                 src={article.featuredImage.node.mediaItemUrl}
                 layout='fill'
                 objectFit='cover'
+                alt={
+                  article.featuredImage.node.altText
+                    ? article.featuredImage.node.altText
+                    : article.title
+                }
               />
             )}
           </figure>

@@ -10,7 +10,7 @@ const DrinkListItem = React.memo(({ dryck, loadMore, last }) => {
     if (inView) {
       loadMore();
     }
-  }, [inView]);
+  }, [inView, loadMore]);
   return (
     <li
       ref={last ? ref : null}
@@ -25,6 +25,11 @@ const DrinkListItem = React.memo(({ dryck, loadMore, last }) => {
               src={dryck.featuredImage.node.mediaItemUrl}
               layout='fill'
               objectFit='contain'
+              alt={
+                dryck.featuredImage.node.altText
+                  ? dryck.featuredImage.node.altText
+                  : dryck.title
+              }
             />
           )}
         </figure>
@@ -53,5 +58,6 @@ const DrinkListItem = React.memo(({ dryck, loadMore, last }) => {
     </li>
   );
 });
+DrinkListItem.displayName = 'DrinkListItem';
 
 export default DrinkListItem;

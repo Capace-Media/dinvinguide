@@ -27,6 +27,11 @@ export default function SkribenterPage({ data }) {
                         src={author.acf_user.bild.mediaItemUrl}
                         layout='fill'
                         objectFit='cover'
+                        alt={
+                          author.acf_user.bild.altText
+                            ? author.acf_user.bild.altText
+                            : author.name
+                        }
                       />
                     </div>
                   </div>
@@ -37,7 +42,11 @@ export default function SkribenterPage({ data }) {
                     </p>
                     <div className='flex my-5 space-x-5'>
                       {author.acf_user.facebook && (
-                        <a href={author.acf_user.facebook} target='_blank'>
+                        <a
+                          href={author.acf_user.facebook}
+                          rel='noreferrer'
+                          target='_blank'
+                        >
                           <svg
                             width='100%'
                             height='100%'
@@ -51,7 +60,11 @@ export default function SkribenterPage({ data }) {
                         </a>
                       )}
                       {author.acf_user.instagram && (
-                        <a href={author.acf_user.instagram} target='_blank'>
+                        <a
+                          href={author.acf_user.instagram}
+                          rel='noreferrer'
+                          target='_blank'
+                        >
                           <svg
                             width='100%'
                             height='100%'
@@ -69,7 +82,11 @@ export default function SkribenterPage({ data }) {
                         </a>
                       )}
                       {author.acf_user.twitter && (
-                        <a href={author.acf_user.twitter} target='_blank'>
+                        <a
+                          href={author.acf_user.twitter}
+                          rel='noreferrer'
+                          target='_blank'
+                        >
                           <svg
                             width='100%'
                             height='100%'
@@ -89,6 +106,7 @@ export default function SkribenterPage({ data }) {
                         <a
                           href={'mailto:' + author.acf_user.email}
                           target='_blank'
+                          rel='noreferrer'
                         >
                           <svg
                             width='100%'
@@ -124,7 +142,11 @@ export default function SkribenterPage({ data }) {
                     </p>
                     <div className='flex my-5 space-x-5 lg:justify-end'>
                       {author.acf_user.facebook && (
-                        <a href={author.acf_user.facebook} target='_blank'>
+                        <a
+                          href={author.acf_user.facebook}
+                          rel='noreferrer'
+                          target='_blank'
+                        >
                           <svg
                             width='100%'
                             height='100%'
@@ -138,7 +160,11 @@ export default function SkribenterPage({ data }) {
                         </a>
                       )}
                       {author.acf_user.instagram && (
-                        <a href={author.acf_user.instagram} target='_blank'>
+                        <a
+                          href={author.acf_user.instagram}
+                          rel='noreferrer'
+                          target='_blank'
+                        >
                           <svg
                             width='100%'
                             height='100%'
@@ -156,7 +182,11 @@ export default function SkribenterPage({ data }) {
                         </a>
                       )}
                       {author.acf_user.twitter && (
-                        <a href={author.acf_user.twitter} target='_blank'>
+                        <a
+                          href={author.acf_user.twitter}
+                          rel='noreferrer'
+                          target='_blank'
+                        >
                           <svg
                             width='100%'
                             height='100%'
@@ -176,6 +206,7 @@ export default function SkribenterPage({ data }) {
                         <a
                           href={'mailto:' + author.acf_user.email}
                           target='_blank'
+                          rel='noreferrer'
                         >
                           <svg
                             width='100%'
@@ -202,6 +233,11 @@ export default function SkribenterPage({ data }) {
                         src={author.acf_user.bild.mediaItemUrl}
                         layout='fill'
                         objectFit='cover'
+                        alt={
+                          author.acf_user.bild.altText
+                            ? author.acf_user.bild.altText
+                            : author.name
+                        }
                       />
                     </div>
                   </div>
@@ -221,6 +257,11 @@ export default function SkribenterPage({ data }) {
                   src={author.acf_user.bild.mediaItemUrl}
                   layout='fill'
                   objectFit='cover'
+                  alt={
+                    author.acf_user.bild.altText
+                      ? author.acf_user.bild.altText
+                      : author.name
+                  }
                 />
               </figure>
               <h4 className='my-5'>{author.name}</h4>
@@ -229,7 +270,11 @@ export default function SkribenterPage({ data }) {
               </p>
               <div className='flex my-5 space-x-5 lg:justify-center'>
                 {author.acf_user.facebook && (
-                  <a href={author.acf_user.facebook} target='_blank'>
+                  <a
+                    href={author.acf_user.facebook}
+                    rel='noreferrer'
+                    target='_blank'
+                  >
                     <svg
                       width='100%'
                       height='100%'
@@ -243,7 +288,11 @@ export default function SkribenterPage({ data }) {
                   </a>
                 )}
                 {author.acf_user.instagram && (
-                  <a href={author.acf_user.instagram} target='_blank'>
+                  <a
+                    href={author.acf_user.instagram}
+                    rel='noreferrer'
+                    target='_blank'
+                  >
                     <svg
                       width='100%'
                       height='100%'
@@ -261,7 +310,11 @@ export default function SkribenterPage({ data }) {
                   </a>
                 )}
                 {author.acf_user.twitter && (
-                  <a href={author.acf_user.twitter} target='_blank'>
+                  <a
+                    href={author.acf_user.twitter}
+                    rel='noreferrer'
+                    target='_blank'
+                  >
                     <svg
                       width='100%'
                       height='100%'
@@ -278,7 +331,11 @@ export default function SkribenterPage({ data }) {
                   </a>
                 )}
                 {author.acf_user.email && (
-                  <a href={'mailto:' + author.acf_user.email} target='_blank'>
+                  <a
+                    href={'mailto:' + author.acf_user.email}
+                    rel='noreferrer'
+                    target='_blank'
+                  >
                     <svg
                       width='100%'
                       height='100%'

@@ -100,6 +100,11 @@ const RecipePuff = ({ content }) => {
                 src={content.featuredImage.node.mediaItemUrl}
                 layout='fill'
                 objectFit='cover'
+                alt={
+                  content.featuredImage.node.altText
+                    ? content.featuredImage.node.altText
+                    : content.title
+                }
               />
             </a>
           </Link>
@@ -139,6 +144,11 @@ const DrinkPuff = ({ content }) => {
                 src={content.featuredImage.node.mediaItemUrl}
                 layout='fill'
                 objectFit='contain'
+                alt={
+                  content.featuredImage.node.altText
+                    ? content.featuredImage.node.altText
+                    : content.title
+                }
               />
             </a>
           </Link>

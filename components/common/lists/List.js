@@ -46,7 +46,7 @@ const List = ({
       setFilterString(searchInput.toLowerCase());
     }, 300);
     return () => clearTimeout(filterTimeout);
-  }, [searchInput]);
+  }, [searchInput, maxNodes]);
 
   return (
     <>

@@ -22,6 +22,7 @@ export default function Header() {
           src={Logo}
           priority
           className='cursor-pointer'
+          alt='DinVinGuide Logotyp'
         />
       ),
       href: '/',
@@ -48,12 +49,13 @@ export default function Header() {
         <div className='flex items-center justify-end pt-2 space-x-2 contain lg:hidden lg:w-24'>
           <a
             href='http://translate.google.com/translate?sl=auto&tl=en&js=n&prev=_t&hl=en&ie=UTF-8&u=https%3A%2F%2Fdinvinguide.se%2F&act=url'
+            rel='noreferrer'
             className='w-7 lg:w-10'
           >
-            <Image src={BritFlag} priority />
+            <Image src={BritFlag} priority alt='Britiska flaggan' />
           </a>
           <a href='https://dinvinguide.se' className='w-7 lg:w-10'>
-            <Image src={SweFlag} priority />
+            <Image src={SweFlag} priority alt='Svenska flaggan' />
           </a>
         </div>
         <nav className='flex items-center justify-between lg:py-5 contain'>
@@ -62,10 +64,10 @@ export default function Header() {
               href='http://translate.google.com/translate?sl=auto&tl=en&js=n&prev=_t&hl=en&ie=UTF-8&u=https%3A%2F%2Fdinvinguide.se%2F&act=url'
               className='w-5 lg:w-10'
             >
-              <Image src={BritFlag} priority />
+              <Image src={BritFlag} priority alt='Britiska flaggan' />
             </a>
             <a href='https://dinvinguide.se' className='w-5 lg:w-10'>
-              <Image src={SweFlag} priority />
+              <Image src={SweFlag} priority alt='Svenska flaggan' />
             </a>
           </div>
           <div className='flex items-center lg:flex-1 justify-evenly'>

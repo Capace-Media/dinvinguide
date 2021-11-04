@@ -17,14 +17,14 @@ export default function Layout({ children }) {
     <>
       <Header />
       <div className='contain flex justify-center mt-[111px] space-x-3'>
-        <a href='https://bestchampagne.se'>
-          <Image src={BCLogo} priority />
+        <a href='https://bestchampagne.se' target='noreferrer'>
+          <Image src={BCLogo} priority alt='BestChampagne Logo' />
         </a>
 
         <div>|</div>
         <Link href='/dryckeslistan'>
           <a>
-            <Image src={DryckeslistanLogo} priority />
+            <Image src={DryckeslistanLogo} priority alt='Dryckeslistan Logo' />
           </a>
         </Link>
       </div>

@@ -22,13 +22,18 @@ const SearchResultsItem = ({
     <>
       <li className=''>
         <Link href={item.uri}>
-          <a className='hover:ring-4 transition-all ring-brand-red block p-2 bg-white rounded grid gap-5 grid-cols-[80px,1fr,32px]'>
+          <a className='hover:ring-4 transition-all ring-brand-red  p-2 bg-white rounded grid gap-5 grid-cols-[80px,1fr,32px]'>
             <figure className='relative w-20 h-20'>
               {hasImage && (
                 <Image
                   src={item.featuredImage.node.mediaItemUrl}
                   layout='fill'
                   objectFit={containImage ? 'contain' : 'cover'}
+                  alt={
+                    item.featuredImage.node.altText
+                      ? item.featuredImage.node.altText
+                      : item.title
+                  }
                 />
               )}
             </figure>

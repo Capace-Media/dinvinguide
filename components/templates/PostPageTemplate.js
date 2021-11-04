@@ -121,6 +121,11 @@ const PostPageTemplate = ({ data }) => {
               src={page.author.node.acf_user.bild.mediaItemUrl}
               layout='fill'
               objectFit='cover'
+              alt={
+                page.author.node.acf_user.bild.altText
+                  ? page.author.node.acf_user.bild.altText
+                  : page.author.node.name
+              }
             />
           )}
         </div>
@@ -167,12 +172,12 @@ const PostPageTemplate = ({ data }) => {
                 src={galleryImages[galleryIndex]}
                 layout='fill'
                 objectFit='contain'
+                alt={`Current gallery image`}
               />
             </figure>
             {galleryIndex < galleryImages.length - 1 && (
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                enable-background='new 0 0 24 24'
                 viewBox='0 0 24 24'
                 className='fill-current fixed top-[50%] right-5 w-12 h-12'
                 onClick={() => handleNextImage()}
@@ -188,7 +193,6 @@ const PostPageTemplate = ({ data }) => {
             {galleryIndex !== 0 && (
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                enable-background='new 0 0 24 24'
                 viewBox='0 0 24 24'
                 className='fill-current fixed top-[50%] left-5 rotate-180 w-12 h-12'
                 onClick={() => handlePrevImage()}

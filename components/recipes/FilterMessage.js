@@ -7,4 +7,5 @@ const FilterMessage = React.memo(({ totalCount, currentCount, searchTerm }) => {
     </div>
   );
 });
+FilterMessage.displayName = 'FilterMessage';
 export default FilterMessage;
