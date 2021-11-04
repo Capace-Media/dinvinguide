@@ -1,5 +1,4 @@
 import Blocks from '../common/content/Blocks';
-import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import Content from '../common/content/content';
 import { NextSeo } from 'next-seo';
 import OldContent from '../common/content/OldContent';

@@ -2,10 +2,10 @@ import Ad from '../ads/Ad';
 import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import DrinkListItem from '../drinks/DrinkListItem';
 import Image from 'next/image';
-import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import parse from 'html-react-parser';
 import { useState } from 'react';
+
 const RecipePageTemplate = ({ data }) => {
   const { page: recipe, ads } = data;
   console.log(recipe);

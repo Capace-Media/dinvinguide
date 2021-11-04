@@ -7,9 +7,8 @@ import { NextSeo } from 'next-seo';
 import { useState } from 'react';
 
 const AuthorPageTemplate = ({ data }) => {
-  const incrementNum = 24;
   const [isReadMore, setIsReadMore] = useState(false);
-  const [maxCount, setMaxCount] = useState(25);
+
   const { ads, author, posts } = data;
   const postArray = posts.map(({ node: post }) => post);
   return (

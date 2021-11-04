@@ -1,5 +1,3 @@
-import PageIntro from '../common/content/PageIntro';
-
 const FallbackTemplate = () => {
   return (
     <div className='flex items-center justify-center h-96'>
