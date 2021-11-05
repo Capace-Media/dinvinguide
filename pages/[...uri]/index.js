@@ -124,7 +124,10 @@ export default PagePostHandler;
 
 export const getStaticPaths = async () => {
   return {
-    paths: [{ params: { uri: ['recept'] } }],
+    paths: [
+      { params: { uri: ['recept'] } },
+      { params: { uri: ['skribenter'] } },
+    ],
     fallback: true,
   };
 };
