@@ -9,6 +9,7 @@ import fetchTemplate from '../../lib/util/fetchTemplate';
 import { getAds } from '../../lib/api/ads';
 import resolveTemplate from '../../lib/resolveTemplate';
 import { useRouter } from 'next/dist/client/router';
+import PostPageTemplate from '../../components/templates/PostPageTemplate';
 
 const AuthorPageTemplate = dynamic(() =>
   import('../../components/templates/AuthorPageTemplate')
@@ -35,9 +36,7 @@ const OverviewPageTemplate = dynamic(() =>
 const PageTemplate = dynamic(() =>
   import('../../components/templates/PageTemplate')
 );
-const PostPageTemplate = dynamic(() =>
-  import('../../components/templates/PostPageTemplate')
-);
+
 const RecipePageTemplate = dynamic(() =>
   import('../../components/templates/RecipePageTemplate')
 );
