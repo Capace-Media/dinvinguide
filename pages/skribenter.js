@@ -2,8 +2,8 @@ import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
-import ReactHtmlParser from 'react-html-parser';
 import { getAuthors } from '../lib/api/authors';
+import parse from 'html-react-parser';
 export default function SkribenterPage({ data }) {
   const { authors } = data;
   const { skribenter, medarbetare } = authors;
@@ -38,7 +38,7 @@ export default function SkribenterPage({ data }) {
                   <div>
                     <h2 className='mb-5'>{author.name}</h2>
                     <p style={{ whiteSpace: 'break-spaces' }}>
-                      {ReactHtmlParser(author.description)}
+                      {parse(author.description)}
                     </p>
                     <div className='flex my-5 space-x-5'>
                       {author.acf_user.facebook && (
@@ -138,7 +138,7 @@ export default function SkribenterPage({ data }) {
                   <div className='lg:text-right'>
                     <h2 className='mb-5'>{author.name}</h2>
                     <p style={{ whiteSpace: 'break-spaces' }}>
-                      {ReactHtmlParser(author.description)}
+                      {parse(author.description)}
                     </p>
                     <div className='flex my-5 space-x-5 lg:justify-end'>
                       {author.acf_user.facebook && (
@@ -266,7 +266,7 @@ export default function SkribenterPage({ data }) {
               </figure>
               <h4 className='my-5'>{author.name}</h4>
               <p className='rich-text'>
-                {ReactHtmlParser(author.acf_user.kortBeskrivning)}
+                {parse(author.acf_user.kortBeskrivning)}
               </p>
               <div className='flex my-5 space-x-5 lg:justify-center'>
                 {author.acf_user.facebook && (
