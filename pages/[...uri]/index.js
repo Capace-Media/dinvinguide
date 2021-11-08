@@ -4,41 +4,23 @@ import {
   getPostsByAuthor,
 } from '../../lib/api/authors';
 
+import AuthorPageTemplate from '../../components/templates/AuthorPageTemplate';
+import DrinkPageTemplate from '../../components/templates/DrinkPageTemplate';
+import DrinktipPageTemplate from '../../components/templates/DrinktipPageTemplate';
+import ExplorerPageTemplate from '../../components/templates/ExplorerPageTemplate';
+import GrapePageTemplate from '../../components/templates/GrapePageTemplate';
+import OverviewPageTemplate from '../../components/templates/OverviewPageTemplate';
+import PageTemplate from '../../components/templates/PageTemplate';
+import PostPageTemplate from '../../components/templates/PostPageTemplate';
+import RecipePageTemplate from '../../components/templates/RecipePageTemplate';
 import dynamic from 'next/dynamic';
 import fetchTemplate from '../../lib/util/fetchTemplate';
 import { getAds } from '../../lib/api/ads';
 import resolveTemplate from '../../lib/resolveTemplate';
 import { useRouter } from 'next/dist/client/router';
-import PostPageTemplate from '../../components/templates/PostPageTemplate';
 
-const AuthorPageTemplate = dynamic(() =>
-  import('../../components/templates/AuthorPageTemplate')
-);
-const DrinktipPageTemplate = dynamic(() =>
-  import('../../components/templates/DrinktipPageTemplate')
-);
-const DrinkPageTemplate = dynamic(() =>
-  import('../../components/templates/DrinkPageTemplate')
-);
-const ExplorerPageTemplate = dynamic(() =>
-  import('../../components/templates/ExplorerPageTemplate')
-);
 const FallbackTemplate = dynamic(() =>
   import('../../components/templates/FallbackTemplate')
-);
-const GrapePageTemplate = dynamic(() =>
-  import('../../components/templates/GrapePageTemplate')
-);
-const OverviewPageTemplate = dynamic(() =>
-  import('../../components/templates/OverviewPageTemplate')
-);
-
-const PageTemplate = dynamic(() =>
-  import('../../components/templates/PageTemplate')
-);
-
-const RecipePageTemplate = dynamic(() =>
-  import('../../components/templates/RecipePageTemplate')
 );
 
 const PagePostHandler = ({ routeType, data }) => {
