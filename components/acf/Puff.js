@@ -95,7 +95,7 @@ const RecipePuff = ({ content }) => {
         </div>
         {content.featuredImage && (
           <Link href={content.uri}>
-            <a className='relative block h-56 lg:h-[350px]'>
+            <a className='relative block h-56 lg:min-h-[300px] lg:h-auto'>
               <Image
                 src={content.featuredImage.node.mediaItemUrl}
                 layout='fill'
@@ -139,7 +139,7 @@ const DrinkPuff = ({ content }) => {
         </div>
         {content.featuredImage && (
           <Link href={content.uri}>
-            <a className='relative block h-56 lg:h-56'>
+            <a className='relative block h-56 lg:min-h-[300px] lg:h-auto'>
               <Image
                 src={content.featuredImage.node.mediaItemUrl}
                 layout='fill'

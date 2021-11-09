@@ -1,4 +1,13 @@
 module.exports = {
+  async redirects() {
+    return [
+      {
+        source: '/cms',
+        destination: 'https://media.dinvinguide.se/wp-admin',
+        permanent: true,
+      },
+    ];
+  },
   i18n: {
     locales: ['sv'],
     defaultLocale: 'sv',
