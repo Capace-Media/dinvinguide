@@ -18,7 +18,7 @@ const ListItem = ({ data, last, increment, subtitle }) => {
       className='relative block overflow-hidden text-white bg-black group'
     >
       <Link href={data.uri}>
-        <a className='relative z-10 block h-56'>
+        <a className='relative block h-56'>
           {data['featuredImage.node.mediaItemUrl'] && (
             <Image
               src={data['featuredImage.node.mediaItemUrl']}
