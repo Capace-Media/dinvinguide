@@ -140,7 +140,9 @@ export const getStaticProps = async (context) => {
   } else {
     //If not an author page, check the pagetemplate in order to do the correct query
     const content = await fetchTemplate(uri);
-    const { template, contentType } = content;
+
+    const template = content.template;
+    const contentType = content.contentType;
     console.log('CONTENT =>', content);
     type = contentType;
 
