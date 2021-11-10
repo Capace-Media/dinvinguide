@@ -176,6 +176,5 @@ export const getStaticProps = async (context) => {
       routeType: type,
       data,
     },
-    revalidate: 60,
   };
 };
