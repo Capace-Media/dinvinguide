@@ -1,6 +1,8 @@
 import 'dayjs/locale/sv';
 
 import Ad from '../ads/Ad';
+import ClientAd from '../ads/ClientAd';
+import ExplorerLinks from '../common/explorer/explorerLinks';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 import dayjs from 'dayjs';
@@ -29,7 +31,7 @@ const DrinktipPageTemplate = ({ data }) => {
     <>
       <NextSeo title={drink.seo.title} description={drink.seo.metaDesc} />
       <div className='contain row'>
-        <Ad ads={ads} position='top' />
+        <ClientAd position='top' />
       </div>
       <div className='grid gap-10 lg:grid-cols-3 contain-md row'>
         <div className='relative'>
@@ -119,6 +121,7 @@ const DrinktipPageTemplate = ({ data }) => {
           </div>
         </div>
       </div>
+      <ExplorerLinks />
     </>
   );
 };
