@@ -25,9 +25,9 @@ const DrinkPageTemplate = ({ data }) => {
   return (
     <>
       <NextSeo title={drink.seo.title} description={drink.seo.metaDesc} />
-
-      <ClientAd position='top' />
-
+      <div className='row'>
+        <ClientAd position='top' />
+      </div>
       <div className='grid gap-10 lg:grid-cols-3 contain-md row'>
         <div className='relative'>
           <figure className='aspect-w-1 aspect-h-1'>
