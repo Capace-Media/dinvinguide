@@ -11,7 +11,7 @@ const DryckesUtforskarenPage = ({ drycker, page, ads }) => {
   return (
     <>
       <PageIntro
-        ads={ads}
+        ad
         title={page.title}
         text={page['acf_explorer.slogan']}
         crumbs={[

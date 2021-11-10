@@ -1,5 +1,6 @@
 import Ad from '../ads/Ad';
 import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
+import ClientAd from '../ads/ClientAd';
 import Image from 'next/image';
 import Link from 'next/link';
 import List from '../common/lists/List';
@@ -9,7 +10,7 @@ import { useState } from 'react';
 const AuthorPageTemplate = ({ data }) => {
   const [isReadMore, setIsReadMore] = useState(false);
 
-  const { ads, author, posts } = data;
+  const { author, posts } = data;
   const postArray = posts.map(({ node: post }) => post);
   return (
     <>
@@ -136,7 +137,7 @@ const AuthorPageTemplate = ({ data }) => {
           </div>
         </div>
         <div className='row'>
-          <Ad ads={ads} position='top' />
+          <ClientAd position='top' />
         </div>
         <div className='row'>
           <h2>
@@ -187,12 +188,7 @@ const AuthorPageTemplate = ({ data }) => {
           })}
         </div>
         <div className='mt-10 text-left'>
-          <List
-            array={postArray}
-            ads={ads}
-            columns={3}
-            subtitle='author.node.name'
-          />
+          <List array={postArray} ads columns={3} subtitle='author.node.name' />
         </div>
       </div>
     </>

@@ -1,13 +1,14 @@
 import 'dayjs/locale/sv';
 
 import Ad from '../ads/Ad';
+import ClientAd from '../ads/ClientAd';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 import dayjs from 'dayjs';
 import parse from 'html-react-parser';
 
 const DrinkPageTemplate = ({ data }) => {
-  const { page: drink, ads } = data;
+  const { page: drink } = data;
   const details = [
     {
       label: 'Betyg',
@@ -24,7 +25,7 @@ const DrinkPageTemplate = ({ data }) => {
     <>
       <NextSeo title={drink.seo.title} description={drink.seo.metaDesc} />
       <div className='contain row'>
-        <Ad ads={ads} position='top' />
+        <ClientAd position='top' />
       </div>
       <div className='grid gap-10 lg:grid-cols-3 contain-md row'>
         <div className='relative'>

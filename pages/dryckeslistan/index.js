@@ -1,4 +1,5 @@
 import Ad from '../../components/ads/Ad';
+import ClientAd from '../../components/ads/ClientAd';
 import ExplorerLinks from '../../components/common/explorer/explorerLinks';
 import { Fragment } from 'react';
 import Image from 'next/image';
@@ -19,7 +20,7 @@ const ToplistsPage = ({ data }) => {
         <h1 className='text-brand-red'>Topplistor</h1>
       </div>
       <div className='mb-5'>
-        <Ad ads={ads} position='top' />
+        <ClientAd position='top' />
       </div>
       <div className='grid gap-10 lg:grid-cols-4 contain-md row'>
         {toplists.map(

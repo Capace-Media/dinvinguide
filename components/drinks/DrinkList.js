@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import Ad from '../ads/Ad';
+import ClientAd from '../ads/ClientAd';
 import DrinkListItem from './DrinkListItem';
 import flattenObject from '../../utils/flattenObject';
 
@@ -161,7 +162,7 @@ const DrinkList = ({ drycker, ads }) => {
                       last={index + 1 === maxNodes ? true : false}
                     />
                     <li className='col-span-full row'>
-                      <Ad ads={ads} position='mid' />
+                      <ClientAd position='mid' />
                     </li>
                   </>
                 );

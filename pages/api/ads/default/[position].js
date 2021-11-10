@@ -21,7 +21,6 @@ const handler = async (req, res) => {
     ][0].banner
       ? true
       : false;
-    console.log('HAS AD =>', hasAd);
 
     if (hasAd) {
       ad =
@@ -54,7 +53,7 @@ const handler = async (req, res) => {
       url =
         response.data.acfOptionsAnnonsplaceringar.acf_adsettings
           .fallbackannons[0].acf_ads.link;
-      console.log('FALLBACK AD =>', ad);
+
       res.status(200).json({
         desktop: ad.toppbanner.mediaItemUrl,
         mobile: ad.mobilbanner.mediaItemUrl,

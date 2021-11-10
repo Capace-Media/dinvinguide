@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import Ad from '../../ads/Ad';
 import ClientAd from '../../ads/ClientAd';
 import ListItem from './ListItem';
 import flattenObject from '../../../utils/flattenObject';

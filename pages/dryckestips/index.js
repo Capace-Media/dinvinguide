@@ -1,4 +1,5 @@
 import Ad from '../../components/ads/Ad';
+import ClientAd from '../../components/ads/ClientAd';
 import { DRINKTIPS } from '../../lib/fragments/drinks';
 import DrinktipsList from '../../components/drinkTips/DrinktipsList';
 import PageIntro from '../../components/common/content/PageIntro';
@@ -10,7 +11,7 @@ const DryckesTipsPage = ({ ads, drinks }) => {
   return (
     <>
       <PageIntro title='Exklusiva dryckestips' />
-      <Ad ads={ads} position='top' />
+      <ClientAd position='top' />
       <div className='text-center row contain'>
         <input
           type='text'
