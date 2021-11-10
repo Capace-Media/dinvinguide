@@ -1,4 +1,5 @@
 import Ad from '../components/ads/Ad';
+import ClientAd from '../components/ads/ClientAd';
 import Featured from '../components/frontPage/Featured';
 import Newsletter from '../components/section/Newsletter';
 import { NextSeo } from 'next-seo';
@@ -15,15 +16,15 @@ export default function Home({ data }) {
       <NextSeo title={seo.title} description={seo.description} />
       <div className='mb-5'>
         <div className='row'>
-          <Ad ads={ads} position='top' priority />
+          <ClientAd position='top' />
         </div>
         <Featured items={page.first} />
         <div className='row'>
-          <Ad ads={ads} position='mid' />
+          <ClientAd position='mid' />
         </div>
         <PostBlocks items={page.second} />
         <div className='row'>
-          <Ad ads={ads} position='bot' />
+          <ClientAd position='top' />
         </div>
         <Newsletter />
       </div>

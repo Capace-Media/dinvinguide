@@ -10,8 +10,8 @@ const DryckesTipsPage = ({ ads, drinks }) => {
   const [searchInput, setSearchInput] = useState('');
   return (
     <>
-      <PageIntro title='Exklusiva dryckestips' />
-      <ClientAd position='top' />
+      <PageIntro ad title='Exklusiva dryckestips' />
+
       <div className='text-center row contain'>
         <input
           type='text'

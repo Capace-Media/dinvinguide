@@ -1,13 +1,22 @@
 import Image from 'next/image';
 import React from 'react';
+import { useRouter } from 'next/dist/client/router';
 import useSWR from 'swr';
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
-const desktopContainer = `h-44 relative hidden md:block contain row `;
-const mobileContainer = `h-56 relative block md:hidden contain row`;
+const desktopContainer = `h-44 relative hidden md:block contain row text-center`;
+const mobileContainer = `h-56 relative block md:hidden contain row text-center`;
 const ClientAd = React.memo(({ position, type = 'default' }) => {
-  const { data } = useSWR(`/api/ads/${type}/${position}`, fetcher);
+  const router = useRouter();
+  console.log(router);
+  const { data } = useSWR(
+    !router.isPreview ? `/api/ads/${type}/${position}` : null,
+    fetcher
+  );
   console.log(data);
+  if (router.isPreview) {
+    return <div className={`${desktopContainer}`}>No ads during preview</div>;
+  }
   if (!data) {
     return <div className={`${desktopContainer}`}>Loading...</div>;
   }
