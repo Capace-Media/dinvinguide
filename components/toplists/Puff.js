@@ -5,8 +5,8 @@ import dayjs from 'dayjs';
 const ToplistPuff = ({ data, toplistUri }) => {
   return (
     <div className='relative'>
-      <figure className='relative block mb-5 aspect-w-1 aspect-h-1'>
-        <figure className='absolute top-0 left-0 w-full h-full scale-90 translate-y-5 rounded-full bg-brand-red' />
+      <figure className='relative block h-56 mb-5'>
+        <figure className='absolute top-0 left-0 w-full h-full scale-75 -translate-y-5 rounded-full max-h-56 aspect-w-1 aspect-h-1 bg-brand-red' />
         {data?.featuredImage?.node?.mediaItemUrl && (
           <Image
             src={data.featuredImage.node.mediaItemUrl}

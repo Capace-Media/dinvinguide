@@ -5,20 +5,21 @@ import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 
 const imageClasses = `transition-all opacity-60 group-hover:scale-105`;
-const ListItem = ({ data, last, increment, subtitle }) => {
+const ListItem = ({ data, last, increment, subtitle, inViewFn }) => {
   const { ref, inView } = useInView({ triggerOnce: true });
   useEffect(() => {
     if (inView && last) {
       increment();
+      inViewFn();
     }
-  }, [inView, increment, last]);
+  }, [inView, increment, last, inViewFn]);
   return (
     <li
       ref={last ? ref : null}
       className='relative block overflow-hidden text-white bg-black group'
     >
       <Link href={data.uri}>
-        <a className='relative block h-56'>
+        <a className='relative block h-60'>
           {data['featuredImage.node.mediaItemUrl'] && (
             <Image
               src={data['featuredImage.node.mediaItemUrl']}

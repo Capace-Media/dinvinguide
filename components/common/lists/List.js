@@ -11,7 +11,7 @@ const List = ({
   ads,
   filterKeys = ['title'],
   subtitle = null,
-  search = true,
+  inViewFn,
   chunksize = columns * 5,
   heading = '',
 }) => {
@@ -55,17 +55,6 @@ const List = ({
           <h2 className='text-brand-red'>{heading}</h2>
         </div>
       )}
-      {search && (
-        <div className='text-center contain'>
-          <input
-            type='text'
-            value={searchInput}
-            placeholder='Sök...'
-            onChange={(e) => setSearchInput(e.target.value)}
-            className='w-full max-w-lg px-5 py-3 rounded-sm'
-          />
-        </div>
-      )}
 
       <ul className={`grid gap-2 row contain ${printColumns()}`}>
         {array
@@ -104,6 +93,7 @@ const List = ({
                       maxNodes={maxNodes}
                       last={index + 1 === nodeCount ? true : false}
                       increment={incrementNodeCount}
+                      inViewFn={inViewFn}
                       subtitle={subtitle}
                       key={item.id}
                     />
