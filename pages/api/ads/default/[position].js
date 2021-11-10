@@ -16,11 +16,12 @@ const handler = async (req, res) => {
   try {
     let ad, text, url;
     const response = await Client.query({ query: queryMap[position] });
-    const hasAd = response.data.acfOptionsAnnonsplaceringar.acf_adsettings[
+    const hasAd = response?.data?.acfOptionsAnnonsplaceringar?.acf_adsettings[
       typeMap[position][0]
-    ][0].banner
+    ][0]?.banner
       ? true
       : false;
+    console.log('HAS AD', hasAd);
 
     if (hasAd) {
       ad =
