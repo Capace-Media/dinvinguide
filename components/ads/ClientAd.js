@@ -15,10 +15,18 @@ const ClientAd = React.memo(({ position, type = 'default' }) => {
   );
 
   if (router.isPreview) {
-    return <div className={`${desktopContainer}`}>No ads during preview</div>;
+    return (
+      <div className='flex items-center justify-center h-72 md:h-64 row contain'>
+        No ads during preview
+      </div>
+    );
   }
   if (!data) {
-    return <div className={`${desktopContainer}`}>Loading...</div>;
+    return (
+      <div className='flex items-center justify-center h-72 md:h-64 row contain'>
+        Loading...
+      </div>
+    );
   }
   return (
     <>

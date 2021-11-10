@@ -10,7 +10,7 @@ import OldContent from '../common/content/OldContent';
 import parse from 'html-react-parser';
 
 const PostPageTemplate = ({ data }) => {
-  const { page, ads } = data;
+  const { page } = data;
   const [isGallery, setIsGallery] = useState(false);
   const [galleryIndex, setGalleryIndex] = useState(0);
   let galleryImages = [];
@@ -101,7 +101,7 @@ const PostPageTemplate = ({ data }) => {
         <div>
           {page.acf_posts.sektioner && page.acf_posts.sektioner.length > 0 && (
             <Blocks
-              ads={ads}
+              ad
               blocks={page.acf_posts.sektioner}
               handleGallery={handleGallery}
             />
