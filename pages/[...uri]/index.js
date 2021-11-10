@@ -120,6 +120,7 @@ export const getStaticPaths = async () => {
     fetchPaths('drinktips'),
     fetchPaths('recipes'),
     fetchPaths('grapes'),
+    fetchPaths('posts'),
   ]);
   const paths = [
     ...staticPaths,
@@ -127,6 +128,7 @@ export const getStaticPaths = async () => {
     ...dynamicPaths[1],
     ...dynamicPaths[2],
     ...dynamicPaths[3],
+    ...dynamicPaths[4],
   ];
   return {
     paths,
