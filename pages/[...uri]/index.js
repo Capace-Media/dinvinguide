@@ -107,6 +107,9 @@ export const getStaticPaths = async () => {
   return {
     paths: [
       { params: { uri: ['recept'] } },
+      { params: { uri: ['skolor'] } },
+      { params: { uri: ['druvguiden'] } },
+      { params: { uri: ['vinguide', 'vinatlas'] } },
       { params: { uri: ['fredrikschelin'] } },
       { params: { uri: ['anders'] } },
       { params: { uri: ['sofiaander'] } },
