@@ -10,9 +10,9 @@ import wpFetch from '../../lib/wpFetch';
 const TVPage = ({ page, episodes, playlists, ads }) => {
   return (
     <GuideLayout>
-      <PageIntro title={page.vintvTitle} text={page.vintvIngress} />
+      <PageIntro ad title={page.vintvTitle} text={page.vintvIngress} />
       <Playlists playlists={playlists} />
-      <Videos episodes={episodes} settings={page} ads={ads} />
+      <Videos episodes={episodes} settings={page} />
     </GuideLayout>
   );
 };
@@ -24,7 +24,6 @@ export const getStaticProps = async () => {
     wpFetch(OPTIONS_TV),
     wpFetch(EPISODES, { batch: 200, type: 'episodes' }),
     wpFetch(PLAYLISTS, { batch: 200, type: 'playlists' }),
-    getAds(),
   ]);
 
   return {
@@ -32,8 +31,6 @@ export const getStaticProps = async () => {
       page: resolved[0].acfOptionsInstallningarTv.tvOptionsPage,
       episodes: resolved[1],
       playlists: resolved[2],
-      ads: resolved[3],
     },
-    revalidate: 60,
   };
 };

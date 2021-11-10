@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Player from './Player';
 import VideoCard from './VideoCard';
 
-const Videos = ({ episodes, settings, ads }) => {
+const Videos = ({ episodes, settings }) => {
   const [searchInput, setSearchInput] = useState('');
   const [filterString, setFilterString] = useState('');
   const [maxNodes, setMaxNodes] = useState(12);

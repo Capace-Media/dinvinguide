@@ -32,13 +32,11 @@ export default DryckesTipsPage;
 
 export const getStaticProps = async () => {
   const resolved = await Promise.all([
-    getAds(),
     wpFetch(DRINKTIPS, { batch: 200, type: 'drinktips' }),
   ]);
-  const drinks = resolved[1].map(({ node: drink }) => drink);
+  const drinks = resolved[0].map(({ node: drink }) => drink);
   return {
     props: {
-      ads: resolved[0],
       drinks,
     },
     revalidate: 60,

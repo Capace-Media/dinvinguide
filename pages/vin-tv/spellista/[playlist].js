@@ -83,6 +83,5 @@ export const getStaticProps = async (context) => {
       playlist: resolved[0].playlist,
       settings: resolved[1].acfOptionsInstallningarTv.tvOptionsPage,
     },
-    revalidate: 60,
   };
 };
