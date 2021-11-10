@@ -5,21 +5,9 @@ const Drink = ({ data }) => {
   const { layout } = data.bild;
   return (
     <div
-      className={`contain-sm mx-auto prose-sm md:prose row-sm grid gap-5 md:gap-10  ${
-        layout === 'left' ? 'md:grid-cols-[1fr,3fr]' : 'md:grid-cols-[3fr,1fr]'
-      }`}
+      className={`contain-sm relative mx-auto prose-sm md:prose row-sm grid gap-5 md:gap-10 md:grid-cols-[3fr,1fr]`}
     >
-      <Image
-        src={data.bild.bild.mediaItemUrl}
-        layout='fill'
-        objectFit='contain'
-        className={`aspect-w-1 aspect-h-1 ${
-          layout === 'left' ? 'order-0' : 'order-0 md:order-1'
-        }`}
-        alt={data.bild.bild.altText}
-      />
-
-      <div className='flex flex-col justify-center'>
+      <div className='flex flex-col justify-center order-1 md:order-0'>
         <h3 className='!mt-0'>{data.name}</h3>
         {parse(data.text)}
         <a
@@ -31,6 +19,15 @@ const Drink = ({ data }) => {
           Läs mer
         </a>
       </div>
+      <figure className='relative h-52 md:h-auto order-0 md:order-1'>
+        <Image
+          src={data.bild.bild.mediaItemUrl}
+          layout='fill'
+          objectFit='contain'
+          className={``}
+          alt={data.bild.bild.altText}
+        />
+      </figure>
     </div>
   );
 };
