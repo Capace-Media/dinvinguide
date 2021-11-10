@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import parse from 'react-html-parser';
 const Drink = ({ data }) => {
-  console.log(data);
-  const { layout } = data.bild;
   return (
     <div
       className={`contain-sm relative mx-auto prose-sm md:prose row-sm grid gap-5 md:gap-10 md:grid-cols-[3fr,1fr]`}
