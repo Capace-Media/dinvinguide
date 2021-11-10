@@ -1,4 +1,5 @@
 import Ad from '../ads/Ad';
+import ClientAd from '../ads/ClientAd';
 import ToplistItem from './ToplistItem';
 
 const Toplist = ({ data, ads }) => {
@@ -10,7 +11,7 @@ const Toplist = ({ data, ads }) => {
     ...data.fallbackDrinks,
   ];
   array.splice(3, 0, {
-    node: { ad: true, component: <Ad ads={ads} position='top' /> },
+    node: { ad: true, component: <ClientAd position='top' /> },
   });
 
   let num = 0;
