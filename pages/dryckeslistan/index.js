@@ -1,4 +1,5 @@
 import Ad from '../../components/ads/Ad';
+import ClientAd from '../../components/ads/ClientAd';
 import ExplorerLinks from '../../components/common/explorer/explorerLinks';
 import { Fragment } from 'react';
 import Link from 'next/link';
@@ -10,7 +11,7 @@ import { getToplists } from '../../lib/api/toplists';
 const ToplistPuff = dynamic(() => import('../../components/toplists/Puff'));
 
 const ToplistsPage = ({ data }) => {
-  const { ads, toplists } = data;
+  const { toplists } = data;
 
   return (
     <Fragment>
@@ -18,7 +19,7 @@ const ToplistsPage = ({ data }) => {
         <h1 className='text-brand-red'>Topplistor</h1>
       </div>
       <div className='mb-5'>
-        <Ad ads={ads} position='top' />
+        <ClientAd position='top' />
       </div>
       <div className='grid gap-10 lg:grid-cols-4 contain-md row'>
         {toplists.map(
@@ -65,13 +66,12 @@ const ToplistsPage = ({ data }) => {
 export default ToplistsPage;
 
 export const getStaticProps = async () => {
-  const resolved = await Promise.all([getAds(), getToplists()]);
+  const resolved = await Promise.all([getToplists()]);
 
   return {
     props: {
       data: {
-        ads: resolved[0],
-        toplists: resolved[1],
+        toplists: resolved[0],
       },
     },
   };

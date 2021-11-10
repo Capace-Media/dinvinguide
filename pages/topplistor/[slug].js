@@ -25,7 +25,6 @@ const SingleToplistPage = ({ data }) => {
           },
         ]}
       />
-
       <div className='row '>
         <Toplist ads={ads} data={toplist} />
       </div>
