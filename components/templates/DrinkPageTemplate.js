@@ -1,6 +1,7 @@
 import 'dayjs/locale/sv';
 
 import Ad from '../ads/Ad';
+import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import ClientAd from '../ads/ClientAd';
 import ExplorerLinks from '../common/explorer/explorerLinks';
 import Image from 'next/image';
@@ -25,6 +26,12 @@ const DrinkPageTemplate = ({ data }) => {
   return (
     <>
       <NextSeo title={drink.seo.title} description={drink.seo.metaDesc} />
+      <BreadCrumbs
+        crumbs={[
+          { text: 'Drycker', href: '/dryckesutforskaren' },
+          { text: drink.title, href: '/' + drink.slug, current: true },
+        ]}
+      />
       <div className='row'>
         <ClientAd position='top' />
       </div>
