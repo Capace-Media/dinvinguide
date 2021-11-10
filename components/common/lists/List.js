@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import Ad from '../../ads/Ad';
+import ClientAd from '../../ads/ClientAd';
 import ListItem from './ListItem';
 import flattenObject from '../../../utils/flattenObject';
 
@@ -109,7 +110,7 @@ const List = ({
                     />
                     {ads && (
                       <li className='col-span-full row'>
-                        <Ad ads={ads} position='mid' />
+                        <ClientAd position='mid' />
                       </li>
                     )}
                   </>

@@ -134,9 +134,8 @@ export const getStaticProps = async (context) => {
     const resolved = await Promise.all([
       getAuthorData(uri),
       getPostsByAuthor(uri),
-      getAds(),
     ]);
-    data = { author: resolved[0], posts: resolved[1], ads: resolved[2] };
+    data = { author: resolved[0], posts: resolved[1] };
   } else {
     //If not an author page, check the pagetemplate in order to do the correct query
     const content = await fetchTemplate(uri);
