@@ -11,7 +11,7 @@ const List = ({
   ads,
   filterKeys = ['title'],
   subtitle = null,
-  inViewFn,
+
   chunksize = columns * 5,
   heading = '',
 }) => {
@@ -93,7 +93,6 @@ const List = ({
                       maxNodes={maxNodes}
                       last={index + 1 === nodeCount ? true : false}
                       increment={incrementNodeCount}
-                      inViewFn={inViewFn}
                       subtitle={subtitle}
                       key={item.id}
                     />

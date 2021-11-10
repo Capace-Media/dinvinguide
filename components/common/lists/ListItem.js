@@ -5,14 +5,13 @@ import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 
 const imageClasses = `transition-all opacity-60 group-hover:scale-105`;
-const ListItem = ({ data, last, increment, subtitle, inViewFn }) => {
+const ListItem = ({ data, last, increment, subtitle }) => {
   const { ref, inView } = useInView({ triggerOnce: true });
   useEffect(() => {
     if (inView && last) {
       increment();
-      inViewFn();
     }
-  }, [inView, increment, last, inViewFn]);
+  }, [inView, increment, last]);
   return (
     <li
       ref={last ? ref : null}
