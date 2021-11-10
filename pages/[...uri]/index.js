@@ -1,3 +1,4 @@
+import fetchPaths, { DRINK_PATHS } from '../../lib/fragments/paths';
 import {
   getAuthorData,
   getAuthorPaths,
@@ -104,17 +105,31 @@ const PagePostHandler = ({ routeType, data }) => {
 export default PagePostHandler;
 
 export const getStaticPaths = async () => {
+  const staticPaths = [
+    { params: { uri: ['recept'] } },
+    { params: { uri: ['skolor'] } },
+    { params: { uri: ['druvguiden'] } },
+    { params: { uri: ['vinguide', 'vinatlas'] } },
+    { params: { uri: ['fredrikschelin'] } },
+    { params: { uri: ['anders'] } },
+    { params: { uri: ['sofiaander'] } },
+    { params: { uri: ['magnus'] } },
+  ];
+  const dynamicPaths = await Promise.all([
+    fetchPaths('drinks'),
+    fetchPaths('drinktips'),
+    fetchPaths('recipes'),
+    fetchPaths('grapes'),
+  ]);
+  const paths = [
+    ...staticPaths,
+    ...dynamicPaths[0],
+    ...dynamicPaths[1],
+    ...dynamicPaths[2],
+    ...dynamicPaths[3],
+  ];
   return {
-    paths: [
-      { params: { uri: ['recept'] } },
-      { params: { uri: ['skolor'] } },
-      { params: { uri: ['druvguiden'] } },
-      { params: { uri: ['vinguide', 'vinatlas'] } },
-      { params: { uri: ['fredrikschelin'] } },
-      { params: { uri: ['anders'] } },
-      { params: { uri: ['sofiaander'] } },
-      { params: { uri: ['magnus'] } },
-    ],
+    paths,
     fallback: 'blocking',
   };
 };
