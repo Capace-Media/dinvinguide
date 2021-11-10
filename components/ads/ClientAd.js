@@ -16,21 +16,21 @@ const ClientAd = React.memo(({ position, type = 'default' }) => {
 
   if (router.isPreview) {
     return (
-      <div className='flex items-center justify-center h-72 md:h-64 row contain'>
+      <div className='flex items-center justify-center h-72 md:h-52 contain'>
         No ads during preview
       </div>
     );
   }
   if (!data) {
     return (
-      <div className='flex items-center justify-center h-72 md:h-64 row contain'>
+      <div className='flex items-center justify-center h-72 md:h-52 contain'>
         Loading...
       </div>
     );
   }
   return (
     <>
-      <div className='flex items-center justify-center h-72 md:h-64 row contain'>
+      <div className='flex items-center justify-center h-64 max-w-4xl mx-auto md:h-52 contain'>
         <a
           href={data.href}
           target='_blank'
