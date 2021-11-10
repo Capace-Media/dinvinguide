@@ -11,7 +11,7 @@ const Toplist = ({ data, ads }) => {
     ...data.fallbackDrinks,
   ];
   array.splice(3, 0, {
-    node: { ad: true, component: <ClientAd position='top' /> },
+    node: { ad: true, component: <ClientAd position='mid' type='dl' /> },
   });
 
   let num = 0;

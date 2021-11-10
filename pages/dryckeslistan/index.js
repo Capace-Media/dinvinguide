@@ -19,7 +19,7 @@ const ToplistsPage = ({ data }) => {
         <h1 className='text-brand-red'>Topplistor</h1>
       </div>
       <div className='mb-5'>
-        <ClientAd position='top' />
+        <ClientAd position='top' type='dl' />
       </div>
       <div className='grid gap-10 lg:grid-cols-4 contain-md row'>
         {toplists.map(

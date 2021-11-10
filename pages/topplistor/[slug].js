@@ -16,6 +16,7 @@ const SingleToplistPage = ({ data }) => {
       <PageIntro
         title={toplist.toplist.title}
         ad
+        adType='dl'
         crumbs={[
           { href: '/dryckeslistan', text: 'Topplistor' },
           {

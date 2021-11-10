@@ -5,7 +5,7 @@ import OldContent from '../common/content/OldContent';
 import PageIntro from '../common/content/PageIntro';
 
 const PageTemplate = ({ data }) => {
-  const { page, ads } = data;
+  const { page } = data;
   console.log(page);
 
   return (
@@ -14,7 +14,7 @@ const PageTemplate = ({ data }) => {
       <PageIntro
         image={page.featuredImage.node.mediaItemUrl}
         title={page.title}
-        ads={ads}
+        ad
         text={page.acf_posts.ingress}
         alt={
           page.featuredImage.node.altText
@@ -23,9 +23,7 @@ const PageTemplate = ({ data }) => {
         }
       />
 
-      {page.acf_posts.sektioner && (
-        <Blocks blocks={page.acf_posts.sektioner} ads={ads} />
-      )}
+      {page.acf_posts.sektioner && <Blocks blocks={page.acf_posts.sektioner} />}
       {page.content && <Content content={page.content} />}
       {page.acf_oldcontent && page.acf_oldcontent.oldContentAcf && (
         <OldContent content={page.acf_oldcontent.oldContentAcf} />

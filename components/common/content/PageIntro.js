@@ -4,7 +4,7 @@ import ClientAd from '../../ads/ClientAd';
 import Image from 'next/image';
 import Intro from './Intro';
 
-const PageIntro = ({ title, text, ad, crumbs, type, image, alt }) => {
+const PageIntro = ({ title, text, ad, crumbs, type, image, alt, adType }) => {
   return (
     <>
       {crumbs && <BreadCrumbs crumbs={crumbs} />}
@@ -20,7 +20,7 @@ const PageIntro = ({ title, text, ad, crumbs, type, image, alt }) => {
       </div>
       {ad && (
         <div className='mb-10'>
-          <ClientAd position='top' />
+          <ClientAd position='top' type={adType} />
         </div>
       )}
     </>
