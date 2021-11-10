@@ -16,14 +16,23 @@ const handler = async (req, res) => {
   try {
     let ad, text, url;
     const response = await Client.query({ query: queryMap[position] });
-    const hasAd = response?.data?.acfOptionsAnnonsplaceringar?.acf_adsettings[
-      typeMap[position][0]
-    ][0]?.banner
-      ? true
-      : false;
+    const hasAd =
+      response?.data?.acfOptionsAnnonsplaceringar?.acf_adsettings &&
+      response?.data?.acfOptionsAnnonsplaceringar?.acf_adsettings[
+        typeMap[position][0]
+      ] &&
+      response?.data?.acfOptionsAnnonsplaceringar?.acf_adsettings[
+        typeMap[position][0]
+      ][0] &&
+      response?.data?.acfOptionsAnnonsplaceringar?.acf_adsettings[
+        typeMap[position][0]
+      ][0]?.banner
+        ? true
+        : false;
     console.log('HAS AD', hasAd);
 
     if (hasAd) {
+      console.log('REAL AD', ad);
       ad =
         response.data.acfOptionsAnnonsplaceringar.acf_adsettings[
           typeMap[position][0]
@@ -54,6 +63,8 @@ const handler = async (req, res) => {
       url =
         response.data.acfOptionsAnnonsplaceringar.acf_adsettings
           .fallbackannons[0].acf_ads.link;
+
+      console.log('FALLBACK', ad);
 
       res.status(200).json({
         desktop: ad.toppbanner.mediaItemUrl,

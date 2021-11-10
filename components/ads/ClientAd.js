@@ -8,12 +8,12 @@ const desktopContainer = `h-44 relative hidden md:block contain row text-center`
 const mobileContainer = `h-56 relative block md:hidden contain row text-center`;
 const ClientAd = React.memo(({ position, type = 'default' }) => {
   const router = useRouter();
-  console.log(router);
+
   const { data } = useSWR(
     !router.isPreview ? `/api/ads/${type}/${position}` : null,
     fetcher
   );
-  console.log(data);
+
   if (router.isPreview) {
     return <div className={`${desktopContainer}`}>No ads during preview</div>;
   }
