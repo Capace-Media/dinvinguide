@@ -11,7 +11,7 @@ const List = ({
   ads,
   filterKeys = ['title'],
   subtitle = null,
-
+  search = true,
   chunksize = columns * 5,
   heading = '',
 }) => {
@@ -53,6 +53,17 @@ const List = ({
       {heading && (
         <div className='text-center contain'>
           <h2 className='text-brand-red'>{heading}</h2>
+        </div>
+      )}
+      {search && (
+        <div className='text-center contain'>
+          <input
+            type='text'
+            value={searchInput}
+            placeholder='Sök...'
+            onChange={(e) => setSearchInput(e.target.value)}
+            className='w-full max-w-lg px-5 py-3 rounded-sm'
+          />
         </div>
       )}
 
