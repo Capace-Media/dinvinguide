@@ -13,17 +13,8 @@ const ExplorerPageTemplate = ({ data }) => {
       <NextSeo title={page.seo.title} description={page.seo.metaDesc} />
       {router.asPath.includes('druvguiden') ? (
         <GuideLayout>
-          <PageIntro
-            title={page.title}
-            text={page.acf_explorer.slogan}
-            ads={ads}
-          />
-          <List
-            array={array}
-            ads={ads}
-            subtitle={subtitle}
-            filterKeys={filterKeys}
-          />
+          <PageIntro title={page.title} text={page.acf_explorer.slogan} ad />
+          <List array={array} ads subtitle={subtitle} filterKeys={filterKeys} />
         </GuideLayout>
       ) : (
         <>
