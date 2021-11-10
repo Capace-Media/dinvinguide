@@ -6,7 +6,7 @@ import flattenObject from '../../utils/flattenObject';
 import { getAds } from '../../lib/api/ads';
 import wpFetch from '../../lib/wpFetch';
 
-const DryckesUtforskarenPage = ({ drycker, page, ads }) => {
+const DryckesUtforskarenPage = ({ drycker, page }) => {
   console.log(page);
   return (
     <>
@@ -20,7 +20,7 @@ const DryckesUtforskarenPage = ({ drycker, page, ads }) => {
         ]}
       />
 
-      <DrinkList ads={ads} drycker={drycker} />
+      <DrinkList drycker={drycker} />
     </>
   );
 };
@@ -31,15 +31,12 @@ export const getStaticProps = async () => {
   const resolved = await Promise.all([
     wpFetch(DRINKS, { batch: 200, type: 'drinks' }),
     wpFetch(PAGE_EXPLORER, { id: 'dryckesutforskaren' }),
-    getAds(),
   ]);
 
   return {
     props: {
       drycker: resolved[0],
       page: flattenObject(resolved[1].page),
-      ads: resolved[2],
     },
-    revalidate: 60,
   };
 };

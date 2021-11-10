@@ -1,8 +1,6 @@
 import Ad from '../../components/ads/Ad';
-import ClientAd from '../../components/ads/ClientAd';
 import ExplorerLinks from '../../components/common/explorer/explorerLinks';
 import { Fragment } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import Newsletter from '../../components/section/Newsletter';
 import dynamic from 'next/dynamic';
@@ -20,12 +18,11 @@ const ToplistsPage = ({ data }) => {
         <h1 className='text-brand-red'>Topplistor</h1>
       </div>
       <div className='mb-5'>
-        <ClientAd position='top' />
+        <Ad ads={ads} position='top' />
       </div>
       <div className='grid gap-10 lg:grid-cols-4 contain-md row'>
         {toplists.map(
           ({ toplist, currentDrinks, previousDrinks, fallbackDrinks }) => {
-            console.log('TOPLIST =>', toplist);
             return (
               <div key={toplist.uri} className='text-center'>
                 <Link href={toplist.uri}>
@@ -76,7 +73,6 @@ export const getStaticProps = async () => {
         ads: resolved[0],
         toplists: resolved[1],
       },
-      revalidate: 60,
     },
   };
 };

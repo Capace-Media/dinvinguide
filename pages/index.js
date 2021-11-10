@@ -8,7 +8,7 @@ import { getAds } from '../lib/api/ads';
 import { getFrontPageData } from '../lib/api/frontPage';
 
 export default function Home({ data }) {
-  const { ads, page } = data;
+  const { page } = data;
   const { seo } = page.page;
 
   return (
@@ -24,7 +24,7 @@ export default function Home({ data }) {
         </div>
         <PostBlocks items={page.second} />
         <div className='row'>
-          <ClientAd position='top' />
+          <ClientAd position='mid' />
         </div>
         <Newsletter />
       </div>
@@ -32,15 +32,13 @@ export default function Home({ data }) {
   );
 }
 export const getStaticProps = async () => {
-  const resolved = await Promise.all([getAds(), getFrontPageData()]);
+  const resolved = await Promise.all([getFrontPageData()]);
 
   return {
     props: {
       data: {
-        ads: resolved[0],
-        page: resolved[1],
+        page: resolved[0],
       },
     },
-    revalidate: 60,
   };
 };

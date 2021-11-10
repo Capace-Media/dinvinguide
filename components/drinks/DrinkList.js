@@ -5,7 +5,7 @@ import ClientAd from '../ads/ClientAd';
 import DrinkListItem from './DrinkListItem';
 import flattenObject from '../../utils/flattenObject';
 
-const DrinkList = ({ drycker, ads }) => {
+const DrinkList = ({ drycker }) => {
   const [maxNodes, setMaxNodes] = useState(23);
   const [searchInput, setSearchInput] = useState('');
   const [filterString, setFilterString] = useState('');

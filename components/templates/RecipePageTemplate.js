@@ -1,6 +1,5 @@
 import Ad from '../ads/Ad';
 import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
-import ClientAd from '../ads/ClientAd';
 import DrinkListItem from '../drinks/DrinkListItem';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
@@ -8,7 +7,7 @@ import parse from 'html-react-parser';
 import { useState } from 'react';
 
 const RecipePageTemplate = ({ data }) => {
-  const { page: recipe } = data;
+  const { page: recipe, ads } = data;
 
   const [portions, setPortions] = useState(
     parseInt(recipe.acf_recipe.antalPortioner)
@@ -54,7 +53,7 @@ const RecipePageTemplate = ({ data }) => {
           { text: recipe.title, href: recipe.slug, current: true },
         ]}
       />
-      <ClientAd position='top' />
+      <Ad ads={ads} position='top' />
 
       <div className='mx-auto max-w-7xl w-[90%] recipe-layout row'>
         <div

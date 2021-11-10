@@ -6,7 +6,7 @@ import PageIntro from '../../components/common/content/PageIntro';
 import { getAds } from '../../lib/api/ads';
 import { useState } from 'react';
 import wpFetch from '../../lib/wpFetch';
-const DryckesTipsPage = ({ ads, drinks }) => {
+const DryckesTipsPage = ({ drinks }) => {
   const [searchInput, setSearchInput] = useState('');
   return (
     <>

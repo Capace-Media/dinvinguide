@@ -366,6 +366,5 @@ export const getStaticProps = async () => {
         authors,
       },
     },
-    revalidate: 60,
   };
 };

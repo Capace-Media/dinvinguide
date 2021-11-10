@@ -9,13 +9,13 @@ import { getAds } from '../../lib/api/ads';
 import slugify from 'slugify';
 
 const SingleToplistPage = ({ data }) => {
-  const { ads, toplist } = data;
+  const { toplist } = data;
 
   return (
     <Fragment>
       <PageIntro
         title={toplist.toplist.title}
-        ads={ads}
+        ad
         crumbs={[
           { href: '/dryckeslistan', text: 'Topplistor' },
           {
@@ -49,8 +49,8 @@ export const getStaticProps = async ({ params }) => {
 
   const isArray = Array.isArray(slugArray);
 
-  const resolved = await Promise.all([getAds(), getToplists()]);
-  const toplist = resolved[1].filter((toplist) => {
+  const resolved = await Promise.all([getToplists()]);
+  const toplist = resolved[0].filter((toplist) => {
     const isEco = toplist.toplist.acf_toplists.ekologiskt;
     const toplistType = slugify(
       toplist.toplist.acf_toplists.dryckestyper[0].name.toLowerCase()
@@ -58,7 +58,6 @@ export const getStaticProps = async ({ params }) => {
     const toplistPackaging = slugify(
       toplist.toplist.acf_toplists.forpackningar[0].name.toLowerCase()
     );
-    //TODO: Slugify everything to make sure it matches
 
     if (isArray) {
       if (
@@ -81,10 +80,8 @@ export const getStaticProps = async ({ params }) => {
   return {
     props: {
       data: {
-        ads: resolved[0],
         toplist: toplist[0],
       },
     },
-    revalidate: 60,
   };
 };
