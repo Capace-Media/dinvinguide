@@ -5,7 +5,11 @@ import MedalThree from '../../public/images/no3.png';
 import MedalTwo from '../../public/images/no2.png';
 import ReactHtmlParser from 'react-html-parser';
 import dayjs from 'dayjs';
+import { useRouter } from 'next/dist/client/router';
 const ToplistItem = ({ data, index }) => {
+  const router = useRouter();
+  const isDebug = router?.query?.debug ? true : false;
+
   return (
     <div className='flex flex-col grid-cols-2 gap-10 lg:grid contain-sm'>
       <div
@@ -112,6 +116,12 @@ const ToplistItem = ({ data, index }) => {
                       </strong>
                     </div>
                   </div>
+                  {isDebug && (
+                    <p>
+                      {dayjs(data.date).format('YYYY-MM-DD')} -{' '}
+                      {data.acf_drinks.betyg}
+                    </p>
+                  )}
                 </a>
               </Link>
             </>
