@@ -134,7 +134,7 @@ const RecipePageTemplate = ({ data }) => {
                       {part.ingredienser.map((i) => (
                         <li key={i.namn} className='grid grid-cols-2'>
                           <span>{`${renderAmount(i.antal)} ${
-                            i.enhet.name
+                            i?.enhet?.name
                           }`}</span>
                           <span>{i.namn}</span>
                         </li>

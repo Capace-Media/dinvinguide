@@ -50,10 +50,16 @@ const ToplistsPage = ({ data }) => {
                     data={previousDrinks[0].node}
                   />
                 ) : (
-                  <ToplistPuff
-                    toplistUri={toplist.uri}
-                    data={fallbackDrinks[0].node}
-                  />
+                  <>
+                    {fallbackDrinks &&
+                      fallbackDrinks[0] &&
+                      fallbackDrinks[0].node && (
+                        <ToplistPuff
+                          toplistUri={toplist.uri}
+                          data={fallbackDrinks[0].node}
+                        />
+                      )}
+                  </>
                 )}
               </div>
             );
