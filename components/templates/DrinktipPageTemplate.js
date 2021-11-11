@@ -9,7 +9,7 @@ import dayjs from 'dayjs';
 import parse from 'html-react-parser';
 
 const DrinktipPageTemplate = ({ data }) => {
-  const { page: drink, ads } = data;
+  const { page: drink } = data;
   const details = [
     {
       label: 'Betyg',

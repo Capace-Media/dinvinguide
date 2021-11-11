@@ -12,7 +12,6 @@ const useSearch = () => {
   const [searchInput, setSearchInput] = useState('');
 
   const search = async () => {
-    console.log(searchInput, type, hasNextPage, cursor);
     if (searchInput && searchInput.length > 2) {
       if (hasNextPage) {
         setIsSearching(true);
@@ -26,7 +25,7 @@ const useSearch = () => {
           }),
         });
         const json = await res.json();
-        console.log(json);
+
         setHasNextPage(json.data.pageInfo.hasNextPage);
         setCursor(json.data.pageInfo.endCursor);
         setResults([...results, ...json.data.edges]);

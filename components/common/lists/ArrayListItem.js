@@ -9,7 +9,6 @@ const ArrayListItem = ({ data, loadMore, last }) => {
   const { ref, inView } = useInView({ triggerOnce: true });
   useEffect(() => {
     if (inView && last) {
-      console.log('LOAD MORE ITEMS');
       loadMore();
     }
   }, [inView, loadMore, last]);

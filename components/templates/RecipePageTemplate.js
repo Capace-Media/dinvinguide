@@ -43,7 +43,7 @@ const RecipePageTemplate = ({ data }) => {
       }
     }
   };
-  console.log(recipe.seo);
+
   return (
     <>
       <SEO

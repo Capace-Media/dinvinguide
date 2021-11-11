@@ -1,7 +1,6 @@
 import { NextSeo } from 'next-seo';
 
 const SEO = ({ title, description, image }) => {
-  console.log('SEO =>', title, description, image);
   return (
     <NextSeo
       title={title}

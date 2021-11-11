@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 export default function PostBlocks({ items }) {
-  console.log(items);
   const containerClasses = `group h-56   relative flex items-start justify-center bg-black p-5 overflow-hidden `;
   const contentClasses = `relative z-20 border-l-4 border-brand-bronze px-2 w-full`;
   const titleClasses = `text-lg uppercase font-semibold`;

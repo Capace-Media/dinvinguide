@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import MedalImage from '../../public/images/no1.png';
-import dayjs from 'dayjs';
+
 const ToplistPuff = ({ data, toplistUri }) => {
   return (
     <div className='relative'>

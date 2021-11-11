@@ -1,8 +1,9 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
+
 import Ad from '../ads/Ad';
 import GrapeListItem from './GrapeListItem';
+import Image from 'next/image';
+import Link from 'next/link';
 const increment = 16;
 const GrapeList = ({ grapes, ads }) => {
   const [nodeCount, setNodeCount] = useState(increment);
@@ -15,7 +16,6 @@ const GrapeList = ({ grapes, ads }) => {
   useEffect(() => {
     let filterTimeout;
     filterTimeout = setTimeout(() => {
-      console.log('Timeout Triggered!');
       setFilterString(searchInput.toLowerCase());
       // setMaxCount(27);
     }, 300);
