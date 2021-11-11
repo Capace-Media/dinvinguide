@@ -6,7 +6,6 @@ import SEO from '../common/SEO';
 
 const PageTemplate = ({ data }) => {
   const { page } = data;
-  console.log(page);
 
   return (
     <>

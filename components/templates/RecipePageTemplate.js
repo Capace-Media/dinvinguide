@@ -1,9 +1,7 @@
-import Ad from '../ads/Ad';
 import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import ClientAd from '../ads/ClientAd';
 import DrinkListItem from '../drinks/DrinkListItem';
 import Image from 'next/image';
-import { NextSeo } from 'next-seo';
 import SEO from '../common/SEO';
 import parse from 'html-react-parser';
 import { useState } from 'react';

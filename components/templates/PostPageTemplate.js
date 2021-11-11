@@ -5,7 +5,6 @@ import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import Image from 'next/dist/client/image';
 import Link from 'next/dist/client/link';
 import List from '../common/lists/List';
-import { NextSeo } from 'next-seo';
 import OldContent from '../common/content/OldContent';
 import SEO from '../common/SEO';
 import parse from 'html-react-parser';

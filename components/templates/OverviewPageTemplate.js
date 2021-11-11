@@ -4,7 +4,7 @@ import PageIntro from '../common/content/PageIntro';
 import SEO from '../common/SEO';
 
 const OverviewPageTemplate = ({ data }) => {
-  const { page, ads } = data;
+  const { page } = data;
   return (
     <>
       <SEO title={page?.seo?.title} description={page?.seo?.metaDesc} />

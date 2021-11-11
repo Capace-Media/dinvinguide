@@ -1,11 +1,9 @@
 import 'dayjs/locale/sv';
 
-import Ad from '../ads/Ad';
 import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import ClientAd from '../ads/ClientAd';
 import ExplorerLinks from '../common/explorer/explorerLinks';
 import Image from 'next/image';
-import { NextSeo } from 'next-seo';
 import SEO from '../common/SEO';
 import dayjs from 'dayjs';
 import parse from 'html-react-parser';
