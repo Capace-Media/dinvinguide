@@ -1,4 +1,3 @@
-import Ad from '../../components/ads/Ad';
 import ClientAd from '../../components/ads/ClientAd';
 import ExplorerLinks from '../../components/common/explorer/explorerLinks';
 import { Fragment } from 'react';
@@ -7,7 +6,6 @@ import Newsletter from '../../components/section/Newsletter';
 import { PAGE_SINGLE } from '../../lib/fragments/pages';
 import SEO from '../../components/common/SEO';
 import dynamic from 'next/dynamic';
-import { getAds } from '../../lib/api/ads';
 import { getToplists } from '../../lib/api/toplists';
 import wpFetch from '../../lib/wpFetch';
 

@@ -1,11 +1,8 @@
-import Ad from '../components/ads/Ad';
 import ClientAd from '../components/ads/ClientAd';
 import Featured from '../components/frontPage/Featured';
 import Newsletter from '../components/section/Newsletter';
-import { NextSeo } from 'next-seo';
 import PostBlocks from '../components/frontPage/PostBlocks';
 import SEO from '../components/common/SEO';
-import { getAds } from '../lib/api/ads';
 import { getFrontPageData } from '../lib/api/frontPage';
 
 export default function Home({ data }) {

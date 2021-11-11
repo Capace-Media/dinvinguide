@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { Client } from '../lib/apollo';
-import { SEARCH_ALL } from '../lib/fragments/search';
-
 const useSearch = () => {
   const [results, setResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -11,7 +8,7 @@ const useSearch = () => {
   const [type, setType] = useState('drinks');
   const [searchInput, setSearchInput] = useState('');
 
-  const search = async () => {
+  const search = useCallback(async () => {
     if (searchInput && searchInput.length > 2) {
       if (hasNextPage) {
         setIsSearching(true);
@@ -34,12 +31,12 @@ const useSearch = () => {
     } else {
       reset();
     }
-  };
-  const reset = () => {
+  }, [cursor, hasNextPage, reset, results, searchInput, type]);
+  const reset = useEffect(() => {
     setResults([]);
     setHasNextPage(true);
     setCursor('');
-  };
+  }, []);
   const changeType = (type) => {
     reset();
     setType(type);
@@ -51,10 +48,10 @@ const useSearch = () => {
       search();
     }, 300);
     return () => clearTimeout(searchTimeout);
-  }, [searchInput]);
+  }, [searchInput, search, reset]);
   useEffect(() => {
     search();
-  }, [type]);
+  }, [type, search]);
 
   return {
     results,

@@ -1,11 +1,8 @@
 import { getToplistPaths, getToplists } from '../../lib/api/toplists';
 
-import Ad from '../../components/ads/Ad';
 import { Fragment } from 'react';
 import PageIntro from '../../components/common/content/PageIntro';
 import Toplist from '../../components/toplists/Toplist';
-import ToplistItem from '../../components/toplists/ToplistItem';
-import { getAds } from '../../lib/api/ads';
 import slugify from 'slugify';
 
 const SingleToplistPage = ({ data }) => {

@@ -1,12 +1,10 @@
-import Ad from '../../components/ads/Ad';
-import ClientAd from '../../components/ads/ClientAd';
 import { DRINKTIPS } from '../../lib/fragments/drinks';
 import DrinktipsList from '../../components/drinkTips/DrinktipsList';
 import PageIntro from '../../components/common/content/PageIntro';
 import SEO from '../../components/common/SEO';
-import { getAds } from '../../lib/api/ads';
 import { useState } from 'react';
 import wpFetch from '../../lib/wpFetch';
+
 const DryckesTipsPage = ({ drinks }) => {
   const [searchInput, setSearchInput] = useState('');
   return (

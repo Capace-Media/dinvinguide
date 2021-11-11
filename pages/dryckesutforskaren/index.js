@@ -4,7 +4,6 @@ import { PAGE_EXPLORER } from '../../lib/fragments/pages';
 import PageIntro from '../../components/common/content/PageIntro';
 import SEO from '../../components/common/SEO';
 import flattenObject from '../../utils/flattenObject';
-import { getAds } from '../../lib/api/ads';
 import wpFetch from '../../lib/wpFetch';
 
 const DryckesUtforskarenPage = ({ drycker, page }) => {

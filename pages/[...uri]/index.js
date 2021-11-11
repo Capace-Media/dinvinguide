@@ -1,4 +1,3 @@
-import fetchPaths, { DRINK_PATHS } from '../../lib/fragments/paths';
 import {
   getAuthorData,
   getAuthorPaths,
@@ -15,8 +14,8 @@ import PageTemplate from '../../components/templates/PageTemplate';
 import PostPageTemplate from '../../components/templates/PostPageTemplate';
 import RecipePageTemplate from '../../components/templates/RecipePageTemplate';
 import dynamic from 'next/dynamic';
+import fetchPaths from '../../lib/fragments/paths';
 import fetchTemplate from '../../lib/util/fetchTemplate';
-import { getAds } from '../../lib/api/ads';
 import resolveTemplate from '../../lib/resolveTemplate';
 import { useRouter } from 'next/dist/client/router';
 
@@ -162,7 +161,7 @@ export const getStaticProps = async (context) => {
 
     const template = content.template;
     const contentType = content.contentType;
-    console.log('CONTENT =>', content);
+
     type = contentType;
 
     //Fetch correct data for the template, real or preview
@@ -189,7 +188,7 @@ export const getStaticProps = async (context) => {
       notFound: true,
     };
   }
-  console.log(data);
+
   return {
     props: {
       routeType: type,
