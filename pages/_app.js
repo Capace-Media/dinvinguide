@@ -13,6 +13,12 @@ function MyApp({ Component, pageProps }) {
       <DefaultSeo
         titleTemplate='%s DinVinguide'
         defaultTitle='DinVinguide - Din guide om vin'
+        openGraph={{
+          type: 'website',
+          locale: 'sv_SE',
+          url: 'https://dinvinguide.se',
+          site_name: 'DinVinguide',
+        }}
       />
       <Component {...pageProps} />
     </Layout>

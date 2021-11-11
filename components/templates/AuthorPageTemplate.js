@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import List from '../common/lists/List';
 import { NextSeo } from 'next-seo';
+import SEO from '../common/SEO';
 import { useState } from 'react';
 
 const AuthorPageTemplate = ({ data }) => {
@@ -14,10 +15,12 @@ const AuthorPageTemplate = ({ data }) => {
   const postArray = posts.map(({ node: post }) => post);
   return (
     <>
-      <NextSeo
+      <SEO
         title={`${author.name} - Skribent - `}
         description={author.description}
+        image={author.acf_user.bild}
       />
+
       <BreadCrumbs
         crumbs={[
           { text: 'Skribenter', href: '/skribenter' },

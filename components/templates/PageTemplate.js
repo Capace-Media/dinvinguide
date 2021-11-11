@@ -1,8 +1,8 @@
 import Blocks from '../common/content/Blocks';
 import Content from '../common/content/content';
-import { NextSeo } from 'next-seo';
 import OldContent from '../common/content/OldContent';
 import PageIntro from '../common/content/PageIntro';
+import SEO from '../common/SEO';
 
 const PageTemplate = ({ data }) => {
   const { page } = data;
@@ -10,7 +10,7 @@ const PageTemplate = ({ data }) => {
 
   return (
     <>
-      <NextSeo title={page.seo.title} description={page.seo.metaDesc} />
+      <SEO title={page.seo.title} description={page.seo.metaDesc} />
       <PageIntro
         image={page.featuredImage.node.mediaItemUrl}
         title={page.title}

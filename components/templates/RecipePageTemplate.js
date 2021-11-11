@@ -4,6 +4,7 @@ import ClientAd from '../ads/ClientAd';
 import DrinkListItem from '../drinks/DrinkListItem';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
+import SEO from '../common/SEO';
 import parse from 'html-react-parser';
 import { useState } from 'react';
 
@@ -47,7 +48,11 @@ const RecipePageTemplate = ({ data }) => {
   console.log(recipe.seo);
   return (
     <>
-      <NextSeo title={recipe.seo.title} description={recipe.seo.metaDesc} />
+      <SEO
+        title={recipe.seo.title}
+        description={recipe.seo.metaDesc}
+        image={recipe.featuredImage.node}
+      />
       <BreadCrumbs
         crumbs={[
           { text: 'Recept', href: '/recept' },

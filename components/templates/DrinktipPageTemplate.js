@@ -6,6 +6,7 @@ import ClientAd from '../ads/ClientAd';
 import ExplorerLinks from '../common/explorer/explorerLinks';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
+import SEO from '../common/SEO';
 import dayjs from 'dayjs';
 import parse from 'html-react-parser';
 
@@ -30,8 +31,11 @@ const DrinktipPageTemplate = ({ data }) => {
   ];
   return (
     <>
-      <NextSeo title={drink.seo.title} description={drink.seo.metaDesc} />
-
+      <SEO
+        title={drink.seo.title}
+        description={drink.seo.metaDesc}
+        image={drink.featuredImage.node}
+      />
       <BreadCrumbs
         crumbs={[
           { text: 'Dryckestips', href: '/dryckestips' },

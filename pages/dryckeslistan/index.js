@@ -4,17 +4,24 @@ import ExplorerLinks from '../../components/common/explorer/explorerLinks';
 import { Fragment } from 'react';
 import Link from 'next/link';
 import Newsletter from '../../components/section/Newsletter';
+import { PAGE_SINGLE } from '../../lib/fragments/pages';
+import SEO from '../../components/common/SEO';
 import dynamic from 'next/dynamic';
 import { getAds } from '../../lib/api/ads';
 import { getToplists } from '../../lib/api/toplists';
+import wpFetch from '../../lib/wpFetch';
 
 const ToplistPuff = dynamic(() => import('../../components/toplists/Puff'));
 
 const ToplistsPage = ({ data }) => {
-  const { toplists } = data;
+  const { toplists, page } = data;
 
   return (
     <Fragment>
+      <SEO
+        title={page.page.seo.title}
+        description={page.page.seo.description}
+      />
       <div className='text-center row contain'>
         <h1 className='text-brand-red'>Topplistor</h1>
       </div>
@@ -66,11 +73,15 @@ const ToplistsPage = ({ data }) => {
 export default ToplistsPage;
 
 export const getStaticProps = async () => {
-  const resolved = await Promise.all([getToplists()]);
+  const resolved = await Promise.all([
+    getToplists(),
+    wpFetch(PAGE_SINGLE, { id: 'dryckeslistan' }),
+  ]);
 
   return {
     props: {
       data: {
+        page: resolved[1],
         toplists: resolved[0],
       },
     },

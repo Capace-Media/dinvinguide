@@ -6,11 +6,14 @@ import ClientAd from '../ads/ClientAd';
 import ExplorerLinks from '../common/explorer/explorerLinks';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
+import SEO from '../common/SEO';
 import dayjs from 'dayjs';
 import parse from 'html-react-parser';
 
 const DrinkPageTemplate = ({ data }) => {
   const { page: drink } = data;
+  const router = useRouter();
+  console.log(router);
   const details = [
     {
       label: 'Betyg',
@@ -25,7 +28,11 @@ const DrinkPageTemplate = ({ data }) => {
   ];
   return (
     <>
-      <NextSeo title={drink.seo.title} description={drink.seo.metaDesc} />
+      <SEO
+        title={drink.seo.title}
+        description={drink.seo.metaDesc}
+        image={drink.featuredImage.node}
+      />
       <BreadCrumbs
         crumbs={[
           { text: 'Drycker', href: '/dryckesutforskaren' },

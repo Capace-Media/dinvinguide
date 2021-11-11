@@ -1,11 +1,14 @@
 import ExplorerLinks from '../../components/common/explorer/explorerLinks';
 import GuideLayout from '../../components/layout/GuideLayout';
-import Link from 'next/link';
+import SEO from '../../components/common/SEO';
 const GuidePage = () => {
   return (
-    <GuideLayout>
-      <ExplorerLinks />
-    </GuideLayout>
+    <>
+      <SEO title='Guider' description='Guider på DinVinguide.' />
+      <GuideLayout>
+        <ExplorerLinks />
+      </GuideLayout>
+    </>
   );
 };
 

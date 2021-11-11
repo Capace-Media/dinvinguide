@@ -4,6 +4,7 @@ import Featured from '../components/frontPage/Featured';
 import Newsletter from '../components/section/Newsletter';
 import { NextSeo } from 'next-seo';
 import PostBlocks from '../components/frontPage/PostBlocks';
+import SEO from '../components/common/SEO';
 import { getAds } from '../lib/api/ads';
 import { getFrontPageData } from '../lib/api/frontPage';
 
@@ -13,7 +14,16 @@ export default function Home({ data }) {
 
   return (
     <>
-      <NextSeo title={seo.title} description={seo.description} />
+      <SEO
+        title={seo.title}
+        description={seo.description}
+        image={{
+          mediaItemUrl:
+            'https://dinvinguide.vercel.app/images/dinvinguide-image.png',
+          mediaDetails: { width: 763, height: 454 },
+          altText: 'DinVinguide.se',
+        }}
+      />
       <div className='mb-5'>
         <div className='row'>
           <ClientAd position='top' />

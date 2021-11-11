@@ -1,13 +1,18 @@
 import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import Image from 'next/dist/client/image';
 import Link from 'next/link';
-import { NextSeo } from 'next-seo';
+import SEO from '../common/SEO';
 import Text from '../acf/Text';
+
 const GrapePageTemplate = ({ data }) => {
   const { page } = data;
   return (
     <>
-      <NextSeo title={page.seo.title} description={page.seo.metaDesc} />
+      <SEO
+        title={page.seo.title}
+        description={page.seo.metaDesc}
+        image={page.featuredImage.node}
+      />
       <BreadCrumbs
         crumbs={[
           { text: 'Druvor', href: '/druvguiden' },

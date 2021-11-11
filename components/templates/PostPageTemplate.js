@@ -7,6 +7,7 @@ import Link from 'next/dist/client/link';
 import List from '../common/lists/List';
 import { NextSeo } from 'next-seo';
 import OldContent from '../common/content/OldContent';
+import SEO from '../common/SEO';
 import parse from 'html-react-parser';
 
 const PostPageTemplate = ({ data }) => {
@@ -54,7 +55,12 @@ const PostPageTemplate = ({ data }) => {
   });
   return (
     <>
-      <NextSeo title={page.seo.title} description={page.seo.metaDesc} />
+      <SEO
+        title={page.seo.title}
+        description={page.seo.metaDesc}
+        image={page.featuredImage.node}
+      />
+
       <article>
         <BreadCrumbs
           crumbs={[
