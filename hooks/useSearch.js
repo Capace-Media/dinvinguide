@@ -7,8 +7,12 @@ const useSearch = () => {
   const [hasNextPage, setHasNextPage] = useState(true);
   const [type, setType] = useState('drinks');
   const [searchInput, setSearchInput] = useState('');
-
-  const search = useCallback(async () => {
+  const reset = () => {
+    setResults([]);
+    setHasNextPage(true);
+    setCursor('');
+  };
+  const search = async () => {
     if (searchInput && searchInput.length > 2) {
       if (hasNextPage) {
         setIsSearching(true);
@@ -31,12 +35,8 @@ const useSearch = () => {
     } else {
       reset();
     }
-  }, [cursor, hasNextPage, reset, results, searchInput, type]);
-  const reset = useEffect(() => {
-    setResults([]);
-    setHasNextPage(true);
-    setCursor('');
-  }, []);
+  };
+
   const changeType = (type) => {
     reset();
     setType(type);
@@ -48,10 +48,10 @@ const useSearch = () => {
       search();
     }, 300);
     return () => clearTimeout(searchTimeout);
-  }, [searchInput, search, reset]);
+  }, [searchInput]);
   useEffect(() => {
     search();
-  }, [type, search]);
+  }, [type]);
 
   return {
     results,
