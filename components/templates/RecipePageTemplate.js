@@ -49,9 +49,9 @@ const RecipePageTemplate = ({ data }) => {
   return (
     <>
       <SEO
-        title={recipe.seo.title}
-        description={recipe.seo.metaDesc}
-        image={recipe.featuredImage.node}
+        title={recipe?.seo?.title}
+        description={recipe?.seo?.metaDesc}
+        image={recipe?.featuredImage?.node}
       />
       <BreadCrumbs
         crumbs={[

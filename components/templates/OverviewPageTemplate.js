@@ -7,7 +7,7 @@ const OverviewPageTemplate = ({ data }) => {
   const { page, ads } = data;
   return (
     <>
-      <SEO title={page.seo.title} description={page.seo.metaDesc} />
+      <SEO title={page?.seo?.title} description={page?.seo?.metaDesc} />
 
       <GuideLayout>
         <PageIntro title={page.title} ad text={page.acf_overviewPage.ingress} />

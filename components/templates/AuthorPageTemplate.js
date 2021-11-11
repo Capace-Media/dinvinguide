@@ -16,9 +16,9 @@ const AuthorPageTemplate = ({ data }) => {
   return (
     <>
       <SEO
-        title={`${author.name} - Skribent - `}
-        description={author.description}
-        image={author.acf_user.bild}
+        title={`${author?.name} - Skribent - `}
+        description={author?.description}
+        image={author?.acf_user?.bild}
       />
 
       <BreadCrumbs

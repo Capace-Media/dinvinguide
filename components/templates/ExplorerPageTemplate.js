@@ -11,7 +11,7 @@ const ExplorerPageTemplate = ({ data }) => {
 
   return (
     <>
-      <SEO title={page.seo.title} description={page.seo.metaDesc} />
+      <SEO title={page?.seo?.title} description={page?.seo?.metaDesc} />
       {router.asPath.includes('druvguiden') ? (
         <GuideLayout>
           <PageIntro title={page.title} text={page.acf_explorer.slogan} ad />

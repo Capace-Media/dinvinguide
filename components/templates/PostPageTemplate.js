@@ -56,9 +56,9 @@ const PostPageTemplate = ({ data }) => {
   return (
     <>
       <SEO
-        title={page.seo.title}
-        description={page.seo.metaDesc}
-        image={page.featuredImage.node}
+        title={page?.seo?.title}
+        description={page?.seo?.metaDesc}
+        image={page?.featuredImage?.node}
       />
 
       <article>

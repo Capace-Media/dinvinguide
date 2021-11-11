@@ -10,7 +10,7 @@ const PageTemplate = ({ data }) => {
 
   return (
     <>
-      <SEO title={page.seo.title} description={page.seo.metaDesc} />
+      <SEO title={page?.seo?.title} description={page?.seo?.metaDesc} />
       <PageIntro
         image={page.featuredImage.node.mediaItemUrl}
         title={page.title}

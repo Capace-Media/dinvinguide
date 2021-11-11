@@ -32,9 +32,9 @@ const DrinktipPageTemplate = ({ data }) => {
   return (
     <>
       <SEO
-        title={drink.seo.title}
-        description={drink.seo.metaDesc}
-        image={drink.featuredImage.node}
+        title={drink?.seo?.title}
+        description={drink?.seo?.metaDesc}
+        image={drink?.featuredImage?.node}
       />
       <BreadCrumbs
         crumbs={[

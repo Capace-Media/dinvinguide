@@ -9,9 +9,9 @@ const GrapePageTemplate = ({ data }) => {
   return (
     <>
       <SEO
-        title={page.seo.title}
-        description={page.seo.metaDesc}
-        image={page.featuredImage.node}
+        title={page?.seo?.title}
+        description={page?.seo?.metaDesc}
+        image={page?.featuredImage?.node}
       />
       <BreadCrumbs
         crumbs={[
