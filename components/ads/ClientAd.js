@@ -24,7 +24,10 @@ const ClientAd = React.memo(({ position, type = 'default' }) => {
   if (!data) {
     return (
       <div className='flex items-center justify-center h-72 md:h-52 contain'>
-        Loading...
+        <span className='flex items-center space-x-3'>
+          <figure className='w-6 h-6 border-2 rounded-full border-brand-red/40 border-t-brand-red animate-spin' />
+          <p>Hämtar annons</p>
+        </span>
       </div>
     );
   }
