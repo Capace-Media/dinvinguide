@@ -9,7 +9,7 @@ import { useRouter } from 'next/dist/client/router';
 const ToplistItem = ({ data, index }) => {
   const router = useRouter();
   const isDebug = router?.query?.debug ? true : false;
-  console.log(isDebug);
+
   return (
     <div className='flex flex-col grid-cols-2 gap-10 lg:grid contain-sm'>
       <div
