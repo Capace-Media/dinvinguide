@@ -39,11 +39,6 @@ export default function Newsletter() {
               Jag är över 25 år och accepterar mailutskick
             </button>
           </form>
-          <Script
-            strategy='afterInteractive'
-            type='text/javascript'
-            src='//mailerlite.com/js/w/webforms.js?v2'
-          />
         </div>
       </div>
       <div className='relative h-96'>
