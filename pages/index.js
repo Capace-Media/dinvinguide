@@ -13,7 +13,7 @@ export default function Home({ data }) {
     <>
       <SEO
         title={seo.title}
-        description={seo.description}
+        description={seo.metaDesc}
         image={{
           mediaItemUrl:
             'https://dinvinguide.vercel.app/images/dinvinguide-image.png',

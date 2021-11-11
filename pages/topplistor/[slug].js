@@ -47,6 +47,7 @@ export const getStaticProps = async ({ params }) => {
   const isArray = Array.isArray(slugArray);
 
   const resolved = await Promise.all([getToplists()]);
+
   const toplist = resolved[0].filter((toplist) => {
     const isEco = toplist.toplist.acf_toplists.ekologiskt;
     const toplistType = slugify(
@@ -57,6 +58,11 @@ export const getStaticProps = async ({ params }) => {
     );
 
     if (isArray) {
+      if (params.slug.includes('julen')) {
+        if (toplistType.includes('glogg')) {
+          return true;
+        }
+      }
       if (
         toplistType.includes(slugArray[1].split(' ')[0]) &&
         toplistPackaging.includes(slugArray[0].split(' ')[0])
@@ -73,6 +79,7 @@ export const getStaticProps = async ({ params }) => {
       }
     }
   });
+  console.log(toplist);
 
   return {
     props: {
