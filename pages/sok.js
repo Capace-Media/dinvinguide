@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import ExplorerLinks from '../components/common/explorer/explorerLinks';
 import PageIntro from '../components/common/content/PageIntro';
 import SearchResults from '../components/search/SearchResults';
 import useSearch from '../hooks/useSearch';
@@ -70,6 +71,7 @@ const SearchPage = () => {
         results={results}
         inViewFn={handleInView}
       />
+      <ExplorerLinks />
     </>
   );
 };
