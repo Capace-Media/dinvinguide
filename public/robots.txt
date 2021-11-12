@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://dinvinguide.se
+
+# Sitemaps
+Sitemap: https://dinvinguide.se/sitemap.xml
