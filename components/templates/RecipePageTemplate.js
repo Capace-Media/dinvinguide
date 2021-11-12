@@ -2,6 +2,7 @@ import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import ClientAd from '../ads/ClientAd';
 import DrinkListItem from '../drinks/DrinkListItem';
 import Image from 'next/image';
+import RecipePlaceholder from '../../public/images/recipe-placeholder.jpg';
 import SEO from '../common/SEO';
 import parse from 'html-react-parser';
 import { useState } from 'react';
@@ -64,7 +65,7 @@ const RecipePageTemplate = ({ data }) => {
           style={{ gridArea: 'img' }}
           className='relative w-full lg:w-[550px] aspect-w-16 aspect-h-10 bg-brand-red'
         >
-          {recipe.featuredImage && (
+          {recipe.featuredImage ? (
             <Image
               src={recipe.featuredImage.node.mediaItemUrl}
               layout='fill'
@@ -75,6 +76,14 @@ const RecipePageTemplate = ({ data }) => {
                   ? recipe.featuredImage.node.altText
                   : recipe.seo.title
               }
+            />
+          ) : (
+            <Image
+              src={RecipePlaceholder}
+              layout='fill'
+              objectFit='cover'
+              priority
+              alt={recipe.seo.title || recipe.title}
             />
           )}
         </div>
