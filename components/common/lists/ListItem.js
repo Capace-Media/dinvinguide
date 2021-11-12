@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import RecipePlaceholder from '../../../public/images/recipe-placeholder.jpg';
 import { useInView } from 'react-intersection-observer';
 
 const imageClasses = `transition-all opacity-60 group-hover:scale-105`;
@@ -19,7 +20,7 @@ const ListItem = ({ data, last, increment, subtitle }) => {
     >
       <Link href={data.uri}>
         <a className='relative block h-60'>
-          {data['featuredImage.node.mediaItemUrl'] && (
+          {data['featuredImage.node.mediaItemUrl'] ? (
             <Image
               src={data['featuredImage.node.mediaItemUrl']}
               layout='fill'
@@ -30,6 +31,14 @@ const ListItem = ({ data, last, increment, subtitle }) => {
                   ? data['featuredImage.node.altText']
                   : data.title
               }
+            />
+          ) : (
+            <Image
+              src={RecipePlaceholder}
+              layout='fill'
+              objectFit='cover'
+              className={`${imageClasses}`}
+              alt={data.title}
             />
           )}
 
