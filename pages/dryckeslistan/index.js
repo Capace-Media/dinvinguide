@@ -26,7 +26,7 @@ const ToplistsPage = ({ data }) => {
       <div className='mb-5'>
         <ClientAd position='top' type='dl' />
       </div>
-      <div className='grid gap-10 lg:grid-cols-4 contain-md row'>
+      <div className='grid gap-10 md:grid-cols-2 lg:grid-cols-4 contain-md row'>
         {toplists.map(
           ({ toplist, currentDrinks, previousDrinks, fallbackDrinks }) => {
             return (
