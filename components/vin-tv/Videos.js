@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import Ad from '../ads/Ad';
+import ClientAd from '../ads/ClientAd';
 import Image from 'next/image';
 import Player from './Player';
 import VideoCard from './VideoCard';
@@ -86,7 +87,7 @@ const Videos = ({ episodes, settings }) => {
                       handlePlaylist={handlePlaylist}
                     />
                     <li className='col-span-full row'>
-                      <Ad ads={ads} position='mid' />
+                      <ClientAd position='mid' />
                     </li>
                   </>
                 );
