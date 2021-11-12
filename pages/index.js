@@ -15,8 +15,7 @@ export default function Home({ data }) {
         title={seo.title}
         description={seo.metaDesc}
         image={{
-          mediaItemUrl:
-            'https://dinvinguide.vercel.app/images/dinvinguide-image.png',
+          mediaItemUrl: 'https://dinvinguide.se/images/dinvinguide-image.png',
           mediaDetails: { width: 763, height: 454 },
           altText: 'DinVinguide.se',
         }}

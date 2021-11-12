@@ -8,10 +8,6 @@ module.exports = {
       },
     ];
   },
-  i18n: {
-    locales: ['sv'],
-    defaultLocale: 'sv',
-  },
   swcMinify: true,
   images: {
     domains: [process.env.CMS_BASE_URL, 'i.ytimg.com'],
