@@ -159,7 +159,7 @@ const RecipePageTemplate = ({ data }) => {
           style={{ gridArea: 'instructions' }}
           className='mt-10 lg:p-10 rich-text lg:mt-0'
         >
-          {parse(recipe.acf_recipe.processen)}
+          {recipe.acf_recipe.processen && parse(recipe.acf_recipe.processen)}
         </div>
       </div>
       {recipe?.acf_recipe?.passandeDrycker?.length > 0 && (
