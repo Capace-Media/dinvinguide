@@ -8,7 +8,12 @@ module.exports = {
       },
       {
         source: '/dryckeslistan/recept/:path*',
-        destination: 'recept/:path*',
+        destination: '/recept/:path*',
+        permanent: true,
+      },
+      {
+        source: '/dryckeslistan/drycker/:path*',
+        destination: '/drycker/:path*',
         permanent: true,
       },
     ];
