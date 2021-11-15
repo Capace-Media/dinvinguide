@@ -28,6 +28,7 @@ const DrinkPageTemplate = ({ data }) => {
       value: dayjs(drink?.date).locale('sv').format('D MMMM, YYYY'),
     },
   ];
+
   return (
     <>
       <SEO
@@ -38,7 +39,7 @@ const DrinkPageTemplate = ({ data }) => {
       <BreadCrumbs
         crumbs={[
           { text: 'Drycker', href: '/dryckesutforskaren' },
-          { text: drink.title, href: '/' + drink.slug, current: true },
+          { text: drink.title, href: drink.uri, current: true },
         ]}
       />
       <div className='row'>

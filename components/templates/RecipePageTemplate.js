@@ -55,7 +55,7 @@ const RecipePageTemplate = ({ data }) => {
       <BreadCrumbs
         crumbs={[
           { text: 'Recept', href: '/recept' },
-          { text: recipe.title, href: '/recept/' + recipe.slug, current: true },
+          { text: recipe.title, href: recipe.uri, current: true },
         ]}
       />
       <ClientAd position='top' />
