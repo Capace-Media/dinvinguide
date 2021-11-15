@@ -17,7 +17,7 @@ const PostPageTemplate = ({ data }) => {
   page?.acf_posts?.flerBilder?.forEach((img) => {
     galleryImages.push(img.mediaItemUrl);
   });
-  page.acf_posts.sektioner
+  page.acf_posts?.sektioner
     .filter(
       (section) =>
         section.fieldGroupName.toLowerCase().includes('bild') &&
