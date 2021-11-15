@@ -6,6 +6,11 @@ module.exports = {
         destination: 'https://media.dinvinguide.se/wp-admin',
         permanent: true,
       },
+      {
+        source: '/dryckeslistan/recept/:path*',
+        destination: 'recept/:path*',
+        permanent: true,
+      },
     ];
   },
   swcMinify: true,

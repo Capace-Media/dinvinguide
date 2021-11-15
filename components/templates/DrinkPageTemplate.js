@@ -14,13 +14,18 @@ const DrinkPageTemplate = ({ data }) => {
   const details = [
     {
       label: 'Betyg',
-      value: drink.acf_drinks?.betyg ? `${drink.acf_drinks.betyg} / 100` : null,
+      value: drink?.acf_drinks?.betyg
+        ? `${drink.acf_drinks.betyg} / 100`
+        : null,
     },
-    { label: 'Ekologiskt', value: drink.acf_drinks?.ekologiskt ? 'Ja' : 'Nej' },
-    { label: 'Veganvin', value: drink.acf_drinks?.vagn ? 'Ja' : 'Nej' },
+    {
+      label: 'Ekologiskt',
+      value: drink?.acf_drinks?.ekologiskt ? 'Ja' : 'Nej',
+    },
+    { label: 'Veganvin', value: drink?.acf_drinks?.vagn ? 'Ja' : 'Nej' },
     {
       label: 'Publiceringsdatum',
-      value: dayjs(drink.date).locale('sv').format('D MMMM, YYYY'),
+      value: dayjs(drink?.date).locale('sv').format('D MMMM, YYYY'),
     },
   ];
   return (

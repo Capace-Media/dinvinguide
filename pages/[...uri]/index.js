@@ -158,6 +158,7 @@ export const getStaticProps = async (context) => {
   } else {
     //If not an author page, check the pagetemplate in order to do the correct query
     const content = await fetchTemplate(uri);
+
     if (!content) {
       return {
         notFound: true,
@@ -174,20 +175,35 @@ export const getStaticProps = async (context) => {
     //HANDLE DEFAULT TEMPLATE
     if (template === 'Default' || template === 'Recipe') {
       data = await resolveTemplate(template, type, uri, isPreview);
+      if (!data.page) {
+        return {
+          notFound: true,
+        };
+      }
     }
     //HANDLE OVERVIEW PAGE
     if (template === 'Översiktssida') {
       data = await resolveTemplate(template, type, uri, isPreview);
       type = 'Översiktssida';
+      if (!data.page) {
+        return {
+          notFound: true,
+        };
+      }
     }
 
     //HANDLE EXPLORER PAGE
     if (template === 'Utforskarsida') {
       data = await resolveTemplate(template, type, uri, isPreview);
       type = 'Utforskarsida';
+      if (!data.page) {
+        return {
+          notFound: true,
+        };
+      }
     }
   }
-
+  console.log('DATA =>', data);
   if (!data) {
     return {
       notFound: true,
