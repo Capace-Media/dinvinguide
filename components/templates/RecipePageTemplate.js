@@ -115,7 +115,7 @@ const RecipePageTemplate = ({ data }) => {
                 name='portions'
                 onChange={(e) => setPortions(e.target.value)}
               >
-                {availablePortions.map((portion) => {
+                {availablePortions?.map((portion) => {
                   return (
                     <option
                       key={portion}
@@ -132,7 +132,7 @@ const RecipePageTemplate = ({ data }) => {
           <ul className='p-5 space-y-4'>
             {recipe.acf_recipe &&
               recipe.acf_recipe.receptdelar &&
-              recipe.acf_recipe.receptdelar.map((part) => {
+              recipe.acf_recipe?.receptdelar?.map((part) => {
                 return (
                   <li
                     className='pb-5 border-b-2 border-brand-bronze'
@@ -140,7 +140,7 @@ const RecipePageTemplate = ({ data }) => {
                   >
                     <strong>{part.rubrik}</strong>
                     <ul className='mt-3 space-y-2'>
-                      {part.ingredienser.map((i) => (
+                      {part.ingredienser?.map((i) => (
                         <li key={i.namn} className='grid grid-cols-2'>
                           <span>{`${renderAmount(i.antal)} ${
                             i?.enhet?.name

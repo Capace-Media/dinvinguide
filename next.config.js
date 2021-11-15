@@ -16,6 +16,11 @@ module.exports = {
         destination: '/drycker/:path*',
         permanent: true,
       },
+      {
+        source: '/feed/:path*',
+        destination: '/',
+        permanent: true,
+      },
     ];
   },
   swcMinify: true,
