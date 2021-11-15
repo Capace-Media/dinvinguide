@@ -11,12 +11,12 @@ const PageTemplate = ({ data }) => {
     <>
       <SEO title={page?.seo?.title} description={page?.seo?.metaDesc} />
       <PageIntro
-        image={page.featuredImage.node.mediaItemUrl}
+        image={page?.featuredImage?.node?.mediaItemUrl}
         title={page.title}
         ad
         text={page.acf_posts.ingress}
         alt={
-          page.featuredImage.node.altText
+          page.featuredImage?.node?.altText
             ? page.featuredImage.node.altText
             : page.title
         }
