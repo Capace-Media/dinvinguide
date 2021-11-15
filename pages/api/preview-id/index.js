@@ -1,5 +1,8 @@
+import { DRINKTIP_IDCHECK, DRINK_IDCHECK } from '../../../lib/fragments/drinks';
+
 import { ARTICLE_IDCHECK } from '../../../lib/fragments/articles';
 import { GRAPE_IDCHECK } from '../../../lib/fragments/grapes';
+import { PAGE_IDCHECK } from '../../../lib/fragments/pages';
 import { RECIPE_IDCHECK } from '../../../lib/fragments/recipes';
 import wpFetch from '../../../lib/wpFetch';
 
@@ -7,6 +10,9 @@ const queryMap = {
   grape: { query: GRAPE_IDCHECK, label: 'grape' },
   post: { query: ARTICLE_IDCHECK, label: 'post' },
   recipe: { query: RECIPE_IDCHECK, label: 'recipe' },
+  page: { query: PAGE_IDCHECK, label: 'page' },
+  drink: { query: DRINK_IDCHECK, label: 'drink' },
+  drinktip: { query: DRINKTIP_IDCHECK, label: 'drinktip' },
 };
 
 const handler = async (req, res) => {
