@@ -23,7 +23,6 @@ function MyApp({ Component, pageProps }) {
         `}
       </Script>
       <DefaultSeo
-        titleTemplate='%s DinVinguide'
         defaultTitle='DinVinguide - Din guide om vin'
         openGraph={{
           type: 'website',
