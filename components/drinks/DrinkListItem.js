@@ -35,9 +35,6 @@ const DrinkListItem = React.memo(({ dryck, loadMore, last }) => {
         </figure>
       </div>
       <div className='flex flex-col justify-center'>
-        <small className='text-xs font-semibold uppercase lg:text-xs'>
-          Betyg {dryck.acf_drinks.betyg}
-        </small>
         <Link href={dryck.uri}>
           <a>
             <h3 className='mb-1 text-sm text-brand-red lg:text-base'>
