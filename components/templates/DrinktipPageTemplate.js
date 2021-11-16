@@ -12,12 +12,6 @@ const DrinktipPageTemplate = ({ data }) => {
   const { page: drink } = data;
   const details = [
     {
-      label: 'Betyg',
-      value: drink.acf_dryckestips?.betyg
-        ? `${drink.acf_dryckestips.betyg} / 100`
-        : null,
-    },
-    {
       label: 'Ekologiskt',
       value: drink.acf_dryckestips?.ekologiskt ? 'Ja' : 'Nej',
     },
