@@ -10,7 +10,7 @@ export default function Layout({ children }) {
   const router = useRouter();
   const handleExitPreview = async () => {
     const res = await fetch('/api/preview/exit');
-    window.location.reload();
+    window.location.replace('/');
   };
 
   return (
