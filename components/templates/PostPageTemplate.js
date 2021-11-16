@@ -140,7 +140,7 @@ const PostPageTemplate = ({ data }) => {
             {page.author.node.name}
           </h3>
           <p className='text-base'>
-            {page.author.node.acf_user.kortBeskrivning}
+            {page.author?.node?.acf_user?.kortBeskrivning}
           </p>
           <Link href={`/${page.author.node.nicename}`}>
             <a className='inline-block mt-4 text-brand-red'>

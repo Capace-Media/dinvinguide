@@ -1,4 +1,11 @@
+import {
+  PAGE_EXPLORER_PREVIEW,
+  PAGE_OVERVIEW_PREVIEW,
+  PAGE_SINGLE_PREVIEW,
+} from '../../lib/fragments/pages';
+
 import { ARTICLE_SINGLE_PREVIEW } from '../../lib/fragments/articles';
+import { DRINK_SINGLE_PREVIEW } from '../../lib/fragments/drinks';
 import DrinkPageTemplate from '../../components/templates/DrinkPageTemplate';
 import DrinktipPageTemplate from '../../components/templates/DrinktipPageTemplate';
 import ExplorerPageTemplate from '../../components/templates/ExplorerPageTemplate';
@@ -10,10 +17,15 @@ import PostPageTemplate from '../../components/templates/PostPageTemplate';
 import { RECIPE_SINGLE_PREVIEW } from '../../lib/fragments/recipes';
 import RecipePageTemplate from '../../components/templates/RecipePageTemplate';
 import wpFetch from '../../lib/wpFetch';
+
 const queryMap = {
   druva: { query: GRAPE_SINGLE_PREVIEW, label: 'grape' },
   post: { query: ARTICLE_SINGLE_PREVIEW, label: 'post' },
   recipe: { query: RECIPE_SINGLE_PREVIEW, label: 'recipe' },
+  drink: { query: DRINK_SINGLE_PREVIEW, label: 'drink' },
+  page: { query: PAGE_SINGLE_PREVIEW, label: 'page' },
+  Översiktssida: { query: PAGE_OVERVIEW_PREVIEW, label: 'page' },
+  Utforskarsida: { query: PAGE_EXPLORER_PREVIEW, label: 'page' },
 };
 const PreviewPage = ({ data, postType, template }) => {
   if (template) {
@@ -59,7 +71,10 @@ export const getStaticProps = async (context) => {
   } else {
     try {
       //Fetch preview data
-      const type = context.previewData.type;
+      const type =
+        context.previewData.template !== 'Default'
+          ? context.previewData.template
+          : context.previewData.type;
       const pid = context.previewData.pid;
       const response = await wpFetch(queryMap[type].query, { id: pid });
 

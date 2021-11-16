@@ -24,14 +24,19 @@ const handler = async (req, res) => {
   try {
     const queryType = req.query.type === 'druva' ? 'grape' : req.query.type;
     data = await wpFetch(queryMap[queryType].query, { id: req.query.pid });
-    console.log(data);
+    const template = data[queryType].template.templateName;
+    console.log(template);
     if (!data) {
       res.status(404).send('Not found');
       return;
     }
-    res.setPreviewData({ pid: req.query.pid, type: req.query.type });
+    res.setPreviewData({
+      pid: req.query.pid,
+      type: req.query.type,
+      template: template,
+    });
     res.writeHead(307, {
-      Location: `/preview?pid=${req.query.pid}&type=${req.query.type}`,
+      Location: `/preview?pid=${req.query.pid}`,
     });
     res.end();
   } catch (error) {
