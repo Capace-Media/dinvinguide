@@ -134,6 +134,23 @@
 .rich-text img.alignright {
   @apply inline-block lg:float-right lg:ml-10;
 }
+.rich-text img.aligncenter {
+  @apply inline-block lg:!mx-auto;
+}
+.prose-sm img.aligncenter,
+.prose img.aligncenter {
+  @apply lg:!mx-auto max-w-full;
+}
+.prose img {
+  @apply max-w-prose;
+}
+.prose figure,
+.prose figure img {
+  @apply !max-w-prose;
+}
+.prose figure img[style] {
+  width: 100px !important;
+}
 .fact-block a {
   @apply underline;
 }

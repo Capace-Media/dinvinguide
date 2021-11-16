@@ -175,6 +175,7 @@ export const getStaticProps = async (context) => {
     //HANDLE DEFAULT TEMPLATE
     if (template === 'Default' || template === 'Recipe') {
       data = await resolveTemplate(template, type, uri, isPreview);
+
       if (!data.page) {
         return {
           notFound: true,
