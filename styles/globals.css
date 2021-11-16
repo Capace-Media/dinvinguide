@@ -128,10 +128,20 @@
 .rich-text figcaption {
   @apply mt-3;
 }
-.rich-text img.alignleft {
+.rich-text img.alignleft,
+.rich-text figure.alignleft {
   @apply inline-block lg:float-left lg:mr-10;
 }
-.rich-text img.alignright {
+.prose img.alignleft,
+.prose figure.alignleft {
+  @apply inline-block lg:!float-left lg:mr-10;
+}
+.rich-text img.alignright,
+.rich-text figure.alignright {
+  @apply inline-block lg:!float-right lg:ml-10;
+}
+.prose img.alignright,
+.prose figure.alignright {
   @apply inline-block lg:float-right lg:ml-10;
 }
 .rich-text img.aligncenter {
@@ -148,9 +158,7 @@
 .prose figure img {
   @apply !max-w-prose;
 }
-.prose figure {
-  @apply block w-full;
-}
+
 .prose figure img[style] {
   width: 100px !important;
 }

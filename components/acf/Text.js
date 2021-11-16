@@ -8,8 +8,6 @@ export default function Text({ content }) {
           if (domNode.name === 'figure') {
             domNode.attribs.width = '100%';
             domNode.attribs.style = 'display:block;';
-
-            console.log(domNode);
           }
         },
       })}

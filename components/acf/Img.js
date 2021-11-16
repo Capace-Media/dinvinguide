@@ -4,7 +4,7 @@ export default function Img({ content, style, handleGallery }) {
   if (content && content.img && content.img.mediaDetails) {
     if (!style && content.img) {
       return (
-        <div className='relative row contain'>
+        <div className='relative row contain-sm'>
           <div className='relative flex justify-center'>
             <Image
               src={content.img.mediaItemUrl}
