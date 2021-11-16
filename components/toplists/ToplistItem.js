@@ -116,12 +116,6 @@ const ToplistItem = ({ data, index }) => {
                       </strong>
                     </div>
                   </div>
-                  {isDebug && (
-                    <p>
-                      {dayjs(data.date).format('YYYY-MM-DD')} -{' '}
-                      {data.acf_drinks.betyg}
-                    </p>
-                  )}
                 </a>
               </Link>
             </>
