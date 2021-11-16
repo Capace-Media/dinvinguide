@@ -31,7 +31,22 @@ export default function Footer() {
           {new Date().getFullYear()} © Copyright - DinVinguide.se - All rights
           reserved
         </div>
-        <div className='flex justify-center'>FB IG</div>
+        <div className='space-x-3'>
+          <a
+            className='inline-block'
+            href='https://www.facebook.com/dinvinguide'
+            rel='noreferrer'
+          >
+            FB
+          </a>
+          <a
+            className='inline-block'
+            href='https://www.instagram.com/dinvinguide.se/'
+            rel='noreferrer'
+          >
+            IG
+          </a>
+        </div>
         <div className='flex justify-end'>Byggd med ♥ av Capace Media</div>
       </div>
     </footer>
