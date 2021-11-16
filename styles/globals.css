@@ -148,6 +148,9 @@
 .prose figure img {
   @apply !max-w-prose;
 }
+.prose figure {
+  @apply block w-full;
+}
 .prose figure img[style] {
   width: 100px !important;
 }
