@@ -7,24 +7,24 @@ import { RECIPE_IDCHECK } from '../../../lib/fragments/recipes';
 import wpFetch from '../../../lib/wpFetch';
 
 const queryMap = {
-  grape: { query: GRAPE_IDCHECK, label: 'grape' },
+  druva: { query: GRAPE_IDCHECK, label: 'grape' },
   post: { query: ARTICLE_IDCHECK, label: 'post' },
   recipe: { query: RECIPE_IDCHECK, label: 'recipe' },
   page: { query: PAGE_IDCHECK, label: 'page' },
-  drink: { query: DRINK_IDCHECK, label: 'drink' },
-  drinktip: { query: DRINKTIP_IDCHECK, label: 'drinktip' },
+  dryck: { query: DRINK_IDCHECK, label: 'drink' },
+  dryckestips: { query: DRINKTIP_IDCHECK, label: 'drinktip' },
 };
 
 const handler = async (req, res) => {
+  console.log(req.query);
   let data;
   if (req.query.secret !== process.env.PREVIEW_TOKEN) {
     res.status(401).json({ message: 'Invalid token' });
     return;
   }
   try {
-    const queryType = req.query.type === 'druva' ? 'grape' : req.query.type;
-    data = await wpFetch(queryMap[queryType].query, { id: req.query.pid });
-    const template = data[queryType].template.templateName;
+    data = await wpFetch(queryMap[req.query.type].query, { id: req.query.pid });
+    const template = data[queryMap[req.query.type].label].template.templateName;
     console.log(template);
     if (!data) {
       res.status(404).send('Not found');

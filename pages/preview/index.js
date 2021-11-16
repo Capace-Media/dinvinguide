@@ -1,11 +1,14 @@
 import {
+  DRINKTIP_SINGLE_PREVIEW,
+  DRINK_SINGLE_PREVIEW,
+} from '../../lib/fragments/drinks';
+import {
   PAGE_EXPLORER_PREVIEW,
   PAGE_OVERVIEW_PREVIEW,
   PAGE_SINGLE_PREVIEW,
 } from '../../lib/fragments/pages';
 
 import { ARTICLE_SINGLE_PREVIEW } from '../../lib/fragments/articles';
-import { DRINK_SINGLE_PREVIEW } from '../../lib/fragments/drinks';
 import DrinkPageTemplate from '../../components/templates/DrinkPageTemplate';
 import DrinktipPageTemplate from '../../components/templates/DrinktipPageTemplate';
 import ExplorerPageTemplate from '../../components/templates/ExplorerPageTemplate';
@@ -22,7 +25,8 @@ const queryMap = {
   druva: { query: GRAPE_SINGLE_PREVIEW, label: 'grape' },
   post: { query: ARTICLE_SINGLE_PREVIEW, label: 'post' },
   recipe: { query: RECIPE_SINGLE_PREVIEW, label: 'recipe' },
-  drink: { query: DRINK_SINGLE_PREVIEW, label: 'drink' },
+  dryck: { query: DRINK_SINGLE_PREVIEW, label: 'drink' },
+  dryckestips: { query: DRINKTIP_SINGLE_PREVIEW, label: 'drinktip' },
   page: { query: PAGE_SINGLE_PREVIEW, label: 'page' },
   Översiktssida: { query: PAGE_OVERVIEW_PREVIEW, label: 'page' },
   Utforskarsida: { query: PAGE_EXPLORER_PREVIEW, label: 'page' },
