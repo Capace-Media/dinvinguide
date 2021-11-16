@@ -108,9 +108,9 @@ const DrinkPageTemplate = ({ data }) => {
           </ul>
 
           <div className='flex items-center row'>
-            {drink.acf_drinks.knappUrl && (
+            {drink?.acf_drinks?.knappUrl && (
               <a
-                href={drink.acf_drinks.knappUrl}
+                href={drink?.acf_drinks?.knappUrl}
                 target='_blank'
                 rel='noopener noreferrer'
                 className='px-5 py-3 text-white bg-brand-red'
@@ -118,7 +118,7 @@ const DrinkPageTemplate = ({ data }) => {
                 Kan beställas här
               </a>
             )}
-            {drink.acf_drinks.bolagetAdress && (
+            {drink?.acf_drinks?.bolagetAdress && (
               <a
                 href={drink.acf_drinks.bolagetAdress}
                 target='_blank'
