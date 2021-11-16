@@ -35,6 +35,7 @@ export default function Footer() {
           <a
             className='inline-block'
             href='https://www.facebook.com/dinvinguide'
+            target='_blank'
             rel='noreferrer'
           >
             FB
@@ -42,6 +43,7 @@ export default function Footer() {
           <a
             className='inline-block'
             href='https://www.instagram.com/dinvinguide.se/'
+            target='_blank'
             rel='noreferrer'
           >
             IG
