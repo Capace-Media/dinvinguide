@@ -4,8 +4,12 @@ import { DefaultSeo } from 'next-seo';
 import Head from 'next/head';
 import Layout from '../components/layout/layout';
 import Script from 'next/script';
+import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+
+  console.log(router);
   return (
     <Layout>
       <Head>
@@ -27,7 +31,10 @@ function MyApp({ Component, pageProps }) {
         openGraph={{
           type: 'website',
           locale: 'sv_SE',
-          url: 'https://dinvinguide.se',
+          url:
+            router.asPath !== '/'
+              ? 'https://dinvinguide.se' + router.asPath
+              : 'https://dinvinguide.se',
           site_name: 'DinVinguide',
         }}
       />
