@@ -12,7 +12,7 @@ const SEO = ({ title, description, image }) => {
           {
             width: image?.mediaDetails?.width,
             height: image?.mediaDetails?.height,
-            url: image?.mediaItemUrl,
+            url: image?.mediaItemUrl || '/images/dinvinguide-image.png',
             alt: image?.altText ? image.altText : title,
           },
         ],

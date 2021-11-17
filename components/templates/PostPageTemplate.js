@@ -57,10 +57,7 @@ const PostPageTemplate = ({ data }) => {
       <SEO
         title={page?.seo?.title}
         description={page?.seo?.metaDesc}
-        image={
-          page?.featuredImage?.node?.mediaItemUrl ||
-          '/images/dinvinguide-image.png'
-        }
+        image={page?.featuredImage?.node}
       />
 
       <article>
