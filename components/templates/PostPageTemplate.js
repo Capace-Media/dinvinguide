@@ -52,6 +52,7 @@ const PostPageTemplate = ({ data }) => {
       document.body.style.overflow = 'unset';
     }
   });
+  console.log(page.seo);
   return (
     <>
       <SEO

@@ -6,7 +6,7 @@ const SEO = ({ title, description, image }) => {
       title={title}
       description={description}
       openGraph={{
-        title: title + 'DinVinguide',
+        title: title,
         description: description,
         images: [
           {
