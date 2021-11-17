@@ -1,4 +1,3 @@
-import ReactHtmlParser from 'react-html-parser';
 import parse from 'html-react-parser';
 export default function Text({ content }) {
   return (
