@@ -9,6 +9,16 @@ export default function Text({ content }) {
             domNode.attribs.width = '100%';
             domNode.attribs.style = 'display:block;';
           }
+          if (domNode.name === 'a') {
+            if (
+              !domNode.attribs.href.includes('dinvinguide.se/') &&
+              !domNode.attribs.href.includes('dryckeslistan.se/') &&
+              domNode.attribs.href.charAt(0) !== '/'
+            ) {
+              console.log('EXTERNAL =>', domNode.attribs);
+              domNode.attribs.target = '_blank';
+            }
+          }
         },
       })}
     </div>
