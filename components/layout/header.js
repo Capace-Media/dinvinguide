@@ -47,25 +47,25 @@ export default function Header() {
     <>
       <header className='fixed top-0 left-0 z-50 w-screen font-bold uppercase bg-brand-bg font-display'>
         <div className='flex items-center justify-end pt-2 space-x-2 contain lg:hidden lg:w-24'>
-          <a
+          {/* <a
             href='https://dinvinguide-se.translate.goog/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=sv&_x_tr_pto=nui'
             rel='noreferrer'
             className='w-7 lg:w-10'
           >
             <Image src={BritFlag} priority alt='Britiska flaggan' />
-          </a>
+          </a> */}
           <a href='https://dinvinguide.se' className='w-7 lg:w-10'>
             <Image src={SweFlag} priority alt='Svenska flaggan' />
           </a>
         </div>
         <nav className='flex items-center justify-between lg:py-5 contain'>
           <div className='items-center hidden space-x-2 lg:flex lg:w-24'>
-            <a
+            {/* <a
               href='http://translate.google.com/translate?sl=auto&tl=en&js=n&prev=_t&hl=en&ie=UTF-8&u=https%3A%2F%2Fdinvinguide.se%2F&act=url'
               className='w-5 lg:w-10'
             >
               <Image src={BritFlag} priority alt='Britiska flaggan' />
-            </a>
+            </a> */}
             <a href='https://dinvinguide.se' className='w-5 lg:w-10'>
               <Image src={SweFlag} priority alt='Svenska flaggan' />
             </a>
