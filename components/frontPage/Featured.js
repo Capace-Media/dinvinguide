@@ -6,7 +6,7 @@ export default function Featured({ items }) {
   const contentClasses = `z-20 border-l-4 border-brand-bronze px-2 w-full`;
   const titleClasses = `text-lg uppercase font-semibold`;
   const subTitleClasses = ``;
-  const imageClasses = `transition-all transform opacity-70 group-hover:scale-105 notranslate`;
+  const imageClasses = `transition-all transform opacity-70 group-hover:scale-105`;
 
   const renderBlock = (item, index) => {
     if (index === 0) {
@@ -20,7 +20,6 @@ export default function Featured({ items }) {
               priority
               className='opacity-80 notranslate'
               alt='Välkommen till DinVinguide'
-              translate='no'
             />
           )}
 
@@ -143,7 +142,6 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
-                translate='no'
               />
             )}
 
@@ -176,7 +174,6 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
-                translate='no'
               />
             )}
 
@@ -209,7 +206,6 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
-                translate='no'
               />
             )}
 
@@ -242,7 +238,6 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
-                translate='no'
               />
             )}
 
@@ -271,7 +266,6 @@ export default function Featured({ items }) {
               objectFit='cover'
               className={`${imageClasses}`}
               alt={item.title}
-              translate='no'
             />
           )}
 

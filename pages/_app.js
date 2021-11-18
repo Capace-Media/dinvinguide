@@ -22,6 +22,7 @@ function MyApp({ Component, pageProps }) {
           ga('send', 'pageview');
         `}
       </Script>
+
       <DefaultSeo
         defaultTitle='DinVinguide - Din guide om vin'
         openGraph={{

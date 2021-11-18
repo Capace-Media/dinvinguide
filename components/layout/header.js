@@ -4,6 +4,7 @@ import BritFlag from '../../public/images/BRITFlag.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '../../public/dvg-logo.svg';
+import Script from 'next/script';
 import SweFlag from '../../public/images/SWEFlag.png';
 import { useRouter } from 'next/dist/client/router';
 
@@ -45,6 +46,15 @@ export default function Header() {
 
   return (
     <>
+      <Script
+        type='text/javascript'
+        src='//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
+      />
+      <Script id='google-translate' type='text/javascript'>
+        {`function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'sv'}, 'google_translate_element');
+}`}
+      </Script>
       <header className='fixed top-0 left-0 z-50 w-screen font-bold uppercase bg-brand-bg font-display'>
         <div className='flex items-center justify-end pt-2 space-x-2 contain lg:hidden lg:w-24'>
           {/* <a
@@ -60,15 +70,13 @@ export default function Header() {
         </div>
         <nav className='flex items-center justify-between lg:py-5 contain'>
           <div className='items-center hidden space-x-2 lg:flex lg:w-24'>
-            {/* <a
-              href='http://translate.google.com/translate?sl=auto&tl=en&js=n&prev=_t&hl=en&ie=UTF-8&u=https%3A%2F%2Fdinvinguide.se%2F&act=url'
-              className='w-5 lg:w-10'
-            >
+            <span className='w-5 lg:w-10' id='google_translate_element'></span>
+            {/* <span className='w-5 lg:w-10' id='google_translate_element'>
               <Image src={BritFlag} priority alt='Britiska flaggan' />
-            </a> */}
-            <a href='https://dinvinguide.se' className='w-5 lg:w-10'>
+            </span> */}
+            {/* <a href='https://dinvinguide.se' className='w-5 lg:w-10'>
               <Image src={SweFlag} priority alt='Svenska flaggan' />
-            </a>
+            </a> */}
           </div>
           <div className='flex items-center lg:flex-1 justify-evenly'>
             {links.map((link) => (
