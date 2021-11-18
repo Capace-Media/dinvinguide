@@ -18,6 +18,7 @@ export default function PostBlocks({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -44,6 +45,7 @@ export default function PostBlocks({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -70,6 +72,7 @@ export default function PostBlocks({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -96,6 +99,7 @@ export default function PostBlocks({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -122,6 +126,7 @@ export default function PostBlocks({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -148,6 +153,7 @@ export default function PostBlocks({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -174,6 +180,7 @@ export default function PostBlocks({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -200,6 +207,7 @@ export default function PostBlocks({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -224,6 +232,7 @@ export default function PostBlocks({ items }) {
               objectFit='cover'
               className={`${imageClasses}`}
               alt={item.title}
+              translate='no'
             />
           )}
 

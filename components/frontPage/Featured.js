@@ -20,6 +20,7 @@ export default function Featured({ items }) {
               priority
               className='opacity-80 notranslate'
               alt='Välkommen till DinVinguide'
+              translate='no'
             />
           )}
 
@@ -43,6 +44,7 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses} `}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -75,6 +77,7 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -107,6 +110,7 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -139,6 +143,7 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -171,6 +176,7 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -203,6 +209,7 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -235,6 +242,7 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                translate='no'
               />
             )}
 
@@ -263,6 +271,7 @@ export default function Featured({ items }) {
               objectFit='cover'
               className={`${imageClasses}`}
               alt={item.title}
+              translate='no'
             />
           )}
 
