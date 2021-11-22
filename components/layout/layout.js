@@ -17,7 +17,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Header />
-      <div className='contain flex justify-center mt-[111px] space-x-3'>
+      <div className='contain flex justify-center mt-[114px] space-x-3'>
         <a href='https://bestchampagne.se' target='noreferrer'>
           <Image src={BCLogo} priority alt='BestChampagne Logo' />
         </a>
