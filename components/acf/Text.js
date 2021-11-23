@@ -10,9 +10,9 @@ export default function Text({ content }) {
           }
           if (domNode.name === 'a') {
             if (
-              !domNode.attribs.href.includes('dinvinguide.se/') &&
-              !domNode.attribs.href.includes('dryckeslistan.se/') &&
-              domNode.attribs.href.charAt(0) !== '/'
+              !domNode?.attribs?.href?.includes('dinvinguide.se/') &&
+              !domNode?.attribs?.href?.includes('dryckeslistan.se/') &&
+              domNode?.attribs?.href?.charAt(0) !== '/'
             ) {
               domNode.attribs.target = '_blank';
             }

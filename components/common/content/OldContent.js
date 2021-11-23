@@ -14,9 +14,9 @@ const OldContent = ({ content }) => {
           }
           if (domNode.name === 'a') {
             if (
-              !domNode.attribs.href.includes('dinvinguide.se/') &&
-              !domNode.attribs.href.includes('dryckeslistan.se/') &&
-              domNode.attribs.href.charAt(0) !== '/'
+              !domNode?.attribs?.href.includes('dinvinguide.se/') &&
+              !domNode?.attribs?.href.includes('dryckeslistan.se/') &&
+              domNode?.attribs?.href.charAt(0) !== '/'
             ) {
               console.log('EXTERNAL =>', domNode.attribs);
               domNode.attribs.target = '_blank';
