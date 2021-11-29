@@ -17,7 +17,7 @@ const PostPageTemplate = ({ data }) => {
   page?.acf_posts?.flerBilder?.forEach((img) => {
     galleryImages.push(img.mediaItemUrl);
   });
-  page.acf_posts?.sektioner
+  page?.acf_posts?.sektioner
     .filter(
       (section) =>
         section.fieldGroupName.toLowerCase().includes('bild') &&
@@ -66,10 +66,10 @@ const PostPageTemplate = ({ data }) => {
           crumbs={[
             { text: 'Skribenter', href: '/skribenter' },
             {
-              text: page.author.node.name,
-              href: '/' + page.author.node.nicename,
+              text: page?.author?.node?.name,
+              href: '/' + page?.author?.node?.nicename,
             },
-            { current: true, text: page.title, href: page.uri },
+            { current: true, text: page?.title, href: page?.uri },
           ]}
         />
         <div className='grid row contain-sm'>
@@ -81,9 +81,9 @@ const PostPageTemplate = ({ data }) => {
                 objectFit='cover'
                 priority
                 alt={
-                  page.featuredImage.node.altText
-                    ? page.featuredImage.node.altText
-                    : page.seo.title
+                  page?.featuredImage?.node?.altText
+                    ? page?.featuredImage?.node?.altText
+                    : page?.seo?.title
                 }
               />
             </div>
@@ -91,32 +91,33 @@ const PostPageTemplate = ({ data }) => {
         </div>
         <div className='max-w-4xl mx-auto w-[85%]'>
           <div className='text-center'>
-            <Link href={`/${page.author.node.nicename}`}>
+            <Link href={`/${page?.author?.node?.nicename}`}>
               <a className='inline-block mb-3 '>
                 Skriven av{' '}
-                <span className='underline'>{page.author.node.name}</span>
+                <span className='underline'>{page?.author?.node?.name}</span>
               </a>
             </Link>
-            <h1 className='text-brand-red'>{page.title}</h1>
+            <h1 className='text-brand-red'>{page?.title}</h1>
             <p className='mx-auto mt-10 mb-20 prose lg:prose-xl'>
-              {parse(page.acf_posts.ingress)}
+              {parse(page?.acf_posts?.ingress)}
             </p>
           </div>
         </div>
 
         <div>
-          {page.acf_posts.sektioner && page.acf_posts.sektioner.length > 0 && (
-            <Blocks
-              ad
-              blocks={page.acf_posts.sektioner}
-              handleGallery={handleGallery}
-            />
+          {page?.acf_posts?.sektioner &&
+            page?.acf_posts?.sektioner?.length > 0 && (
+              <Blocks
+                ad
+                blocks={page?.acf_posts?.sektioner}
+                handleGallery={handleGallery}
+              />
+            )}
+          {page?.content && (
+            <div className='contain-sm rich-text'>{parse(page?.content)}</div>
           )}
-          {page.content && (
-            <div className='contain-sm rich-text'>{parse(page.content)}</div>
-          )}
-          {page.acf_oldcontent && page.acf_oldcontent.oldContentAcf && (
-            <OldContent content={page.acf_oldcontent.oldContentAcf} />
+          {page?.acf_oldcontent && page?.acf_oldcontent?.oldContentAcf && (
+            <OldContent content={page?.acf_oldcontent?.oldContentAcf} />
           )}
         </div>
       </article>
@@ -124,13 +125,13 @@ const PostPageTemplate = ({ data }) => {
         <div className='relative w-24 h-24 mb-10 overflow-hidden rounded-full lg:mb-0'>
           {page?.author?.node?.acf_user?.bild?.mediaItemUrl && (
             <Image
-              src={page.author.node.acf_user.bild.mediaItemUrl}
+              src={page?.author?.node?.acf_user?.bild?.mediaItemUrl}
               layout='fill'
               objectFit='cover'
               alt={
-                page.author.node.acf_user.bild.altText
-                  ? page.author.node.acf_user.bild.altText
-                  : page.author.node.name
+                page?.author?.node?.acf_user?.bild?.altText
+                  ? page?.author?.node?.acf_user?.bild?.altText
+                  : page?.author?.node?.name
               }
             />
           )}
@@ -143,16 +144,16 @@ const PostPageTemplate = ({ data }) => {
           <p className='text-base'>
             {page.author?.node?.acf_user?.kortBeskrivning}
           </p>
-          <Link href={`/${page.author.node.nicename}`}>
+          <Link href={`/${page?.author?.node?.nicename}`}>
             <a className='inline-block mt-4 text-brand-red'>
-              Läs mer om {page.author.node.firstName}
+              Läs mer om {page?.author?.node?.firstName}
             </a>
           </Link>
         </div>
       </div>
-      {page.acf_posts.lasMer && (
+      {page?.acf_posts?.lasMer && (
         <List
-          array={page.acf_posts.lasMer}
+          array={page?.acf_posts?.lasMer}
           search={false}
           heading='Läs mer'
           columns={3}
@@ -181,7 +182,7 @@ const PostPageTemplate = ({ data }) => {
                 alt={`Current gallery image`}
               />
             </figure>
-            {galleryIndex < galleryImages.length - 1 && (
+            {galleryIndex < galleryImages?.length - 1 && (
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 24 24'
