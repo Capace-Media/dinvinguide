@@ -136,9 +136,11 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
+  console.log('CATCH ALL CONTEXT =>>', context);
   const uri = context.params.uri.join('/');
 
   const isPreview = context.preview ? true : false;
+
   let type = '';
   let data = null;
 
@@ -174,7 +176,7 @@ export const getStaticProps = async (context) => {
 
     //HANDLE DEFAULT TEMPLATE
     if (template === 'Default' || template === 'Recipe') {
-      data = await resolveTemplate(template, type, uri, isPreview);
+      data = await resolveTemplate(template, type, uri, false);
 
       if (!data.page) {
         return {
@@ -184,7 +186,7 @@ export const getStaticProps = async (context) => {
     }
     //HANDLE OVERVIEW PAGE
     if (template === 'Översiktssida') {
-      data = await resolveTemplate(template, type, uri, isPreview);
+      data = await resolveTemplate(template, type, uri, false);
       type = 'Översiktssida';
       if (!data.page) {
         return {
@@ -195,7 +197,7 @@ export const getStaticProps = async (context) => {
 
     //HANDLE EXPLORER PAGE
     if (template === 'Utforskarsida') {
-      data = await resolveTemplate(template, type, uri, isPreview);
+      data = await resolveTemplate(template, type, uri, false);
       type = 'Utforskarsida';
       if (!data.page) {
         return {
