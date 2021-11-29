@@ -21,6 +21,11 @@ module.exports = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/fredrikschelin/glogg-bast-i-test-2',
+        destination: '/anders/glogg-bast-i-test',
+        permanent: true,
+      },
     ];
   },
   swcMinify: true,

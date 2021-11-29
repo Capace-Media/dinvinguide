@@ -80,6 +80,7 @@ export const getStaticProps = async (context) => {
           ? context.previewData.template
           : context.previewData.type;
       const pid = context.previewData.pid;
+      console.log('TYPE=>', type);
       const response = await wpFetch(queryMap[type].query, { id: pid });
 
       console.log('PREVIEW RESPONSE =>', response);
@@ -105,7 +106,4 @@ export const getStaticProps = async (context) => {
       };
     }
   }
-  return {
-    props: {},
-  };
 };
