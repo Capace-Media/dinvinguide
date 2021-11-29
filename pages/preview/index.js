@@ -62,6 +62,11 @@ const PreviewPage = ({ data, postType, template }) => {
         return <RecipePageTemplate data={data} />;
     }
   }
+  return (
+    <div className='text-center contain row'>
+      Ett fel har uppstått med förhandsvisningen.
+    </div>
+  );
 };
 
 export default PreviewPage;
@@ -80,7 +85,7 @@ export const getStaticProps = async (context) => {
           ? context.previewData.template
           : context.previewData.type;
       const pid = context.previewData.pid;
-      console.log('TYPE=>', type);
+      console.log('TYPE=>', type, pid);
       const response = await wpFetch(queryMap[type].query, { id: pid });
 
       console.log('PREVIEW RESPONSE =>', response);
@@ -102,7 +107,7 @@ export const getStaticProps = async (context) => {
     } catch (error) {
       console.log('ERROR WHILE FETCHING PREVIEW DATA =>', error);
       return {
-        notFound: true,
+        props: {},
       };
     }
   }
