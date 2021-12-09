@@ -29,7 +29,24 @@ const SearchPage = () => {
   };
   return (
     <>
-      <PageIntro title='Sök på DinVinguide' />
+      <PageIntro
+        title='Sök på DinVinguide'
+        text='Klicka i kategori här under så får du rätt förslag.'
+      />
+      <ul className='grid grid-cols-5 mb-5 border-2 rounded contain-sm border-brand-red'>
+        {types.map((item) => (
+          <li key={item.value}>
+            <button
+              className={`px-1 md:px-3 py-1 text-xs md:text-base text-center block w-full ${
+                item.value === type && 'bg-brand-red text-white'
+              }`}
+              onClick={() => changeType(item.value)}
+            >
+              {item.label}
+            </button>
+          </li>
+        ))}
+      </ul>
       <div className='flex items-center px-5 py-3 mb-5 space-x-3 text-center bg-white rounded contain-sm'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -50,20 +67,7 @@ const SearchPage = () => {
           <figure className='block w-4 h-4 border-2 rounded-full border-black/20 border-t-black animate-spin' />
         )}
       </div>
-      <ul className='grid grid-cols-5 mb-5 border-2 rounded contain-sm border-brand-red'>
-        {types.map((item) => (
-          <li key={item.value}>
-            <button
-              className={`px-1 md:px-3 py-1 text-xs md:text-base text-center block w-full ${
-                item.value === type && 'bg-brand-red text-white'
-              }`}
-              onClick={() => changeType(item.value)}
-            >
-              {item.label}
-            </button>
-          </li>
-        ))}
-      </ul>
+
       <SearchResults
         type={type}
         isSearching={isSearching}
