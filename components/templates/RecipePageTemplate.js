@@ -44,7 +44,7 @@ const RecipePageTemplate = ({ data }) => {
       }
     }
   };
-
+  console.log(recipe);
   return (
     <>
       <SEO
@@ -93,8 +93,8 @@ const RecipePageTemplate = ({ data }) => {
         >
           <p className='mb-3'>
             Recept av{' '}
-            {recipe.acf_recipe.skrivetAv && recipe.acf_recipe.skrivetAv.name
-              ? recipe.acf_recipe.skrivetAv.name
+            {recipe.acf_recipe.skrivetAv && recipe.acf_recipe.skrivetAv[0]?.name
+              ? recipe.acf_recipe.skrivetAv[0].name
               : 'Redaktionen'}
           </p>
           <h1 className='mb-5 text-xl normal-case lg:text-3xl text-brand-red'>
