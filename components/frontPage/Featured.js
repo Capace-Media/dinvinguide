@@ -9,10 +9,11 @@ export default function Featured({ items }) {
   const imageClasses = `transition-all transform opacity-70 group-hover:scale-105`;
 
   const renderBlock = (item, index) => {
+    console.log(item.image);
     if (index === 0) {
       return (
         <div className='relative flex items-center justify-center p-5 bg-black h-96 lg:col-span-2 lg:row-span-2 lg:h-full'>
-          {item.image && (
+          {item?.image && (
             <Image
               src={item.image}
               layout='fill'
@@ -36,7 +37,7 @@ export default function Featured({ items }) {
           <a
             className={`lg:col-span-1 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
-            {item.image && (
+            {item?.image && (
               <Image
                 src={item.image}
                 layout='fill'
@@ -71,7 +72,7 @@ export default function Featured({ items }) {
           >
             {item.image && (
               <Image
-                src={item.image}
+                src={item?.image}
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
@@ -104,7 +105,7 @@ export default function Featured({ items }) {
           >
             {item.image && (
               <Image
-                src={item.image}
+                src={item?.image}
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
@@ -137,7 +138,7 @@ export default function Featured({ items }) {
           >
             {item.image && (
               <Image
-                src={item.image}
+                src={item?.image}
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
@@ -169,7 +170,7 @@ export default function Featured({ items }) {
           >
             {item.image && (
               <Image
-                src={item.image}
+                src={item?.image}
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
@@ -201,7 +202,7 @@ export default function Featured({ items }) {
           >
             {item.image && (
               <Image
-                src={item.image}
+                src={item?.image}
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
@@ -233,7 +234,7 @@ export default function Featured({ items }) {
           >
             {item.image && (
               <Image
-                src={item.image}
+                src={item?.image}
                 layout='fill'
                 objectFit='cover'
                 className={`${imageClasses}`}
@@ -261,7 +262,7 @@ export default function Featured({ items }) {
         <a className={`h-56 lg:row-span-1 lg:col-span-1 ${containerClasses}`}>
           {item.image && (
             <Image
-              src={item.image}
+              src={item?.image}
               layout='fill'
               objectFit='cover'
               className={`${imageClasses}`}
