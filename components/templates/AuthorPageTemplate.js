@@ -27,17 +27,19 @@ const AuthorPageTemplate = ({ data }) => {
       />
       <div className='text-center contain section'>
         <div className='relative mx-auto overflow-hidden rounded-full w-52 h-52 row'>
-          <Image
-            src={author.acf_user.bild.mediaItemUrl}
-            layout='fill'
-            objectFit='cover'
-            priority
-            alt={
-              author.acf_user.bild.altText
-                ? author.acf_user.bild.altText
-                : author.name
-            }
-          />
+          {author?.acf_user?.bild && (
+            <Image
+              src={author.acf_user.bild.mediaItemUrl}
+              layout='fill'
+              objectFit='cover'
+              priority
+              alt={
+                author.acf_user.bild.altText
+                  ? author.acf_user.bild.altText
+                  : author.name
+              }
+            />
+          )}
         </div>
         <h1 className='row'>{author.name}</h1>
         <p
