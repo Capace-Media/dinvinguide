@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import Blocks from '../common/content/Blocks';
 import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
+import Content from '../common/content/content';
 import Image from 'next/dist/client/image';
 import Link from 'next/dist/client/link';
 import List from '../common/lists/List';
@@ -114,10 +115,15 @@ const PostPageTemplate = ({ data }) => {
               />
             )}
           {page?.content && (
-            <div className='contain-sm rich-text'>{parse(page?.content)}</div>
+            <div id='content' className='contain-sm rich-text'>
+              <Content content={page?.content} />
+            </div>
           )}
           {page?.acf_oldcontent && page?.acf_oldcontent?.oldContentAcf && (
-            <OldContent content={page?.acf_oldcontent?.oldContentAcf} />
+            <OldContent
+              id='old-content'
+              content={page?.acf_oldcontent?.oldContentAcf}
+            />
           )}
         </div>
       </article>

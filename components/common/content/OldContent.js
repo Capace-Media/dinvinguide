@@ -4,6 +4,7 @@ const OldContent = ({ content }) => {
     .replace(/section/g, '')
     .replace(/row/g, '')
     .replace(/[*]/g, '');
+
   return (
     <div className='mx-auto w-[85%] prose-sm max-w-prose lg:prose'>
       {content &&
@@ -12,6 +13,12 @@ const OldContent = ({ content }) => {
             if (domNode.name === 'figure') {
               domNode.attribs.width = '100%';
               domNode.attribs.style = 'display:block;';
+            }
+            if (domNode.name === 'img') {
+              domNode.attribs.src = domNode.attribs.src.replace(
+                '/app/uploads/',
+                'https://media.dinvinguide.se/wp-content/uploads/'
+              );
             }
             if (domNode.name === 'a') {
               if (

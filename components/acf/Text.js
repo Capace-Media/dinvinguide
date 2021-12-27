@@ -9,6 +9,12 @@ export default function Text({ content }) {
               domNode.attribs.width = '100%';
               domNode.attribs.style = 'display:block;';
             }
+            if (domNode.name === 'img') {
+              domNode.attribs.src = domNode.attribs.src.replace(
+                '/app/uploads/',
+                'https://media.dinvinguide.se/wp-content/uploads/'
+              );
+            }
             if (domNode.name === 'a') {
               if (
                 !domNode?.attribs?.href?.includes('dinvinguide.se/') &&
