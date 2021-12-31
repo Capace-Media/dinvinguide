@@ -15,7 +15,7 @@ const OldContent = ({ content }) => {
               domNode.attribs.style = 'display:block;';
             }
             if (domNode.name === 'img') {
-              domNode.attribs.src = domNode.attribs.src.replace(
+              domNode.attribs.src = domNode?.attribs?.src?.replace(
                 '/app/uploads/',
                 'https://media.dinvinguide.se/wp-content/uploads/'
               );
