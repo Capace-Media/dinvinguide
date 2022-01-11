@@ -69,7 +69,7 @@ const List = ({
 
       <ul className={`grid gap-2 row contain ${printColumns()}`}>
         {array
-          .filter((item) => {
+          ?.filter((item) => {
             item = flattenObject(item);
 
             if (filterString) {
