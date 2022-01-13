@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 export default function Newsletter() {
   const [email, setEmail] = useState('');
+
   return (
     <div className='grid gap-2 contain lg:grid-cols-2'>
       <div className='flex flex-col items-center justify-center p-10 text-center bg-brand-red text-brand-bg'>
@@ -19,7 +20,7 @@ export default function Newsletter() {
         </div>
         <div>
           <form
-            action='https://app.mailerlite.com/webforms/submit/g6z4j7'
+            action={'https://app.mailerlite.com/webforms/submit/g6z4j7'}
             data-code='g6z4j7'
             method='POST'
             target='_blank'
@@ -35,9 +36,11 @@ export default function Newsletter() {
               className='w-full p-2 text-center text-white placeholder-white bg-transparent border-b-2'
             />
             <input type='hidden' name='ml-submit' value='1' />
-            <button type='submit' className='w-full px-3 py-2 mt-3 border-2'>
-              Jag är över 25 år och accepterar mailutskick
-            </button>
+            {email && (
+              <button type='submit' className='w-full px-3 py-2 mt-3 border-2'>
+                Jag är över 25 år och accepterar mailutskick
+              </button>
+            )}
           </form>
         </div>
       </div>
