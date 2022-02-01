@@ -75,23 +75,7 @@ const RecipePuff = ({ content }) => {
               <h3 className='mb-5 text-xl lg:text-3xl'>{content.title}</h3>
             </a>
           </Link>
-          <div>
-            {content && (
-              <div className='flex flex-wrap justify-center mb-3 space-x-1 text-xs lg:space-x-2 lg:text-base'>
-                <strong>Passar till:</strong>
-                {content.passarTills.edges.map(({ node: item }, index) => {
-                  if (index <= 3) {
-                    return (
-                      <span className="after:content-[','] last:after:content-['']">
-                        {item.name}
-                      </span>
-                    );
-                  }
-                })}
-                {content.passarTills.edges.length >= 3 && <span>m.fl.</span>}
-              </div>
-            )}
-          </div>
+          <div></div>
           <Link href={content.uri}>
             <a className='inline-block font-semibold text-brand-red'>Läs mer</a>
           </Link>

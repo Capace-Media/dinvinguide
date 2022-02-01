@@ -10,7 +10,7 @@ import parse from 'html-react-parser';
 
 const DrinkPageTemplate = ({ data }) => {
   const { page: drink } = data;
-
+  console.log(drink);
   const details = [
     {
       label: 'Ekologiskt',
