@@ -6,6 +6,7 @@ const Drink = dynamic(() => import('../components/acf/Drink'));
 const Fact = dynamic(() => import('../components/acf/Fact'));
 const Img = dynamic(() => import('../components/acf/Img'));
 const Puff = dynamic(() => import('../components/acf/Puff'));
+const Video = dynamic(() => import('../components/acf/Video'));
 
 export const renderSection = (section, handleGallery) => {
   switch (section.fieldGroupName) {
@@ -46,7 +47,10 @@ export const renderSection = (section, handleGallery) => {
     case 'Post_AcfPosts_Sektioner_Faktalada':
       return section ? <Fact content={section} /> : null;
       break;
-    case 'Page_AcfPosts_Sektioner_Faktalada':
+    case 'Post_AcfPosts_Sektioner_Video':
+      return section ? <Video url={section.url} /> : null;
+      break;
+    case 'Page_AcfPosts_Sektioner_Video':
       return section ? <Fact content={section} /> : null;
       break;
     default:

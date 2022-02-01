@@ -8,6 +8,7 @@ import Link from 'next/dist/client/link';
 import List from '../common/lists/List';
 import OldContent from '../common/content/OldContent';
 import SEO from '../common/SEO';
+import Video from '../acf/Video';
 import parse from 'html-react-parser';
 
 const PostPageTemplate = ({ data }) => {

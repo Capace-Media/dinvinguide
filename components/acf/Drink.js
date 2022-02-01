@@ -3,7 +3,7 @@ import parse from 'react-html-parser';
 const Drink = ({ data }) => {
   return (
     <div
-      className={`contain-sm relative mx-auto prose-sm md:prose row-sm grid gap-5 md:gap-10 md:grid-cols-[3fr,1fr]`}
+      className={` contain-sm relative mx-auto prose-sm md:prose row-sm grid gap-5 md:gap-10 md:grid-cols-[3fr,1fr]`}
     >
       <div className='flex flex-col justify-center order-1 md:order-0'>
         <h3 className='!mt-0'>{data.name}</h3>
