@@ -4,7 +4,7 @@ const Video = ({ url }) => {
   if (isLocal) {
     const type = url.split('.')[3];
     return (
-      <div className='mx-auto prose max-w-prose'>
+      <div className='py-5 mx-auto prose max-w-prose'>
         <div className='aspect-w-16 aspect-h-9'>
           <video controls>
             <source src={url} type={`video/${type}`} />
@@ -16,7 +16,7 @@ const Video = ({ url }) => {
   if (isYoutube) {
     const id = url.split('=')[1];
     return (
-      <div className='mx-auto prose max-w-prose'>
+      <div className='py-5 mx-auto prose max-w-prose'>
         <div className='aspect-w-16 aspect-h-9'>
           <iframe
             width='100%'

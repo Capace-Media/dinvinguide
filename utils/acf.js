@@ -51,7 +51,7 @@ export const renderSection = (section, handleGallery) => {
       return section ? <Video url={section.url} /> : null;
       break;
     case 'Page_AcfPosts_Sektioner_Video':
-      return section ? <Fact content={section} /> : null;
+      return section ? <Video url={section.url} /> : null;
       break;
     default:
       return <div>{section.fieldGroupName}</div>;
