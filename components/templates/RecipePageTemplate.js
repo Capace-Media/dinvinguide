@@ -63,7 +63,7 @@ const RecipePageTemplate = ({ data }) => {
       <RecipeJsonLd
         name={recipe.title}
         authorName={
-          (recipe?.acf_recipe?.skrivetAv.length > 0 &&
+          (recipe?.acf_recipe?.skrivetAv?.length > 0 &&
             recipe?.acf_recipe?.skrivetAv[0]?.name) ||
           'Redaktionen'
         }
