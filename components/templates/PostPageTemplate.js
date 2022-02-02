@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { ArticleJsonLd } from 'next-seo';
 import Blocks from '../common/content/Blocks';
 import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import Content from '../common/content/content';
@@ -54,7 +55,7 @@ const PostPageTemplate = ({ data }) => {
       document.body.style.overflow = 'unset';
     }
   });
-  console.log(page.seo);
+  console.log(page);
   return (
     <>
       <SEO
@@ -62,7 +63,15 @@ const PostPageTemplate = ({ data }) => {
         description={page?.seo?.metaDesc}
         image={page?.featuredImage?.node}
       />
-
+      <ArticleJsonLd
+        title={page?.title}
+        url={`https://dinvinguide.se${page?.uri}`}
+        images={[page?.featuredImage?.node?.mediaItemUrl || null]}
+        datePublished={page?.date}
+        dateModified={page?.modified}
+        description={page?.seo?.metaDesc || page?.acf_posts?.ingress || null}
+        authorName={[page?.author?.node?.name || null]}
+      />
       <article>
         <BreadCrumbs
           crumbs={[
