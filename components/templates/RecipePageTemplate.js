@@ -2,6 +2,7 @@ import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import ClientAd from '../ads/ClientAd';
 import DrinkListItem from '../drinks/DrinkListItem';
 import Image from 'next/image';
+import { RecipeJsonLd } from 'next-seo';
 import RecipePlaceholder from '../../public/images/recipe-placeholder.jpg';
 import SEO from '../common/SEO';
 import parse from 'html-react-parser';
@@ -44,13 +45,34 @@ const RecipePageTemplate = ({ data }) => {
       }
     }
   };
-  console.log(recipe);
+  console.log(recipe.acf_recipe.receptdelar);
+  const ingredients = [];
+  recipe.acf_recipe.receptdelar.forEach((part) => {
+    part.ingredienser.forEach((i) => {
+      ingredients.push(`${i.antal} ${i.enhet.name} ${i.namn}`);
+    });
+  });
+
   return (
     <>
       <SEO
         title={recipe?.seo?.title}
         description={recipe?.seo?.metaDesc}
         image={recipe?.featuredImage?.node}
+      />
+      <RecipeJsonLd
+        name={recipe.title}
+        authorName={
+          (recipe?.acf_recipe?.skrivetAv.length > 0 &&
+            recipe?.acf_recipe?.skrivetAv[0]?.name) ||
+          'Redaktionen'
+        }
+        ingredients={ingredients}
+        instructions={[]}
+        yields={recipe.acf_recipe.antalPortioner}
+        datePublished={recipe.date}
+        description={recipe?.acf_recipe?.desc || ''}
+        images={[recipe.featuredImage.node.mediaItemUrl]}
       />
       <BreadCrumbs
         crumbs={[
