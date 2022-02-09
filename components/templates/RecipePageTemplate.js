@@ -47,11 +47,12 @@ const RecipePageTemplate = ({ data }) => {
   };
   console.log(recipe.acf_recipe.receptdelar);
   const ingredients = [];
-  recipe.acf_recipe.receptdelar.forEach((part) => {
-    part.ingredienser.forEach((i) => {
-      ingredients.push(`${i.antal} ${i.enhet.name} ${i.namn}`);
+  recipe &&
+    recipe?.acf_recipe?.receptdelar?.forEach((part) => {
+      part.ingredienser.forEach((i) => {
+        ingredients.push(`${i.antal} ${i.enhet.name} ${i.namn}`);
+      });
     });
-  });
 
   return (
     <>
