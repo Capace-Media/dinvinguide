@@ -12,11 +12,11 @@ const DrinkPageTemplate = ({ data }) => {
   const { page: drink } = data;
   console.log(drink);
   const details = [
-    {
-      label: 'Ekologiskt',
-      value: drink?.acf_drinks?.ekologiskt ? 'Ja' : 'Nej',
-    },
-    { label: 'Veganvin', value: drink?.acf_drinks?.vagn ? 'Ja' : 'Nej' },
+    // {
+    //   label: 'Ekologiskt',
+    //   value: drink?.acf_drinks?.ekologiskt ? 'Ja' : 'Nej',
+    // },
+    // { label: 'Veganvin', value: drink?.acf_drinks?.vagn ? 'Ja' : 'Nej' },
     {
       label: 'Publiceringsdatum',
       value: dayjs(drink?.date).locale('sv').format('D MMMM, YYYY'),
