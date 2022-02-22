@@ -26,6 +26,11 @@ module.exports = {
         destination: '/anders/glogg-bast-i-test',
         permanent: true,
       },
+      {
+        source: '/bestchampagne',
+        destination: 'https://bestchampagne.se',
+        permanent: true,
+      },
     ];
   },
   swcMinify: true,
