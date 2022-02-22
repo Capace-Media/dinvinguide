@@ -23,7 +23,7 @@ const PostPageTemplate = ({ data }) => {
   page?.acf_posts?.sektioner
     .filter(
       (section) =>
-        section.fieldGroupName.toLowerCase().includes('bild') &&
+        section?.fieldGroupName?.toLowerCase().includes('bild') &&
         section.iGalleri &&
         section.img &&
         section.img.mediaItemUrl

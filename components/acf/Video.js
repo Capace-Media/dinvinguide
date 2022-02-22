@@ -1,6 +1,6 @@
 const Video = ({ url }) => {
   const isLocal = url.includes('media.dinvinguide.se');
-  const isYoutube = url.includes('youtube');
+  const isYoutube = url.includes('youtube') || url.includes('youtu.be');
   if (isLocal) {
     const type = url.split('.')[3];
     return (
@@ -14,7 +14,9 @@ const Video = ({ url }) => {
     );
   }
   if (isYoutube) {
-    const id = url.split('=')[1];
+    const split = url.split('/');
+    const id = split[split.length - 1];
+
     return (
       <div className='py-5 mx-auto prose max-w-prose'>
         <div className='aspect-w-16 aspect-h-9'>
