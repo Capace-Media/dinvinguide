@@ -88,7 +88,7 @@ const RecipePageTemplate = ({ data }) => {
           style={{ gridArea: 'img' }}
           className='relative w-full lg:w-[550px] aspect-w-16 aspect-h-10 bg-brand-red'
         >
-          {recipe.featuredImage ? (
+          {recipe.featuredImage && recipe.featuredImage.node ? (
             <Image
               src={recipe.featuredImage.node.mediaItemUrl}
               layout='fill'
