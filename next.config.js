@@ -31,6 +31,11 @@ module.exports = {
         destination: 'https://bestchampagne.se',
         permanent: true,
       },
+      {
+        source: '/dryckeslistan/topplistor/:path*',
+        destination: '/topplistor/:path*',
+        permanent: true,
+      },
     ];
   },
   swcMinify: true,
