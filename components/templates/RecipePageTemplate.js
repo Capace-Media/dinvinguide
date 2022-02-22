@@ -70,10 +70,10 @@ const RecipePageTemplate = ({ data }) => {
         }
         ingredients={ingredients}
         instructions={[]}
-        yields={recipe.acf_recipe.antalPortioner}
+        yields={recipe?.acf_recipe?.antalPortioner || null}
         datePublished={recipe.date}
         description={recipe?.acf_recipe?.desc || ''}
-        images={[recipe.featuredImage.node.mediaItemUrl]}
+        images={[recipe?.featuredImage?.node?.mediaItemUrl || null]}
       />
       <BreadCrumbs
         crumbs={[
