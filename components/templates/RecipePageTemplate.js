@@ -50,7 +50,9 @@ const RecipePageTemplate = ({ data }) => {
   recipe &&
     recipe?.acf_recipe?.receptdelar?.forEach((part) => {
       part.ingredienser.forEach((i) => {
-        ingredients.push(`${i?.antal} ${i?.enhet?.name} ${i?.namn}`);
+        ingredients.push(
+          `${i?.antal || null} ${i?.enhet?.name || null} ${i?.namn || null}`
+        );
       });
     });
 
@@ -165,10 +167,10 @@ const RecipePageTemplate = ({ data }) => {
                     <ul className='mt-3 space-y-2'>
                       {part.ingredienser?.map((i) => (
                         <li key={i.namn} className='grid grid-cols-2'>
-                          <span>{`${renderAmount(i.antal)} ${
-                            i?.enhet?.name
+                          <span>{`${i.antal ? renderAmount(i.antal) : ''} ${
+                            i?.enhet?.name || ''
                           }`}</span>
-                          <span>{i.namn}</span>
+                          <span>{i?.namn || ''}</span>
                         </li>
                       ))}
                     </ul>
