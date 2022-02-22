@@ -49,7 +49,7 @@ const RecipePageTemplate = ({ data }) => {
   const ingredients = [];
   recipe &&
     recipe?.acf_recipe?.receptdelar?.forEach((part) => {
-      part.ingredienser.forEach((i) => {
+      part?.ingredienser?.forEach((i) => {
         ingredients.push(
           `${i?.antal || null} ${i?.enhet?.name || null} ${i?.namn || null}`
         );
