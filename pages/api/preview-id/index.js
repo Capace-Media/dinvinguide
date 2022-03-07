@@ -17,6 +17,7 @@ const queryMap = {
 
 const handler = async (req, res) => {
   console.log(req.query);
+
   let data;
   if (req.query.secret !== process.env.PREVIEW_TOKEN) {
     res.status(401).json({ message: 'Invalid token' });

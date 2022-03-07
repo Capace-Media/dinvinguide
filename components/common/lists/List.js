@@ -71,7 +71,7 @@ const List = ({
         {array
           ?.filter((item) => {
             item = flattenObject(item);
-
+            console.log('FLAT ITEM =>', item);
             if (filterString) {
               let match = false;
               if (filterString === 'no:image') {
