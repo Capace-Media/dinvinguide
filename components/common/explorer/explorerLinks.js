@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import explorerImages from '../../../data/explorerimages.json';
 const ExplorerLinks = () => {
   return (
     <div className='grid gap-2 mt-10 mb-2 lg:mt-20 lg:grid-cols-2 contain'>
@@ -7,7 +8,7 @@ const ExplorerLinks = () => {
         <a className='relative overflow-hidden bg-black aspect-w-16 aspect-h-9 group'>
           <figure className='transition-all opacity-70 group-hover:scale-110'>
             <Image
-              src={'/images/dryckesutforskaren.jpg'}
+              src={explorerImages.bildDryckesutforskaren.mediaItemUrl}
               layout='fill'
               objectFit='cover'
               alt='Dryckesutforskaren'
@@ -24,7 +25,7 @@ const ExplorerLinks = () => {
         <a className='relative overflow-hidden bg-black aspect-w-16 aspect-h-9 group'>
           <figure className='transition-all opacity-70 group-hover:scale-110'>
             <Image
-              src={'/images/receptutforskaren.jpg'}
+              src={explorerImages.bildReceptutforskaren.mediaItemUrl}
               layout='fill'
               objectFit='cover'
               alt='Receptutforskaren'

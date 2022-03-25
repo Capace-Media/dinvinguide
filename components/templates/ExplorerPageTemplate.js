@@ -7,7 +7,7 @@ import { useRouter } from 'next/dist/client/router';
 const ExplorerPageTemplate = ({ data }) => {
   const { page, array, filterKeys, subtitle } = data;
   const router = useRouter();
-
+  
   return (
     <>
       <SEO title={page?.seo?.title} description={page?.seo?.metaDesc} />
