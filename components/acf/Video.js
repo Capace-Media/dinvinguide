@@ -1,4 +1,5 @@
 const Video = ({ url }) => {
+  console.log('VIDEO =>', url);
   const isLocal = url.includes('media.dinvinguide.se');
   const isYoutube = url.includes('youtube') || url.includes('youtu.be');
   if (isLocal) {

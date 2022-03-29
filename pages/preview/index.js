@@ -95,6 +95,7 @@ export const getStaticProps = async (context) => {
         : data.template?.templateName;
       console.log('PREVIEW DATA =>', data);
       console.log('DATA TEMPLATE', dataTemplate);
+
       return {
         props: {
           data: {
