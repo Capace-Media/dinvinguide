@@ -36,6 +36,12 @@ module.exports = {
         destination: '/topplistor/:path*',
         permanent: true,
       },
+      {
+        source:
+          '/fredrikschelin/lasarfraga-vilket-vin-ska-jag-matcha-till-den-fetare-sasen-bearnaise',
+        destination: '/fredrikschelin/bearnaisesas-och-vin',
+        permanent: true,
+      },
     ];
   },
   swcMinify: true,
