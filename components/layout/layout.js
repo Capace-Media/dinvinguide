@@ -32,6 +32,7 @@ export default function Layout({ children }) {
                 src={DVGLogo}
                 objectFit='contain'
                 priority
+                height={30}
                 alt='Dryckeslistan Logo'
               />
             ) : (
