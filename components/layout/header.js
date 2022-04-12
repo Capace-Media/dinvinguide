@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import BritFlag from '../../public/images/BRITFlag.png';
+import DryckeslistanLogo from '../../public/images/dryckeslistanlogo-1.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '../../public/dvg-logo.svg';
@@ -11,11 +12,22 @@ import { useRouter } from 'next/dist/client/router';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
+  const isDryckeslistan = router.asPath.includes('dryckeslistan');
   const links = [
     { content: 'Skribenter', href: '/skribenter' },
     { content: 'Guide', href: '/guide' },
     {
-      content: (
+      content: isDryckeslistan ? (
+        <Image
+          width={300}
+          height={65}
+          objectFit='contain'
+          src={DryckeslistanLogo}
+          priority
+          className='cursor-pointer'
+          alt='DinVinGuide Logotyp'
+        />
+      ) : (
         <Image
           width={300}
           height={65}
@@ -26,7 +38,7 @@ export default function Header() {
           alt='DinVinGuide Logotyp'
         />
       ),
-      href: '/',
+      href: isDryckeslistan ? '/dryckeslistan' : '/',
       mobile: true,
     },
     { content: 'Recept', href: '/recept' },

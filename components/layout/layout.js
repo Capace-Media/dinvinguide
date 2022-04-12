@@ -1,4 +1,5 @@
 import BCLogo from '../../public/images/bestchampagne-logo-black.png';
+import DVGLogo from '../../public/dvg-logo.svg';
 import DryckeslistanLogo from '../../public/images/dryckeslistanlogo-1.png';
 import Footer from './footer';
 import Header from './header';
@@ -9,6 +10,7 @@ import { useRouter } from 'next/dist/client/router';
 
 export default function Layout({ children }) {
   const router = useRouter();
+  const isDryckeslistan = router.asPath.includes('dryckeslistan');
   const handleExitPreview = async () => {
     const res = await fetch('/api/preview/exit');
     window.location.replace('/');
@@ -23,9 +25,14 @@ export default function Layout({ children }) {
         </a>
 
         <div>|</div>
-        <Link href='/dryckeslistan'>
+        <Link href={isDryckeslistan ? '/' : '/dryckeslistan'}>
           <a>
-            <Image src={DryckeslistanLogo} priority alt='Dryckeslistan Logo' />
+            <Image
+              src={isDryckeslistan ? DVGLogo : DryckeslistanLogo}
+              objectFit='contain'
+              priority
+              alt='Dryckeslistan Logo'
+            />
           </a>
         </Link>
       </div>
