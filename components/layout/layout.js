@@ -30,15 +30,15 @@ export default function Layout({ children }) {
             {isDryckeslistan ? (
               <Image
                 src={DVGLogo}
-                objectFit='contain'
                 priority
+                width={200}
                 height={30}
                 alt='Dryckeslistan Logo'
               />
             ) : (
               <Image
                 src={DryckeslistanLogo}
-                objectFit='contain'
+                width={200}
                 height={30}
                 priority
                 alt='Dryckeslistan Logo'
