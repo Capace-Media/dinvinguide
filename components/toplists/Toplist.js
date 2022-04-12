@@ -18,7 +18,7 @@ const Toplist = ({ data, ads }) => {
 
   return (
     <div className='space-y-20'>
-      {array.map(({ node: drink }, i) => {
+      {array?.map(({ node: drink }, i) => {
         if (num < 5) {
           if (drink.ad) {
             if (currentCount > 0) {

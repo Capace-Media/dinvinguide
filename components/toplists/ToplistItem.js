@@ -15,7 +15,7 @@ const ToplistItem = ({ data, index }) => {
       <div
         className={`relative ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-0'}`}
       >
-        {data.featuredImage && data.featuredImage.node && (
+        {data?.featuredImage && data?.featuredImage.node && (
           <>
             <Link href={data.uri}>
               <a>

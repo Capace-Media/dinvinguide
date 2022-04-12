@@ -50,22 +50,41 @@ export const getStaticProps = async ({ params }) => {
 
   const toplist = resolved[0].filter((toplist) => {
     const isEco = toplist.toplist.acf_toplists.ekologiskt;
-    const toplistType = slugify(
-      toplist.toplist.acf_toplists.dryckestyper[0].name.toLowerCase()
-    );
-    const toplistPackaging = slugify(
-      toplist.toplist.acf_toplists.forpackningar[0].name.toLowerCase()
-    );
+    const toplistType = toplist.toplist.acf_toplists.dryckestyper;
 
+    const toplistPackaging = toplist.toplist.acf_toplists.forpackningar;
+    console.log('MATCH', slugArray, toplistPackaging, toplistType);
     if (isArray) {
       if (params.slug.includes('julen')) {
         if (toplistType.includes('glogg')) {
           return true;
         }
       }
+
+      // if (
+      //   toplistType.includes(slugArray[1].split(' ')[0]) &&
+      //   toplistPackaging.includes(slugArray[0].split(' ')[0])
+      // ) {
+      //   return true;
+      // }
+      toplistType.some((type) => {
+        console.log(
+          'IN SOME =>',
+          type.name.split(' ')[0].toLowerCase(),
+          slugArray[1]
+        );
+        return true;
+      });
+
       if (
-        toplistType.includes(slugArray[1].split(' ')[0]) &&
-        toplistPackaging.includes(slugArray[0].split(' ')[0])
+        toplistType.some(
+          (type) =>
+            slugify(type.name.split(' ')[0].toLowerCase()) === slugArray[1]
+        ) &&
+        toplistPackaging.some(
+          (type) =>
+            slugify(type.name.split(' ')[0].toLowerCase()) === slugArray[0]
+        )
       ) {
         return true;
       }
@@ -79,7 +98,12 @@ export const getStaticProps = async ({ params }) => {
       }
     }
   });
-  console.log(toplist);
+
+  if (!toplist[0]) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
