@@ -49,11 +49,17 @@ export const getStaticProps = async ({ params }) => {
   const resolved = await Promise.all([getToplists()]);
 
   const toplist = resolved[0].filter((toplist) => {
+    console.log('TOPLIST =>', toplist);
+    const slug = toplist.toplist.uri.split('/')[2];
+    if (slug === params.slug) {
+      return true;
+    }
+    console.log('SLUG =>', slug);
     const isEco = toplist.toplist.acf_toplists.ekologiskt;
     const toplistType = toplist.toplist.acf_toplists.dryckestyper;
 
     const toplistPackaging = toplist.toplist.acf_toplists.forpackningar;
-    console.log('MATCH', slugArray, toplistPackaging, toplistType);
+
     if (isArray) {
       if (params.slug.includes('julen')) {
         if (toplistType.includes('glogg')) {
@@ -61,30 +67,9 @@ export const getStaticProps = async ({ params }) => {
         }
       }
 
-      // if (
-      //   toplistType.includes(slugArray[1].split(' ')[0]) &&
-      //   toplistPackaging.includes(slugArray[0].split(' ')[0])
-      // ) {
-      //   return true;
-      // }
-      toplistType.some((type) => {
-        console.log(
-          'IN SOME =>',
-          type.name.split(' ')[0].toLowerCase(),
-          slugArray[1]
-        );
-        return true;
-      });
-
       if (
-        toplistType.some(
-          (type) =>
-            slugify(type.name.split(' ')[0].toLowerCase()) === slugArray[1]
-        ) &&
-        toplistPackaging.some(
-          (type) =>
-            slugify(type.name.split(' ')[0].toLowerCase()) === slugArray[0]
-        )
+        toplistType.includes(slugArray[1].split(' ')[0]) &&
+        toplistPackaging.includes(slugArray[0].split(' ')[0])
       ) {
         return true;
       }
