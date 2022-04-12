@@ -4,7 +4,7 @@ import ToplistItem from './ToplistItem';
 
 const Toplist = ({ data, ads }) => {
   const currentCount = data.currentDrinks.length;
-
+  console.log(data);
   const array = [
     ...data.currentDrinks,
     ...data.previousDrinks,
@@ -19,7 +19,7 @@ const Toplist = ({ data, ads }) => {
   return (
     <div className='space-y-20'>
       {array?.map(({ node: drink }, i) => {
-        if (num < 5) {
+        if (num < data.toplist.acf_toplists.maxAntal) {
           if (drink.ad) {
             if (currentCount > 0) {
               return drink.component;
