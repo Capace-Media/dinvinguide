@@ -15,8 +15,12 @@ const ExplorerLinks = () => {
             />
           </figure>
           <div className='p-5 lg:p-10'>
-            <h3 className='pl-5 text-white border-l-4 lg:text-2xl border-brand-bronze'>
-              Dryckesutforskaren
+            <h3 className='pl-5 leading-snug text-white border-l-4 lg:text-2xl border-brand-bronze'>
+              <span>Dryckesutforskaren</span>
+
+              <span className='block text-base font-normal normal-case'>
+                Utforska våra drycker
+              </span>
             </h3>
           </div>
         </a>
@@ -32,8 +36,12 @@ const ExplorerLinks = () => {
             />
           </figure>
           <div className='p-5 lg:p-10'>
-            <h3 className='pl-5 text-white border-l-4 lg:text-2xl border-brand-bronze'>
-              Receptutforskaren
+            <h3 className='pl-5 leading-snug text-white border-l-4 lg:text-2xl border-brand-bronze'>
+              <span>Receptutforskaren</span>
+
+              <span className='block text-base font-normal normal-case'>
+                Utforska våra härliga recept
+              </span>
             </h3>
           </div>
         </a>
