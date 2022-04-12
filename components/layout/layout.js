@@ -26,13 +26,23 @@ export default function Layout({ children }) {
 
         <div>|</div>
         <Link href={isDryckeslistan ? '/' : '/dryckeslistan'}>
-          <a>
-            <Image
-              src={isDryckeslistan ? DVGLogo : DryckeslistanLogo}
-              objectFit='contain'
-              priority
-              alt='Dryckeslistan Logo'
-            />
+          <a className='relative'>
+            {isDryckeslistan ? (
+              <Image
+                src={DVGLogo}
+                objectFit='contain'
+                priority
+                alt='Dryckeslistan Logo'
+              />
+            ) : (
+              <Image
+                src={DryckeslistanLogo}
+                objectFit='contain'
+                height={30}
+                priority
+                alt='Dryckeslistan Logo'
+              />
+            )}
           </a>
         </Link>
       </div>

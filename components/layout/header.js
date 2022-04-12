@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import BritFlag from '../../public/images/BRITFlag.png';
-import DryckeslistanLogo from '../../public/images/dryckeslistanlogo-1.png';
+import DryckeslistanLogo from '../../public/images/dryckeslistanlogo-1.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '../../public/dvg-logo.svg';
