@@ -1,6 +1,8 @@
 import { getToplistPaths, getToplists } from '../../lib/api/toplists';
 
+import ExplorerLinks from '../../components/common/explorer/explorerLinks';
 import { Fragment } from 'react';
+import Newsletter from '../../components/section/Newsletter';
 import PageIntro from '../../components/common/content/PageIntro';
 import Toplist from '../../components/toplists/Toplist';
 import slugify from 'slugify';
@@ -25,6 +27,10 @@ const SingleToplistPage = ({ data }) => {
       />
       <div className='row '>
         <Toplist data={toplist} />
+      </div>
+      <ExplorerLinks />
+      <div className='mb-2'>
+        <Newsletter />
       </div>
     </Fragment>
   );
