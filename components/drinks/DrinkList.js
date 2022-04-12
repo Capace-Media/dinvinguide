@@ -4,13 +4,20 @@ import Ad from '../ads/Ad';
 import ClientAd from '../ads/ClientAd';
 import DrinkListItem from './DrinkListItem';
 import flattenObject from '../../utils/flattenObject';
+import { useRouter } from 'next/router';
 
 const DrinkList = ({ drycker }) => {
+  const router = useRouter();
+
+  const { filter } = router.query;
+  console.log('FILTER =>', filter);
   const [maxNodes, setMaxNodes] = useState(23);
   const [searchInput, setSearchInput] = useState('');
   const [filterString, setFilterString] = useState('');
   const [onlyEco, setOnlyEco] = useState(false);
-  const [alcoholFree, setAlcoholFree] = useState(false);
+  const [alcoholFree, setAlcoholFree] = useState(
+    filter && filter === 'alkoholfritt' ? true : false
+  );
   const chunksize = 3 * 5;
 
   const handleLoadMore = () => {

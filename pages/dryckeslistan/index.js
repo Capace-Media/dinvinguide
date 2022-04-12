@@ -1,6 +1,7 @@
 import ClientAd from '../../components/ads/ClientAd';
 import ExplorerLinks from '../../components/common/explorer/explorerLinks';
 import { Fragment } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import Newsletter from '../../components/section/Newsletter';
 import { PAGE_SINGLE } from '../../lib/fragments/pages';
@@ -29,6 +30,27 @@ const ToplistsPage = ({ data }) => {
       <div className='grid gap-10 md:grid-cols-2 lg:grid-cols-4 contain-md row'>
         {toplists.map(
           ({ toplist, currentDrinks, previousDrinks, fallbackDrinks }) => {
+            if (toplist.uri.includes('alkoholfritt')) {
+              return (
+                <Link href={'/dryckesutforskaren?filter=alkoholfritt'}>
+                  <a className='relative overflow-hidden bg-black rounded-sm'>
+                    <Image
+                      src='/images/dryckesutforskaren.jpg'
+                      objectFit='cover'
+                      layout='fill'
+                      alt=''
+                      className='opacity-60'
+                    />
+                    <div className='relative z-10 flex flex-col justify-center h-full p-5 text-center text-white'>
+                      <h2>Utforska alkoholfria drycker</h2>{' '}
+                      <button className='self-center inline-block px-5 py-3 mt-5 text-white rounded bg-brand-red'>
+                        Upptäck nu
+                      </button>
+                    </div>
+                  </a>
+                </Link>
+              );
+            }
             return (
               <div key={toplist.uri} className='text-center'>
                 <Link href={toplist.uri}>

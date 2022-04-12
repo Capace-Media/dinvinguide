@@ -7,7 +7,6 @@ import flattenObject from '../../utils/flattenObject';
 import wpFetch from '../../lib/wpFetch';
 
 const DryckesUtforskarenPage = ({ drycker, page }) => {
-  console.log(page);
   return (
     <>
       <SEO title={page['seo.title']} description={page['seo.metaDesc']} />
