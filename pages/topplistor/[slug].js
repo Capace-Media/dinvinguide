@@ -9,11 +9,12 @@ import slugify from 'slugify';
 
 const SingleToplistPage = ({ data }) => {
   const { toplist } = data;
-
+  console.log('TOPLIST =>', toplist);
   return (
     <Fragment>
       <PageIntro
         title={toplist.toplist.title}
+        text={toplist.toplist.acf_toplists.text}
         ad
         adType='dl'
         crumbs={[
