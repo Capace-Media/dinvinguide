@@ -56,12 +56,11 @@ export const getStaticProps = async ({ params }) => {
   const resolved = await Promise.all([getToplists()]);
 
   const toplist = resolved[0].filter((toplist) => {
-    console.log('TOPLIST =>', toplist);
     const slug = toplist.toplist.uri.split('/')[2];
     if (slug === params.slug) {
       return true;
     }
-    console.log('SLUG =>', slug);
+
     const isEco = toplist.toplist.acf_toplists.ekologiskt;
     const toplistType = toplist.toplist.acf_toplists.dryckestyper;
 
