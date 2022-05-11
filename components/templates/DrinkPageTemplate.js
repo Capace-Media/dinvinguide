@@ -4,6 +4,7 @@ import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 import ClientAd from '../ads/ClientAd';
 import ExplorerLinks from '../common/explorer/explorerLinks';
 import Image from 'next/image';
+import Link from 'next/link';
 import SEO from '../common/SEO';
 import dayjs from 'dayjs';
 import parse from 'html-react-parser';
@@ -123,6 +124,43 @@ const DrinkPageTemplate = ({ data }) => {
               </a>
             )}
           </div>
+          {drink?.acf_drinks?.passarTillRecept &&
+            drink?.acf_drinks?.passarTillRecept?.length > 0 && (
+              <>
+                <Link href={drink?.acf_drinks?.passarTillRecept[0]?.uri || '/'}>
+                  <a className='relative block group'>
+                    <div className='mt-5 overflow-hidden bg-black'>
+                      <figure className='relative transition-all aspect-w-16 aspect-h-8 opacity-70 group-hover:scale-110'>
+                        <Image
+                          src={
+                            drink.acf_drinks?.passarTillRecept[0]?.featuredImage
+                              ?.node?.mediaItemUrl
+                              ? drink.acf_drinks.passarTillRecept[0]
+                                  .featuredImage.node.mediaItemUrl
+                              : '/images/recipe-placeholder.jpg'
+                          }
+                          layout='fill'
+                          objectFit='cover'
+                          alt={
+                            drink.acf_drinks.passarTillRecept[0].featuredImage
+                              ?.node.altText
+                              ? drink.acf_drinks.passarTillRecept[0]
+                                  .featuredImage.node.altText
+                              : drink.acf_drinks.passarTillRecept[0].title
+                          }
+                        />
+                      </figure>
+                      <div className='absolute top-0 left-0 p-3 text-white'>
+                        <p>Passar med</p>
+                        <strong className='block'>
+                          {drink?.acf_drinks?.passarTillRecept[0]?.title}
+                        </strong>
+                      </div>
+                    </div>
+                  </a>
+                </Link>
+              </>
+            )}
         </div>
       </div>
       <ExplorerLinks />
