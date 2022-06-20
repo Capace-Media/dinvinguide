@@ -40,7 +40,6 @@ const prebuild = async () => {
     const data = await response.json();
     const settings = data.data.globalGeneralSettings.acfGlobalSettings;
     await fs.writeFile('./data/explorerimages.json', JSON.stringify(settings));
-    console.log('SETTINGS =>', settings);
   } catch (error) {
     console.error('PREBUILD ERROR', error);
   }

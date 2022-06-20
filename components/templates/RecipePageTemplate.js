@@ -45,7 +45,7 @@ const RecipePageTemplate = ({ data }) => {
       }
     }
   };
-  console.log(recipe.acf_recipe.receptdelar);
+
   const ingredients = [];
   recipe &&
     recipe?.acf_recipe?.receptdelar?.forEach((part) => {

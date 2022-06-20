@@ -9,7 +9,6 @@ export default function Featured({ items }) {
   const imageClasses = `transition-all transform opacity-70 group-hover:scale-105`;
 
   const renderBlock = (item, index) => {
-    console.log(item.image);
     if (index === 0) {
       return (
         <div className='relative flex items-center justify-center p-5 bg-black h-96 lg:col-span-2 lg:row-span-2 lg:h-full'>

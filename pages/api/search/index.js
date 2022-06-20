@@ -17,7 +17,6 @@ const queryMapping = {
 };
 export const handler = async (req, res) => {
   const { input, batch, cursor, type } = JSON.parse(req.body);
-  console.log(input, type);
   try {
     let response;
 

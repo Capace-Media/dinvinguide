@@ -21,7 +21,7 @@ const Content = ({ content }) => {
                 !domNode?.attribs?.href?.includes('dryckeslistan.se/') &&
                 domNode?.attribs?.href?.charAt(0) !== '/'
               ) {
-                console.log('EXTERNAL =>', domNode.attribs);
+
                 domNode.attribs.target = '_blank';
               }
             }

@@ -4,7 +4,7 @@ import ToplistItem from './ToplistItem';
 
 const Toplist = ({ data, ads }) => {
   const currentCount = data.currentDrinks.length;
-  console.log(data);
+
   const array = [
     ...data.currentDrinks,
     ...data.previousDrinks,

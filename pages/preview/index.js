@@ -72,7 +72,6 @@ const PreviewPage = ({ data, postType, template }) => {
 export default PreviewPage;
 
 export const getStaticProps = async (context) => {
-  console.log('PREVIEW PAGE CONTEXT =>', context);
   if (!context.preview) {
     return {
       notFound: true,
@@ -85,16 +84,12 @@ export const getStaticProps = async (context) => {
           ? context.previewData.template
           : context.previewData.type;
       const pid = context.previewData.pid;
-      console.log('TYPE=>', type, pid);
       const response = await wpFetch(queryMap[type].query, { id: pid });
 
-      console.log('PREVIEW RESPONSE =>', response);
       const data = response[queryMap[type].label];
       const dataTemplate = data.preview
         ? data.preview.node.template?.templateName
         : data.template?.templateName;
-      console.log('PREVIEW DATA =>', data);
-      console.log('DATA TEMPLATE', dataTemplate);
 
       return {
         props: {

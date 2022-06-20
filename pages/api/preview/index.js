@@ -9,7 +9,6 @@ const pagePrefixes = {
   gin: 'vinguide/sprit',
 };
 const handler = async (req, res) => {
-  console.log('ACTIVATE PREVIEW');
   if (
     req.query.secret !== process.env.PREVIEW_TOKEN ||
     !req.query.slug ||
@@ -61,11 +60,8 @@ const handler = async (req, res) => {
     case 'page':
       data = await wpFetch(PAGE_SLUGCHECK, { id: req.query.slug });
       res.setPreviewData({});
-      console.log('SLUG =>', req.query.slug);
       res.redirect(data.page.uri);
   }
-
-  console.log('PREVIEW DATA =>', data);
 };
 
 export default handler;

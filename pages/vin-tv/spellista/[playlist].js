@@ -14,7 +14,7 @@ const PlaylistPage = ({ playlist, settings }) => {
 
   const handlePlaylist = (episodeIndex) => {
     if (episodeIndex !== null) {
-      console.log(episodeIndex);
+
       setPlayerOpen(true);
       setCurrentEpisodeIndex(episodeIndex);
     } else {
@@ -72,7 +72,6 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const id = context.params.playlist;
-  console.log(id);
   const resolved = await Promise.all([
     wpFetch(PLAYLIST_SINGLE, { id: id }),
     wpFetch(OPTIONS_TV),

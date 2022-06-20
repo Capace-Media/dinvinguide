@@ -10,7 +10,7 @@ const DrinkList = ({ drycker }) => {
   const router = useRouter();
 
   const { filter } = router.query;
-  console.log('FILTER =>', filter);
+
   const [maxNodes, setMaxNodes] = useState(23);
   const [searchInput, setSearchInput] = useState('');
   const [filterString, setFilterString] = useState('');

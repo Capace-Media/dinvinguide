@@ -2,7 +2,6 @@ import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 const SEO = ({ title, description, image }) => {
   const router = useRouter();
-  console.log(router);
   return (
     <NextSeo
       title={title}

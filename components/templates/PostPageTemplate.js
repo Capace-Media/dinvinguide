@@ -20,7 +20,6 @@ const PostPageTemplate = ({ data }) => {
   page?.acf_posts?.flerBilder?.forEach((img) => {
     galleryImages.push(img.mediaItemUrl);
   });
-  console.log('GALLERY IMAGES =>', galleryImages);
   page?.acf_posts?.sektioner
     .filter(
       (section) =>

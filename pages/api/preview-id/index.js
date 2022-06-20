@@ -16,7 +16,6 @@ const queryMap = {
 };
 
 const handler = async (req, res) => {
-  console.log(req.query);
 
   let data;
   if (req.query.secret !== process.env.PREVIEW_TOKEN) {
@@ -26,7 +25,6 @@ const handler = async (req, res) => {
   try {
     data = await wpFetch(queryMap[req.query.type].query, { id: req.query.pid });
     const template = data[queryMap[req.query.type].label].template.templateName;
-    console.log(template);
     if (!data) {
       res.status(404).send('Not found');
       return;

@@ -136,7 +136,6 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  console.log('CATCH ALL CONTEXT =>>', context);
   const uri = context.params.uri.join('/');
 
   const isPreview = context.preview ? true : false;
@@ -206,7 +205,6 @@ export const getStaticProps = async (context) => {
       }
     }
   }
-  console.log('DATA =>', data);
   if (!data) {
     return {
       notFound: true,

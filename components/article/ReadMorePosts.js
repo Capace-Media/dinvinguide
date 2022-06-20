@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 export default function ReadMorePosts({ posts }) {
-  console.log(posts);
+
   return (
     <div className='text-center contain row'>
       {posts && (
