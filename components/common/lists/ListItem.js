@@ -14,43 +14,50 @@ const ListItem = ({ data, last, increment, subtitle }) => {
     }
   }, [inView, increment, last]);
   return (
-    <li
-      ref={last ? ref : null}
-      className='relative block overflow-hidden text-white bg-black group'
-    >
-      <Link href={data.uri}>
-        <a className='relative block h-60'>
-          {data['featuredImage.node.mediaItemUrl'] ? (
-            <Image
-              src={data['featuredImage.node.mediaItemUrl']}
-              layout='fill'
-              objectFit='cover'
-              className={`${imageClasses}`}
-              alt={
-                data['featuredImage.node.altText']
-                  ? data['featuredImage.node.altText']
-                  : data.title
-              }
-            />
-          ) : (
-            <Image
-              src={RecipePlaceholder}
-              layout='fill'
-              objectFit='cover'
-              className={`${imageClasses}`}
-              alt={data.title}
-            />
-          )}
+    <Link key={data.uri} href={data.uri}>
+      <a>
+      
+        <li
+          ref={last ? ref : null}
+          className='relative block overflow-hidden text-white bg-black group'
+        >
+          
+            <div className='relative block h-60'>
+              {data['featuredImage.node.mediaItemUrl'] ? (
+                <Image
+                  src={data['featuredImage.node.mediaItemUrl']}
+                  placeholder="blur"
+                  blurDataURL={RecipePlaceholder}
+                  layout='fill'
+                  objectFit='cover'
+                  className={`${imageClasses}`}
+                  alt={
+                    data['featuredImage.node.altText']
+                      ? data['featuredImage.node.altText']
+                      : data.title
+                  }
+                />
+              ) : (
+                <Image
+                  src={RecipePlaceholder}
+                  layout='fill'
+                  objectFit='cover'
+                  className={`${imageClasses}`}
+                  alt={data.title}
+                />
+              )}
 
-          <div className='relative p-5'>
-            <div className='px-3 border-l-4 border-brand-bronze'>
-              <h3>{data['title']}</h3>
-              {subtitle && <p>{data[subtitle]}</p>}
+              <div className='relative p-5'>
+                <div className='px-3 border-l-4 border-brand-bronze'>
+                  <h3>{data['title']}</h3>
+                  {subtitle && <p>{data[subtitle]}</p>}
+                </div>
+              </div>
             </div>
-          </div>
-        </a>
-      </Link>
-    </li>
+          
+        </li>
+      </a>
+    </Link>
   );
 };
 

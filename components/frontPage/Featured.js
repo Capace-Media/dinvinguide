@@ -44,6 +44,7 @@ export default function Featured({ items }) {
                 className={`${imageClasses} `}
                 alt={item.title}
                 translate='no'
+                priority
               />
             )}
 
@@ -77,6 +78,7 @@ export default function Featured({ items }) {
                 className={`${imageClasses}`}
                 alt={item.title}
                 translate='no'
+                priority
               />
             )}
 
@@ -110,6 +112,7 @@ export default function Featured({ items }) {
                 className={`${imageClasses}`}
                 alt={item.title}
                 translate='no'
+                priority
               />
             )}
 
@@ -142,6 +145,7 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                priority
               />
             )}
 
@@ -174,6 +178,7 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                priority
               />
             )}
 
@@ -206,6 +211,7 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                priority
               />
             )}
 
@@ -238,6 +244,7 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
+                priority
               />
             )}
 
@@ -266,6 +273,7 @@ export default function Featured({ items }) {
               objectFit='cover'
               className={`${imageClasses}`}
               alt={item.title}
+              priority
             />
           )}
 
