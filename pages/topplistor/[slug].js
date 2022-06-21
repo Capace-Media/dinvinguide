@@ -102,5 +102,6 @@ export const getStaticProps = async ({ params }) => {
         toplist: toplist[0],
       },
     },
+    revalidate: 60,
   };
 };

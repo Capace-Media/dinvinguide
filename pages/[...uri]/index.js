@@ -136,6 +136,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
+  try {
   const uri = context.params.uri.join('/');
 
   const isPreview = context.preview ? true : false;
@@ -216,5 +217,10 @@ export const getStaticProps = async (context) => {
       routeType: type,
       data,
     },
+    revalidate: 60,
   };
+
+  } catch (error) {
+    console.error("Error fetching homepage data", error);
+  }
 };

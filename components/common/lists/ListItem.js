@@ -6,13 +6,14 @@ import RecipePlaceholder from '../../../public/images/recipe-placeholder.jpg';
 import { useInView } from 'react-intersection-observer';
 
 const imageClasses = `transition-all opacity-60 group-hover:scale-105`;
-const ListItem = ({ data, last, increment, subtitle }) => {
+const ListItem = ({ data, last, increment, subtitle, setReady, ready }) => {
   const { ref, inView } = useInView({ triggerOnce: true });
   useEffect(() => {
     if (inView && last) {
       increment();
     }
   }, [inView, increment, last]);
+
   return (
     <Link key={data.uri} href={data.uri}>
       <a>
