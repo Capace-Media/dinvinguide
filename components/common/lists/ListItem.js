@@ -7,19 +7,21 @@ import { useInView } from 'react-intersection-observer';
 
 const imageClasses = `transition-all opacity-60 group-hover:scale-105`;
 const ListItem = ({ data, last, increment, subtitle, setReady, ready }) => {
-  const { ref, inView } = useInView({ triggerOnce: true });
-  useEffect(() => {
-    if (inView && last) {
-      increment();
-    }
-  }, [inView, increment, last]);
+  // const { ref, inView } = useInView({ triggerOnce: true });
+  // useEffect(() => {
+  //   if (inView && last) {
+  //     increment();
+  //   }
+  // }, [inView, increment, last]);
+
+  //ref={last ? ref : null}
 
   return (
     <Link key={data.uri} href={data.uri}>
       <a>
       
         <li
-          ref={last ? ref : null}
+          
           className='relative block overflow-hidden text-white bg-black group'
         >
           
