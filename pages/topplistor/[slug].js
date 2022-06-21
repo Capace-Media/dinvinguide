@@ -9,7 +9,6 @@ import slugify from 'slugify';
 
 const SingleToplistPage = ({ data }) => {
   const { toplist } = data;
-  console.log('TOPLIST =>', toplist);
   return (
     <Fragment>
       <PageIntro
