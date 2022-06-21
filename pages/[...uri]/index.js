@@ -28,6 +28,7 @@ const PagePostHandler = ({ routeType, data }) => {
   if (router.isFallback) {
     return <FallbackTemplate />;
   }
+  console.log('data ===>', data);
   switch (routeType) {
     case 'author':
       return (
