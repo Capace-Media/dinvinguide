@@ -22,7 +22,7 @@ const ListItem = ({ data, last, increment, subtitle, setReady, ready }) => {
       
         <li
           
-          className='relative block overflow-hidden text-white bg-black group'
+          className='relative block overflow-hidden text-white bg-gray-800 group'
         >
           
             <div className='relative block h-60'>
