@@ -23,10 +23,10 @@ const List = ({
     setNodeCount((prev) => prev + maxNodes);
   };
 
-  const addMoreItems = (item) => {
-    //let newNodes = item + maxNodes
-    setNodeCount((prev) => prev + maxNodes)
-  }
+  // const addMoreItems = (item) => {
+  //   //let newNodes = item + maxNodes
+  //   setNodeCount((prev) => prev + maxNodes)
+  // }
 
   const printColumns = () => {
     switch (columns) {
@@ -133,7 +133,7 @@ const List = ({
             }
           })}
 
-          {nodeCount <= array.length + 1 && (
+          {/* {nodeCount <= array.length + 1 && (
             <button  className="z-10 text-brand-dark-700 flex font-bold flex-col pointer-events-auto justify-center items-center space-y-3 min-w-[150px] min-h-[70px] cursor-pointer absolute left-2/4 -translate-x-2/4 -bottom-8" onClick={() => addMoreItems(nodeCount)} >
               <span>Visa mer</span>
               <svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -154,7 +154,7 @@ const List = ({
                 </defs>
                 </svg>
             </button>
-          )}
+          )} */}
       </ul>
     </>
   );
