@@ -42,6 +42,5 @@ export const getStaticProps = async () => {
     props: {
       drinks,
     },
-    revalidate: 60,
   };
 };

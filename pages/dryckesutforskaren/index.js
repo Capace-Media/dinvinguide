@@ -38,6 +38,5 @@ export const getStaticProps = async () => {
       drycker: resolved[0],
       page: flattenObject(resolved[1].page),
     },
-    revalidate: 60,
   };
 };

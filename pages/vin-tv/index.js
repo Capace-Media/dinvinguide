@@ -32,6 +32,5 @@ export const getStaticProps = async () => {
       episodes: resolved[1],
       playlists: resolved[2],
     },
-    revalidate: 60,
   };
 };

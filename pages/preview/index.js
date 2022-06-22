@@ -99,7 +99,6 @@ export const getStaticProps = async (context) => {
           postType: queryMap[type].label,
           template: dataTemplate || null,
         },
-        revalidate: 60,
       };
     } catch (error) {
       console.log('ERROR WHILE FETCHING PREVIEW DATA =>', error);

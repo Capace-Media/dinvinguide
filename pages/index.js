@@ -38,7 +38,10 @@ export default function Home({ data }) {
   );
 }
 export const getStaticProps = async () => {
+  console.log('before====>');
   const resolved = await Promise.all([getFrontPageData()]);
+
+  console.log('resolved ===>', resolved);
 
   return {
     props: {
