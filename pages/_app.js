@@ -25,7 +25,10 @@ function MyApp({ Component, pageProps }) {
       {/* Google Tag Manager - Global base code */}
       <Script
         id="gtag-base"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
+        onError={(err) => {
+          console.error('Error', err)
+        }}
         dangerouslySetInnerHTML={{
           __html: `
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

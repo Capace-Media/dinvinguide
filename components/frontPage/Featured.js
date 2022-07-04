@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import LogoWhite from '../../public/images/dvg-logo-white.png';
+import RecipePlaceholder from '../../public/images/recipe-placeholder.jpg'
 export default function Featured({ items }) {
   const containerClasses = `group h-56   relative flex items-start justify-center bg-black p-5 overflow-hidden `;
   const contentClasses = `z-20 border-l-4 border-brand-bronze px-2 w-full`;
@@ -17,15 +18,21 @@ export default function Featured({ items }) {
               src={item.image}
               layout='fill'
               objectFit='cover'
-              priority
               className='opacity-80 notranslate'
               alt='Välkommen till DinVinguide'
+              placeholder="blur"
+              blurDataURL={RecipePlaceholder}
             />
           )}
 
           <div className={`z-20 text-5xl  font-semibold text-center`}>
             <h1 className='mb-3'>Välkommen till</h1>
-            <Image src={LogoWhite} priority alt='Logo DinVinguide - Vit' />
+            <Image 
+              src={LogoWhite} 
+              alt='Logo DinVinguide - Vit'
+              placeholder="blur"
+              blurDataURL={RecipePlaceholder}
+            />
           </div>
         </div>
       );
@@ -44,7 +51,8 @@ export default function Featured({ items }) {
                 className={`${imageClasses} `}
                 alt={item.title}
                 translate='no'
-                priority
+                placeholder="blur"
+                blurDataURL={RecipePlaceholder}
               />
             )}
 
@@ -78,7 +86,8 @@ export default function Featured({ items }) {
                 className={`${imageClasses}`}
                 alt={item.title}
                 translate='no'
-                priority
+                placeholder="blur"
+                blurDataURL={RecipePlaceholder}
               />
             )}
 
@@ -112,7 +121,8 @@ export default function Featured({ items }) {
                 className={`${imageClasses}`}
                 alt={item.title}
                 translate='no'
-                priority
+                placeholder="blur"
+                blurDataURL={RecipePlaceholder}
               />
             )}
 
@@ -145,7 +155,8 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
-                priority
+                placeholder="blur"
+                blurDataURL={RecipePlaceholder}
               />
             )}
 
@@ -178,7 +189,8 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
-                priority
+                placeholder="blur"
+                blurDataURL={RecipePlaceholder}
               />
             )}
 
@@ -211,7 +223,8 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
-                priority
+                placeholder="blur"
+                blurDataURL={RecipePlaceholder}
               />
             )}
 
@@ -244,7 +257,8 @@ export default function Featured({ items }) {
                 objectFit='cover'
                 className={`${imageClasses}`}
                 alt={item.title}
-                priority
+                placeholder="blur"
+                blurDataURL={RecipePlaceholder}
               />
             )}
 
@@ -273,7 +287,8 @@ export default function Featured({ items }) {
               objectFit='cover'
               className={`${imageClasses}`}
               alt={item.title}
-              priority
+              placeholder="blur"
+              blurDataURL={RecipePlaceholder}
             />
           )}
 

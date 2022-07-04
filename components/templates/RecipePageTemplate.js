@@ -1,5 +1,5 @@
-import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
-import ClientAd from '../ads/ClientAd';
+//import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
+//import ClientAd from '../ads/ClientAd';
 import DrinkListItem from '../drinks/DrinkListItem';
 import Image from 'next/image';
 import { RecipeJsonLd } from 'next-seo';
@@ -7,6 +7,9 @@ import RecipePlaceholder from '../../public/images/recipe-placeholder.jpg';
 import SEO from '../common/SEO';
 import parse from 'html-react-parser';
 import { useState } from 'react';
+import dynamic from 'next/dynamic'
+const ClientAd = dynamic(() => import('../ads/ClientAd'))
+const BreadCrumbs = dynamic(() => import('../common/BreadCrumbs/Breadcrumbs'))
 
 const RecipePageTemplate = ({ data }) => {
   const { page: recipe } = data;
@@ -63,6 +66,7 @@ const RecipePageTemplate = ({ data }) => {
         description={recipe?.seo?.metaDesc}
         image={recipe?.featuredImage?.node}
       />
+      
       <RecipeJsonLd
         name={recipe.title}
         authorName={
@@ -84,8 +88,10 @@ const RecipePageTemplate = ({ data }) => {
         ]}
       />
       <ClientAd position='top' />
+      
 
       <div className='mx-auto max-w-7xl w-[90%] recipe-layout row'>
+        
         <div
           style={{ gridArea: 'img' }}
           className='relative w-full lg:w-[550px] aspect-w-16 aspect-h-10 bg-brand-red'
@@ -95,7 +101,6 @@ const RecipePageTemplate = ({ data }) => {
               src={recipe.featuredImage.node.mediaItemUrl}
               layout='fill'
               objectFit='cover'
-              priority
               alt={
                 recipe.featuredImage.node.altText
                   ? recipe.featuredImage.node.altText
@@ -107,15 +112,16 @@ const RecipePageTemplate = ({ data }) => {
               src={RecipePlaceholder}
               layout='fill'
               objectFit='cover'
-              priority
               alt={recipe.seo.title || recipe.title}
             />
           )}
         </div>
+        
         <div
           style={{ gridArea: 'meta' }}
           className='my-10 text-center lg:p-10 lg:my-0 lg:text-left'
         >
+          
           <p className='mb-3'>
             Recept av{' '}
             {recipe.acf_recipe.skrivetAv && recipe.acf_recipe.skrivetAv[0]?.name

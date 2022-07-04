@@ -65,12 +65,12 @@ const ToplistsPage = ({ data }) => {
 
                 ) : ( 
                   <p className='mb-5 inline-block font-semibold uppercase text-base text-brand-red'>
-                      
                     {toplist.acf_toplists.slogan}
                   </p>
                 )}
 
                 {currentDrinks.length > 0 ? (
+                  
                   <ToplistPuff
                     toplistUri={toplist.uri}
                     data={currentDrinks[0].node}
