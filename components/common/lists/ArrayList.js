@@ -1,9 +1,9 @@
-import Ad from '../../ads/Ad';
-import ArrayListItem from './ArrayListItem';
+import Ad from "../../ads/Ad";
+import ArrayListItem from "./ArrayListItem";
 const ArrayList = ({ array, loadMore, ads }) => {
   const chunkSize = 4 * 5;
   return (
-    <ul className='grid grid-cols-4 gap-2 py-20 contain'>
+    <ul className="grid grid-cols-4 gap-2 py-20 contain">
       {array.map((item, i) => {
         if ((i + 1) % chunkSize === 0) {
           return (
@@ -15,8 +15,8 @@ const ArrayList = ({ array, loadMore, ads }) => {
                 last={i + 1 === array.length ? true : false}
               />
               {ads && (
-                <li className='col-span-full row'>
-                  <Ad ads={ads} position='mid' />
+                <li className="col-span-full row">
+                  <Ad ads={ads} position="mid" />
                 </li>
               )}
             </>

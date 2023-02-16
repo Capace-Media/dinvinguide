@@ -1,23 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import ClientAd from '../../ads/ClientAd';
-import ListItem from './ListItem';
-import flattenObject from '../../../utils/flattenObject';
+import flattenObject from "../../../utils/flattenObject";
+import ClientAd from "../../ads/ClientAd";
+import ListItem from "./ListItem";
 
 const List = ({
   array,
   columns = 4,
   maxNodes = columns * 3,
   ads,
-  filterKeys = ['title'],
+  filterKeys = ["title"],
   subtitle = null,
   search = true,
   chunksize = columns * 5,
-  heading = '',
+  heading = "",
 }) => {
   const [nodeCount, setNodeCount] = useState(maxNodes);
-  const [searchInput, setSearchInput] = useState('');
-  const [filterString, setFilterString] = useState('');
+  const [searchInput, setSearchInput] = useState("");
+  const [filterString, setFilterString] = useState("");
 
   const incrementNodeCount = () => {
     setNodeCount((prev) => prev + maxNodes);
@@ -31,17 +31,13 @@ const List = ({
   const printColumns = () => {
     switch (columns) {
       case 5:
-        return 'grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5';
-        break;
+        return "grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5";
       case 4:
-        return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4';
-        break;
+        return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4";
       case 3:
-        return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3';
-        break;
+        return "grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3";
       case 2:
-        return 'grid-cols-1 md:grid-cols-2';
-        break;
+        return "grid-cols-1 md:grid-cols-2";
     }
   };
   useEffect(() => {
@@ -56,18 +52,18 @@ const List = ({
   return (
     <>
       {heading && (
-        <div className='text-center contain'>
-          <h2 className='text-brand-red'>{heading}</h2>
+        <div className="text-center contain">
+          <h2 className="text-brand-red">{heading}</h2>
         </div>
       )}
       {search && (
-        <div className='text-center contain'>
+        <div className="text-center contain">
           <input
-            type='text'
+            type="text"
             value={searchInput}
-            placeholder='Sök...'
+            placeholder="Sök..."
             onChange={(e) => setSearchInput(e.target.value)}
-            className='w-full max-w-lg px-5 py-3 rounded-sm'
+            className="w-full max-w-lg px-5 py-3 rounded-sm"
           />
         </div>
       )}
@@ -78,8 +74,8 @@ const List = ({
             item = flattenObject(item);
             if (filterString) {
               let match = false;
-              if (filterString === 'no:image') {
-                if (!item['featuredImage.node.mediaItemUrl']) {
+              if (filterString === "no:image") {
+                if (!item["featuredImage.node.mediaItemUrl"]) {
                   match = true;
                 }
               } else {
@@ -112,8 +108,8 @@ const List = ({
                       key={item.id}
                     />
                     {ads && (
-                      <li className='col-span-full row'>
-                        <ClientAd position='mid' />
+                      <li className="col-span-full row">
+                        <ClientAd position="mid" />
                       </li>
                     )}
                   </>
@@ -133,7 +129,7 @@ const List = ({
             }
           })}
 
-          {/* {nodeCount <= array.length + 1 && (
+        {/* {nodeCount <= array.length + 1 && (
             <button  className="z-10 text-brand-dark-700 flex font-bold flex-col pointer-events-auto justify-center items-center space-y-3 min-w-[150px] min-h-[70px] cursor-pointer absolute left-2/4 -translate-x-2/4 -bottom-8" onClick={() => addMoreItems(nodeCount)} >
               <span>Visa mer</span>
               <svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg">
