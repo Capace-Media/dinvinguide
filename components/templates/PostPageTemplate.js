@@ -126,7 +126,6 @@ const PostPageTemplate = ({ data }) => {
                 handleGallery={handleGallery}
               />
             )}
-          <h3>Helllo world</h3>
           {page?.content && (
             <div id="content" className="contain-sm rich-text">
               <Content content={page?.content} />
