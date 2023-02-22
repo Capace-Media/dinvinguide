@@ -2,25 +2,52 @@ import {
   getAuthorData,
   getAuthorPaths,
   getPostsByAuthor,
-} from '../../lib/api/authors';
+} from "../../lib/api/authors";
 
-import AuthorPageTemplate from '../../components/templates/AuthorPageTemplate';
-import DrinkPageTemplate from '../../components/templates/DrinkPageTemplate';
-import DrinktipPageTemplate from '../../components/templates/DrinktipPageTemplate';
-import ExplorerPageTemplate from '../../components/templates/ExplorerPageTemplate';
-import GrapePageTemplate from '../../components/templates/GrapePageTemplate';
-import OverviewPageTemplate from '../../components/templates/OverviewPageTemplate';
-import PageTemplate from '../../components/templates/PageTemplate';
-import PostPageTemplate from '../../components/templates/PostPageTemplate';
-import RecipePageTemplate from '../../components/templates/RecipePageTemplate';
-import dynamic from 'next/dynamic';
-import fetchPaths from '../../lib/fragments/paths';
-import fetchTemplate from '../../lib/util/fetchTemplate';
-import resolveTemplate from '../../lib/resolveTemplate';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from "next/dist/client/router";
+import dynamic from "next/dynamic";
+import fetchPaths from "../../lib/fragments/paths";
+import resolveTemplate from "../../lib/resolveTemplate";
+import fetchTemplate from "../../lib/util/fetchTemplate";
+//import DrinktipPageTemplate from "../../components/templates/DrinktipPageTemplate";
+//import RecipePageTemplate from "../../components/templates/RecipePageTemplate";
+const RecipePageTemplate = dynamic(() =>
+  import("../../components/templates/RecipePageTemplate")
+);
+const DrinktipPageTemplate = dynamic(() =>
+  import("../../components/templates/DrinktipPageTemplate")
+);
+//import AuthorPageTemplate from "../../components/templates/AuthorPageTemplate";
+const AuthorPageTemplate = dynamic(() =>
+  import("../../components/templates/AuthorPageTemplate")
+);
+//import DrinkPageTemplate from "../../components/templates/DrinkPageTemplate";
+const DrinkPageTemplate = dynamic(() =>
+  import("../../components/templates/DrinkPageTemplate")
+);
+//import ExplorerPageTemplate from "../../components/templates/ExplorerPageTemplate";
+//import GrapePageTemplate from "../../components/templates/GrapePageTemplate";
+const GrapePageTemplate = dynamic(() =>
+  import("../../components/templates/GrapePageTemplate")
+);
+//import PostPageTemplate from "../../components/templates/PostPageTemplate";
+const PostPageTemplate = dynamic(() =>
+  import("../../components/templates/PostPageTemplate")
+);
+const ExplorerPageTemplate = dynamic(() =>
+  import("../../components/templates/ExplorerPageTemplate")
+);
+//import OverviewPageTemplate from "../../components/templates/OverviewPageTemplate";
+const OverviewPageTemplate = dynamic(() =>
+  import("../../components/templates/OverviewPageTemplate")
+);
+//import PageTemplate from "../../components/templates/PageTemplate";
+const PageTemplate = dynamic(() =>
+  import("../../components/templates/PageTemplate")
+);
 
 const FallbackTemplate = dynamic(() =>
-  import('../../components/templates/FallbackTemplate')
+  import("../../components/templates/FallbackTemplate")
 );
 
 const PagePostHandler = ({ routeType, data }) => {
@@ -29,75 +56,66 @@ const PagePostHandler = ({ routeType, data }) => {
     return <FallbackTemplate />;
   }
   switch (routeType) {
-    case 'author':
+    case "author":
       return (
         <article>
           <AuthorPageTemplate data={data} />
         </article>
       );
-      break;
-    case 'Default':
+    case "Default":
       return (
         <article>
           <PageTemplate data={data} />
         </article>
       );
-      break;
-    case 'page':
+    case "page":
       return (
         <article>
           <PageTemplate data={data} />
         </article>
       );
-      break;
-    case 'Översiktssida':
+    case "Översiktssida":
       return (
         <article>
           <OverviewPageTemplate data={data} />
         </article>
       );
-      break;
-    case 'Utforskarsida':
+    case "Utforskarsida":
       return (
         <article>
           <ExplorerPageTemplate data={data} />
         </article>
       );
-    case 'post':
+    case "post":
       return (
         <article>
           <PostPageTemplate data={data} />
         </article>
       );
-      break;
-    case 'grape':
+    case "grape":
       return (
         <article>
           <GrapePageTemplate data={data} />
         </article>
       );
-      break;
-    case 'drink':
+    case "drink":
       return (
         <article>
           <DrinkPageTemplate data={data} />
         </article>
       );
-      break;
-    case 'drinktip':
+    case "drinktip":
       return (
         <article>
           <DrinktipPageTemplate data={data} />
         </article>
       );
-      break;
-    case 'recipe':
+    case "recipe":
       return (
         <article>
           <RecipePageTemplate data={data} />
         </article>
       );
-      break;
   }
 };
 
@@ -105,21 +123,21 @@ export default PagePostHandler;
 
 export const getStaticPaths = async () => {
   const staticPaths = [
-    { params: { uri: ['recept'] } },
-    { params: { uri: ['skolor'] } },
-    { params: { uri: ['druvguiden'] } },
-    { params: { uri: ['vinguide', 'vinatlas'] } },
-    { params: { uri: ['fredrikschelin'] } },
-    { params: { uri: ['anders'] } },
-    { params: { uri: ['sofiaander'] } },
-    { params: { uri: ['magnus'] } },
+    { params: { uri: ["recept"] } },
+    { params: { uri: ["skolor"] } },
+    { params: { uri: ["druvguiden"] } },
+    { params: { uri: ["vinguide", "vinatlas"] } },
+    { params: { uri: ["fredrikschelin"] } },
+    { params: { uri: ["anders"] } },
+    { params: { uri: ["sofiaander"] } },
+    { params: { uri: ["magnus"] } },
   ];
   const dynamicPaths = await Promise.all([
-    fetchPaths('drinks'),
-    fetchPaths('drinktips'),
-    fetchPaths('recipes'),
-    fetchPaths('grapes'),
-    fetchPaths('posts'),
+    fetchPaths("drinks"),
+    fetchPaths("drinktips"),
+    fetchPaths("recipes"),
+    fetchPaths("grapes"),
+    fetchPaths("posts"),
   ]);
   const paths = [
     ...staticPaths,
@@ -131,95 +149,112 @@ export const getStaticPaths = async () => {
   ];
   return {
     paths,
-    fallback: 'blocking',
+    fallback: "blocking",
   };
 };
 
 export const getStaticProps = async (context) => {
   try {
-  const uri = context.params.uri.join('/');
+    const uri = context.params.uri.join("/");
 
-  const isPreview = context.preview ? true : false;
+    const isPreview = context.preview ? true : false;
 
-  let type = '';
-  let data = null;
+    let type = "";
+    let data = null;
 
-  //FIGURE OUT THE PAGE TYPE
+    //FIGURE OUT THE PAGE TYPE
 
-  //Get author paths to see if page is an author page
-  const authorPaths = await getAuthorPaths();
-  const authorSlugs = authorPaths.map((author) => author.params.author);
+    //Get author paths to see if page is an author page
+    const authorPaths = await getAuthorPaths();
+    const authorSlugs = authorPaths.map((author) => author.params.author);
 
-  if (authorSlugs.includes(uri)) {
-    type = 'author';
-    const resolved = await Promise.all([
-      getAuthorData(uri),
-      getPostsByAuthor(uri),
-    ]);
-    data = { author: resolved[0], posts: resolved[1] };
-  } else {
-    //If not an author page, check the pagetemplate in order to do the correct query
-    const content = await fetchTemplate(uri);
+    if (authorSlugs.includes(uri)) {
+      type = "author";
+      const resolved = await Promise.all([
+        getAuthorData(uri),
+        getPostsByAuthor(uri),
+      ]);
+      data = { author: resolved[0], posts: resolved[1] };
+    } else {
+      //If not an author page, check the pagetemplate in order to do the correct query
+      const content = await fetchTemplate(uri);
 
-    if (!content) {
+      if (!content) {
+        return {
+          notFound: true,
+        };
+      }
+
+      const template = content.template;
+      const contentType = content.contentType;
+
+      type = contentType;
+
+      //Fetch correct data for the template, real or preview
+
+      //HANDLE DRINKS, DRINKTIPS, RECIPES AND GRAPES
+      //   if (
+      //     template === "Default" ||
+      //     template === "Drink" ||
+      //     template === "Drinktip" ||
+      //     template === "Recipe" ||
+      //     template === "Grape"
+      //   ) {
+      //     data = await resolveTemplate(template, type, uri, isPreview);
+
+      //     if (!data.page) {
+      //       return {
+      //         notFound: true,
+      //       };
+      //     }
+      //   }
+      // }
+
+      //HANDLE DEFAULT TEMPLATE
+      if (template === "Default" || template === "Recipe") {
+        data = await resolveTemplate(template, type, uri, false);
+
+        if (!data.page) {
+          return {
+            notFound: true,
+          };
+        }
+      }
+      //HANDLE OVERVIEW PAGE
+      if (template === "Översiktssida") {
+        data = await resolveTemplate(template, type, uri, false);
+        type = "Översiktssida";
+        if (!data.page) {
+          return {
+            notFound: true,
+          };
+        }
+      }
+
+      //HANDLE EXPLORER PAGE
+      if (template === "Utforskarsida") {
+        data = await resolveTemplate(template, type, uri, false);
+        type = "Utforskarsida";
+        if (!data.page) {
+          return {
+            notFound: true,
+          };
+        }
+      }
+    }
+    if (!data) {
       return {
         notFound: true,
       };
     }
 
-    const template = content.template;
-    const contentType = content.contentType;
-
-    type = contentType;
-
-    //Fetch correct data for the template, real or preview
-
-    //HANDLE DEFAULT TEMPLATE
-    if (template === 'Default' || template === 'Recipe') {
-      data = await resolveTemplate(template, type, uri, false);
-
-      if (!data.page) {
-        return {
-          notFound: true,
-        };
-      }
-    }
-    //HANDLE OVERVIEW PAGE
-    if (template === 'Översiktssida') {
-      data = await resolveTemplate(template, type, uri, false);
-      type = 'Översiktssida';
-      if (!data.page) {
-        return {
-          notFound: true,
-        };
-      }
-    }
-
-    //HANDLE EXPLORER PAGE
-    if (template === 'Utforskarsida') {
-      data = await resolveTemplate(template, type, uri, false);
-      type = 'Utforskarsida';
-      if (!data.page) {
-        return {
-          notFound: true,
-        };
-      }
-    }
-  }
-  if (!data) {
     return {
-      notFound: true,
+      props: {
+        routeType: type,
+        data,
+      },
+      revalidate: 60,
     };
-  }
-
-  return {
-    props: {
-      routeType: type,
-      data,
-    },
-    
-  };
-
   } catch (error) {
     console.error("Error fetching homepage data", error);
   }
