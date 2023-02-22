@@ -22,14 +22,14 @@ export default TVPage;
 export const getStaticProps = async () => {
   const resolved = await Promise.all([
     wpFetch(OPTIONS_TV),
-    wpFetch(EPISODES, { batch: 200, type: "episodes" }),
-    wpFetch(PLAYLISTS, { batch: 200, type: "playlists" }),
+    wpFetch(EPISODES, { batch: 10, type: "episodes" }),
+    wpFetch(PLAYLISTS, { batch: 10, type: "playlists" }),
   ]);
-  if (!resolved) {
-    return {
-      notFound: true,
-    };
-  }
+  // if (!resolved) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
 
   return {
     props: {

@@ -1,29 +1,29 @@
-import { DRINKTIPS } from '../../lib/fragments/drinks';
-import DrinktipsList from '../../components/drinkTips/DrinktipsList';
-import PageIntro from '../../components/common/content/PageIntro';
-import SEO from '../../components/common/SEO';
-import { useState } from 'react';
-import wpFetch from '../../lib/wpFetch';
+import { useState } from "react";
+import PageIntro from "../../components/common/content/PageIntro";
+import SEO from "../../components/common/SEO";
+import DrinktipsList from "../../components/drinkTips/DrinktipsList";
+import { DRINKTIPS } from "../../lib/fragments/drinks";
+import wpFetch from "../../lib/wpFetch";
 
 const DryckesTipsPage = ({ drinks }) => {
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
   return (
     <>
       <SEO
-        title='Dryckestips'
-        description='Upptäck exklusiva dryckestips från DinVinguide.'
+        title="Dryckestips"
+        description="Upptäck exklusiva dryckestips från DinVinguide."
       />
-      <PageIntro ad title='Exklusiva dryckestips' />
+      <PageIntro ad title="Exklusiva dryckestips" />
 
-      <div className='text-center row contain'>
+      <div className="text-center row contain">
         <input
-          type='text'
+          type="text"
           value={searchInput}
           onChange={({ target }) => {
             setSearchInput(target.value);
           }}
-          placeholder='Sök...'
-          className='w-full px-5 py-3 lg:w-96'
+          placeholder="Sök..."
+          className="w-full px-5 py-3 lg:w-96"
         />
       </div>
       <DrinktipsList searchInput={searchInput} drinks={drinks} />
@@ -35,7 +35,7 @@ export default DryckesTipsPage;
 
 export const getStaticProps = async () => {
   const resolved = await Promise.all([
-    wpFetch(DRINKTIPS, { batch: 200, type: 'drinktips' }),
+    wpFetch(DRINKTIPS, { batch: 20, type: "drinktips" }),
   ]);
   const drinks = resolved[0].map(({ node: drink }) => drink);
   return {
