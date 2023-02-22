@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import Ad from '../ads/Ad';
-import ClientAd from '../ads/ClientAd';
-import Image from 'next/image';
-import Player from './Player';
-import VideoCard from './VideoCard';
+//import Image from "next/image";
+import Ad from "../ads/Ad";
+import ClientAd from "../ads/ClientAd";
+import Player from "./Player";
+import VideoCard from "./VideoCard";
 
 const Videos = ({ episodes, settings }) => {
-  const [searchInput, setSearchInput] = useState('');
-  const [filterString, setFilterString] = useState('');
+  const [searchInput, setSearchInput] = useState("");
+  const [filterString, setFilterString] = useState("");
   const [maxNodes, setMaxNodes] = useState(12);
   const [playerOpen, setPlayerOpen] = useState(false);
   const [playerVideo, setPlayerVideo] = useState(0);
@@ -39,29 +39,29 @@ const Videos = ({ episodes, settings }) => {
   };
   useEffect(() => {
     if (playerOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
   }, [playerOpen]);
 
   return (
     <>
-      <div className='text-center contain '>
-        <h2 className='text-3xl text-brand-red'>Videos</h2>
+      <div className="text-center contain ">
+        <h2 className="text-3xl text-brand-red">Videos</h2>
       </div>
       <div>
-        <div className='text-center contain row'>
+        <div className="text-center contain row">
           <input
-            type='text'
+            type="text"
             value={searchInput}
-            placeholder='Sök...'
+            placeholder="Sök..."
             onChange={(e) => setSearchInput(e.target.value)}
-            className='w-full max-w-lg px-5 py-3 rounded-sm'
+            className="w-full max-w-lg px-5 py-3 rounded-sm"
           />
         </div>
       </div>
-      <ul className='grid gap-3 pb-10 contain md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+      <ul className="grid gap-3 pb-10 contain md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {episodes
           .filter(({ node: e }) => {
             if (!filterString) {
@@ -80,20 +80,22 @@ const Videos = ({ episodes, settings }) => {
                 return (
                   <>
                     <VideoCard
+                      key={index + 2}
                       video={episode}
                       last={index + 1 === maxNodes ? true : false}
                       onLast={onLast}
                       index={index}
                       handlePlaylist={handlePlaylist}
                     />
-                    <li className='col-span-full row'>
-                      <ClientAd position='mid' />
+                    <li className="col-span-full row">
+                      <ClientAd position="mid" />
                     </li>
                   </>
                 );
               } else {
                 return (
                   <VideoCard
+                    key={index + 1}
                     video={episode}
                     last={index + 1 === maxNodes ? true : false}
                     onLast={onLast}

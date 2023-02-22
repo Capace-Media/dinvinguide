@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import Ad from '../ads/Ad';
-import GrapeListItem from './GrapeListItem';
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
+import Ad from "../ads/Ad";
+import GrapeListItem from "./GrapeListItem";
 const increment = 16;
 const GrapeList = ({ grapes, ads }) => {
   const [nodeCount, setNodeCount] = useState(increment);
-  const [searchInput, setSearchInput] = useState('');
-  const [filterString, setFilterString] = useState('');
+  const [searchInput, setSearchInput] = useState("");
+  const [filterString, setFilterString] = useState("");
   const handleIncrementsNodes = () => {
     setNodeCount((prev) => prev + increment);
   };
@@ -24,16 +24,16 @@ const GrapeList = ({ grapes, ads }) => {
 
   return (
     <>
-      <div className='text-center contain-sm row'>
+      <div className="text-center contain-sm row">
         <input
-          type='text'
-          placeholder='Sök'
-          className='w-full px-5 py-3 lg:w-96'
+          type="text"
+          placeholder="Sök"
+          className="w-full px-5 py-3 lg:w-96"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
       </div>
-      <ul className='grid gap-3 mb-10 md:grid-cols-3 lg:grid-cols-4 contain'>
+      <ul className="grid gap-3 mb-10 md:grid-cols-3 lg:grid-cols-4 contain">
         {grapes
           .filter(({ node: grape }) => {
             if (!filterString) {
@@ -59,6 +59,7 @@ const GrapeList = ({ grapes, ads }) => {
             if (index < nodeCount) {
               return (
                 <GrapeListItem
+                  key={index}
                   last={index + 1 === nodeCount ? true : false}
                   grape={grape}
                   incrementNodes={handleIncrementsNodes}

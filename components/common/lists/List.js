@@ -98,21 +98,20 @@ const List = ({
             if (index < nodeCount) {
               if ((index + 1) % chunksize === 0) {
                 return (
-                  <>
+                  <div key={item?.id + index}>
                     <ListItem
                       data={flattenObject(item)}
                       maxNodes={maxNodes}
                       last={index + 1 === nodeCount ? true : false}
                       increment={incrementNodeCount}
                       subtitle={subtitle}
-                      key={item.id}
                     />
                     {ads && (
                       <li className="col-span-full row">
                         <ClientAd position="mid" />
                       </li>
                     )}
-                  </>
+                  </div>
                 );
               } else {
                 return (

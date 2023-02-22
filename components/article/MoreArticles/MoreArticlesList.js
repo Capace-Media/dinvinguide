@@ -1,5 +1,5 @@
-import MoreArticlesListItem from './MoreArticlesListItem';
-import { useState } from 'react';
+import { useState } from "react";
+import MoreArticlesListItem from "./MoreArticlesListItem";
 const MoreArticlesList = ({ articles }) => {
   const incrementNum = 15;
   const [maxNodes, setMaxNodes] = useState(incrementNum);
@@ -8,14 +8,15 @@ const MoreArticlesList = ({ articles }) => {
   };
   return (
     <>
-      <div className='row'>
-        <h2 className='text-center text-brand-red'>Fler artiklar</h2>
+      <div className="row">
+        <h2 className="text-center text-brand-red">Fler artiklar</h2>
       </div>
-      <ul className='grid gap-3 lg:grid-cols-3 row'>
+      <ul className="grid gap-3 lg:grid-cols-3 row">
         {articles.map(({ node: article }, index) => {
           if (index < maxNodes) {
             return (
               <MoreArticlesListItem
+                key={index}
                 article={article}
                 incrementNodes={incrementNodes}
                 last={index + 1 === maxNodes ? true : false}
