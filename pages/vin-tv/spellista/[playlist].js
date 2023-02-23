@@ -79,8 +79,6 @@ export const getStaticPaths = async () => {
       }
     });
 
-  console.log("playlistPaths====>", playlistPaths);
-
   return {
     paths: playlistPaths,
     fallback: "blocking",
@@ -89,7 +87,6 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const id = context.params.playlist;
-  console.log("the id????", id);
   const resolved = await Promise.all([
     wpFetch(PLAYLIST_SINGLE, { id: id }),
     wpFetch(OPTIONS_TV),

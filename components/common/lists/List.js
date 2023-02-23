@@ -28,7 +28,6 @@ const List = ({
   //   setNodeCount((prev) => prev + maxNodes)
   // }
 
-  console.log("array ===>", array.length);
   const printColumns = () => {
     switch (columns) {
       case 5:

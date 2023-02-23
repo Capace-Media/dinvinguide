@@ -28,6 +28,10 @@ const Player = ({ playlist, currentEpisode, handlePlaylist, settings }) => {
     playAd();
   }, [episodeIndex, playAd]);
 
+  let episodes = playlist.episodes
+    ? playlist.episodes.edges[episodeIndex]
+    : playlist[episodeIndex];
+
   return (
     <>
       <div className="fixed top-0 left-0 z-50 w-screen h-screen bg-white">
@@ -69,13 +73,26 @@ const Player = ({ playlist, currentEpisode, handlePlaylist, settings }) => {
                 <p>Videon spelar snart</p>
               </div>
             ) : (
-              <Video
-                episode={
-                  playlist.episodes
-                    ? playlist.episodes.edges[episodeIndex]
-                    : playlist[episodeIndex]
-                }
-              />
+              <div className="text-center">
+                <Video
+                  episode={
+                    playlist.episodes
+                      ? playlist.episodes.edges[episodeIndex]
+                      : playlist[episodeIndex]
+                  }
+                />
+                <p className="mt-4 text-[12px]">
+                  <span>Fungerar inte videon? </span>
+                  <a
+                    className=" hover:text-brand-bronze"
+                    target="_blank"
+                    href={`https://www.youtube.com/watch?v=${episodes.node.acf_episode.videoId}`}
+                    rel="noreferrer"
+                  >
+                    klicka här för att se den på Youtube
+                  </a>
+                </p>
+              </div>
             )}
           </div>
         </div>
