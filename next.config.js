@@ -46,7 +46,7 @@ module.exports = {
   },
   swcMinify: true,
   images: {
-    domains: [process.env.CMS_BASE_URL, "i.ytimg.com"],
+    domains: [process.env.CMS_BASE_URL, "i.ytimg.com", "img.youtube.com"],
     formats: ["image/avif", "image/webp"],
   },
   // webpack: (config, { dev, isServer }) => {

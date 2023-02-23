@@ -8,6 +8,7 @@ const VideoCard = ({ video, last, onLast, handlePlaylist, index }) => {
       onLast();
     }
   }, [inView, onLast, last]);
+
   return (
     <li
       ref={last ? ref : null}
@@ -23,6 +24,14 @@ const VideoCard = ({ video, last, onLast, handlePlaylist, index }) => {
             alt={video.title}
           />
         )}
+        {!video?.acf_episode?.thumbnail && video?.acf_episode?.videoId ? (
+          <Image
+            src={`https://img.youtube.com/vi/${video?.acf_episode?.videoId}/mqdefault.jpg`}
+            layout="fill"
+            objectFit="cover"
+            alt={video.title}
+          />
+        ) : null}
       </figure>
       <div className="p-4">
         <h3 className="text-sm normal-case lg:text-base">{video.title}</h3>
