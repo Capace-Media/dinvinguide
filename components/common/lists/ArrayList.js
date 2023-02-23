@@ -15,7 +15,7 @@ const ArrayList = ({ array, loadMore, ads }) => {
                 last={i + 1 === array.length ? true : false}
               />
               {ads && (
-                <li className="col-span-full row">
+                <li key={`ad${i}`} className="col-span-full row">
                   <Ad ads={ads} position="mid" />
                 </li>
               )}

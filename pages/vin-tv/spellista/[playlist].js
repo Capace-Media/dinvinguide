@@ -1,12 +1,17 @@
-import { OPTIONS_TV, PLAYLIST_SINGLE } from '../../../lib/fragments/tv';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+import {
+  OPTIONS_TV,
+  PLAYLISTPATHS,
+  PLAYLIST_SINGLE,
+} from "../../../lib/fragments/tv";
 
-import BreadCrumbs from '../../../components/common/BreadCrumbs/Breadcrumbs';
-import EpisodesList from '../../../components/vin-tv/EpisodesList';
-import GuideLayout from '../../../components/layout/GuideLayout';
-import PageIntro from '../../../components/common/content/PageIntro';
-import Player from '../../../components/vin-tv/Player';
-import wpFetch from '../../../lib/wpFetch';
+import BreadCrumbs from "../../../components/common/BreadCrumbs/Breadcrumbs";
+import PageIntro from "../../../components/common/content/PageIntro";
+import GuideLayout from "../../../components/layout/GuideLayout";
+import EpisodesList from "../../../components/vin-tv/EpisodesList";
+import Player from "../../../components/vin-tv/Player";
+import { Client } from "../../../lib/apollo";
+import wpFetch from "../../../lib/wpFetch";
 
 const PlaylistPage = ({ playlist, settings }) => {
   const [playerOpen, setPlayerOpen] = useState(false);
@@ -14,7 +19,6 @@ const PlaylistPage = ({ playlist, settings }) => {
 
   const handlePlaylist = (episodeIndex) => {
     if (episodeIndex !== null) {
-
       setPlayerOpen(true);
       setCurrentEpisodeIndex(episodeIndex);
     } else {
@@ -23,9 +27,9 @@ const PlaylistPage = ({ playlist, settings }) => {
   };
   useEffect(() => {
     if (playerOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
   }, [playerOpen]);
   return (
@@ -33,17 +37,17 @@ const PlaylistPage = ({ playlist, settings }) => {
       <GuideLayout>
         <BreadCrumbs
           crumbs={[
-            { text: 'Guide', href: '/guide' },
-            { text: 'Vin TV', href: '/vin-tv' },
+            { text: "Guide", href: "/guide" },
+            { text: "Vin TV", href: "/vin-tv" },
             {
               current: true,
               text: playlist.name,
-              href: '/vin-tv/spellista/' + playlist.slug,
+              href: "/vin-tv/spellista/" + playlist.slug,
             },
           ]}
         />
 
-        <PageIntro type='Spellista' title={playlist.name} />
+        <PageIntro type="Spellista" title={playlist.name} />
         <EpisodesList
           handlePlaylist={handlePlaylist}
           episodes={playlist.episodes.edges}
@@ -64,14 +68,28 @@ const PlaylistPage = ({ playlist, settings }) => {
 export default PlaylistPage;
 
 export const getStaticPaths = async () => {
+  const { data } = await Client.query({ query: PLAYLISTPATHS });
+
+  const playlistPaths = [];
+
+  data?.playlists?.nodes &&
+    data?.playlists?.nodes?.map((playlist) => {
+      if (playlist?.slug) {
+        playlistPaths.push({ params: { playlist: playlist?.slug } });
+      }
+    });
+
+  console.log("playlistPaths====>", playlistPaths);
+
   return {
-    paths: [],
-    fallback: 'blocking',
+    paths: playlistPaths,
+    fallback: "blocking",
   };
 };
 
 export const getStaticProps = async (context) => {
   const id = context.params.playlist;
+  console.log("the id????", id);
   const resolved = await Promise.all([
     wpFetch(PLAYLIST_SINGLE, { id: id }),
     wpFetch(OPTIONS_TV),
@@ -82,6 +100,5 @@ export const getStaticProps = async (context) => {
       playlist: resolved[0].playlist,
       settings: resolved[1].acfOptionsInstallningarTv.tvOptionsPage,
     },
-    
   };
 };

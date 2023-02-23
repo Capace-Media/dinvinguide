@@ -28,6 +28,7 @@ const List = ({
   //   setNodeCount((prev) => prev + maxNodes)
   // }
 
+  console.log("array ===>", array.length);
   const printColumns = () => {
     switch (columns) {
       case 5:
@@ -98,8 +99,9 @@ const List = ({
             if (index < nodeCount) {
               if ((index + 1) % chunksize === 0) {
                 return (
-                  <div key={item?.id + index}>
+                  <>
                     <ListItem
+                      key={item?.id + index}
                       data={flattenObject(item)}
                       maxNodes={maxNodes}
                       last={index + 1 === nodeCount ? true : false}
@@ -107,11 +109,11 @@ const List = ({
                       subtitle={subtitle}
                     />
                     {ads && (
-                      <li className="col-span-full row">
+                      <li key={`ad${index}`} className="col-span-full row">
                         <ClientAd position="mid" />
                       </li>
                     )}
-                  </div>
+                  </>
                 );
               } else {
                 return (
