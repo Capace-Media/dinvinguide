@@ -16,6 +16,14 @@ const EpisodeCard = ({ episode, index, handlePlaylist }) => {
             alt={episode.title}
           />
         )}
+        {!episode?.acf_episode?.thumbnail && episode?.acf_episode?.videoId ? (
+          <Image
+            src={`https://img.youtube.com/vi/${episode?.acf_episode?.videoId}/mqdefault.jpg`}
+            layout="fill"
+            objectFit="cover"
+            alt={episode.title}
+          />
+        ) : null}
       </figure>
       <div className="flex flex-col justify-center p-5 lg:p-5">
         <h2 className="text-base normal-case lg:text-xl md:line-clamp-1 text-brand-red">
