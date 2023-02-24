@@ -1,24 +1,37 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import ClientAd from "../ads/ClientAd";
-import BreadCrumbs from "../common/BreadCrumbs/Breadcrumbs";
-import List from "../common/lists/List";
+//import List from "../common/lists/List";
+const List = dynamic(() => import("../common/lists/List"));
+//import Test from "../common/lists/test";
 import SEO from "../common/SEO";
+const ClientAd = dynamic(() => import("../ads/ClientAd"));
+//import ClientAd from "../ads/ClientAd";
+const BreadCrumbs = dynamic(() => import("../common/BreadCrumbs/Breadcrumbs"));
+//import BreadCrumbs from "../common/BreadCrumbs/Breadcrumbs";
+//import List from "../common/lists/List";
+//const Test = dynamic(() => import("../common/lists/test"));
 
 const AuthorPageTemplate = ({ data }) => {
   const [isReadMore, setIsReadMore] = useState(false);
 
+  console.log("data ====>", data);
   const { author, posts } = data;
   const postArray = posts.map(({ node: post }) => post);
   return (
     <>
       <SEO
-        title={`${author?.name} - Skribent - `}
-        description={author?.description}
+        title={
+          author?.seo?.title
+            ? author?.seo?.title
+            : `${author?.name} - Skribent - `
+        }
+        description={
+          author?.seo?.metaDesc ? author?.seo?.metaDesc : author?.description
+        }
         image={author?.acf_user?.bild}
       />
-
       <BreadCrumbs
         crumbs={[
           { text: "Skribenter", href: "/skribenter" },
@@ -192,6 +205,7 @@ const AuthorPageTemplate = ({ data }) => {
         </div>
         <div className="mt-10 text-left">
           <List array={postArray} ads columns={3} subtitle="author.node.name" />
+          {/* <Test array={postArray} ads columns={4} subtitle="author.node.name" /> */}
         </div>
       </div>
     </>

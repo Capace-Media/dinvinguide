@@ -42,6 +42,91 @@ module.exports = {
         destination: "/fredrikschelin/bearnaisesas-och-vin",
         permanent: true,
       },
+
+      {
+        source: "/fredrikschelin/champagne-bast-i-test-2018",
+        destination: "/fredrikschelin/champagne-bast-i-test-2018-2",
+        permanent: true,
+      },
+      {
+        source:
+          "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo/johann-topf-9/",
+        destination: "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo",
+        permanent: true,
+      },
+      {
+        source:
+          "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo/johann-topf-8/",
+        destination: "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo",
+        permanent: true,
+      },
+      {
+        source:
+          "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo/johann-topf-7/",
+        destination: "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo",
+        permanent: true,
+      },
+      {
+        source:
+          "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo/johann-topf-6/",
+        destination: "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo",
+        permanent: true,
+      },
+      {
+        source:
+          "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo/johann-topf-5/",
+        destination: "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo",
+        permanent: true,
+      },
+      {
+        source:
+          "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo/johann-topf-4/",
+        destination: "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo",
+        permanent: true,
+      },
+      {
+        source:
+          "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo/johann-topf-3/",
+        destination: "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo",
+        permanent: true,
+      },
+      {
+        source:
+          "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo/johann-topf-12/",
+        destination: "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo",
+        permanent: true,
+      },
+      {
+        source:
+          "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo/johann-topf-11/",
+        destination: "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo",
+        permanent: true,
+      },
+      {
+        source: "/alla-recept",
+        destination: "/recept",
+        permanent: true,
+      },
+      {
+        source: "/alla-drycker",
+        destination: "/dryckesutforskaren",
+        permanent: true,
+      },
+      {
+        source: "/alla-druvor",
+        destination: "/dryckeslistan",
+        permanent: true,
+      },
+      {
+        source: "/all",
+        destination: "/recept",
+        permanent: true,
+      },
+      {
+        source: "/undefined",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
   swcMinify: true,

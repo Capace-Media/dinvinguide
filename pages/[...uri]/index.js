@@ -190,26 +190,6 @@ export const getStaticProps = async (context) => {
 
       type = contentType;
 
-      //Fetch correct data for the template, real or preview
-
-      //HANDLE DRINKS, DRINKTIPS, RECIPES AND GRAPES
-      //   if (
-      //     template === "Default" ||
-      //     template === "Drink" ||
-      //     template === "Drinktip" ||
-      //     template === "Recipe" ||
-      //     template === "Grape"
-      //   ) {
-      //     data = await resolveTemplate(template, type, uri, isPreview);
-
-      //     if (!data.page) {
-      //       return {
-      //         notFound: true,
-      //       };
-      //     }
-      //   }
-      // }
-
       //HANDLE DEFAULT TEMPLATE
       if (template === "Default" || template === "Recipe") {
         data = await resolveTemplate(template, type, uri, false);

@@ -10,8 +10,8 @@ const DryckesTipsPage = ({ drinks }) => {
   return (
     <>
       <SEO
-        title="Dryckestips"
-        description="Upptäck exklusiva dryckestips från DinVinguide."
+        title="Dryckestips - Bästa rödvinet till lördagsmiddagen - DinVinguide"
+        description="Upptäck exklusiva dryckestips från DinVinguide - Vilket är det bästa rödvinet till lördagsmiddagen eller bästa vitvinet till risotton?"
       />
       <PageIntro ad title="Exklusiva dryckestips" />
 

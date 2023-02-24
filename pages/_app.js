@@ -1,33 +1,33 @@
+import "../styles/globals.css";
 
-import '../styles/globals.css';
-
-import { DefaultSeo } from 'next-seo';
-import Head from 'next/head';
-import Layout from '../components/layout/layout';
-import Script from 'next/script';
-import { useRouter } from 'next/router';
-import { GTM_ID, pageview } from '../lib/gtm'
-import { useEffect } from 'react'
+import { DefaultSeo } from "next-seo";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import Script from "next/script";
+import { useEffect } from "react";
+import Layout from "../components/layout/layout";
+import { GTM_ID, pageview } from "../lib/gtm";
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter()
+  const router = useRouter();
+  console.log("pageProps", pageProps);
   useEffect(() => {
-    router.events.on('routeChangeComplete', pageview)
+    router.events.on("routeChangeComplete", pageview);
     return () => {
-      router.events.off('routeChangeComplete', pageview)
-    }
-  }, [router.events])
+      router.events.off("routeChangeComplete", pageview);
+    };
+  }, [router.events]);
   return (
     <Layout>
       <Head>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       {/* Google Tag Manager - Global base code */}
       <Script
         id="gtag-base"
         strategy="lazyOnload"
         onError={(err) => {
-          console.error('Error', err)
+          console.error("Error", err);
         }}
         dangerouslySetInnerHTML={{
           __html: `
@@ -39,14 +39,14 @@ function MyApp({ Component, pageProps }) {
           `,
         }}
       />
-      
+
       <DefaultSeo
-        defaultTitle='DinVinguide - Din guide om vin'
+        defaultTitle="DinVinguide - Din guide om vin"
         openGraph={{
-          type: 'website',
-          locale: 'sv_SE',
-          url: 'https://dinvinguide.se',
-          site_name: 'DinVinguide',
+          type: "website",
+          locale: "sv_SE",
+          url: "https://dinvinguide.se",
+          site_name: "DinVinguide",
         }}
       />
       <Component {...pageProps} />
