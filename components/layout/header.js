@@ -13,21 +13,11 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
   const isDryckeslistan = router.asPath.includes("dryckeslistan");
-  const links = [
+  const originalLinks = [
     { content: "Skribenter", href: "/skribenter" },
     { content: "Guide", href: "/guide" },
     {
-      content: isDryckeslistan ? (
-        <Image
-          width={300}
-          height={65}
-          objectFit="contain"
-          src={DryckeslistanLogo}
-          priority
-          className="cursor-pointer"
-          alt="DinVinGuide Logotyp"
-        />
-      ) : (
+      content: (
         <Image
           width={300}
           height={65}
@@ -44,6 +34,33 @@ export default function Header() {
     { content: "Recept", href: "/recept" },
     { content: "Topplistor", href: "/dryckeslistan" },
   ];
+  const [links, setLinks] = useState(originalLinks);
+
+  useEffect(() => {
+    if (isDryckeslistan) {
+      const newImage = (
+        <Image
+          width={300}
+          height={65}
+          objectFit="contain"
+          src={DryckeslistanLogo}
+          priority
+          className="cursor-pointer"
+          alt="DinVinGuide Logotyp"
+        />
+      );
+      setLinks((prevLinks) => {
+        const updatedLinks = [...prevLinks];
+        updatedLinks[2].content = newImage;
+        updatedLinks[2].href = isDryckeslistan ? "/dryckeslistan" : "/";
+        return updatedLinks;
+      });
+    }
+
+    return () => {
+      setLinks(originalLinks);
+    };
+  }, [isDryckeslistan]);
 
   useEffect(() => {
     if (mobileMenuOpen) {

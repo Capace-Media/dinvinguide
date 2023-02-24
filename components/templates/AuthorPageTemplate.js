@@ -16,7 +16,6 @@ const BreadCrumbs = dynamic(() => import("../common/BreadCrumbs/Breadcrumbs"));
 const AuthorPageTemplate = ({ data }) => {
   const [isReadMore, setIsReadMore] = useState(false);
 
-  console.log("data ====>", data);
   const { author, posts } = data;
   const postArray = posts.map(({ node: post }) => post);
   return (

@@ -10,7 +10,6 @@ import { GTM_ID, pageview } from "../lib/gtm";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
-  console.log("pageProps", pageProps);
   useEffect(() => {
     router.events.on("routeChangeComplete", pageview);
     return () => {
