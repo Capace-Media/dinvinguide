@@ -9,11 +9,33 @@ import BritFlag from "../../public/images/BRITFlag.png";
 import DryckeslistanLogo from "../../public/images/dryckeslistanlogo-1.svg";
 import SweFlag from "../../public/images/SWEFlag.png";
 
+// const originalLinks = [
+//   { content: "Skribenter", href: "/skribenter" },
+//   { content: "Guide", href: "/guide" },
+//   {
+//     content: (
+//       <Image
+//         width={300}
+//         height={65}
+//         objectFit="contain"
+//         src={Logo}
+//         priority
+//         className="cursor-pointer"
+//         alt="DinVinGuide Logotyp"
+//       />
+//     ),
+//     href: "/",
+//     mobile: true,
+//   },
+//   { content: "Recept", href: "/recept" },
+//   { content: "Topplistor", href: "/dryckeslistan" },
+// ];
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
   const isDryckeslistan = router.asPath.includes("dryckeslistan");
-  const originalLinks = [
+
+  const [links, setLinks] = useState([
     { content: "Skribenter", href: "/skribenter" },
     { content: "Guide", href: "/guide" },
     {
@@ -28,13 +50,12 @@ export default function Header() {
           alt="DinVinGuide Logotyp"
         />
       ),
-      href: isDryckeslistan ? "/dryckeslistan" : "/",
+      href: "/",
       mobile: true,
     },
     { content: "Recept", href: "/recept" },
     { content: "Topplistor", href: "/dryckeslistan" },
-  ];
-  const [links, setLinks] = useState(originalLinks);
+  ]);
 
   useEffect(() => {
     if (isDryckeslistan) {
@@ -52,15 +73,59 @@ export default function Header() {
       setLinks((prevLinks) => {
         const updatedLinks = [...prevLinks];
         updatedLinks[2].content = newImage;
-        updatedLinks[2].href = isDryckeslistan ? "/dryckeslistan" : "/";
+        updatedLinks[2].href = "/dryckeslistan";
         return updatedLinks;
       });
+    } else {
+      setLinks([
+        { content: "Skribenter", href: "/skribenter" },
+        { content: "Guide", href: "/guide" },
+        {
+          content: (
+            <Image
+              width={300}
+              height={65}
+              objectFit="contain"
+              src={Logo}
+              priority
+              className="cursor-pointer"
+              alt="DinVinGuide Logotyp"
+            />
+          ),
+          href: "/",
+          mobile: true,
+        },
+        { content: "Recept", href: "/recept" },
+        { content: "Topplistor", href: "/dryckeslistan" },
+      ]);
     }
 
     return () => {
-      setLinks(originalLinks);
+      setLinks([
+        { content: "Skribenter", href: "/skribenter" },
+        { content: "Guide", href: "/guide" },
+        {
+          content: (
+            <Image
+              width={300}
+              height={65}
+              objectFit="contain"
+              src={Logo}
+              priority
+              className="cursor-pointer"
+              alt="DinVinGuide Logotyp"
+            />
+          ),
+          href: "/",
+          mobile: true,
+        },
+        { content: "Recept", href: "/recept" },
+        { content: "Topplistor", href: "/dryckeslistan" },
+      ]);
     };
   }, [isDryckeslistan]);
+
+  //console.log("links", links);
 
   useEffect(() => {
     if (mobileMenuOpen) {
