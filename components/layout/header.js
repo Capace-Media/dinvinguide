@@ -33,97 +33,120 @@ import SweFlag from "../../public/images/SWEFlag.png";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
-  const isDryckeslistan = router.asPath.includes("dryckeslistan");
+  //const isDryckeslistan = router.asPath.includes("dryckeslistan");
 
-  const [links, setLinks] = useState([
+  let path = router?.asPath;
+
+  // console.log("router ===>", router);
+
+  // const [links, setLinks] = useState([]);
+  const Links = [
     { content: "Skribenter", href: "/skribenter" },
     { content: "Guide", href: "/guide" },
     {
-      content: (
-        <Image
-          width={300}
-          height={65}
-          objectFit="contain"
-          src={Logo}
-          priority
-          className="cursor-pointer"
-          alt="DinVinGuide Logotyp"
-        />
-      ),
+      content: "Image",
       href: "/",
       mobile: true,
     },
     { content: "Recept", href: "/recept" },
     { content: "Topplistor", href: "/dryckeslistan" },
-  ]);
+  ];
 
-  useEffect(() => {
-    if (isDryckeslistan) {
-      const newImage = (
-        <Image
-          width={300}
-          height={65}
-          objectFit="contain"
-          src={DryckeslistanLogo}
-          priority
-          className="cursor-pointer"
-          alt="DinVinGuide Logotyp"
-        />
-      );
-      setLinks((prevLinks) => {
-        const updatedLinks = [...prevLinks];
-        updatedLinks[2].content = newImage;
-        updatedLinks[2].href = "/dryckeslistan";
-        return updatedLinks;
-      });
-    } else {
-      setLinks([
-        { content: "Skribenter", href: "/skribenter" },
-        { content: "Guide", href: "/guide" },
-        {
-          content: (
-            <Image
-              width={300}
-              height={65}
-              objectFit="contain"
-              src={Logo}
-              priority
-              className="cursor-pointer"
-              alt="DinVinGuide Logotyp"
-            />
-          ),
-          href: "/",
-          mobile: true,
-        },
-        { content: "Recept", href: "/recept" },
-        { content: "Topplistor", href: "/dryckeslistan" },
-      ]);
-    }
+  // const DVG = [
+  //   { content: "Skribenter", href: "/skribenter" },
+  //   { content: "Guide", href: "/guide" },
+  //   {
+  //     content: (
+  //       <Image
+  //         width={300}
+  //         height={65}
+  //         objectFit="contain"
+  //         src={Logo}
+  //         priority
+  //         className="cursor-pointer"
+  //         alt="DinVinGuide Logotyp"
+  //       />
+  //     ),
+  //     href: "/",
+  //     mobile: true,
+  //   },
+  //   { content: "Recept", href: "/recept" },
+  //   { content: "Topplistor", href: "/dryckeslistan" },
+  // ];
 
-    return () => {
-      setLinks([
-        { content: "Skribenter", href: "/skribenter" },
-        { content: "Guide", href: "/guide" },
-        {
-          content: (
-            <Image
-              width={300}
-              height={65}
-              objectFit="contain"
-              src={Logo}
-              priority
-              className="cursor-pointer"
-              alt="DinVinGuide Logotyp"
-            />
-          ),
-          href: "/",
-          mobile: true,
-        },
-        { content: "Recept", href: "/recept" },
-        { content: "Topplistor", href: "/dryckeslistan" },
-      ]);
-    };
-  }, [isDryckeslistan]);
+  // const DL = [
+  //   { content: "Skribenter", href: "/skribenter" },
+  //   { content: "Guide", href: "/guide" },
+  //   {
+  //     content: (
+  //       <Image
+  //         width={300}
+  //         height={65}
+  //         objectFit="contain"
+  //         src={DryckeslistanLogo}
+  //         priority
+  //         className="cursor-pointer"
+  //         alt="DinVinGuide Logotyp"
+  //       />
+  //     ),
+  //     href: "/dryckeslistan",
+  //     mobile: true,
+  //   },
+  //   { content: "Recept", href: "/recept" },
+  //   { content: "Topplistor", href: "/dryckeslistan" },
+  // ];
+
+  // useEffect(() => {
+  //   if (path === "/dryckeslistan") {
+  //     setLinks([
+  //       { content: "Skribenter", href: "/skribenter" },
+  //       { content: "Guide", href: "/guide" },
+  //       {
+  //         content: (
+  //           <Image
+  //             width={300}
+  //             height={65}
+  //             objectFit="contain"
+  //             src={DryckeslistanLogo}
+  //             priority
+  //             className="cursor-pointer"
+  //             alt="DinVinGuide Logotyp"
+  //           />
+  //         ),
+  //         href: "/dryckeslistan",
+  //         mobile: true,
+  //       },
+  //       { content: "Recept", href: "/recept" },
+  //       { content: "Topplistor", href: "/dryckeslistan" },
+  //     ]);
+  //   } else {
+  //     setLinks([
+  //       { content: "Skribenter", href: "/skribenter" },
+  //       { content: "Guide", href: "/guide" },
+  //       {
+  //         content: (
+  //           <Image
+  //             width={300}
+  //             height={65}
+  //             objectFit="contain"
+  //             src={Logo}
+  //             priority
+  //             className="cursor-pointer"
+  //             alt="DinVinGuide Logotyp"
+  //           />
+  //         ),
+  //         href: "/",
+  //         mobile: true,
+  //       },
+  //       { content: "Recept", href: "/recept" },
+  //       { content: "Topplistor", href: "/dryckeslistan" },
+  //     ]);
+  //   }
+
+  //   // return () => {
+  //   //   setLinks([]);
+  //   // };
+  // }, [path]);
 
   //console.log("links", links);
 
@@ -170,20 +193,49 @@ export default function Header() {
               <Image src={SweFlag} priority alt='Svenska flaggan' />
             </a> */}
           </div>
+
           <div className="flex items-center lg:flex-1 justify-evenly">
-            {links.map((link) => (
-              <Link key={link.href} href={link.href}>
-                <a
-                  key={link.href}
-                  className={
-                    link.mobile ? "inherit lg:inherit" : "hidden lg:flex"
-                  }
-                >
-                  {link.content}
-                </a>
-              </Link>
-            ))}
+            {Links.map((link, index) => {
+              if (link?.content === "Image") {
+                return (
+                  <Link key={link.href} href={link.href}>
+                    <a
+                      key={link.href + index}
+                      className={
+                        link.mobile ? "inherit lg:inherit" : "hidden lg:flex"
+                      }
+                    >
+                      <Image
+                        width={300}
+                        height={65}
+                        objectFit="contain"
+                        src={
+                          path === "/dryckeslistan" ? DryckeslistanLogo : Logo
+                        }
+                        priority
+                        className="cursor-pointer"
+                        alt="DinVinGuide Logotyp"
+                      />
+                    </a>
+                  </Link>
+                );
+              } else {
+                return (
+                  <Link key={link.href} href={link.href}>
+                    <a
+                      key={link.href + index}
+                      className={
+                        link.mobile ? "inherit lg:inherit" : "hidden lg:flex"
+                      }
+                    >
+                      {link.content}
+                    </a>
+                  </Link>
+                );
+              }
+            })}
           </div>
+
           <div className="flex items-center justify-end w-24 space-x-2 lg:space-x-0">
             <Link href="/sok">
               <a name="Sök" aria-label="Sök">
