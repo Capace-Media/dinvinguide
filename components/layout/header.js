@@ -281,7 +281,7 @@ export default function Header() {
                   <a className="">Hem</a>
                 </Link>
               </li>
-              {links.map((link, i) => {
+              {Links.map((link, i) => {
                 if (i !== 2) {
                   return (
                     <li key={link.href + i}>
