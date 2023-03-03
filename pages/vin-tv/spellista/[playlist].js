@@ -7,6 +7,7 @@ import {
 
 import BreadCrumbs from "../../../components/common/BreadCrumbs/Breadcrumbs";
 import PageIntro from "../../../components/common/content/PageIntro";
+import SEO from "../../../components/common/SEO";
 import GuideLayout from "../../../components/layout/GuideLayout";
 import EpisodesList from "../../../components/vin-tv/EpisodesList";
 import Player from "../../../components/vin-tv/Player";
@@ -32,8 +33,28 @@ const PlaylistPage = ({ playlist, settings }) => {
       document.body.style.overflow = "unset";
     }
   }, [playerOpen]);
+
   return (
     <>
+      <SEO
+        title={
+          playlist?.seo?.opengraphTitle
+            ? playlist?.seo?.opengraphTitle
+            : playlist?.name
+        }
+        description={
+          playlist?.seo?.metaDesc
+            ? playlist?.seo?.metaDesc
+            : playlist?.seo?.opengraphDescription
+            ? playlist?.seo?.opengraphDescription
+            : playlist?.description
+        }
+        image={
+          playlist?.seo?.opengraphImage?.mediaItemUrl
+            ? playlist?.seo?.opengraphImage?.mediaItemUrl
+            : ""
+        }
+      />
       <GuideLayout>
         <BreadCrumbs
           crumbs={[

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import Image from "next/image";
+import SEO from "../common/SEO";
 import Video from "./Video";
 
 const Player = ({ playlist, currentEpisode, handlePlaylist, settings }) => {
@@ -34,6 +35,21 @@ const Player = ({ playlist, currentEpisode, handlePlaylist, settings }) => {
 
   return (
     <>
+      <SEO
+        title={
+          episodes?.node?.seo?.title
+            ? episodes?.node?.seo?.title
+            : episodes?.node?.title
+        }
+        description={
+          episodes?.node?.seo?.metaDesc ? episodes?.node?.seo?.metaDesc : ""
+        }
+        image={
+          episodes?.node?.seo?.opengraphImage?.mediaItemUrl
+            ? episodes?.node?.seo?.opengraphImage?.mediaItemUrl
+            : ""
+        }
+      />
       <div className="fixed top-0 left-0 z-50 w-screen h-screen bg-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"

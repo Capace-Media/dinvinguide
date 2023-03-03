@@ -8,7 +8,7 @@ import { getAds } from "../../lib/api/ads";
 import wpFetch from "../../lib/wpFetch";
 
 const TVPage = ({ page, episodes, playlists, ads }) => {
-  //console.log("page ===>", page);
+  console.log("page ===>", page);
   return (
     <GuideLayout>
       <PageIntro ad title={page.vintvTitle} text={page.vintvIngress} />

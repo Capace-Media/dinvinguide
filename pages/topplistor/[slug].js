@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import slugify from "slugify";
 import PageIntro from "../../components/common/content/PageIntro";
 import ExplorerLinks from "../../components/common/explorer/explorerLinks";
+import SEO from "../../components/common/SEO";
 import Newsletter from "../../components/section/Newsletter";
 import Toplist from "../../components/toplists/Toplist";
 
@@ -11,6 +12,23 @@ const SingleToplistPage = ({ data }) => {
   const { toplist } = data;
   return (
     <Fragment>
+      <SEO
+        title={
+          toplist?.toplist?.seo?.title
+            ? toplist?.toplist?.seo?.title
+            : oplist.toplist.title
+        }
+        description={
+          toplist?.toplist?.seo?.metaDesc
+            ? toplist?.toplist?.seo?.metaDesc
+            : toplist.toplist.acf_toplists.text
+        }
+        image={
+          toplist?.toplist?.seo?.opengraphImage?.mediaItemUrl
+            ? toplist?.toplist?.seo?.opengraphImage?.mediaItemUrl
+            : ""
+        }
+      />
       <PageIntro
         title={toplist.toplist.title}
         text={toplist.toplist.acf_toplists.text}
