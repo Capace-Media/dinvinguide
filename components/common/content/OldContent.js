@@ -40,9 +40,11 @@ const OldContent = ({ content }) => {
                 domNode?.attribs?.href.charAt(0) !== "/"
               ) {
                 domNode.attribs.target = "_blank";
+                domNode.attribs.rel = "noreferrer";
               }
               if (
                 !domNode?.attribs?.href?.includes("https://") &&
+                !domNode?.attribs?.href?.includes("http://") &&
                 domNode?.attribs?.href?.includes("www.")
               ) {
                 let url = domNode?.attribs?.href;
