@@ -16,6 +16,23 @@ const Content = ({ content }) => {
               );
             }
             if (domNode.name === "a") {
+              // const imgChild = Array.from(domNode.children).find(
+              //   (childNode) => childNode.name === "img"
+              // );
+              // if (imgChild) {
+              //   // "a" node has an "img" child node
+              //   const imgSrc = imgChild.attribs.srcset;
+
+              //   domNode.attribs.href = imgSrc;
+              // }
+              if (
+                !domNode?.attribs?.href?.includes("dinvinguide.se/") &&
+                !domNode?.attribs?.href?.includes("dryckeslistan.se/") &&
+                domNode?.attribs?.href?.charAt(0) !== "/"
+              ) {
+                console.log("domNode ==>", domNode);
+                domNode.attribs.target = "_blank";
+              }
               if (
                 !domNode?.attribs?.href?.includes("https://") &&
                 domNode?.attribs?.href?.includes("www.")
@@ -24,14 +41,6 @@ const Content = ({ content }) => {
                 const string = "https://";
                 const newString = url.replace("www.", string);
                 return (domNode.attribs.href = `${newString}`);
-              }
-              if (
-                !domNode?.attribs?.href?.includes("dinvinguide.se/") &&
-                !domNode?.attribs?.href?.includes("dryckeslistan.se/") &&
-                domNode?.attribs?.href?.charAt(0) !== "/"
-              ) {
-                console.log("domNode ==>", domNode);
-                domNode.attribs.target = "_blank";
               }
             }
           },
