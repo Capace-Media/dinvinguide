@@ -16,21 +16,24 @@ const Content = ({ content }) => {
               );
             }
             if (domNode.name === "a") {
-              // const imgChild = Array.from(domNode.children).find(
-              //   (childNode) => childNode.name === "img"
-              // );
-              // if (imgChild) {
-              //   // "a" node has an "img" child node
-              //   const imgSrc = imgChild.attribs.srcset;
-
-              //   domNode.attribs.href = imgSrc;
-              // }
+              const imgChild = Array.from(domNode.children).find(
+                (childNode) => childNode.name === "img"
+              );
+              if (imgChild) {
+                if (domNode?.attribs?.href.includes("/app/uploads/")) {
+                  const originalString = domNode.attribs.href;
+                  const newString = originalString.replace(
+                    /^.*\/app\/uploads\//,
+                    "https://media.dinvinguide.se/wp-content/uploads/"
+                  );
+                  return (domNode.attribs.href = `${newString}`);
+                }
+              }
               if (
                 !domNode?.attribs?.href?.includes("dinvinguide.se/") &&
                 !domNode?.attribs?.href?.includes("dryckeslistan.se/") &&
                 domNode?.attribs?.href?.charAt(0) !== "/"
               ) {
-                console.log("domNode ==>", domNode);
                 domNode.attribs.target = "_blank";
               }
               if (

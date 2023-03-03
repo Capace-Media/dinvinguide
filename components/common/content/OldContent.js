@@ -41,6 +41,15 @@ const OldContent = ({ content }) => {
               ) {
                 domNode.attribs.target = "_blank";
               }
+              if (
+                !domNode?.attribs?.href?.includes("https://") &&
+                domNode?.attribs?.href?.includes("www.")
+              ) {
+                let url = domNode?.attribs?.href;
+                const string = "https://";
+                const newString = url.replace("www.", string);
+                return (domNode.attribs.href = `${newString}`);
+              }
             }
           },
         })}
