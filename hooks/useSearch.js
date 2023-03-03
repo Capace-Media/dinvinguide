@@ -1,23 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const useSearch = () => {
   const [results, setResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
-  const [cursor, setCursor] = useState('');
+  const [cursor, setCursor] = useState("");
   const [hasNextPage, setHasNextPage] = useState(true);
-  const [type, setType] = useState('drinks');
-  const [searchInput, setSearchInput] = useState('');
+  const [type, setType] = useState("drinks");
+  const [searchInput, setSearchInput] = useState("");
   const reset = () => {
     setResults([]);
     setHasNextPage(true);
-    setCursor('');
+    setCursor("");
   };
   const search = async () => {
     if (searchInput && searchInput.length > 2) {
       if (hasNextPage) {
         setIsSearching(true);
-        const res = await fetch('/api/search', {
-          method: 'POST',
+        const res = await fetch("/api/search", {
+          method: "POST",
           body: JSON.stringify({
             input: searchInput,
             cursor,
