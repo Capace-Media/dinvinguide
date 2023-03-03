@@ -123,6 +123,11 @@ module.exports = {
         permanent: true,
       },
       {
+        source: "/all/:path*",
+        destination: "/sok",
+        permanent: true,
+      },
+      {
         source: "/undefined",
         destination: "/",
         permanent: true,
