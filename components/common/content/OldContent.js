@@ -5,6 +5,14 @@ const OldContent = ({ content }) => {
     .replace(/row/g, "")
     .replace(/[*]/g, "");
 
+  const handleImageError = (event) => {
+    try {
+      event.target.remove();
+    } catch (error) {
+      console.error("Error removing image:", error);
+    }
+  };
+
   return (
     <div className="mx-auto w-[85%] prose-sm max-w-prose lg:prose">
       {content &&
@@ -16,9 +24,15 @@ const OldContent = ({ content }) => {
             }
             if (domNode.name === "img") {
               domNode.attribs.src = domNode?.attribs?.src?.replace(
-                "/app/uploads/",
+                /^.*\/app\/uploads\//,
                 "https://media.dinvinguide.se/wp-content/uploads/"
               );
+
+              domNode.attribs.src = domNode?.attribs?.src
+                ?.replace(/\/files/, "/wp-content/uploads")
+                .replace(/-\d+x\d+/, "");
+
+              domNode.attribs.onError = handleImageError;
             }
             if (domNode.name === "a") {
               const imgChild = Array.from(domNode.children).find(
@@ -33,6 +47,7 @@ const OldContent = ({ content }) => {
                   );
                   return (domNode.attribs.href = `${newString}`);
                 }
+                domNode.attribs.onError = handleImageError;
               }
               if (
                 !domNode?.attribs?.href.includes("dinvinguide.se/") &&

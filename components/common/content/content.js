@@ -1,5 +1,14 @@
 import parse from "html-react-parser";
 const Content = ({ content }) => {
+  const handleImageError = (event) => {
+    try {
+      event.target.remove();
+      //event.target.onerror = null; // remove the error handler to prevent an infinite loop
+      //event.target.src = "https://example.com/placeholder.jpg"; // replace with placeholder image URL
+    } catch (error) {
+      console.error("Error removing image:", error);
+    }
+  };
   return (
     <div className="mx-auto prose-sm lg:prose row max-w-prose">
       {content &&
@@ -11,9 +20,11 @@ const Content = ({ content }) => {
             }
             if (domNode.name === "img") {
               domNode.attribs.src = domNode?.attribs?.src?.replace(
-                "/app/uploads/",
+                /^.*\/app\/uploads\//,
                 "https://media.dinvinguide.se/wp-content/uploads/"
               );
+
+              domNode.attribs.onError = handleImageError;
             }
             if (domNode.name === "a") {
               const imgChild = Array.from(domNode.children).find(
@@ -28,6 +39,7 @@ const Content = ({ content }) => {
                   );
                   return (domNode.attribs.href = `${newString}`);
                 }
+                domNode.attribs.onError = handleImageError;
               }
               if (
                 !domNode?.attribs?.href?.includes("dinvinguide.se/") &&

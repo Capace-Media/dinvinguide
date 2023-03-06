@@ -1,7 +1,7 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import LogoWhite from '../../public/images/dvg-logo-white.png';
-import RecipePlaceholder from '../../public/images/recipe-placeholder.jpg'
+import Image from "next/image";
+import Link from "next/link";
+import LogoWhite from "../../public/images/dvg-logo-white.png";
+import RecipePlaceholder from "../../public/images/recipe-placeholder.jpg";
 export default function Featured({ items }) {
   const containerClasses = `group h-56   relative flex items-start justify-center bg-black p-5 overflow-hidden `;
   const contentClasses = `z-20 border-l-4 border-brand-bronze px-2 w-full`;
@@ -12,24 +12,27 @@ export default function Featured({ items }) {
   const renderBlock = (item, index) => {
     if (index === 0) {
       return (
-        <div className='relative flex items-center justify-center p-5 bg-black h-96 lg:col-span-2 lg:row-span-2 lg:h-full'>
+        <div
+          key={item?.image + index}
+          className="relative flex items-center justify-center p-5 bg-black h-96 lg:col-span-2 lg:row-span-2 lg:h-full"
+        >
           {item?.image && (
             <Image
               src={item.image}
-              layout='fill'
-              objectFit='cover'
-              className='opacity-80 notranslate'
-              alt='Välkommen till DinVinguide'
+              layout="fill"
+              objectFit="cover"
+              className="opacity-80 notranslate"
+              alt="Välkommen till DinVinguide"
               placeholder="blur"
               blurDataURL={RecipePlaceholder}
             />
           )}
 
           <div className={`z-20 text-5xl  font-semibold text-center`}>
-            <h1 className='mb-3'>Välkommen till</h1>
-            <Image 
-              src={LogoWhite} 
-              alt='Logo DinVinguide - Vit'
+            <h1 className="mb-3">Välkommen till</h1>
+            <Image
+              src={LogoWhite}
+              alt="Logo DinVinguide - Vit"
               placeholder="blur"
               blurDataURL={RecipePlaceholder}
             />
@@ -39,18 +42,18 @@ export default function Featured({ items }) {
     }
     if (index === 1) {
       return (
-        <Link href={item.uri}>
+        <Link key={item?.title + index} href={item.uri}>
           <a
             className={`lg:col-span-1 lg:row-span-2 ${containerClasses} lg:h-full`}
           >
             {item?.image && (
               <Image
                 src={item.image}
-                layout='fill'
-                objectFit='cover'
+                layout="fill"
+                objectFit="cover"
                 className={`${imageClasses} `}
                 alt={item.title}
-                translate='no'
+                translate="no"
                 placeholder="blur"
                 blurDataURL={RecipePlaceholder}
               />
@@ -69,6 +72,7 @@ export default function Featured({ items }) {
     if (index === 4) {
       return (
         <Link
+          key={item?.title + index}
           href={
             item.authorSlug
               ? `/${item.authorSlug}/${item.slug}`
@@ -81,11 +85,11 @@ export default function Featured({ items }) {
             {item.image && (
               <Image
                 src={item?.image}
-                layout='fill'
-                objectFit='cover'
+                layout="fill"
+                objectFit="cover"
                 className={`${imageClasses}`}
                 alt={item.title}
-                translate='no'
+                translate="no"
                 placeholder="blur"
                 blurDataURL={RecipePlaceholder}
               />
@@ -104,6 +108,7 @@ export default function Featured({ items }) {
     if (index === 6) {
       return (
         <Link
+          key={item?.title + index}
           href={
             item.authorSlug
               ? `/${item.authorSlug}/${item.slug}`
@@ -116,11 +121,11 @@ export default function Featured({ items }) {
             {item.image && (
               <Image
                 src={item?.image}
-                layout='fill'
-                objectFit='cover'
+                layout="fill"
+                objectFit="cover"
                 className={`${imageClasses}`}
                 alt={item.title}
-                translate='no'
+                translate="no"
                 placeholder="blur"
                 blurDataURL={RecipePlaceholder}
               />
@@ -139,6 +144,7 @@ export default function Featured({ items }) {
     if (index === 8) {
       return (
         <Link
+          key={item?.title + index}
           href={
             item.authorSlug
               ? `/${item.authorSlug}/${item.slug}`
@@ -151,8 +157,8 @@ export default function Featured({ items }) {
             {item.image && (
               <Image
                 src={item?.image}
-                layout='fill'
-                objectFit='cover'
+                layout="fill"
+                objectFit="cover"
                 className={`${imageClasses}`}
                 alt={item.title}
                 placeholder="blur"
@@ -173,6 +179,7 @@ export default function Featured({ items }) {
     if (index === 9) {
       return (
         <Link
+          key={item?.title + index}
           href={
             item.authorSlug
               ? `/${item.authorSlug}/${item.slug}`
@@ -185,8 +192,8 @@ export default function Featured({ items }) {
             {item.image && (
               <Image
                 src={item?.image}
-                layout='fill'
-                objectFit='cover'
+                layout="fill"
+                objectFit="cover"
                 className={`${imageClasses}`}
                 alt={item.title}
                 placeholder="blur"
@@ -207,6 +214,7 @@ export default function Featured({ items }) {
     if (index === 12) {
       return (
         <Link
+          key={item?.title + index}
           href={
             item.authorSlug
               ? `/${item.authorSlug}/${item.slug}`
@@ -219,8 +227,8 @@ export default function Featured({ items }) {
             {item.image && (
               <Image
                 src={item?.image}
-                layout='fill'
-                objectFit='cover'
+                layout="fill"
+                objectFit="cover"
                 className={`${imageClasses}`}
                 alt={item.title}
                 placeholder="blur"
@@ -241,6 +249,7 @@ export default function Featured({ items }) {
     if (index === 14) {
       return (
         <Link
+          key={item?.title + index}
           href={
             item.authorSlug
               ? `/${item.authorSlug}/${item.slug}`
@@ -253,8 +262,8 @@ export default function Featured({ items }) {
             {item.image && (
               <Image
                 src={item?.image}
-                layout='fill'
-                objectFit='cover'
+                layout="fill"
+                objectFit="cover"
                 className={`${imageClasses}`}
                 alt={item.title}
                 placeholder="blur"
@@ -275,6 +284,7 @@ export default function Featured({ items }) {
 
     return (
       <Link
+        key={item?.title + index}
         href={
           item.authorSlug ? `/${item.authorSlug}/${item.slug}` : `/${item.slug}`
         }
@@ -283,8 +293,8 @@ export default function Featured({ items }) {
           {item.image && (
             <Image
               src={item?.image}
-              layout='fill'
-              objectFit='cover'
+              layout="fill"
+              objectFit="cover"
               className={`${imageClasses}`}
               alt={item.title}
               placeholder="blur"
@@ -303,7 +313,7 @@ export default function Featured({ items }) {
     );
   };
   return (
-    <div className='grid grid-cols-1 gap-2 text-white grid-cols contain lg:grid-cols-4'>
+    <div className="grid grid-cols-1 gap-2 text-white grid-cols contain lg:grid-cols-4">
       {items.map((item, index) => renderBlock(item, index))}
     </div>
   );
