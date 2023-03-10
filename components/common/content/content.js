@@ -1,5 +1,5 @@
 import parse from "html-react-parser";
-const Content = ({ content }) => {
+const Content = ({ content, altText }) => {
   const handleImageError = (event) => {
     try {
       event.target.remove();
@@ -19,10 +19,25 @@ const Content = ({ content }) => {
               domNode.attribs.style = "display:block;";
             }
             if (domNode.name === "img") {
+              if (!domNode?.attribs?.alt) {
+                domNode.attribs.alt = altText
+                  ? altText
+                  : "Bild från DinVinGuide";
+              }
               domNode.attribs.src = domNode?.attribs?.src?.replace(
                 /^.*\/app\/uploads\//,
                 "https://media.dinvinguide.se/wp-content/uploads/"
               );
+              if (
+                !domNode?.attribs?.src?.includes("https://") &&
+                domNode?.attribs?.src?.includes("http://")
+              ) {
+                let url = domNode?.attribs?.src;
+
+                const string = "https://";
+                const newString = url.replace("http://", string);
+                return (domNode.attribs.src = `${newString}`);
+              }
 
               domNode.attribs.onError = handleImageError;
             }
@@ -39,6 +54,15 @@ const Content = ({ content }) => {
                   );
                   return (domNode.attribs.href = `${newString}`);
                 }
+                if (
+                  domNode?.attribs?.href?.includes("http://") &&
+                  !domNode?.attribs?.href?.includes("https://")
+                ) {
+                  let url = domNode?.attribs?.href;
+                  const string = "https://";
+                  const newString = url.replace("http://", string);
+                  return (domNode.attribs.href = `${newString}`);
+                }
                 domNode.attribs.onError = handleImageError;
               }
               if (
@@ -49,6 +73,7 @@ const Content = ({ content }) => {
                 domNode.attribs.target = "_blank";
                 domNode.attribs.rel = "noreferrer";
               }
+
               if (
                 !domNode?.attribs?.href?.includes("https://") &&
                 !domNode?.attribs?.href?.includes("http://") &&

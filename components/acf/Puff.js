@@ -1,20 +1,17 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 export default function Puff({ content }) {
   const data = content && content.extraPuff && content.extraPuff[0];
   if (data) {
     switch (data.__typename) {
-      case 'Grape':
+      case "Grape":
         return <GrapePuff content={data} />;
-        break;
-      case 'Recipe':
+      case "Recipe":
         return <RecipePuff content={data} />;
-      case 'Drink':
+      case "Drink":
         return <DrinkPuff content={data} />;
-        break;
       default:
         return <div>Hello</div>;
-        break;
     }
   } else {
     return null;
@@ -23,34 +20,38 @@ export default function Puff({ content }) {
 
 const GrapePuff = ({ content }) => {
   return (
-    <div className='row'>
+    <div className="row">
       <div
         className={`grid  bg-white/50 max-w-5xl mx-auto w-[85%] gap-5 lg:gap-10 ${
-          content.featuredImage ? 'lg:grid-cols-2' : 'lg:grid-cols-1'
+          content.featuredImage ? "lg:grid-cols-2" : "lg:grid-cols-1"
         }`}
       >
-        <div className='flex flex-col items-center justify-center p-5 text-center lg:p-10'>
-          <p className='mb-3 text-brand-red'>Druva</p>
+        <div className="flex flex-col items-center justify-center p-5 text-center lg:p-10">
+          <p className="mb-3 text-brand-red">Druva</p>
           <Link href={content.uri}>
-            <a className=''>
-              <h3 className='mb-5 text-xl lg:text-3xl'>{content.title}</h3>
+            <a className="">
+              <h3 className="mb-5 text-xl lg:text-3xl">{content.title}</h3>
             </a>
           </Link>
           <Link href={content.uri}>
-            <a className='inline-block '>Läs mer</a>
+            <a className="inline-block ">Läs mer</a>
           </Link>
         </div>
         {content.featuredImage && (
           <Link href={content.uri}>
             <a
               aria-label={content.title}
-              className='relative block h-56 lg:min-h-[300px] lg:h-auto'
+              className="relative block h-56 lg:min-h-[300px] lg:h-auto"
             >
               <Image
                 src={content.featuredImage.node.mediaItemUrl}
-                layout='fill'
-                objectFit='cover'
-                alt={content.featuredImage.node.altText}
+                layout="fill"
+                objectFit="cover"
+                alt={
+                  content.featuredImage.node.altText
+                    ? content.featuredImage.node.altText
+                    : content.title
+                }
               />
             </a>
           </Link>
@@ -62,34 +63,34 @@ const GrapePuff = ({ content }) => {
 
 const RecipePuff = ({ content }) => {
   return (
-    <div className='row'>
+    <div className="row">
       <div
         className={`grid  bg-white/50 max-w-5xl mx-auto w-[85%] gap-10 ${
-          content.featuredImage ? 'lg:grid-cols-2' : 'lg:grid-cols-1'
+          content.featuredImage ? "lg:grid-cols-2" : "lg:grid-cols-1"
         }`}
       >
-        <div className='flex flex-col items-center justify-center p-5 text-center lg:p-10 '>
-          <p className='mb-3 text-brand-red'>Recept</p>
+        <div className="flex flex-col items-center justify-center p-5 text-center lg:p-10 ">
+          <p className="mb-3 text-brand-red">Recept</p>
           <Link href={content.uri}>
-            <a className=''>
-              <h3 className='mb-5 text-xl lg:text-3xl'>{content.title}</h3>
+            <a className="">
+              <h3 className="mb-5 text-xl lg:text-3xl">{content.title}</h3>
             </a>
           </Link>
           <div></div>
           <Link href={content.uri}>
-            <a className='inline-block font-semibold text-brand-red'>Läs mer</a>
+            <a className="inline-block font-semibold text-brand-red">Läs mer</a>
           </Link>
         </div>
         {content.featuredImage && (
           <Link href={content.uri}>
             <a
               aria-label={content.title}
-              className='relative block h-56 lg:min-h-[300px] lg:h-auto'
+              className="relative block h-56 lg:min-h-[300px] lg:h-auto"
             >
               <Image
                 src={content.featuredImage.node.mediaItemUrl}
-                layout='fill'
-                objectFit='cover'
+                layout="fill"
+                objectFit="cover"
                 alt={
                   content.featuredImage.node.altText
                     ? content.featuredImage.node.altText
@@ -106,37 +107,37 @@ const RecipePuff = ({ content }) => {
 
 const DrinkPuff = ({ content }) => {
   return (
-    <div className='row'>
+    <div className="row">
       <div
         className={`grid bg-white/50 max-w-5xl mx-auto w-[85%] gap-5 lg:gap-10 ${
-          content.featuredImage ? 'lg:grid-cols-2' : 'lg:grid-cols-1'
+          content.featuredImage ? "lg:grid-cols-2" : "lg:grid-cols-1"
         }`}
       >
-        <div className='flex flex-col items-center justify-center text-center lg:p-10'>
-          <p className='mb-3 text-brand-red'>
+        <div className="flex flex-col items-center justify-center text-center lg:p-10">
+          <p className="mb-3 text-brand-red">
             {content.drinkTypes.edges.length > 0
               ? content.drinkTypes.edges[0].node.name
-              : 'Dryck'}
+              : "Dryck"}
           </p>
           <Link href={content.uri}>
-            <a className=''>
-              <h3 className='mb-5 text-xl lg:text-3xl'>{content.title}</h3>
+            <a className="">
+              <h3 className="mb-5 text-xl lg:text-3xl">{content.title}</h3>
             </a>
           </Link>
           <Link href={content.uri}>
-            <a className='inline-block '>Läs mer</a>
+            <a className="inline-block ">Läs mer</a>
           </Link>
         </div>
         {content.featuredImage && (
           <Link href={content.uri}>
             <a
               aria-label={content.title}
-              className='relative block h-56 lg:min-h-[300px] lg:h-auto'
+              className="relative block h-56 lg:min-h-[300px] lg:h-auto"
             >
               <Image
                 src={content.featuredImage.node.mediaItemUrl}
-                layout='fill'
-                objectFit='contain'
+                layout="fill"
+                objectFit="contain"
                 alt={
                   content.featuredImage.node.altText
                     ? content.featuredImage.node.altText

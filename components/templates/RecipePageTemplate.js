@@ -1,15 +1,15 @@
 //import BreadCrumbs from '../common/BreadCrumbs/Breadcrumbs';
 //import ClientAd from '../ads/ClientAd';
-import DrinkListItem from '../drinks/DrinkListItem';
-import Image from 'next/image';
-import { RecipeJsonLd } from 'next-seo';
-import RecipePlaceholder from '../../public/images/recipe-placeholder.jpg';
-import SEO from '../common/SEO';
-import parse from 'html-react-parser';
-import { useState } from 'react';
-import dynamic from 'next/dynamic'
-const ClientAd = dynamic(() => import('../ads/ClientAd'))
-const BreadCrumbs = dynamic(() => import('../common/BreadCrumbs/Breadcrumbs'))
+import parse from "html-react-parser";
+import { RecipeJsonLd } from "next-seo";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useState } from "react";
+import RecipePlaceholder from "../../public/images/recipe-placeholder.jpg";
+import SEO from "../common/SEO";
+import DrinkListItem from "../drinks/DrinkListItem";
+const ClientAd = dynamic(() => import("../ads/ClientAd"));
+const BreadCrumbs = dynamic(() => import("../common/BreadCrumbs/Breadcrumbs"));
 
 const RecipePageTemplate = ({ data }) => {
   const { page: recipe } = data;
@@ -29,22 +29,22 @@ const RecipePageTemplate = ({ data }) => {
       const floor = Math.floor(baseValue);
       //Handle decimals
       if (baseValue % 1 <= 0.1) {
-        return floor !== 0 ? floor + ' ⅕' : '⅕';
+        return floor !== 0 ? floor + " ⅕" : "⅕";
       }
       if (baseValue % 1 <= 0.25) {
-        return floor !== 0 ? floor + ' ¼' : '¼';
+        return floor !== 0 ? floor + " ¼" : "¼";
       }
       if (baseValue % 1 <= 0.375) {
-        return floor !== 0 ? floor + ' ⅓' : '⅓';
+        return floor !== 0 ? floor + " ⅓" : "⅓";
       }
       if (baseValue % 1 <= 0.5) {
-        return floor !== 0 ? floor + ' ½' : '½';
+        return floor !== 0 ? floor + " ½" : "½";
       }
       if (baseValue % 1 <= 0.67) {
-        return floor !== 0 ? floor + ' ⅔' : '⅔';
+        return floor !== 0 ? floor + " ⅔" : "⅔";
       }
       if (baseValue % 1 <= 0.99) {
-        return floor !== 0 ? floor + ' ¾' : '¾';
+        return floor !== 0 ? floor + " ¾" : "¾";
       }
     }
   };
@@ -66,84 +66,83 @@ const RecipePageTemplate = ({ data }) => {
         description={recipe?.seo?.metaDesc}
         image={recipe?.featuredImage?.node}
       />
-      
+
       <RecipeJsonLd
         name={recipe.title}
         authorName={
           (recipe?.acf_recipe?.skrivetAv?.length > 0 &&
             recipe?.acf_recipe?.skrivetAv[0]?.name) ||
-          'Redaktionen'
+          "Redaktionen"
         }
         ingredients={ingredients}
         instructions={[]}
         yields={recipe?.acf_recipe?.antalPortioner || null}
         datePublished={recipe.date}
-        description={recipe?.acf_recipe?.desc || ''}
+        description={recipe?.acf_recipe?.desc || ""}
         images={[recipe?.featuredImage?.node?.mediaItemUrl || null]}
       />
       <BreadCrumbs
         crumbs={[
-          { text: 'Recept', href: '/recept' },
+          { text: "Recept", href: "/recept" },
           { text: recipe.title, href: recipe.uri, current: true },
         ]}
       />
-      <ClientAd position='top' />
-      
+      <ClientAd position="top" />
 
-      <div className='mx-auto max-w-7xl w-[90%] recipe-layout row'>
-        
+      <div className="mx-auto max-w-7xl w-[90%] recipe-layout row">
         <div
-          style={{ gridArea: 'img' }}
-          className='relative w-full lg:w-[550px] aspect-w-16 aspect-h-10 bg-brand-red'
+          style={{ gridArea: "img" }}
+          className="relative w-full lg:w-[550px] aspect-w-16 aspect-h-10 bg-brand-red"
         >
           {recipe.featuredImage && recipe.featuredImage.node ? (
             <Image
               src={recipe.featuredImage.node.mediaItemUrl}
-              layout='fill'
-              objectFit='cover'
+              layout="fill"
+              objectFit="cover"
               alt={
                 recipe.featuredImage.node.altText
                   ? recipe.featuredImage.node.altText
                   : recipe.seo.title
+                  ? recipe.seo.title
+                  : recipe.title
               }
             />
           ) : (
             <Image
               src={RecipePlaceholder}
-              layout='fill'
-              objectFit='cover'
-              alt={recipe.seo.title || recipe.title}
+              layout="fill"
+              objectFit="cover"
+              alt={recipe.seo.title ? recipe.seo.title : recipe.title}
             />
           )}
         </div>
-        
+
         <div
-          style={{ gridArea: 'meta' }}
-          className='my-10 text-center lg:p-10 lg:my-0 lg:text-left'
+          style={{ gridArea: "meta" }}
+          className="my-10 text-center lg:p-10 lg:my-0 lg:text-left"
         >
-          
-          <p className='mb-3'>
-            Recept av{' '}
+          <p className="mb-3">
+            Recept av{" "}
             {recipe.acf_recipe.skrivetAv && recipe.acf_recipe.skrivetAv[0]?.name
               ? recipe.acf_recipe.skrivetAv[0].name
-              : 'Redaktionen'}
+              : "Redaktionen"}
           </p>
-          <h1 className='mb-5 text-xl normal-case lg:text-3xl text-brand-red'>
+          <h1 className="mb-5 text-xl normal-case lg:text-3xl text-brand-red">
             {recipe.title}
           </h1>
 
           <p>{recipe.acf_recipe.desc}</p>
         </div>
         <div
-          style={{ gridArea: 'ingredients' }}
-          className='bg-white lg:w-[550px]'
+          style={{ gridArea: "ingredients" }}
+          className="bg-white lg:w-[550px]"
         >
-          <div className='flex items-center justify-between p-5 border-b'>
-            <h2 className='text-brand-red'>Ingredienser</h2>
+          <div className="flex items-center justify-between p-5 border-b">
+            <h2 className="text-brand-red">Ingredienser</h2>
             <div>
-              <label htmlFor='portions'>Portioner:</label>{' '}
+              <label htmlFor="portions">Portioner:</label>{" "}
               <select
-                name='portions'
+                name="portions"
                 onChange={(e) => setPortions(e.target.value)}
               >
                 {availablePortions?.map((portion) => {
@@ -160,23 +159,23 @@ const RecipePageTemplate = ({ data }) => {
               </select>
             </div>
           </div>
-          <ul className='p-5 space-y-4'>
+          <ul className="p-5 space-y-4">
             {recipe.acf_recipe &&
               recipe.acf_recipe.receptdelar &&
               recipe.acf_recipe?.receptdelar?.map((part) => {
                 return (
                   <li
-                    className='pb-5 border-b-2 border-brand-bronze'
+                    className="pb-5 border-b-2 border-brand-bronze"
                     key={part.rubrik}
                   >
                     <strong>{part.rubrik}</strong>
-                    <ul className='mt-3 space-y-2'>
+                    <ul className="mt-3 space-y-2">
                       {part.ingredienser?.map((i) => (
-                        <li key={i.namn} className='grid grid-cols-2'>
-                          <span>{`${i.antal ? renderAmount(i.antal) : ''} ${
-                            i?.enhet?.name || ''
+                        <li key={i.namn} className="grid grid-cols-2">
+                          <span>{`${i.antal ? renderAmount(i.antal) : ""} ${
+                            i?.enhet?.name || ""
                           }`}</span>
-                          <span>{i?.namn || ''}</span>
+                          <span>{i?.namn || ""}</span>
                         </li>
                       ))}
                     </ul>
@@ -187,16 +186,16 @@ const RecipePageTemplate = ({ data }) => {
           </ul>
         </div>
         <div
-          style={{ gridArea: 'instructions' }}
-          className='mt-10 lg:p-10 rich-text lg:mt-0'
+          style={{ gridArea: "instructions" }}
+          className="mt-10 lg:p-10 rich-text lg:mt-0"
         >
           {recipe.acf_recipe.processen && parse(recipe.acf_recipe.processen)}
         </div>
       </div>
       {recipe?.acf_recipe?.passandeDrycker?.length > 0 && (
-        <div className='contain row'>
-          <h2 className='text-center text-brand-red'>Passande drycker</h2>
-          <ul className='grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 row'>
+        <div className="contain row">
+          <h2 className="text-center text-brand-red">Passande drycker</h2>
+          <ul className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 row">
             {recipe.acf_recipe.passandeDrycker.map((dryck) => {
               return <DrinkListItem key={dryck.title} dryck={dryck} />;
             })}

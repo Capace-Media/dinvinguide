@@ -52,7 +52,7 @@ export default function Featured({ items }) {
                 layout="fill"
                 objectFit="cover"
                 className={`${imageClasses} `}
-                alt={item.title}
+                alt={item.title ? item.title : "Bild från DinVinGuide"}
                 translate="no"
                 placeholder="blur"
                 blurDataURL={RecipePlaceholder}

@@ -96,6 +96,10 @@ const PostPageTemplate = ({ data }) => {
                   page?.featuredImage?.node?.altText
                     ? page?.featuredImage?.node?.altText
                     : page?.seo?.title
+                    ? page?.seo?.title
+                    : page?.title
+                    ? page?.title
+                    : "Bild från DinVinGuide"
                 }
               />
             </div>
@@ -128,7 +132,7 @@ const PostPageTemplate = ({ data }) => {
             )}
           {page?.content && (
             <div id="content" className="contain-sm rich-text">
-              <Content content={page?.content} />
+              <Content content={page?.content} altText={page?.title} />
             </div>
           )}
 
@@ -136,6 +140,7 @@ const PostPageTemplate = ({ data }) => {
             <OldContent
               id="old-content"
               content={page?.acf_oldcontent?.oldContentAcf}
+              altText={page?.title}
             />
           )}
         </div>

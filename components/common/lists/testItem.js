@@ -25,6 +25,8 @@ const TestItem = ({ data, subtitle }) => {
                   data["featuredImage.node.altText"]
                     ? data["featuredImage.node.altText"]
                     : data.title
+                    ? data.title
+                    : "Bild från DinVinGuide"
                 }
               />
             ) : (
@@ -33,7 +35,7 @@ const TestItem = ({ data, subtitle }) => {
                 layout="fill"
                 objectFit="cover"
                 className={`${imageClasses}`}
-                alt={data.title}
+                alt={data.title ? data.title : "Bild från DinVinGuide"}
               />
             )}
 

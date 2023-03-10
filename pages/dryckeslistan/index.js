@@ -45,7 +45,7 @@ const ToplistsPage = ({ data }) => {
                       src="/images/dryckesutforskaren.jpg"
                       objectFit="cover"
                       layout="fill"
-                      alt=""
+                      alt="Bild från DinVinGuide"
                       className="opacity-60"
                     />
                     <div className="relative z-10 flex flex-col justify-center h-full p-5 text-center text-white">
