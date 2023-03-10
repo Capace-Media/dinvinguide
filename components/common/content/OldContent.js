@@ -1,5 +1,5 @@
 import parse from "html-react-parser";
-const OldContent = ({ content }) => {
+const OldContent = ({ content, altText }) => {
   const sanitized = content
     .replace(/section/g, "")
     .replace(/row/g, "")
