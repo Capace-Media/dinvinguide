@@ -1,5 +1,5 @@
+import parse from "html-react-parser";
 import Image from "next/image";
-import parse from "react-html-parser";
 const Drink = ({ data }) => {
   return (
     <div
