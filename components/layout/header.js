@@ -177,7 +177,7 @@ export default function Header() {
   new google.translate.TranslateElement({pageLanguage: 'sv'}, 'google_translate_element');
 }`}
       </Script>
-      <header className="fixed top-0 left-0 z-50 w-screen font-bold uppercase bg-brand-bg font-display">
+      <header className="fixed top-0 left-0 z-50 w-screen font-bold uppercase bg-white font-display">
         <div className="flex items-center justify-end pt-2 space-x-2 contain lg:hidden lg:w-24">
           <a href="https://dinvinguide.se" className="w-7 lg:w-10">
             <Image src={SweFlag} priority alt="Svenska flaggan" />

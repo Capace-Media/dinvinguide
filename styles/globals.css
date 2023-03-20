@@ -3,33 +3,33 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Playfair Display';
-  src: url('../public/fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf');
+  font-family: "Playfair Display";
+  src: url("../public/fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf");
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Playfair Display';
-  src: url('../public/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf');
+  font-family: "Playfair Display";
+  src: url("../public/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf");
   font-weight: 700;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  src: url('../public/fonts/Montserrat/Montserrat-Regular.ttf');
+  font-family: "Montserrat";
+  src: url("../public/fonts/Montserrat/Montserrat-Regular.ttf");
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Montserrat';
-  src: url('../public/fonts/Montserrat/Montserrat-SemiBold.ttf');
+  font-family: "Montserrat";
+  src: url("../public/fonts/Montserrat/Montserrat-SemiBold.ttf");
   font-weight: 600;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Montserrat';
-  src: url('../public/fonts/Montserrat/Montserrat-Bold.ttf');
+  font-family: "Montserrat";
+  src: url("../public/fonts/Montserrat/Montserrat-Bold.ttf");
   font-weight: 700;
   font-display: swap;
 }
@@ -37,7 +37,7 @@
 @layer base {
   body,
   html {
-    @apply bg-brand-bg font-body;
+    @apply font-body;
   }
   h1,
   h2,
@@ -89,7 +89,7 @@
 }
 
 .pattern {
-  background: repeat url('../public/images/monster-dvg100.png');
+  background: repeat url("../public/images/monster-dvg100.png");
 }
 .prose p,
 .prose-sm p,
@@ -167,7 +167,7 @@
 }
 
 .recipe-layout {
-  grid-template-areas: 'img' 'meta' 'ingredients' 'instructions';
+  grid-template-areas: "img" "meta" "ingredients" "instructions";
   @apply grid;
 }
 img.alignnone,
@@ -180,6 +180,6 @@ img.alignright {
 
 @media (min-width: 800px) {
   .recipe-layout {
-    grid-template-areas: 'img meta' 'img instructions' 'ingredients instructions' 'ingredients instructions';
+    grid-template-areas: "img meta" "img instructions" "ingredients instructions" "ingredients instructions";
   }
 }
