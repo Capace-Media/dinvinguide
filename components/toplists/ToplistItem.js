@@ -33,14 +33,14 @@ const ToplistItem = ({ data, index }) => {
   const isDebug = router?.query?.debug ? true : false;
 
   return (
-    <div className="flex flex-col grid-cols-2 gap-10 lg:grid contain-sm">
+    <div className="flex flex-col grid-cols-2 gap-16 lg:grid contain-sm">
       <div
         className={`relative ${index % 2 === 0 ? "lg:order-1" : "lg:order-0"}`}
       >
         {data?.featuredImage && data?.featuredImage.node && (
           <>
             <Link href={data.uri}>
-              <a>
+              <a className="">
                 <figure className="relative aspect-w-1 aspect-h-1">
                   <Image
                     src={data.featuredImage.node.mediaItemUrl}
@@ -75,7 +75,9 @@ const ToplistItem = ({ data, index }) => {
             <p className=" uppercase">Nr {index}</p>
             <Link href={data.uri}>
               <a>
-                <h2 className="normal-case font-display">{data.title}</h2>
+                <h2 className="normal-case text-[38px] leading-10 font-display">
+                  {data.title}
+                </h2>
               </a>
             </Link>
 
@@ -87,7 +89,7 @@ const ToplistItem = ({ data, index }) => {
                 )}
               </p>
             )}
-            <p className="flex items-center space-x-1">
+            <p className="flex items-center gap-3">
               <Flaska />
               {data.acf_drinks.forpackningar.name && (
                 <span>{data?.acf_drinks?.forpackningar.name}</span>
@@ -99,10 +101,9 @@ const ToplistItem = ({ data, index }) => {
 
             {data.acf_drinks.passarTillRecept &&
               data.acf_drinks.passarTillRecept.length > 0 && (
-                <div className="flex items-baseline space-x-2">
+                <div className="flex items-baseline gap-3">
                   <Passar />
                   <p>
-                    Passar till:{" "}
                     <Link href={data.acf_drinks.passarTillRecept[0].uri}>
                       <a className="underline">
                         {data.acf_drinks.passarTillRecept[0].title}
@@ -112,7 +113,7 @@ const ToplistItem = ({ data, index }) => {
                 </div>
               )}
             {data.acf_drinks.pris && (
-              <p className="flex items-center space-x-2">
+              <p className="flex items-center gap-3">
                 <Dollar />
                 <span>{data.acf_drinks.pris}:-</span>
               </p>

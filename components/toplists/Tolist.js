@@ -1,5 +1,6 @@
 import Ad from "../ads/Ad";
 import ClientAd from "../ads/ClientAd";
+import { LeftSplash, RightSplash } from "../icons";
 import ToplistItem from "./ToplistItem";
 
 const Toplist = ({ data, ads }) => {
@@ -17,9 +18,10 @@ const Toplist = ({ data, ads }) => {
   let num = 0;
 
   return (
-    <div className="space-y-20">
+    <div className="relative space-y-20 pt-[101px] overflow-x-hidden">
+      <RightSplash className="absolute right-0 top-[400px] md:-top-[30px] -z-10" />
+      <LeftSplash className="absolute left-0 -top-[350px] -z-10" />
       {array?.map(({ node: drink }, i) => {
-        console.log("drink", drink);
         if (num < data.toplist.acf_toplists.maxAntal) {
           if (drink.ad) {
             if (currentCount > 0) {

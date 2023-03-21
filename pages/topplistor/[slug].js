@@ -1,16 +1,14 @@
 import { getToplistPaths, getToplists } from "../../lib/api/toplists";
 
+import Image from "next/image";
 import { Fragment } from "react";
-import slugify from "slugify";
-import PageIntro from "../../components/common/content/PageIntro";
-import ExplorerLinks from "../../components/common/explorer/explorerLinks";
+
 import SEO from "../../components/common/SEO";
 import Newsletter from "../../components/section/Newsletter";
 import Toplist from "../../components/toplists/Tolist";
 
 const SingleToplistPage = ({ data }) => {
   const { toplist } = data;
-  console.log("toplist =====>", toplist);
   return (
     <Fragment>
       <SEO
@@ -30,8 +28,32 @@ const SingleToplistPage = ({ data }) => {
             : ""
         }
       />
+      <div className=" mb-20 relative bg-[#F8F8F9] max-w-screen-2xl mx-auto w-[100%] min-h-[400px] lg:min-h-[547px]">
+        <div className="relative h-[170px] lg:h-[547px]">
+          <Image
+            src={toplist?.toplist?.featuredImage?.node?.mediaItemUrl}
+            layout="fill"
+            objectFit="cover"
+            alt={
+              toplist?.toplist?.featuredImage?.node?.altText
+                ? toplist?.toplist?.featuredImage?.node?.altText
+                : "Hero bild"
+            }
+          />
+        </div>
+
+        <div className="absolute top-[170px] lg:top-[50%] lg:-translate-y-[40%] lg:left-[128px] p-[20px]">
+          <h1 className="text-[14px] lg:text-[18px] font-body">TOPPLISTOR</h1>
+          <p className="font-display lg:text-[32px] text-[20px] font-bold mb-3">
+            {toplist.toplist.title}
+          </p>
+        </div>
+      </div>
       <div className="row ">
         <Toplist data={toplist} />
+      </div>
+      <div className="">
+        <Newsletter />
       </div>
     </Fragment>
   );
