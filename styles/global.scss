@@ -41,3 +41,82 @@
     transition: ease-in-out 0.4s;
   }
 }
+
+#google_translate_element .skiptranslate {
+  display: block;
+  opacity: 1;
+  font-size: 0;
+}
+
+#google_translate_element .goog-te-gadget span {
+  display: none;
+}
+
+#google_translate_element .goog-te-gadget div .goog-te-combo {
+  border-radius: 4px;
+  padding: 7px;
+
+  width: 102px;
+}
+
+// .goog-te-combo option {
+//   display: none;
+// }
+
+// .goog-te-combo option[value="sv"] {
+//   display: block !important;
+// }
+
+// .goog-te-combo option[value="en"] {
+//   display: block !important;
+// }
+
+// .goog-te-combo option[value="da"] {
+//   display: block !important;
+// }
+
+// .goog-te-combo option[value="no"] {
+//   display: block !important;
+// }
+
+// .goog-te-combo option[value="fi"] {
+//   display: block !important;
+// }
+
+// .goog-te-combo option[value="fr"] {
+//   display: block !important;
+// }
+
+// .goog-te-combo option[value="de"] {
+//   display: block !important;
+// }
+
+// .goog-te-combo option[value="es"] {
+//   display: block !important;
+// }
+
+// .goog-te-combo option[value="it"] {
+//   display: block !important;
+// }
+
+// .goog-te-combo option[value="nl"] {
+//   display: block !important;
+// }
+
+#google_translate_element .goog-te-gadget div .goog-te-combo:focus {
+  outline: none;
+}
+
+element.style {
+  background-image: none;
+}
+
+.skiptranslate iframe .goog-te-banner-frame {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+
+.skiptranslate .goog-te-banner-frame body[style] {
+  background-image: none !important;
+}
