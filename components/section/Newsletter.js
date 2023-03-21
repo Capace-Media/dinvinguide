@@ -4,12 +4,18 @@ import ImageOne from "../../public/images/static-newsletter/newNewsletter.jpg";
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
+  const [bot, setBot] = useState("");
   const [ageChecked, setAgeChecked] = useState(false);
+  console.log("bot =====>", bot);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const hiddenInput = e?.target?.name["error"];
-    if (hiddenInput?.value === "" && ageChecked) {
+    if (hiddenInput?.value) {
+      alert("we don't trust bots");
+      return false;
+    }
+    if (ageChecked === true) {
       e.target.submit();
     } else {
       alert("Please check the age box and try again.");
@@ -50,7 +56,6 @@ export default function Newsletter() {
               data-code="g6z4j7"
               method="POST"
               target="_blank"
-              onSubmit={handleSubmit}
               className="flex flex-col mt-5 text-white"
             >
               <input
@@ -63,7 +68,14 @@ export default function Newsletter() {
                 className="w-full p-3 px-5 mb-4 text-black placeholder-[#000000] bg-[#D9D9D9] border-b-2"
               />
               <input type="hidden" name="ml-submit" value="1" />
-              <input type="hidden" name="error" value="" />
+              <input
+                name="bot-field"
+                placeholder=""
+                type="hidden"
+                autoComplete="off"
+                value={bot}
+                onChange={(e) => setBot(e.target.value)}
+              />
               <input
                 type="hidden"
                 name="ml-submit"

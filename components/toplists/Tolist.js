@@ -18,7 +18,7 @@ const Toplist = ({ data, ads }) => {
   let num = 0;
 
   return (
-    <div className="relative space-y-20 pt-[101px] overflow-x-hidden">
+    <div className="relative space-y-20 py-[101px] overflow-x-hidden overflow-y-hidden">
       <RightSplash className="absolute right-0 top-[400px] md:-top-[30px] -z-10" />
       <LeftSplash className="absolute left-0 -top-[350px] -z-10" />
       {array?.map(({ node: drink }, i) => {
