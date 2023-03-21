@@ -7,6 +7,7 @@ import Script from "next/script";
 import { useEffect } from "react";
 import Layout from "../components/layout/layout";
 import { GTM_ID, pageview } from "../lib/gtm";
+import "../styles/global.scss";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

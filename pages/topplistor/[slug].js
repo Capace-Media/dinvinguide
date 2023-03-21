@@ -6,10 +6,11 @@ import PageIntro from "../../components/common/content/PageIntro";
 import ExplorerLinks from "../../components/common/explorer/explorerLinks";
 import SEO from "../../components/common/SEO";
 import Newsletter from "../../components/section/Newsletter";
-import Toplist from "../../components/toplists/Toplist";
+import Toplist from "../../components/toplists/Tolist";
 
 const SingleToplistPage = ({ data }) => {
   const { toplist } = data;
+  console.log("toplist =====>", toplist);
   return (
     <Fragment>
       <SEO
@@ -29,26 +30,8 @@ const SingleToplistPage = ({ data }) => {
             : ""
         }
       />
-      <PageIntro
-        title={toplist.toplist.title}
-        text={toplist.toplist.acf_toplists.text}
-        ad
-        adType="dl"
-        crumbs={[
-          { href: "/dryckeslistan", text: "Topplistor" },
-          {
-            href: toplist.toplist.uri,
-            text: toplist.toplist.title,
-            current: true,
-          },
-        ]}
-      />
       <div className="row ">
         <Toplist data={toplist} />
-      </div>
-      <ExplorerLinks />
-      <div className="mb-2">
-        <Newsletter />
       </div>
     </Fragment>
   );
@@ -63,6 +46,7 @@ export const getStaticPaths = async () => {
     fallback: "blocking",
   };
 };
+
 export const getStaticProps = async ({ params }) => {
   const slugArray = params.slug.includes("-")
     ? params.slug.split("-")

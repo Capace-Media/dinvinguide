@@ -1,0 +1,43 @@
+.parent:hover {
+  position: relative;
+  .child {
+    scale: 1.1;
+    rotate: -15deg;
+    transition: ease-in-out 0.4s;
+  }
+  .two {
+    .first {
+      scale: 1.1;
+      rotate: 15deg;
+      transition: ease-in-out 0.4s;
+    }
+    .second {
+      scale: 1.1;
+      rotate: -15deg;
+      transition: ease-in-out 0.4s;
+    }
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #e1e5d43e;
+    transition: ease-in-out 0.4s;
+  }
+}
+
+.overlay-top:hover {
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #e1e5d43e;
+    transition: ease-in-out 0.4s;
+  }
+}

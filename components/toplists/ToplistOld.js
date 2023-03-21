@@ -1,8 +1,8 @@
 import Ad from "../ads/Ad";
 import ClientAd from "../ads/ClientAd";
-import ToplistItem from "./ToplistItem";
+import ToplistItem from "./ToplistItemold";
 
-const Toplist = ({ data, ads }) => {
+const Toplistold = ({ data, ads }) => {
   const currentCount = data.currentDrinks.length;
 
   const array = [
@@ -34,4 +34,4 @@ const Toplist = ({ data, ads }) => {
   );
 };
 
-export default Toplist;
+export default Toplistold;

@@ -1,6 +1,15 @@
+export { default as Brons } from "./Brons";
 export { default as DarkLogo } from "./DarkLogo";
+export { default as Dollar } from "./Dollar";
 export { default as Email } from "./Email";
 export { default as FbLg } from "./FbLg";
 export { default as FbSm } from "./FbSm";
+export { default as Flaska } from "./Flaska";
+export { default as Guld } from "./Guld";
 export { default as IgLg } from "./IgLg";
 export { default as IgSm } from "./IgSm";
+export { default as Mousserande } from "./Mousserande";
+export { default as Passar } from "./Passar";
+export { default as RedWine } from "./RedWine";
+export { default as Silver } from "./Silver";
+export { default as WhiteWine } from "./WhiteWine";
