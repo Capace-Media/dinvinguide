@@ -1,16 +1,17 @@
-import "dayjs/locale/sv";
-
 import dayjs from "dayjs";
-import parse from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import vittVin from "../../public/images/top/glass-of-white-wine.jpg";
+import rottvin from "../../public/images/top/red-wine-bottle-and-glass.jpg";
+import rose from "../../public/images/top/rose-wine-bottle-and-glass.jpg";
 import ClientAd from "../ads/ClientAd";
-import BreadCrumbs from "../common/BreadCrumbs/Breadcrumbs";
-import ExplorerLinks from "../common/explorer/explorerLinks";
 import SEO from "../common/SEO";
+import { ArrowRight, Dollar, Flaska, Passar } from "../icons";
 
 const DrinkPageTemplate = ({ data }) => {
   const { page: drink } = data;
+
   const details = [
     // {
     //   label: 'Ekologiskt',
@@ -22,6 +23,34 @@ const DrinkPageTemplate = ({ data }) => {
       value: dayjs(drink?.date).locale("sv").format("D MMMM, YYYY"),
     },
   ];
+  console.log("data =>", data);
+  const [image, setImage] = useState(rottvin?.src);
+
+  useEffect(() => {
+    switch (data?.page?.acf_drinks?.dryckestyper?.name) {
+      case "Vitt vin":
+        setImage(vittVin?.src);
+
+        break;
+      case "Rött vin":
+        setImage(rottvin?.src);
+
+        break;
+      case "Rosévin":
+        setImage(rose?.src);
+
+        break;
+
+      default:
+        setImage(rottvin?.src);
+
+        break;
+    }
+
+    return () => {
+      setImage(rottvin?.src);
+    };
+  }, [data?.page?.acf_drinks?.dryckestyper?.name]);
 
   return (
     <>
@@ -30,142 +59,121 @@ const DrinkPageTemplate = ({ data }) => {
         description={drink?.seo?.metaDesc}
         image={drink?.featuredImage?.node}
       />
-      <BreadCrumbs
-        crumbs={[
-          { text: "Drycker", href: "/dryckesutforskaren" },
-          { text: drink.title, href: drink.uri, current: true },
-        ]}
-      />
+      <div className=" mb-20 relative bg-[#F8F8F9] max-w-screen-2xl mx-auto w-[100%] min-h-[400px] lg:min-h-[547px]">
+        <div className="relative h-[170px] lg:h-[547px]">
+          <Image
+            src={image}
+            layout="fill"
+            objectFit="cover"
+            alt={
+              drink?.featuredImage?.node?.altText
+                ? drink?.featuredImage?.node?.altText
+                : "Hero bild"
+            }
+          />
+        </div>
+
+        <div className="absolute top-[170px] lg:top-[50%] lg:-translate-y-[40%] lg:left-[128px] p-[20px]">
+          <h1 className="text-[14px] lg:text-[18px] font-body">TOPPLISTOR</h1>
+          <p className="font-display lg:text-[32px] text-[20px] font-bold mb-3">
+            {drink?.title}
+          </p>
+        </div>
+      </div>
       <div className="row">
         <ClientAd position="top" />
       </div>
-      <div className="grid gap-10 lg:grid-cols-3 contain-md row">
-        <div className="relative">
-          <figure className="aspect-w-1 aspect-h-1">
-            <div className="absolute top-0 left-0 w-full h-full scale-90 translate-y-5 rounded-full bg-brand-red" />
-            {drink?.featuredImage?.node?.mediaItemUrl && (
+      <div className="flex flex-col grid-cols-2 gap-16 lg:grid contain-sm">
+        {drink?.featuredImage && drink?.featuredImage.node && (
+          <>
+            <figure className="relative aspect-w-1 aspect-h-1">
               <Image
                 src={drink.featuredImage.node.mediaItemUrl}
                 layout="fill"
                 objectFit="contain"
-                priority
                 alt={
                   drink.featuredImage.node.altText
                     ? drink.featuredImage.node.altText
-                    : drink.seo.title
+                    : drink.title
                 }
               />
-            )}
-          </figure>
-        </div>
-        <div className="lg:col-span-2">
-          <h1 className="normal-case text-brand-red">{drink.title}</h1>
-          <p className="mt-3 space-x-1">
-            {drink?.acf_drinks?.land && <span>{drink.acf_drinks.land}</span>}
-            {drink?.acf_drinks?.argang && (
-              <span>{drink.acf_drinks.argang},</span>
-            )}
-            {drink?.acf_drinks?.dryckestyper?.name && (
-              <span>{drink.acf_drinks.dryckestyper.name},</span>
-            )}
-            {drink?.acf_drinks?.forpackningar?.name && (
-              <span>{drink.acf_drinks.forpackningar.name}</span>
-            )}
-          </p>
-          {drink.acf_drinks?.pris && (
-            <p className="mt-6 text-3xl">{drink.acf_drinks.pris}:-</p>
-          )}
+            </figure>
+          </>
+        )}
 
-          {drink.acf_drinks?.beskrivning && (
-            <div className="mt-5">
-              <strong className="block font-semibold">Beskrivning</strong>
-              {parse(drink.acf_drinks.beskrivning)}
-            </div>
-          )}
-          {drink.acf_drinks?.recension && (
-            <div className="mt-5 ">
-              <strong className="block font-semibold">Recension</strong>
-              {parse(drink.acf_drinks.recension)}
-            </div>
-          )}
-          <ul className="space-y-2 mt-7">
-            {details.map((item, index) => {
-              if (item.value) {
-                return (
-                  <li
-                    key={item.label + index}
-                    className="grid grid-cols-2 gap-5"
-                  >
-                    <strong className="font-semibold">{item.label}</strong>
-                    <span>{item.value}</span>
-                  </li>
-                );
-              }
-            })}
-          </ul>
+        <div className="flex justify-center items-center">
+          <div className="flex flex-col gap-16">
+            <div className="flex flex-col gap-1">
+              <Link href={drink.uri}>
+                <a>
+                  <h2 className="normal-case text-[38px] leading-10 font-display">
+                    {drink.title}
+                  </h2>
+                </a>
+              </Link>
 
-          <div className="flex items-center row">
-            {drink?.acf_drinks?.knappUrl && (
-              <a
-                href={drink?.acf_drinks?.knappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-3 text-white bg-brand-red"
-              >
-                Kan beställas här
-              </a>
-            )}
-            {drink?.acf_drinks?.bolagetAdress && (
-              <a
-                href={drink.acf_drinks.bolagetAdress}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-3 text-white bg-brand-red"
-              >
-                Beställ på Systembolaget
-              </a>
-            )}
+              {drink?.acf_drinks?.land && (
+                <p className="space-x-1">
+                  {drink.acf_drinks.land && (
+                    <span>{drink?.acf_drinks?.land}</span>
+                  )}
+                  {drink?.acf_drinks?.argang && (
+                    <span>{drink?.acf_drinks?.argang}</span>
+                  )}
+                </p>
+              )}
+              <p className="flex items-center gap-3">
+                <Flaska />
+                {drink.acf_drinks.forpackningar.name && (
+                  <span>{drink?.acf_drinks?.forpackningar.name}</span>
+                )}
+                {drink.acf_drinks.dryckestyper && (
+                  <span>- {drink?.acf_drinks?.dryckestyper.name}</span>
+                )}
+              </p>
+              {/* test */}
+
+              {drink.acf_drinks.passarTillRecept &&
+                drink.acf_drinks.passarTillRecept.length > 0 && (
+                  <div className="flex items-baseline gap-3">
+                    <Passar />
+                    <p>
+                      <Link href={drink.acf_drinks.passarTillRecept[0].uri}>
+                        <a className="underline">
+                          {drink.acf_drinks.passarTillRecept[0].title}
+                        </a>
+                      </Link>{" "}
+                    </p>
+                  </div>
+                )}
+              {drink.acf_drinks.pris && (
+                <p className="flex items-center gap-3">
+                  <Dollar />
+                  <span>{drink.acf_drinks.pris}:-</span>
+                </p>
+              )}
+
+              {drink?.acf_drinks?.recension && (
+                <div>
+                  <p>Recension</p>
+                  <p>{drink?.acf_drinks?.recension} </p>
+                </div>
+              )}
+            </div>
+
+            <a
+              href={drink?.acf_drinks?.knappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className=" flex items-center gap-3 cursor-pointer hover:color-[#E1E5D4]"
+            >
+              <span>Beställ på Systembolaget</span> <ArrowRight />
+            </a>
           </div>
-          {drink?.acf_drinks?.passarTillRecept &&
-            drink?.acf_drinks?.passarTillRecept?.length > 0 && (
-              <>
-                <Link href={drink?.acf_drinks?.passarTillRecept[0]?.uri || "/"}>
-                  <a className="relative block group">
-                    <div className="mt-5 overflow-hidden bg-black">
-                      <figure className="relative transition-all aspect-w-16 aspect-h-8 opacity-70 group-hover:scale-110">
-                        <Image
-                          src={
-                            drink.acf_drinks?.passarTillRecept[0]?.featuredImage
-                              ?.node?.mediaItemUrl
-                              ? drink.acf_drinks.passarTillRecept[0]
-                                  .featuredImage.node.mediaItemUrl
-                              : "/images/recipe-placeholder.jpg"
-                          }
-                          layout="fill"
-                          objectFit="cover"
-                          alt={
-                            drink.acf_drinks.passarTillRecept[0].featuredImage
-                              ?.node.altText
-                              ? drink.acf_drinks.passarTillRecept[0]
-                                  .featuredImage.node.altText
-                              : drink.acf_drinks.passarTillRecept[0].title
-                          }
-                        />
-                      </figure>
-                      <div className="absolute top-0 left-0 p-3 text-white">
-                        <p>Passar med</p>
-                        <strong className="block">
-                          {drink?.acf_drinks?.passarTillRecept[0]?.title}
-                        </strong>
-                      </div>
-                    </div>
-                  </a>
-                </Link>
-              </>
-            )}
         </div>
       </div>
-      <ExplorerLinks />
+
+      <div className="h-screen w-full bg-[#F8F8F9]"></div>
     </>
   );
 };

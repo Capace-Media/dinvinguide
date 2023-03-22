@@ -6,7 +6,6 @@ export default function Newsletter() {
   const [email, setEmail] = useState("");
   const [bot, setBot] = useState("");
   const [ageChecked, setAgeChecked] = useState(false);
-  console.log("bot =====>", bot);
 
   const handleSubmit = (e) => {
     e.preventDefault();

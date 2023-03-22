@@ -1,3 +1,4 @@
+export { default as ArrowRight } from "./ArrowRight";
 export { default as Brons } from "./Brons";
 export { default as DarkLogo } from "./DarkLogo";
 export { default as Dollar } from "./Dollar";
