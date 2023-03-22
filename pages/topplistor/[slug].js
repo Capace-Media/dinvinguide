@@ -12,7 +12,7 @@ import Toplist from "../../components/toplists/Tolist";
 
 const SingleToplistPage = ({ data }) => {
   const { toplist } = data;
-  console.log("data =====>", data);
+
   return (
     <Fragment>
       <SEO

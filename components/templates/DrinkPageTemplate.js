@@ -48,14 +48,13 @@ const DrinkPageTemplate = ({ data }) => {
       value: dayjs(drink?.date).locale("sv").format("D MMMM, YYYY"),
     },
   ];
-  console.log("data =>", data);
+
   const [image, setImage] = useState(rottvin?.src);
   const [topImg, setTopImg] = useState(rodvinflaska?.src);
   const [topSmImg, setSmTopImg] = useState(rodflaska?.src);
   const size = 641;
   let isSm = useResized(size);
 
-  console.log("topImg =====>", rodflaska);
   const router = useRouter();
   const handleBackButtonClick = () => {
     router.back();
@@ -129,8 +128,8 @@ const DrinkPageTemplate = ({ data }) => {
       </div>
 
       <div className="relative overflow-x-hidden overflow-y-hidden">
-        <LeftSplashSingle className="absolute left-0 top-[0px] z-10" />
-        <RightSplashSingle className="absolute right-0 top-[400px] md:-top-[30px] z-10" />
+        <LeftSplashSingle className="absolute -z-10 left-0 top-[0px] lg:z-10" />
+        <RightSplashSingle className="absolute right-0 top-[400px] md:-top-[30px] lg:z-10 -z-10" />
         <div className="contain-sm text-[14px] z-20 flex items-center justify-between">
           <button
             className="flex items-center gap-3"
@@ -230,13 +229,17 @@ const DrinkPageTemplate = ({ data }) => {
           </div>
         </div>
 
-        <div className="bg-[#F8F8F9]">
+        <div className="md:bg-[#F8F8F9]">
           <div className="lg:grid lg:grid-cols-2 flex flex-col-reverse contain py-[101px] ">
             <div className="p-[20px] flex flex-col lg:justify-center gap-4 lg:px-[141px]">
-              <h2 className=" normal-case text-[33px]">
-                <p className="text-[16px] font-normal">PASSAR MED</p>
-                {drink.acf_drinks?.passarTillRecept[0]?.title}
-              </h2>
+              <Link href={drink.acf_drinks?.passarTillRecept[0]?.uri}>
+                <a className="z-20">
+                  <h2 className=" normal-case text-[33px]">
+                    <p className="text-[16px] font-normal">PASSAR MED</p>
+                    {drink.acf_drinks?.passarTillRecept[0]?.title}
+                  </h2>
+                </a>
+              </Link>
               {drink.acf_drinks?.passarTillRecept[0]?.acf_recipe?.desc && (
                 <p className="mb-[52px]">
                   {drink.acf_drinks?.passarTillRecept[0]?.acf_recipe?.desc}
@@ -244,8 +247,8 @@ const DrinkPageTemplate = ({ data }) => {
               )}
 
               <Link href={drink.acf_drinks?.passarTillRecept[0]?.uri}>
-                <a className="flex items-center gap-3 cursor-pointer">
-                  <span>GÅ TILL RECEPT</span> <ArrowRight />
+                <a className="flex items-center z-20 gap-3 cursor-pointer">
+                  <p>GÅ TILL RECEPT</p> <ArrowRight />
                 </a>
               </Link>
             </div>
@@ -274,7 +277,7 @@ const DrinkPageTemplate = ({ data }) => {
           </div>
         </div>
 
-        <div className="flex contain flex-col justify-center items-center gap-[20px] lg:flex-row lg:flex-wrap md:grid-cols-2 md:gap-0 my-[101px]">
+        <div className="flex contain z-50 flex-col justify-center items-center gap-[20px] lg:flex-row lg:flex-wrap md:grid-cols-2 md:gap-0 my-[101px]">
           {isSm ? (
             <Smd
               img={topSmImg}
@@ -287,7 +290,7 @@ const DrinkPageTemplate = ({ data }) => {
             />
           )}
           <Link href="/dryckesutforskaren">
-            <a className="overlay-top relative w-[350px] lg:w-[627.9px] h-[314px]">
+            <a className="z-20 overlay-top relative w-[350px] lg:w-[627.9px] h-[314px]">
               <Image
                 src={dryckes.src}
                 layout="fill"
@@ -307,7 +310,7 @@ const DrinkPageTemplate = ({ data }) => {
             </a>
           </Link>
           <Link href="/recept">
-            <a className="overlay-top relative w-[350px] lg:w-[627.9px] h-[314px]">
+            <a className="z-20 overlay-top relative w-[350px] lg:w-[627.9px] h-[314px]">
               <Image
                 src={recept.src}
                 layout="fill"

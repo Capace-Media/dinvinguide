@@ -9,27 +9,6 @@ import BritFlag from "../../public/images/BRITFlag.png";
 import DryckeslistanLogo from "../../public/images/dryckeslistanlogo-1.svg";
 import SweFlag from "../../public/images/SWEFlag.png";
 
-// const originalLinks = [
-//   { content: "Skribenter", href: "/skribenter" },
-//   { content: "Guide", href: "/guide" },
-//   {
-//     content: (
-//       <Image
-//         width={300}
-//         height={65}
-//         objectFit="contain"
-//         src={Logo}
-//         priority
-//         className="cursor-pointer"
-//         alt="DinVinGuide Logotyp"
-//       />
-//     ),
-//     href: "/",
-//     mobile: true,
-//   },
-//   { content: "Recept", href: "/recept" },
-//   { content: "Topplistor", href: "/dryckeslistan" },
-// ];
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
@@ -37,9 +16,6 @@ export default function Header() {
 
   let path = router?.asPath;
 
-  // console.log("router ===>", router);
-
-  // const [links, setLinks] = useState([]);
   const Links = [
     { content: "Skribenter", href: "/skribenter" },
     { content: "Guide", href: "/guide" },
