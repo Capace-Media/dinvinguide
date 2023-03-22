@@ -3,12 +3,16 @@ import { getToplistPaths, getToplists } from "../../lib/api/toplists";
 import Image from "next/image";
 import { Fragment } from "react";
 
+import Link from "next/link";
+import ClientAd from "../../components/ads/ClientAd";
 import SEO from "../../components/common/SEO";
+import { ArrowLeft } from "../../components/icons";
 import Newsletter from "../../components/section/Newsletter";
 import Toplist from "../../components/toplists/Tolist";
 
 const SingleToplistPage = ({ data }) => {
   const { toplist } = data;
+  console.log("data =====>", data);
   return (
     <Fragment>
       <SEO
@@ -48,6 +52,18 @@ const SingleToplistPage = ({ data }) => {
             {toplist.toplist.title}
           </p>
         </div>
+      </div>
+      <div className="mb-[90px]">
+        <ClientAd position="top" type="dl" />
+      </div>
+      <div className="contain-md text-[14px] z-20 flex items-center justify-between">
+        <Link href="/dryckeslistan">
+          <a className="flex items-center gap-3">
+            <ArrowLeft /> <span>Tillbaka till alla Topplistor</span>
+          </a>
+        </Link>
+
+        <p className="font-bold">{toplist?.toplist?.title}</p>
       </div>
       <div className="row ">
         <Toplist data={toplist} />

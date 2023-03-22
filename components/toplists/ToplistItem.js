@@ -4,7 +4,15 @@ import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Brons, Dollar, Flaska, Guld, Passar, Silver } from "../icons";
+import {
+  ArrowRight,
+  Brons,
+  Dollar,
+  Flaska,
+  Guld,
+  Passar,
+  Silver,
+} from "../icons";
 const ToplistItem = ({ data, index }) => {
   const router = useRouter();
   const [medal, setMedal] = useState();
@@ -104,12 +112,14 @@ const ToplistItem = ({ data, index }) => {
               data.acf_drinks.passarTillRecept.length > 0 && (
                 <div className="flex items-baseline gap-3">
                   <Passar />
+
                   <p>
+                    <span>Passar till: </span>
                     <Link href={data.acf_drinks.passarTillRecept[0].uri}>
                       <a className="underline">
                         {data.acf_drinks.passarTillRecept[0].title}
                       </a>
-                    </Link>{" "}
+                    </Link>
                   </p>
                 </div>
               )}
@@ -121,8 +131,10 @@ const ToplistItem = ({ data, index }) => {
             )}
           </div>
 
-          <Link href="/">
-            <a>Läs mer om produkten</a>
+          <Link href={data.uri}>
+            <a className="flex items-center gap-3">
+              <span>Läs mer om produkten</span> <ArrowRight />
+            </a>
           </Link>
         </div>
       </div>

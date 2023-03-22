@@ -231,8 +231,8 @@ const DrinkPageTemplate = ({ data }) => {
         </div>
 
         <div className="bg-[#F8F8F9]">
-          <div className="grid grid-cols-2 contain py-[101px] ">
-            <div className="p-[20px] flex flex-col justify-center gap-4 px-[141px]">
+          <div className="lg:grid lg:grid-cols-2 flex flex-col-reverse contain py-[101px] ">
+            <div className="p-[20px] flex flex-col lg:justify-center gap-4 lg:px-[141px]">
               <h2 className=" normal-case text-[33px]">
                 <p className="text-[16px] font-normal">PASSAR MED</p>
                 {drink.acf_drinks?.passarTillRecept[0]?.title}
@@ -368,8 +368,53 @@ export const Smd = ({ type, img }) => {
             <div className=" grid grid-cols-6 pt-[20px]">
               <div className="font-body col-span-4">
                 <p className="text-[14px]">Topplista</p>
-                <p className=" font-display font-bold text-[18px]">{slogan}</p>
-                <p className=" italic text-[13px]">Systembolagets märkning</p>
+                <p className=" font-display font-bold text-[18px]">
+                  {type === "Rosévin"
+                    ? "Rosévin"
+                    : type === "Vitt vin"
+                    ? "Vitt vin"
+                    : "Röda viner"}
+                </p>
+                <p className=" italic text-[13px]">Testade av redaktionen</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </Link>
+      <Link
+        href={
+          type === "Rosévin"
+            ? "/topplistor/rose"
+            : type === "Vitt vin"
+            ? "/topplistor/flaska-vitt"
+            : "/topplistor/flaska-rott"
+        }
+        key={top?.id}
+      >
+        <a>
+          <div className="card max-w-[350px] bg-[#F8F8F9] p-[20px] flex flex-col  ">
+            <div className="relative w-[310px] h-[190px]">
+              <Image
+                src={alkCard}
+                objectFit="cover"
+                layout="fill"
+                alt={
+                  type === "Rosévin"
+                    ? "Rosévin"
+                    : type === "Vitt vin"
+                    ? "Vitt vin"
+                    : "Röda viner"
+                }
+              />
+            </div>
+
+            <div className=" grid grid-cols-6 pt-[20px]">
+              <div className="font-body col-span-4">
+                <p className="text-[14px]">Vin & bubbel</p>
+                <p className=" font-display font-bold text-[18px]">
+                  Topplistor
+                </p>
+                <p className=" italic text-[13px]">Visa alla topplistor</p>
               </div>
             </div>
           </div>
