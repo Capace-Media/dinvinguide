@@ -294,6 +294,7 @@ const DrinkPageTemplate = ({ data }) => {
                 objectFit="cover"
                 alt="bild på dryckesutforskaren"
               />
+              {/* hello world */}
               <div className="absolute  bottom-0 text-white p-[20px] lg:p-[30px]">
                 <div className="font-body ">
                   <p className="text-[16px]">DRYCKESUTFORSKAREN</p>
