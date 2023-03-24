@@ -216,15 +216,16 @@ const DrinkPageTemplate = ({ data }) => {
                   </div>
                 )}
               </div>
-
-              <a
-                href={drink?.acf_drinks?.knappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className=" flex items-center gap-3 cursor-pointer hover:color-[#E1E5D4]"
-              >
-                <span>Beställ på Systembolaget</span> <ArrowRight />
-              </a>
+              {drink?.acf_drinks?.bolagetAdress && (
+                <a
+                  href={drink?.acf_drinks?.bolagetAdress}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className=" flex items-center gap-3 cursor-pointer hover:color-[#E1E5D4]"
+                >
+                  <span>Beställ på Systembolaget</span> <ArrowRight />
+                </a>
+              )}
             </div>
           </div>
         </div>

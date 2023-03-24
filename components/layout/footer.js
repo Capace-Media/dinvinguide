@@ -36,11 +36,11 @@ export default function Footer() {
             <li>
               <a
                 className="flex items-center lg:justify-start gap-3 justify-center"
-                href="mailto:admin@winepublishing.com"
+                href="mailto:info@dinvinguide.se"
                 target="_blank"
                 rel="noreferrer"
               >
-                <Email /> <span>exempel@email.com</span>
+                <Email /> <span>info@dinvinguide.se</span>
               </a>
             </li>
             <li>
