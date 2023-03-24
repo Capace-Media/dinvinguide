@@ -6,15 +6,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
   ArrowRight,
-  Brons,
   Dollar,
   Flaska,
-  Guld,
   MedaljBrons,
   MedaljGuld,
   MedaljSilver,
   Passar,
-  Silver,
 } from "../icons";
 const ToplistItem = ({ data, index }) => {
   const router = useRouter();
@@ -24,19 +21,13 @@ const ToplistItem = ({ data, index }) => {
     switch (index) {
       case 1:
         setMedal(<MedaljGuld />);
-
         break;
-
       case 2:
         setMedal(<MedaljSilver />);
-
         break;
-
       case 3:
         setMedal(<MedaljBrons />);
-
         break;
-
       default:
         break;
     }
