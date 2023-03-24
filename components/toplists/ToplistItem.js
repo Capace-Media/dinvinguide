@@ -19,7 +19,6 @@ import {
 const ToplistItem = ({ data, index }) => {
   const router = useRouter();
   const [medal, setMedal] = useState(null);
-  console.log("medal =====>", medal);
 
   useEffect(() => {
     switch (index) {
@@ -72,9 +71,15 @@ const ToplistItem = ({ data, index }) => {
                 {index <= 3 && (
                   <div
                     className={`absolute w-[151px] h-[151px] ${
-                      index === 2
+                      index === 2 &&
+                      data?.acf_drinks?.forpackningar.name == "Flaska"
                         ? "top-[16%] left-[50%] -translate-x-[67%] rotate-12"
-                        : "top-[16%] left-[50%] -translate-x-[30%] -rotate-12"
+                        : data?.acf_drinks?.forpackningar.name == "Flaska"
+                        ? "top-[16%] left-[50%] -translate-x-[30%] -rotate-12"
+                        : index === 2 &&
+                          data?.acf_drinks?.forpackningar.name == "Box"
+                        ? "bottom-[16%] left-[10%] -translate-x-[30%] rotate-12"
+                        : "bottom-[16%] -right-[10%] -translate-x-[30%] -rotate-12"
                     }`}
                   >
                     {medal}
