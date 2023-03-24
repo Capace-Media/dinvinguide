@@ -129,11 +129,11 @@ export const getStaticProps = async ({ params }) => {
     }
   });
 
-  // if (!toplist[0]) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
+  if (!toplist || !toplist[0]) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {

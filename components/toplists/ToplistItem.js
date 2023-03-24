@@ -10,33 +10,41 @@ import {
   Dollar,
   Flaska,
   Guld,
+  MedaljBrons,
+  MedaljGuld,
+  MedaljSilver,
   Passar,
   Silver,
 } from "../icons";
 const ToplistItem = ({ data, index }) => {
   const router = useRouter();
-  const [medal, setMedal] = useState();
+  const [medal, setMedal] = useState(null);
+  console.log("medal =====>", medal);
 
   useEffect(() => {
     switch (index) {
       case 1:
-        setMedal(<Guld />);
+        setMedal(<MedaljGuld />);
 
         break;
 
       case 2:
-        setMedal(<Silver />);
+        setMedal(<MedaljSilver />);
 
         break;
 
       case 3:
-        setMedal(<Brons />);
+        setMedal(<MedaljBrons />);
 
         break;
 
       default:
         break;
     }
+
+    return () => {
+      setMedal(null);
+    };
   }, [index]);
   const isDebug = router?.query?.debug ? true : false;
 
@@ -63,10 +71,10 @@ const ToplistItem = ({ data, index }) => {
                 </figure>
                 {index <= 3 && (
                   <div
-                    className={`absolute ${
+                    className={`absolute w-[151px] h-[151px] ${
                       index === 2
-                        ? "top-[42px] left-[62px]"
-                        : "top-[42px] right-[52px]"
+                        ? "top-[16%] left-[50%] -translate-x-[67%] rotate-12"
+                        : "top-[16%] left-[50%] -translate-x-[30%] -rotate-12"
                     }`}
                   >
                     {medal}
