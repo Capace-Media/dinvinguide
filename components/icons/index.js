@@ -1,8 +1,12 @@
 export { default as ArrowLeft } from "./ArrowLeft";
 export { default as ArrowRight } from "./ArrowRight";
+export { default as BestchampagneLogoBlack } from "./BestchampagneLogoBlack";
 export { default as Brons } from "./Brons";
 export { default as DarkLogo } from "./DarkLogo";
 export { default as Dollar } from "./Dollar";
+export { default as Dryckeslistanlogo1 } from "./Dryckeslistanlogo1";
+export { default as Dryckeslistanlogo2 } from "./Dryckeslistanlogo2";
+export { default as DvgLogo } from "./DvgLogo";
 export { default as Email } from "./Email";
 export { default as FbLg } from "./FbLg";
 export { default as FbSm } from "./FbSm";

@@ -1,10 +1,7 @@
 import { useRouter } from "next/dist/client/router";
-import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
-import DVGLogo from "../../public/dvg-logo.svg";
-import BCLogo from "../../public/images/bestchampagne-logo-black.png";
-import DryckeslistanLogo from "../../public/images/dryckeslistanlogo-1.png";
+
+import { BestchampagneLogoBlack, Dryckeslistanlogo2, DvgLogo } from "../icons";
 import Footer from "./footer";
 import Header from "./header";
 
@@ -19,30 +16,26 @@ export default function Layout({ children }) {
   return (
     <>
       <Header />
-      <div className="contain flex justify-center mt-[114px] space-x-3">
-        <a href="https://bestchampagne.se" target="noreferrer">
-          <Image src={BCLogo} priority alt="BestChampagne Logo" />
+      <div className="pb-8 contain flex justify-center items-center mt-[114px] space-x-3">
+        <a
+          href="https://bestchampagne.se"
+          className="w-[200px] h-[30px]"
+          target="noreferrer"
+        >
+          <BestchampagneLogoBlack />
         </a>
 
-        <div>|</div>
+        <div className="w-[2px] bg-black h-[25px]"></div>
         <Link href={isDryckeslistan ? "/" : "/dryckeslistan"}>
-          <a className="relative">
+          <a className="w-[200px] h-[30px]">
             {isDryckeslistan ? (
-              <Image
-                src={DVGLogo}
-                priority
-                width={200}
-                height={30}
-                alt="Dryckeslistan Logo"
-              />
+              <>
+                <DvgLogo />
+              </>
             ) : (
-              <Image
-                src={DryckeslistanLogo}
-                width={200}
-                height={30}
-                priority
-                alt="Dryckeslistan Logo"
-              />
+              <>
+                <Dryckeslistanlogo2 />
+              </>
             )}
           </a>
         </Link>

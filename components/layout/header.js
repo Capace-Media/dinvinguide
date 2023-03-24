@@ -4,10 +4,11 @@ import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import Logo from "../../public/dvg-logo.svg";
-import BritFlag from "../../public/images/BRITFlag.png";
-import DryckeslistanLogo from "../../public/images/dryckeslistanlogo-1.svg";
+// import Logo from "../../public/dvg-logo.svg";
+// import BritFlag from "../../public/images/BRITFlag.png";
+// import DryckeslistanLogo from "../../public/images/dryckeslistanlogo-1.svg";
 import SweFlag from "../../public/images/SWEFlag.png";
+import { Dryckeslistanlogo1, DvgLogo } from "../icons";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -178,20 +179,16 @@ export default function Header() {
                     <a
                       key={link.href + index}
                       className={
-                        link.mobile ? "inherit lg:inherit" : "hidden lg:flex"
+                        link.mobile
+                          ? "inherit lg:inherit w-[300px] h-[65px]"
+                          : "hidden lg:flex"
                       }
                     >
-                      <Image
-                        width={300}
-                        height={65}
-                        objectFit="contain"
-                        src={
-                          path === "/dryckeslistan" ? DryckeslistanLogo : Logo
-                        }
-                        priority
-                        className="cursor-pointer"
-                        alt="DinVinGuide Logotyp"
-                      />
+                      {path === "/dryckeslistan" ? (
+                        <Dryckeslistanlogo1 />
+                      ) : (
+                        <DvgLogo />
+                      )}
                     </a>
                   </Link>
                 );
