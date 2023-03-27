@@ -229,54 +229,55 @@ const DrinkPageTemplate = ({ data }) => {
             </div>
           </div>
         </div>
+        {drink.acf_drinks?.passarTillRecept && (
+          <div className="md:bg-[#F8F8F9]">
+            <div className="lg:grid lg:grid-cols-2 flex flex-col-reverse contain py-[101px] ">
+              <div className="p-[20px] flex flex-col lg:justify-center gap-4 lg:px-[141px]">
+                <Link href={drink.acf_drinks?.passarTillRecept[0]?.uri}>
+                  <a className="z-20">
+                    <h2 className=" normal-case text-[33px]">
+                      <p className="text-[16px] font-normal">PASSAR MED</p>
+                      {drink.acf_drinks?.passarTillRecept[0]?.title}
+                    </h2>
+                  </a>
+                </Link>
+                {drink.acf_drinks?.passarTillRecept[0]?.acf_recipe?.desc && (
+                  <p className="mb-[52px]">
+                    {drink.acf_drinks?.passarTillRecept[0]?.acf_recipe?.desc}
+                  </p>
+                )}
 
-        <div className="md:bg-[#F8F8F9]">
-          <div className="lg:grid lg:grid-cols-2 flex flex-col-reverse contain py-[101px] ">
-            <div className="p-[20px] flex flex-col lg:justify-center gap-4 lg:px-[141px]">
-              <Link href={drink.acf_drinks?.passarTillRecept[0]?.uri}>
-                <a className="z-20">
-                  <h2 className=" normal-case text-[33px]">
-                    <p className="text-[16px] font-normal">PASSAR MED</p>
-                    {drink.acf_drinks?.passarTillRecept[0]?.title}
-                  </h2>
-                </a>
-              </Link>
-              {drink.acf_drinks?.passarTillRecept[0]?.acf_recipe?.desc && (
-                <p className="mb-[52px]">
-                  {drink.acf_drinks?.passarTillRecept[0]?.acf_recipe?.desc}
-                </p>
-              )}
-
-              <Link href={drink.acf_drinks?.passarTillRecept[0]?.uri}>
-                <a className="flex items-center z-20 gap-3 cursor-pointer">
-                  <p>GÅ TILL RECEPT</p> <ArrowRight />
-                </a>
-              </Link>
-            </div>
-            <div className="">
-              <figure className="relative aspect-w-16 aspect-h-10">
-                <Image
-                  src={
-                    drink.acf_drinks?.passarTillRecept[0]?.featuredImage?.node
-                      ?.mediaItemUrl
-                      ? drink.acf_drinks.passarTillRecept[0].featuredImage.node
-                          .mediaItemUrl
-                      : "/images/recipe-placeholder.jpg"
-                  }
-                  layout="fill"
-                  objectFit="cover"
-                  alt={
-                    drink.acf_drinks.passarTillRecept[0].featuredImage?.node
-                      .altText
-                      ? drink.acf_drinks.passarTillRecept[0].featuredImage.node
-                          .altText
-                      : drink.acf_drinks.passarTillRecept[0].title
-                  }
-                />
-              </figure>
+                <Link href={drink.acf_drinks?.passarTillRecept[0]?.uri}>
+                  <a className="flex items-center z-20 gap-3 cursor-pointer">
+                    <p>GÅ TILL RECEPT</p> <ArrowRight />
+                  </a>
+                </Link>
+              </div>
+              <div className="">
+                <figure className="relative aspect-w-16 aspect-h-10">
+                  <Image
+                    src={
+                      drink.acf_drinks?.passarTillRecept[0]?.featuredImage?.node
+                        ?.mediaItemUrl
+                        ? drink.acf_drinks.passarTillRecept[0].featuredImage
+                            .node.mediaItemUrl
+                        : "/images/recipe-placeholder.jpg"
+                    }
+                    layout="fill"
+                    objectFit="cover"
+                    alt={
+                      drink.acf_drinks.passarTillRecept[0].featuredImage?.node
+                        .altText
+                        ? drink.acf_drinks.passarTillRecept[0].featuredImage
+                            .node.altText
+                        : drink.acf_drinks.passarTillRecept[0].title
+                    }
+                  />
+                </figure>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         <div className="flex contain z-50 flex-col justify-center items-center gap-[20px] lg:flex-row lg:flex-wrap md:grid-cols-2 md:gap-0 my-[101px]">
           {isSm ? (
