@@ -57,9 +57,6 @@ const ToplistsPage = ({ data }) => {
           )}
         </div>
       </div>
-      <div className="">
-        <Newsletter />
-      </div>
 
       <div className="my-[101px]">
         <div className="">
@@ -130,6 +127,9 @@ const ToplistsPage = ({ data }) => {
             </Link>
           </div>
         </div>
+      </div>
+      <div className="">
+        <Newsletter />
       </div>
     </Fragment>
   );
