@@ -7,7 +7,9 @@ import { useEffect, useState } from "react";
 import useResized from "../../hooks/useResized";
 import alk from "../../public/images/top/alkoholfri.jpg";
 import alkCard from "../../public/images/top/alkoholfriCard.jpg";
+import defaultImg from "../../public/images/top/default.jpg";
 import vittVin from "../../public/images/top/glass-of-white-wine.jpg";
+import mossVin from "../../public/images/top/moss-vin.png";
 import rottvin from "../../public/images/top/red-wine-bottle-and-glass.jpg";
 import rose from "../../public/images/top/rose-wine-bottle-and-glass.jpg";
 import ClientAd from "../ads/ClientAd";
@@ -49,9 +51,9 @@ const DrinkPageTemplate = ({ data }) => {
     },
   ];
 
-  const [image, setImage] = useState(rottvin?.src);
-  const [topImg, setTopImg] = useState(rodvinflaska?.src);
-  const [topSmImg, setSmTopImg] = useState(rodflaska?.src);
+  const [image, setImage] = useState(defaultImg?.src);
+  const [topImg, setTopImg] = useState(defaultImg?.src);
+  const [topSmImg, setSmTopImg] = useState(defaultImg?.src);
   const size = 641;
   let isSm = useResized(size);
 
@@ -79,19 +81,23 @@ const DrinkPageTemplate = ({ data }) => {
         setSmTopImg(roseCard?.src);
 
         break;
-
+      case "Mousserande vin":
+        setImage(mossVin?.src);
+        setTopImg(mossVin?.src);
+        setSmTopImg(mossVin?.src);
+        break;
       default:
-        setImage(rottvin?.src);
-        setTopImg(rodvinflaska?.src);
-        setSmTopImg(rodflaska?.src);
+        setImage(defaultImg?.src);
+        setTopImg(defaultImg?.src);
+        setSmTopImg(defaultImg?.src);
 
         break;
     }
 
     return () => {
-      setImage(rottvin?.src);
-      setTopImg(rodvinflaska?.src);
-      setSmTopImg(rodflaska?.src);
+      setImage(defaultImg?.src);
+      setTopImg(defaultImg?.src);
+      setSmTopImg(defaultImg?.src);
     };
   }, [data?.page?.acf_drinks?.dryckestyper?.name]);
 
@@ -349,6 +355,8 @@ export const Smd = ({ type, img }) => {
             ? "/topplistor/rose"
             : type === "Vitt vin"
             ? "/topplistor/flaska-vitt"
+            : type === "Mousserande vin"
+            ? "topplistor/flaska-mousserande"
             : "/topplistor/flaska-rott"
         }
         key={top?.id}
@@ -365,6 +373,8 @@ export const Smd = ({ type, img }) => {
                     ? "Rosévin"
                     : type === "Vitt vin"
                     ? "Vitt vin"
+                    : type === "Mousserande vin"
+                    ? "Mousserande vin"
                     : "Röda viner"
                 }
               />
@@ -378,6 +388,8 @@ export const Smd = ({ type, img }) => {
                     ? "Rosévin"
                     : type === "Vitt vin"
                     ? "Vitt vin"
+                    : type === "Mousserande vin"
+                    ? "Mousserande vin"
                     : "Röda viner"}
                 </p>
                 <p className=" italic text-[13px]">Testade av redaktionen</p>
@@ -438,6 +450,8 @@ export const Lgd = ({ img, type }) => {
             ? "/topplistor/rose"
             : type === "Vitt vin"
             ? "/topplistor/flaska-vitt"
+            : type === "Mousserande vin"
+            ? "topplistor/flaska-mousserande"
             : "/topplistor/flaska-rott"
         }
       >
@@ -453,6 +467,8 @@ export const Lgd = ({ img, type }) => {
                     ? "Rosévin"
                     : type === "Vitt vin"
                     ? "Vitt vin"
+                    : type === "Mousserande vin"
+                    ? "Mousserande vin"
                     : "Röda viner"
                 }
               />
@@ -467,6 +483,8 @@ export const Lgd = ({ img, type }) => {
                       ? "Rosévin"
                       : type === "Vitt vin"
                       ? "Vitt vin"
+                      : type === "Mousserande vin"
+                      ? "Mousserande vin"
                       : "Röda viner"}
                   </p>
                   <p className=" italic text-[13px]">Testade av redaktionen</p>
