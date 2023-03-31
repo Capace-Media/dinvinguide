@@ -45,10 +45,14 @@ const CookiePopup = ({ dispatch }) => {
     >
       <div className="absolute top-2/4 left-2/4 z-50 flex w-[94vw] -translate-y-2/4 -translate-x-2/4 flex-col gap-5 rounded bg-white p-10 md:w-[80vw]">
         <div>
-          <p className="text-2xl">We use cookies!</p>
+          <p className="text-2xl">Hej!</p>
           <p className="text-sm">
-            We use cookies to gather valuable information that helps us improve
-            our website and our business.
+            Vi använder cookies för att förbättra din upplevelse på vår
+            webbplats. Cookies är små textfiler som lagras på din enhet när du
+            besöker vår webbplats. De hjälper oss att förstå hur du använder vår
+            webbplats och ger oss möjlighet att skräddarsy innehållet för dig.
+            Vi vill gärna erbjuda dig möjligheten att anpassa dina
+            cookie-inställningar.
           </p>
         </div>
         <div className="flex flex-col gap-4">
@@ -71,12 +75,17 @@ const CookiePopup = ({ dispatch }) => {
                 isChecked.google ? "" : "line-through"
               } max-w-[90%]`}
             >
-              <p>
-                Manage data that Google Analytics collects on websites you visit
-              </p>
+              <p>Statistikinställning:</p>
               <p className="text-xs text-brand-light-500">
-                Website owners improve their website using data collected in
-                Google Analytics
+                Genom att tillåta statistikcookies hjälper du oss att förbättra
+                vår webbplats genom att samla in information om hur den används.
+                Dessa cookies samlar in anonymiserade data om hur många besökare
+                vi har på vår webbplats, vilka sidor som är mest populära och
+                hur länge besökarna stannar på vår webbplats. Denna information
+                hjälper oss att förstå vilka delar av vår webbplats som behöver
+                förbättras och hur vi kan förbättra användarupplevelsen. Du kan
+                när som helst stänga av dessa cookies genom att ändra dina
+                cookie-inställningar.
               </p>
             </div>
           </label>
@@ -99,12 +108,16 @@ const CookiePopup = ({ dispatch }) => {
                 isChecked.cookies ? "" : "line-through"
               } max-w-[90%]`}
             >
-              <p>
-                Accept general cookies for performance and user accessibility{" "}
-              </p>
+              <p>Användarvänlighetsinställning:</p>
               <p className="text-xs text-brand-light-500">
-                Website owners improve their website using cookies for
-                performance and user accessibility
+                Genom att tillåta cookies för användarvänlighet hjälper du oss
+                att förbättra din upplevelse på vår webbplats. Dessa cookies
+                tillåter oss att komma ihåg dina preferenser och inställningar,
+                såsom språk och val av enhet, så att du inte behöver göra samma
+                val varje gång du besöker vår webbplats. De kan också användas
+                för att förbättra webbplatsens funktionalitet. Du kan när som
+                helst stänga av dessa cookies genom att ändra dina
+                cookie-inställningar.
               </p>
             </div>
           </label>
@@ -115,26 +128,26 @@ const CookiePopup = ({ dispatch }) => {
             className="inline-block rounded-[4px] bg-gray-700 py-[11px] px-[44px] text-[14px] text-white duration-200 ease-in-out hover:scale-105"
             onClick={() => dispatch({ type: "acceptCurrent" })}
           >
-            Allow all
+            Tillåt alla cookies
           </button>
           <button
             className="bg-brand-dark-500 inline-block rounded-[4px] border-2 py-[11px] px-[33px] text-[14px] text-brand-light-300 duration-200 ease-in-out hover:scale-105"
             onClick={() => dispatch({ type: dispatchValue })}
           >
-            Allow Selection
+            Tillåt endast valda cookies
           </button>
           <button
             className="bg-brand-dark-500 inline-block rounded-[4px] border-2  py-[11px] px-[33px] text-[14px] text-brand-light-300 duration-200 ease-in-out hover:scale-105"
             onClick={() => dispatch({ type: "declineAll" })}
           >
-            Deny
+            Neka alla cookies
           </button>
         </div>
-        <Link href="/privacy-policy">
+        {/* <Link href="/privacy-policy">
           <a className="text-sm text-brand-light-500 hover:underline">
             Privacy Policy
           </a>
-        </Link>
+        </Link> */}
       </div>
     </section>
   );

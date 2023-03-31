@@ -7,5 +7,6 @@
   "emmet.syntaxProfiles": {
     "javascript": "jsx",
     "typescript": "tsx"
-  }
+  },
+  "cSpell.words": ["inställningar"]
 }
