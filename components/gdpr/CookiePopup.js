@@ -43,16 +43,15 @@ const CookiePopup = ({ dispatch }) => {
       key="gdpr"
       className="light_box fixed top-0 left-0 z-50 h-full w-full"
     >
-      <div className="absolute top-2/4 left-2/4 z-50 flex w-[94vw] -translate-y-2/4 -translate-x-2/4 flex-col gap-5 rounded bg-white p-10 md:w-[80vw]">
+      <div className="absolute top-2/4 left-2/4 z-50 flex w-[94vw] -translate-y-2/4 -translate-x-2/4 flex-col gap-5 rounded bg-white p-10 md:w-[60vw]">
         <div>
-          <p className="text-2xl">Hej!</p>
-          <p className="text-sm">
-            Vi använder cookies för att förbättra din upplevelse på vår
-            webbplats. Cookies är små textfiler som lagras på din enhet när du
-            besöker vår webbplats. De hjälper oss att förstå hur du använder vår
-            webbplats och ger oss möjlighet att skräddarsy innehållet för dig.
-            Vi vill gärna erbjuda dig möjligheten att anpassa dina
-            cookie-inställningar.
+          <p className="text-xl">Hej!</p>
+          <p className="text-xs">
+            På vår webbplats använder vi cookies för att förbättra din
+            upplevelse genom att samla in information om hur du använder vår
+            webbplats. Cookies lagras på din enhet och hjälper oss att
+            skräddarsy innehållet för dig. Du kan anpassa dina
+            cookie-inställningar när som helst.
           </p>
         </div>
         <div className="flex flex-col gap-4">
@@ -77,14 +76,11 @@ const CookiePopup = ({ dispatch }) => {
             >
               <p>Statistikinställning:</p>
               <p className="text-xs text-brand-light-500">
-                Genom att tillåta statistikcookies hjälper du oss att förbättra
-                vår webbplats genom att samla in information om hur den används.
-                Dessa cookies samlar in anonymiserade data om hur många besökare
-                vi har på vår webbplats, vilka sidor som är mest populära och
-                hur länge besökarna stannar på vår webbplats. Denna information
-                hjälper oss att förstå vilka delar av vår webbplats som behöver
-                förbättras och hur vi kan förbättra användarupplevelsen. Du kan
-                när som helst stänga av dessa cookies genom att ändra dina
+                Statistikcookies hjälper oss att förbättra webbplatsen genom att
+                samla in anonymiserad data om besökare och hur de använder
+                webbplatsen. Denna information hjälper oss att förstå vad som
+                fungerar bra och vad som behöver förbättras. Du kan stänga av
+                dessa cookies när som helst genom att ändra dina
                 cookie-inställningar.
               </p>
             </div>
@@ -110,13 +106,11 @@ const CookiePopup = ({ dispatch }) => {
             >
               <p>Användarvänlighetsinställning:</p>
               <p className="text-xs text-brand-light-500">
-                Genom att tillåta cookies för användarvänlighet hjälper du oss
-                att förbättra din upplevelse på vår webbplats. Dessa cookies
-                tillåter oss att komma ihåg dina preferenser och inställningar,
-                såsom språk och val av enhet, så att du inte behöver göra samma
-                val varje gång du besöker vår webbplats. De kan också användas
-                för att förbättra webbplatsens funktionalitet. Du kan när som
-                helst stänga av dessa cookies genom att ändra dina
+                Cookies för användarvänlighet hjälper oss att förbättra din
+                upplevelse genom att komma ihåg dina preferenser och
+                inställningar, såsom språk och enhet. De kan också användas för
+                att förbättra webbplatsens funktionalitet. Du kan när som helst
+                stänga av dessa cookies genom att ändra dina
                 cookie-inställningar.
               </p>
             </div>
