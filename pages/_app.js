@@ -11,18 +11,21 @@ import "../styles/global.scss";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
+
   useEffect(() => {
     router.events.on("routeChangeComplete", pageview);
     return () => {
       router.events.off("routeChangeComplete", pageview);
     };
   }, [router.events]);
+
   return (
     <Layout>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       {/* Google Tag Manager - Global base code */}
+
       <Script
         id="gtag-base"
         strategy="lazyOnload"
@@ -39,7 +42,6 @@ function MyApp({ Component, pageProps }) {
           `,
         }}
       />
-
       <DefaultSeo
         defaultTitle="DinVinguide - Din guide om vin"
         openGraph={{

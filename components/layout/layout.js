@@ -14,7 +14,6 @@ export default function Layout({ children }) {
     const res = await fetch("/api/preview/exit");
     window.location.replace("/");
   };
-  console.log({ router });
 
   return (
     <>
