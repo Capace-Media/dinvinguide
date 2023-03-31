@@ -122,7 +122,7 @@ const DrinkPageTemplate = ({ data }) => {
           />
         </div>
 
-        <div className="absolute top-[170px] lg:top-[50%] lg:-translate-y-[40%] lg:left-[128px] p-[20px]">
+        <div className="absolute top-[170px] lg:top-[50%] lg:-translate-y-[40%] lg:left-[128px] p-[20px] lg:w-[40%]">
           <h1 className="text-[14px] lg:text-[18px] font-body">TOPPLISTOR</h1>
           <p className="font-display lg:text-[32px] text-[20px] font-bold mb-3">
             {drink?.title}
