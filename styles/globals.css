@@ -209,3 +209,19 @@ img.alignright {
     );
   }
 }
+
+#google::after {
+  content: "";
+  @apply h-4 w-4 rounded-full bg-gray-700 opacity-40 absolute left-1 top-2/4  -translate-y-2/4 transform scale-110 transition duration-200;
+}
+#google:checked::after {
+  @apply transform scale-110 translate-x-5 opacity-100;
+}
+
+#cookies::after {
+  content: "";
+  @apply h-4 w-4 rounded-full bg-gray-700 opacity-40 absolute left-1 top-2/4  -translate-y-2/4 transform scale-110 transition duration-200;
+}
+#cookies:checked::after {
+  @apply transform scale-110 opacity-100 translate-x-5;
+}

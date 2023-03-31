@@ -1,5 +1,8 @@
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
+import Script from "next/script";
+import { useCookieConsentState } from "../../context/CookieConsent";
+import { GTM_ID } from "../../lib/gtm";
 
 import { BestchampagneLogoBlack, Dryckeslistanlogo2, DvgLogo } from "../icons";
 import Footer from "./footer";
@@ -15,8 +18,27 @@ export default function Layout({ children }) {
     window.location.replace("/");
   };
 
+  const cookie = useCookieConsentState();
   return (
     <>
+      {cookie?.ga && cookie?.isSet && GTM_ID ? (
+        <Script
+          id="gtag-base"
+          strategy="lazyOnload"
+          onError={(err) => {
+            console.error("Error", err);
+          }}
+          dangerouslySetInnerHTML={{
+            __html: `
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer', '${GTM_ID}');
+          `,
+          }}
+        />
+      ) : null}
       <Header />
       <div className="pb-8 contain flex justify-center items-center mt-[114px] space-x-3">
         <a

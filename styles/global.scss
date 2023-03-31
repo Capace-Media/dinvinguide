@@ -110,6 +110,14 @@
 element.style {
   background-image: none;
 }
+.light_box {
+  background-color: #2b2b356c;
+  pointer-events: none;
+
+  div {
+    pointer-events: all;
+  }
+}
 
 .skiptranslate iframe .goog-te-banner-frame {
   -webkit-box-shadow: none !important;
