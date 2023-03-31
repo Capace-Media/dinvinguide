@@ -14,10 +14,9 @@ const HeroTop = () => {
           Hitta din nya favorit bland <br /> våra drycker på topplistan
         </p>
         <p className="text-[14px] lg:text-[16px] font-bold">
-          I topplistorna hittar du kategorier för vita{" "}
-          <br className="lg:hidden" /> viner på flaska,{" "}
-          <br className="hidden lg:block" /> röda viner på bag in box,{" "}
-          <br className="lg:hidden" /> mousserande och mycket mer.
+          I topplistorna hittar du kategorier för <br className="lg:hidden" />{" "}
+          viner på flaska, <br className="hidden lg:block" /> viner på bag in
+          box, <br className="lg:hidden" /> mousserande och mycket mer.
         </p>
       </div>
     </div>
