@@ -3,33 +3,33 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Playfair Display';
-  src: url('../public/fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf');
+  font-family: "Playfair Display";
+  src: url("../public/fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf");
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Playfair Display';
-  src: url('../public/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf');
+  font-family: "Playfair Display";
+  src: url("../public/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf");
   font-weight: 700;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  src: url('../public/fonts/Montserrat/Montserrat-Regular.ttf');
+  font-family: "Montserrat";
+  src: url("../public/fonts/Montserrat/Montserrat-Regular.ttf");
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Montserrat';
-  src: url('../public/fonts/Montserrat/Montserrat-SemiBold.ttf');
+  font-family: "Montserrat";
+  src: url("../public/fonts/Montserrat/Montserrat-SemiBold.ttf");
   font-weight: 600;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Montserrat';
-  src: url('../public/fonts/Montserrat/Montserrat-Bold.ttf');
+  font-family: "Montserrat";
+  src: url("../public/fonts/Montserrat/Montserrat-Bold.ttf");
   font-weight: 700;
   font-display: swap;
 }
@@ -37,7 +37,7 @@
 @layer base {
   body,
   html {
-    @apply bg-brand-bg font-body;
+    @apply font-body;
   }
   h1,
   h2,
@@ -71,6 +71,19 @@
 }
 
 @layer components {
+  .overlay-sm::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(14, 6, 5, 0.8);
+  }
+  .btn {
+    @apply bg-[#E1E5D4] text-black text-[14px] rounded-[5px] font-bold py-[16px] px-[31px] mt-3 border-2 max-w-[180px];
+  }
+
   .contain {
     @apply max-w-screen-2xl mx-auto w-[90%];
   }
@@ -89,7 +102,7 @@
 }
 
 .pattern {
-  background: repeat url('../public/images/monster-dvg100.png');
+  background: repeat url("../public/images/monster-dvg100.png");
 }
 .prose p,
 .prose-sm p,
@@ -167,7 +180,7 @@
 }
 
 .recipe-layout {
-  grid-template-areas: 'img' 'meta' 'ingredients' 'instructions';
+  grid-template-areas: "img" "meta" "ingredients" "instructions";
   @apply grid;
 }
 img.alignnone,
@@ -180,6 +193,35 @@ img.alignright {
 
 @media (min-width: 800px) {
   .recipe-layout {
-    grid-template-areas: 'img meta' 'img instructions' 'ingredients instructions' 'ingredients instructions';
+    grid-template-areas: "img meta" "img instructions" "ingredients instructions" "ingredients instructions";
   }
+  .overlay-sm::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(14, 6, 5, 0.4) 0%,
+      rgba(14, 6, 5, 0.4) 100%
+    );
+  }
+}
+
+#google::after {
+  content: "";
+  @apply h-4 w-4 rounded-full bg-gray-700 opacity-40 absolute left-1 top-2/4  -translate-y-2/4 transform scale-110 transition duration-200;
+}
+#google:checked::after {
+  @apply transform scale-110 translate-x-5 opacity-100;
+}
+
+#cookies::after {
+  content: "";
+  @apply h-4 w-4 rounded-full bg-gray-700 opacity-40 absolute left-1 top-2/4  -translate-y-2/4 transform scale-110 transition duration-200;
+}
+#cookies:checked::after {
+  @apply transform scale-110 opacity-100 translate-x-5;
 }

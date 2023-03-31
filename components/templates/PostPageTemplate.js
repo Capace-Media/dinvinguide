@@ -85,10 +85,10 @@ const PostPageTemplate = ({ data }) => {
         />
 
         <div className="grid row contain-sm">
-          {page.featuredImage && (
+          {page?.featuredImage && (
             <div className="relative aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-9">
               <Image
-                src={page.featuredImage.node.mediaItemUrl}
+                src={page?.featuredImage?.node?.mediaItemUrl}
                 layout="fill"
                 objectFit="cover"
                 priority
@@ -101,6 +101,10 @@ const PostPageTemplate = ({ data }) => {
                     ? page?.title
                     : "Bild från DinVinGuide"
                 }
+                onError={(e) => {
+                  // handle image loading error here
+                  e.target.src = "/images/dinvinguide-image.png";
+                }}
               />
             </div>
           )}

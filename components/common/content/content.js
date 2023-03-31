@@ -3,6 +3,7 @@ const Content = ({ content, altText }) => {
   const handleImageError = (event) => {
     try {
       event.target.remove();
+
       //event.target.onerror = null; // remove the error handler to prevent an infinite loop
       //event.target.src = "https://example.com/placeholder.jpg"; // replace with placeholder image URL
     } catch (error) {

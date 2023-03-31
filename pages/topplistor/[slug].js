@@ -1,15 +1,18 @@
 import { getToplistPaths, getToplists } from "../../lib/api/toplists";
 
+import Image from "next/image";
 import { Fragment } from "react";
-import slugify from "slugify";
-import PageIntro from "../../components/common/content/PageIntro";
-import ExplorerLinks from "../../components/common/explorer/explorerLinks";
+
+import Link from "next/link";
+import ClientAd from "../../components/ads/ClientAd";
 import SEO from "../../components/common/SEO";
+import { ArrowLeft } from "../../components/icons";
 import Newsletter from "../../components/section/Newsletter";
-import Toplist from "../../components/toplists/Toplist";
+import Toplist from "../../components/toplists/Tolist";
 
 const SingleToplistPage = ({ data }) => {
   const { toplist } = data;
+
   return (
     <Fragment>
       <SEO
@@ -29,25 +32,43 @@ const SingleToplistPage = ({ data }) => {
             : ""
         }
       />
-      <PageIntro
-        title={toplist.toplist.title}
-        text={toplist.toplist.acf_toplists.text}
-        ad
-        adType="dl"
-        crumbs={[
-          { href: "/dryckeslistan", text: "Topplistor" },
-          {
-            href: toplist.toplist.uri,
-            text: toplist.toplist.title,
-            current: true,
-          },
-        ]}
-      />
+      <div className=" mb-20 relative bg-[#F8F8F9] max-w-screen-2xl mx-auto w-[100%] min-h-[400px] lg:min-h-[547px]">
+        <div className="relative h-[170px] lg:h-[547px]">
+          <Image
+            src={toplist?.toplist?.featuredImage?.node?.mediaItemUrl}
+            layout="fill"
+            objectFit="cover"
+            alt={
+              toplist?.toplist?.featuredImage?.node?.altText
+                ? toplist?.toplist?.featuredImage?.node?.altText
+                : "Hero bild"
+            }
+          />
+        </div>
+
+        <div className="absolute top-[170px] lg:top-[50%] lg:-translate-y-[40%] lg:left-[128px] p-[20px]">
+          <h1 className="text-[14px] lg:text-[18px] font-body">TOPPLISTOR</h1>
+          <p className="font-display lg:text-[32px] text-[20px] font-bold mb-3">
+            {toplist.toplist.title}
+          </p>
+        </div>
+      </div>
+      <div className="mb-[90px]">
+        <ClientAd position="top" type="dl" />
+      </div>
+      <div className="contain-md text-[14px] z-20 flex items-center justify-between">
+        <Link href="/dryckeslistan">
+          <a className="flex items-center gap-3">
+            <ArrowLeft /> <span>Tillbaka till alla Topplistor</span>
+          </a>
+        </Link>
+
+        <p className="font-bold">{toplist?.toplist?.title}</p>
+      </div>
       <div className="row ">
         <Toplist data={toplist} />
       </div>
-      <ExplorerLinks />
-      <div className="mb-2">
+      <div className="">
         <Newsletter />
       </div>
     </Fragment>
@@ -63,6 +84,7 @@ export const getStaticPaths = async () => {
     fallback: "blocking",
   };
 };
+
 export const getStaticProps = async ({ params }) => {
   const slugArray = params.slug.includes("-")
     ? params.slug.split("-")
@@ -107,11 +129,11 @@ export const getStaticProps = async ({ params }) => {
     }
   });
 
-  // if (!toplist[0]) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
+  if (!toplist || !toplist[0]) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {

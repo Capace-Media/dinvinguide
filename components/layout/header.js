@@ -4,32 +4,12 @@ import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import Logo from "../../public/dvg-logo.svg";
-import BritFlag from "../../public/images/BRITFlag.png";
-import DryckeslistanLogo from "../../public/images/dryckeslistanlogo-1.svg";
+// import Logo from "../../public/dvg-logo.svg";
+// import BritFlag from "../../public/images/BRITFlag.png";
+// import DryckeslistanLogo from "../../public/images/dryckeslistanlogo-1.svg";
 import SweFlag from "../../public/images/SWEFlag.png";
+import { Dryckeslistanlogo1, DvgLogo } from "../icons";
 
-// const originalLinks = [
-//   { content: "Skribenter", href: "/skribenter" },
-//   { content: "Guide", href: "/guide" },
-//   {
-//     content: (
-//       <Image
-//         width={300}
-//         height={65}
-//         objectFit="contain"
-//         src={Logo}
-//         priority
-//         className="cursor-pointer"
-//         alt="DinVinGuide Logotyp"
-//       />
-//     ),
-//     href: "/",
-//     mobile: true,
-//   },
-//   { content: "Recept", href: "/recept" },
-//   { content: "Topplistor", href: "/dryckeslistan" },
-// ];
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
@@ -37,9 +17,10 @@ export default function Header() {
 
   let path = router?.asPath;
 
-  // console.log("router ===>", router);
+  const isDryckeslistan = router.pathname.includes("dryckeslistan");
+  const isTopplistor = router.pathname.includes("/topplistor/[slug]");
+  const isDrycker = router.asPath.includes("/drycker/");
 
-  // const [links, setLinks] = useState([]);
   const Links = [
     { content: "Skribenter", href: "/skribenter" },
     { content: "Guide", href: "/guide" },
@@ -51,104 +32,6 @@ export default function Header() {
     { content: "Recept", href: "/recept" },
     { content: "Topplistor", href: "/dryckeslistan" },
   ];
-
-  // const DVG = [
-  //   { content: "Skribenter", href: "/skribenter" },
-  //   { content: "Guide", href: "/guide" },
-  //   {
-  //     content: (
-  //       <Image
-  //         width={300}
-  //         height={65}
-  //         objectFit="contain"
-  //         src={Logo}
-  //         priority
-  //         className="cursor-pointer"
-  //         alt="DinVinGuide Logotyp"
-  //       />
-  //     ),
-  //     href: "/",
-  //     mobile: true,
-  //   },
-  //   { content: "Recept", href: "/recept" },
-  //   { content: "Topplistor", href: "/dryckeslistan" },
-  // ];
-
-  // const DL = [
-  //   { content: "Skribenter", href: "/skribenter" },
-  //   { content: "Guide", href: "/guide" },
-  //   {
-  //     content: (
-  //       <Image
-  //         width={300}
-  //         height={65}
-  //         objectFit="contain"
-  //         src={DryckeslistanLogo}
-  //         priority
-  //         className="cursor-pointer"
-  //         alt="DinVinGuide Logotyp"
-  //       />
-  //     ),
-  //     href: "/dryckeslistan",
-  //     mobile: true,
-  //   },
-  //   { content: "Recept", href: "/recept" },
-  //   { content: "Topplistor", href: "/dryckeslistan" },
-  // ];
-
-  // useEffect(() => {
-  //   if (path === "/dryckeslistan") {
-  //     setLinks([
-  //       { content: "Skribenter", href: "/skribenter" },
-  //       { content: "Guide", href: "/guide" },
-  //       {
-  //         content: (
-  //           <Image
-  //             width={300}
-  //             height={65}
-  //             objectFit="contain"
-  //             src={DryckeslistanLogo}
-  //             priority
-  //             className="cursor-pointer"
-  //             alt="DinVinGuide Logotyp"
-  //           />
-  //         ),
-  //         href: "/dryckeslistan",
-  //         mobile: true,
-  //       },
-  //       { content: "Recept", href: "/recept" },
-  //       { content: "Topplistor", href: "/dryckeslistan" },
-  //     ]);
-  //   } else {
-  //     setLinks([
-  //       { content: "Skribenter", href: "/skribenter" },
-  //       { content: "Guide", href: "/guide" },
-  //       {
-  //         content: (
-  //           <Image
-  //             width={300}
-  //             height={65}
-  //             objectFit="contain"
-  //             src={Logo}
-  //             priority
-  //             className="cursor-pointer"
-  //             alt="DinVinGuide Logotyp"
-  //           />
-  //         ),
-  //         href: "/",
-  //         mobile: true,
-  //       },
-  //       { content: "Recept", href: "/recept" },
-  //       { content: "Topplistor", href: "/dryckeslistan" },
-  //     ]);
-  //   }
-
-  //   // return () => {
-  //   //   setLinks([]);
-  //   // };
-  // }, [path]);
-
-  //console.log("links", links);
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -177,7 +60,7 @@ export default function Header() {
   new google.translate.TranslateElement({pageLanguage: 'sv'}, 'google_translate_element');
 }`}
       </Script>
-      <header className="fixed top-0 left-0 z-50 w-screen font-bold uppercase bg-brand-bg font-display">
+      <header className="fixed top-0 left-0 z-50 w-screen font-bold uppercase bg-white font-display">
         <div className="flex items-center justify-end pt-2 space-x-2 contain lg:hidden lg:w-24">
           <a href="https://dinvinguide.se" className="w-7 lg:w-10">
             <Image src={SweFlag} priority alt="Svenska flaggan" />
@@ -202,20 +85,18 @@ export default function Header() {
                     <a
                       key={link.href + index}
                       className={
-                        link.mobile ? "inherit lg:inherit" : "hidden lg:flex"
+                        link.mobile
+                          ? "inherit lg:inherit w-[300px] h-[65px]"
+                          : "hidden lg:flex"
                       }
                     >
-                      <Image
-                        width={300}
-                        height={65}
-                        objectFit="contain"
-                        src={
-                          path === "/dryckeslistan" ? DryckeslistanLogo : Logo
-                        }
-                        priority
-                        className="cursor-pointer"
-                        alt="DinVinGuide Logotyp"
-                      />
+                      {path === "/dryckeslistan" ||
+                      isDrycker ||
+                      isTopplistor ? (
+                        <Dryckeslistanlogo1 />
+                      ) : (
+                        <DvgLogo />
+                      )}
                     </a>
                   </Link>
                 );
