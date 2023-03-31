@@ -88,7 +88,7 @@ const CookieConsentProvider = ({ children }) => {
   }, initialCookieValue);
   useEffect(() => {
     const expirationTime = new Date();
-    expirationTime.setDate(expirationTime.getDate() + 10); // Set the expiration date to 10 days from now
+    expirationTime.setFullYear(expirationTime.getFullYear() + 1); // Set the expiration date to one year from now
     document.cookie = `${COOKIE_NAME}=${JSON.stringify(
       state
     )};expires=${expirationTime.toUTCString()};path=/`;
