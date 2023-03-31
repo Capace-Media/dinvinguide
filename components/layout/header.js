@@ -17,6 +17,10 @@ export default function Header() {
 
   let path = router?.asPath;
 
+  const isDryckeslistan = router.pathname.includes("dryckeslistan");
+  const isTopplistor = router.pathname.includes("/topplistor/[slug]");
+  const isDrycker = router.asPath.includes("/drycker/");
+
   const Links = [
     { content: "Skribenter", href: "/skribenter" },
     { content: "Guide", href: "/guide" },
@@ -28,104 +32,6 @@ export default function Header() {
     { content: "Recept", href: "/recept" },
     { content: "Topplistor", href: "/dryckeslistan" },
   ];
-
-  // const DVG = [
-  //   { content: "Skribenter", href: "/skribenter" },
-  //   { content: "Guide", href: "/guide" },
-  //   {
-  //     content: (
-  //       <Image
-  //         width={300}
-  //         height={65}
-  //         objectFit="contain"
-  //         src={Logo}
-  //         priority
-  //         className="cursor-pointer"
-  //         alt="DinVinGuide Logotyp"
-  //       />
-  //     ),
-  //     href: "/",
-  //     mobile: true,
-  //   },
-  //   { content: "Recept", href: "/recept" },
-  //   { content: "Topplistor", href: "/dryckeslistan" },
-  // ];
-
-  // const DL = [
-  //   { content: "Skribenter", href: "/skribenter" },
-  //   { content: "Guide", href: "/guide" },
-  //   {
-  //     content: (
-  //       <Image
-  //         width={300}
-  //         height={65}
-  //         objectFit="contain"
-  //         src={DryckeslistanLogo}
-  //         priority
-  //         className="cursor-pointer"
-  //         alt="DinVinGuide Logotyp"
-  //       />
-  //     ),
-  //     href: "/dryckeslistan",
-  //     mobile: true,
-  //   },
-  //   { content: "Recept", href: "/recept" },
-  //   { content: "Topplistor", href: "/dryckeslistan" },
-  // ];
-
-  // useEffect(() => {
-  //   if (path === "/dryckeslistan") {
-  //     setLinks([
-  //       { content: "Skribenter", href: "/skribenter" },
-  //       { content: "Guide", href: "/guide" },
-  //       {
-  //         content: (
-  //           <Image
-  //             width={300}
-  //             height={65}
-  //             objectFit="contain"
-  //             src={DryckeslistanLogo}
-  //             priority
-  //             className="cursor-pointer"
-  //             alt="DinVinGuide Logotyp"
-  //           />
-  //         ),
-  //         href: "/dryckeslistan",
-  //         mobile: true,
-  //       },
-  //       { content: "Recept", href: "/recept" },
-  //       { content: "Topplistor", href: "/dryckeslistan" },
-  //     ]);
-  //   } else {
-  //     setLinks([
-  //       { content: "Skribenter", href: "/skribenter" },
-  //       { content: "Guide", href: "/guide" },
-  //       {
-  //         content: (
-  //           <Image
-  //             width={300}
-  //             height={65}
-  //             objectFit="contain"
-  //             src={Logo}
-  //             priority
-  //             className="cursor-pointer"
-  //             alt="DinVinGuide Logotyp"
-  //           />
-  //         ),
-  //         href: "/",
-  //         mobile: true,
-  //       },
-  //       { content: "Recept", href: "/recept" },
-  //       { content: "Topplistor", href: "/dryckeslistan" },
-  //     ]);
-  //   }
-
-  //   // return () => {
-  //   //   setLinks([]);
-  //   // };
-  // }, [path]);
-
-  //console.log("links", links);
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -184,7 +90,9 @@ export default function Header() {
                           : "hidden lg:flex"
                       }
                     >
-                      {path === "/dryckeslistan" ? (
+                      {path === "/dryckeslistan" ||
+                      isDrycker ||
+                      isTopplistor ? (
                         <Dryckeslistanlogo1 />
                       ) : (
                         <DvgLogo />

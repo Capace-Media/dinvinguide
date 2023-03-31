@@ -7,11 +7,14 @@ import Header from "./header";
 
 export default function Layout({ children }) {
   const router = useRouter();
-  const isDryckeslistan = router.asPath.includes("dryckeslistan");
+  const isDryckeslistan = router.pathname.includes("dryckeslistan");
+  const isTopplistor = router.pathname.includes("/topplistor/[slug]");
+  const isDrycker = router.asPath.includes("/drycker/");
   const handleExitPreview = async () => {
     const res = await fetch("/api/preview/exit");
     window.location.replace("/");
   };
+  console.log({ router });
 
   return (
     <>
@@ -26,9 +29,15 @@ export default function Layout({ children }) {
         </a>
 
         <div className="w-[2px] bg-black h-[25px]"></div>
-        <Link href={isDryckeslistan ? "/" : "/dryckeslistan"}>
+        <Link
+          href={
+            isDryckeslistan || isTopplistor || isDrycker
+              ? "/"
+              : "/dryckeslistan"
+          }
+        >
           <a className="w-[200px] h-[30px]">
-            {isDryckeslistan ? (
+            {isDryckeslistan || isTopplistor || isDrycker ? (
               <>
                 <DvgLogo />
               </>
