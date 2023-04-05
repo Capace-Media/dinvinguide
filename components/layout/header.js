@@ -32,6 +32,16 @@ export default function Header() {
     { content: "Recept", href: "/recept" },
     { content: "Topplistor", href: "/dryckeslistan" },
   ];
+  const Links1 = [
+    { content: "Skribenter", href: "/skribenter" },
+    { content: "Guide", href: "/guide" },
+  ];
+  const Links2 = [
+    { content: "Recept", href: "/recept" },
+    { content: "Topplistor", href: "/dryckeslistan" },
+  ];
+
+  let mobile = true;
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -78,9 +88,65 @@ export default function Header() {
           </div>
 
           <div className="flex items-center lg:flex-1 justify-evenly">
-            {Links.map((link, index) => {
+            {Links1?.map((link, index) => {
+              return (
+                <Link key={link.href} href={link.href}>
+                  <a
+                    key={link.href + index}
+                    className={
+                      link.mobile ? "inherit lg:inherit" : "hidden lg:flex"
+                    }
+                  >
+                    {link.content}
+                  </a>
+                </Link>
+              );
+            })}
+            {isDryckeslistan || isTopplistor || isDrycker ? (
+              <Link key="/dryckeslistan" href="/dryckeslistan">
+                <a
+                  className={
+                    mobile
+                      ? "inherit lg:inherit w-[300px] h-[65px]"
+                      : "hidden lg:flex"
+                  }
+                >
+                  <Dryckeslistanlogo1 />
+                </a>
+              </Link>
+            ) : (
+              <Link key="home" href="/">
+                <a
+                  className={
+                    mobile
+                      ? "inherit lg:inherit w-[300px] h-[65px]"
+                      : "hidden lg:flex"
+                  }
+                >
+                  <DvgLogo />
+                </a>
+              </Link>
+            )}
+
+            {Links2?.map((link, index) => {
+              return (
+                <Link key={link.href} href={link.href}>
+                  <a
+                    key={link.href + index}
+                    className={
+                      link.mobile ? "inherit lg:inherit" : "hidden lg:flex"
+                    }
+                  >
+                    {link.content}
+                  </a>
+                </Link>
+              );
+            })}
+            {/* {Links.map((link, index) => {
               if (link?.content === "Image") {
+                
                 return (
+
                   <Link key={link.href} href={link.href}>
                     <a
                       key={link.href + index}
@@ -114,7 +180,7 @@ export default function Header() {
                   </Link>
                 );
               }
-            })}
+            })} */}
           </div>
 
           <div className="flex items-center justify-end w-24 space-x-2 lg:space-x-0">
