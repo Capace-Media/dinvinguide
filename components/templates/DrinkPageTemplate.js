@@ -110,23 +110,27 @@ const DrinkPageTemplate = ({ data }) => {
       />
       <div className=" mb-20 relative bg-[#F8F8F9] max-w-screen-2xl mx-auto w-[100%] min-h-[400px] lg:min-h-[547px]">
         <div className="relative h-[170px] lg:h-[547px]">
-          <Image
-            src={image}
-            layout="fill"
-            objectFit="cover"
-            alt={
-              drink?.featuredImage?.node?.altText
-                ? drink?.featuredImage?.node?.altText
-                : "Hero bild"
-            }
-          />
+          {image && (
+            <Image
+              src={image}
+              layout="fill"
+              objectFit="cover"
+              alt={
+                drink?.featuredImage?.node?.altText
+                  ? drink?.featuredImage?.node?.altText
+                  : "Hero bild"
+              }
+            />
+          )}
         </div>
 
         <div className="absolute top-[170px] lg:top-[50%] lg:-translate-y-[40%] lg:left-[128px] p-[20px] lg:w-[40%]">
           <h1 className="text-[14px] lg:text-[18px] font-body">TOPPLISTOR</h1>
-          <p className="font-display lg:text-[32px] text-[20px] font-bold mb-3">
-            {drink?.title}
-          </p>
+          {drink?.title && (
+            <p className="font-display lg:text-[32px] text-[20px] font-bold mb-3">
+              {drink?.title}
+            </p>
+          )}
         </div>
       </div>
       <div className="row">
@@ -146,7 +150,7 @@ const DrinkPageTemplate = ({ data }) => {
           <p className="font-bold">RECENSION {details[0]?.value}</p>
         </div>
         <div className="flex z-20 flex-col py-[101px] grid-cols-2 gap-16 lg:grid contain-sm">
-          {drink?.featuredImage && drink?.featuredImage.node && (
+          {drink?.featuredImage && drink?.featuredImage?.node && (
             <>
               <figure className="relative aspect-w-1 aspect-h-1">
                 <Image
@@ -154,7 +158,7 @@ const DrinkPageTemplate = ({ data }) => {
                   layout="fill"
                   objectFit="contain"
                   alt={
-                    drink.featuredImage.node.altText
+                    drink?.featuredImage?.node?.altText
                       ? drink.featuredImage.node.altText
                       : drink.title
                   }
@@ -186,29 +190,29 @@ const DrinkPageTemplate = ({ data }) => {
                 )}
                 <p className="flex items-center gap-3">
                   <Flaska />
-                  {drink.acf_drinks.forpackningar.name && (
+                  {drink?.acf_drinks?.forpackningar?.name && (
                     <span>{drink?.acf_drinks?.forpackningar.name}</span>
                   )}
-                  {drink.acf_drinks.dryckestyper && (
+                  {drink?.acf_drinks?.dryckestyper && (
                     <span>- {drink?.acf_drinks?.dryckestyper.name}</span>
                   )}
                 </p>
                 {/* test */}
 
-                {drink.acf_drinks.passarTillRecept &&
-                  drink.acf_drinks.passarTillRecept.length > 0 && (
+                {drink.acf_drinks?.passarTillRecept &&
+                  drink.acf_drinks?.passarTillRecept?.length > 0 && (
                     <div className="flex items-baseline gap-3">
                       <Passar />
                       <p>
-                        <Link href={drink.acf_drinks.passarTillRecept[0].uri}>
+                        <Link href={drink.acf_drinks?.passarTillRecept[0]?.uri}>
                           <a className="underline">
-                            {drink.acf_drinks.passarTillRecept[0].title}
+                            {drink.acf_drinks?.passarTillRecept[0]?.title}
                           </a>
                         </Link>{" "}
                       </p>
                     </div>
                   )}
-                {drink.acf_drinks.pris && (
+                {drink?.acf_drinks?.pris && (
                   <p className="flex items-center gap-3">
                     <Dollar />
                     <span>{drink.acf_drinks.pris}:-</span>
@@ -235,25 +239,25 @@ const DrinkPageTemplate = ({ data }) => {
             </div>
           </div>
         </div>
-        {drink.acf_drinks?.passarTillRecept && (
+        {drink?.acf_drinks?.passarTillRecept && (
           <div className="md:bg-[#F8F8F9]">
             <div className="lg:grid lg:grid-cols-2 flex flex-col-reverse contain py-[101px] ">
               <div className="p-[20px] flex flex-col lg:justify-center gap-4 lg:px-[141px]">
-                <Link href={drink.acf_drinks?.passarTillRecept[0]?.uri}>
+                <Link href={drink?.acf_drinks?.passarTillRecept[0]?.uri}>
                   <a className="z-20">
                     <h2 className=" normal-case text-[33px]">
                       <p className="text-[16px] font-normal">PASSAR MED</p>
-                      {drink.acf_drinks?.passarTillRecept[0]?.title}
+                      {drink?.acf_drinks?.passarTillRecept[0]?.title}
                     </h2>
                   </a>
                 </Link>
-                {drink.acf_drinks?.passarTillRecept[0]?.acf_recipe?.desc && (
+                {drink?.acf_drinks?.passarTillRecept[0]?.acf_recipe?.desc && (
                   <p className="mb-[52px]">
                     {drink.acf_drinks?.passarTillRecept[0]?.acf_recipe?.desc}
                   </p>
                 )}
 
-                <Link href={drink.acf_drinks?.passarTillRecept[0]?.uri}>
+                <Link href={drink?.acf_drinks?.passarTillRecept[0]?.uri}>
                   <a className="flex items-center z-20 gap-3 cursor-pointer">
                     <p>GÅ TILL RECEPT</p> <ArrowRight />
                   </a>
