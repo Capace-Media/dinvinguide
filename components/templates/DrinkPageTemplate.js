@@ -51,6 +51,11 @@ const DrinkPageTemplate = ({ data }) => {
     },
   ];
 
+  console.log(
+    "drink?.acf_drinks?.bolagetAdress =====>",
+    drink?.acf_drinks?.bolagetAdress
+  );
+
   const [image, setImage] = useState(defaultImg?.src);
   const [topImg, setTopImg] = useState(defaultImg?.src);
   const [topSmImg, setSmTopImg] = useState(defaultImg?.src);
