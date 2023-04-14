@@ -51,10 +51,15 @@ const DrinkPageTemplate = ({ data }) => {
     },
   ];
 
-  console.log(
-    "drink?.acf_drinks?.bolagetAdress =====>",
-    drink?.acf_drinks?.bolagetAdress
-  );
+  function extractDomainName(url) {
+    const urlObj = new URL(url);
+    const hostname = urlObj.hostname.replace("www.", "");
+    const domainParts = hostname.split(".");
+    const domain = domainParts[0];
+    const capitalizedDomain = domain.charAt(0).toUpperCase() + domain.slice(1);
+    return capitalizedDomain;
+  }
+  const bAddress = extractDomainName(drink?.acf_drinks?.bolagetAdress);
 
   const [image, setImage] = useState(defaultImg?.src);
   const [topImg, setTopImg] = useState(defaultImg?.src);
@@ -238,7 +243,7 @@ const DrinkPageTemplate = ({ data }) => {
                   rel="noopener noreferrer"
                   className=" flex items-center gap-3 cursor-pointer hover:color-[#E1E5D4]"
                 >
-                  <span>Beställ på Systembolaget</span> <ArrowRight />
+                  <span>Beställ på {bAddress}</span> <ArrowRight />
                 </a>
               )}
             </div>
