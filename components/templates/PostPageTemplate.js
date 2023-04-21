@@ -6,11 +6,11 @@ import Image from "next/dist/client/image";
 import Link from "next/dist/client/link";
 import Video from "../acf/Video";
 import BreadCrumbs from "../common/BreadCrumbs/Breadcrumbs";
-import Blocks from "../common/content/Blocks";
-import Content from "../common/content/content";
-import OldContent from "../common/content/OldContent";
-import List from "../common/lists/List";
 import SEO from "../common/SEO";
+import Blocks from "../common/content/Blocks";
+import OldContent from "../common/content/OldContent";
+import Content from "../common/content/content";
+import List from "../common/lists/List";
 
 const PostPageTemplate = ({ data }) => {
   const { page } = data;

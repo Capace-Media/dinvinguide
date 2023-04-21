@@ -10,6 +10,7 @@ const Content = ({ content, altText }) => {
       console.error("Error removing image:", error);
     }
   };
+
   return (
     <div className="mx-auto prose-sm lg:prose row max-w-prose">
       {content &&

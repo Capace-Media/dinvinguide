@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import Image from "next/image";
-
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -218,7 +217,7 @@ const DrinkPageTemplate = ({ data }) => {
                           <a className="underline">
                             {drink.acf_drinks?.passarTillRecept[0]?.title}
                           </a>
-                        </Link>{" "}
+                        </Link>
                       </p>
                     </div>
                   )}
@@ -232,7 +231,12 @@ const DrinkPageTemplate = ({ data }) => {
                 {drink?.acf_drinks?.recension && (
                   <div>
                     <p>Recension</p>
-                    <p>{drink?.acf_drinks?.recension} </p>
+
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: drink?.acf_drinks?.recension,
+                      }}
+                    />
                   </div>
                 )}
               </div>
@@ -262,9 +266,13 @@ const DrinkPageTemplate = ({ data }) => {
                   </a>
                 </Link>
                 {drink?.acf_drinks?.passarTillRecept[0]?.acf_recipe?.desc && (
-                  <p className="mb-[52px]">
-                    {drink.acf_drinks?.passarTillRecept[0]?.acf_recipe?.desc}
-                  </p>
+                  <p
+                    className="mb-[52px]"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        drink.acf_drinks?.passarTillRecept[0]?.acf_recipe?.desc,
+                    }}
+                  />
                 )}
 
                 <Link href={drink?.acf_drinks?.passarTillRecept[0]?.uri}>
