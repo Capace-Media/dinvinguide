@@ -145,7 +145,7 @@ const DrinkPageTemplate = ({ data }) => {
           <h1 className="text-[14px] lg:text-[18px] font-body">TOPPLISTOR</h1>
           {drink?.title && (
             <p className="font-display lg:text-[32px] text-[20px] font-bold mb-3">
-              {drink?.title}
+              {drink.title}
             </p>
           )}
         </div>
