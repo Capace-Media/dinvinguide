@@ -60,9 +60,11 @@ const DrinkPageTemplate = ({ data }) => {
   }
   const bAddress = extractDomainName(drink?.acf_drinks?.bolagetAdress);
 
-  const [image, setImage] = useState(defaultImg?.src);
-  const [topImg, setTopImg] = useState(defaultImg?.src);
-  const [topSmImg, setSmTopImg] = useState(defaultImg?.src);
+  const [image, setImage] = useState(defaultImg?.src ? defaultImg?.src : "");
+  const [topImg, setTopImg] = useState(defaultImg?.src ? defaultImg?.src : "");
+  const [topSmImg, setSmTopImg] = useState(
+    defaultImg?.src ? defaultImg?.src : ""
+  );
   const size = 641;
   let isSm = useResized(size);
 
@@ -113,9 +115,15 @@ const DrinkPageTemplate = ({ data }) => {
   return (
     <>
       <SEO
-        title={drink?.seo?.title}
-        description={drink?.seo?.metaDesc}
-        image={drink?.featuredImage?.node}
+        title={
+          drink?.seo?.title
+            ? drink?.seo?.title
+            : drink?.title
+            ? drink?.title
+            : ""
+        }
+        description={drink?.seo?.metaDesc ? drink?.seo?.metaDesc : ""}
+        image={drink?.featuredImage?.node ? drink?.featuredImage?.node : ""}
       />
       <div className=" mb-20 relative bg-[#F8F8F9] max-w-screen-2xl mx-auto w-[100%] min-h-[400px] lg:min-h-[547px]">
         <div className="relative h-[170px] lg:h-[547px]">
@@ -283,24 +291,27 @@ const DrinkPageTemplate = ({ data }) => {
               </div>
               <div className="">
                 <figure className="relative aspect-w-16 aspect-h-10">
-                  <Image
-                    src={
-                      drink.acf_drinks?.passarTillRecept[0]?.featuredImage?.node
-                        ?.mediaItemUrl
-                        ? drink.acf_drinks.passarTillRecept[0].featuredImage
-                            .node.mediaItemUrl
-                        : "/images/recipe-placeholder.jpg"
-                    }
-                    layout="fill"
-                    objectFit="cover"
-                    alt={
-                      drink.acf_drinks.passarTillRecept[0].featuredImage?.node
-                        .altText
-                        ? drink.acf_drinks.passarTillRecept[0].featuredImage
-                            .node.altText
-                        : drink.acf_drinks.passarTillRecept[0].title
-                    }
-                  />
+                  {drink.acf_drinks?.passarTillRecept[0]?.featuredImage?.node
+                    ?.mediaItemUrl && (
+                    <Image
+                      src={
+                        drink.acf_drinks?.passarTillRecept[0]?.featuredImage
+                          ?.node?.mediaItemUrl
+                          ? drink.acf_drinks.passarTillRecept[0].featuredImage
+                              .node.mediaItemUrl
+                          : "/images/recipe-placeholder.jpg"
+                      }
+                      layout="fill"
+                      objectFit="cover"
+                      alt={
+                        drink.acf_drinks.passarTillRecept[0].featuredImage?.node
+                          .altText
+                          ? drink.acf_drinks.passarTillRecept[0].featuredImage
+                              .node.altText
+                          : drink.acf_drinks.passarTillRecept[0].title
+                      }
+                    />
+                  )}
                 </figure>
               </div>
             </div>
@@ -321,12 +332,14 @@ const DrinkPageTemplate = ({ data }) => {
           )}
           <Link href="/dryckesutforskaren">
             <a className="z-20 overlay-top relative w-[350px] lg:w-[627.9px] h-[314px]">
-              <Image
-                src={dryckes.src}
-                layout="fill"
-                objectFit="cover"
-                alt="bild på dryckesutforskaren"
-              />
+              {dryckes?.src && (
+                <Image
+                  src={dryckes.src}
+                  layout="fill"
+                  objectFit="cover"
+                  alt="bild på dryckesutforskaren"
+                />
+              )}
               {/* hello world */}
               <div className="absolute  bottom-0 text-white p-[20px] lg:p-[30px]">
                 <div className="font-body ">
@@ -341,12 +354,14 @@ const DrinkPageTemplate = ({ data }) => {
           </Link>
           <Link href="/recept">
             <a className="z-20 overlay-top relative w-[350px] lg:w-[627.9px] h-[314px]">
-              <Image
-                src={recept.src}
-                layout="fill"
-                objectFit="cover"
-                alt="bild på receptutforskaren"
-              />
+              {recept?.src && (
+                <Image
+                  src={recept.src}
+                  layout="fill"
+                  objectFit="cover"
+                  alt="bild på receptutforskaren"
+                />
+              )}
               <div className="absolute  bottom-0 text-white p-[20px] lg:p-[30px]">
                 <div className="font-body ">
                   <p className="text-[16px] uppercase">ReceptUTFORSKAREN</p>
@@ -369,6 +384,9 @@ const DrinkPageTemplate = ({ data }) => {
 export default DrinkPageTemplate;
 
 export const Smd = ({ type, img }) => {
+  if (!type) {
+    return;
+  }
   return (
     <>
       <Link
@@ -386,20 +404,22 @@ export const Smd = ({ type, img }) => {
         <a>
           <div className="card max-w-[350px] bg-[#F8F8F9] p-[20px] flex flex-col  ">
             <div className="relative w-[310px] h-[190px]">
-              <Image
-                src={img}
-                objectFit="cover"
-                layout="fill"
-                alt={
-                  type === "Rosévin"
-                    ? "Rosévin"
-                    : type === "Vitt vin"
-                    ? "Vitt vin"
-                    : type === "Mousserande vin"
-                    ? "Mousserande vin"
-                    : "Röda viner"
-                }
-              />
+              {img && (
+                <Image
+                  src={img}
+                  objectFit="cover"
+                  layout="fill"
+                  alt={
+                    type === "Rosévin"
+                      ? "Rosévin"
+                      : type === "Vitt vin"
+                      ? "Vitt vin"
+                      : type === "Mousserande vin"
+                      ? "Mousserande vin"
+                      : "Röda viner"
+                  }
+                />
+              )}
             </div>
 
             <div className=" grid grid-cols-6 pt-[20px]">
@@ -433,18 +453,20 @@ export const Smd = ({ type, img }) => {
         <a>
           <div className="card max-w-[350px] bg-[#F8F8F9] p-[20px] flex flex-col  ">
             <div className="relative w-[310px] h-[190px]">
-              <Image
-                src={alkCard}
-                objectFit="cover"
-                layout="fill"
-                alt={
-                  type === "Rosévin"
-                    ? "Rosévin"
-                    : type === "Vitt vin"
-                    ? "Vitt vin"
-                    : "Röda viner"
-                }
-              />
+              {alkCard && (
+                <Image
+                  src={alkCard}
+                  objectFit="cover"
+                  layout="fill"
+                  alt={
+                    type === "Rosévin"
+                      ? "Rosévin"
+                      : type === "Vitt vin"
+                      ? "Vitt vin"
+                      : "Röda viner"
+                  }
+                />
+              )}
             </div>
 
             <div className=" grid grid-cols-6 pt-[20px]">
@@ -464,6 +486,9 @@ export const Smd = ({ type, img }) => {
 };
 
 export const Lgd = ({ img, type }) => {
+  if (!type) {
+    return null;
+  }
   return (
     <>
       <Link
@@ -480,20 +505,22 @@ export const Lgd = ({ img, type }) => {
         <a>
           <div className={`flex bg-[#F8F8F9] max-w-[630px] parent`}>
             <div className="relative w-[314px] h-[312px]">
-              <Image
-                src={img}
-                objectFit="cover"
-                layout="fill"
-                alt={
-                  type === "Rosévin"
-                    ? "Rosévin"
-                    : type === "Vitt vin"
-                    ? "Vitt vin"
-                    : type === "Mousserande vin"
-                    ? "Mousserande vin"
-                    : "Röda viner"
-                }
-              />
+              {img && (
+                <Image
+                  src={img}
+                  objectFit="cover"
+                  layout="fill"
+                  alt={
+                    type === "Rosévin"
+                      ? "Rosévin"
+                      : type === "Vitt vin"
+                      ? "Vitt vin"
+                      : type === "Mousserande vin"
+                      ? "Mousserande vin"
+                      : "Röda viner"
+                  }
+                />
+              )}
             </div>
 
             <div className="w-[314px] flex flex-col justify-end p-[20px]">
@@ -521,7 +548,9 @@ export const Lgd = ({ img, type }) => {
         <a>
           <div className={`flex bg-[#F8F8F9] max-w-[630px] parent`}>
             <div className="relative w-[314px] h-[312px]">
-              <Image src={alk} objectFit="cover" layout="fill" alt="hello" />
+              {alk && (
+                <Image src={alk} objectFit="cover" layout="fill" alt="hello" />
+              )}
             </div>
             <div className="w-[314px] flex flex-col justify-end p-[20px]">
               <div className=" grid grid-cols-6 pt-[20px]">
