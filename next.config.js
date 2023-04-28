@@ -715,6 +715,73 @@ module.exports = {
         destination: "/fredrikschelin/cap-classique-3",
         permanent: true,
       },
+      {
+        source:
+          "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo/johann-topf-9",
+        destination: "/anders/sparris-och-osterrikiskt-vin-i-harlig-kombo",
+        permanent: true,
+      },
+      {
+        source: "/author/eva",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source:
+          "/fredrikschelin/champagne-bast-i-test-2012/louis-roederer-brut-vintage-nr-90673",
+        destination: "/fredrikschelin/champagne-bast-i-test-2012",
+        permanent: true,
+      },
+      {
+        source:
+          "/fredrikschelin/champagne-bast-i-test-2012/vanitystudios_moet2012_vsr_7062",
+        destination: "/fredrikschelin/champagne-bast-i-test-2012",
+        permanent: true,
+      },
+      {
+        source: "/author/andreas",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/cap-classique-2/634423-2",
+        destination: "/fredrikschelin/cap-classique-3",
+        permanent: true,
+      },
+      {
+        source: "/fredag-tillsammans-8/_mg_7990",
+        destination: "/nordefors/fredag-tillsammans-8",
+        permanent: true,
+      },
+      {
+        source: "/fredag-tillsammans-8/stoneleigh-pinot-noir-nr-16394",
+        destination: "/nordefors/fredag-tillsammans-8",
+        permanent: true,
+      },
+      {
+        source: "/kjorlingwine",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source:
+          "/nordefors/2013/06/09/rimmade-pilgrimsmusslor-pa-toast-med-mascarponeost-och-citron",
+        destination:
+          "/nordefors/rimmade-pilgrimsmusslor-pa-toast-med-mascarponeost-och-citron",
+        permanent: true,
+      },
+      {
+        source:
+          "/nordefors/2014/02/05/kockens-tips-med-joel-ahlin-ibericogris-och-upplevelser-i-extremadura-spanien",
+        destination:
+          "/nordefors/kockens-tips-med-joel-ahlin-ibericogris-och-upplevelser-i-extremadura-spanien",
+        permanent: true,
+      },
+      {
+        source: "/wp/wp-admin/post-new.php",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
   swcMinify: true,
