@@ -50,13 +50,31 @@ const DrinkPageTemplate = ({ data }) => {
     },
   ];
 
+  function isValidURL(str) {
+    const pattern = new RegExp(
+      "^(https?:\\/\\/)?" + // protocol
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    ); // fragment locator
+    return !!pattern.test(str);
+  }
+
   function extractDomainName(url) {
-    const urlObj = new URL(url);
-    const hostname = urlObj.hostname.replace("www.", "");
-    const domainParts = hostname.split(".");
-    const domain = domainParts[0];
-    const capitalizedDomain = domain.charAt(0).toUpperCase() + domain.slice(1);
-    return capitalizedDomain;
+    if (url && isValidURL(url)) {
+      const urlObj = new URL(url);
+      const hostname = urlObj.hostname.replace("www.", "");
+      const domainParts = hostname.split(".");
+      const domain = domainParts[0];
+      const capitalizedDomain =
+        domain.charAt(0).toUpperCase() + domain.slice(1);
+      return capitalizedDomain;
+    } else {
+      return null;
+    }
   }
   const bAddress = extractDomainName(drink?.acf_drinks?.bolagetAdress);
 
