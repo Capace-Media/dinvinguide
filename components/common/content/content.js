@@ -86,6 +86,15 @@ const Content = ({ content, altText }) => {
                 const newString = url.replace("www.", string);
                 return (domNode.attribs.href = `${newString}`);
               }
+              if (
+                domNode?.attribs?.href?.includes("http://www.") &&
+                !domNode?.attribs?.href?.includes("https://")
+              ) {
+                let url = domNode?.attribs?.href;
+                const string = "https://";
+                const newString = url.replace("http://www.", string);
+                return (domNode.attribs.href = `${newString}`);
+              }
             }
           },
         })}
