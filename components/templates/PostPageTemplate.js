@@ -4,13 +4,21 @@ import parse from "html-react-parser";
 import { ArticleJsonLd } from "next-seo";
 import Image from "next/dist/client/image";
 import Link from "next/dist/client/link";
+import dynamic from "next/dynamic";
 import Video from "../acf/Video";
 import BreadCrumbs from "../common/BreadCrumbs/Breadcrumbs";
 import SEO from "../common/SEO";
-import Blocks from "../common/content/Blocks";
-import OldContent from "../common/content/OldContent";
-import Content from "../common/content/content";
-import List from "../common/lists/List";
+//import OldContent from "../common/content/OldContent";
+const OldContent = dynamic(() => import("../common/content/OldContent"));
+
+//import Content from "../common/content/content";
+const Content = dynamic(() => import("../common/content/content"));
+
+//import List from "../common/lists/List";
+const List = dynamic(() => import("../common/lists/List"));
+
+//import Blocks from "../common/content/Blocks";
+const Blocks = dynamic(() => import("../common/content/Blocks"));
 
 const PostPageTemplate = ({ data }) => {
   const { page } = data;

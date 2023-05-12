@@ -9,16 +9,23 @@ export default function Newsletter() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const hiddenInput = e?.target?.name["error"];
-    if (hiddenInput?.value) {
-      alert("we don't trust bots");
-      return false;
+    const hiddenInput = e?.target[2]?.value;
+    if (hiddenInput) {
+      alert("Var vänlig bekräfta att du är en människa och inte en robot");
+      return;
     }
-    if (ageChecked === true) {
-      e.target.submit();
-    } else {
-      alert("Please check the age box and try again.");
+    if (!email) {
+      alert("E-postadress saknas");
+      return;
     }
+
+    if (!ageChecked) {
+      alert("Var vänlig bekräfta att du är över 25 år gammal");
+      return;
+    }
+
+    // Only submit the form if ageChecked is true
+    e.target.submit();
   };
 
   const handleCheckboxChange = (e) => {
@@ -56,9 +63,10 @@ export default function Newsletter() {
               method="POST"
               target="_blank"
               className="flex flex-col mt-5 text-white"
+              onSubmit={handleSubmit}
             >
               <input
-                type="text"
+                type="email"
                 name="fields[email]"
                 id="email"
                 placeholder="E-postadress"
@@ -68,7 +76,8 @@ export default function Newsletter() {
               />
               <input type="hidden" name="ml-submit" value="1" />
               <input
-                name="bot-field"
+                id="error"
+                name="error"
                 placeholder=""
                 type="hidden"
                 autoComplete="off"
@@ -93,11 +102,7 @@ export default function Newsletter() {
                 </label>
               </div>
 
-              <button
-                type="submit"
-                className="btn"
-                onClick={(e) => handleSubmit(e)}
-              >
+              <button type="submit" className="btn">
                 PRENUMERERA
               </button>
             </form>
