@@ -2,26 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* hamburger menu styles */
+
+.nav_button {
+  width: 40px;
+  height: 40px;
+  margin-right: 21px;
+  z-index: 100 !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.nav_button .line {
+  width: 40px;
+  height: 4px;
+  background-color: #333; /* Replace with the value of your $blue variable */
+  border-radius: 2px;
+  display: block;
+  margin: 4px auto;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#nav_button.click {
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition-delay: 0.6s;
+  -o-transition-delay: 0.6s;
+  transition-delay: 0.6s;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#nav_button.click .line:nth-child(2) {
+  width: 0px;
+}
+
+#nav_button.click .line:nth-child(1),
+#nav_button.click .line:nth-child(3) {
+  -webkit-transition-delay: 0.3s;
+  -o-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+
+#nav_button.click .line:nth-child(1) {
+  -webkit-transform: translateY(8.5px);
+  -ms-transform: translateY(8.5px);
+  -o-transform: translateY(8.5px);
+  transform: translateY(8.5px);
+}
+
+#nav_button.click .line:nth-child(3) {
+  -webkit-transform: translateY(-8.5px) rotate(90deg);
+  -ms-transform: translateY(-8.5px) rotate(90deg);
+  -o-transform: translateY(-8.5px) rotate(90deg);
+  transform: translateY(-8.5px) rotate(90deg);
+}
+
+@media (min-width: 768px) {
+  #google_translate_element .skiptranslate {
+    display: block;
+    opacity: 1;
+    font-size: 0;
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  #google_translate_element .goog-te-gadget span {
+    display: none;
+  }
+
+  #google_translate_element .goog-te-gadget div .goog-te-combo {
+    border-radius: 4px;
+    padding: 7px;
+
+    width: 102px;
+  }
+
+  #google_translate_element .goog-te-gadget div .goog-te-combo:focus {
+    outline: none;
+  }
+
+  element.style {
+    background-image: none;
+  }
+  .light_box {
+    background-color: #2b2b356c;
+    pointer-events: none;
+
+    div {
+      pointer-events: all;
+    }
+  }
+
+  .skiptranslate iframe .goog-te-banner-frame {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+  }
+
+  .skiptranslate .goog-te-banner-frame body[style] {
+    background-image: none !important;
+  }
 }

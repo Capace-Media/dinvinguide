@@ -1,0 +1,24 @@
+{
+  "menu": [
+    {
+      "id": "91422hrfmc",
+      "uri": "/skribenter",
+      "label": "Skribenter"
+    },
+    {
+      "id": "932hrf443rfmc",
+      "uri": "/guide",
+      "label": "Guide"
+    },
+    {
+      "id": "932hr32r32tgfmc",
+      "uri": "/recept",
+      "label": "Recept"
+    },
+    {
+      "id": "932ht23t23rfmc",
+      "uri": "/topplistor",
+      "label": "Topplistor"
+    }
+  ]
+}
