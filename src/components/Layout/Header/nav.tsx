@@ -26,14 +26,32 @@ const Nav = ({}: NavProps) => {
 
   return (
     <nav
-      className={`p-4 flex justify-between items-center w-full duration-75 transition-all ease-in-out ${
+      className={`py-4 layout flex justify-between items-center w-full duration-75 transition-all ease-in-out ${
         isMenuScroll ? "fixed top-0 left-0 bg-white shadow-lg" : ""
       }`}
     >
-      <Link href="/" className="z-50">
+      <Link href="/" className="z-50 md:hidden block">
         <DvLogoBlackMini />
       </Link>
+      <Link href="/" className="z-50  hidden md:block">
+        <Logo />
+      </Link>
+
+      <ul className=" lg:flex hidden font-sub lg:gap-6 text-[19px] pr-28">
+        {menuItems?.menu?.map((item: any) => {
+          return (
+            <li
+              className="hover:text-brand-primary hover:underline"
+              key={item?.id}
+            >
+              <Link href={item?.uri}>{item?.label}</Link>
+            </li>
+          );
+        })}
+      </ul>
+
       <PhoneMenu isMenuScroll={isMenuScroll} menuItems={menuItems} />
+
       <div className="items-center hidden space-x-2 lg:flex lg:w-24">
         <span className="w-5 lg:w-10" id="google_translate_element"></span>
       </div>

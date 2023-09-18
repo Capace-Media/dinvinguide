@@ -22,7 +22,7 @@ const Header = ({}: HeaderProps) => {
             new google.translate.TranslateElement({pageLanguage: 'sv'}, 'google_translate_element');
           }`}
       </Script>
-      <header className=" md:p-2">
+      <header className="">
         <TopNav />
         <Nav />
       </header>

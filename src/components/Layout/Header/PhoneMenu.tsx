@@ -6,7 +6,7 @@ import { forwardRef } from "react";
 
 const PhoneMenu = ({ menuItems, isMenuScroll }: any) => {
   return (
-    <Menu as="div" className="flex w-[45px]">
+    <Menu as="div" className="flex lg:hidden w-[45px]">
       {({ open }) => (
         <>
           <Menu.Button

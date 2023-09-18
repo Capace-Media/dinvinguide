@@ -3,6 +3,16 @@
 @tailwind utilities;
 
 /* hamburger menu styles */
+body,
+html,
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.layout {
+  @apply px-4 lg:px-11;
+}
 
 .nav_button {
   width: 40px;
