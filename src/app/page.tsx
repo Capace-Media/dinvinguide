@@ -1,7 +1,8 @@
-import { getAuthors } from "@/lib/queries/getAuthors";
+import FrontHero from "@/components/Blocks/Hero-Header/FrontHero";
+import { getFrontPage } from "@/lib/queries/getFrontPage";
 
 async function getData() {
-  const res = await getAuthors();
+  const res = await getFrontPage();
 
   return res;
 }
@@ -10,18 +11,13 @@ export default async function Home() {
   const data = await getData();
 
   return (
-    <main className="flex min-h-screen flex-col font-main items-center p-24">
-      <h2 className="">Hello world</h2>
+    <>
+      <FrontHero data={data?.page} />
+      <main className="layout">
+        <h2 className="">Hello world</h2>
 
-      <div>
-        {data?.skribenter?.map((auth: any) => {
-          return (
-            <>
-              <p>{auth?.name}</p>
-            </>
-          );
-        })}
-      </div>
-    </main>
+        <div></div>
+      </main>
+    </>
   );
 }

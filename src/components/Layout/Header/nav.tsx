@@ -26,8 +26,8 @@ const Nav = ({}: NavProps) => {
 
   return (
     <nav
-      className={`py-4 layout flex justify-between items-center w-full duration-75 transition-all ease-in-out ${
-        isMenuScroll ? "fixed top-0 left-0 bg-white shadow-lg" : ""
+      className={`py-4 z-20 layout flex justify-between items-center w-full duration-75 transition-all ease-in-out ${
+        isMenuScroll ? "fixed top-0 left-0 bg-white shadow-lg" : "relative"
       }`}
     >
       <Link href="/" className="z-50 md:hidden block">
