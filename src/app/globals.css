@@ -11,7 +11,19 @@ html,
 }
 
 .layout {
-  @apply px-4 lg:px-11;
+  @apply px-4 md:px-11 lg:px-20 m-auto xl:max-w-[1777px];
+}
+
+.center {
+  @apply top-2/4 -translate-x-2/4 -translate-y-2/4 left-2/4;
+}
+
+.center-y {
+  @apply top-2/4  -translate-y-2/4;
+}
+
+.center-x {
+  @apply left-2/4  -translate-x-2/4;
 }
 
 .nav_button {

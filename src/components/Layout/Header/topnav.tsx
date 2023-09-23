@@ -5,7 +5,7 @@ interface TopNavProps {}
 
 const TopNav = ({}: TopNavProps) => {
   return (
-    <div className="bg-brand-primary flex justify-center gap-2 items-center p-4">
+    <div className="bg-brand-primary layout flex justify-center gap-2 items-center py-4">
       <figure>
         <a href="https://bestchampagne.se/" target="_blank">
           <BcTopNav />

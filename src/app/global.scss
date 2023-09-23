@@ -1,0 +1,57 @@
+$header: var(--font-abrilFatface);
+$content: var(--font-poppins);
+
+$contentColor: #666;
+$headerColor: #333;
+
+.parsed {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $header;
+  }
+  h1 {
+    font-size: 44px;
+    line-height: 59.36px;
+    margin-bottom: 9px;
+  }
+
+  p {
+    font-family: $content;
+    font-weight: 400;
+    font-size: 14px;
+  }
+}
+
+p {
+  color: $contentColor;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $headerColor;
+}
+
+@media (min-width: 768px) {
+  .parsed {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+    }
+    h1 {
+    }
+
+    p {
+    }
+  }
+}

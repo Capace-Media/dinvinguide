@@ -19,7 +19,7 @@ const Footer = ({}: FooterProps) => {
           <figure>
             <DvLogoWhiteMini />
           </figure>
-          <p>
+          <p className="text-white">
             DinVinguide.se är en guide för människor som har mat, dryck, vin och
             livsnjutning som intressen. Våra namnkunniga skribenter inspirerar,
             utbildar och rapporterar om trender, nyheter och traditioner inom
@@ -30,11 +30,11 @@ const Footer = ({}: FooterProps) => {
           </p>
         </div>
         <div className="text-center flex flex-col lg:items-start lg:text-start items-center gap-4 lg:w-[20%]">
-          <h2 className="font-sub text-xl">Kontakt</h2>
+          <h2 className="font-sub text-xl text-white">Kontakt</h2>
 
           <a
             href="mailto:info@dinvinguide.se"
-            className="flex items-center gap-2"
+            className="flex items-center text-white gap-2"
           >
             <Email /> <span>info@dinvinguide.se</span>
           </a>
@@ -54,7 +54,7 @@ const Footer = ({}: FooterProps) => {
           </a>
         </div>
         <div className="flex flex-col text-center gap-5 lg:items-start lg:text-start lg:w-[20%]">
-          <h2 className="font-sub text-xl">Information</h2>
+          <h2 className="font-sub text-xl text-white">Information</h2>
 
           <ul className="flex flex-col lg:text-start text-center gap-2">
             {menuItems?.menu?.map((item: any) => {
@@ -68,7 +68,7 @@ const Footer = ({}: FooterProps) => {
         </div>
 
         <div className="flex flex-col text-center gap-4 items-center lg:items-start lg:text-start lg:w-[20%]">
-          <h2 className="font-sub text-xl">Följ oss</h2>
+          <h2 className="font-sub text-xl text-white">Följ oss</h2>
           <div className="flex items-center justify-center gap-4">
             <a href="https://www.instagram.com/dinvinguide.se/" target="_blank">
               <Instagram />
@@ -81,8 +81,8 @@ const Footer = ({}: FooterProps) => {
       </div>
 
       <div className="border-t-2 w-full border-white flex flex-col lg:flex-row lg:justify-between items-center py-4 gap-2">
-        <p>2023 © Copyright - DinVinguide.se</p>
-        <p className="text-[14px]">
+        <p className="text-white">2023 © Copyright - DinVinguide.se</p>
+        <p className="text-[14px] text-white">
           Byggd med ♥ av{" "}
           <a href="https://capace.se/" target="_blank">
             Capace Media
