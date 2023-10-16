@@ -27,7 +27,6 @@ $headerColor: #333;
 }
 
 p {
-  color: $contentColor;
 }
 
 h1,
@@ -36,7 +35,6 @@ h3,
 h4,
 h5,
 h6 {
-  color: $headerColor;
 }
 
 @media (min-width: 768px) {

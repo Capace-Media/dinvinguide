@@ -35,7 +35,7 @@ const FrontHero = ({ data }: FrontHeroProps) => {
     <div className="layout w-full py-6">
       {!isMobile ? (
         <div className="grid md:grid-cols-2 ">
-          <div className="flex flex-col gap-6 bg-red-500">
+          <div className="flex flex-col gap-6 ">
             <div>{handleParsed(data?.content)}</div>
             <ul className="font-main text-brand-primary uppercase flex whitespace-nowrap flex-wrap gap-4 font-medium">
               <li className="bg-brand-primary text-white px-3 py-2">
@@ -60,7 +60,7 @@ const FrontHero = ({ data }: FrontHeroProps) => {
             </ul>
           </div>
 
-          <div className=" relative h-[522px] w-full bg-green-500">
+          <div className=" relative h-[522px] w-full ">
             <div className="absolute lg:center-y lg:right-[100px] md:top-[65px] md:w-[400px] md:h-[300px] lg:w-[650px] lg:h-[400px] z-10">
               {data?.featuredImage?.node?.mediaItemUrl && (
                 <Image

@@ -1,10 +1,19 @@
-interface AuthorsProps {}
+import AuthorsComponent from "@/components/Blocks/skribenter";
+import { getAuthors } from "@/lib/queries/getAuthors";
 
-const Authors = ({}: AuthorsProps) => {
+const getAuthorsData = async () => {
+  const data = await getAuthors();
+
+  return data;
+};
+
+const Authors = async () => {
+  const data = await getAuthorsData();
+
   return (
-    <div className="">
-      <h2 className="">Hello Authors</h2>
-    </div>
+    <>
+      <AuthorsComponent data={data} />
+    </>
   );
 };
 

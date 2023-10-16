@@ -13,11 +13,8 @@ export default async function Home() {
   return (
     <>
       <FrontHero data={data?.page} />
-      <main className="layout">
-        <h2 className="">Hello world</h2>
 
-        <div></div>
-      </main>
+      <h2 className="">Hello world</h2>
     </>
   );
 }

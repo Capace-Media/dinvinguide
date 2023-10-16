@@ -32,7 +32,7 @@ export default function RootLayout({
         className={`${poppins.variable} ${abrilFatface.variable} font-main`}
       >
         <Header />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

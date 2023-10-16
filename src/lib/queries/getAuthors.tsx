@@ -8,7 +8,31 @@ export const getAuthors = async () => {
                 skribenter {
                   name
                   slug
+                  id
                   description
+                  posts(first: 4) {
+                    nodes {
+                      title
+                      slug
+                      modifiedGmt
+                      author {
+                        node {
+                          name
+                        }
+                      }
+                      acf_posts {
+                        ingress
+                      }
+                      featuredImage {
+                        node {
+                          mediaItemUrl
+                          altText
+                          title
+                          
+                        }
+                      }
+                    }
+                  }
                   acf_user {
                     instagram
                     facebook
@@ -16,13 +40,39 @@ export const getAuthors = async () => {
                     email
                     bild {
                       mediaItemUrl
+                      altText
+                      title
                     }
                   }
                 }
                 medarbetare {
                   name
                   slug
+                  id
                   description
+                  posts(first: 4) {
+                    nodes {
+                      title
+                      slug
+                      modifiedGmt
+                      author {
+                        node {
+                          name
+                        }
+                      }
+                      acf_posts {
+                        ingress
+                      }
+                      featuredImage {
+                        node {
+                          mediaItemUrl
+                          altText
+                          title
+                  
+                        }
+                      }
+                    }
+                  }
                   acf_user {
                     instagram
                     facebook
@@ -31,6 +81,8 @@ export const getAuthors = async () => {
                     kortBeskrivning
                     bild {
                       mediaItemUrl
+                      altText
+                      title
                     }
                   }
                 }
