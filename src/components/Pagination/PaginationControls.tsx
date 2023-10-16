@@ -11,6 +11,7 @@ interface PaginationControlsProps {
   last: number | null;
   hasPreviousPage: boolean;
   hasNextPage: boolean;
+  postsCount: number;
 }
 
 const PaginationControls: FC<PaginationControlsProps> = ({
@@ -21,12 +22,12 @@ const PaginationControls: FC<PaginationControlsProps> = ({
   last,
   hasNextPage,
   hasPreviousPage,
+  postsCount,
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const page = searchParams.get("page") ?? "1";
-  const per_page = searchParams.get("per_page") ?? "5";
 
   return (
     <div className="flex gap-2">
@@ -44,7 +45,9 @@ const PaginationControls: FC<PaginationControlsProps> = ({
         prev page
       </button>
 
-      <div></div>
+      <div>
+        {page} av {Math.ceil(Number(postsCount) / Number(first))}
+      </div>
 
       <button
         className="bg-blue-500 text-white p-1"

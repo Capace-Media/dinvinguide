@@ -1,4 +1,4 @@
-import { WPServerSide } from "../wp";
+import WP, { WPServerSide } from "../wp";
 
 export const getPostsByAuthor = async (
   after?: string,
@@ -9,7 +9,7 @@ export const getPostsByAuthor = async (
   last?: number | null
 ) => {
   try {
-    const res = await WPServerSide(
+    const res = await WP(
       `
     query getPostsByAuthor($after: String, $before: String, $search: String, $authorName: String, $first: Int, $last: Int) {
         posts(
@@ -33,11 +33,21 @@ export const getPostsByAuthor = async (
               id
               title
               uri
+              modifiedGmt
+              acf_posts {
+                ingress
+              }
+              author {
+                node {
+                  name
+                }
+              }
               featuredImage {
                 node {
                   altText
                   mediaItemUrl
                   title
+                  sizes(size: THUMBNAIL)
                 }
               }
             }
