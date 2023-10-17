@@ -1,7 +1,5 @@
-import PaginationControls from "@/components/Pagination/PaginationControls";
 import { getPostsByAuthor } from "@/lib/queries/getPostsByAuthor";
 import PostList from "./PostList";
-import AuthorPost from "./post";
 
 type Props = {
   params: { slug: string };
@@ -38,10 +36,11 @@ async function getData(args: DataArgs) {
   };
 }
 const AuthorPosts = async ({ params, searchParams, postsCount }: Props) => {
-  const page = searchParams["page"] ?? "1";
+  const postsPerPage: number =
+    typeof window !== "undefined" && window.innerWidth >= 768 ? 4 : 8;
 
   const startFirst: number = parseInt(
-    searchParams?.first ? searchParams?.first : 8
+    searchParams?.first ? searchParams?.first : postsPerPage
   );
   const endLast: number = parseInt(searchParams?.last);
   const data = await getData({
@@ -63,6 +62,7 @@ const AuthorPosts = async ({ params, searchParams, postsCount }: Props) => {
         hasNextPage={hasNextPage}
         hasPreviousPage={hasPreviousPage}
         postsCount={postsCount}
+        postsPerPage={postsPerPage}
       />
     </div>
   );

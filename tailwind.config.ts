@@ -12,6 +12,8 @@ const config: Config = {
         brand: {
           primary: "#400D12",
           secondary: "#7B2E11",
+          dark: "#333333",
+          gray: "#666666",
         },
       },
       fontFamily: {

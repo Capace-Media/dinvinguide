@@ -1,4 +1,5 @@
 "use client";
+
 import PaginationControls from "@/components/Pagination/PaginationControls";
 import { useRef } from "react";
 import AuthorPost from "./post";
@@ -11,8 +12,10 @@ const PostList = ({
   hasNextPage,
   hasPreviousPage,
   postsCount,
+  postsPerPage,
 }: any) => {
   const postsRef = useRef<HTMLUListElement | null>(null);
+
   const scrollToPosts = () => {
     const offsetTop = postsRef.current ? postsRef.current.offsetTop : 0;
     const desiredOffset = offsetTop - 150;
@@ -21,22 +24,27 @@ const PostList = ({
       behavior: "smooth",
     });
   };
+
   return (
     <>
-      <ul ref={postsRef} className="lg:grid lg:grid-cols-4 lg:gap-5">
+      <ul
+        ref={postsRef}
+        className="lg:grid lg:grid-cols-4 md:grid-cols-2 lg:gap-5"
+      >
         {posts.map((post: any) => (
           <li key={post.node.id}>
             <AuthorPost post={post?.node} />
           </li>
         ))}
       </ul>
+
       <div>
         <PaginationControls
           params={params}
           startCursor={startCursor}
           endCursor={endCursor}
-          first={8}
-          last={8}
+          first={postsPerPage}
+          last={postsPerPage}
           hasNextPage={hasNextPage}
           hasPreviousPage={hasPreviousPage}
           postsCount={postsCount}

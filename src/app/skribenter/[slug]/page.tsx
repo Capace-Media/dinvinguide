@@ -66,8 +66,6 @@ export async function generateMetadata(
 const Author = async ({ params, searchParams }: Props) => {
   const data = await getAuthorData(params);
 
-  console.log("data =====>", data);
-
   const { posts } = data;
 
   return (
