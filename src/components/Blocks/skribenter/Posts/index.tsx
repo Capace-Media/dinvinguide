@@ -1,5 +1,6 @@
 import PaginationControls from "@/components/Pagination/PaginationControls";
 import { getPostsByAuthor } from "@/lib/queries/getPostsByAuthor";
+import PostList from "./PostList";
 import AuthorPost from "./post";
 
 type Props = {
@@ -8,72 +9,61 @@ type Props = {
   postsCount: number;
 };
 
-async function getData(
-  after?: string,
-  before?: string,
-  authorName?: string,
-  search?: string,
-  start?: number | null,
-  end?: number | null
-) {
+type DataArgs = {
+  after?: string;
+  before?: string;
+  authorName?: string;
+  search?: string;
+  first?: number;
+  last?: number | null;
+};
+
+async function getData(args: DataArgs) {
+  const { after, before, authorName, search = "", first, last } = args;
   const data = await getPostsByAuthor(
     after,
     before,
     authorName,
-    (search = ""),
-    start,
-    end
+    search,
+    first,
+    last
   );
 
-  const propsData = {
+  return {
     posts: data.edges,
     startCursor: data.pageInfo.startCursor,
     endCursor: data.pageInfo.endCursor,
     hasNextPage: data.pageInfo.hasNextPage,
     hasPreviousPage: data.pageInfo.hasPreviousPage,
   };
-  return propsData;
 }
-
 const AuthorPosts = async ({ params, searchParams, postsCount }: Props) => {
   const page = searchParams["page"] ?? "1";
 
-  const startFrist: number = parseInt(
+  const startFirst: number = parseInt(
     searchParams?.first ? searchParams?.first : 8
   );
   const endLast: number = parseInt(searchParams?.last);
-  const data = await getData(
-    searchParams?.nextCursor,
-    searchParams?.previousCursor,
-    params?.slug,
-    "",
-    startFrist,
-    endLast
-  );
-  const { posts, startCursor, endCursor, hasNextPage, hasPreviousPage }: any =
-    data;
+  const data = await getData({
+    after: searchParams?.nextCursor,
+    before: searchParams?.previousCursor,
+    authorName: params?.slug,
+    first: startFirst,
+    last: endLast,
+  });
+  const { posts, startCursor, endCursor, hasNextPage, hasPreviousPage } = data;
 
   return (
     <div className="">
-      <ul className="lg:grid lg:grid-cols-4 lg:gap-5">
-        {posts.map((post: any) => (
-          <li key={post.node.id}>
-            <AuthorPost post={post?.node} />
-          </li>
-        ))}
-      </ul>
-      <div>
-        <PaginationControls
-          params={params}
-          startCursor={startCursor}
-          endCursor={endCursor}
-          first={8}
-          last={8}
-          hasNextPage={hasNextPage}
-          hasPreviousPage={hasPreviousPage}
-          postsCount={postsCount}
-        />
-      </div>
+      <PostList
+        posts={posts}
+        params={params}
+        startCursor={startCursor}
+        endCursor={endCursor}
+        hasNextPage={hasNextPage}
+        hasPreviousPage={hasPreviousPage}
+        postsCount={postsCount}
+      />
     </div>
   );
 };

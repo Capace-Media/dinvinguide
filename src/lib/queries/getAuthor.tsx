@@ -1,4 +1,5 @@
 import WP from "../wp";
+import { SEO } from "./fragments/Seo";
 
 export const getAuthor = async (id: string) => {
   try {
@@ -8,6 +9,21 @@ export const getAuthor = async (id: string) => {
           username
           name
           description
+          seo {
+            metaDesc
+            title
+            social {
+              facebook
+              instagram
+              linkedIn
+              mySpace
+              soundCloud
+              pinterest
+              twitter
+              wikipedia
+              youTube
+            }
+          }
           acf_user {
             email
             extratitel

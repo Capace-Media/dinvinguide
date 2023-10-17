@@ -16,7 +16,6 @@ interface AuthorComponentProps {
 }
 
 const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
-  console.log("author =====>", author);
   return (
     <div className="">
       <div

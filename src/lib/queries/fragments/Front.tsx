@@ -1,3 +1,5 @@
+import { SEO } from "./Seo";
+
 export const FRONT = `
 page(id: "/", idType: URI) {
     GQL_frontPageFields {
@@ -8,6 +10,7 @@ page(id: "/", idType: URI) {
       }
     }
     content
+    ${SEO}
     featuredImage {
       node {
         altText

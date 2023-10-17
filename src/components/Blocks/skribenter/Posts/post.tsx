@@ -7,7 +7,6 @@ interface AuthorPostProps {
 }
 
 const AuthorPost = ({ post }: AuthorPostProps) => {
-  console.log("post =====>", post);
   return (
     <div className="">
       <div className="w-full relative h-[14.2rem] overlay">
@@ -30,11 +29,11 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
           <p className="text-white uppercase">{post.author.node.name}</p>
         </div>
       </div>
-      <div className="h-[14.9rem] bg-blue-400 flex flex-col justify-between py-2">
+      <div className="h-[14.9rem]  flex flex-col justify-between py-2">
         <div className="flex flex-col gap-2">
           {post?.modifiedGmt && <p>{PrettyDate(post.modifiedGmt)}</p>}
           {post?.title && (
-            <h2 className=" font-sub text-[24px]">{post.title}</h2>
+            <h2 className=" font-sub text-[22px]">{post.title}</h2>
           )}
           {post?.acf_posts?.ingress && (
             <>

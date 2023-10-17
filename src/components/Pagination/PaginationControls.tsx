@@ -2,6 +2,12 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { FC } from "react";
+import {
+  ArrowNextActive,
+  ArrowNextDis,
+  ArrowPrevActive,
+  ArrowPrevDis,
+} from "../icons";
 
 interface PaginationControlsProps {
   params: { slug: string };
@@ -12,6 +18,7 @@ interface PaginationControlsProps {
   hasPreviousPage: boolean;
   hasNextPage: boolean;
   postsCount: number;
+  scrollToPosts: any;
 }
 
 const PaginationControls: FC<PaginationControlsProps> = ({
@@ -23,6 +30,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
   hasNextPage,
   hasPreviousPage,
   postsCount,
+  scrollToPosts,
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -30,37 +38,54 @@ const PaginationControls: FC<PaginationControlsProps> = ({
   const page = searchParams.get("page") ?? "1";
 
   return (
-    <div className="flex gap-2">
+    <div className="flex justify-center items-center gap-2 py-10">
       <button
-        className="bg-blue-500 text-white p-1"
+        aria-label="föregående sida för posterna"
+        className={` p-[10px] flex items-center justify-center ${
+          !hasPreviousPage
+            ? ""
+            : "md:hover:scale-110 md:ease-in-out md:duration-300"
+        }`}
         disabled={!hasPreviousPage}
         onClick={() => {
           router.push(
             `/skribenter/${params?.slug}/?page=${
               Number(page) - 1
-            }&last=${last}&first=null&previousCursor=${startCursor}`
+            }&last=${last}&first=null&previousCursor=${startCursor}`,
+            { scroll: false }
           );
+          scrollToPosts();
         }}
       >
-        prev page
+        {!hasPreviousPage ? <ArrowPrevDis /> : <ArrowPrevActive />}
       </button>
 
-      <div>
-        {page} av {Math.ceil(Number(postsCount) / Number(first))}
+      <div className="flex justify-center items-center gap-3">
+        <span className="w-[28px] flex justify-center items-center h-[28px] text-white bg-brand-secondary">
+          {page}
+        </span>{" "}
+        av {Math.ceil(Number(postsCount) / Number(first))}
       </div>
 
       <button
-        className="bg-blue-500 text-white p-1"
+        aria-label="nästa sida för posterna"
+        className={` p-[10px] flex items-center justify-center ${
+          !hasNextPage
+            ? ""
+            : "md:hover:scale-110 md:ease-in-out md:duration-300"
+        }`}
         disabled={!hasNextPage}
         onClick={() => {
           router.push(
             `/skribenter/${params?.slug}/?page=${
               Number(page) + 1
-            }&first=${first}&last=null&nextCursor=${endCursor}`
+            }&first=${first}&last=null&nextCursor=${endCursor}`,
+            { scroll: false }
           );
+          scrollToPosts();
         }}
       >
-        next page
+        {!hasNextPage ? <ArrowNextDis /> : <ArrowNextActive />}
       </button>
     </div>
   );

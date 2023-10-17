@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         brand: {
           primary: "#400D12",
+          secondary: "#7B2E11",
         },
       },
       fontFamily: {

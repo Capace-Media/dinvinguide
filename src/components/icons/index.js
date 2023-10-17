@@ -1,7 +1,12 @@
+export { default as ArrowNextActive } from "./ArrowNextActive";
+export { default as ArrowNextDis } from "./ArrowNextDis";
+export { default as ArrowPrevActive } from "./ArrowPrevActive";
+export { default as ArrowPrevDis } from "./ArrowPrevDis";
 export { default as BcTopNav } from "./BcTopNav";
 export { default as DlTopNav } from "./DlTopNav";
 export { default as DvLogoBlackMini } from "./DvLogoBlackMini";
 export { default as DvLogoWhiteMini } from "./DvLogoWhiteMini";
+export { default as ArrowRight } from "./ArrowRight";
 export { default as Avbrytare } from "./Avbrytare";
 export { default as Email } from "./Email";
 export { default as FacebookSm } from "./FacebookSm";
