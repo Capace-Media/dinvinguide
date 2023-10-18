@@ -36,7 +36,12 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
               objectFit: "cover",
               objectPosition: "top",
             }}
-            sizes="(min-width: 1880px) 761px, (min-width: 1040px) calc(45vw - 76px), (min-width: 780px) calc(100vw - 88px), calc(100vw - 32px)"
+            sizes="
+            (min-width: 1880px) 761px,
+            (min-width: 1040px) calc(45vw - 76px),
+            (min-width: 780px) calc(100vw - 88px),
+            calc(100vw - 32px)
+          "
           />
         </div>
         <div className="flex flex-col gap-4">

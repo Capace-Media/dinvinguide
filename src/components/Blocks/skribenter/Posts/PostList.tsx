@@ -5,15 +5,17 @@ import { useRef } from "react";
 import AuthorPost from "./post";
 
 const PostList = ({
-  posts,
   params,
+  posts,
   startCursor,
   endCursor,
   hasNextPage,
   hasPreviousPage,
+  //data,
   postsCount,
   postsPerPage,
 }: any) => {
+  //const { posts, startCursor, endCursor, hasNextPage, hasPreviousPage } = data;
   const postsRef = useRef<HTMLUListElement | null>(null);
 
   const scrollToPosts = () => {

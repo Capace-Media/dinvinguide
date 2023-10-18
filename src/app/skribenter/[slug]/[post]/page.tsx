@@ -25,7 +25,6 @@ export async function generateStaticParams() {
 }
 
 const ArticlePage = ({ params, searchParams }: Props) => {
-  console.log("params the post =====>", params);
   return (
     <div className="">
       <h2 className="">Hello ArticlePage</h2>

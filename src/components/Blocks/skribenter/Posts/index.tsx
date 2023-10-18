@@ -1,4 +1,8 @@
+import Await from "@/app/skribenter/await";
+import Skeleton from "@/app/skribenter/skeleton";
 import { getPostsByAuthor } from "@/lib/queries/getPostsByAuthor";
+import { Suspense } from "react";
+import { v4 as uuid } from "uuid";
 import PostList from "./PostList";
 
 type Props = {
@@ -43,27 +47,39 @@ const AuthorPosts = async ({ params, searchParams, postsCount }: Props) => {
     searchParams?.first ? searchParams?.first : postsPerPage
   );
   const endLast: number = parseInt(searchParams?.last);
-  const data = await getData({
+  const promise = getData({
     after: searchParams?.nextCursor,
     before: searchParams?.previousCursor,
     authorName: params?.slug,
     first: startFirst,
     last: endLast,
   });
-  const { posts, startCursor, endCursor, hasNextPage, hasPreviousPage } = data;
+  // const { posts, startCursor, endCursor, hasNextPage, hasPreviousPage } = data;
 
   return (
-    <div className="">
-      <PostList
-        posts={posts}
-        params={params}
-        startCursor={startCursor}
-        endCursor={endCursor}
-        hasNextPage={hasNextPage}
-        hasPreviousPage={hasPreviousPage}
-        postsCount={postsCount}
-        postsPerPage={postsPerPage}
-      />
+    <div className="" key={uuid()}>
+      <Suspense fallback={<Skeleton />}>
+        <Await promise={promise}>
+          {({
+            posts,
+            startCursor,
+            endCursor,
+            hasNextPage,
+            hasPreviousPage,
+          }: any) => (
+            <PostList
+              posts={posts}
+              params={params}
+              startCursor={startCursor}
+              endCursor={endCursor}
+              hasNextPage={hasNextPage}
+              hasPreviousPage={hasPreviousPage}
+              postsCount={postsCount}
+              postsPerPage={postsPerPage}
+            />
+          )}
+        </Await>
+      </Suspense>
     </div>
   );
 };

@@ -4,15 +4,26 @@ import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import { getAuthor } from "@/lib/queries/getAuthor";
 import { getAuthors } from "@/lib/queries/getAuthors";
 
+import { isCustomPageSlug } from "@/lib/utils/exclude";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
-
+type PropsPaths = {
+  slug: string;
+};
 export async function generateStaticParams() {
   const authors = await getAuthors();
 
-  return authors.skribenter.map((author: any) => ({
-    slug: author.slug,
-  }));
+  const authorsPaths: PropsPaths[] = [];
+
+  authors?.skribenter &&
+    authors.skribenter.map((author: any) => {
+      if (author?.slug && !isCustomPageSlug(author?.slug)) {
+        authorsPaths.push({ slug: author.slug });
+      }
+    });
+
+  console.log("authorsPaths =====>", authorsPaths);
+  return authorsPaths;
 }
 
 type Props = {

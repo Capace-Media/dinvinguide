@@ -16,7 +16,6 @@ export const dynamicSeo = async ({
   uri,
   img,
 }: DynamicSeoProps) => {
-  console.log("img =====>", img);
   const data = {
     title: seo?.title || previousMeta.title,
     description: seo?.metaDesc || previousMeta.description,
