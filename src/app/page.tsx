@@ -1,5 +1,6 @@
 import FrontHero from "@/components/Blocks/Hero-Header/FrontHero";
 import { getFrontPage } from "@/lib/queries/getFrontPage";
+import ExplorePages from "./components/ExplorePages";
 import Ads from "./components/ads";
 
 async function getData() {
@@ -15,8 +16,7 @@ export default async function Home() {
     <>
       <FrontHero data={data?.page} />
       <Ads pageType="default" position="TOP" />
-
-      <h2 className="">Hello world</h2>
+      <ExplorePages />
     </>
   );
 }

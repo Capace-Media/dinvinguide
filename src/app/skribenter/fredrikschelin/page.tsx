@@ -63,7 +63,7 @@ const Author = async ({ searchParams }: Props) => {
   const { posts } = data;
 
   return (
-    <div className="layout">
+    <div className="layout bg-white">
       <div className="w-full h-screen"></div>
       <AuthorPosts
         params={params}

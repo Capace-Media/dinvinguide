@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   ArrowNextActive,
   ArrowNextDis,
@@ -37,6 +37,19 @@ const PaginationControls: FC<PaginationControlsProps> = ({
 
   const page = searchParams.get("page") ?? "1";
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="flex justify-center items-center gap-2 py-10">
       <button
@@ -54,7 +67,9 @@ const PaginationControls: FC<PaginationControlsProps> = ({
             }&last=${last}&first=null&previousCursor=${startCursor}`,
             { scroll: false }
           );
-          scrollToPosts();
+          if (isMobile) {
+            scrollToPosts();
+          }
         }}
       >
         {!hasPreviousPage ? <ArrowPrevDis /> : <ArrowPrevActive />}
@@ -82,7 +97,9 @@ const PaginationControls: FC<PaginationControlsProps> = ({
             }&first=${first}&last=null&nextCursor=${endCursor}`,
             { scroll: false }
           );
-          scrollToPosts();
+          if (isMobile) {
+            scrollToPosts();
+          }
         }}
       >
         {!hasNextPage ? <ArrowNextDis /> : <ArrowNextActive />}

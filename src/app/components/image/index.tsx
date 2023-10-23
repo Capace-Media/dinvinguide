@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -7,11 +8,12 @@ interface HandleImageProps {
   altProp?: string;
   sizesProp?: string;
   objectFitProp?: "cover" | "contain" | undefined;
+  objectPositionProp?: string | undefined;
 }
 
 const SkeletonLoader = () => {
   return (
-    <div className="aspect-square animate-pulse h-full w-full overflow-hidden rounded-lg bg-gray-400"></div>
+    <div className="aspect-square animate-pulse h-full w-full overflow-hidden bg-gray-400"></div>
   );
 };
 
@@ -21,6 +23,7 @@ const HandleImage = ({
   altProp,
   sizesProp,
   objectFitProp,
+  objectPositionProp,
 }: HandleImageProps) => {
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
   return (
@@ -35,6 +38,7 @@ const HandleImage = ({
             onLoad={() => setImageLoaded(true)}
             style={{
               objectFit: objectFitProp,
+              objectPosition: objectPositionProp,
             }}
           />
           {!imageLoaded && (

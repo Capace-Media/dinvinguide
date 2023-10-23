@@ -19,7 +19,7 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
   return (
     <div className="">
       <div
-        className={`layout contain flex flex-col lg:grid lg:grid-cols-2 lg:flex-row-reverse lg:gap-24 gap-4 ${
+        className={`layout  contain flex flex-col lg:grid lg:grid-cols-2 lg:flex-row-reverse lg:gap-24 gap-4 ${
           index % 2 === 0 ? "bg-[#F6F6F6]" : "bg-brand-primary text-white"
         }`}
       >

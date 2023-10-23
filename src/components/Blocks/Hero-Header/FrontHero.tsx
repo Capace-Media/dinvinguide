@@ -37,7 +37,7 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
     };
   }, [images]);
   return (
-    <div className="layout w-full py-6">
+    <div className="layout w-full py-6 bg-white">
       <div className="grid md:grid-cols-2 order-last md:order-first">
         <div className="flex flex-col gap-6 ">
           <div>{handleParsed(data?.content)}</div>
@@ -78,16 +78,17 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
                 priority
               />
             )} */}
-
-            <Image
-              src={images[currentIndex].mediaItemUrl}
-              alt={images[currentIndex].altText}
-              fill
-              style={{
-                objectFit: "cover",
-              }}
-              sizes="(min-width: 1880px) 687px, (min-width: 1040px) calc(38.17vw - 23px), (min-width: 780px) calc(42.5vw - 38px), (min-width: 380px) calc(85vw - 27px), calc(25vw + 189px)"
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src={images[currentIndex].mediaItemUrl}
+                alt={images[currentIndex].altText}
+                fill
+                style={{
+                  objectFit: "cover",
+                }}
+                sizes="(min-width: 1880px) 687px, (min-width: 1040px) calc(38.17vw - 23px), (min-width: 780px) calc(42.5vw - 38px), (min-width: 380px) calc(85vw - 27px), calc(25vw + 189px)"
+              />
+            </div>
           </div>
           <div className="bg-brand-primary w-[85%] h-[300px] lg:h-[430px] top-0 absolute right-0"></div>
         </div>

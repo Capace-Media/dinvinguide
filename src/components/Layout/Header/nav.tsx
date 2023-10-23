@@ -26,7 +26,7 @@ const Nav = ({}: NavProps) => {
 
   return (
     <nav
-      className={`py-4 z-20 layout flex justify-between items-center w-full duration-75 transition-all ease-in-out ${
+      className={`py-4 z-20 layout bg-white flex justify-between items-center w-full duration-75 transition-all ease-in-out ${
         isMenuScroll ? "fixed top-0 center-x bg-white shadow-lg" : "relative"
       }`}
     >

@@ -14,7 +14,7 @@ html,
   @apply px-4 md:px-11 lg:px-20 m-auto xl:max-w-[1777px];
 }
 .contain {
-  @apply py-4 md:py-11 lg:py-20;
+  @apply py-2 md:py-6 lg:py-10;
 }
 .btn {
   @apply bg-brand-primary font-bold text-white py-3 flex justify-center items-center px-4 md:hover:scale-105 md:ease-in-out md:duration-300;
@@ -35,6 +35,9 @@ html,
   @apply left-2/4  -translate-x-2/4;
 }
 
+.heading {
+  @apply pb-4 font-sub text-[24px] md:text-[28px] md:pb-6 lg:text-[44px] lg:pb-10 text-[#333];
+}
 .nav_button {
   width: 40px;
   height: 40px;

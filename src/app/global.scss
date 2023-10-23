@@ -4,6 +4,10 @@ $content: var(--font-poppins);
 $contentColor: #666;
 $headerColor: #333;
 
+body {
+  background-color: #e4e4e4;
+}
+
 .parsed {
   h1,
   h2,
@@ -67,6 +71,25 @@ h6 {
       rgba(0, 0, 0, 0.4) 16.35%,
       rgba(0, 0, 0, 0) 49.69%
     );
+  }
+}
+
+.explore-overlay {
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000066;
+    transition: ease-in-out 0.27s;
+  }
+
+  &:hover {
+    &::after {
+      background-color: transparent;
+    }
   }
 }
 

@@ -58,7 +58,7 @@ export default async function Ads({ pageType, position }: AdsProps) {
   const ads = await fetchAds(pageType, position);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="bg-white layout contain">
       <AdBanner ads={ads} position={position} />
     </div>
   );

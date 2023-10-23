@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import HandleImage from "../image";
 
 interface AdBannerProps {
   ads: any;
@@ -10,7 +9,9 @@ interface AdBannerProps {
 }
 
 const AdBanner: React.FC<AdBannerProps> = ({ ads, position }) => {
-  const [isSmall, setIsSmall] = useState(true);
+  const [isSmall, setIsSmall] = useState(
+    window.innerWidth < 1024 ? false : true
+  );
   const getAdData = (device: string) => {
     let ad;
 
@@ -45,18 +46,12 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position }) => {
         className="block w-full h-full"
         rel="noreferrer"
       >
-        {/* <Image
+        <Image
           src={src}
           fill
           style={{ objectFit: "contain" }}
           alt="Annons"
           sizes="(min-width: 1040px) 980px, 280px"
-        /> */}
-        <HandleImage
-          srcProp={src}
-          altProp="Annons"
-          sizesProp="(min-width: 1040px) 980px, 280px"
-          objectFitProp="contain"
         />
       </a>
     );
@@ -80,7 +75,7 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position }) => {
   }, []);
 
   return (
-    <div className="mt-5">
+    <div className="flex justify-center items-center">
       {!isSmall ? (
         <div className="relative block w-[280px] h-64 lg:hidden">
           {renderAd("mobile")}
