@@ -22,7 +22,6 @@ export async function generateStaticParams() {
       }
     });
 
-  console.log("authorsPaths =====>", authorsPaths);
   return authorsPaths;
 }
 

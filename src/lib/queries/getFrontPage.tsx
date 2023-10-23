@@ -1,3 +1,4 @@
+import { getErrorMessage } from "../utils/getErrorMessage";
 import WP from "../wp";
 import { FRONT } from "./fragments/Front";
 import { POSTS } from "./fragments/Posts";
@@ -13,6 +14,8 @@ export const getFrontPage = async () => {
     return data;
   } catch (error) {
     console.error(error);
-    return;
+    return {
+      message: getErrorMessage(error),
+    };
   }
 };

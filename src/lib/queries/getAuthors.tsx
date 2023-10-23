@@ -1,3 +1,4 @@
+import { getErrorMessage } from "../utils/getErrorMessage";
 import WP from "../wp";
 
 export const getAuthors = async () => {
@@ -94,6 +95,8 @@ export const getAuthors = async () => {
     return users;
   } catch (error) {
     console.error(error);
-    return;
+    return {
+      message: getErrorMessage(error),
+    };
   }
 };

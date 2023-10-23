@@ -1,3 +1,4 @@
+import { getErrorMessage } from "../utils/getErrorMessage";
 import WP from "../wp";
 import { SEO } from "./fragments/Seo";
 
@@ -59,6 +60,8 @@ export const getAuthor = async (id: string) => {
     return users;
   } catch (error) {
     console.error(error);
-    return;
+    return {
+      message: getErrorMessage(error),
+    };
   }
 };

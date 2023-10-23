@@ -1,3 +1,4 @@
+import { getErrorMessage } from "../utils/getErrorMessage";
 import WP, { WPServerSide } from "../wp";
 
 export const getPostsByAuthor = async (
@@ -62,6 +63,8 @@ export const getPostsByAuthor = async (
     return users;
   } catch (error) {
     console.error(error);
-    return;
+    return {
+      message: getErrorMessage(error),
+    };
   }
 };
