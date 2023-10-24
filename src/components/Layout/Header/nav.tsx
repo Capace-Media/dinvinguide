@@ -13,7 +13,7 @@ const Nav = ({}: NavProps) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset > 20) {
+      if (window.pageYOffset > 60) {
         setIsMenuScroll(true);
       } else {
         setIsMenuScroll(false);
@@ -26,8 +26,10 @@ const Nav = ({}: NavProps) => {
 
   return (
     <nav
-      className={`py-4 z-20 layout bg-white flex justify-between items-center w-full duration-75 transition-all ease-in-out ${
-        isMenuScroll ? "fixed top-0 center-x bg-white shadow-lg" : "relative"
+      className={`py-4 z-20 layout bg-white flex justify-between items-center w-full duration-75  transition-all ease-in-out ${
+        isMenuScroll
+          ? "fixed top-0 center-x bg-white shadow-lg"
+          : "absolute center-x"
       }`}
     >
       <Link href="/" className="z-50 md:hidden block">

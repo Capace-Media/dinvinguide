@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowRight } from "@/components/icons";
 import PrettyDate from "@/lib/utils/prettyDate";
 import Image from "next/image";

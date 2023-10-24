@@ -6,29 +6,67 @@ import { useEffect, useState } from "react";
 interface AdBannerProps {
   ads: any;
   position: "TOP" | "MID";
+  pageType: "default" | "DL";
 }
 
-const AdBanner: React.FC<AdBannerProps> = ({ ads, position }) => {
-  const [isSmall, setIsSmall] = useState(
-    window.innerWidth < 1024 ? false : true
+const AdBanner: React.FC<AdBannerProps> = ({ ads, position, pageType }) => {
+  // const [isSmall, setIsSmall] = useState(
+  //   window.innerWidth < 1024 ? false : true
+  // );
+
+  const [isSmall, setIsSmall] = useState<boolean>(() =>
+    typeof window !== "undefined" ? window.innerWidth < 1024 : false
   );
+
   const getAdData = (device: string) => {
     let ad;
 
     if (position === "TOP") {
-      ad = ads.acfOptionsAnnonsplaceringar.acf_adsettings.adToppbanner?.banner;
+      if (pageType === "DL") {
+        ad =
+          ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.adToppbannerDl[0]
+            ?.banner[0];
+      } else {
+        ad =
+          ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.adToppbanner[0]
+            ?.banner[0];
+      }
     } else if (position === "MID") {
-      ad =
-        ads.acfOptionsAnnonsplaceringar.acf_adsettings.adMittenbanner?.banner;
+      if (pageType === "DL") {
+        ad =
+          ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.adMittenbannerDl[0]
+            ?.banner[0];
+      } else {
+        ad =
+          ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.adMittenbanner[0]
+            ?.banner[0];
+      }
     }
 
     if (!ad && position === "TOP") {
-      ad = ads.acfOptionsAnnonsplaceringar.acf_adsettings.fallbackannons[0];
+      if (pageType === "DL") {
+        ad =
+          ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.fallbackannonsDl[0]
+            ?.banner[0];
+      } else {
+        ad = ads.acfOptionsAnnonsplaceringar.acf_adsettings.fallbackannons[0];
+      }
     } else if (!ad && position === "MID") {
-      ad = ads.acfOptionsAnnonsplaceringar.acf_adsettings.fallbackannons[0];
+      if (pageType === "DL") {
+        ad =
+          ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.fallbackannonsDl[0]
+            ?.banner[0];
+      } else {
+        ad = ads.acfOptionsAnnonsplaceringar.acf_adsettings.fallbackannons[0];
+      }
     }
 
-    const bannerType = device === "desktop" ? "toppbanner" : "mobilbanner";
+    const bannerType =
+      device === "desktop" && position === "TOP"
+        ? "toppbanner"
+        : device === "desktop" && position === "MID"
+        ? "mittenbanner"
+        : "mobilbanner";
 
     return {
       href: ad?.acf_ads?.link,
@@ -57,31 +95,46 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position }) => {
     );
   };
 
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (window.innerWidth < 1024) {
+  //       setIsSmall(false);
+  //     } else {
+  //       setIsSmall(true);
+  //     }
+  //   };
+
+  //   window.addEventListener("resize", handleResize);
+
+  //   // Cleanup listener on unmount
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
+
   useEffect(() => {
+    // Adjust the ad based on actual client window size
+    setIsSmall(window.innerWidth < 1024);
+
     const handleResize = () => {
-      if (window.innerWidth < 1024) {
-        setIsSmall(false);
-      } else {
-        setIsSmall(true);
-      }
+      setIsSmall(window.innerWidth < 1024);
     };
 
     window.addEventListener("resize", handleResize);
 
-    // Cleanup listener on unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return (
-    <div className="flex justify-center items-center">
-      {!isSmall ? (
-        <div className="relative block w-[280px] h-64 lg:hidden">
+    <div className=" flex justify-center items-center">
+      {isSmall ? (
+        <div className="relative lg:hover:scale-105 lg:duration-300 lg:ease-in-out block w-[280px] h-64 lg:hidden">
           {renderAd("mobile")}
         </div>
       ) : (
-        <div className="hidden lg:block w-[980px] h-[200px] relative">
+        <div className="hidden lg:block w-[980px] lg:hover:scale-105 lg:duration-300 lg:ease-in-out h-[200px] relative">
           {renderAd("desktop")}
         </div>
       )}

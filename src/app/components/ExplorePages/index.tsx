@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Separater from "../Separater";
 import HandleImage from "../image";
 
 interface ExplorePagesProps {}
@@ -90,7 +91,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
           </Link>
         </div>
       </section>
-      <div className="bg-[#F0F0CC] w-full h-10 layout"></div>
+      <Separater />
     </>
   );
 };

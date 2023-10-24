@@ -8,6 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      width: {
+        "calc-minus-80": "calc(100% - 80px)",
+        "calc-minus-44": "calc(100% - 44px)",
+        "calc-minus-16": "calc(100% - 16px)",
+      },
       colors: {
         brand: {
           primary: "#400D12",

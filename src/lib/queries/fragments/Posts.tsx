@@ -1,17 +1,26 @@
 export const POSTS = `
 posts(first: 8) {
     nodes {
+      id
       title
-      author {
-        node {
-          uri
-          name
-        }
-      }
+      uri
+      modifiedGmt
       acf_posts {
         ingress
       }
-      date
+      author {
+        node {
+          name
+        }
+      }
+      featuredImage {
+        node {
+          altText
+          mediaItemUrl
+          title
+          sizes(size: THUMBNAIL)
+        }
+      }
     }
   }
 `;

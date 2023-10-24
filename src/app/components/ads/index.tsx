@@ -59,7 +59,7 @@ export default async function Ads({ pageType, position }: AdsProps) {
 
   return (
     <div className="bg-white layout contain">
-      <AdBanner ads={ads} position={position} />
+      <AdBanner ads={ads} position={position} pageType={pageType} />
     </div>
   );
 }
