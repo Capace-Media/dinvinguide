@@ -55,6 +55,7 @@ body {
 }
 
 .parsed {
+  color: #333;
   h1,
   h2,
   h3,
@@ -76,15 +77,31 @@ body {
   }
 }
 
-p {
-}
+.front-parse {
+  .parsed {
+    color: #333;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: $header;
+    }
+    h1 {
+      font-size: 37px;
+      line-height: 57px;
+      margin-bottom: 9px;
+    }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+    p {
+      font-family: $content;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 27px;
+      color: #666;
+    }
+  }
 }
 
 .recipe_parse {
@@ -128,6 +145,17 @@ h6 {
 }
 
 .recipe-overlay {
+  overflow: hidden;
+  img {
+    transition: ease-in-out 0.3s;
+    &:hover {
+      transform: scale(1.19);
+      -ms-transform: scale(1.19); /* IE 9 */
+      -moz-transform: scale(1.19); /* Firefox */
+      -webkit-transform: scale(1.19); /* Safari and Chrome */
+      -o-transform: scale(1.19); /* Opera */
+    }
+  }
   &::after {
     content: "";
     position: absolute;
@@ -143,11 +171,7 @@ h6 {
       rgba(0, 0, 0, 0.64) 100%,
       rgba(0, 0, 0, 0.64) 100%
     );
-  }
-  &:hover {
-    &::after {
-      background: transparent;
-    }
+    pointer-events: none;
   }
 }
 
@@ -215,6 +239,27 @@ h6 {
     }
 
     p {
+    }
+  }
+
+  .front-parse {
+    .parsed {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+      }
+      h1 {
+        font-size: 39px;
+        line-height: 45px;
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 27px;
+      }
     }
   }
 
@@ -305,6 +350,26 @@ h6 {
     }
 
     p {
+    }
+  }
+  .front-parse {
+    .parsed {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+      }
+      h1 {
+        font-size: 71px;
+        line-height: 84px;
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 27px;
+      }
     }
   }
 

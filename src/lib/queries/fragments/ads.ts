@@ -96,6 +96,104 @@ export const AD_MID = `
   }
 `;
 
+export const AD_BOTTOM = `
+query fetchBottomAd {
+  acfOptionsAnnonsplaceringar {
+       acf_adsettings {
+         fallbackannons {
+           ... on Ad {
+             id
+             title
+             acf_ads {
+               link
+               toppbanner {
+                 mediaItemUrl
+                 id
+                 altText
+               }
+               mobilbanner {
+                 mediaItemUrl
+                 id
+                 altText
+               }
+             }
+           }
+         }
+         adSidobanner {
+           banner {
+             ... on Ad {
+               id
+               title
+               acf_ads {
+                 link
+                 mittenbanner {
+                   mediaItemUrl
+                   id
+                 altText
+                 }
+                 mobilbanner {
+                   mediaItemUrl
+                   id
+                 altText
+                 }
+               }
+             }
+           }
+         }
+       }
+     }
+ }
+`;
+
+export const AD_DL_BOTTOM = `
+query fetchBottomDLAd {
+  acfOptionsAnnonsplaceringar {
+    acf_adsettings {
+      fallbackannonsDl {
+        ... on Ad {
+          id
+          title
+          acf_ads {
+            link
+            toppbanner {
+              mediaItemUrl
+              id
+              altText
+            }
+            mobilbanner {
+              mediaItemUrl
+              id
+              altText
+            }
+          }
+        }
+      }
+      adSidobannerDl {
+        banner {
+          ... on Ad {
+            id
+            title
+            acf_ads {
+              link
+              toppbanner {
+                mediaItemUrl
+                id
+              altText
+              }
+              mobilbanner {
+                mediaItemUrl
+                id
+              altText
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+ }
+`;
+
 export const AD_DL_TOP = `
   query fetchTopDlAd {
     acfOptionsAnnonsplaceringar {

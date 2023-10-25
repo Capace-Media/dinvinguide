@@ -1,9 +1,13 @@
+//import ExplorePages from "./components/ExplorePages";
 import FrontHero from "@/components/Blocks/Hero-Header/FrontHero";
 import { getFrontPage } from "@/lib/queries/getFrontPage";
-import ExplorePages from "./components/ExplorePages";
-import ExploreRecipes from "./components/ExploreRecipes";
-import LatestArticles from "./components/LatestArticles";
+import dynamic from "next/dynamic";
+//import ExploreRecipes from "./components/ExploreRecipes";
+//import LatestArticles from "./components/LatestArticles";
 import Ads from "./components/ads";
+const ExplorePages = dynamic(() => import("./components/ExplorePages"));
+const ExploreRecipes = dynamic(() => import("./components/ExploreRecipes"));
+const LatestArticles = dynamic(() => import("./components/LatestArticles"));
 
 async function getData() {
   const res = await getFrontPage();
@@ -22,6 +26,7 @@ export default async function Home() {
       <LatestArticles />
       <Ads pageType="default" position="MID" />
       <ExploreRecipes />
+      <Ads pageType="default" position="BOTTOM" />
     </>
   );
 }

@@ -5,83 +5,77 @@ import { useEffect, useState } from "react";
 
 interface AdBannerProps {
   ads: any;
-  position: "TOP" | "MID";
+  position: "TOP" | "MID" | "BOTTOM";
   pageType: "default" | "DL";
 }
 
 const AdBanner: React.FC<AdBannerProps> = ({ ads, position, pageType }) => {
-  // const [isSmall, setIsSmall] = useState(
-  //   window.innerWidth < 1024 ? false : true
-  // );
+  // Constants
+  const TOP = "TOP";
+  const MID = "MID";
+  const BOTTOM = "BOTTOM";
+  const DL = "DL";
+  const DEFAULT = "default";
 
+  // Initial State
   const [isSmall, setIsSmall] = useState<boolean>(() =>
     typeof window !== "undefined" ? window.innerWidth < 1024 : false
   );
 
+  // Mapping for positions and page types to retrieve ad data
+  const adMapping = {
+    [TOP]: {
+      [DL]: "adToppbannerDl",
+      [DEFAULT]: "adToppbanner",
+    },
+    [MID]: {
+      [DL]: "adMittenbannerDl",
+      [DEFAULT]: "adMittenbanner",
+    },
+    [BOTTOM]: {
+      [DL]: "adSidobannerDl",
+      [DEFAULT]: "adSidobanner",
+    },
+  };
+
   const getAdData = (device: string) => {
-    let ad;
+    const adField = adMapping[position][pageType];
 
-    if (position === "TOP") {
-      if (pageType === "DL") {
-        ad =
-          ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.adToppbannerDl[0]
-            ?.banner[0];
-      } else {
-        ad =
-          ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.adToppbanner[0]
-            ?.banner[0];
-      }
-    } else if (position === "MID") {
-      if (pageType === "DL") {
-        ad =
-          ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.adMittenbannerDl[0]
-            ?.banner[0];
-      } else {
-        ad =
-          ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.adMittenbanner[0]
-            ?.banner[0];
-      }
-    }
+    const ad =
+      ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.[adField] &&
+      ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.[adField]?.[0]
+        ?.banner?.[0];
 
-    if (!ad && position === "TOP") {
-      if (pageType === "DL") {
-        ad =
-          ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.fallbackannonsDl[0]
-            ?.banner[0];
-      } else {
-        ad = ads.acfOptionsAnnonsplaceringar.acf_adsettings.fallbackannons[0];
-      }
-    } else if (!ad && position === "MID") {
-      if (pageType === "DL") {
-        ad =
-          ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.fallbackannonsDl[0]
-            ?.banner[0];
-      } else {
-        ad = ads.acfOptionsAnnonsplaceringar.acf_adsettings.fallbackannons[0];
-      }
-    }
+    // Simplified fallbackAd assignment
+    const fallbackField =
+      pageType === "DL" ? "fallbackannonsDl" : "fallbackannons";
+    const fallbackAd =
+      ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.[fallbackField]?.[0];
 
     const bannerType =
-      device === "desktop" && position === "TOP"
+      device === "desktop" && position === TOP
         ? "toppbanner"
-        : device === "desktop" && position === "MID"
+        : device === "desktop" && position === MID
         ? "mittenbanner"
+        : device === "desktop" && position === BOTTOM
+        ? "sidobanner"
         : "mobilbanner";
 
     return {
-      href: ad?.acf_ads?.link,
-      src: ad?.acf_ads[bannerType]?.mediaItemUrl,
+      href: ad ? ad?.acf_ads?.link : fallbackAd?.acf_ads?.link,
+      src: ad
+        ? ad?.acf_ads[bannerType]?.mediaItemUrl
+        : fallbackAd?.acf_ads["toppbanner"]?.mediaItemUrl,
     };
   };
 
   const renderAd = (device: string) => {
     const { href, src } = getAdData(device);
-
     return (
       <a
         href={href}
         target="_blank"
-        className="block w-full h-full"
+        className="block relative w-full h-full"
         rel="noreferrer"
       >
         <Image
@@ -95,40 +89,18 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position, pageType }) => {
     );
   };
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     if (window.innerWidth < 1024) {
-  //       setIsSmall(false);
-  //     } else {
-  //       setIsSmall(true);
-  //     }
-  //   };
-
-  //   window.addEventListener("resize", handleResize);
-
-  //   // Cleanup listener on unmount
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
-
   useEffect(() => {
-    // Adjust the ad based on actual client window size
-    setIsSmall(window.innerWidth < 1024);
-
     const handleResize = () => {
       setIsSmall(window.innerWidth < 1024);
     };
-
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return (
-    <div className=" flex justify-center items-center">
+    <div className="flex justify-center items-center">
       {isSmall ? (
         <div className="relative lg:hover:scale-105 lg:duration-300 lg:ease-in-out block w-[280px] h-64 lg:hidden">
           {renderAd("mobile")}

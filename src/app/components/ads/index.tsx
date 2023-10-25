@@ -1,4 +1,6 @@
 import {
+  AD_BOTTOM,
+  AD_DL_BOTTOM,
   AD_DL_MID,
   AD_DL_TOP,
   AD_MID,
@@ -12,21 +14,23 @@ const QUERY_MAP = {
   default: {
     TOP: AD_TOP,
     MID: AD_MID,
+    BOTTOM: AD_BOTTOM,
   },
   DL: {
     TOP: AD_DL_TOP,
     MID: AD_DL_MID,
+    BOTTOM: AD_DL_BOTTOM,
   },
 };
 
 interface AdsProps {
   pageType: "default" | "DL";
-  position: "TOP" | "MID";
+  position: "TOP" | "MID" | "BOTTOM";
 }
 
 export function getAdQuery(
   pageType: "default" | "DL" = "default",
-  position: "TOP" | "MID" = "TOP"
+  position: "TOP" | "MID" | "BOTTOM" = "TOP"
 ): string {
   if (!QUERY_MAP[pageType]) {
     console.error(`Invalid pageType provided: ${pageType}`);
@@ -45,7 +49,7 @@ export function getAdQuery(
 
 async function fetchAds(
   pageType: "default" | "DL",
-  position: "TOP" | "MID"
+  position: "TOP" | "MID" | "BOTTOM"
 ): Promise<AdsData> {
   const query = getAdQuery(pageType, position);
 
