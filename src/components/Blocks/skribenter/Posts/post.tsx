@@ -53,10 +53,12 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
       <div className="h-[14.9rem]  flex flex-col justify-between py-2">
         <div className="flex flex-col">
           {post?.modifiedGmt && (
-            <p className="text-brand-gray">{PrettyDate(post.modifiedGmt)}</p>
+            <p className="text-brand-gray text-[14px]">
+              {PrettyDate(post.modifiedGmt)}
+            </p>
           )}
           {post?.title && (
-            <h2 className="lg:hover:underline font-sub mb-2 text-[22px] text-brand-dark">
+            <h2 className="heading_truncated lg:hover:underline font-sub mb-2 text-[22px] text-brand-dark">
               <Link
                 href={`/skribenter${post.uri}`}
                 aria-label={`Läs om ${post?.title}`}
@@ -68,7 +70,7 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
           {post?.acf_posts?.ingress && (
             <>
               <p
-                className="truncated text-[14px] text-brand-gray"
+                className="truncated text-[13px] text-brand-gray"
                 dangerouslySetInnerHTML={{ __html: post.acf_posts.ingress }}
               />
             </>

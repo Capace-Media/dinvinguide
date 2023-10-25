@@ -15,7 +15,7 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
   return (
     <div className="layout w-full py-[73px] md:pt-[172px] bg-white">
       <div className="grid md:grid-cols-2 order-last md:order-first">
-        <div className="flex flex-col justify-between min-h-[401px]">
+        <div className="flex flex-col justify-between min-h-[461px]">
           <div className="flex flex-col gap-6 ">
             <div className="front-parse">{handleParsed(data?.content)}</div>
             <ul className="font-main text-brand-primary uppercase flex whitespace-nowrap flex-wrap gap-4 font-medium">
@@ -67,17 +67,6 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
                 />
               </div>
             )}
-            {/* <div className="relative w-full h-full">
-              <Image
-                src={images[currentIndex].mediaItemUrl}
-                alt={images[currentIndex].altText}
-                fill
-                style={{
-                  objectFit: "cover",
-                }}
-                sizes="(min-width: 1880px) 687px, (min-width: 1040px) calc(38.17vw - 23px), (min-width: 780px) calc(42.5vw - 38px), (min-width: 380px) calc(85vw - 27px), calc(25vw + 189px)"
-              />
-            </div> */}
           </div>
           <div className="bg-brand-primary w-[85%] h-[300px] lg:h-[430px] top-0 absolute right-0"></div>
         </div>
@@ -85,14 +74,5 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
     </div>
   );
 };
-
-// function shuffleArray(array: ImageData[]): ImageData[] {
-//   let newArr = [...array];
-//   for (let i = newArr.length - 1; i > 0; i--) {
-//     const j = Math.floor(Math.random() * (i + 1));
-//     [newArr[i], newArr[j]] = [newArr[j], newArr[i]]; // Swap elements
-//   }
-//   return newArr;
-// }
 
 export default FrontHero;
