@@ -1,6 +1,7 @@
 import FrontHero from "@/components/Blocks/Hero-Header/FrontHero";
 import { getFrontPage } from "@/lib/queries/getFrontPage";
 import ExplorePages from "./components/ExplorePages";
+import ExploreRecipes from "./components/ExploreRecipes";
 import LatestArticles from "./components/LatestArticles";
 import Ads from "./components/ads";
 
@@ -20,6 +21,7 @@ export default async function Home() {
       <ExplorePages />
       <LatestArticles />
       <Ads pageType="default" position="MID" />
+      <ExploreRecipes />
     </>
   );
 }
