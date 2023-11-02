@@ -1,7 +1,13 @@
 import Link from "next/link";
+import druvguiden from "../../../../public/Images/gronadruvklasar_i_vingard.jpeg";
+import skribenter from "../../../../public/Images/vinproppar_samling.jpeg";
 import Separater from "../Separater";
 import HandleImage from "../image";
 
+import vinskolan from "../../../../public/Images/fatlager.jpeg";
+import ordlista from "../../../../public/Images/vin_glas_bilder.jpeg";
+import recept from "../../../../public/Images/vin_och_ost_bord.jpeg";
+import vinatlas from "../../../../public/Images/vintradgardsbild.jpeg";
 interface ExplorePagesProps {}
 
 const ExplorePages = ({}: ExplorePagesProps) => {
@@ -12,7 +18,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
         <div className="grid md:grid-cols-4 md:grid-rows-2 grid-row-4 grid-cols-2 md:h-[60vh] h-[95vh] gap-4">
           <Link href="/skribenter" className="row-span-2 relative">
             <HandleImage
-              srcProp="/Images/vinproppar_samling.jpeg"
+              srcProp={skribenter}
               altProp="Samling av olika vinproppar med märkningar och illustrationer."
               classesProp="relative w-[100%] h-[100%] explore-overlay"
               objectFitProp="cover"
@@ -25,7 +31,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
           </Link>
           <Link href="/guide/druvguiden" className="relative">
             <HandleImage
-              srcProp="/Images/gronadruvklasar_i_vingard.jpeg"
+              srcProp={druvguiden}
               altProp="Gröna druvklasar hängande på en vinstock omgiven av vinblad."
               classesProp="relative w-[100%] h-[100%] explore-overlay"
               objectFitProp="cover"
@@ -38,7 +44,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
           </Link>
           <Link href="/guide/vinatlas" className="relative">
             <HandleImage
-              srcProp="/Images/vintradgardsbild.jpeg"
+              srcProp={vinatlas}
               altProp="En solig utsikt över en vingård med rader av vinstockar, omgivna av gröna kullar och träd."
               classesProp="relative w-[100%] h-[100%] explore-overlay"
               objectFitProp="cover"
@@ -51,7 +57,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
           </Link>
           <Link href="/guide/vinskolan" className="relative">
             <HandleImage
-              srcProp="/Images/fatlager.jpeg"
+              srcProp={vinskolan}
               altProp="Trärader av lagringsfat med nummermärkningar i ett mörkt lager, med en belysningsstig i mitten."
               classesProp="relative w-[100%] h-[100%] explore-overlay"
               objectFitProp="cover"
@@ -64,7 +70,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
           </Link>
           <Link href="/guide/ordlista" className="relative">
             <HandleImage
-              srcProp="/Images/vin_glas_bilder.jpeg"
+              srcProp={ordlista}
               altProp="Översikt av olika vinglas fyllda med rött, rosé och vitt vin."
               classesProp="relative w-[100%] h-[100%] explore-overlay"
               objectFitProp="cover"
@@ -77,7 +83,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
           </Link>
           <Link href="/recept" className="col-span-2 relative">
             <HandleImage
-              srcProp="/Images/vin_och_ost_bord.jpeg"
+              srcProp={recept}
               altProp="Vinflaska, glas med rött vin, druvor och en bit ost på ett bord mot en mörk bakgrund."
               classesProp="relative w-[100%] h-[100%] explore-overlay"
               objectFitProp="cover"

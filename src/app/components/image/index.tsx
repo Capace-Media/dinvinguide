@@ -4,9 +4,9 @@ import { useState } from "react";
 
 interface HandleImageProps {
   classesProp?: string;
-  srcProp?: string;
+  srcProp?: string | any;
   altProp?: string;
-  sizesProp?: string;
+  sizesProp?: string | any;
   objectFitProp?: "cover" | "contain" | undefined;
   objectPositionProp?: string | undefined;
 }
