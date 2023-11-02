@@ -1,7 +1,8 @@
 {
   "name": "dvg",
-  "version": "0.1.0",
+  "version": "3.0.0",
   "private": true,
+  "author": "Rick Centerhall - https://www.linkedin.com/in/rickcenterhall/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

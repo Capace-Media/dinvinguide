@@ -108,29 +108,31 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position, pageType }) => {
   return (
     <div className="flex justify-center items-center">
       <div className="relative lg:hover:scale-105 lg:duration-300 lg:ease-in-out block w-[280px] h-64 lg:w-[980px] lg:h-[200px]">
-        <a
-          href={isHref}
-          target="_blank"
-          className="block relative w-full h-full"
-          rel="noreferrer"
-        >
-          <>
-            <Image
-              src={isSrc}
-              fill
-              style={{ objectFit: "contain" }}
-              alt="Annons"
-              onLoad={() => setImageLoaded(true)}
-              sizes="(min-width: 1040px) 980px, 280px"
-              priority
-            />
-            {!imageLoaded && (
-              <div className="absolute top-0 left-0 right-0 bottom-0">
-                <div className="aspect-square animate-pulse h-full w-full overflow-hidden bg-brand-primary"></div>
-              </div>
-            )}
-          </>
-        </a>
+        {isHref && (
+          <a
+            href={isHref}
+            target="_blank"
+            className="block relative w-full h-full"
+            rel="noreferrer"
+          >
+            <>
+              <Image
+                src={isSrc}
+                fill
+                style={{ objectFit: "contain" }}
+                alt="Annons"
+                onLoad={() => setImageLoaded(true)}
+                sizes="(min-width: 1040px) 980px, 280px"
+                priority
+              />
+              {!imageLoaded && (
+                <div className="absolute top-0 left-0 right-0 bottom-0">
+                  <div className="aspect-square animate-pulse h-full w-full overflow-hidden bg-brand-primary"></div>
+                </div>
+              )}
+            </>
+          </a>
+        )}
       </div>
     </div>
   );
