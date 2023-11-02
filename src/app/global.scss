@@ -12,7 +12,7 @@ body {
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(6, minmax(150px, 1fr));
+  grid-template-rows: repeat(5, minmax(150px, 1fr));
   pointer-events: none;
 
   & > :nth-child(1) {
@@ -52,6 +52,10 @@ body {
     background-color: red;
     pointer-events: auto;
   }
+}
+
+.test-text {
+  line-height: 23px;
 }
 
 .parsed {
@@ -196,7 +200,7 @@ body {
 
 .truncated {
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -212,7 +216,7 @@ body {
   .recipe-grid {
     gap: 12px;
 
-    grid-template-rows: repeat(6, minmax(250px, 1fr));
+    //grid-template-rows: repeat(6, minmax(250px, 1fr));
 
     & > :nth-child(1) {
     }

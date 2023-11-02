@@ -85,7 +85,7 @@ const ExploreRecipes: React.FC = async () => {
 
       <div className="layout lg:h-[720px] bg-white"></div>
 
-      <div className="recipe-grid layout py-4 md:py-11 lg:py-20">
+      <div className="recipe-grid bg-white lg:bg-transparent layout py-4 md:py-11 lg:py-20">
         <div></div>
         {data?.recipes?.nodes?.map((recipe: Recipe, index: number) => (
           <Link href="/" key={recipe.id} className="relative">
@@ -127,12 +127,12 @@ const ExploreRecipes: React.FC = async () => {
             </div>
             <div className="absolute bottom-0 pointer-events-none left-0 p-4 lg:w-[70%] z-10 text-white">
               {recipe?.acf_recipe?.skrivetAv && (
-                <p className="md:text-[14px] md:uppercase text-[12px]">
+                <p className="md:text-[12px] md:uppercase text-[12px]">
                   {recipe.acf_recipe.skrivetAv[0].name}
                 </p>
               )}
               {recipe?.title && (
-                <h2 className="md:text-[22px] text-[16px] lowercase font-sub">
+                <h2 className="md:text-[18px] leading-6 text-[16px] lowercase font-sub">
                   {recipe.title}
                 </h2>
               )}

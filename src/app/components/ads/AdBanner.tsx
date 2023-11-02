@@ -1,5 +1,6 @@
 "use client";
 
+import { SkeletonLoader } from "@/components/Blocks/skribenter/Posts/post";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -22,6 +23,11 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position, pageType }) => {
     typeof window !== "undefined" ? window.innerWidth < 1024 : false
   );
 
+  const [isSrc, setSrc] = useState<string>("");
+  const [isHref, setHref] = useState<string>("");
+
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   // Mapping for positions and page types to retrieve ad data
   const adMapping = {
     [TOP]: {
@@ -39,7 +45,7 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position, pageType }) => {
   };
 
   const getAdData = (device: string) => {
-    const adField = adMapping[position][pageType];
+    const adField: string = adMapping[position][pageType];
 
     const ad =
       ads?.acfOptionsAnnonsplaceringar?.acf_adsettings?.[adField] &&
@@ -65,28 +71,10 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position, pageType }) => {
       href: ad ? ad?.acf_ads?.link : fallbackAd?.acf_ads?.link,
       src: ad
         ? ad?.acf_ads[bannerType]?.mediaItemUrl
+        : bannerType === "mobilbanner"
+        ? fallbackAd?.acf_ads["mobilbanner"]?.mediaItemUrl
         : fallbackAd?.acf_ads["toppbanner"]?.mediaItemUrl,
     };
-  };
-
-  const renderAd = (device: string) => {
-    const { href, src } = getAdData(device);
-    return (
-      <a
-        href={href}
-        target="_blank"
-        className="block relative w-full h-full"
-        rel="noreferrer"
-      >
-        <Image
-          src={src}
-          fill
-          style={{ objectFit: "contain" }}
-          alt="Annons"
-          sizes="(min-width: 1040px) 980px, 280px"
-        />
-      </a>
-    );
   };
 
   useEffect(() => {
@@ -99,17 +87,51 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position, pageType }) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isSmall) {
+      const { href, src } = getAdData("mobile");
+      setHref(href);
+      setSrc(src);
+    } else {
+      const { href, src } = getAdData("desktop");
+      setHref(href);
+      setSrc(src);
+    }
+
+    return () => {
+      setHref("");
+      setSrc("");
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSmall]);
+
   return (
     <div className="flex justify-center items-center">
-      {isSmall ? (
-        <div className="relative lg:hover:scale-105 lg:duration-300 lg:ease-in-out block w-[280px] h-64 lg:hidden">
-          {renderAd("mobile")}
-        </div>
-      ) : (
-        <div className="hidden lg:block w-[980px] lg:hover:scale-105 lg:duration-300 lg:ease-in-out h-[200px] relative">
-          {renderAd("desktop")}
-        </div>
-      )}
+      <div className="relative lg:hover:scale-105 lg:duration-300 lg:ease-in-out block w-[280px] h-64 lg:w-[980px] lg:h-[200px]">
+        <a
+          href={isHref}
+          target="_blank"
+          className="block relative w-full h-full"
+          rel="noreferrer"
+        >
+          <>
+            <Image
+              src={isSrc}
+              fill
+              style={{ objectFit: "contain" }}
+              alt="Annons"
+              onLoad={() => setImageLoaded(true)}
+              sizes="(min-width: 1040px) 980px, 280px"
+              priority
+            />
+            {!imageLoaded && (
+              <div className="absolute top-0 left-0 right-0 bottom-0">
+                <div className="aspect-square animate-pulse h-full w-full overflow-hidden bg-brand-primary"></div>
+              </div>
+            )}
+          </>
+        </a>
+      </div>
     </div>
   );
 };

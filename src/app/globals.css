@@ -14,7 +14,11 @@ html,
   @apply px-4 md:px-11 lg:px-20 m-auto xl:max-w-[1777px];
 }
 .contain {
-  @apply py-2 md:py-6 lg:py-10;
+  @apply py-4 md:py-11 lg:py-20;
+}
+
+.contain-m {
+  @apply my-4 md:my-11 lg:my-20;
 }
 .btn {
   @apply bg-brand-primary font-bold text-white py-3 flex justify-center items-center px-4 md:hover:scale-105 md:ease-in-out md:duration-300;

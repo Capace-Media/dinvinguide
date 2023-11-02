@@ -20,7 +20,7 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <div className="">
-      <div className={`w-full relative h-[14.2rem] overlay`}>
+      <div className={`w-full relative h-[12.2rem] overlay`}>
         {post?.featuredImage?.node?.mediaItemUrl && (
           <>
             <Image
@@ -50,7 +50,7 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
         </div>
       </div>
 
-      <div className="h-[14.9rem]  flex flex-col justify-between py-2">
+      <div className="h-[12.9rem]  flex flex-col justify-between py-2">
         <div className="flex flex-col">
           {post?.modifiedGmt && (
             <p className="text-brand-gray text-[14px]">

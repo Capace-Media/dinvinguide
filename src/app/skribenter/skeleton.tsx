@@ -7,8 +7,8 @@ export default function Skeleton() {
         {[...Array(8)].map((movie, index) => (
           <li key={index} className="animate-pulse">
             <div className="">
-              <div className="w-full relative h-[14.2rem] bg-gray-300"></div>
-              <div className="h-[14.9rem]  flex flex-col justify-between py-2">
+              <div className="w-full relative h-[12.2rem] bg-gray-300"></div>
+              <div className="h-[12.9rem]  flex flex-col justify-between py-2">
                 <div className="flex flex-col">
                   <p className="mt-2 h-3 w-1/2 rounded-lg bg-gray-600"></p>
                   <p className="mt-2 block h-3 rounded-lg bg-gray-600 text-sm font-medium"></p>
@@ -35,6 +35,8 @@ export default function Skeleton() {
 
           <div className="flex justify-center items-center gap-3">
             <span className="w-[28px] flex justify-center items-center h-[28px] text-white bg-brand-secondary"></span>{" "}
+            av
+            <span className="w-[28px] flex justify-center items-center h-[28px] text-white bg-gray-300"></span>{" "}
           </div>
 
           <button

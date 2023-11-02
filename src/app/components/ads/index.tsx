@@ -47,15 +47,27 @@ export function getAdQuery(
   return QUERY_MAP[pageType][position];
 }
 
-async function fetchAds(
-  pageType: "default" | "DL",
-  position: "TOP" | "MID" | "BOTTOM"
-): Promise<AdsData> {
+// async function fetchAds(
+//   pageType: "default" | "DL",
+//   position: "TOP" | "MID" | "BOTTOM"
+// ): Promise<AdsData> {
+//   const query = getAdQuery(pageType, position);
+
+//   const data = await WP(query);
+
+//   return data.data;
+// }
+
+async function fetchAds(pageType: any, position: any) {
   const query = getAdQuery(pageType, position);
 
-  const data = await WP(query);
-
-  return data.data;
+  try {
+    const data = await WP(query);
+    return data.data;
+  } catch (error) {
+    console.error("Fetch Ads Error:", error);
+    return null; // Adjusted to return null on error
+  }
 }
 
 export default async function Ads({ pageType, position }: AdsProps) {

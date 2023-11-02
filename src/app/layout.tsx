@@ -15,6 +15,12 @@ const poppins = Poppins({
   weight: ["400", "700"],
   variable: "--font-poppins",
 });
+export const viewport = {
+  themeColor: "#400D12",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   title: {
@@ -51,11 +57,7 @@ export const metadata: Metadata = {
       me: ["", ""],
     },
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-  },
+
   robots: {
     index: true,
     follow: true,
@@ -121,7 +123,7 @@ export default function RootLayout({
         className={`${poppins.variable} ${abrilFatface.variable} font-main`}
       >
         <Header />
-        <main>{children}</main>
+        <main className="">{children}</main>
         <Footer />
       </body>
     </html>
