@@ -14,7 +14,7 @@ interface FrontHeroProps {
 const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
   return (
     <div className="layout w-full py-[73px] md:pt-[172px] bg-white">
-      <div className="grid md:grid-cols-2 order-last md:order-first">
+      <div className="grid md:grid-cols-2 order-last md:order-first ">
         <div className="flex flex-col justify-between min-h-[461px]">
           <div className="flex flex-col gap-6 ">
             <div className="front-parse">{handleParsed(data?.content)}</div>

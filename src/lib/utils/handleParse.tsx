@@ -2,11 +2,11 @@ import parse, { DOMNode } from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function handleParse(content?: string) {
+export default function handleParse(content?: string, parseClasses?: string) {
   const thContents: any = [];
   let thIndex = 0;
   return (
-    <div className="parsed">
+    <div className={parseClasses ? parseClasses : "parsed"}>
       {content &&
         parse(content, {
           replace: (domNode: DOMNode | any) => {

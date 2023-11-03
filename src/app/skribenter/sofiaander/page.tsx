@@ -3,8 +3,12 @@ import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 
 import { getAuthor } from "@/lib/queries/getAuthor";
 
+import ExplorePages from "@/app/components/ExplorePages";
+import Newsletter from "@/app/components/Newsletter";
+import Ads from "@/app/components/ads";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
+import AuthorHero from "../components/AuthorHero";
 
 type Props = {
   params: { slug: string };
@@ -63,14 +67,21 @@ const Author = async ({ searchParams }: Props) => {
   const { posts } = data;
 
   return (
-    <div className="layout bg-white">
-      <div className="w-full h-screen"></div>
-      <AuthorPosts
-        params={params}
-        searchParams={searchParams}
-        postsCount={posts}
-      />
-    </div>
+    <>
+      <AuthorHero promise={data} />
+      <Ads pageType="default" position="TOP" />
+      <section className="layout bg-white">
+        <AuthorPosts
+          params={params}
+          searchParams={searchParams}
+          postsCount={posts}
+        />
+      </section>
+      <Ads pageType="default" position="MID" />
+      <ExplorePages />
+      <Ads pageType="default" position="BOTTOM" />
+      <Newsletter />
+    </>
   );
 };
 

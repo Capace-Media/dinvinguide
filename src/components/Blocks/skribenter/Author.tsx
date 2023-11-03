@@ -1,14 +1,8 @@
-import {
-  FbPrimary,
-  FbWhite,
-  IgPrimary,
-  IgWhite,
-  MailPrimary,
-  MailWhite,
-} from "@/components/icons";
 import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
 import Link from "next/link";
+import AuthorPost from "./Posts/post";
+import SocialMedia from "./SocialMedia";
 
 interface AuthorComponentProps {
   author: any;
@@ -19,11 +13,11 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
   return (
     <div className="">
       <div
-        className={`layout  contain flex flex-col lg:grid lg:grid-cols-2 lg:flex-row-reverse lg:gap-24 gap-4 ${
+        className={`layout contain flex flex-col md:grid md:grid-cols-2  md:gap-24 gap-4 ${
           index % 2 === 0 ? "bg-[#F6F6F6]" : "bg-brand-primary text-white"
         }`}
       >
-        <div className="w-full h-[50vh] lg:h-[45vh] relative">
+        <div className="w-full h-[366px] lg:h-[482px] relative m-auto lg:order-2">
           <Image
             src={author.acf_user.bild.mediaItemUrl}
             alt={
@@ -44,13 +38,28 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
           "
           />
         </div>
-        <div className="flex flex-col gap-4">
-          <div>
-            <p>Skribent</p>
-            <h2 className="text-[28px] font-sub">{author?.name}</h2>
+        <div
+          className={`flex flex-col justify-between lg:order-1 ${
+            index % 2 === 0 ? "text-brand-dark" : " text-brand-light"
+          }`}
+        >
+          <div className="flex flex-col gap-4 min-h-[240px]">
+            <div>
+              <h2 className="text-[28px] flex flex-col md:text-[42px] lg:text-[53px] font-sub lg:leading-[72px]">
+                <span className=" font-main text-[18px] md:text-[23px] leading-[18px] md:leading-[23px]">
+                  Skribent
+                </span>
+                <span className="block capitalize-first">{author?.name}</span>
+              </h2>
+            </div>
+
+            <p
+              className={`author_parse text-[14px] md:text-[15px] leading-[26px]`}
+            >
+              {author?.description}
+            </p>
           </div>
 
-          {handleParse(author?.description)}
           <div className="flex justify-between items-center">
             <Link
               className={`${index % 2 === 0 ? "btn" : "btn-white"}`}
@@ -58,83 +67,21 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
             >
               Upptäck alla Artiklar
             </Link>
-
-            {index % 2 === 0 ? (
-              <div className="flex items-center gap-3">
-                {author?.acf_user?.facebook && (
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="gå till facebook"
-                    className="h-10 w-6 flex justify-center items-center"
-                    href={author.acf_user.facebook}
-                  >
-                    <FbPrimary />
-                  </a>
-                )}
-                {author?.acf_user?.instagram && (
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="gå till instagram"
-                    className="h-10 w-6 flex justify-center items-center"
-                    href={author.acf_user.instagram}
-                  >
-                    <IgPrimary />
-                  </a>
-                )}
-                {author?.acf_user?.email && (
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="skicka mail"
-                    className="h-10 w-6 flex justify-center items-center"
-                    href={`mailto:${author.acf_user.email}`}
-                  >
-                    <MailPrimary />
-                  </a>
-                )}
-              </div>
-            ) : (
-              <div className="flex items-center gap-3">
-                {author?.acf_user?.facebook && (
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="gå till facebook"
-                    className="h-10 w-6 flex justify-center items-center"
-                    href={author.acf_user.facebook}
-                  >
-                    <FbWhite />
-                  </a>
-                )}
-                {author?.acf_user?.instagram && (
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="gå till instagram"
-                    className="h-10 w-6 flex justify-center items-center"
-                    href={author.acf_user.instagram}
-                  >
-                    <IgWhite />
-                  </a>
-                )}
-                {author?.acf_user?.email && (
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="skicka mail"
-                    className="h-10 w-6 flex justify-center items-center"
-                    href={`mailto:${author.acf_user.email}`}
-                  >
-                    <MailWhite />
-                  </a>
-                )}
-              </div>
-            )}
+            <SocialMedia index={index} social={author?.acf_user} />
           </div>
         </div>
       </div>
+      {author?.posts?.nodes ? (
+        <div className="layout bg-white contain">
+          <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
+            {author.posts.nodes.map((post: any) => (
+              <li key={post.id}>
+                <AuthorPost post={post} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
     </div>
   );
 };

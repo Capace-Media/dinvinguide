@@ -1,0 +1,24 @@
+$header: var(--font-abrilFatface);
+$content: var(--font-poppins);
+
+$contentColor: #666;
+$headerColor: #333;
+
+body {
+  background-color: #e4e4e4;
+}
+
+@mixin truncated($line-clamp: 3) {
+  display: -webkit-box;
+  -webkit-line-clamp: $line-clamp;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.capitalize-first::first-letter {
+  text-transform: uppercase;
+}
+@import "./mobile/mobile";
+@import "./pad/pad";
+@import "./desktop/desktop";

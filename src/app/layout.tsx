@@ -2,8 +2,8 @@ import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
 import type { Metadata } from "next";
 import { Abril_Fatface, Poppins } from "next/font/google";
-import "./global.scss";
-import "./globals.css";
+import "./styles/global.scss";
+import "./styles/globals.css";
 
 const abrilFatface = Abril_Fatface({
   subsets: ["latin"],

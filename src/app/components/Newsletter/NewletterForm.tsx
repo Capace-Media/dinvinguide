@@ -12,6 +12,7 @@ const NewsletterForm = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const hiddenInput = e?.target[2]?.value;
+
     if (hiddenInput) {
       alert("Var vänlig bekräfta att du är en människa och inte en robot");
       return;
@@ -73,7 +74,7 @@ const NewsletterForm = () => {
             <SubmitArrow />
           </button>
         </div>
-        <input type="hidden" name="ml-submit" value="1" />
+
         <input
           id="error"
           name="error"

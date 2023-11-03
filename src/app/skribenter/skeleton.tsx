@@ -3,7 +3,7 @@ import { ArrowNextActive, ArrowPrevActive } from "@/components/icons";
 export default function Skeleton() {
   return (
     <>
-      <ul className="lg:grid lg:grid-cols-4 md:grid-cols-2 lg:gap-5">
+      <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
         {[...Array(8)].map((movie, index) => (
           <li key={index} className="animate-pulse">
             <div className="">

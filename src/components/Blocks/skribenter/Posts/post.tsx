@@ -19,8 +19,12 @@ export const SkeletonLoader = () => {
 const AuthorPost = ({ post }: AuthorPostProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
-    <div className="">
-      <div className={`w-full relative h-[12.2rem] overlay`}>
+    <div className="group">
+      <Link
+        href={`/skribenter${post.uri}`}
+        aria-label={`Läs om ${post?.title}`}
+        className={`block w-full relative h-[12.2rem] overlay`}
+      >
         {post?.featuredImage?.node?.mediaItemUrl && (
           <>
             <Image
@@ -48,9 +52,9 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
         <div className="absolute right-3 top-2 z-10 border-b-2 border-white ">
           <p className="text-white uppercase">{post.author.node.name}</p>
         </div>
-      </div>
+      </Link>
 
-      <div className="h-[12.9rem]  flex flex-col justify-between py-2">
+      <div className="h-[12.9rem] flex flex-col justify-between py-2">
         <div className="flex flex-col">
           {post?.modifiedGmt && (
             <p className="text-brand-gray text-[14px]">
@@ -58,13 +62,8 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
             </p>
           )}
           {post?.title && (
-            <h2 className="heading_truncated lg:hover:underline font-sub mb-2 text-[22px] text-brand-dark">
-              <Link
-                href={`/skribenter${post.uri}`}
-                aria-label={`Läs om ${post?.title}`}
-              >
-                {post.title}
-              </Link>
+            <h2 className="heading_truncated font-sub mb-2 text-[22px] text-brand-dark">
+              {post.title}
             </h2>
           )}
           {post?.acf_posts?.ingress && (

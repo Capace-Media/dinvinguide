@@ -29,10 +29,7 @@ const PostList = ({
 
   return (
     <>
-      <ul
-        ref={postsRef}
-        className="lg:grid lg:grid-cols-4 md:grid-cols-2 lg:gap-5"
-      >
+      <ul ref={postsRef} className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
         {posts.map((post: any) => (
           <li key={post.node.id}>
             <AuthorPost post={post?.node} />

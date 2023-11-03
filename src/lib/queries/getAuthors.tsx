@@ -15,6 +15,7 @@ export const getAuthors = async () => {
                     nodes {
                       title
                       slug
+                      uri
                       modifiedGmt
                       author {
                         node {
@@ -55,6 +56,7 @@ export const getAuthors = async () => {
                     nodes {
                       title
                       slug
+                      uri
                       modifiedGmt
                       author {
                         node {

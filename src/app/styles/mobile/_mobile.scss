@@ -1,0 +1,225 @@
+.recipe-grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(5, minmax(150px, 1fr));
+  pointer-events: none;
+
+  & > :nth-child(1) {
+    display: none;
+    pointer-events: none;
+  }
+
+  & > :nth-child(2) {
+    background-color: red;
+    grid-column: span 2 / span 2;
+    pointer-events: auto;
+  }
+  & > :nth-child(3) {
+    background-color: red;
+    pointer-events: auto;
+  }
+  & > :nth-child(4) {
+    background-color: red;
+    pointer-events: auto;
+  }
+  & > :nth-child(5) {
+    background-color: red;
+    pointer-events: auto;
+  }
+  & > :nth-child(6) {
+    background-color: red;
+    grid-row: span 2 / span 2;
+    pointer-events: auto;
+  }
+  & > :nth-child(7) {
+    background-color: red;
+    grid-row: span 2 / span 2;
+    pointer-events: auto;
+  }
+
+  & > :nth-child(8) {
+    background-color: red;
+    pointer-events: auto;
+  }
+}
+
+.mask {
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #15151599;
+  }
+}
+
+.test-text {
+  line-height: 23px;
+}
+
+.author_parse {
+  @include truncated(5);
+}
+.author_text {
+  @include truncated(7);
+}
+
+.parsed {
+  color: #333;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $header;
+  }
+  h1 {
+    font-size: 44px;
+    line-height: 59.36px;
+    margin-bottom: 9px;
+  }
+
+  p {
+    font-family: $content;
+    font-weight: 400;
+    font-size: 14px;
+  }
+}
+
+.front-parse {
+  .parsed {
+    color: #333;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: $header;
+    }
+    h1 {
+      display: flex;
+      flex-direction: column;
+      font-size: 37px;
+      line-height: 57px;
+      margin-bottom: 9px;
+
+      em {
+        font-size: 20px;
+        font-style: normal;
+        line-height: 22px;
+        font-family: $content;
+      }
+    }
+
+    p {
+      font-family: $content;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 27px;
+      color: #666;
+    }
+  }
+}
+
+.recipe_parse {
+  .parsed {
+    color: white;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: $content;
+      font-size: 16px;
+      strong {
+        font-size: 24px;
+        font-family: $header;
+      }
+    }
+    h1 {
+    }
+
+    p {
+    }
+  }
+}
+.overlay {
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.4) 16.35%,
+      rgba(0, 0, 0, 0) 49.69%
+    );
+  }
+}
+
+.recipe-overlay {
+  overflow: hidden;
+  img {
+    transition: ease-in-out 0.3s;
+    &:hover {
+      transform: scale(1.19);
+      -ms-transform: scale(1.19); /* IE 9 */
+      -moz-transform: scale(1.19); /* Firefox */
+      -webkit-transform: scale(1.19); /* Safari and Chrome */
+      -o-transform: scale(1.19); /* Opera */
+    }
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: ease-in-out 0.27s;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.24) 0%,
+      rgba(0, 0, 0, 0.8) 100%,
+      rgba(0, 0, 0, 0.64) 100%,
+      rgba(0, 0, 0, 0.64) 100%
+    );
+    pointer-events: none;
+  }
+}
+
+.explore-overlay {
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000066;
+    transition: ease-in-out 0.27s;
+  }
+
+  &:hover {
+    &::after {
+      background-color: transparent;
+    }
+  }
+}
+
+.truncated {
+  @include truncated(3);
+}
+
+.heading_truncated {
+  @include truncated(2);
+}

@@ -11,6 +11,7 @@ async function fetchRecipes() {
 
 type Recipe = {
   id: string;
+  slug: string;
   featuredImage?: {
     node?: {
       mediaItemUrl: string;
@@ -88,7 +89,11 @@ const ExploreRecipes: React.FC = async () => {
       <div className="recipe-grid bg-white lg:bg-transparent layout py-4 md:py-11 lg:py-20">
         <div></div>
         {data?.recipes?.nodes?.map((recipe: Recipe, index: number) => (
-          <Link href="/" key={recipe.id} className="relative">
+          <Link
+            href={`/recept/receptbanken/${recipe?.slug}`}
+            key={recipe.id}
+            className="relative"
+          >
             <HandleImage
               srcProp={recipe?.featuredImage?.node?.mediaItemUrl}
               altProp={recipe?.featuredImage?.node?.altText}
