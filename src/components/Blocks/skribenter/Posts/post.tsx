@@ -18,6 +18,8 @@ export const SkeletonLoader = () => {
 
 const AuthorPost = ({ post }: AuthorPostProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  console.log("post =====>", post);
+
   return (
     <div className="group">
       <Link
@@ -30,7 +32,7 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
             <Image
               src={post.featuredImage.node.mediaItemUrl}
               alt={
-                post?.featuredImage?.node.altText
+                post?.featuredImage?.node?.altText
                   ? post.featuredImage.node.altText
                   : `bild på ${post.title}`
               }

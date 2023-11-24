@@ -27,7 +27,7 @@ const LatestArticles = async () => {
           </span>
         </Link>
       </div>
-      <ul className="lg:grid lg:grid-cols-4 md:grid-cols-2 lg:gap-5">
+      <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
         {posts.posts.nodes.map((post: any) => (
           <li key={post.id}>
             <AuthorPost post={post} />

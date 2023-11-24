@@ -9,6 +9,7 @@ import Newsletter from "@/app/components/Newsletter";
 import Ads from "@/app/components/ads";
 import { isCustomPageSlug } from "@/lib/utils/exclude";
 import { Metadata, ResolvingMetadata } from "next";
+import Link from "next/link";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
 import AuthorHero from "../components/AuthorHero";
 type PropsPaths = {
@@ -87,6 +88,21 @@ const Author = async ({ params, searchParams }: Props) => {
       <AuthorHero promise={data} />
       <Ads pageType="default" position="TOP" />
       <section className="layout bg-white">
+        <div className="contain">
+          <div className="flex gap-2 text-brand-gray">
+            <Link href="/" className="text-brand-primary">
+              Hem
+            </Link>{" "}
+            /{" "}
+            <Link href="/skribenter" className="text-brand-primary">
+              Skribenter
+            </Link>{" "}
+            / <p className=" text-brand-dark">{data?.name}</p>
+          </div>
+          <h2 className=" font-sub text-[28px] md:text-[35px] lg:text-[42px] ">
+            {data?.firstName}s senaste artiklar
+          </h2>
+        </div>
         <AuthorPosts
           params={params}
           searchParams={searchParams}

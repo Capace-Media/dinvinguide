@@ -1,14 +1,14 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
 import WP from "../wp";
-import { SEO } from "./fragments/Seo";
 
-export const getAuthor = async (id: string) => {
+export const getAuthor = async (id: string, search?: string) => {
   try {
     const res = await WP(
-      `query getAuthor($id: ID!) {
+      `query getAuthor($id: ID!, $search: String) {
         user(id: $id, idType: USERNAME) {
           username
           name
+          firstName
           description
           seo {
             metaDesc
@@ -43,7 +43,7 @@ export const getAuthor = async (id: string) => {
               mediaItemUrl
             }
           }
-          posts {
+          posts(where: {search: $search}) {
             pageInfo {
               offsetPagination {
                 total
@@ -53,7 +53,7 @@ export const getAuthor = async (id: string) => {
           
         }
       }`,
-      { id }
+      { id, search }
     );
 
     const users = res.data.user;

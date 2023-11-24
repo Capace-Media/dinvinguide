@@ -7,6 +7,8 @@ import ExplorePages from "@/app/components/ExplorePages";
 import Newsletter from "@/app/components/Newsletter";
 import Ads from "@/app/components/ads";
 import { Metadata, ResolvingMetadata } from "next";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
 import AuthorHero from "../components/AuthorHero";
 
@@ -15,8 +17,8 @@ type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined };
 };
 
-async function getAuthorData(params: string) {
-  const data = await getAuthor(params);
+async function getAuthorData(params: string, search?: string) {
+  const data = await getAuthor(params, search);
 
   const authorProps = {
     ...data,
@@ -62,19 +64,38 @@ const Author = async ({ searchParams }: Props) => {
   const params: { slug: string } = {
     slug: "fredrikschelin",
   };
-  const data = await getAuthorData("fredrikschelin");
+  const search =
+    typeof searchParams.search === "string" ? searchParams.search : undefined;
+
+  const data = await getAuthorData("fredrikschelin", search);
 
   const { posts } = data;
 
   return (
     <>
-      <AuthorHero promise={data} />
+      <AuthorHero promise={data} search={search} />
       <Ads pageType="default" position="TOP" />
-      <section className="layout bg-white">
+      <section className="layout bg-white text-brand-dark">
+        <div className="contain">
+          <div className="flex gap-2 text-brand-gray">
+            <Link href="/" className="text-brand-primary">
+              Hem
+            </Link>{" "}
+            /{" "}
+            <Link href="/skribenter" className="text-brand-primary">
+              Skribenter
+            </Link>{" "}
+            / <p className=" text-brand-dark">{data?.name}</p>
+          </div>
+          <h2 className=" font-sub text-[28px] md:text-[35px] lg:text-[42px] ">
+            {data?.firstName}s senaste artiklar
+          </h2>
+        </div>
         <AuthorPosts
           params={params}
           searchParams={searchParams}
           postsCount={posts}
+          search={search}
         />
       </section>
       <Ads pageType="default" position="MID" />

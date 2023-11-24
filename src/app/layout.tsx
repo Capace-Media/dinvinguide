@@ -98,7 +98,7 @@ export const metadata: Metadata = {
         alt: "Bild från DinVinguide.se",
       },
     ],
-    locale: "sv_SE",
+    locale: "sv",
     type: "website",
   },
   generator: "Next.js",
@@ -127,7 +127,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="sv">
       <body
         className={`${poppins.variable} ${abrilFatface.variable} font-main`}
       >

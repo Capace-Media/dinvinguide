@@ -9,6 +9,7 @@ type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | any | undefined };
   postsCount: number;
+  search?: string;
 };
 
 type DataArgs = {
@@ -39,7 +40,12 @@ async function getData(args: DataArgs) {
     hasPreviousPage: data.pageInfo.hasPreviousPage,
   };
 }
-const AuthorPosts = async ({ params, searchParams, postsCount }: Props) => {
+const AuthorPosts = async ({
+  params,
+  searchParams,
+  postsCount,
+  search,
+}: Props) => {
   const postsPerPage: number =
     typeof window !== "undefined" && window.innerWidth >= 768 ? 4 : 8;
 
@@ -51,9 +57,11 @@ const AuthorPosts = async ({ params, searchParams, postsCount }: Props) => {
     after: searchParams?.nextCursor,
     before: searchParams?.previousCursor,
     authorName: params?.slug,
+    search: search,
     first: startFirst,
     last: endLast,
   });
+
   // const { posts, startCursor, endCursor, hasNextPage, hasPreviousPage } = data;
 
   return (
@@ -76,6 +84,7 @@ const AuthorPosts = async ({ params, searchParams, postsCount }: Props) => {
               hasPreviousPage={hasPreviousPage}
               postsCount={postsCount}
               postsPerPage={postsPerPage}
+              search={search}
             />
           )}
         </Await>

@@ -10,6 +10,7 @@ const WP = async (query: string, variables?: any) => {
         Authorization: `Basic ${auth}`,
         "Content-Type": "application/json",
       },
+      cache: "no-store",
       body: JSON.stringify({
         query,
         variables: variables || null,

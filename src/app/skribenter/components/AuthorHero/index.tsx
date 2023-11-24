@@ -3,12 +3,14 @@ import { SubmitArrow } from "@/components/icons";
 import Image from "next/image";
 
 import heroImage from "../../../../../public/Images/Vinsamling-korkar.jpeg";
+import Search from "../Search";
 
 interface AuthorHeroProps {
   promise?: any;
+  search?: string;
 }
 
-const AuthorHero = async ({ promise }: AuthorHeroProps) => {
+const AuthorHero = async ({ promise, search }: AuthorHeroProps) => {
   const data = await promise;
 
   return (
@@ -52,7 +54,8 @@ const AuthorHero = async ({ promise }: AuthorHeroProps) => {
               </p>
             </div>
             <div>
-              <form action="">
+              <Search search={search} />
+              {/* <form action={searchData}>
                 <div className="w-full text-[14px] bg-white relative shadow-md">
                   <input
                     type="text"
@@ -69,7 +72,7 @@ const AuthorHero = async ({ promise }: AuthorHeroProps) => {
                     <SubmitArrow />
                   </button>
                 </div>
-              </form>
+              </form> */}
             </div>
           </div>
         </div>

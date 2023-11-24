@@ -19,6 +19,7 @@ interface PaginationControlsProps {
   hasNextPage: boolean;
   postsCount: number;
   scrollToPosts: any;
+  search: any;
 }
 
 const PaginationControls: FC<PaginationControlsProps> = ({
@@ -31,6 +32,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
   hasPreviousPage,
   postsCount,
   scrollToPosts,
+  search,
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -64,9 +66,12 @@ const PaginationControls: FC<PaginationControlsProps> = ({
           router.push(
             `/skribenter/${params?.slug}/?page=${
               Number(page) - 1
-            }&last=${last}&first=null&previousCursor=${startCursor}`,
+            }&last=${last}&first=null&previousCursor=${startCursor}&search=${
+              search ? search : ""
+            }`,
             { scroll: false }
           );
+          // scrollToPosts();
           if (isMobile) {
             scrollToPosts();
           }
@@ -94,9 +99,12 @@ const PaginationControls: FC<PaginationControlsProps> = ({
           router.push(
             `/skribenter/${params?.slug}/?page=${
               Number(page) + 1
-            }&first=${first}&last=null&nextCursor=${endCursor}`,
+            }&first=${first}&last=null&nextCursor=${endCursor}&search=${
+              search ? search : ""
+            }`,
             { scroll: false }
           );
+          // scrollToPosts();
           if (isMobile) {
             scrollToPosts();
           }

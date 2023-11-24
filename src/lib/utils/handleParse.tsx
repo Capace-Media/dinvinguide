@@ -45,7 +45,8 @@ export default function handleParse(content?: string, parseClasses?: string) {
               }
 
               if (
-                !domNode?.attribs?.href?.includes("dinvinguide.se/") &&
+                !domNode?.attribs?.href?.includes("https://dinvinguide.se/") &&
+                !domNode?.attribs?.href?.includes("www.dinvinguide.se/") &&
                 !domNode?.attribs?.href?.includes("dryckeslistan.se/") &&
                 domNode?.attribs?.href?.charAt(0) !== "/"
               ) {
@@ -70,18 +71,6 @@ export default function handleParse(content?: string, parseClasses?: string) {
                   "https://"
                 );
               }
-
-              if (
-                !domNode?.attribs?.href?.includes(`mailto:`) &&
-                (!domNode?.attribs?.href?.includes(`https://`) ||
-                  !domNode?.attribs?.href?.includes(`http://`))
-              ) {
-                return (
-                  <Link href={domNode.attribs.href}>
-                    {domNode?.children[0]?.data}
-                  </Link>
-                );
-              }
             }
 
             if (domNode.name === "img") {
@@ -102,12 +91,25 @@ export default function handleParse(content?: string, parseClasses?: string) {
                 );
               }
 
+              console.log(
+                "domNode.attribs.height =====>",
+                domNode.attribs.height
+              );
+              console.log(
+                "domNode.attribs.width =====>",
+                domNode.attribs.width
+              );
+
               return (
                 <Image
                   src={domNode.attribs.src}
                   alt={domNode.attribs.alt}
-                  width={500}
-                  height={500}
+                  width={domNode?.attribs?.width ? domNode.attribs.width : 300}
+                  height={
+                    domNode?.attribs?.height ? domNode.attribs.height : 300
+                  }
+                  className={domNode.attribs.class}
+                  sizes={domNode?.attribs?.sizes}
                 />
               );
             }
