@@ -25,6 +25,7 @@ export default function handleParse(content?: string, parseClasses?: string) {
               const imgChild = Array.from(domNode.children).find(
                 (childNode: any) => childNode?.name === "img"
               );
+
               if (imgChild) {
                 if (domNode?.attribs?.href.includes("/app/uploads/")) {
                   const originalString = domNode.attribs.href;
@@ -91,26 +92,36 @@ export default function handleParse(content?: string, parseClasses?: string) {
                 );
               }
 
-              console.log(
-                "domNode.attribs.height =====>",
-                domNode.attribs.height
-              );
-              console.log(
-                "domNode.attribs.width =====>",
-                domNode.attribs.width
-              );
-
               return (
-                <Image
-                  src={domNode.attribs.src}
-                  alt={domNode.attribs.alt}
-                  width={domNode?.attribs?.width ? domNode.attribs.width : 300}
-                  height={
-                    domNode?.attribs?.height ? domNode.attribs.height : 300
-                  }
+                <div
                   className={domNode.attribs.class}
-                  sizes={domNode?.attribs?.sizes}
-                />
+                  style={{
+                    width: `${domNode?.attribs?.width}px`,
+
+                    height: `${domNode?.attribs?.height}px`,
+                    position: "relative",
+                  }}
+                >
+                  <Image
+                    src={domNode.attribs.src}
+                    alt={domNode.attribs.alt}
+                    width={
+                      domNode?.attribs?.width ? domNode.attribs.width : 300
+                    }
+                    height={
+                      domNode?.attribs?.height ? domNode.attribs.height : 300
+                    }
+                    style={{
+                      width: `${domNode?.attribs?.width}px`,
+
+                      height: `${domNode?.attribs?.height}px`,
+
+                      objectFit: "cover",
+                    }}
+                    className={domNode.attribs.class}
+                    sizes={domNode?.attribs?.sizes}
+                  />
+                </div>
               );
             }
           },

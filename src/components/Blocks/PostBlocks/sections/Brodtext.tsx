@@ -5,12 +5,7 @@ interface BrodtextProps {
 }
 
 const Brodtext = ({ content }: BrodtextProps) => {
-  console.log("content =====>", content);
-  return (
-    <section className="">
-      <div>{handleParse(content.text)}</div>
-    </section>
-  );
+  return <section className="">{handleParse(content.text)}</section>;
 };
 
 export default Brodtext;

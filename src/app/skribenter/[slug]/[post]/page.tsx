@@ -79,7 +79,7 @@ const Articlepost = async ({ params, searchParams }: Props) => {
   console.log("post =====>", post);
 
   return (
-    <article className="layout">
+    <article className="layout bg-white">
       <PostTemplate post={post} />
     </article>
   );

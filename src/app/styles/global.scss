@@ -19,6 +19,12 @@ body {
 .capitalize-first::first-letter {
   text-transform: uppercase;
 }
+
+section {
+  clear: both;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
 @import "./mobile/mobile";
 @import "./pad/pad";
 @import "./desktop/desktop";

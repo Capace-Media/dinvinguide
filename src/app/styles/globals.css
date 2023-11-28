@@ -34,19 +34,16 @@ html,
   p iframe {
     @apply mx-auto;
   }
-  /* .prose-sm img.alignright {
+  /* .prose-sm div.alignright {
     @apply block float-right;
   } */
-  img.alignnone {
-    @apply float-left;
-  }
 }
 
-img.alignnone,
-img.alignleft {
+div.alignnone,
+div.alignleft {
   @apply mt-0 md:mr-3 md:float-left after:clear-both before:clear-both;
 }
-img.alignright {
+div.alignright {
   @apply mt-0 md:ml-3 md:float-right after:clear-both before:clear-both;
 }
 
