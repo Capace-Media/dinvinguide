@@ -1,10 +1,22 @@
+import RecipeHero from "@/components/Blocks/Hero-Header/RecipeHero";
+import { getPage } from "@/lib/queries/getPage";
+import { getRecipes } from "@/lib/queries/getRecipes";
+
 interface RecipesProps {}
 
-const Recipes = ({}: RecipesProps) => {
+const getRecipeData = async () => {
+  const data = await getPage("recept");
+  const recipes = getRecipes();
+
+  return { data, recipes };
+};
+
+const Recipes = async ({}: RecipesProps) => {
+  const { data, recipes } = await getRecipeData();
   return (
-    <div className="">
-      <h2 className="">Hello Recipes</h2>
-    </div>
+    <>
+      <RecipeHero promise={recipes} />
+    </>
   );
 };
 

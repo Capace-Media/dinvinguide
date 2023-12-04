@@ -9,6 +9,9 @@ export const getPage = async (id: string) => {
         page(id: $id, idType: URI) {
           title
           content
+          page_content {
+            intro
+          }
           ${SEO}
           featuredImage {
             node {

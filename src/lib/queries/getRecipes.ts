@@ -1,15 +1,15 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP from "../wp";
+import WP, { WPnext } from "../wp";
 
 export const getRecipes = async () => {
   try {
-    const res = await WP(`query getRecipes {
+    const res = await WPnext(`query getRecipes {
         page(id: "recept", idType: URI) {
             page_content {
               intro
             }
           }
-        recipes(first: 7) {
+        recipes(first: 3) {
             nodes {
               title
               slug
@@ -38,7 +38,7 @@ export const getRecipes = async () => {
           }
           }`);
 
-    const data = res.data;
+    const data = res?.data;
     return data;
   } catch (error) {
     console.error(error);

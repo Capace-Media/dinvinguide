@@ -18,6 +18,7 @@ export const SkeletonLoader = () => {
 
 const AuthorPost = ({ post }: AuthorPostProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+
   console.log("post =====>", post);
 
   return (

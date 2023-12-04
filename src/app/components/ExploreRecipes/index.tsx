@@ -90,7 +90,7 @@ const ExploreRecipes: React.FC = async () => {
         <div></div>
         {data?.recipes?.nodes?.map((recipe: Recipe, index: number) => (
           <Link
-            href={`/recept/receptbanken/${recipe?.slug}`}
+            href={`/recept/${recipe?.slug}`}
             key={recipe.id}
             className="relative"
           >

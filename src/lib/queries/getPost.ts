@@ -1,5 +1,5 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP, { WPnext } from "../wp";
+import { WPnext } from "../wp";
 import { SEO } from "./fragments/Seo";
 
 export const getPost = async (id: string) => {
@@ -20,6 +20,10 @@ export const getPost = async (id: string) => {
                 title
                 slug
                 uri
+                modifiedGmt
+                acf_posts {
+                  ingress
+                }
                 author {
                   node {
                     name
@@ -170,6 +174,8 @@ export const getPost = async (id: string) => {
           featuredImage {
             node {
               mediaItemUrl
+              altText
+              
             }
           }
           author {

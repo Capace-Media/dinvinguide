@@ -1,0 +1,34 @@
+{
+  "recipeCategories": [
+    {
+      "title": "Alla recept",
+      "uri": "/recept/receptbanken",
+      "id": "1a2b3g4wg4ewgw4fc4d5e"
+    },
+    {
+      "title": "Måltider",
+      "uri": "/recept/maltider",
+      "id": "6f7g8hfw34wgfw4gi0j"
+    },
+    {
+      "title": "Världens kök",
+      "uri": "/recept/varldens-kok",
+      "id": "0k9l8m7asfdwawe4fn6o"
+    },
+    {
+      "title": "Ingredienser",
+      "uri": "/recept/ingredienser",
+      "id": "dsdfgs45g57j8k9iue5"
+    },
+    {
+      "title": "Tillagningssätt",
+      "uri": "/recept/tillagningssatt",
+      "id": "u7v8ww4r5y67j76hg5ef49x0y1"
+    },
+    {
+      "title": "Drycker",
+      "uri": "/recept/drycker",
+      "id": "z2x3c4v5454oth495uhtt5gb6"
+    }
+  ]
+}
