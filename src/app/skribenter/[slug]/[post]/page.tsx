@@ -1,6 +1,7 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import PostTemplate from "@/components/Templates/PostTemplate";
 import { getPost } from "@/lib/queries/getPost";
+import generateArticleSchema from "@/lib/utils/json-LD-Schemas/generateArticleSchema";
 import WP from "@/lib/wp";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../../../types/MetaInfoTypes";
@@ -76,10 +77,26 @@ export async function generateMetadata(
 const Articlepost = async ({ params, searchParams }: Props) => {
   const post = await getPostData(params);
 
-  console.log("post =====>", post);
-
+  const jsonLd = generateArticleSchema({
+    title: post?.title,
+    description: post?.acf_posts?.ingress,
+    url: process.env.NEXT_PUBLIC_SITE_URL + post?.uri,
+    images: [post?.featuredImage?.node?.mediaItemUrl],
+    datePublished: post?.modifiedGmt,
+    dateModified: post?.modifiedGmt,
+    authorName: post?.author?.name,
+    publisherName: "DinVinguide.se",
+    publisherLogo:
+      "https://media.dinvinguide.se/wp-content/uploads/2023/12/DinVinguidesLogo.png",
+    articleBody: post?.acf_posts?.ingress,
+  });
   return (
     <article className="layout bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <PostTemplate post={post} />
     </article>
   );

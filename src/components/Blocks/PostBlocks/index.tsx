@@ -30,7 +30,7 @@ const Block: FC<BlockProps> = memo(({ section }) => {
   const Component: any = componentsMap[componentKey] as
     | FC<ComponentProps>
     | undefined;
-  console.log("componentKey =====>", componentKey);
+
   return Component ? (
     <Suspense fallback={<p>Loading...</p>}>
       <Component content={section} />

@@ -4,7 +4,7 @@ interface CitatProps {
 
 const Citat = ({ content }: CitatProps) => {
   return (
-    <section className="">
+    <section className="py-[2rem]">
       <blockquote className="text-[27px] font-sub">{content.text}</blockquote>
     </section>
   );

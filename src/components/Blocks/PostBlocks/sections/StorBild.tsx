@@ -6,7 +6,7 @@ interface StorBildProps {
 
 const StorBild = ({ content }: StorBildProps) => {
   return (
-    <div className="relative flex justify-center w-full row">
+    <section className="relative flex justify-center w-full row py-[2rem]">
       <Image
         src={content.img.mediaItemUrl}
         width={content.img.mediaDetails.width}
@@ -26,7 +26,7 @@ const StorBild = ({ content }: StorBildProps) => {
           Visa galleri
         </button>
       )} */}
-    </div>
+    </section>
   );
 };
 

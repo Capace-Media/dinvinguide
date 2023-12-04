@@ -43,7 +43,7 @@ const ExploreRecipes: React.FC = async () => {
   const data = await fetchRecipes();
 
   return (
-    <section className="relative w-full">
+    <section className="relative w-full ">
       <div className="layout min-h-[322px] py-4 md:py-11 lg:py-20 bg-brand-secondary lg:min-h-[448px]">
         <div className="flex flex-col justify-between min-h-[278px] lg:w-[40%]">
           <div className="recipe_parse">

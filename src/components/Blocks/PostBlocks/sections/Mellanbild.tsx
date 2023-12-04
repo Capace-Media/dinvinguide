@@ -5,9 +5,8 @@ interface MellanbildProps {
 }
 
 const Mellanbild = ({ content }: MellanbildProps) => {
-  console.log("Mellanbild =====>", content);
   return (
-    <section className="">
+    <section className="py-[2rem]">
       <div className="relative row contain-sm">
         <div className="relative flex justify-center">
           <Image

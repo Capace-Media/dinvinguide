@@ -1,14 +1,16 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP from "../wp";
+import WP, { WPnext } from "../wp";
 import { SEO } from "./fragments/Seo";
 
 export const getPost = async (id: string) => {
   try {
-    const res = await WP(
+    const res = await WPnext(
       `query GET_POST($id: ID!) {
         post(idType: URI, id: $id) {
+          title
           slug
           uri
+          modifiedGmt
           ${SEO}
           acf_posts {
             ingress

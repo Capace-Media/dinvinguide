@@ -5,7 +5,7 @@ interface BrodtextProps {
 }
 
 const Brodtext = ({ content }: BrodtextProps) => {
-  return <section className="">{handleParse(content.text)}</section>;
+  return <section className="py-[2rem]">{handleParse(content.text)}</section>;
 };
 
 export default Brodtext;

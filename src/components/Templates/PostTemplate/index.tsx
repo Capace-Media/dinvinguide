@@ -7,14 +7,16 @@ interface PostTemplateProps {
 }
 
 const PostTemplate = ({ post }: PostTemplateProps) => {
-  console.log("post =====>", post);
   return (
-    <article className="md:grid md:grid-cols-5">
+    <article className="md:grid md:grid-cols-5 gap-10 pt-[120px]">
       <div className="md:col-span-3">
-        <div className="h-[20vh] "></div>
+        <div className="flex justify-between">
+          <p>Hello</p>
+          <p>world</p>
+        </div>
         <Blocks blocks={post?.acf_posts?.sektioner} />
       </div>
-      <Aside />
+      <Aside author={post?.author} related={post?.acf_posts?.lasMer} />
     </article>
   );
 };

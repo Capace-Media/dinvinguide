@@ -8,10 +8,9 @@ interface ExtraPuffProps {
 
 const ExtraPuff = ({ content }: ExtraPuffProps) => {
   const data = content && content?.extraPuff && content?.extraPuff[0];
-  console.log("data =====>", data);
 
   return (
-    <section>
+    <section className="py-[2rem]">
       <div className="relative w-full h-[330px]">
         <Link href={`/recept/receptbanken/${data?.slug}`} className="relative">
           <HandleImage
