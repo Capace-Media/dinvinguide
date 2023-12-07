@@ -9,7 +9,7 @@ interface RecipeHeroProps {
 
 const RecipeHero = async ({ promise }: RecipeHeroProps) => {
   const data = await promise;
-  console.log("data =====>", data);
+
   return (
     <div className="layout w-full py-[73px] md:pt-[172px] bg-white">
       <div className="grid md:grid-cols-2 gap-10 lg:gap-[180px] order-last md:order-first">

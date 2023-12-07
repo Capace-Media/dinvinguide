@@ -26,6 +26,8 @@ export { default as Instagram } from "./Instagram";
 export { default as Logo } from "./Logo";
 export { default as MailPrimary } from "./MailPrimary";
 export { default as MailWhite } from "./MailWhite";
+export { default as Printer } from "./Printer";
 export { default as Specialkost } from "./Specialkost";
 export { default as SubmitArrow } from "./SubmitArrow";
 export { default as TilltuggSnacks } from "./TilltuggSnacks";
+export { default as Time } from "./Time";

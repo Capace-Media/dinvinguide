@@ -10,7 +10,6 @@ interface PostTemplateProps {
 }
 
 const PostTemplate = ({ post }: PostTemplateProps) => {
-  console.log("post =====>", post);
   return (
     <article className="lg:grid lg:grid-cols-5 gap-10 pt-[120px]">
       <div className="lg:col-span-3">

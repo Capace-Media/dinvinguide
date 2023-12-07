@@ -1,3 +1,4 @@
+import RecipeTemplate from "@/components/Templates/RecipeTemplate";
 import { getSingleRecipe } from "@/lib/queries/getSingleRecipe";
 import { getErrorMessage } from "@/lib/utils/getErrorMessage";
 import WP from "@/lib/wp";
@@ -49,11 +50,10 @@ interface RecipeProps {}
 const Recipe = async ({ params }: RecipeProps) => {
   const uri = `/recept/${params.slug}`;
   const data = await getSingleRecipe(uri);
-  console.log("data recept =====>", data);
-  console.log("params =====>", params);
+
   return (
     <>
-      <RecipeHero />
+      <RecipeTemplate promise={data} />
     </>
   );
 };

@@ -9,13 +9,6 @@ export const getSingleRecipe = async (id: string) => {
         recipe(id: $id, idType: URI) {
           title
           ${SEO}
-          acf_recipe {
-            desc
-            beskrivningStegForSteg {
-              instruktion
-            }
-            processen
-          }
           featuredImage {
             node {
               altText
@@ -23,7 +16,69 @@ export const getSingleRecipe = async (id: string) => {
               mediaItemUrl
             }
           }
-          
+          acf_recipe {
+            desc
+            processen
+            recipeAverageRating
+            recipeRatingCount
+            ingredienserOvrigt
+            antalPortioner
+            receptdelar {
+              rubrik
+              ingredienser {
+                antal
+                enhet {
+                  name
+                }
+                namn
+              }
+            }
+            beskrivningStegForSteg {
+              instruktion
+            }
+            skrivetAv {
+              slug
+              name
+              id
+            }
+            recepieCategories {
+              id
+              slug
+              uri
+              name
+            }
+            kok {
+              name
+              slug
+              id
+            }
+            passandeDrycker {
+              ... on Drink {
+                id
+                slug
+                title
+              }
+            }
+            time {
+              cookingTime
+              prepTime
+            }
+            bilder {
+              kortBeskrivning
+              img {
+                altText
+                id
+                mediaItemUrl
+              }
+            }
+            nutritions {
+              energKcal
+              fett
+              fieldGroupName
+              kolhydrater
+              protein
+            }
+          }
         }
       }`,
       { id }

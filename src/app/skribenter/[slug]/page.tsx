@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 
   authors?.skribenter &&
     authors.skribenter.map((author: any) => {
-      if (author?.slug && !isCustomPageSlug(author?.slug)) {
+      if (author?.slug) {
         authorsPaths.push({ slug: author.slug });
       }
     });
@@ -35,8 +35,8 @@ type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined };
 };
 
-async function getAuthorData(params: { slug: string }) {
-  const data = await getAuthor(params.slug);
+async function getAuthorData(id: string, search?: string) {
+  const data = await getAuthor(id, search);
 
   const authorProps = {
     ...data,
@@ -52,7 +52,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { slug } = params;
 
-  const page = await getAuthorData(params);
+  const page = await getAuthorData(slug);
 
   const seo: any = page?.seo;
 
@@ -79,12 +79,15 @@ export async function generateMetadata(
 }
 
 const Author = async ({ params, searchParams }: Props) => {
-  const data = await getAuthorData(params);
+  const search =
+    typeof searchParams.search === "string" ? searchParams.search : undefined;
+
+  const data = await getAuthorData(params?.slug, search);
 
   const { posts } = data;
 
   return (
-    <>
+    <div>
       <AuthorHero promise={data} />
       <Ads pageType="default" position="TOP" />
       <section className="layout bg-white">
@@ -113,7 +116,7 @@ const Author = async ({ params, searchParams }: Props) => {
       <ExplorePages />
       <Ads pageType="default" position="BOTTOM" />
       <Newsletter />
-    </>
+    </div>
   );
 };
 
