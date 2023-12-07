@@ -45,7 +45,11 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
         >
           <div className="flex flex-col gap-4 min-h-[240px]">
             <div>
-              <h2 className="text-[28px] flex flex-col md:text-[42px] lg:text-[53px] font-sub lg:leading-[72px]">
+              <h2
+                className={`text-[28px] flex flex-col md:text-[42px] lg:text-[53px] font-sub lg:leading-[72px]  ${
+                  index % 2 === 0 ? "text-brand-dark" : " text-brand-light"
+                }`}
+              >
                 <span className=" font-main text-[18px] md:text-[23px] leading-[18px] md:leading-[23px]">
                   Skribent
                 </span>

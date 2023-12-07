@@ -92,7 +92,7 @@ const ExploreRecipes: React.FC = async () => {
           <Link
             href={`/recept/${recipe?.slug}`}
             key={recipe.id}
-            className="relative"
+            className="relative "
           >
             <HandleImage
               srcProp={recipe?.featuredImage?.node?.mediaItemUrl}
@@ -137,7 +137,7 @@ const ExploreRecipes: React.FC = async () => {
                 </p>
               )}
               {recipe?.title && (
-                <h2 className="md:text-[18px] leading-6 text-[16px] lowercase font-sub">
+                <h2 className="md:text-[18px] leading-6 text-[16px] text-white lowercase font-sub">
                   {recipe.title}
                 </h2>
               )}

@@ -17,22 +17,22 @@ html,
   h4,
   h5,
   h6 {
-    @apply font-semibold uppercase;
+    @apply font-semibold font-sub text-[#333];
   }
   a {
-    @apply break-words;
+    @apply break-words text-[#333];
   }
   h1 {
-    @apply text-4xl uppercase lg:text-5xl;
+    @apply text-[42px] text-[#333];
   }
   h2 {
-    @apply text-xl uppercase lg:text-2xl;
+    @apply text-[37px] text-[#333];
   }
   blockquote {
-    @apply text-2xl leading-loose lg:text-4xl;
+    @apply text-2xl leading-loose lg:text-4xl text-[#333];
   }
   p iframe {
-    @apply mx-auto;
+    @apply mx-auto font-main text-[#333];
   }
   /* .prose-sm div.alignright {
     @apply block float-right;

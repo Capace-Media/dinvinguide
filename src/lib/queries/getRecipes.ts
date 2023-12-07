@@ -9,7 +9,7 @@ export const getRecipes = async () => {
               intro
             }
           }
-        recipes(first: 3) {
+        recipes(first: 7) {
             nodes {
               title
               slug

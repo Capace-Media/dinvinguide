@@ -8,7 +8,7 @@ import Newsletter from "@/app/components/Newsletter";
 import Ads from "@/app/components/ads";
 import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
 import AuthorHero from "../components/AuthorHero";
 

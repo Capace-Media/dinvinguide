@@ -73,19 +73,17 @@
 
   .recipe_parse {
     .parsed {
-      color: white;
-
       h1,
       h2,
       h3,
       h4,
       h5,
       h6 {
-        font-family: $content;
         font-size: 19px;
+
+        line-height: 29px;
         strong {
           font-size: 28px;
-          font-family: $header;
         }
       }
       h1 {

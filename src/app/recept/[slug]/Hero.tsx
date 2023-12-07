@@ -1,0 +1,54 @@
+import handleParse from "@/lib/utils/handleParse";
+import Image from "next/image";
+
+interface RecipeHeroProps {
+  title?: string | any;
+  image?: string | any;
+  desc?: string | any;
+  rating?: string | any;
+  ratingAmount?: string | any;
+  time?: string | any;
+}
+
+const RecipeHero = async ({
+  title,
+  image,
+  desc,
+  rating,
+  ratingAmount,
+  time,
+}: RecipeHeroProps) => {
+  return (
+    <div className="layout w-full py-[73px] md:pt-[172px] bg-white">
+      <div className="grid md:grid-cols-2 gap-10 lg:gap-[180px] order-last md:order-first">
+        <div className="flex flex-col justify-between min-h-[461px]">
+          <div className="flex flex-col gap-6 ">
+            <div className="">{handleParse(desc)}</div>
+          </div>
+        </div>
+
+        <div className="w-full  order-first h-[370px] relative md:order-last lg:h-[520px]">
+          <div className="absolute w-[85%] bottom-0 left-0 h-[300px] lg:h-[430px] z-10">
+            {/* {data?.featuredImage?.node?.mediaItemUrl && (
+              <div className="relative w-full h-full">
+                <Image
+                  src={data?.featuredImage?.node?.mediaItemUrl}
+                  alt={data?.featuredImage?.node?.altText}
+                  fill
+                  style={{
+                    objectFit: "cover",
+                  }}
+                  sizes="(min-width: 1880px) 687px, (min-width: 1040px) calc(38.17vw - 23px), (min-width: 780px) calc(42.5vw - 38px), (min-width: 380px) calc(85vw - 27px), calc(25vw + 189px)"
+                  priority
+                />
+              </div>
+            )} */}
+          </div>
+          <div className=" bg-brand-beige w-[85%] md:w-[100%] h-[100%] center-y absolute -right-4 md:-right-11 lg:-right-20"></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default RecipeHero;

@@ -1,7 +1,11 @@
+import { getSingleRecipe } from "@/lib/queries/getSingleRecipe";
 import { getErrorMessage } from "@/lib/utils/getErrorMessage";
 import WP from "@/lib/wp";
+import RecipeHero from "./Hero";
 
-interface RecipeProps {}
+interface RecipeProps {
+  params: { slug: string };
+}
 
 type PropsPaths = {
   slug: string;
@@ -42,11 +46,15 @@ export async function generateStaticParams() {
 
 interface RecipeProps {}
 
-const Recipe = ({}: RecipeProps) => {
+const Recipe = async ({ params }: RecipeProps) => {
+  const uri = `/recept/${params.slug}`;
+  const data = await getSingleRecipe(uri);
+  console.log("data recept =====>", data);
+  console.log("params =====>", params);
   return (
-    <div className="layout ">
-      <h2 className="">Hello Recipe</h2>
-    </div>
+    <>
+      <RecipeHero />
+    </>
   );
 };
 

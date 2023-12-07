@@ -19,8 +19,10 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
           <div className="flex flex-col gap-6 ">
             <div className="front-parse">{handleParsed(data?.content)}</div>
             <ul className="font-main text-brand-primary uppercase flex whitespace-nowrap flex-wrap gap-4 font-medium">
-              <li className="bg-brand-primary text-white px-3 py-2">
-                <Link href="/guide">Alla Guider</Link>
+              <li className="bg-brand-primary px-3 py-2">
+                <Link href="/guide" className="text-white">
+                  Alla Guider
+                </Link>
               </li>
               <li className="flex flex-col justify-center items-center">
                 <Link href="/guide/druvguiden">Druvor</Link>
