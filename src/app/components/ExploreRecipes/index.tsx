@@ -88,62 +88,64 @@ const ExploreRecipes: React.FC = async () => {
 
       <div className="recipe-grid bg-white lg:bg-transparent layout py-4 md:py-11 lg:py-20">
         <div></div>
-        {data?.recipes?.nodes?.map((recipe: Recipe, index: number) => (
-          <Link
-            href={`/recept/${recipe?.slug}`}
-            key={recipe.id}
-            className="relative "
-          >
-            <HandleImage
-              srcProp={recipe?.featuredImage?.node?.mediaItemUrl}
-              altProp={recipe?.featuredImage?.node?.altText}
-              objectFitProp="cover"
-              classesProp="relative w-full h-full recipe-overlay"
-              sizesProp={getSizeProp(index)}
-            />
-            <div className="absolute top-0 right-0 text-white p-4 flex gap-2">
-              {(() => {
-                const desiredOrder = [
-                  "huvudratter",
-                  "frukost",
-                  "forratter",
-                  "efterratter",
-                  "tilltugg-snacks",
-                  "specialkost",
-                ];
+        {data?.recipes?.nodes &&
+          data.recipes.nodes.map((recipe: Recipe, index: number) => (
+            <Link
+              href={`/recept/${recipe?.slug}`}
+              key={recipe?.id}
+              className="relative "
+            >
+              <HandleImage
+                srcProp={recipe?.featuredImage?.node?.mediaItemUrl}
+                altProp={recipe?.featuredImage?.node?.altText}
+                objectFitProp="cover"
+                classesProp="relative w-full h-full recipe-overlay"
+                sizesProp={getSizeProp(index)}
+              />
+              <div className="absolute top-0 right-0 text-white p-4 flex gap-2">
+                {(() => {
+                  const desiredOrder = [
+                    "huvudratter",
+                    "frukost",
+                    "forratter",
+                    "efterratter",
+                    "tilltugg-snacks",
+                    "specialkost",
+                  ];
 
-                const matchingTax = desiredOrder.find((slug) => {
-                  return recipe?.acf_recipe?.recepieCategories?.some(
-                    (tax: any) => tax.slug === slug
-                  );
-                });
+                  const matchingTax = desiredOrder.find((slug) => {
+                    return recipe?.acf_recipe?.recepieCategories?.some(
+                      (tax: any) => tax.slug === slug
+                    );
+                  });
 
-                const displayTax = recipe?.acf_recipe?.recepieCategories?.find(
-                  (tax: any) => tax.slug === matchingTax
-                );
+                  const displayTax =
+                    recipe?.acf_recipe?.recepieCategories?.find(
+                      (tax: any) => tax.slug === matchingTax
+                    );
 
-                return displayTax ? (
-                  <p key={displayTax.slug} className="text-[12px] uppercase">
-                    {displayTax.name}
-                    <span className="flex w-full h-[3px] bg-white"></span>
+                  return displayTax ? (
+                    <p key={displayTax.slug} className="text-[12px] uppercase">
+                      {displayTax.name}
+                      <span className="flex w-full h-[3px] bg-white"></span>
+                    </p>
+                  ) : null;
+                })()}
+              </div>
+              <div className="absolute bottom-0 pointer-events-none left-0 p-4 lg:w-[70%] z-10 text-white">
+                {recipe?.acf_recipe?.skrivetAv && (
+                  <p className="md:text-[12px] md:uppercase text-[12px]">
+                    {recipe.acf_recipe.skrivetAv[0].name}
                   </p>
-                ) : null;
-              })()}
-            </div>
-            <div className="absolute bottom-0 pointer-events-none left-0 p-4 lg:w-[70%] z-10 text-white">
-              {recipe?.acf_recipe?.skrivetAv && (
-                <p className="md:text-[12px] md:uppercase text-[12px]">
-                  {recipe.acf_recipe.skrivetAv[0].name}
-                </p>
-              )}
-              {recipe?.title && (
-                <h2 className="md:text-[18px] leading-6 text-[16px] text-white lowercase font-sub">
-                  {recipe.title}
-                </h2>
-              )}
-            </div>
-          </Link>
-        ))}
+                )}
+                {recipe?.title && (
+                  <h2 className="md:text-[18px] leading-6 text-[16px] text-white lowercase font-sub">
+                    {recipe.title}
+                  </h2>
+                )}
+              </div>
+            </Link>
+          ))}
       </div>
     </section>
   );

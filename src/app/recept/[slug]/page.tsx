@@ -1,8 +1,10 @@
+import Loading from "@/app/loading";
 import RecipeTemplate from "@/components/Templates/RecipeTemplate";
 import { getSingleRecipe } from "@/lib/queries/getSingleRecipe";
 import { getErrorMessage } from "@/lib/utils/getErrorMessage";
 import WP from "@/lib/wp";
-import RecipeHero from "./Hero";
+import { RecipeJsonLd } from "next-seo";
+import { Suspense } from "react";
 
 interface RecipeProps {
   params: { slug: string };
@@ -51,9 +53,19 @@ const Recipe = async ({ params }: RecipeProps) => {
   const uri = `/recept/${params.slug}`;
   const data = await getSingleRecipe(uri);
 
+  if (!data) {
+    return (
+      <div className="py-20">
+        <h2>{params.slug}</h2>
+      </div>
+    );
+  }
+
   return (
     <>
-      <RecipeTemplate promise={data} />
+      <Suspense fallback={<Loading />}>
+        <RecipeTemplate promise={data} />
+      </Suspense>
     </>
   );
 };

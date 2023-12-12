@@ -81,14 +81,14 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
                           ) : null;
                         })()}
                       </div>
-                      <div className="absolute bottom-0 pointer-events-none left-0 p-4 lg:w-[70%] z-10 text-white">
+                      <div className="absolute bottom-0 pointer-events-none left-0 p-4 lg:w-[70%] z-10">
                         {recipe?.acf_recipe?.skrivetAv && (
-                          <p className="md:text-[12px] md:uppercase text-[12px]">
+                          <p className="md:text-[12px] md:uppercase text-white text-[12px]">
                             {recipe.acf_recipe.skrivetAv[0].name}
                           </p>
                         )}
                         {recipe?.title && (
-                          <h2 className="md:text-[18px] leading-6 text-[16px] lowercase font-sub">
+                          <h2 className="md:text-[18px] leading-6 text-[16px] text-white lowercase font-sub">
                             {recipe.title}
                           </h2>
                         )}

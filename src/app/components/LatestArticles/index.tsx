@@ -28,11 +28,12 @@ const LatestArticles = async () => {
         </Link>
       </div>
       <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
-        {posts.posts.nodes.map((post: any) => (
-          <li key={post.id}>
-            <AuthorPost post={post} />
-          </li>
-        ))}
+        {posts?.posts?.nodes &&
+          posts.posts.nodes.map((post: any) => (
+            <li key={post?.id}>
+              <AuthorPost post={post} />
+            </li>
+          ))}
       </ul>
     </div>
   );

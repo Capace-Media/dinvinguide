@@ -78,11 +78,12 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
       {author?.posts?.nodes ? (
         <div className="layout bg-white contain">
           <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
-            {author.posts.nodes.map((post: any) => (
-              <li key={post.id}>
-                <AuthorPost post={post} />
-              </li>
-            ))}
+            {author?.posts?.nodes &&
+              author.posts.nodes.map((post: any) => (
+                <li key={post.id}>
+                  <AuthorPost post={post} />
+                </li>
+              ))}
           </ul>
         </div>
       ) : null}

@@ -31,14 +31,14 @@ function updateCategoriesUri(
   }
 
   const filteredCategories = categories.filter(
-    (category) => !excludeNames.includes(category.slug)
+    (category) => !excludeNames?.includes(category?.slug)
   );
 
-  if (filteredCategories.length === 0) {
+  if (filteredCategories?.length === 0) {
     return null;
   }
 
-  return filteredCategories.map((category) => ({
+  return filteredCategories?.map((category) => ({
     ...category,
     uri: category.uri.replace("/receptkategorier", ""),
   }));

@@ -3,6 +3,8 @@ import RecipesTemplate from "@/components/Templates/RecipesTemplate";
 
 import { getPage } from "@/lib/queries/getPage";
 import { getRecipePage } from "@/lib/queries/getRecipePage";
+import { Suspense } from "react";
+import Loading from "../loading";
 
 interface RecipesProps {}
 
@@ -17,8 +19,10 @@ const Recipes = async ({}: RecipesProps) => {
   const { data, recipes } = await getRecipeData();
   return (
     <>
-      <RecipeHero promise={recipes} />
-      <RecipesTemplate />
+      <Suspense fallback={<Loading />}>
+        <RecipeHero promise={recipes} />
+        <RecipesTemplate />
+      </Suspense>
     </>
   );
 };

@@ -10,6 +10,7 @@ export { default as Dvg } from "./Dvg";
 export { default as ArrowRight } from "./ArrowRight";
 export { default as Avbrytare } from "./Avbrytare";
 export { default as Biggermail } from "./Biggermail";
+export { default as Edit } from "./Edit";
 export { default as Efterratter } from "./Efterratter";
 export { default as Email } from "./Email";
 export { default as FacebookSm } from "./FacebookSm";

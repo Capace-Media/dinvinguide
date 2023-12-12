@@ -1,4 +1,10 @@
 @media (min-width: 1024px) {
+  @for $i from 0 through 20 {
+    #extraPuff:nth-of-type(#{$i + 1}) {
+      flex-direction: if($i % 2 == 0, row, row-reverse);
+      //background-color: nth($bg-colors, ($i + 1) % 2 + 1);
+    }
+  }
   .recipe-grid {
     gap: 20px;
     position: absolute;

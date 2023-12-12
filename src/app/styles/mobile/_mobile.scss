@@ -57,6 +57,39 @@
   }
 }
 
+.select-plain {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  font-family: inherit; /* To match the font of the surrounding text */
+  font-size: inherit; /* To match the font size of the surrounding text */
+  cursor: pointer;
+  outline: none;
+}
+.select-plain:focus {
+  /* Alternative focus style, for example: */
+  background-color: transparent; /* Light grey background */
+}
+
+/* To hide the arrow icon in Webkit browsers */
+.select-plain::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+/* To hide the arrow icon in IE */
+.select-plain::-ms-expand {
+  display: none;
+}
+
+/* To hide the arrow icon in Mozilla */
+.select-plain:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+
 .mask {
   &::after {
     content: "";
@@ -106,6 +139,34 @@
     font-weight: 400;
     font-size: 14px;
     padding-bottom: 1rem;
+  }
+
+  ol {
+    counter-reset: item; // Initialize a CSS counter
+    list-style-type: none; // Remove default numbering
+    margin: 0;
+    padding: 0;
+    padding-left: 40px;
+
+    li {
+      padding-bottom: 9px;
+      counter-increment: item;
+      position: relative;
+      &::before {
+        content: counter(item) ".";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute; // Position it relative to the li
+        left: -30px; // Adjust the position as needed
+        top: 0;
+        width: 22px;
+        height: 22px;
+        border-radius: 2px;
+        color: white;
+        background-color: $linkColor;
+      }
+    }
   }
 
   a {

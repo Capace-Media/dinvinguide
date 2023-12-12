@@ -35,11 +35,12 @@ const PostList = ({
         ref={postsRef}
         className="grid lg:grid-cols-4 md:grid-cols-2 gap-5"
       >
-        {posts.map((post: any) => (
-          <li key={post.node.id}>
-            <AuthorPost post={post?.node} />
-          </li>
-        ))}
+        {posts &&
+          posts.map((post: any) => (
+            <li key={post.node.id}>
+              <AuthorPost post={post?.node} />
+            </li>
+          ))}
       </ul>
 
       <div>

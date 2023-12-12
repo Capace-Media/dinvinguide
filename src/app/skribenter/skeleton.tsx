@@ -5,7 +5,7 @@ export default function Skeleton() {
     <>
       <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
         {[...Array(8)].map((movie, index) => (
-          <li key={index} className="animate-pulse">
+          <li key={index + "sdlcjxkgndf"} className="animate-pulse">
             <div className="">
               <div className="w-full relative h-[12.2rem] bg-gray-300"></div>
               <div className="h-[12.9rem]  flex flex-col justify-between py-2">

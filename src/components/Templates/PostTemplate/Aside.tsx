@@ -64,11 +64,12 @@ const Aside = ({ author, related }: AsideProps) => {
       </div>
       <div className="py-10">
         <ul className="grid gap-6">
-          {related.map((post: any) => (
-            <li key={post?.id}>
-              <AuthorPost post={post} />
-            </li>
-          ))}
+          {related &&
+            related.map((post: any) => (
+              <li key={post?.id}>
+                <AuthorPost post={post} />
+              </li>
+            ))}
         </ul>
       </div>
     </aside>

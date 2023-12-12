@@ -3,6 +3,8 @@ import { getAuthors } from "@/lib/queries/getAuthors";
 import { getPage } from "@/lib/queries/getPage";
 import Ads from "../components/ads";
 
+import { Suspense } from "react";
+import Loading from "../loading";
 import AuthorsHero from "./components/AuthorsHero";
 
 const getAuthorsData = async () => {
@@ -17,9 +19,11 @@ const Authors = async () => {
 
   return (
     <>
-      <AuthorsHero promise={pageData} />
-      <Ads pageType="default" position="TOP" />
-      <AuthorsComponent data={data} />
+      <Suspense fallback={<Loading />}>
+        <AuthorsHero promise={pageData} />
+        <Ads pageType="default" position="TOP" />
+        <AuthorsComponent data={data} />
+      </Suspense>
     </>
   );
 };
