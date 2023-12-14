@@ -17,6 +17,10 @@ posts(first: 8) {
         node {
           altText
           mediaItemUrl
+          mediaDetails {
+            width
+            height
+          }
           title
           sizes(size: THUMBNAIL)
         }

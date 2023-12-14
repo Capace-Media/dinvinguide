@@ -14,6 +14,10 @@ export const getSingleRecipe = async (id: string) => {
               altText
               title
               mediaItemUrl
+              mediaDetails {
+                width
+                height
+              }
             }
           }
           acf_recipe {
@@ -69,6 +73,10 @@ export const getSingleRecipe = async (id: string) => {
                 altText
                 id
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
               }
             }
             nutritions {

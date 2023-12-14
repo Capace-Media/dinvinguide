@@ -7,8 +7,6 @@ interface RecipeContentProps {
 const RecipeContent = ({ data }: RecipeContentProps) => {
   return (
     <div className="layout bg-white">
-      <h2 className="">Hello RecipeContent</h2>
-
       <Recipe
         process={data?.acf_recipe?.processen}
         stepByStep={data?.acf_recipe?.beskrivningStegForSteg}

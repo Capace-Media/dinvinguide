@@ -47,6 +47,10 @@ export const getPostsByAuthor = async (
                 node {
                   altText
                   mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
                   title
                   sizes(size: THUMBNAIL)
                 }

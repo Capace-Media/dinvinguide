@@ -34,6 +34,10 @@ export const getPost = async (id: string) => {
                   node {
                     mediaItemUrl
                     altText
+                    mediaDetails {
+                      width
+                      height
+                    }
                   }
                 }
               }
@@ -46,6 +50,10 @@ export const getPost = async (id: string) => {
                   node {
                     mediaItemUrl
                     altText
+                    mediaDetails {
+                      width
+                      height
+                    }
                   }
                 }
               }
@@ -58,6 +66,10 @@ export const getPost = async (id: string) => {
                   node {
                     mediaItemUrl
                     altText
+                    mediaDetails {
+                      width
+                      height
+                    }
                   }
                 }
               }
@@ -75,6 +87,10 @@ export const getPost = async (id: string) => {
                 featuredImage {
                   node {
                     mediaItemUrl
+                    mediaDetails {
+                      width
+                      height
+                    }
                     altText
                   }
                 }
@@ -91,6 +107,10 @@ export const getPost = async (id: string) => {
                     featuredImage {
                       node {
                         mediaItemUrl
+                        mediaDetails {
+                          width
+                          height
+                        }
                         altText
                       }
                     }
@@ -109,6 +129,10 @@ export const getPost = async (id: string) => {
                     featuredImage {
                       node {
                         mediaItemUrl
+                        mediaDetails {
+                          width
+                          height
+                        }
                         altText
                       }
                     }
@@ -127,6 +151,10 @@ export const getPost = async (id: string) => {
                     featuredImage {
                       node {
                         mediaItemUrl
+                        mediaDetails {
+                          width
+                          height
+                        }
                         altText
                       }
                     }
@@ -174,6 +202,10 @@ export const getPost = async (id: string) => {
           featuredImage {
             node {
               mediaItemUrl
+              mediaDetails {
+                width
+                height
+              }
               altText
               
             }
@@ -193,6 +225,10 @@ export const getPost = async (id: string) => {
                 bild {
                   altText
                   mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
                 }
               }
             }

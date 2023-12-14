@@ -28,6 +28,10 @@ export const getAuthors = async () => {
                       featuredImage {
                         node {
                           mediaItemUrl
+                          mediaDetails {
+                            width
+                            height
+                          }
                           altText
                           title
                           
@@ -42,6 +46,10 @@ export const getAuthors = async () => {
                     email
                     bild {
                       mediaItemUrl
+                      mediaDetails {
+                        width
+                        height
+                      }
                       altText
                       title
                     }
@@ -69,6 +77,10 @@ export const getAuthors = async () => {
                       featuredImage {
                         node {
                           mediaItemUrl
+                          mediaDetails {
+                            width
+                            height
+                          }
                           altText
                           title
                   
@@ -84,6 +96,10 @@ export const getAuthors = async () => {
                     kortBeskrivning
                     bild {
                       mediaItemUrl
+                      mediaDetails {
+                        width
+                        height
+                      }
                       altText
                       title
                     }

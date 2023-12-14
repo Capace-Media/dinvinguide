@@ -8,6 +8,10 @@ page(id: "/", idType: URI) {
       node {
         altText
         mediaItemUrl
+        mediaDetails {
+          width
+          height
+        }
       }
     }
   }

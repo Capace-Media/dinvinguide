@@ -20,6 +20,10 @@ export const getRecipePage = async () => {
                   altText
                   title
                   mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
                 }
               }
               acf_recipe {

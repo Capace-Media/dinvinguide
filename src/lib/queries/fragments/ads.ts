@@ -10,11 +10,19 @@ export const AD_TOP = `
               link
               toppbanner {
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
                 id
                 altText
               }
               mobilbanner {
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
                 id
                 altText
               }
@@ -30,11 +38,19 @@ export const AD_TOP = `
                 link
                 toppbanner {
                   mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
                   id
                 altText
                 }
                 mobilbanner {
                   mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
                   id
                 altText
                 }
@@ -59,11 +75,19 @@ export const AD_MID = `
               link
               toppbanner {
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
                 id
                 altText
               }
               mobilbanner {
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
                 id
                 altText
               }
@@ -79,11 +103,19 @@ export const AD_MID = `
                 link
                 mittenbanner {
                   mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
                   id
                 altText
                 }
                 mobilbanner {
                   mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
                   id
                 altText
                 }
@@ -108,11 +140,19 @@ query fetchBottomAd {
                link
                toppbanner {
                  mediaItemUrl
+                 mediaDetails {
+                  width
+                  height
+                }
                  id
                  altText
                }
                mobilbanner {
                  mediaItemUrl
+                 mediaDetails {
+                  width
+                  height
+                }
                  id
                  altText
                }
@@ -128,11 +168,19 @@ query fetchBottomAd {
                  link
                  mittenbanner {
                    mediaItemUrl
+                   mediaDetails {
+                    width
+                    height
+                  }
                    id
                  altText
                  }
                  mobilbanner {
                    mediaItemUrl
+                   mediaDetails {
+                    width
+                    height
+                  }
                    id
                  altText
                  }
@@ -157,11 +205,19 @@ query fetchBottomDLAd {
             link
             toppbanner {
               mediaItemUrl
+              mediaDetails {
+                width
+                height
+              }
               id
               altText
             }
             mobilbanner {
               mediaItemUrl
+              mediaDetails {
+                width
+                height
+              }
               id
               altText
             }
@@ -177,11 +233,19 @@ query fetchBottomDLAd {
               link
               toppbanner {
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
                 id
               altText
               }
               mobilbanner {
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
                 id
               altText
               }
@@ -206,11 +270,19 @@ export const AD_DL_TOP = `
               link
               toppbanner {
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
                 id
                 altText
               }
               mobilbanner {
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
                 id
                 altText
               }
@@ -226,11 +298,19 @@ export const AD_DL_TOP = `
                 link
                 toppbanner {
                   mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
                   id
                 altText
                 }
                 mobilbanner {
                   mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
                   id
                 altText
                 }
@@ -255,11 +335,19 @@ export const AD_DL_MID = `
               link
               toppbanner {
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
                 id
                 altText
               }
               mobilbanner {
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
                 id
                 altText
               }
@@ -276,11 +364,19 @@ export const AD_DL_MID = `
                 link
                 mittenbanner {
                   mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
                   id
                 altText
                 }
                 mobilbanner {
                   mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
                   id
                 altText
                 }

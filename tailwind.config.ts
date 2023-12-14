@@ -26,6 +26,7 @@ const config: Config = {
           dark: "#333333",
           gray: "#666666",
           light: "#f0f0f0;",
+          dl: "#E1E5D4",
         },
       },
       fontFamily: {

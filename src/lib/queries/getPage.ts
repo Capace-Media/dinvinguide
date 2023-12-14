@@ -18,6 +18,10 @@ export const getPage = async (id: string) => {
               altText
               title
               mediaItemUrl
+              mediaDetails {
+                width
+                height
+              }
             }
           }
         }

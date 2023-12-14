@@ -35,11 +35,19 @@ export const getAuthor = async (id: string, search?: string) => {
             bildExtra {
               altText
               mediaItemUrl
+              mediaDetails {
+                width
+                height
+              }
               title
             }
             bild {
               altText
               title
+              mediaDetails {
+                width
+                height
+              }
               mediaItemUrl
             }
           }

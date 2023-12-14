@@ -12,7 +12,6 @@ const ExtraPuff = ({ content }: ExtraPuffProps) => {
   const grapeRegex = new RegExp("^/druvor/");
   const drinkRegex = new RegExp("^/drinks/");
   const recipeRegex = new RegExp("^/recipes/");
-  console.log("content =====>", content);
 
   if (grapeRegex.test(data.uri)) {
     return <GrapeComponent data={data} />;
@@ -29,7 +28,6 @@ const ExtraPuff = ({ content }: ExtraPuffProps) => {
 export default ExtraPuff;
 
 function GrapeComponent({ data }: any) {
-  console.log("data for druva =====>", data);
   return (
     <section
       id="extraPuff"

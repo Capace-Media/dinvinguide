@@ -1,15 +1,32 @@
-import { Avbrytare, BcTopNav, DlTopNav } from "@/components/icons";
+"use client";
+import {
+  Avbrytare,
+  BcTopNav,
+  DarkBcLogo,
+  DarkDlLogo,
+  DlTopNav,
+} from "@/components/icons";
+import useRouteStyle from "@/hooks/useRouteStyle";
 import Link from "next/link";
 
-interface TopNavProps {}
+// Define an interface for the styles
+interface RouteStyle {
+  backgroundColor: string;
+  textColor: string;
+}
 
-const TopNav = ({}: TopNavProps) => {
+const TopNav = () => {
+  const isDL = useRouteStyle();
   return (
     <div className="relative h-[60px] layout">
-      <div className="bg-brand-primary absolute center-x flex justify-center gap-2 items-center py-4 w-full">
+      <div
+        className={`${
+          isDL ? "text-[#333] bg-brand-dl" : "text-white bg-brand-primary"
+        } absolute center-x flex justify-center gap-2 items-center py-4 w-full`}
+      >
         <figure>
           <a href="https://bestchampagne.se/" target="_blank">
-            <BcTopNav />
+            {isDL ? <DarkBcLogo /> : <BcTopNav />}
           </a>
         </figure>
         <figure>
@@ -17,7 +34,7 @@ const TopNav = ({}: TopNavProps) => {
         </figure>
         <figure>
           <Link href="/dryckeslistan">
-            <DlTopNav />
+            {isDL ? <DarkDlLogo /> : <DlTopNav />}
           </Link>
         </figure>
       </div>

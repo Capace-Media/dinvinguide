@@ -2,7 +2,6 @@ import parse, { DOMNode } from "html-react-parser";
 import Image from "next/image";
 
 export default function handleParse(content?: string, parseClasses?: string) {
-  console.log("content =====>", content);
   const thContents: any = [];
   let thIndex = 0;
   if (!content) {
