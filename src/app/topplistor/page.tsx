@@ -1,4 +1,4 @@
-import TopListTemplate from "@/components/Templates/TopListTemplate";
+import TopListsTemplate from "@/components/Templates/TopListsTemplate";
 import { getPage } from "@/lib/queries/getPage";
 
 interface TopListProps {}
@@ -16,7 +16,7 @@ const TopList = async ({}: TopListProps) => {
 
   return (
     <>
-      <TopListTemplate hero={rest} />
+      <TopListsTemplate hero={rest} />
     </>
   );
 };

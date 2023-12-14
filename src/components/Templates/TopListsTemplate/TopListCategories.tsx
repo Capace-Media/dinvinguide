@@ -20,7 +20,7 @@ const TopListCategories = async ({}: TopListCategoriesProps) => {
     );
   }
   return (
-    <section className="relative z-10">
+    <section className="relative z-10 ">
       <h2 className="pb-10 text-[22px]">Utforska Våra kategorier</h2>
       <ul className="grid gap-3 md:grid-cols-2 lg:gap-0">{elements}</ul>
     </section>

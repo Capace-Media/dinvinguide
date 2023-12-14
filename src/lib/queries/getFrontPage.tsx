@@ -1,10 +1,10 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP from "../wp";
+import WP, { WPnext } from "../wp";
 import { FRONT } from "./fragments/Front";
 
 export const getFrontPage = async () => {
   try {
-    const res = await WP(`query getFrontPage {
+    const res = await WPnext(`query getFrontPage {
             ${FRONT}
   
           }`);

@@ -4,7 +4,7 @@ import { Menu, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { forwardRef } from "react";
 
-const PhoneMenu = ({ menuItems, isMenuScroll }: any) => {
+const PhoneMenu = ({ menuItems }: any) => {
   return (
     <Menu as="div" className="flex lg:hidden w-[45px]">
       {({ open }) => (
@@ -21,9 +21,7 @@ const PhoneMenu = ({ menuItems, isMenuScroll }: any) => {
           </Menu.Button>
 
           <Transition
-            className={`fixed left-0 w-full h-full duration-75 ease-in-out ${
-              isMenuScroll ? "top-[65px]" : "top-[117px]"
-            }`}
+            className={`fixed left-0 w-full h-full top-[65px] duration-75 ease-in-out `}
             enter="transition duration-100 ease-out"
             enterFrom="transform scale-95 opacity-0"
             enterTo="transform scale-100 opacity-100"

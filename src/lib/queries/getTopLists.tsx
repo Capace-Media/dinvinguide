@@ -1,9 +1,9 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP from "../wp";
+import { WPnext } from "../wp";
 
 export const getTopLists = async () => {
   try {
-    const res = await WP(
+    const res = await WPnext(
       `query getTopLists($id: ID! = "/topplistor") {
         page(id: $id, idType: URI) {
           acf_topplistor {

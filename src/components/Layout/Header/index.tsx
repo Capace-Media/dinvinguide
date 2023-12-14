@@ -1,27 +1,38 @@
+"use client";
+import useWindowSize from "@/hooks/useWindowSize";
+import dynamic from "next/dynamic";
 import Script from "next/script";
 import { Fragment } from "react";
-import Nav from "./nav";
-import TopNav from "./topnav";
+// import Nav from "./nav";
+// import TopNav from "./topnav";
+const TopNav = dynamic(() => import("./topnav"));
+const Nav = dynamic(() => import("./nav"));
 
 interface HeaderProps {}
 
 const Header = ({}: HeaderProps) => {
+  const width = useWindowSize();
+  const mobileBreakpoint = 1024;
   return (
     <Fragment>
-      <Script
-        strategy="lazyOnload"
-        type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-      />
-      <Script
-        strategy="lazyOnload"
-        id="google-translate"
-        type="text/javascript"
-      >
-        {`function googleTranslateElementInit() {
+      {width && width > mobileBreakpoint && (
+        <>
+          <Script
+            strategy="lazyOnload"
+            type="text/javascript"
+            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          />
+          <Script
+            strategy="lazyOnload"
+            id="google-translate"
+            type="text/javascript"
+          >
+            {`function googleTranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'sv'}, 'google_translate_element');
           }`}
-      </Script>
+          </Script>
+        </>
+      )}
       <header className="">
         <TopNav />
         <Nav />

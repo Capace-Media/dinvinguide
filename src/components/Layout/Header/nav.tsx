@@ -2,6 +2,7 @@
 
 import menuItems from "@/components/Layout/MenuItems.json";
 import { DvLogoBlackMini, Logo } from "@/components/icons";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import PhoneMenu from "./PhoneMenu";
@@ -52,7 +53,7 @@ const Nav = ({}: NavProps) => {
         })}
       </ul>
 
-      <PhoneMenu isMenuScroll={isMenuScroll} menuItems={menuItems} />
+      <PhoneMenu menuItems={menuItems} />
 
       <div className="items-center hidden space-x-2 lg:flex lg:w-24">
         <span className="w-5 lg:w-10" id="google_translate_element"></span>

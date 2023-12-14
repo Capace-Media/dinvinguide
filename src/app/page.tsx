@@ -2,8 +2,9 @@ import FrontHero from "@/components/Blocks/Hero-Header/FrontHero";
 import { getFrontPage } from "@/lib/queries/getFrontPage";
 import dynamic from "next/dynamic";
 
-import Ads from "./components/ads";
+import { Suspense } from "react";
 import Newsletter from "./components/Newsletter";
+import Ads from "./components/ads";
 
 const ExplorePages = dynamic(() => import("./components/ExplorePages"));
 const ExploreRecipes = dynamic(() => import("./components/ExploreRecipes"));
@@ -22,10 +23,16 @@ export default async function Home() {
     <>
       <FrontHero data={data?.page} />
       <Ads pageType="default" position="TOP" />
-      <ExplorePages />
-      <LatestArticles />
+      <Suspense fallback={<p>Loading..</p>}>
+        <ExplorePages />
+      </Suspense>
+      <Suspense fallback={<p>Loading..</p>}>
+        <LatestArticles />
+      </Suspense>
       <Ads pageType="default" position="MID" />
-      <ExploreRecipes />
+      <Suspense fallback={<p>Loading..</p>}>
+        <ExploreRecipes />
+      </Suspense>
       <Ads pageType="default" position="BOTTOM" />
 
       <Newsletter />
