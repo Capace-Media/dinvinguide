@@ -15,14 +15,17 @@ interface TopList {
     };
   };
 }
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const data = await getToplistPaths();
 
   const paths: any[] = [];
 
-  data.map((topList: any) => {
-    paths.push({ slug: topList.slug });
-  });
+  data &&
+    data.map((topList: any) => {
+      paths.push({ slug: topList.slug });
+    });
 
   return paths;
 }

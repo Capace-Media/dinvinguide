@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import toObject from "dayjs/plugin/toObject";
 import weekday from "dayjs/plugin/weekday";
-import WP, { WPnext } from "../wp";
+import WP, { WPServerSide } from "../wp";
 import { SEO } from "./fragments/Seo";
 dayjs.extend(toObject);
 dayjs.extend(weekday);
@@ -9,7 +9,7 @@ dayjs.extend(weekday);
 const batchLimit = 20;
 export const getToplistPaths = async () => {
   try {
-    const res = await WPnext(`
+    const res = await WP(`
         query getAllToplists {
           pageBy(uri: "topplistor") {
             id
@@ -44,16 +44,16 @@ interface ExtendedToplist {
 }
 
 // Cache object
-let cache: { [key: string]: ExtendedToplist[] } = {};
+// let cache: { [key: string]: ExtendedToplist[] } = {};
 
 export const getToplists = async (): Promise<ExtendedToplist[]> => {
   // Check if data is already in cache
-  if (cache.toplists) {
-    return cache.toplists;
-  }
+  // if (cache.toplists) {
+  //   return cache.toplists;
+  // }
 
   try {
-    const res = await WP(`
+    const res = await WPServerSide(`
     query getAllToplists {
       pageBy(uri: "topplistor") {
         id
@@ -126,6 +126,7 @@ export const getToplists = async (): Promise<ExtendedToplist[]> => {
         getToplistItems(toplist, await getPreviousToplistDrinks()),
       ]);
 
+      //console.log("drinks inside my fetch =====>", drinks);
       return {
         toplist,
         currentDrinks: drinks,
@@ -139,7 +140,7 @@ export const getToplists = async (): Promise<ExtendedToplist[]> => {
     const extendedToplists = await Promise.all(fetchPromises);
 
     // Store in cache
-    cache.toplists = extendedToplists;
+    // cache.toplists = extendedToplists;
 
     return extendedToplists;
   } catch (error) {
@@ -320,7 +321,7 @@ export const getFallbackToplistDrinks = async () => {
     const beforeDay = beforeDate.date;
 
     while (hasNextPage) {
-      const req = await WP(
+      const req = await WPServerSide(
         `
           query getMoreArticles(
             $afterYear: Int!
@@ -460,7 +461,7 @@ export const getPreviousToplistDrinks = async () => {
     const beforeDay = beforeDate.date;
 
     while (hasNextPage) {
-      const req = await WP(
+      const req = await WPServerSide(
         `
           query getPreviousDrinks(
             $afterYear: Int!
@@ -580,11 +581,12 @@ export const getPreviousToplistDrinks = async () => {
 export const getCurrentToplistDrinks = async () => {
   try {
     //Function should return drinks published since sunday two weeks back to last saturday
-    const today = dayjs().locale("sv");
+    const currentToday = dayjs().locale("sv");
+
     //Set after day to last saturday
-    const afterDate = today.weekday(-8).toObject();
+    const afterDate = currentToday.weekday(-8).toObject();
     //Set before day to closest satur
-    const beforeDate = today.weekday(0).toObject();
+    const beforeDate = currentToday.weekday(0).toObject();
 
     let hasNextPage = true;
     let currentCursor = "";
@@ -592,14 +594,14 @@ export const getCurrentToplistDrinks = async () => {
 
     const afterYear = afterDate.years;
     const afterMonth = afterDate.months + 1;
-    const afterDay = afterDate.date;
+    const afterDay = afterDate.date + 1;
 
     const beforeYear = beforeDate.years;
     const beforeMonth = beforeDate.months + 1;
-    const beforeDay = beforeDate.date;
+    const beforeDay = beforeDate.date + 1;
 
     while (hasNextPage) {
-      const req = await WP(
+      const req = await WPServerSide(
         `
           query getMoreArticles(
             $afterYear: Int!

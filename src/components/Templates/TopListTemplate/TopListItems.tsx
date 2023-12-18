@@ -9,7 +9,6 @@ const TopListItems = ({ data }: TopListItemsProps) => {
 
   const array = [...data?.currentDrinks, ...data?.previousDrinks];
 
-  console.log("currentCount =====>", array);
   let num = 0;
   return (
     <section className="">

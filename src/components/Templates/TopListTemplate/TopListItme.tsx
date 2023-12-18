@@ -39,15 +39,15 @@ const TopListItem: React.FC<MyComponentProps> = ({
 
   const getMedalClassName = (index: number, packagingName?: string): string => {
     const classMap: { [key: string]: string } = {
-      "2-Flaska": " top-[16%] left-[10%] rotate-12",
+      "2-Flaska": " top-[16%] left-[50%] -translate-x-[70%] rotate-12",
       Flaska: " top-[16%] left-[50%] -translate-x-[30%] -rotate-12",
       "2-Box": " bottom-[16%] left-[10%] -translate-x-[30%] -rotate-12",
       Box: " bottom-[18%] left-[10%] -translate-x-[30%] rotate-12",
       "2-Papp": " bottom-[18%] left-[10%] rotate-12",
+      "PET-flaska": "top-[16%] left-[50%] -translate-x-[30%] -rotate-12",
+      "2-PET-flaska": " top-[16%] left-[50%] -translate-x-[70%] rotate-12",
       default: " bottom-[18%] -right-[10%] -translate-x-[30%] -rotate-12",
     };
-
-    console.log("packagingName =====>", packagingName);
 
     if (index <= 3 && index === 2) {
       let key = packagingName ? `${index}-${packagingName}` : "default";
@@ -92,9 +92,7 @@ const TopListItem: React.FC<MyComponentProps> = ({
               />
             </figure>
             {index <= 3 && (
-              <div className={`absolute w-[151px] h-[151px] ${className}`}>
-                {medalElement}
-              </div>
+              <div className={`absolute  ${className}`}>{medalElement}</div>
             )}
           </Link>
         )}
@@ -154,7 +152,7 @@ const TopListItem: React.FC<MyComponentProps> = ({
           </div>
 
           <Link href={data.uri} className="flex items-center gap-3">
-            <span>Läs mer om produkten</span>
+            <span>Läs mer om vinet</span>
           </Link>
         </div>
       </div>
