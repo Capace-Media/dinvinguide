@@ -12,6 +12,9 @@ export const getPage = async (id: string) => {
           page_content {
             intro
           }
+          acf_explorer {
+            slogan
+          }
           ${SEO}
           featuredImage {
             node {

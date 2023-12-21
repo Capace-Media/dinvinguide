@@ -1,5 +1,6 @@
 import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
+import Provider from "@/lib/Provider";
 import type { Metadata } from "next";
 import { Abril_Fatface, Poppins } from "next/font/google";
 import { Suspense } from "react";
@@ -133,11 +134,13 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${abrilFatface.variable} font-main`}
       >
-        <Header />
-        <Suspense fallback={<Loading />}>
-          <main className="">{children}</main>
-        </Suspense>
-        <Footer />
+        <Provider>
+          <Header />
+          <Suspense fallback={<Loading />}>
+            <main className="">{children}</main>
+          </Suspense>
+          <Footer />
+        </Provider>
       </body>
     </html>
   );

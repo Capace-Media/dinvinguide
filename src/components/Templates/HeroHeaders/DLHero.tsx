@@ -11,6 +11,7 @@ import rose from "../../../../public/Images/rose.webp";
 interface DLHeroProps {
   hero?: any;
   drinkType?: string | undefined;
+  id?: string | undefined;
 }
 
 type ImageType = any; // Replace 'any' with a more specific type if available
@@ -28,7 +29,7 @@ const drinkTypeToImage: { [key in string]?: ImageType } = {
 // Later in your code
 // const image = drinkTypeToImage[drinkType as keyof typeof drinkTypeToImage];
 
-const DLHero = ({ hero, drinkType }: DLHeroProps) => {
+const DLHero = ({ hero, drinkType, id }: DLHeroProps) => {
   const determineImageSource = () => {
     // Correctly handling drinkType as a key
     if (drinkType && drinkTypeToImage[drinkType]) {
@@ -46,8 +47,9 @@ const DLHero = ({ hero, drinkType }: DLHeroProps) => {
   };
 
   return (
-    <div className="w-full top-[72px] lg:h-[52vh] ">
-      <div className="relative h-[12rem] md:h-[20rem] lg:h-[52vh] w-full">
+    <div className="w-full top-[72px] lg:h-[69vh] ">
+      <div className="relative h-[16rem] md:h-[20rem] lg:h-[69vh] w-full">
+        <div className="absolute w-full h-full bg-black z-[5] opacity-10 center-x center-y"></div>
         <Image
           src={determineImageSource()}
           alt={determineAltText()}
@@ -56,42 +58,59 @@ const DLHero = ({ hero, drinkType }: DLHeroProps) => {
           sizes="(min-width: 1880px) 1617px, (min-width: 1040px) calc(89.88vw - 55px), (min-width: 780px) calc(100vw - 88px), calc(100vw - 32px)"
           priority
         />
-        <div className="layout hidden lg:block bg-transparent w-[50%] py-4 absolute  bottom-[5rem] ">
-          {hero?.page_content?.intro ? (
+        <div className="layout hidden z-10 lg:block bg-transparent w-[50%] py-4 absolute  bottom-[5rem] ">
+          {hero?.page_content?.intro && !hero?.acf_explorer?.slogan ? (
             handleParse(hero?.page_content?.intro)
           ) : (
             <div>
-              {!drinkType ? (
-                <h1 className=" flex flex-col ">
+              {drinkType || id === "dryckesutforskaren" ? (
+                <h1 className=" flex flex-col text-white">
+                  <span className="uppercase text-[18px] text-white font-main">
+                    drycker
+                  </span>
+                  <span>{hero?.title}</span>
+                </h1>
+              ) : (
+                <h1 className=" flex flex-col  text-white">
                   <span className="uppercase text-[18px] font-main">
                     topplista
                   </span>
                   <span>{hero?.acf_toplists?.slogan}</span>
                 </h1>
-              ) : (
-                <h1 className=" flex flex-col ">
-                  <span className="uppercase text-[18px] font-main">
-                    drycker
-                  </span>
-                  <span>{hero?.title}</span>
-                </h1>
               )}
-              <p>{hero?.acf_toplists?.text}</p>
+              {hero?.acf_explorer?.slogan ? (
+                <p className="text-white">{hero?.acf_explorer?.slogan}</p>
+              ) : (
+                <p className="text-white">{hero?.acf_toplists?.text}</p>
+              )}
             </div>
           )}
         </div>
       </div>
 
       <div className="layout bg-[#F8F8F9] lg:hidden  py-4 ">
-        {hero?.page_content?.intro ? (
+        {hero?.page_content?.intro && !hero?.acf_explorer?.slogan ? (
           handleParse(hero?.page_content?.intro)
         ) : (
           <div>
-            <h1 className=" flex flex-col ">
-              <span className="uppercase text-[18px] font-main">topplista</span>
-              <span>{hero?.acf_toplists?.slogan}</span>
-            </h1>
-            <p>{hero?.acf_toplists?.text}</p>
+            {drinkType || id === "dryckesutforskaren" ? (
+              <h1 className=" flex flex-col ">
+                <span className="uppercase text-[18px] font-main">drycker</span>
+                <span>{hero?.title}</span>
+              </h1>
+            ) : (
+              <h1 className=" flex flex-col  ">
+                <span className="uppercase text-[18px] font-main">
+                  topplista
+                </span>
+                <span>{hero?.acf_toplists?.slogan}</span>
+              </h1>
+            )}
+            {hero?.acf_explorer?.slogan ? (
+              <p>{hero?.acf_explorer?.slogan}</p>
+            ) : (
+              <p>{hero?.acf_toplists?.text}</p>
+            )}
           </div>
         )}
       </div>

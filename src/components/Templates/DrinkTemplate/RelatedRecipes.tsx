@@ -7,7 +7,6 @@ interface RelatedRecipesProps {
 }
 
 const RelatedRecipes = ({ data }: RelatedRecipesProps) => {
-  console.log("data =====>", data);
   return (
     <section className=" relative w-full lg:h-[500px] z-10 h-[700px]">
       <div className="absolute bg-[#F8F8F9] h-full lg:w-[calc(100%+10rem)] md:w-[calc(100%+5.5rem)] w-[calc(100%+2rem)] center-x center-y dl-layout">
