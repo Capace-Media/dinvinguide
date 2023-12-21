@@ -43,98 +43,6 @@ interface ExtendedToplist {
   fallbackDrinks?: any[]; // Replace 'any' with the appropriate type
 }
 
-// export const getToplists = async () => {
-//   try {
-//     //Get active toplists to display
-//     const res = await WP(`
-//         query getAllToplists {
-//           pageBy(uri: "topplistor") {
-//             id
-//             acf_topplistor {
-//               aktivaTopplistor {
-//                 ... on Toplist {
-//                   id
-//                   uri
-//                   title
-//                   featuredImage {
-//                     node {
-//                       altText
-//                       mediaItemUrl
-//                     }
-//                   }
-//                   seo {
-//                     metaDesc
-//                     title
-//                     opengraphTitle
-//                     opengraphDescription
-//                     opengraphImage {
-//                       mediaItemUrl
-//                     }
-//                   }
-//                   acf_toplists {
-//                     ekologiskt
-//                     maxAntal
-//                     slogan
-//                     text
-//                     toplistImg {
-//                       desktop {
-//                         altText
-//                         mediaItemUrl
-//                       }
-//                       mobile {
-//                         altText
-//                         mediaItemUrl
-//                       }
-//                     }
-//                     dryckestyper {
-//                       name
-//                     }
-//                     forpackningar {
-//                       name
-//                     }
-//                   }
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       `);
-//     let toplists = res.data.pageBy.acf_topplistor.aktivaTopplistor;
-
-//     //Get drinks after certain date, will later be split between
-//     const currentDrinks = await getCurrentToplistDrinks();
-
-//     const previousDrinks = await getPreviousToplistDrinks();
-
-//     const fallbackDrinks = await getFallbackToplistDrinks();
-
-//     let extendedToplists = [];
-//     // Populate each toplists with items
-
-//     for (let i = 0; i < toplists.length; i++) {
-//       const drinks = await getToplistItems(toplists[i], currentDrinks);
-//       const previous = await getToplistItems(toplists[i], previousDrinks);
-//       const fallback = await getToplistItems(toplists[i], fallbackDrinks);
-
-//       const toplistObject = {
-//         toplist: toplists[i],
-//         currentDrinks: drinks,
-//         previousDrinks: previous,
-//         fallbackDrinks: fallback,
-//       };
-
-//       toplistObject;
-//       extendedToplists.push(toplistObject);
-//       if (toplists[i].title === "Julens drycker") {
-//       }
-//     }
-
-//     return extendedToplists;
-//   } catch (error) {
-//     console.error("getToplists ERROR =>", error);
-//     return;
-//   }
-// };
 // Cache object
 let cache: { [key: string]: ExtendedToplist[] } = {};
 
@@ -185,28 +93,6 @@ export const getToplists = async (): Promise<ExtendedToplist[]> => {
   `);
     const toplists: Toplist[] = res.data.pageBy.acf_topplistor.aktivaTopplistor;
 
-    // Function to fetch data for a single toplist
-    // const fetchToplistData = async (
-    //   toplist: Toplist
-    // ): Promise<ExtendedToplist> => {
-    //   // const [drinks, previous, fallback] = await Promise.all([
-    //   //   getToplistItems(toplist, await getCurrentToplistDrinks()),
-    //   //   getToplistItems(toplist, await getPreviousToplistDrinks()),
-    //   //   getToplistItems(toplist, await getFallbackToplistDrinks()),
-    //   // ]);
-    //   const [drinks, previous] = await Promise.all([
-    //     getToplistItems(toplist, await getCurrentToplistDrinks()),
-    //     getToplistItems(toplist, await getPreviousToplistDrinks()),
-    //   ]);
-
-    //   //console.log("drinks inside my fetch =====>", drinks);
-    //   return {
-    //     toplist,
-    //     currentDrinks: drinks,
-    //     previousDrinks: previous,
-    //     //fallbackDrinks: fallback,
-    //   };
-    // };
     const fetchToplistData = async (
       toplist: Toplist
     ): Promise<ExtendedToplist> => {

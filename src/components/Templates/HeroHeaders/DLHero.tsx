@@ -29,8 +29,6 @@ const drinkTypeToImage: { [key in string]?: ImageType } = {
 // const image = drinkTypeToImage[drinkType as keyof typeof drinkTypeToImage];
 
 const DLHero = ({ hero, drinkType }: DLHeroProps) => {
-  console.log("drinkType =====>", hero);
-
   const determineImageSource = () => {
     // Correctly handling drinkType as a key
     if (drinkType && drinkTypeToImage[drinkType]) {

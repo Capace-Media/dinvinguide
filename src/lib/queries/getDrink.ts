@@ -15,6 +15,18 @@ export const getDrink = async (id: string) => {
               slug
               name
             }
+            bolagetAdress
+            beskrivning
+            betyg
+            ekologiskt
+            forpackningar {
+              name
+            }
+            omprovning
+            vagn
+            recension
+            pris
+            potentielltBetyg
           }
           featuredImage {
             node {

@@ -17,7 +17,7 @@ const DrinkTemplate = async ({ params }: { params: { slug: string } }) => {
     <>
       <DLHero hero={data} drinkType={data?.acf_drinks?.dryckestyper?.slug} />
       <Ads pageType="DL" position="TOP" />
-      <Drink />
+      <Drink data={data} />
       <Ads pageType="DL" position="MID" />
       <RelatedRecipes />
       <Ads pageType="DL" position="BOTTOM" />
