@@ -46,7 +46,7 @@ const TopListItem: React.FC<MyComponentProps> = ({
       "2-Papp": " bottom-[18%] left-[10%] rotate-12",
       "PET-flaska": "top-[16%] left-[50%] -translate-x-[30%] -rotate-12",
       "2-PET-flaska": " top-[16%] left-[50%] -translate-x-[70%] rotate-12",
-      default: " bottom-[18%] -right-[10%] -translate-x-[30%] -rotate-12",
+      default: " top-[16%] left-[50%] -translate-x-[30%] -rotate-12",
     };
 
     if (index <= 3 && index === 2) {
@@ -87,8 +87,9 @@ const TopListItem: React.FC<MyComponentProps> = ({
                 alt={
                   data.featuredImage.node.altText
                     ? data.featuredImage.node.altText
-                    : data.title
+                    : `Bild på ${data?.title}`
                 }
+                sizes="200px"
               />
             </figure>
             {index <= 3 && (
@@ -110,7 +111,9 @@ const TopListItem: React.FC<MyComponentProps> = ({
 
             {data?.acf_drinks?.land && (
               <p className="space-x-1">
-                {data.acf_drinks.land && <span>{data?.acf_drinks?.land}</span>}
+                {data?.acf_drinks?.land && (
+                  <span>{data?.acf_drinks?.land}</span>
+                )}
                 {data?.acf_drinks?.argang && (
                   <span>{data?.acf_drinks?.argang}</span>
                 )}
@@ -126,7 +129,7 @@ const TopListItem: React.FC<MyComponentProps> = ({
               )}
             </p>
             {/* test */}
-            <p>{data?.acf_drinks?.forpackningar?.name}</p>
+
             {data.acf_drinks.passarTillRecept &&
               data.acf_drinks.passarTillRecept.length > 0 && (
                 <div className="flex items-baseline gap-3">

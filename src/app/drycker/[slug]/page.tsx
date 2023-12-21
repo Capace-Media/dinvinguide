@@ -4,11 +4,11 @@ import { Suspense } from "react";
 
 interface DrinkProps {}
 
-const Drink = ({}: DrinkProps) => {
+const Drink = ({ params }: { params: { slug: string } }) => {
   return (
     <>
       <Suspense fallback={<Loading />}>
-        <DrinkTemplate />
+        <DrinkTemplate params={params} />
       </Suspense>
     </>
   );

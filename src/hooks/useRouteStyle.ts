@@ -1,8 +1,9 @@
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const useRouteStyle = (): boolean => {
   const path = usePathname();
+
   const [isDL, setDL] = useState<boolean>(false);
 
   useEffect(() => {
@@ -10,13 +11,18 @@ const useRouteStyle = (): boolean => {
     const checkPath = () => {
       if (typeof window !== "undefined") {
         const path = window.location.pathname;
-        return [
+
+        // Base paths that you want to match
+        const basePaths = [
           "/dryckeslistan",
-          "/drycker",
           "/topplistan",
           "/dryckesutforskaren",
           "/topplistor",
-        ].includes(path);
+          "/drycker",
+        ];
+
+        // Check if the current path starts with any of the base paths
+        return basePaths.some((basePath) => path.startsWith(basePath));
       }
       return false;
     };

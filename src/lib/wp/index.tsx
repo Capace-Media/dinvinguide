@@ -63,7 +63,7 @@ export const WPnext = async (query: string, variables?: any) => {
         Authorization: `Basic ${auth}`,
         "Content-Type": "application/json",
       },
-      next: { revalidate: 2500 },
+      next: { revalidate: 345600 },
       body: JSON.stringify({
         query,
         variables: variables || null,
