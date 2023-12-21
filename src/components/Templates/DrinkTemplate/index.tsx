@@ -13,13 +13,16 @@ async function getDrinkData({ params }: { params: { slug: string } }) {
 const DrinkTemplate = async ({ params }: { params: { slug: string } }) => {
   const data = await getDrinkData({ params });
 
+  const { acf_drinks, ...rest } = data;
+  const { passarTillRecept, ...acfData } = acf_drinks;
+
   return (
     <>
       <DLHero hero={data} drinkType={data?.acf_drinks?.dryckestyper?.slug} />
       <Ads pageType="DL" position="TOP" />
       <Drink data={data} />
       <Ads pageType="DL" position="MID" />
-      <RelatedRecipes />
+      <RelatedRecipes data={passarTillRecept[0]} />
       <Ads pageType="DL" position="BOTTOM" />
       <TopListLinks />
     </>

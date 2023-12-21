@@ -17,6 +17,7 @@ export { default as DarkDvgLogo } from "./DarkDvgLogo";
 export { default as DarkEmail } from "./DarkEmail";
 export { default as DarkFacebook } from "./DarkFacebook";
 export { default as DarkInstagram } from "./DarkInstagram";
+export { default as DlNextArrow } from "./DlNextArrow";
 export { default as Edit } from "./Edit";
 export { default as Efterratter } from "./Efterratter";
 export { default as Email } from "./Email";

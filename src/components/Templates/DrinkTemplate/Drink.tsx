@@ -1,3 +1,4 @@
+import { DlNextArrow } from "@/components/icons";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,7 +8,7 @@ interface DrinkProps {
 
 const Drink = ({ data }: DrinkProps) => {
   return (
-    <article className="lg:grid-cols-2 grid gap-8 relative z-10 layout">
+    <article className="lg:grid-cols-2 grid gap-8 lg:gap-0 relative z-10 dl-layout">
       <div className={`relative `}>
         {data?.featuredImage && data?.featuredImage.node && (
           <Link href={data.uri} className={`flex justify-center `}>
@@ -31,7 +32,7 @@ const Drink = ({ data }: DrinkProps) => {
         )}
       </div>
 
-      <div className="flex justify-center items-center ">
+      <div className="flex justify-center items-center">
         <div className="flex flex-col gap-16">
           <div className="flex flex-col gap-1">
             <Link href={data.uri}>
@@ -70,7 +71,7 @@ const Drink = ({ data }: DrinkProps) => {
                     <span>Passar till: </span>
                     <Link
                       className="underline"
-                      href={data.acf_drinks.passarTillRecept[0].uri}
+                      href={`/recept/${data.acf_drinks.passarTillRecept[0].slug}`}
                     >
                       {data.acf_drinks.passarTillRecept[0].title}
                     </Link>
@@ -83,11 +84,25 @@ const Drink = ({ data }: DrinkProps) => {
                 <span>{data.acf_drinks.pris}:-</span>
               </p>
             )}
+            {data?.acf_drinks?.recension && (
+              <div className="py-4">
+                <h3 className="uppercase">Recension:</h3>
+                <p>{data.acf_drinks?.recension}</p>
+              </div>
+            )}
           </div>
-
-          <Link href={data.uri} className="flex items-center gap-3">
-            <span>Läs mer om vinet</span>
-          </Link>
+          {data?.acf_drinks?.bolagetAdress &&
+          data?.acf_drinks?.bolagetAdress.includes("https://") ? (
+            <a
+              href={data.acf_drinks.bolagetAdress}
+              className="flex items-center gap-3"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>Beställ på Systembolaget</span>
+              <DlNextArrow />
+            </a>
+          ) : null}
         </div>
       </div>
     </article>

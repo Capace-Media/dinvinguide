@@ -15,6 +15,26 @@ export const getDrink = async (id: string) => {
               slug
               name
             }
+            passarTillRecept {
+              ... on Recipe {
+                id
+                slug
+                title
+                featuredImage {
+                  node {
+                    altText
+                    mediaItemUrl
+                    mediaDetails {
+                      height
+                      width
+                    }
+                  }
+                }
+                acf_recipe {
+                  desc
+                }
+              }
+            }
             bolagetAdress
             beskrivning
             betyg

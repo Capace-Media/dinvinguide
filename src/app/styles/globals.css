@@ -50,6 +50,10 @@ div.alignright {
 .layout {
   @apply px-4 md:px-11 lg:px-20 m-auto xl:max-w-[1777px];
 }
+
+.dl-layout {
+  @apply px-4 md:px-20 lg:px-[8rem] m-auto xl:max-w-[1777px];
+}
 .contain {
   @apply py-4 md:py-11 lg:py-20;
 }
