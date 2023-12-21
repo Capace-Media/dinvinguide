@@ -38,10 +38,10 @@ export async function generateMetadata(
   return data;
 }
 
-const Drinks = () => {
+const Drinks = ({ searchParams, params }: Props) => {
   return (
     <>
-      <WineExplorerTemplate />
+      <WineExplorerTemplate searchParams={searchParams} />
     </>
   );
 };

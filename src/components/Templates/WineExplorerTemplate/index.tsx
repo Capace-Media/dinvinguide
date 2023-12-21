@@ -11,7 +11,11 @@ async function getDrinksPage() {
   return data;
 }
 
-const WineExplorerTemplate = async () => {
+const WineExplorerTemplate = async ({
+  searchParams,
+}: {
+  [key: string]: string | string[] | any | undefined;
+}) => {
   const data = await getDrinksPage();
 
   return (
@@ -19,7 +23,7 @@ const WineExplorerTemplate = async () => {
       <DLHero hero={data} id="dryckesutforskaren" />
       <PageIntro data={data?.page_content?.intro} />
       <Ads pageType="default" position="TOP" />
-      <WineExplorer />
+      <WineExplorer searchParams={searchParams} />
       <Ads pageType="default" position="MID" />
       <TopListLinks />
       <Ads pageType="default" position="BOTTOM" />

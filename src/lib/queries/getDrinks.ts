@@ -1,7 +1,7 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
 import { WPnext } from "../wp";
 
-export const getPostsByAuthor = async (
+export const getDrinks = async (
   after?: string,
   before?: string,
   first?: number | null,
@@ -45,8 +45,8 @@ export const getPostsByAuthor = async (
       { after, before, first, last }
     );
 
-    const drink = res.data.drinks;
-    return drink;
+    const data = res.data.drinks;
+    return data;
   } catch (error) {
     console.error(error);
     return {
