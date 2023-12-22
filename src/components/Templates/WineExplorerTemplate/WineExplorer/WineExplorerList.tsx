@@ -8,7 +8,7 @@ interface WineExplorerListProps {
 const WineExplorerList = ({ data }: WineExplorerListProps) => {
   console.log("data =====>", data);
   return (
-    <ul className="grid grid-cols-4 gap-8 ">
+    <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-[4.3rem] pb-10">
       {data &&
         data.map((wine: any) => {
           console.log("wine.node.acf_drinks =====>", wine.node.acf_drinks);
@@ -31,7 +31,7 @@ const WineExplorerList = ({ data }: WineExplorerListProps) => {
                     style={{
                       objectFit: "contain",
                     }}
-                    sizes="(min-width: 940px) 50px, (min-width: 780px) calc(2.86vw + 24px), (min-width: 540px) calc(7.27vw - 6px), calc(25vw - 100px)"
+                    sizes="(min-width: 1200px) 300px, (min-width: 768px) 384px, 100vw"
                     className=""
                   />
                 </div>
