@@ -1,4 +1,24 @@
 @media (min-width: 1024px) {
+  .group:hover .shake-image {
+    animation: shake 0.7s; /* duration of 0.5s */
+    animation-timing-function: ease-in-out;
+  }
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-5px);
+    }
+    50% {
+      transform: translateX(5px);
+    }
+    75% {
+      transform: translateX(-5px);
+    }
+  }
   @for $i from 0 through 20 {
     #extraPuff:nth-of-type(#{$i + 1}) {
       flex-direction: if($i % 2 == 0, row, row-reverse);

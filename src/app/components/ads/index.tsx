@@ -7,7 +7,7 @@ import {
   AD_TOP,
 } from "@/lib/queries/fragments/ads";
 import WP from "@/lib/wp";
-import { AdsData } from "../../../../types/AdTypes";
+
 import AdBanner from "./AdBanner";
 
 const QUERY_MAP = {
@@ -46,17 +46,6 @@ export function getAdQuery(
 
   return QUERY_MAP[pageType][position];
 }
-
-// async function fetchAds(
-//   pageType: "default" | "DL",
-//   position: "TOP" | "MID" | "BOTTOM"
-// ): Promise<AdsData> {
-//   const query = getAdQuery(pageType, position);
-
-//   const data = await WP(query);
-
-//   return data.data;
-// }
 
 async function fetchAds(pageType: any, position: any) {
   const query = getAdQuery(pageType, position);

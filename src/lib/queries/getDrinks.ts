@@ -27,6 +27,14 @@ export const getDrinks = async (
               slug
               title
               id
+              acf_drinks {
+                dryckestyper {
+                  name
+                }
+                forpackningar {
+                  name
+                }
+              }
               featuredImage {
                 node {
                   altText

@@ -20,6 +20,7 @@ const WineExplorer = async ({
   const data = await getDrinks(after, before, first, last);
 
   const { edges, pageInfo } = data;
+
   return (
     <div className="">
       <WineExplorerList data={edges} />
