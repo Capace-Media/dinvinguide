@@ -22,8 +22,12 @@ const WineExplorer = async ({
   const { edges, pageInfo } = data;
 
   return (
-    <div className="">
+    <div className="dl-layout relative z-10">
+      <h2 className="pb-10 md:pb-20 text-center">
+        Utforska de viner som redaktionen har testat
+      </h2>
       <WineExplorerList data={edges} />
+
       <WineExplorerController
         pageInfo={pageInfo}
         after={after}

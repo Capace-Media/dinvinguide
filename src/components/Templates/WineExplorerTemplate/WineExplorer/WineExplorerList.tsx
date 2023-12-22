@@ -8,7 +8,7 @@ interface WineExplorerListProps {
 const WineExplorerList = ({ data }: WineExplorerListProps) => {
   console.log("data =====>", data);
   return (
-    <ul className="relative z-10 grid grid-cols-4 gap-8 dl-layout">
+    <ul className="grid grid-cols-4 gap-8 ">
       {data &&
         data.map((wine: any) => {
           console.log("wine.node.acf_drinks =====>", wine.node.acf_drinks);
