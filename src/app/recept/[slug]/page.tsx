@@ -3,7 +3,6 @@ import RecipeTemplate from "@/components/Templates/RecipeTemplate";
 import { getSingleRecipe } from "@/lib/queries/getSingleRecipe";
 import { getErrorMessage } from "@/lib/utils/getErrorMessage";
 import WP from "@/lib/wp";
-import { RecipeJsonLd } from "next-seo";
 import { Suspense } from "react";
 
 interface RecipeProps {

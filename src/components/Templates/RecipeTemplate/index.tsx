@@ -28,6 +28,7 @@ const RecipeTemplate = ({ promise }: RecipeTemplateProps) => {
         author={promise?.acf_recipe?.skrivetAv}
         handlePrint={handlePrint}
       />
+
       <RecipeContent data={promise} />
     </article>
   );

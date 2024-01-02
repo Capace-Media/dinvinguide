@@ -11,7 +11,6 @@ const WineExplorerList = ({ data }: WineExplorerListProps) => {
     <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-[4.3rem] pb-10">
       {data &&
         data.map((wine: any) => {
-          console.log("wine.node.acf_drinks =====>", wine.node.acf_drinks);
           return (
             <li key={wine.node.id} className="group">
               <Link

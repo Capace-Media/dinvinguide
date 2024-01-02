@@ -123,7 +123,6 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position, pageType }) => {
                 alt="Annons"
                 onLoad={() => setImageLoaded(true)}
                 sizes="(min-width: 1040px) 980px, 280px"
-                priority
               />
               {!imageLoaded && (
                 <div className="absolute top-0 left-0 right-0 bottom-0">

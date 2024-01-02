@@ -61,6 +61,24 @@ export const getSingleRecipe = async (id: string) => {
                 id
                 slug
                 title
+                acf_drinks {
+                  dryckestyper {
+                    name
+                  }
+                  forpackningar {
+                    name
+                  }
+                }
+                featuredImage {
+                  node {
+                    altText
+                    mediaItemUrl
+                    mediaDetails {
+                      width
+                      height
+                    }
+                  }
+                }
               }
             }
             time {
