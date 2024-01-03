@@ -1,3 +1,4 @@
+import Ads from "@/app/components/ads";
 import Loading from "@/app/loading";
 import RecipeTemplate from "@/components/Templates/RecipeTemplate";
 import { getSingleRecipe } from "@/lib/queries/getSingleRecipe";

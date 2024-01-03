@@ -6,7 +6,6 @@ interface WineExplorerListProps {
 }
 
 const WineExplorerList = ({ data }: WineExplorerListProps) => {
-  console.log("data =====>", data);
   return (
     <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-[4.3rem] pb-10">
       {data &&

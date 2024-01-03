@@ -11,13 +11,13 @@ const SuitableWines = ({ data }: SuitableWinesProps) => {
   }
   return (
     <section className="">
-      <h2 className="pb-10">Passande drycker</h2>
+      <h2 className="pb-6 text-[28px]">Passande drycker</h2>
 
-      <ul className="flex items-center gap-6 overflow-x-scroll md:overflow-hidden shrink-1 py-8">
+      <ul className="flex flex-wrap gap-6 py-8">
         {data &&
           data?.map((wine: any) => {
             return (
-              <li key={wine.id} className="group min-w-[320px]">
+              <li key={wine.id} className="group max-w-[311px]">
                 <Link
                   href={`/drycker/${wine?.slug}`}
                   className="flex"
