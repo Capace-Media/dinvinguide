@@ -22,11 +22,11 @@ const WineExplorerTemplate = async ({
     <>
       <DLHero hero={data} id="dryckesutforskaren" />
       <PageIntro data={data?.page_content?.intro} />
-      <Ads pageType="default" position="TOP" />
+      <Ads pageType="DL" position="TOP" />
       <WineExplorer searchParams={searchParams} />
-      <Ads pageType="default" position="MID" />
+      <Ads pageType="DL" position="MID" />
       <TopListLinks />
-      <Ads pageType="default" position="BOTTOM" />
+      <Ads pageType="DL" position="BOTTOM" />
     </>
   );
 };

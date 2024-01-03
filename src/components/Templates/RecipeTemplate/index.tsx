@@ -16,7 +16,7 @@ const RecipeTemplate = ({ promise }: RecipeTemplateProps) => {
   });
 
   return (
-    <article ref={componentRef}>
+    <article>
       <RecipeHero
         title={promise?.title}
         image={promise?.featuredImage?.node}
@@ -28,8 +28,9 @@ const RecipeTemplate = ({ promise }: RecipeTemplateProps) => {
         author={promise?.acf_recipe?.skrivetAv}
         handlePrint={handlePrint}
       />
-
-      <RecipeContent data={promise} />
+      <div ref={componentRef}>
+        <RecipeContent data={promise} />
+      </div>
     </article>
   );
 };
