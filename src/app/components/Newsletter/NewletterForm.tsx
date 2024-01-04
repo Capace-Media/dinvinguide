@@ -42,7 +42,7 @@ const NewsletterForm = () => {
           Registrera dig för vårt <br /> inspirerande nyhetsbrev
         </h3>
 
-        <p className="text-[#999999] text-main text-[14px] py-4">
+        <p className="text-[#666666] text-main text-[14px] py-4">
           och få information om inspirerande artiklar, exklusiva viner,
           erbjudanden samt innehåll om alkoholhaltiga drycker. (Du kan när som
           helst avregistrera dig).
@@ -70,6 +70,7 @@ const NewsletterForm = () => {
           <button
             type="submit"
             className=" bg-brand-secondary p-2 absolute right-2 center-y"
+            aria-label="Registrera email till vårt nyhetsbrev"
           >
             <SubmitArrow />
           </button>
@@ -86,17 +87,19 @@ const NewsletterForm = () => {
         />
         <input type="hidden" name="ml-submit" value={email === "" ? "1" : ""} />
 
-        <div className=" flex items-center gap-2">
+        <label
+          htmlFor="ageChecked"
+          className="text-[12px] text-[#4d4d4d] flex items-center gap-2 cursor-pointer"
+        >
           <input
+            id="ageChecked"
             type="checkbox"
             name="checkbox"
             checked={ageChecked}
             onChange={handleCheckboxChange}
           />
-          <label className="text-[12px] text-[#4d4d4d]">
-            Jag är över 25 år och accepterar mailutskick
-          </label>
-        </div>
+          Jag är över 25 år och accepterar mailutskick
+        </label>
       </form>
     </div>
   );

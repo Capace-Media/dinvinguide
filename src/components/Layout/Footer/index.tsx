@@ -53,6 +53,7 @@ const Footer = ({}: FooterProps) => {
             className={`flex items-center gap-2 ${
               isDL ? "text-[#333]" : "text-white"
             }`}
+            aria-label="Skicka mail till info@dinvinguide.se"
           >
             {isDL ? <DarkEmail /> : <Email />}
 
@@ -66,6 +67,7 @@ const Footer = ({}: FooterProps) => {
             className={`flex items-center gap-2 ${
               isDL ? "text-[#333]" : "text-white"
             }`}
+            aria-label="besök vår Instagram"
           >
             {isDL ? <DarkInstagram /> : <InstagramSm />}
             <span>Instagram</span>
@@ -76,6 +78,7 @@ const Footer = ({}: FooterProps) => {
             className={`flex items-center gap-2 ${
               isDL ? "text-[#333]" : "text-white"
             }`}
+            aria-label="besök vår facebook"
           >
             {isDL ? <DarkFacebook /> : <FacebookSm />}
             <span>Facebook</span>
@@ -122,6 +125,7 @@ const Footer = ({}: FooterProps) => {
               className={`${isDL ? "text-[#333]" : "text-white"}`}
               href="https://www.instagram.com/dinvinguide.se/"
               target="_blank"
+              aria-label="besök vår Instagram"
             >
               {isDL ? <DarkInstagram className="scale-150" /> : <Instagram />}
             </a>
@@ -129,6 +133,7 @@ const Footer = ({}: FooterProps) => {
               className={`${isDL ? "text-[#333]" : "text-white"}`}
               href="https://www.facebook.com/dinvinguide"
               target="_blank"
+              aria-label="besök vår facebook"
             >
               {isDL ? <DarkFacebook className="scale-150" /> : <Facebook />}
             </a>

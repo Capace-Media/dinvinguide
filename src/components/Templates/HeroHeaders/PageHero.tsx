@@ -31,7 +31,7 @@ const PageHero = ({ data, links }: PageHeroProps) => {
                       >
                         <Link
                           className="uppercase text-brand-primary text-[14px]"
-                          href={`/recept${node?.uri}`}
+                          href={`${node?.uri}`}
                         >
                           {node?.name}
                         </Link>

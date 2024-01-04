@@ -25,7 +25,11 @@ const TopNav = () => {
         } absolute center-x flex justify-center gap-2 items-center py-4 w-full`}
       >
         <figure>
-          <a href="https://bestchampagne.se/" target="_blank">
+          <a
+            href="https://bestchampagne.se/"
+            target="_blank"
+            aria-label="Besök BestChampagne.se"
+          >
             {isDL ? <DarkBcLogo /> : <BcTopNav />}
           </a>
         </figure>
@@ -33,7 +37,7 @@ const TopNav = () => {
           <Avbrytare />
         </figure>
         <figure>
-          <Link href="/dryckeslistan">
+          <Link href="/dryckeslistan" aria-label="Gå till DryckesListan.se">
             {isDL ? <DarkDlLogo /> : <DlTopNav />}
           </Link>
         </figure>

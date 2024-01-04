@@ -33,10 +33,18 @@ const Nav = ({}: NavProps) => {
           : "absolute center-x"
       }`}
     >
-      <Link href="/" className="z-50 md:hidden block">
+      <Link
+        href="/"
+        className="z-50 md:hidden block"
+        aria-label="Gå till startsidan"
+      >
         <DvLogoBlackMini />
       </Link>
-      <Link href="/" className="z-50  hidden md:block">
+      <Link
+        href="/"
+        className="z-50  hidden md:block"
+        aria-label="Gå till startsidan"
+      >
         <Logo />
       </Link>
 
