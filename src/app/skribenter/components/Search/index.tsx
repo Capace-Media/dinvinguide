@@ -6,11 +6,11 @@ import { useEffect, useRef, useState } from "react";
 
 import { useDebounce } from "use-debounce";
 
-const Search = ({ search }: { search?: string }) => {
+const Search = ({ word, uri }: { word?: string; uri?: string }) => {
   const router = useRouter();
   const initialRender = useRef(true);
 
-  const [text, setText] = useState(search);
+  const [text, setText] = useState(word);
   const [query] = useDebounce(text, 350);
 
   useEffect(() => {
@@ -20,9 +20,9 @@ const Search = ({ search }: { search?: string }) => {
     }
 
     if (!query) {
-      router.push(`/skribenter/fredrikschelin`);
+      router.push(`/skribenter/${uri}`);
     } else {
-      router.push(`/skribenter/fredrikschelin?search=${query}`);
+      router.push(`/skribenter/${uri}?search=${query}`);
     }
   }, [query]);
 

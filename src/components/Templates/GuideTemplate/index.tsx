@@ -7,13 +7,13 @@ import links from "./guideLinks.json";
 
 interface GuideTemplateProps {}
 
-async function getDrinksPage() {
+async function getGuidePage() {
   const data = await getPage("/guide");
   return data;
 }
 
 const GuideTemplate = async ({}: GuideTemplateProps) => {
-  const data = await getDrinksPage();
+  const data = await getGuidePage();
 
   return (
     <>

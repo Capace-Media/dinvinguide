@@ -7,12 +7,13 @@ import Search from "../Search";
 
 interface AuthorHeroProps {
   promise?: any;
-  search?: string;
+  word?: string;
 }
 
-const AuthorHero = async ({ promise, search }: AuthorHeroProps) => {
+const AuthorHero = async ({ promise, word }: AuthorHeroProps) => {
   const data = await promise;
 
+  console.log("data =====>", data);
   return (
     <section className="layout bg-white">
       <div className="overflow-hidden h-[799px] relative lg:h-[711px] text-brand-dark">
@@ -54,7 +55,7 @@ const AuthorHero = async ({ promise, search }: AuthorHeroProps) => {
               </p>
             </div>
             <div>
-              <Search search={search} />
+              <Search word={word} uri={data?.username} />
               {/* <form action={searchData}>
                 <div className="w-full text-[14px] bg-white relative shadow-md">
                   <input

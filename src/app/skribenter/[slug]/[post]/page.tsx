@@ -37,7 +37,7 @@ export async function generateStaticParams() {
 async function getPostData(params: { post: string; slug: string }) {
   const { post, slug } = params;
 
-  const uri = `/${slug}/${post}/`;
+  const uri = `/${slug}/${post}`;
   const data = await getPost(uri);
 
   const postProps = {

@@ -84,7 +84,7 @@ export async function generateMetadata(
   return data;
 }
 
-const SingleAuthorPage = async ({ params, searchParams }: Props) => {
+async function SingleAuthorPage({ params, searchParams }: Props) {
   const search =
     typeof searchParams.search === "string" ? searchParams.search : undefined;
 
@@ -94,7 +94,7 @@ const SingleAuthorPage = async ({ params, searchParams }: Props) => {
 
   return (
     <div key={params?.slug}>
-      <AuthorHero promise={data} />
+      <AuthorHero promise={data} word={search} />
       <Ads pageType="default" position="TOP" />
       <section className="layout bg-white">
         <div className="contain">
@@ -116,6 +116,7 @@ const SingleAuthorPage = async ({ params, searchParams }: Props) => {
           params={params}
           searchParams={searchParams}
           postsCount={posts}
+          search={search}
         />
       </section>
       <Ads pageType="default" position="MID" />
@@ -124,6 +125,6 @@ const SingleAuthorPage = async ({ params, searchParams }: Props) => {
       <Newsletter />
     </div>
   );
-};
+}
 
 export default SingleAuthorPage;
