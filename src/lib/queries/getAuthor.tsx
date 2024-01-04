@@ -1,9 +1,9 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP from "../wp";
+import WP, { WPnext } from "../wp";
 
 export const getAuthor = async (id: string, search?: string) => {
   try {
-    const res = await WP(
+    const res = await WPnext(
       `query getAuthor($id: ID!, $search: String) {
         user(id: $id, idType: USERNAME) {
           username

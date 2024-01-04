@@ -19,7 +19,7 @@ const AuthorsHero = async ({ promise }: AuthorsHeroProps) => {
                 links.authors.map((link: any) => {
                   return (
                     <li
-                      key={link.id}
+                      key={link?.id}
                       className="flex flex-col lg:hover:scale-105 lg:ease-in-out lg:duration-300 justify-center items-center"
                     >
                       <Link href={link.uri}>{link.title}</Link>

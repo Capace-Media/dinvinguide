@@ -1,9 +1,9 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP from "../wp";
+import WP, { WPnext } from "../wp";
 
 export const getAuthors = async () => {
   try {
-    const res = await WP(`query getAllAuthors {
+    const res = await WPnext(`query getAllAuthors {
             acfOptionsSkribenter {
               acf_skribenter {
                 skribenter {
@@ -16,6 +16,7 @@ export const getAuthors = async () => {
                       title
                       slug
                       uri
+                      id
                       modifiedGmt
                       author {
                         node {
@@ -65,6 +66,7 @@ export const getAuthors = async () => {
                       title
                       slug
                       uri
+                      id
                       modifiedGmt
                       author {
                         node {

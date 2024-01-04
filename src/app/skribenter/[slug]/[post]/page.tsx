@@ -15,8 +15,11 @@ export async function generateStaticParams() {
         posts {
           nodes {
             slug
-            uri
-            title
+            author {
+              node {
+                slug
+              }
+            }
           }
         }
       }
@@ -25,6 +28,7 @@ export async function generateStaticParams() {
   return (
     posts?.data?.posts?.nodes &&
     posts.data.posts.nodes.map((post: any) => ({
+      slug: post?.author?.node?.slug,
       post: post.slug,
     }))
   );

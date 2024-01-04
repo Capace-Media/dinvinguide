@@ -1,4 +1,3 @@
-import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
 import Link from "next/link";
 import AuthorPost from "./Posts/post";
@@ -79,11 +78,13 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
         <div className="layout bg-white contain">
           <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
             {author?.posts?.nodes &&
-              author.posts.nodes.map((post: any) => (
-                <li key={post.id}>
-                  <AuthorPost post={post} />
-                </li>
-              ))}
+              author.posts.nodes.map((post: any) => {
+                return (
+                  <li key={post?.id}>
+                    <AuthorPost post={post} />
+                  </li>
+                );
+              })}
           </ul>
         </div>
       ) : null}

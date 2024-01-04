@@ -7,7 +7,7 @@ import { getAuthors } from "@/lib/queries/getAuthors";
 import ExplorePages from "@/app/components/ExplorePages";
 import Newsletter from "@/app/components/Newsletter";
 import Ads from "@/app/components/ads";
-import { isCustomPageSlug } from "@/lib/utils/exclude";
+import WP from "@/lib/wp";
 import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
@@ -16,18 +16,24 @@ type PropsPaths = {
   slug: string;
 };
 export async function generateStaticParams() {
-  const authors = await getAuthors();
+  //const authors = await getAuthors();
 
-  const authorsPaths: PropsPaths[] = [];
-
-  authors?.skribenter &&
-    authors.skribenter.map((author: any) => {
-      if (author?.slug) {
-        authorsPaths.push({ slug: author.slug });
+  const authors = await WP(`query getAllAuthors {
+    acfOptionsSkribenter {
+      acf_skribenter {
+        skribenter {
+          slug
+        }
       }
-    });
+    }
+  }`);
 
-  return authorsPaths;
+  return (
+    authors?.data?.acfOptionsSkribenter?.acf_skribenter?.skribenter &&
+    authors.data.acfOptionsSkribenter.acf_skribenter.skribenter.map(
+      (author: any) => ({ slug: author?.slug })
+    )
+  );
 }
 
 type Props = {
@@ -78,7 +84,7 @@ export async function generateMetadata(
   return data;
 }
 
-const Author = async ({ params, searchParams }: Props) => {
+const SingleAuthorPage = async ({ params, searchParams }: Props) => {
   const search =
     typeof searchParams.search === "string" ? searchParams.search : undefined;
 
@@ -87,7 +93,7 @@ const Author = async ({ params, searchParams }: Props) => {
   const { posts } = data;
 
   return (
-    <div>
+    <div key={params?.slug}>
       <AuthorHero promise={data} />
       <Ads pageType="default" position="TOP" />
       <section className="layout bg-white">
@@ -120,4 +126,4 @@ const Author = async ({ params, searchParams }: Props) => {
   );
 };
 
-export default Author;
+export default SingleAuthorPage;
