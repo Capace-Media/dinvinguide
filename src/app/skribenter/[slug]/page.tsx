@@ -2,7 +2,7 @@ import AuthorPosts from "@/components/Blocks/skribenter/Posts";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 
 import { getAuthor } from "@/lib/queries/getAuthor";
-import { getAuthors } from "@/lib/queries/getAuthors";
+
 
 import ExplorePages from "@/app/components/ExplorePages";
 import Newsletter from "@/app/components/Newsletter";
