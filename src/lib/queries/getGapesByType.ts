@@ -11,7 +11,6 @@ export const getGapesByType = async (
 ) => {
   try {
     if (id) {
-      console.log("Hello id =====>", id);
       const res = await WPnext(
         `
         query getGapesByType($id: ID!, $last: Int, $first: Int, $before: String, $after: String, $search: String) {
@@ -47,13 +46,9 @@ export const getGapesByType = async (
         { after, before, first, last, id, search }
       );
 
-      console.log("res in id =====>", res);
-
       const data = res.data.grapeType;
       return data;
     } else {
-      console.log("hello grapes =====>", first, last);
-
       const res = await WPnext(
         `
         query getGapes($last: Int, $first: Int, $before: String, $after: String, $search: String) {
@@ -87,7 +82,6 @@ export const getGapesByType = async (
         { after, before, first, last, search }
       );
 
-      console.log("res in all grapes =====>", res);
       const data = res.data.grapes;
       return data;
     }

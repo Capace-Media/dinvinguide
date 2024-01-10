@@ -11,7 +11,7 @@ type DataArgs = {
 
 type Props = {
   params: { slug: string };
-  searchParams: { [key: string]: string | string[] | any | undefined };
+  searchParams: { [key: string]: string | string[] | any | undefined | null };
 };
 async function getGrapes(args: DataArgs) {
   const { after, before, id, search = "", first, last } = args;
@@ -40,7 +40,6 @@ const GuidePagination = async ({ params, searchParams }: Props) => {
     last: endLast,
   });
 
-  console.log("promise =====>", promise);
   return (
     <div className="">
       <h2 className="">Hello GuidePagination</h2>

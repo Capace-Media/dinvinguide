@@ -35,7 +35,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
   search,
 }) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const searchParams: any = useSearchParams();
 
   const page = searchParams.get("page") ?? "1";
 

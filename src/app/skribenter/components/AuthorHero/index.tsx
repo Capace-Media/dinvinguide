@@ -13,7 +13,6 @@ interface AuthorHeroProps {
 const AuthorHero = async ({ promise, word }: AuthorHeroProps) => {
   const data = await promise;
 
-  console.log("data =====>", data);
   return (
     <section className="layout bg-white">
       <div className="overflow-hidden h-[799px] relative lg:h-[711px] text-brand-dark">

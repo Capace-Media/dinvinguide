@@ -1,10 +1,10 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP from "../wp";
+import { WPnext } from "../wp";
 import { SEO } from "./fragments/Seo";
 
 export const getPage = async (id: string) => {
   try {
-    const res = await WP(
+    const res = await WPnext(
       `query GET_PAGE($id: ID!) {
         page(id: $id, idType: URI) {
           title

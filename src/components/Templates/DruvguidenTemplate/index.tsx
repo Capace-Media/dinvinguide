@@ -7,7 +7,7 @@ import GuidePagination from "./GuidePagination.tsx";
 
 type Props = {
   params: { slug: string };
-  searchParams: { [key: string]: string | string[] | any | undefined };
+  searchParams: { [key: string]: string | string[] | any | undefined | null };
 };
 
 async function getSingleGuidePage({ params }: { params: { slug: string } }) {
@@ -15,7 +15,7 @@ async function getSingleGuidePage({ params }: { params: { slug: string } }) {
   return data;
 }
 
-const SingleGuideTemplate = async ({ params, searchParams }: Props) => {
+const DruvguidenTemplate = async ({ params, searchParams }: Props) => {
   const data = await getSingleGuidePage({ params });
   return (
     <>
@@ -29,4 +29,4 @@ const SingleGuideTemplate = async ({ params, searchParams }: Props) => {
   );
 };
 
-export default SingleGuideTemplate;
+export default DruvguidenTemplate;

@@ -29,7 +29,7 @@ const WineExplorerController = ({
   } = pageInfo;
 
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const searchParams: any = useSearchParams();
   const first = "16";
 
   const page = searchParams.get("page") ?? "1";
