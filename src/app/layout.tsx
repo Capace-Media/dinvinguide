@@ -1,3 +1,4 @@
+import Analytics from "@/components/Analytics";
 import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
 import Provider from "@/lib/Provider";
@@ -138,6 +139,7 @@ export default function RootLayout({
           <Header />
           <Suspense fallback={<Loading />}>
             <main className="">{children}</main>
+            <Analytics />
           </Suspense>
           <Footer />
         </Provider>
