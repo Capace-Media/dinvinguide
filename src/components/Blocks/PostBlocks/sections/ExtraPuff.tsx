@@ -27,7 +27,6 @@ const ExtraPuff = ({ content }: ExtraPuffProps) => {
 export default ExtraPuff;
 
 function GrapeComponent({ data }: any) {
-  console.log("data =====>", data);
   return (
     <section
       id="extraPuff"

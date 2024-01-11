@@ -40,20 +40,19 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
         <div className=" text-[#333] pt-10">
           <h1 className="font-sub pb-5">{post?.title}</h1>
           <p className=" italic text-[14px]">{post?.acf_posts?.ingress}</p>
-
-          <div className=" py-10">
-            <Image
-              src={post?.featuredImage?.node?.mediaItemUrl}
-              alt={post?.title}
-              width={300}
-              height={400}
-              style={{
-                objectFit: "contain",
-                width: "100%",
-                height: "auto",
-              }}
-            />
-          </div>
+          {post?.featuredImage?.node?.mediaItemUrl && (
+            <div className=" relative py-10 w-[100%] lg:h-[555px] h-[322px]">
+              <Image
+                src={post?.featuredImage?.node?.mediaItemUrl}
+                alt={post?.title}
+                fill
+                style={{
+                  objectFit: "cover",
+                }}
+                sizes="(min-width: 1880px) 954px, (min-width: 1040px) calc(53.9vw - 49px), (min-width: 780px) calc(100vw - 88px), calc(100vw - 32px)"
+              />
+            </div>
+          )}
         </div>
         <Blocks blocks={post?.acf_posts?.sektioner} />
       </div>

@@ -22,6 +22,11 @@ export const getGapesByType = async (
                   id
                   title
                   slug
+                  acf_grape {
+                    druvtyp {
+                      name
+                    }
+                  }
                   featuredImage {
                     node {
                       altText
@@ -46,7 +51,7 @@ export const getGapesByType = async (
         { after, before, first, last, id, search }
       );
 
-      const data = res.data.grapeType;
+      const data = res.data.grapeType.grapes;
       return data;
     } else {
       const res = await WPnext(
@@ -58,6 +63,11 @@ export const getGapesByType = async (
                   id
                   title
                   slug
+                  acf_grape {
+                    druvtyp {
+                      name
+                    }
+                  }
                   featuredImage {
                     node {
                       altText
