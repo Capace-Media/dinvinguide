@@ -5,9 +5,6 @@ export async function GET(request: NextRequest) {
   const path = request.nextUrl.searchParams.get("path");
   const secret = request.nextUrl.searchParams.get("secret");
 
-  console.log("secret =====>", secret);
-  console.log("path =====>", path);
-
   if (secret !== process.env.REVALIDATION_SECRET_TOKEN) {
     return Response.json({
       revalidated: false,

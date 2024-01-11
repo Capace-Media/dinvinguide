@@ -104,6 +104,9 @@ export const getPost = async (id: string) => {
                     title
                     slug
                     uri
+                    acf_grape {
+                      kortBeskrivning
+                    }
                     featuredImage {
                       node {
                         mediaItemUrl

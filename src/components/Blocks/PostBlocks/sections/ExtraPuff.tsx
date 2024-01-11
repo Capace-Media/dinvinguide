@@ -1,5 +1,4 @@
 import HandleImage from "@/app/components/image";
-import Image from "next/image";
 import Link from "next/link";
 
 interface ExtraPuffProps {
@@ -28,18 +27,25 @@ const ExtraPuff = ({ content }: ExtraPuffProps) => {
 export default ExtraPuff;
 
 function GrapeComponent({ data }: any) {
+  console.log("data =====>", data);
   return (
     <section
       id="extraPuff"
       className="relative w-full gap-10 flex h-[330px] py-[2rem]"
     >
-      <div className="lg:w-[40%] hidden lg:flex">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quae
-          pariatur culpa delectus enim alias magni aliquid cum maiores dolore
-          numquam, quibusdam hic minus ipsa facere explicabo molestiae.
-          Explicabo, laudantium!
-        </p>
+      <div className="lg:w-[40%] hidden lg:flex lg:flex-col">
+        <h2 className="text-[28px]">{data?.title}</h2>
+        {data?.acf_grape?.kortBeskrivning && (
+          <p className="text-[14px]">{data.acf_grape.kortBeskrivning}</p>
+        )}
+
+        <Link
+          href={`/guider/druvor/${data?.slug}`}
+          aria-label={`Läs mer om ${data?.title}`}
+          className="btn w-[142px] mt-8"
+        >
+          Läs mer
+        </Link>
       </div>
       <Link
         href={`/guider/druvor/${data?.slug}`}
@@ -60,7 +66,7 @@ function GrapeComponent({ data }: any) {
 
           {data?.title && (
             <h2 className="md:text-[18px] leading-6 text-[16px] lowercase font-sub text-white">
-              Läs mer om {data.title}
+              {data.title}
             </h2>
           )}
         </div>
