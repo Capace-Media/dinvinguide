@@ -5,9 +5,10 @@ import Link from "next/link";
 interface PageHeroProps {
   data?: any;
   links?: any[];
+  guide?: string;
 }
 
-const PageHero = ({ data, links }: PageHeroProps) => {
+const PageHero = ({ data, links, guide }: PageHeroProps) => {
   return (
     <>
       <div className="layout w-full py-[73px] md:pt-[172px] bg-white">
@@ -16,8 +17,18 @@ const PageHero = ({ data, links }: PageHeroProps) => {
             <div className="flex flex-col gap-3">
               <div className="flex flex-col gap-6 ">
                 <div className="text-[14px]">
-                  <p>Alla guider</p>
-                  {handleParse(data?.page_content?.intro)}
+                  <p>{guide}</p>
+
+                  {data?.page_content?.intro ? (
+                    handleParse(data?.page_content?.intro)
+                  ) : data?.acf_grape?.kortBeskrivning ? (
+                    <>
+                      <h1>{data?.title}</h1>
+                      <p>{data?.acf_grape?.kortBeskrivning}</p>
+                    </>
+                  ) : (
+                    <h1>{data?.title}</h1>
+                  )}
                 </div>
               </div>
 
@@ -45,7 +56,7 @@ const PageHero = ({ data, links }: PageHeroProps) => {
           <div className="w-full  order-first h-[370px] relative md:order-last lg:h-[520px]">
             <div className="absolute w-[85%] center-y left-0 h-[300px] lg:h-[430px] z-10">
               {data?.featuredImage?.node?.mediaItemUrl && (
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full shadow-xl">
                   <Image
                     src={data?.featuredImage?.node?.mediaItemUrl}
                     alt={data?.featuredImage?.node?.altText}

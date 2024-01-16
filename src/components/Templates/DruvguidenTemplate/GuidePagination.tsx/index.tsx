@@ -60,14 +60,18 @@ const GuidePagination = async ({ params, searchParams }: Props) => {
                   className="group lg:hover:-translate-y-[7px] lg:ease-in-out lg:duration-200"
                 >
                   <Link
-                    href={`/guide/druvguiden/${grape?.node?.slug}`}
+                    href={`/druvor/${grape?.node?.slug}`}
                     aria-label={`Läs mer om ${grape?.node?.title}`}
                   >
                     <div className="relative h-[200px] w-full bg-[#F5F5F5]">
                       {grape?.node?.featuredImage?.node?.mediaItemUrl && (
                         <Image
                           src={grape.node.featuredImage.node.mediaItemUrl}
-                          alt={`test`}
+                          alt={
+                            grape?.node?.featuredImage?.node?.altText
+                              ? grape.node.featuredImage.node.altText
+                              : `bild på ${grape?.node?.acf_grape?.druvtyp?.name}`
+                          }
                           fill
                           style={{
                             objectFit: "cover",
