@@ -8,10 +8,11 @@ type DataArgs = {
   search?: string;
   first?: number;
   last?: number | null;
+  parent?: string;
 };
 
 export const getWhineAtlases = async (args: DataArgs) => {
-  const { after, before, first, last } = args;
+  const { after, before, first, last, parent } = args;
   try {
     const res = await WPnext(
       `
@@ -49,7 +50,7 @@ export const getWhineAtlases = async (args: DataArgs) => {
         }
       }
       `,
-      { after, before, first, last }
+      { after, before, first, last, parent }
     );
 
     const data = res.data.pages;

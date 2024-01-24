@@ -1,6 +1,7 @@
 import Newsletter from "@/app/components/Newsletter";
 import Ads from "@/app/components/ads";
 import AuthorPost from "@/components/Blocks/skribenter/Posts/post";
+import Posts from "@/components/Pagination/Posts";
 import { getPage } from "@/lib/queries/getPage";
 import { getSchoolPosts } from "@/lib/queries/getSchoolPosts";
 import { notFound } from "next/navigation";
@@ -27,21 +28,7 @@ const SingleWineSchoolTemplate = async ({ params, searchParams }: Props) => {
       <PageHero data={data} links={links} guide={"Vinskolan"} />
       <Ads pageType="default" position="TOP" />
       {posts?.acf_overviewPage?.sidor ? (
-        <div className="layout bg-white contain">
-          <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
-            {posts?.acf_overviewPage?.sidor &&
-              posts.acf_overviewPage.sidor.map((post: any, index: number) => {
-                return (
-                  <li key={post?.id} className="relative">
-                    <span className=" absolute z-[8] top-[4px] left-[4px] bg-brand-primary text-white text-[13px] px-2 rounded-[10px]">
-                      {index + 1}
-                    </span>
-                    <AuthorPost post={post} />
-                  </li>
-                );
-              })}
-          </ul>
-        </div>
+        <Posts posts={posts?.acf_overviewPage?.sidor} />
       ) : null}
       <Newsletter />
     </>

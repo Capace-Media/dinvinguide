@@ -8,12 +8,14 @@ interface PaginationForGuidesProps {
   promise: any;
   idString: any;
   page?: any;
+  uri: string;
 }
 
 const PaginationForGuides = ({
   promise,
   idString,
   page,
+  uri,
 }: PaginationForGuidesProps) => {
   useEffect(() => {
     if (idString && page) {
@@ -22,15 +24,15 @@ const PaginationForGuides = ({
   }, [page]);
   return (
     <ul id={idString} className="grid md:grid-cols-2 gap-4 lg:grid-cols-4">
-      {promise?.edges &&
-        promise.edges.map((item: any) => {
+      {promise &&
+        promise.map((item: any) => {
           return (
             <li
               key={item?.node?.id}
               className="group lg:hover:-translate-y-[7px] lg:ease-in-out lg:duration-200"
             >
               <Link
-                href={`/guide/vinatlas/${item?.node?.slug}`}
+                href={`${uri}/${item?.node?.slug}`}
                 aria-label={`Läs mer om ${item?.node?.title}`}
               >
                 <div className="relative h-[200px] w-full bg-[#F5F5F5]">

@@ -14,27 +14,29 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
     <article className="lg:grid lg:grid-cols-5 gap-10 pt-[120px]">
       <div className="lg:col-span-3">
         <div className="flex justify-between">
-          <ul className="flex gap-2 text-[14px] text-brand-secondary">
-            <li>
-              <Link href="/">Hem</Link>
-            </li>
-            {" / "}
-            <li>
-              <Link href="/skribenter">skribenter</Link>
-            </li>
-            {" / "}
-            <li>
-              <Link href={`/skribenter/${post?.author?.slug}`}>
-                {post?.author?.name}
-              </Link>
-            </li>
-            {" / "}
-            <li>
-              <p className="text-brand-dark">{post?.title}</p>
-            </li>
-          </ul>
+          {post?.author?.name && (
+            <ul className="flex gap-2 text-[14px] text-brand-secondary">
+              <li>
+                <Link href="/">Hem</Link>
+              </li>
+              {" / "}
+              <li>
+                <Link href="/skribenter">skribenter</Link>
+              </li>
+              {" / "}
+              <li>
+                <Link href={`/skribenter/${post?.author?.slug}`}>
+                  {post?.author?.name}
+                </Link>
+              </li>
+              {" / "}
+              <li>
+                <p className="text-brand-dark">{post?.title}</p>
+              </li>
+            </ul>
+          )}
           <time className="text-[14px]" dateTime={post?.modifiedGmt}>
-            {PrettyDate(post.modifiedGmt)}
+            {PrettyDate(post?.modifiedGmt)}
           </time>
         </div>
         <div className=" text-[#333] pt-10">
@@ -56,7 +58,10 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
         </div>
         <Blocks blocks={post?.acf_posts?.sektioner} />
       </div>
-      <Aside author={post?.author} related={post?.acf_posts?.lasMer} />
+      <Aside
+        author={post?.author?.node ? post?.author?.node : post?.author}
+        related={post?.acf_posts?.lasMer}
+      />
     </article>
   );
 };

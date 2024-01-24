@@ -1,11 +1,15 @@
 const PrettyDate = (uglyDate: string) => {
-  const prettyDate = new Intl.DateTimeFormat("sv-SE", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }).format(new Date(uglyDate));
+  if (uglyDate) {
+    const prettyDate = new Intl.DateTimeFormat("sv-SE", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(new Date(uglyDate));
 
-  return prettyDate;
+    return prettyDate;
+  } else {
+    return uglyDate;
+  }
 };
 
 export default PrettyDate;

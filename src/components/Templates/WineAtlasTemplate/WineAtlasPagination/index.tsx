@@ -38,16 +38,17 @@ const WineAtlasPagination = async ({ params, searchParams }: Props) => {
       <div>
         <h2 className="pb-10">Skolor hos DinVinguide</h2>
         <PaginationForGuides
-          promise={promise}
-          idString="hello-world"
+          promise={promise?.edges}
+          idString="wineAtlas"
           page={searchParams?.page || undefined}
+          uri="/guide/vinatlas"
         />
         {promise?.pageInfo?.hasNextPage === true ||
         promise?.pageInfo?.hasPreviousPage === true ? (
           <PaginationController
             pageInfo={promise?.pageInfo}
             uri="/guide/vinatlas/"
-            id="hello-world"
+            id="wineAtlas"
           />
         ) : null}
       </div>
