@@ -44,6 +44,7 @@ const TopListItem: React.FC<MyComponentProps> = ({
       "2-Box": " bottom-[16%] left-[10%] -translate-x-[30%] -rotate-12",
       Box: " bottom-[18%] left-[10%] -translate-x-[30%] rotate-12",
       "2-Papp": " bottom-[18%] left-[10%] rotate-12",
+      "2-Påse": " bottom-[18%] left-[10%] rotate-12",
       "PET-flaska": "top-[16%] left-[50%] -translate-x-[30%] -rotate-12",
       "2-PET-flaska": " top-[16%] left-[50%] -translate-x-[70%] rotate-12",
       default: " top-[16%] left-[50%] -translate-x-[30%] -rotate-12",

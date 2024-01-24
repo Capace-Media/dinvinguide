@@ -1,10 +1,16 @@
-interface WineAtlasesProps {}
+import Loading from "@/app/loading";
+import WineAtlasTemplate from "@/components/Templates/WineAtlasTemplate";
+import { Suspense } from "react";
+type Props = {
+  searchParams: { [key: string]: string | string[] | any | undefined | null };
+};
 
-const WineAtlases = ({}: WineAtlasesProps) => {
+const WineAtlases = ({ searchParams }: Props) => {
+  const params = { slug: "vinatlas" };
   return (
-    <div className="">
-      <h2 className="">Hello WineAtlases</h2>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <WineAtlasTemplate params={params} searchParams={searchParams} />
+    </Suspense>
   );
 };
 

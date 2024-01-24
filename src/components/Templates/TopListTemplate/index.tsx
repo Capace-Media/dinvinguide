@@ -1,13 +1,6 @@
-// import Newsletter from "@/app/components/Newsletter";
-// import Ads from "@/app/components/ads";
+import { getToplists } from "@/lib/queries/getTopListDrinks";
 import dynamic from "next/dynamic";
 
-// import DLHero from "../HeroHeaders/DLHero";
-// import TopListLinks from "../TopListsTemplate/TopListLinks";
-// import TopListItems from "./TopListItems";
-
-import { getToplists } from "@/lib/queries/getTopListDrinks";
-// Dynamic imports with Suspense
 const Newsletter = dynamic(() => import("@/app/components/Newsletter"), {
   suspense: true,
 });

@@ -74,7 +74,7 @@ const TopListCategory = ({ data, index }: TopListCategoryProps) => {
           </div>
 
           <div className=" lg:group-hover:-rotate-12 lg:duration-500 lg:ease-in-out">
-            {IconComponent}
+            {IconComponent ? IconComponent : <RedWine />}
           </div>
         </div>
       </Link>

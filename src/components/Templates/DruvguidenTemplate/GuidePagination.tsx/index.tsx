@@ -24,8 +24,6 @@ async function getGrapes(args: DataArgs) {
   return data;
 }
 
-interface GuidePaginationProps {}
-
 const GuidePagination = async ({ params, searchParams }: Props) => {
   const postsPerPage: number =
     typeof window !== "undefined" && window.innerWidth >= 768 ? 4 : 16;

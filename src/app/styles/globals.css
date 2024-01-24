@@ -10,6 +10,13 @@ html,
   margin: 0px;
 }
 
+.drop-cap p:first-letter {
+  float: left;
+  font-size: 3em;
+  line-height: 0.75;
+  margin-right: 0.1em;
+  margin-top: 0.1em;
+}
 @layer base {
   h1,
   h2,
@@ -33,6 +40,10 @@ html,
   }
   p iframe {
     @apply mx-auto font-main text-[#333];
+  }
+
+  .drop-cap p:first-letter {
+    @apply font-sub;
   }
   /* .prose-sm div.alignright {
     @apply block float-right;

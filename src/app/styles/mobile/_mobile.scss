@@ -312,5 +312,5 @@
 }
 
 .heading_truncated {
-  @include truncated(2);
+  @include truncated(1);
 }

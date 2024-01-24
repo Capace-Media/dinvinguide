@@ -17,6 +17,9 @@ export const componentsMap: any = {
   StorBild: dynamic(() => import("./sections/StorBild"), {
     ssr: false,
   }),
+  Faktalada: dynamic(() => import("./sections/Faktalada"), {
+    ssr: false,
+  }),
 };
 
 export const extractComponentKey = (fieldGroupName: string): string => {

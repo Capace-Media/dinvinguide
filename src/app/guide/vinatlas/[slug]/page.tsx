@@ -1,11 +1,9 @@
-interface WineAtlasProps {}
-
-const WineAtlas = ({}: WineAtlasProps) => {
+const SingleWineAtlas = () => {
   return (
     <div className="">
-      <h2 className="">Hello WineAtlas</h2>
+      <h2 className="">Hello SingleWineAtlas</h2>
     </div>
   );
 };
 
-export default WineAtlas;
+export default SingleWineAtlas;

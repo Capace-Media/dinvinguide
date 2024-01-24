@@ -63,7 +63,10 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
             </p>
           )}
           {post?.title && (
-            <h2 className="heading_truncated font-sub mb-2 text-[22px] text-brand-dark">
+            <h2
+              aria-label={post.title}
+              className="heading_truncated font-sub mb-2 text-[22px] text-brand-dark"
+            >
               {post.title}
             </h2>
           )}
