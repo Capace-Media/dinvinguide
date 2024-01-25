@@ -73,7 +73,7 @@ const ExploreGuides = ({}: ExploreGuidesProps) => {
         <li className="md:col-span-2">
           <Link
             className=" relative min-h-[200px] md:min-h-[250px] h-full flex justify-center items-center"
-            href="/guide/ordlista"
+            href="/guide/ordlistan"
           >
             <span className=" bg-[#0000005a] absolute top-0 left-0 w-full h-full z-[2]"></span>
             <Image
@@ -86,7 +86,7 @@ const ExploreGuides = ({}: ExploreGuidesProps) => {
               }}
             />
             <span className="absolute x-center y-center z-[3] text-white font-sub text-[22px] pb-1 border-b-2 ">
-              Ordlista
+              Ordlistan
             </span>
           </Link>
         </li>

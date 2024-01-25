@@ -1,10 +1,14 @@
-interface WordsProps {}
+import WordTemplate from "@/components/Templates/WordTemplate";
 
-const Words = ({}: WordsProps) => {
+type Props = {
+  searchParams: { [key: string]: string | string[] | any | undefined | null };
+};
+
+const Words = ({ searchParams }: Props) => {
   return (
-    <div className="">
-      <h2 className="">Hello Words</h2>
-    </div>
+    <>
+      <WordTemplate searchParams={searchParams} />
+    </>
   );
 };
 

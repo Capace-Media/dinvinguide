@@ -37,7 +37,7 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
                 <span className="w-full h-[2px] block bg-brand-primary"></span>
               </li>
               <li className="flex flex-col justify-center items-center">
-                <Link href="/guide/ordlista">Ordlista</Link>
+                <Link href="/guide/ordlistan">Ordlistan</Link>
                 <span className="w-full h-[2px] block bg-brand-primary"></span>
               </li>
             </ul>

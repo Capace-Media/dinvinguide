@@ -16,6 +16,7 @@ interface PaginationControllerProps {
   uri: string;
   id?: any;
   search?: any;
+  identifier?: string;
 }
 
 const PaginationController = ({
@@ -24,6 +25,7 @@ const PaginationController = ({
   uri,
   id,
   search,
+  identifier,
 }: PaginationControllerProps) => {
   const {
     endCursor,
@@ -67,7 +69,7 @@ const PaginationController = ({
               Number(page) - 1
             }&last=16&first=null&before=${startCursor}${
               filter ? `&filter=${filter}` : ""
-            }`,
+            }${identifier ? `&identifier=${identifier}` : ""}`,
             { scroll: false }
           );
         }}
@@ -97,7 +99,7 @@ const PaginationController = ({
               Number(page) + 1
             }&first=16&last=null&after=${endCursor}${
               filter ? `&filter=${filter}` : ""
-            }`,
+            }${identifier ? `&identifier=${identifier}` : ""}`,
             { scroll: false }
           );
         }}

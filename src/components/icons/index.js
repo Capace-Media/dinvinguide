@@ -45,3 +45,4 @@ export { default as SubmitArrow } from "./SubmitArrow";
 export { default as TilltuggSnacks } from "./TilltuggSnacks";
 export { default as Time } from "./Time";
 export { default as WhiteWine } from "./WhiteWine";
+export { default as WordArrow } from "./WordArrow";

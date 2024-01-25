@@ -68,7 +68,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
               <span className="w-[80%] mt-3 h-[3px] rounded-xl bg-white flex justify-center items-center m-auto "></span>
             </p>
           </Link>
-          <Link href="/guide/ordlista" className="relative">
+          <Link href="/guide/ordlistan" className="relative">
             <HandleImage
               srcProp={ordlista}
               altProp="Översikt av olika vinglas fyllda med rött, rosé och vitt vin."
@@ -77,7 +77,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
               sizesProp="(min-width: 1880px) 392px, (min-width: 1040px) calc(22.44vw - 25px), (min-width: 780px) calc(25vw - 34px), calc(25vw - 20px)"
             />
             <p className="absolute  center text-white font-sub text-[22px]">
-              Ordlista
+              Ordlistan
               <span className="w-[80%] mt-3 h-[3px] rounded-xl bg-white flex justify-center items-center m-auto "></span>
             </p>
           </Link>

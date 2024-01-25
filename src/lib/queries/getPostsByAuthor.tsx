@@ -1,5 +1,5 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP, { WPServerSide } from "../wp";
+import { WPnext } from "../wp";
 
 export const getPostsByAuthor = async (
   after?: string,
@@ -10,7 +10,7 @@ export const getPostsByAuthor = async (
   last?: number | null
 ) => {
   try {
-    const res = await WP(
+    const res = await WPnext(
       `
     query getPostsByAuthor($after: String, $before: String, $search: String, $authorName: String, $first: Int, $last: Int) {
         posts(
