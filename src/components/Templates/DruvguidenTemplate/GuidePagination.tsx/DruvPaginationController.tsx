@@ -58,7 +58,7 @@ const DruvPaginationController = ({
         disabled={!hasPreviousPage}
         onClick={() => {
           router.push(
-            `/guide/druvguiden/?page=${
+            `/druvguiden/?page=${
               Number(page) - 1
             }&last=16&first=null&before=${startCursor}&filter=${
               filter ? filter : ""
@@ -89,7 +89,7 @@ const DruvPaginationController = ({
         disabled={!hasNextPage}
         onClick={() => {
           router.push(
-            `/guide/druvguiden/?page=${
+            `/druvguiden/?page=${
               Number(page) + 1
             }&first=16&last=null&after=${endCursor}&filter=${
               filter ? filter : ""

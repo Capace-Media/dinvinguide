@@ -41,13 +41,13 @@ const WineAtlasPagination = async ({ params, searchParams }: Props) => {
           promise={promise?.edges}
           idString="wineAtlas"
           page={searchParams?.page || undefined}
-          uri="/guide/vinatlas"
+          uri="/vinatlas"
         />
         {promise?.pageInfo?.hasNextPage === true ||
         promise?.pageInfo?.hasPreviousPage === true ? (
           <PaginationController
             pageInfo={promise?.pageInfo}
-            uri="/guide/vinatlas/"
+            uri="/vinatlas/"
             id="wineAtlas"
           />
         ) : null}

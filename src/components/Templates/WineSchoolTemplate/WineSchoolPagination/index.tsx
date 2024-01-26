@@ -42,7 +42,7 @@ const WineSchoolPagination = async ({ params, searchParams }: Props) => {
           <PaginationForGuides
             promise={promise?.edges}
             idString="wineSchool"
-            uri="/guide/vinskolan"
+            uri="/vinskolan"
           />
         )}
 
@@ -50,7 +50,7 @@ const WineSchoolPagination = async ({ params, searchParams }: Props) => {
         promise?.pageInfo?.hasPreviousPage === true ? (
           <PaginationController
             pageInfo={promise?.pageInfo}
-            uri="/guide/vinskolan"
+            uri="/vinskolan"
             id="wineSchool"
           />
         ) : null}

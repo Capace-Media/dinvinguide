@@ -13,7 +13,7 @@ type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined | null };
 };
 
-const WordTemplate = async ({ params, searchParams }: Props) => {
+const WordsTemplate = async ({ params, searchParams }: Props) => {
   const data = await getPage("/ordlistan");
   return (
     <>
@@ -42,4 +42,4 @@ const WordTemplate = async ({ params, searchParams }: Props) => {
   );
 };
 
-export default WordTemplate;
+export default WordsTemplate;

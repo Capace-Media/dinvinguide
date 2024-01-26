@@ -29,7 +29,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
               <span className="w-[80%] mt-3 h-[3px] rounded-xl bg-white flex justify-center items-center m-auto "></span>
             </p>
           </Link>
-          <Link href="/guide/druvguiden" className="relative">
+          <Link href="/druvguiden" className="relative">
             <HandleImage
               srcProp={druvguiden}
               altProp="Gröna druvklasar hängande på en vinstock omgiven av vinblad."
@@ -42,7 +42,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
               <span className="w-[80%] mt-3 h-[3px] rounded-xl bg-white flex justify-center items-center m-auto "></span>
             </p>
           </Link>
-          <Link href="/guide/vinatlas" className="relative">
+          <Link href="/vinatlas" className="relative">
             <HandleImage
               srcProp={vinatlas}
               altProp="En solig utsikt över en vingård med rader av vinstockar, omgivna av gröna kullar och träd."
@@ -55,7 +55,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
               <span className="w-[80%] mt-3 h-[3px] rounded-xl bg-white flex justify-center items-center m-auto "></span>
             </p>
           </Link>
-          <Link href="/guide/vinskolan" className="relative">
+          <Link href="/vinskolan" className="relative">
             <HandleImage
               srcProp={vinskolan}
               altProp="Trärader av lagringsfat med nummermärkningar i ett mörkt lager, med en belysningsstig i mitten."
@@ -68,7 +68,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
               <span className="w-[80%] mt-3 h-[3px] rounded-xl bg-white flex justify-center items-center m-auto "></span>
             </p>
           </Link>
-          <Link href="/guide/ordlistan" className="relative">
+          <Link href="/ordlistan" className="relative">
             <HandleImage
               srcProp={ordlista}
               altProp="Översikt av olika vinglas fyllda med rött, rosé och vitt vin."

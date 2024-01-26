@@ -39,7 +39,7 @@ function GrapeComponent({ data }: any) {
         )}
 
         <Link
-          href={`/guider/druvor/${data?.slug}`}
+          href={`/druvor/${data?.slug}`}
           aria-label={`Läs mer om ${data?.title}`}
           className="btn w-[142px] mt-8"
         >
@@ -47,7 +47,7 @@ function GrapeComponent({ data }: any) {
         </Link>
       </div>
       <Link
-        href={`/guider/druvor/${data?.slug}`}
+        href={`/druvor/${data?.slug}`}
         aria-label={`Läs mer om ${data?.title}`}
         className="relative w-full lg:w-[60%]"
       >

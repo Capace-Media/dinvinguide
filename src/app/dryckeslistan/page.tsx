@@ -1,11 +1,24 @@
-interface DrinkListProps {}
+import TopListsTemplate from "@/components/Templates/TopListsTemplate";
+import { getPage } from "@/lib/queries/getPage";
 
-const DrinkList = ({}: DrinkListProps) => {
+interface TopListProps {}
+
+async function getData() {
+  const res = await getPage("/topplistor");
+
+  return { page: res };
+}
+
+const TopList = async ({}: TopListProps) => {
+  const { page } = await getData();
+
+  const { seo, ...rest } = page;
+
   return (
-    <div className="">
-      <h2 className="">Hello DrinkList</h2>
-    </div>
+    <>
+      <TopListsTemplate hero={rest} />
+    </>
   );
 };
 
-export default DrinkList;
+export default TopList;

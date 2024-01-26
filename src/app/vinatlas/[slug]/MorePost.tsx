@@ -43,13 +43,13 @@ const MorePosts = async ({ params, searchParams, pageId }: Props) => {
           promise={promise?.edges}
           idString="wineAtlas"
           page={searchParams?.page || undefined}
-          uri={`/guide/vinatlas/${params.slug}`}
+          uri={`/vinatlas/${params.slug}`}
         />
         {promise?.pageInfo?.hasNextPage === true ||
         promise?.pageInfo?.hasPreviousPage === true ? (
           <PaginationController
             pageInfo={promise?.pageInfo}
-            uri={`/guide/vinatlas/${params.slug}`}
+            uri={`/vinatlas/${params.slug}`}
             id="wineAtlas"
           />
         ) : null}

@@ -6,22 +6,22 @@
   },
   {
     "id": "wkdsnvp3567ksdmve3265712455",
-    "uri": "/guide/druvguiden",
+    "uri": "/druvguiden",
     "name": "Druvor"
   },
   {
     "id": "wkdsn64326tefgd2455",
-    "uri": "/guide/vinatlas",
+    "uri": "/vinatlas",
     "name": "Vinatlas"
   },
   {
     "id": "wkdsy23q4twe312455",
-    "uri": "/guide/vinskolan",
+    "uri": "/vinskolan",
     "name": "Vinskolan"
   },
   {
     "id": "wk34ew12455",
-    "uri": "/guide/ordlistan",
+    "uri": "/ordlistan",
     "name": "Ordlistan"
   }
 ]

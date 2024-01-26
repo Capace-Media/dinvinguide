@@ -1,9 +1,13 @@
-interface RecipesBankProps {}
+import RecipesTemplate from "@/components/Templates/RecipesBankTemplate";
 
-const RecipesBank = ({}: RecipesBankProps) => {
+type Props = {
+  searchParams: { [key: string]: string | string[] | any | undefined | null };
+};
+
+const RecipesBank = ({ searchParams }: Props) => {
   return (
     <div className="">
-      <h2 className="">Hello RecipesBank</h2>
+      <RecipesTemplate searchParams={searchParams} />
     </div>
   );
 };

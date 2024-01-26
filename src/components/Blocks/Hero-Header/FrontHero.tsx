@@ -25,19 +25,19 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
                 </Link>
               </li>
               <li className="flex flex-col justify-center items-center">
-                <Link href="/guide/druvguiden">Druvor</Link>
+                <Link href="/druvguiden">Druvor</Link>
                 <span className="w-full h-[2px] block bg-brand-primary"></span>
               </li>
               <li className="flex flex-col justify-center items-center">
-                <Link href="/guide/vinatlas">Vinatlas</Link>
+                <Link href="/vinatlas">Vinatlas</Link>
                 <span className="w-full h-[2px] block bg-brand-primary"></span>
               </li>
               <li className="flex flex-col justify-center items-center">
-                <Link href="/guide/vinskolan">Vinskolan</Link>
+                <Link href="/vinskolan">Vinskolan</Link>
                 <span className="w-full h-[2px] block bg-brand-primary"></span>
               </li>
               <li className="flex flex-col justify-center items-center">
-                <Link href="/guide/ordlistan">Ordlistan</Link>
+                <Link href="/ordlistan">Ordlistan</Link>
                 <span className="w-full h-[2px] block bg-brand-primary"></span>
               </li>
             </ul>

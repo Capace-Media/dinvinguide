@@ -23,12 +23,19 @@ const WordsByLetter = async ({ searchParams }: WordsByLetterProps) => {
     first: startFirst,
     last: endLast,
   });
-
-  console.log("promise =====>", promise);
+  let word: string | undefined = searchParams?.filter;
   return (
     <div className="">
       <h2 className=" leading-[6.9rem] text-[6.9rem] uppercase py-4">
-        {searchParams?.filter || "a"}
+        {word === "o-2"
+          ? "ö"
+          : word === "a-2"
+          ? "å"
+          : word === "a-3"
+          ? "ä"
+          : !word
+          ? "a"
+          : word}
       </h2>
       <ul className=" grid lg:grid-cols-3 lg:gap-[3.5rem] min-h-[185px] py-8 border-b-2 border-[#333]">
         {promise.edges &&
@@ -37,7 +44,7 @@ const WordsByLetter = async ({ searchParams }: WordsByLetterProps) => {
               <li key={word.node.id}>
                 <Link
                   className="flex justify-between items-center pr-20"
-                  href={`/${word.node.slug}`}
+                  href={`/ordlistan/${word.node.slug}`}
                 >
                   {word.node.title}
                   <WordArrow />
@@ -50,7 +57,7 @@ const WordsByLetter = async ({ searchParams }: WordsByLetterProps) => {
       promise?.pageInfo?.hasPreviousPage === true ? (
         <PaginationController
           pageInfo={promise?.pageInfo}
-          uri={`/guide/ordlistan`}
+          uri={`/ordlistan`}
           id="wineAtlas"
           filter={searchParams?.filter || "a"}
         />

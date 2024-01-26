@@ -16,7 +16,7 @@ const GrapeFilter = ({}: GrapeFilterProps) => {
           <li>
             <button
               onClick={() => {
-                router.push(`/guide/druvguiden`, { scroll: false });
+                router.push(`/druvguiden`, { scroll: false });
               }}
               className="w-full relative h-[222px]"
             >
@@ -37,7 +37,7 @@ const GrapeFilter = ({}: GrapeFilterProps) => {
           <li>
             <button
               onClick={() => {
-                router.push(`/guide/druvguiden?filter=grona-druvsorter`, {
+                router.push(`/druvguiden?filter=grona-druvsorter`, {
                   scroll: false,
                 });
               }}
@@ -60,7 +60,7 @@ const GrapeFilter = ({}: GrapeFilterProps) => {
           <li>
             <button
               onClick={() => {
-                router.push(`/guide/druvguiden?filter=bla-druvsorter`, {
+                router.push(`/druvguiden?filter=bla-druvsorter`, {
                   scroll: false,
                 });
               }}

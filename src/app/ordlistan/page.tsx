@@ -1,4 +1,4 @@
-import WordTemplate from "@/components/Templates/WordTemplate";
+import WordsTemplate from "@/components/Templates/WordsTemplate";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined | null };
@@ -7,7 +7,7 @@ type Props = {
 const Words = ({ searchParams }: Props) => {
   return (
     <>
-      <WordTemplate searchParams={searchParams} />
+      <WordsTemplate searchParams={searchParams} />
     </>
   );
 };

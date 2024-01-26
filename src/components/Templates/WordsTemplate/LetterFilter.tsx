@@ -9,15 +9,18 @@ interface LetterFilterProps {
 
 const LetterFilter = ({ word, searchParams }: LetterFilterProps) => {
   const router = useRouter();
+
   return (
     <button
       className={`text-[22px] px-2 py-1 duration-200 lg:hover:underline ease-in-out rounded-md ${
-        searchParams.filter === word?.slug
+        searchParams?.filter === word?.slug
           ? " bg-brand-secondary text-white"
+          : word?.slug === "a" && searchParams?.filter === undefined
+          ? "bg-brand-secondary text-white"
           : ""
       }`}
       onClick={() => {
-        router.push(`/guide/ordlistan?filter=${word.slug}`, {
+        router.push(`/ordlistan?filter=${word.slug}`, {
           scroll: false,
         });
       }}

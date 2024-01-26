@@ -10,6 +10,21 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/skolor",
+        destination: "/guide/vinskolan",
+        permanent: true,
+      },
+
+      {
+        source: "/skolor/:slug",
+        destination: "/guide/vinskolan/:slug", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

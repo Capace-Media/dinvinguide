@@ -2,7 +2,7 @@ import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import PostTemplate from "@/components/Templates/PostTemplate";
 import { getPost } from "@/lib/queries/getPost";
 import generateArticleSchema from "@/lib/utils/json-LD-Schemas/generateArticleSchema";
-import WP from "@/lib/wp";
+import { WPnext } from "@/lib/wp";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../../../types/MetaInfoTypes";
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined };
 };
 export async function generateStaticParams() {
-  const posts = await WP(`
+  const posts = await WPnext(`
     query getPosts {
         posts {
           nodes {
