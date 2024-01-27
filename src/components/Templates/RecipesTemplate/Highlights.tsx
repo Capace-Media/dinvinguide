@@ -32,14 +32,14 @@ async function getData() {
 
     return data;
   } catch (error) {
-    console.log("error =====>", error);
+    console.error("error =====>", error);
     return null;
   }
 }
 
 const Highlights = async () => {
   const data = await getData();
-  console.log("data =====>", data);
+
   return (
     <div className="">
       <div className="layout bg-white contain">

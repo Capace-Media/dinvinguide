@@ -28,7 +28,6 @@ export async function generateStaticParams() {
 }
 
 const Maltider = ({ searchParams, params }: Props) => {
-  console.log("param in maltider =====>", params);
   return (
     <>
       <RecipeCategoryTemplate searchParams={searchParams} params={params} />

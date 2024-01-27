@@ -10,10 +10,8 @@ type DataArgs = {
 };
 
 export const getWordByLetter = async (args: DataArgs) => {
-  console.log("hello =====>");
   const { after, before, first, last, id } = args;
 
-  console.log("args =====>", args);
   try {
     const res = await WPnext(
       `
@@ -45,7 +43,6 @@ export const getWordByLetter = async (args: DataArgs) => {
 
     const word = res.data.letter.glossaries;
 
-    console.log("word =====>", word);
     return word;
   } catch (error) {
     console.error(error);

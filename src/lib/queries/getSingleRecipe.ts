@@ -1,10 +1,10 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP from "../wp";
+import { WPnext } from "../wp";
 import { SEO } from "./fragments/Seo";
 
 export const getSingleRecipe = async (id: string) => {
   try {
-    const res = await WP(
+    const res = await WPnext(
       `query GET_RECIPE($id: ID!) {
         recipe(id: $id, idType: URI) {
           title
@@ -122,8 +122,8 @@ export const getSingleRecipe = async (id: string) => {
 
 export const getPreviewRecipe = async (id: string) => {
   try {
-    const res = await WP(
-      `query GET_RECIPE($id: ID!) {
+    const res = await WPnext(
+      `query getPreviewRecipe($id: ID!) {
         recipe(idType: DATABASE_ID, id: $id) {
           preview {
             node {
@@ -231,7 +231,7 @@ export const getPreviewRecipe = async (id: string) => {
       { id }
     );
 
-    const users = res.data.recipe;
+    const users = res?.data?.recipe?.preview?.node;
     return users;
   } catch (error) {
     console.error(error);

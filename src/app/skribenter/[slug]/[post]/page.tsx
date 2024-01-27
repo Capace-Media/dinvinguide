@@ -39,7 +39,6 @@ async function getPostData(
   params: { post: string; slug: string },
   searchParams?: { [key: string]: string | string[] | any | undefined }
 ) {
-  console.log("searchParams in getPost =====>", searchParams);
   const { isEnabled } = draftMode();
   const { post, slug } = params;
 
@@ -99,7 +98,6 @@ export async function generateMetadata(
 }
 
 const Articlepost = async ({ params, searchParams }: Props) => {
-  console.log("searchParams =====>", searchParams);
   const post = await getPostData(params, searchParams);
 
   const jsonLd = generateArticleSchema({
