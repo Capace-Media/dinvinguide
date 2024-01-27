@@ -4,6 +4,8 @@ import Header from "@/components/Layout/Header";
 import Provider from "@/lib/Provider";
 import type { Metadata } from "next";
 import { Abril_Fatface, Poppins } from "next/font/google";
+import { draftMode } from "next/headers";
+import Link from "next/link";
 import { Suspense } from "react";
 import Loading from "./loading";
 import "./styles/global.scss";
@@ -130,6 +132,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { isEnabled } = draftMode();
+
   return (
     <html lang="sv">
       <body
@@ -138,7 +142,17 @@ export default function RootLayout({
         <Provider>
           <Header />
           <Suspense fallback={<Loading />}>
-            <main className="">{children}</main>
+            <main className="">
+              {children}
+              {isEnabled && (
+                <div className="fixed bottom-0 left-0 w-full flex justify-center items-center">
+                  <p>Förhandsgranskning</p>
+                  <Link href="/api/disable-draft" className="btn">
+                    Lämna
+                  </Link>
+                </div>
+              )}
+            </main>
             <Analytics />
           </Suspense>
           <Footer />
