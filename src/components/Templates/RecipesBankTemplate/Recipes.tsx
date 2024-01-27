@@ -1,3 +1,4 @@
+import Search from "@/components/Blocks/Search";
 import PaginationController from "@/components/Pagination/Controller";
 
 import RecipePagination from "@/components/Pagination/Recipes";
@@ -15,29 +16,37 @@ const Recipes = async ({ searchParams }: Props) => {
     searchParams?.first ? searchParams?.first : postsPerPage
   );
   const endLast: number = parseInt(searchParams?.last);
+  const searchData: string = searchParams?.search || "";
 
   const promise = await getRecipesBank({
     after: searchParams?.after,
     before: searchParams?.before,
     first: startFirst,
     last: endLast,
-    search: "",
+    search: searchData,
   });
   return (
-    <section className="layout bg-white">
-      <div>
-        <h2 className="pb-10">Skolor hos DinVinguide</h2>
+    <section className="">
+      <div className="layout bg-white flex justify-between items-center">
+        <div>
+          <p className="uppercase text-[14px]">receptbanken</p>
+          <h1>Utforska alla recept</h1>
+        </div>
 
-        {promise?.edges && <RecipePagination data={promise?.edges} />}
-
-        {promise?.pageInfo?.hasNextPage === true ||
-        promise?.pageInfo?.hasPreviousPage === true ? (
-          <PaginationController
-            pageInfo={promise?.pageInfo}
-            uri="/recept/receptbanken"
-          />
-        ) : null}
+        <div>
+          <Search placeholder="sök efter recept" />
+        </div>
       </div>
+      {promise?.edges && <RecipePagination data={promise?.edges} />}
+
+      {promise?.pageInfo?.hasNextPage === true ||
+      promise?.pageInfo?.hasPreviousPage === true ? (
+        <PaginationController
+          pageInfo={promise?.pageInfo}
+          uri="/recept/receptbanken"
+          search={searchData}
+        />
+      ) : null}
     </section>
   );
 };

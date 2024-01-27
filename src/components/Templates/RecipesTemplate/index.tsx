@@ -1,5 +1,6 @@
 import Newsletter from "@/app/components/Newsletter";
 import Ads from "@/app/components/ads";
+import Highlights from "./Highlights";
 import Meals from "./Meals";
 
 interface RecipesTemplateProps {}
@@ -8,7 +9,7 @@ const RecipesTemplate = ({}: RecipesTemplateProps) => {
   return (
     <div className="">
       <Ads pageType="default" position="TOP" />
-      {/* Highlights */}
+      <Highlights />
       {/* Meals */}
       <Meals />
       <Ads pageType="default" position="MID" />

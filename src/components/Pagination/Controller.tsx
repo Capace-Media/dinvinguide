@@ -54,7 +54,7 @@ const PaginationController = ({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   return (
-    <div className="flex justify-center items-center gap-2 py-10">
+    <div className="flex justify-center items-center gap-2 py-10 layout bg-white">
       <button
         aria-label="föregående sida för posterna"
         className={` p-[10px] flex items-center justify-center ${
@@ -69,8 +69,10 @@ const PaginationController = ({
               Number(page) - 1
             }&last=16&first=null&before=${startCursor}${
               filter ? `&filter=${filter}` : ""
-            }${identifier ? `&identifier=${identifier}` : ""}`,
-            { scroll: false }
+            }${identifier ? `&identifier=${identifier}` : ""}&search=${
+              search ? search : ""
+            }`,
+            { scroll: true }
           );
         }}
       >
@@ -99,8 +101,10 @@ const PaginationController = ({
               Number(page) + 1
             }&first=16&last=null&after=${endCursor}${
               filter ? `&filter=${filter}` : ""
-            }${identifier ? `&identifier=${identifier}` : ""}`,
-            { scroll: false }
+            }${identifier ? `&identifier=${identifier}` : ""}&search=${
+              search ? search : ""
+            }`,
+            { scroll: true }
           );
         }}
       >

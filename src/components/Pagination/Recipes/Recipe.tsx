@@ -19,14 +19,12 @@ export const SkeletonLoader = () => {
 const Recipe = ({ recipe }: RecipeProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  console.log("recipe =====>", recipe);
-
   return (
     <div className="group">
       <Link
         href={`/recept/${recipe?.slug}`}
         aria-label={`Läs om ${recipe?.title}`}
-        className={`block w-full relative h-[12.2rem] overlay`}
+        className={`block w-full relative h-[13.2rem] overlay`}
       >
         {recipe?.featuredImage?.node?.mediaItemUrl && (
           <>
@@ -52,33 +50,29 @@ const Recipe = ({ recipe }: RecipeProps) => {
             )}
           </>
         )}
-        <div className="absolute right-3 top-2 z-10 border-b-2 border-white ">
-          <p className="text-white uppercase">{recipe?.author?.node?.name}</p>
-        </div>
+        <div className="absolute right-3 top-2 z-10 border-b-2 border-white "></div>
       </Link>
 
-      <div className="h-[12.9rem] flex flex-col justify-between py-2">
+      <div className="h-[6rem] rounded-b-[10px] flex flex-col justify-between py-2 px-2 bg-[#F5F5F5]">
         <div className="flex flex-col">
-          {recipe?.modifiedGmt && (
-            <p className="text-brand-gray text-[14px]">
-              {PrettyDate(recipe.modifiedGmt)}
-            </p>
-          )}
+          <p className="text-[#333] text-[14px] uppercase">
+            {recipe?.acf_recipe?.skrivetAv
+              ? recipe?.acf_recipe?.skrivetAv[0]?.name
+              : "-"}
+          </p>
+
           {recipe?.title && (
-            <h2
+            <h3
               aria-label={recipe.title}
-              className="heading_truncated font-sub mb-2 text-[22px] text-brand-dark"
+              className="heading_truncated font-sub mb-2 text-[22px] text-brand-dark lg:group-hover:underline"
             >
-              {recipe.title}
-            </h2>
-          )}
-          {recipe?.acf_recipes?.ingress && (
-            <>
-              <p
-                className="truncated text-[13px] text-brand-gray"
-                dangerouslySetInnerHTML={{ __html: recipe.acf_recipes.ingress }}
-              />
-            </>
+              <Link
+                href={`/recept/${recipe?.slug}`}
+                aria-label={`Läs om ${recipe?.title}`}
+              >
+                {recipe.title}
+              </Link>
+            </h3>
           )}
         </div>
 

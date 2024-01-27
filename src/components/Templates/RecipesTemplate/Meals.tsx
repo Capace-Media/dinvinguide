@@ -61,7 +61,7 @@ const Meals = ({}: MealsProps) => {
           Tilltugg/snacks
         </Link>
         <Link
-          href="/recept/efterratter"
+          href="/recept/receptbanken"
           className="h-[200px] lg:hover:scale-[1.03] lg:ease-in-out lg:duration-300 bg-brand-primary text-white flex flex-col gap-3 justify-center items-center font-sub text-[27px] col-span-2"
         >
           <div className="flex items-center gap-6">
