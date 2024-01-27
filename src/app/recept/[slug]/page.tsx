@@ -1,13 +1,18 @@
 import Ads from "@/app/components/ads";
 import Loading from "@/app/loading";
 import RecipeTemplate from "@/components/Templates/RecipeTemplate";
-import { getSingleRecipe } from "@/lib/queries/getSingleRecipe";
+import {
+  getPreviewRecipe,
+  getSingleRecipe,
+} from "@/lib/queries/getSingleRecipe";
 import { getErrorMessage } from "@/lib/utils/getErrorMessage";
 import WP from "@/lib/wp";
+import { draftMode } from "next/headers";
 import { Suspense } from "react";
 
 interface RecipeProps {
   params: { slug: string };
+  searchParams: { [key: string]: string | string[] | any | undefined };
 }
 
 type PropsPaths = {
@@ -47,12 +52,28 @@ export async function generateStaticParams() {
   return paths;
 }
 
-interface RecipeProps {}
+async function getRecipeData(
+  uri: string,
+  searchParams?: { [key: string]: string | string[] | any | undefined }
+) {
+  const { isEnabled } = draftMode();
+  if (!isEnabled) {
+    const data = await getSingleRecipe(uri);
 
-const Recipe = async ({ params }: RecipeProps) => {
+    return data;
+  }
+
+  if (isEnabled) {
+    const data = await getPreviewRecipe(searchParams?.pid);
+
+    return data;
+  }
+}
+
+const Recipe = async ({ params, searchParams }: RecipeProps) => {
   const uri = `/recept/${params.slug}`;
-  const data = await getSingleRecipe(uri);
 
+  const data = await getRecipeData(uri, searchParams);
   if (!data) {
     return (
       <div className="py-20">

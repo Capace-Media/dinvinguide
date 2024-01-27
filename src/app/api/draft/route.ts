@@ -25,4 +25,8 @@ export async function GET(request: Request) {
   if (type === "post") {
     redirect(`/skribenter/${author}/${slug}?pid=${pid}`);
   }
+
+  if (type === "recipe") {
+    redirect(`/recept/${slug}?pid=${pid}`);
+  }
 }
