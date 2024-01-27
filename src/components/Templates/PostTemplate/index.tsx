@@ -10,6 +10,7 @@ interface PostTemplateProps {
 }
 
 const PostTemplate = ({ post }: PostTemplateProps) => {
+  console.log("post =====>", post);
   return (
     <article className="lg:grid lg:grid-cols-5 gap-10 pt-[120px]">
       <div className="lg:col-span-3">
@@ -39,24 +40,34 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
             {PrettyDate(post?.modifiedGmt)}
           </time>
         </div>
-        <div className=" text-[#333] pt-10">
-          <h1 className="font-sub pb-5">{post?.title}</h1>
-          <p className=" italic text-[14px]">{post?.acf_posts?.ingress}</p>
-          {post?.featuredImage?.node?.mediaItemUrl && (
-            <div className=" relative py-10 w-[100%] lg:h-[555px] h-[322px]">
-              <Image
-                src={post?.featuredImage?.node?.mediaItemUrl}
-                alt={post?.title}
-                fill
-                style={{
-                  objectFit: "cover",
-                }}
-                sizes="(min-width: 1880px) 954px, (min-width: 1040px) calc(53.9vw - 49px), (min-width: 780px) calc(100vw - 88px), calc(100vw - 32px)"
-              />
+        {!post?.acf_posts?.ingress || !post?.acf_posts?.sektioner ? (
+          <div>
+            <h1 className="font-sub pb-5">{post?.title}</h1>
+            {handleParse(post?.content)}
+          </div>
+        ) : (
+          <>
+            <div className=" text-[#333] pt-10">
+              <h1 className="font-sub pb-5">{post?.title}</h1>
+
+              <p className=" italic text-[14px]">{post?.acf_posts?.ingress}</p>
+              {post?.featuredImage?.node?.mediaItemUrl && (
+                <div className=" relative py-10 w-[100%] lg:h-[555px] h-[322px]">
+                  <Image
+                    src={post?.featuredImage?.node?.mediaItemUrl}
+                    alt={post?.title}
+                    fill
+                    style={{
+                      objectFit: "cover",
+                    }}
+                    sizes="(min-width: 1880px) 954px, (min-width: 1040px) calc(53.9vw - 49px), (min-width: 780px) calc(100vw - 88px), calc(100vw - 32px)"
+                  />
+                </div>
+              )}
             </div>
-          )}
-        </div>
-        <Blocks blocks={post?.acf_posts?.sektioner} />
+            <Blocks blocks={post?.acf_posts?.sektioner} />
+          </>
+        )}
       </div>
       <Aside
         author={post?.author?.node ? post?.author?.node : post?.author}

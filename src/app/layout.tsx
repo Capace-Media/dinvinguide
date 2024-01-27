@@ -145,7 +145,7 @@ export default function RootLayout({
             <main className="">
               {children}
               {isEnabled && (
-                <div className="fixed bottom-0 left-0 w-full flex justify-center items-center">
+                <div className="fixed bottom-0 z-10 bg-white gap-3 py-4 left-0 w-full flex justify-center items-center">
                   <p>Förhandsgranskning</p>
                   <Link href="/api/disable-draft" className="btn">
                     Lämna

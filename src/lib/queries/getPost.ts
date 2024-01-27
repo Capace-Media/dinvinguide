@@ -10,6 +10,7 @@ export const getPost = async (id: string) => {
           title
           slug
           uri
+          content
           modifiedGmt
           ${SEO}
           acf_posts {
@@ -262,7 +263,7 @@ export const getPreviewPost = async (id: string) => {
           slug
           uri
           modifiedGmt
-      
+          content
           acf_posts {
             ingress
             lasMer {
