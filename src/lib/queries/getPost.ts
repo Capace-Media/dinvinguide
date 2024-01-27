@@ -1,5 +1,5 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import { WPnext } from "../wp";
+import { WPServerSide, WPnext } from "../wp";
 import { SEO } from "./fragments/Seo";
 
 export const getPost = async (id: string) => {
@@ -254,7 +254,7 @@ export const getPost = async (id: string) => {
 
 export const getPreviewPost = async (id: string) => {
   try {
-    const res = await WPnext(
+    const res = await WPServerSide(
       `query getArticlePreviewBySlug($id: ID!) {
         post(idType: DATABASE_ID, id: $id) {
           preview {

@@ -1,5 +1,5 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import { WPnext } from "../wp";
+import { WPServerSide, WPnext } from "../wp";
 import { SEO } from "./fragments/Seo";
 
 export const getSingleRecipe = async (id: string) => {
@@ -122,7 +122,7 @@ export const getSingleRecipe = async (id: string) => {
 
 export const getPreviewRecipe = async (id: string) => {
   try {
-    const res = await WPnext(
+    const res = await WPServerSide(
       `query getPreviewRecipe($id: ID!) {
         recipe(idType: DATABASE_ID, id: $id) {
           preview {
