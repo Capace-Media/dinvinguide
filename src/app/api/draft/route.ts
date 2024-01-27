@@ -9,6 +9,7 @@ export async function GET(request: Request) {
   const slug = searchParams.get("slug");
   const pid = searchParams.get("pid");
   const type = searchParams.get("type");
+  const author = searchParams.get("author");
 
   // Check the secret and next parameters
   // This secret should only be known to this route handler and the CMS
@@ -16,13 +17,12 @@ export async function GET(request: Request) {
     return new Response("Invalid token", { status: 401 });
   }
 
-  return new Response(`type: ${type}, slug: ${slug}, pid: ${pid}`, {
-    status: 200,
-  });
   // Enable Draft Mode by setting the cookie
-  //draftMode().enable();
+  draftMode().enable();
 
   // Redirect to the path from the fetched post
   // We don't redirect to searchParams.slug as that might lead to open redirect vulnerabilities
-  //redirect(post.slug);
+  if (type === "post") {
+    redirect(`/skribenter/${author}/${slug}`);
+  }
 }
