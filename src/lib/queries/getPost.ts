@@ -263,7 +263,6 @@ export const getPreviewPost = async (id: string) => {
           slug
           uri
           modifiedGmt
-          content
           acf_posts {
             ingress
             lasMer {
