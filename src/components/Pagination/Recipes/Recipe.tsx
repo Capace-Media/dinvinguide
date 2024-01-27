@@ -58,6 +58,8 @@ const Recipe = ({ recipe }: RecipeProps) => {
           <p className="text-[#333] text-[14px] uppercase">
             {recipe?.acf_recipe?.skrivetAv
               ? recipe?.acf_recipe?.skrivetAv[0]?.name
+              : recipe?.guestWriter?.nodes
+              ? recipe?.questWriter?.nodes[0]?.name
               : "-"}
           </p>
 

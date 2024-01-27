@@ -6,9 +6,9 @@ type Props = {
 
 const RecipesBank = ({ searchParams }: Props) => {
   return (
-    <div className="">
+    <>
       <RecipesTemplate searchParams={searchParams} />
-    </div>
+    </>
   );
 };
 

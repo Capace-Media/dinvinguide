@@ -24,6 +24,11 @@ export const getRecipesBank = async (args: DataArgs) => {
         ) {
           edges {
             node {
+              guestWriter {
+                nodes {
+                  name
+                }
+              }
               acf_recipe {
                 skrivetAv {
                   name
