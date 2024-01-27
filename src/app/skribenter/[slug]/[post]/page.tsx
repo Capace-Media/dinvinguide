@@ -1,9 +1,10 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import PostTemplate from "@/components/Templates/PostTemplate";
-import { getPost } from "@/lib/queries/getPost";
+import { getPost, getPreviewPost } from "@/lib/queries/getPost";
 import generateArticleSchema from "@/lib/utils/json-LD-Schemas/generateArticleSchema";
 import { WPnext } from "@/lib/wp";
 import { Metadata, ResolvingMetadata } from "next";
+import { draftMode } from "next/headers";
 import { MetaInfo } from "../../../../../types/MetaInfoTypes";
 type Props = {
   params: { slug: string; post: string };
@@ -34,18 +35,37 @@ export async function generateStaticParams() {
   );
 }
 
-async function getPostData(params: { post: string; slug: string }) {
+async function getPostData(
+  params: { post: string; slug: string },
+  searchParams?: { [key: string]: string | string[] | any | undefined }
+) {
+  console.log("searchParams in getPost =====>", searchParams);
+  const { isEnabled } = draftMode();
   const { post, slug } = params;
 
   const uri = `/${slug}/${post}`;
-  const data = await getPost(uri);
 
-  const postProps = {
-    ...data,
-    author: data?.author?.node,
-  };
+  if (!isEnabled) {
+    const data = await getPost(uri);
 
-  return postProps;
+    const postProps = {
+      ...data,
+      author: data?.author?.node,
+    };
+
+    return postProps;
+  }
+
+  if (isEnabled) {
+    const data = await getPreviewPost(searchParams?.pid);
+
+    const postProps = {
+      ...data,
+      author: data?.author?.node,
+    };
+
+    return postProps;
+  }
 }
 
 export async function generateMetadata(
@@ -79,7 +99,8 @@ export async function generateMetadata(
 }
 
 const Articlepost = async ({ params, searchParams }: Props) => {
-  const post = await getPostData(params);
+  console.log("searchParams =====>", searchParams);
+  const post = await getPostData(params, searchParams);
 
   const jsonLd = generateArticleSchema({
     title: post?.title,

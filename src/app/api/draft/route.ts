@@ -23,6 +23,6 @@ export async function GET(request: Request) {
   // Redirect to the path from the fetched post
   // We don't redirect to searchParams.slug as that might lead to open redirect vulnerabilities
   if (type === "post") {
-    redirect(`/skribenter/${author}/${slug}`);
+    redirect(`/skribenter/${author}/${slug}?pid=${pid}`);
   }
 }
