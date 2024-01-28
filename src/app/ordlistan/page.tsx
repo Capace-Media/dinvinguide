@@ -1,10 +1,7 @@
 import WordsTemplate from "@/components/Templates/WordsTemplate";
+import { ParamsProps } from "../../../types/Global";
 
-type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-};
-
-const Words = ({ searchParams }: Props) => {
+const Words = ({ searchParams, params }: ParamsProps) => {
   return (
     <>
       <WordsTemplate searchParams={searchParams} />

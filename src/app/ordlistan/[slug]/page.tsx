@@ -1,10 +1,13 @@
+import WordTemplate from "@/components/Templates/WordTemplate";
+import { ParamsProps } from "../../../../types/Global";
+
 interface WordProps {}
 
-const Word = ({}: WordProps) => {
+const Word = ({ searchParams, params }: ParamsProps) => {
   return (
-    <div className="">
-      <h2 className="">Hello Word</h2>
-    </div>
+    <>
+      <WordTemplate searchParams={searchParams} params={params} />
+    </>
   );
 };
 
