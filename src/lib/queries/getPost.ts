@@ -252,7 +252,7 @@ export const getPost = async (id: string) => {
   }
 };
 
-export const getPreviewPost = async (id: string) => {
+export const getPreviewPost = async (id: number) => {
   try {
     const res = await WPServerSide(
       `query getArticlePreviewBySlug($id: ID!) {
