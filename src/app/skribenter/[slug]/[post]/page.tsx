@@ -49,6 +49,7 @@ async function getPostData(
 
     const postProps = {
       ...data,
+      type: "published",
       author: data?.author?.node,
     };
 
@@ -60,6 +61,7 @@ async function getPostData(
 
     const postProps = {
       ...data,
+      type: "preview",
       author: data?.author?.node,
     };
 

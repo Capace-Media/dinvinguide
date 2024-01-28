@@ -257,13 +257,25 @@ export const getPreviewPost = async (id: string) => {
     const res = await WPServerSide(
       `query getArticlePreviewBySlug($id: ID!) {
         post(idType: DATABASE_ID, id: $id) {
-          preview {
-          node {
+         
           title
-          slug
+          template {
+            templateName
+          }
           uri
-          modifiedGmt
+          content
+          acf_oldcontent {
+            oldContentAcf
+          }
           acf_posts {
+            flerBilder {
+              mediaItemUrl
+              altText
+              mediaDetails {
+                width
+                height
+              }
+            }
             ingress
             lasMer {
               ... on Post {
@@ -271,10 +283,6 @@ export const getPreviewPost = async (id: string) => {
                 title
                 slug
                 uri
-                modifiedGmt
-                acf_posts {
-                  ingress
-                }
                 author {
                   node {
                     name
@@ -324,7 +332,7 @@ export const getPreviewPost = async (id: string) => {
                   }
                 }
               }
-
+    
               ... on Page {
                 id
                 title
@@ -338,16 +346,38 @@ export const getPreviewPost = async (id: string) => {
                 featuredImage {
                   node {
                     mediaItemUrl
+                    altText
                     mediaDetails {
                       width
                       height
                     }
-                    altText
                   }
                 }
               }
             }
             sektioner {
+              ... on Post_AcfPosts_Sektioner_Video {
+                fieldGroupName
+                url
+              }
+              ... on Post_AcfPosts_Sektioner_Dryck {
+                fieldGroupName
+                name
+                text
+                other {
+                  linkSystembolaget
+                }
+                bild {
+                  bild {
+                    mediaItemUrl
+                    altText
+                    mediaDetails {
+                      width
+                      height
+                    }
+                  }
+                }
+              }
               ... on Post_AcfPosts_Sektioner_ExtraPuff {
                 fieldGroupName
                 extraPuff {
@@ -355,17 +385,14 @@ export const getPreviewPost = async (id: string) => {
                     title
                     slug
                     uri
-                    acf_grape {
-                      kortBeskrivning
-                    }
                     featuredImage {
                       node {
                         mediaItemUrl
+                        altText
                         mediaDetails {
                           width
                           height
                         }
-                        altText
                       }
                     }
                   }
@@ -383,11 +410,11 @@ export const getPreviewPost = async (id: string) => {
                     featuredImage {
                       node {
                         mediaItemUrl
+                        altText
                         mediaDetails {
                           width
                           height
                         }
-                        altText
                       }
                     }
                   }
@@ -405,11 +432,11 @@ export const getPreviewPost = async (id: string) => {
                     featuredImage {
                       node {
                         mediaItemUrl
+                        altText
                         mediaDetails {
                           width
                           height
                         }
-                        altText
                       }
                     }
                   }
@@ -456,32 +483,280 @@ export const getPreviewPost = async (id: string) => {
           featuredImage {
             node {
               mediaItemUrl
+              altText
               mediaDetails {
                 width
                 height
               }
-              altText
-              
             }
           }
           author {
             node {
-              username
               nicename
-              slug
               name
-              description
+              firstName
               acf_user {
-                email
-                facebook
-                instagram
-                kortBeskrivning
                 bild {
-                  altText
                   mediaItemUrl
+                  altText
                   mediaDetails {
                     width
                     height
+                  }
+                }
+                kortBeskrivning
+              }
+            }
+          }
+          preview {
+            node {
+              title
+              template {
+                templateName
+              }
+              uri
+              content
+              acf_oldcontent {
+                oldContentAcf
+              }
+              acf_posts {
+                flerBilder {
+                  mediaItemUrl
+                  altText
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+                ingress
+                lasMer {
+                  ... on Post {
+                    id
+                    title
+                    slug
+                    uri
+                    author {
+                      node {
+                        name
+                        nicename
+                      }
+                    }
+                    featuredImage {
+                      node {
+                        mediaItemUrl
+                        altText
+                        mediaDetails {
+                          width
+                          height
+                        }
+                      }
+                    }
+                  }
+                  ... on Grape {
+                    id
+                    title
+                    slug
+                    uri
+                    featuredImage {
+                      node {
+                        mediaItemUrl
+                        altText
+                        mediaDetails {
+                          width
+                          height
+                        }
+                      }
+                    }
+                  }
+                  ... on Recipe {
+                    id
+                    title
+                    slug
+                    uri
+                    featuredImage {
+                      node {
+                        mediaItemUrl
+                        altText
+                        mediaDetails {
+                          width
+                          height
+                        }
+                      }
+                    }
+                  }
+    
+                  ... on Page {
+                    id
+                    title
+                    slug
+                    uri
+                    author {
+                      node {
+                        name
+                      }
+                    }
+                    featuredImage {
+                      node {
+                        mediaItemUrl
+                        altText
+                        mediaDetails {
+                          width
+                          height
+                        }
+                      }
+                    }
+                  }
+                }
+                sektioner {
+                  ... on Post_AcfPosts_Sektioner_Video {
+                    fieldGroupName
+                    url
+                  }
+                  ... on Post_AcfPosts_Sektioner_Dryck {
+                    fieldGroupName
+                    name
+                    text
+                    other {
+                      linkSystembolaget
+                    }
+                    bild {
+                      bild {
+                        mediaItemUrl
+                        altText
+                        mediaDetails {
+                          width
+                          height
+                        }
+                      }
+                    }
+                  }
+                  ... on Post_AcfPosts_Sektioner_ExtraPuff {
+                    fieldGroupName
+                    extraPuff {
+                      ... on Grape {
+                        title
+                        slug
+                        uri
+                        featuredImage {
+                          node {
+                            mediaItemUrl
+                            altText
+                            mediaDetails {
+                              width
+                              height
+                            }
+                          }
+                        }
+                      }
+                      ... on Drink {
+                        title
+                        slug
+                        uri
+                        drinkTypes {
+                          edges {
+                            node {
+                              name
+                            }
+                          }
+                        }
+                        featuredImage {
+                          node {
+                            mediaItemUrl
+                            altText
+                            mediaDetails {
+                              width
+                              height
+                            }
+                          }
+                        }
+                      }
+                      ... on Recipe {
+                        title
+                        slug
+                        uri
+                        passarTills {
+                          edges {
+                            node {
+                              name
+                            }
+                          }
+                        }
+                        featuredImage {
+                          node {
+                            mediaItemUrl
+                            altText
+                            mediaDetails {
+                              width
+                              height
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  ... on Post_AcfPosts_Sektioner_Brodtext {
+                    text
+                    fieldGroupName
+                  }
+                  ... on Post_AcfPosts_Sektioner_Citat {
+                    fieldGroupName
+                    text
+                  }
+                  ... on Post_AcfPosts_Sektioner_Mellanbild {
+                    fieldGroupName
+                    iGalleri
+                    img {
+                      mediaItemUrl
+                      altText
+                      mediaDetails {
+                        width
+                        height
+                      }
+                    }
+                  }
+                  ... on Post_AcfPosts_Sektioner_StorBild {
+                    fieldGroupName
+                    iGalleri
+                    img {
+                      mediaItemUrl
+                      altText
+                      mediaDetails {
+                        width
+                        height
+                      }
+                    }
+                  }
+                  ... on Post_AcfPosts_Sektioner_Faktalada {
+                    text
+                    fieldGroupName
+                  }
+                }
+              }
+              featuredImage {
+                node {
+                  mediaItemUrl
+                  altText
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+              }
+              author {
+                node {
+                  nicename
+                  name
+                  firstName
+                  acf_user {
+                    bild {
+                      mediaItemUrl
+                      altText
+                      mediaDetails {
+                        width
+                        height
+                      }
+                    }
+                    kortBeskrivning
                   }
                 }
               }
@@ -489,12 +764,13 @@ export const getPreviewPost = async (id: string) => {
           }
         }
       }
-        }
-      }`,
+      `,
       { id }
     );
 
-    const data = res?.data?.post?.preview?.node;
+    const data = res?.data?.post?.preview?.node
+      ? res.data.post.preview.node
+      : res?.data?.post;
     return data;
   } catch (error) {
     console.error(error);
