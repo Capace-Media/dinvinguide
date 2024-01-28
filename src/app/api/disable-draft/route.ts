@@ -3,5 +3,5 @@ import { redirect } from "next/navigation";
 
 export async function GET(request: Request) {
   draftMode().disable();
-  return new Response("Förhandsgranskning är avslutad");
+  redirect("/");
 }

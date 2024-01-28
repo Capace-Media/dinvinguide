@@ -27,6 +27,6 @@ export async function GET(request: Request) {
   }
 
   if (type === "recipe") {
-    redirect(`/recept/${slug}?pid=${pid}`);
+    redirect(`/recept/${pid}`);
   }
 }

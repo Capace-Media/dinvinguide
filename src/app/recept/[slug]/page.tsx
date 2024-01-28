@@ -53,9 +53,10 @@ export async function generateStaticParams() {
 }
 
 async function getRecipeData(
-  uri: string,
+  params: { slug: string },
   searchParams?: { [key: string]: string | string[] | any | undefined }
 ) {
+  const uri = `/recept/${params.slug}`;
   const { isEnabled } = draftMode();
   if (!isEnabled) {
     const data = await getSingleRecipe(uri);
@@ -64,7 +65,8 @@ async function getRecipeData(
   }
 
   if (isEnabled) {
-    const data = await getPreviewRecipe(searchParams?.pid);
+    const pid = parseInt(params?.slug);
+    const data = await getPreviewRecipe(pid);
 
     return data;
   }
@@ -73,7 +75,7 @@ async function getRecipeData(
 const Recipe = async ({ params, searchParams }: RecipeProps) => {
   const uri = `/recept/${params.slug}`;
 
-  const data = await getRecipeData(uri, searchParams);
+  const data = await getRecipeData(params, searchParams);
   if (!data) {
     return (
       <div className="py-20">
