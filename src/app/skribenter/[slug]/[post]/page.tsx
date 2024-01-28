@@ -57,13 +57,13 @@ async function getPostData(
   }
 
   if (isEnabled) {
-    const pid = parseInt(slug);
-    const data = await getPreviewPost(slug);
+    const pid = parseInt(post);
+    const preview = await getPreviewPost(pid);
 
     const postProps = {
-      ...data,
+      ...preview,
       type: "preview",
-      author: data?.author?.node,
+      author: preview?.author?.node,
     };
 
     return postProps;
