@@ -57,7 +57,7 @@ async function getPostData(
   }
 
   if (isEnabled) {
-    const pid = parseInt(searchParams?.pid);
+    const pid = parseInt(slug);
     const data = await getPreviewPost(slug);
 
     const postProps = {
