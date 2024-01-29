@@ -15,7 +15,7 @@ async function getWordData(slug: string) {
         content
         title
         modifiedGmt
-        title
+        slug
         featuredImage {
           node {
             altText
@@ -52,27 +52,35 @@ async function getWordData(slug: string) {
   }
 }
 
-const WordTemplate = async ({ searchParams, params }: ParamsProps) => {
+const WordTemplate = async ({ params }: { params: { slug: string } }) => {
   const data = await getWordData(params?.slug);
-  console.log("data =====>", data);
+
   return (
     <article className="lg:grid lg:grid-cols-5 gap-10 pt-[120px] layout bg-white">
+      <div className="w-full h-[30px] bg-[#F7F7E5] lg:col-span-5"></div>
       <div className="lg:col-span-3">
         <div className="flex justify-between">
-          {data?.author?.name && (
+          {data?.slug && (
             <ul className="flex gap-2 text-[14px] text-brand-secondary">
               <li>
-                <Link href="/">Hem</Link>
+                <Link
+                  className="text-brand-secondary lg:hover:underline"
+                  href="/"
+                >
+                  Hem
+                </Link>
               </li>
               {" / "}
               <li>
-                <Link href="/ordlistan">Ordlistan</Link>
+                <Link
+                  className="text-brand-secondary lg:hover:underline"
+                  href="/ordlistan"
+                >
+                  Ordlistan
+                </Link>
               </li>
               {" / "}
-              <li>
-                <Link href={`/ordlistan/${data?.title}`}>{data?.title}</Link>
-              </li>
-              {" / "}
+              <li className="text-[#333]">{data?.title}</li>
             </ul>
           )}
           <time className="text-[14px]" dateTime={data?.modifiedGmt}>
@@ -85,8 +93,9 @@ const WordTemplate = async ({ searchParams, params }: ParamsProps) => {
           {data?.content && (
             <p className=" italic text-[14px]">{handleParse(data?.content)}</p>
           )}
-
-          <h2 className="font-sub">Hur andvänds ordet?</h2>
+          {data?.GQL_Word_Content?.hurAndvandsOrdet?.alternativ1 && (
+            <h2 className="font-sub">Hur andvänds ordet?</h2>
+          )}
 
           <ul>
             {data?.GQL_Word_Content?.hurAndvandsOrdet?.alternativ1 && (
@@ -129,7 +138,42 @@ const WordTemplate = async ({ searchParams, params }: ParamsProps) => {
           )}
         </div>
       </div>
-      <div></div>
+      <aside className="md:col-span-2 lg:pl-10">
+        {data?.GQL_Word_Content?.relateradTermer && (
+          <div className=" w-full bg-brand-secondary p-4">
+            <div className="border-b-2 pb-4">
+              <Link className="text-white" href="/ordlistan">
+                Ordlistan
+              </Link>
+              <h3 className="text-white text-[26px]">Relaterade termer</h3>
+            </div>
+            <ul className="pt-5 flex flex-col gap-3">
+              {data.GQL_Word_Content.relateradTermer.map((term: any) => {
+                return (
+                  <li key={term.id}>
+                    <Link
+                      className="text-white hover:underline"
+                      href={`/ordlistan/${term.slug}`}
+                    >
+                      {term.title}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
+        {/* <div className="py-10">
+        <ul className="grid gap-6">
+          {related &&
+            related.map((post: any) => (
+              <li key={post?.id}>
+                <AuthorPost post={post} />
+              </li>
+            ))}
+        </ul>
+      </div> */}
+      </aside>
     </article>
   );
 };
