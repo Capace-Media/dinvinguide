@@ -15,7 +15,9 @@ const abrilFatface = Abril_Fatface({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-abrilFatface",
+  display: "swap",
 });
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -136,9 +138,7 @@ export default function RootLayout({
 
   return (
     <html lang="sv">
-      <body
-        className={`${poppins.variable} ${abrilFatface.variable} font-main`}
-      >
+      <body className={`${poppins.variable} ${abrilFatface.variable}`}>
         <Provider>
           <Header />
           <Suspense fallback={<Loading />}>

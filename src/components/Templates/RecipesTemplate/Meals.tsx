@@ -19,42 +19,42 @@ const Meals = ({}: MealsProps) => {
 
       <div className="grid grid-cols-4 gap-4">
         <Link
-          href="/recept/forratter"
+          href="/recept/maltider/forratter"
           className="h-[200px] lg:hover:scale-[1.03] lg:ease-in-out lg:duration-300  bg-brand-primary text-white flex flex-col gap-3 justify-center items-center font-sub text-[27px]"
         >
           <Forratter />
           Förrätter
         </Link>
         <Link
-          href="/recept/huvudratter"
+          href="/recept/maltider/huvudratter"
           className="h-[200px] lg:hover:scale-[1.03] lg:ease-in-out lg:duration-300 bg-brand-primary text-white flex flex-col gap-3 justify-center items-center font-sub text-[27px]"
         >
           <Huvudratter />
           Huvudrätter
         </Link>
         <Link
-          href="/recept/frukost"
+          href="/recept/maltider/frukost"
           className="h-[200px] lg:hover:scale-[1.03] lg:ease-in-out lg:duration-300 bg-brand-primary text-white flex flex-col gap-3 justify-center items-center font-sub text-[27px]"
         >
           <Frukost />
           Frukost
         </Link>
         <Link
-          href="/recept/specialkost"
+          href="/recept/maltider/specialkost"
           className="h-[200px] lg:hover:scale-[1.03] lg:ease-in-out lg:duration-300 bg-brand-primary text-white flex flex-col gap-3 justify-center items-center font-sub text-[27px]"
         >
           <Specialkost />
           Specialkost
         </Link>
         <Link
-          href="/recept/efterratter"
+          href="/recept/maltider/efterratter"
           className="h-[200px] lg:hover:scale-[1.03] lg:ease-in-out lg:duration-300 bg-brand-primary text-white flex flex-col gap-3 justify-center items-center font-sub text-[27px]"
         >
           <Efterratter />
           Efterrätter
         </Link>
         <Link
-          href="/recept/tilltugg-snacks"
+          href="/recept/maltider/tilltugg-snacks"
           className="h-[200px] lg:hover:scale-[1.03] lg:ease-in-out lg:duration-300 bg-brand-primary text-white flex flex-col gap-3 justify-center items-center font-sub text-[27px]"
         >
           <TilltuggSnacks />

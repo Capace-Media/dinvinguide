@@ -1,11 +1,18 @@
-interface WineTVProps {}
+import Loading from "@/app/loading";
+import VinTVTemplate from "@/components/Templates/VinTVTemplate";
 
-const WineTV = ({}: WineTVProps) => {
+import { Suspense } from "react";
+type Props = {
+  searchParams: { [key: string]: string | string[] | any | undefined | null };
+};
+
+const VinTV = ({ searchParams }: Props) => {
+  const params = { slug: "vin-tv" };
   return (
-    <div className="">
-      <h2 className="">Hello WineTV</h2>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <VinTVTemplate params={params} searchParams={searchParams} />
+    </Suspense>
   );
 };
 
-export default WineTV;
+export default VinTV;

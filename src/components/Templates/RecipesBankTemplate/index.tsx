@@ -13,8 +13,6 @@ const RecipesTemplate = ({ searchParams }: Props) => {
       <Recipes searchParams={searchParams} />
       <Ads pageType="default" position="MID" />
 
-      <Ads pageType="default" position="BOTTOM" />
-
       <Newsletter />
     </div>
   );

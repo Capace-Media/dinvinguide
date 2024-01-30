@@ -51,6 +51,35 @@ const Recipe = ({ recipe }: RecipeProps) => {
           </>
         )}
         <div className="absolute right-3 top-2 z-10 border-b-2 border-white "></div>
+        <div className="absolute top-0 right-0 text-white p-4 z-[2] flex gap-2">
+          {(() => {
+            const desiredOrder = [
+              "huvudratter",
+              "frukost",
+              "forratter",
+              "efterratter",
+              "tilltugg-snacks",
+              "specialkost",
+            ];
+
+            const matchingTax = desiredOrder.find((slug) => {
+              return recipe?.acf_recipe?.recepieCategories?.some(
+                (tax: any) => tax.slug === slug
+              );
+            });
+
+            const displayTax = recipe?.acf_recipe?.recepieCategories?.find(
+              (tax: any) => tax.slug === matchingTax
+            );
+
+            return displayTax ? (
+              <p key={displayTax.slug} className="text-[12px] uppercase">
+                {displayTax.name}
+                <span className="flex w-full h-[3px] bg-white"></span>
+              </p>
+            ) : null;
+          })()}
+        </div>
       </Link>
 
       <div className="h-[6rem] rounded-b-[10px] flex flex-col justify-between py-2 px-2 bg-[#F5F5F5]">

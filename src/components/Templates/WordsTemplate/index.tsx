@@ -17,7 +17,7 @@ const WordsTemplate = async ({ params, searchParams }: Props) => {
   const data = await getPage("/ordlistan");
   return (
     <>
-      <PageHero data={data} links={links} guide={"Ordlistan"} />
+      <PageHero data={data} links={links} guide={"Våra guider"} />
       <Ads pageType="default" position="TOP" />
       <div className="layout bg-white">
         <nav className="w-full">

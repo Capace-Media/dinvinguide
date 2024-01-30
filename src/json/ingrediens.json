@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "fagel",
+    "name": "Fågel",
+    "id": "dGVybToxMTc2MQ==",
+    "icon": ""
+  },
+  {
+    "slug": "fisk",
+    "name": "Fisk",
+    "id": "dGVybToxMTc2Mg==",
+    "icon": ""
+  },
+  {
+    "slug": "flask",
+    "name": "Fläsk",
+    "id": "dGVybToxMTc1OQ==",
+    "icon": ""
+  },
+  {
+    "slug": "lamm",
+    "name": "Lamm",
+    "id": "dGVybToxMTc2MA==",
+    "icon": ""
+  },
+  {
+    "slug": "not",
+    "name": "Nöt",
+    "id": "dGVybToxMTc1OA==",
+    "icon": ""
+  },
+  {
+    "slug": "skaldjur",
+    "name": "Skaldjur",
+    "id": "dGVybToxMTc2Mw==",
+    "icon": ""
+  },
+  {
+    "slug": "veganskt",
+    "name": "Veganskt",
+    "id": "dGVybToxMTc2NQ==",
+    "icon": ""
+  },
+  {
+    "slug": "vegetariskt",
+    "name": "Vegetariskt",
+    "id": "dGVybToxMTc2NA==",
+    "icon": ""
+  }
+]

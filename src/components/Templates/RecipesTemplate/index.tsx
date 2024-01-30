@@ -1,6 +1,8 @@
 import Newsletter from "@/app/components/Newsletter";
 import Ads from "@/app/components/ads";
+import Drycker from "./Drycker";
 import Highlights from "./Highlights";
+import Ingrediens from "./Ingrediens";
 import Meals from "./Meals";
 
 interface RecipesTemplateProps {}
@@ -14,7 +16,9 @@ const RecipesTemplate = ({}: RecipesTemplateProps) => {
       <Meals />
       <Ads pageType="default" position="MID" />
       {/* Ingrediens */}
+      <Ingrediens />
       {/* Drinks */}
+      <Drycker />
       {/* Prepping */}
       <Ads pageType="default" position="BOTTOM" />
       {/* Country */}

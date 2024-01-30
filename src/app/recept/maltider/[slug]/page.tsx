@@ -30,7 +30,11 @@ export async function generateStaticParams() {
 const Maltider = ({ searchParams, params }: Props) => {
   return (
     <>
-      <RecipeCategoryTemplate searchParams={searchParams} params={params} />
+      <RecipeCategoryTemplate
+        searchParams={searchParams}
+        params={params}
+        mainSlug="maltider"
+      />
     </>
   );
 };

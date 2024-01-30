@@ -24,7 +24,7 @@ html,
   h4,
   h5,
   h6 {
-    @apply font-semibold font-sub text-[#333];
+    @apply font-sub text-[#333];
   }
   a {
     @apply break-words text-[#333];
