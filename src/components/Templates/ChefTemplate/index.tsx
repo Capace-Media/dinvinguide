@@ -10,7 +10,7 @@ type Props = {
   mainSlug?: string;
 };
 
-const ChefTemplate = ({ searchParams, params, mainSlug }: Props) => {
+const ChefTemplate = async ({ searchParams, params, mainSlug }: Props) => {
   return (
     <div className="">
       <Ads pageType="default" position="TOP" />
