@@ -9,8 +9,10 @@ import { Metadata, ResolvingMetadata } from "next";
 import { Suspense } from "react";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 import Loading from "../loading";
-
-interface RecipesProps {}
+type Props = {
+  searchParams: { [key: string]: string | string[] | any | undefined | null };
+  params: { id: string };
+};
 
 const getRecipeData = async () => {
   const data = await getPage("recept");
@@ -20,6 +22,7 @@ const getRecipeData = async () => {
 };
 
 export async function generateMetadata(
+  { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getSEOByPage("/recept");
@@ -42,7 +45,7 @@ export async function generateMetadata(
   return data;
 }
 
-const Recipes = async ({}: RecipesProps) => {
+const Recipes = async () => {
   const { data, recipes } = await getRecipeData();
   return (
     <>

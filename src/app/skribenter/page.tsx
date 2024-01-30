@@ -10,19 +10,11 @@ import { Suspense } from "react";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 import Loading from "../loading";
 import AuthorsHero from "./components/AuthorsHero";
-
-const getAuthorsData = async () => {
-  const data = await getAuthors();
-  const pageData = await getPage("skribenter");
-
-  return { data, pageData };
-};
-
 export async function generateMetadata(
+  { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const page = await getSEOByPage("/skribenter");
-
+  const page = await getSEO();
   const seo: any = page?.seo;
 
   const uri = `/${page?.slug}`;
@@ -40,6 +32,22 @@ export async function generateMetadata(
 
   return data;
 }
+
+const getAuthorsData = async () => {
+  const data = await getAuthors();
+  const pageData = await getPage("skribenter");
+
+  return { data, pageData };
+};
+
+async function getSEO() {
+  const page = await getSEOByPage("/skribenter");
+  return page;
+}
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
 const Authors = async () => {
   const { data, pageData } = await getAuthorsData();

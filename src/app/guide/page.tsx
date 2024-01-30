@@ -7,9 +7,13 @@ import { Suspense } from "react";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 import Loading from "../loading";
 
-interface GuiderProps {}
+type Props = {
+  searchParams: { [key: string]: string | string[] | any | undefined | null };
+  params: { id: string };
+};
 
 export async function generateMetadata(
+  { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getSEOByPage("/guide");
@@ -32,7 +36,7 @@ export async function generateMetadata(
   return data;
 }
 
-const Guider = ({}: GuiderProps) => {
+const Guider = () => {
   return (
     <Suspense fallback={<Loading />}>
       <GuideTemplate />

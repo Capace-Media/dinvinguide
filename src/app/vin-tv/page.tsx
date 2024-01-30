@@ -8,9 +8,11 @@ import { Suspense } from "react";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined | null };
+  params: { id: string };
 };
 
 export async function generateMetadata(
+  { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getSEOByPage("/vin-tv");
