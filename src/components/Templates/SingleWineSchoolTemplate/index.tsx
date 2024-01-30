@@ -1,6 +1,6 @@
 import Newsletter from "@/app/components/Newsletter";
 import Ads from "@/app/components/ads";
-import AuthorPost from "@/components/Blocks/skribenter/Posts/post";
+
 import Posts from "@/components/Pagination/Posts";
 import { getPage } from "@/lib/queries/getPage";
 import { getSchoolPosts } from "@/lib/queries/getSchoolPosts";

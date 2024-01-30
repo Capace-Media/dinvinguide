@@ -9,6 +9,7 @@ export const getSingleRecipe = async (id: string) => {
       `query GET_RECIPE($id: ID!) {
         recipe(id: $id, idType: URI) {
           title
+          modifiedGmt
           ${SEO}
           featuredImage {
             node {
@@ -22,6 +23,10 @@ export const getSingleRecipe = async (id: string) => {
             }
           }
           acf_recipe {
+            recepieCategories {
+              slug
+              name
+            }
             desc
             processen
             recipeAverageRating
