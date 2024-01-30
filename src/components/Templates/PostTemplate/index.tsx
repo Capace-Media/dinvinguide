@@ -38,7 +38,6 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
           <time className="text-[14px]" dateTime={post?.modifiedGmt}>
             {PrettyDate(post?.modifiedGmt)}
           </time>
-          <p>type: {post?.type}</p>
         </div>
 
         <div className=" text-[#333] pt-10">

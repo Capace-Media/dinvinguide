@@ -45,7 +45,7 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
 
           <div>
             <Link
-              href="/recept"
+              href="/recept/receptbanken"
               className="lg:hover:underline italic text-brand-secondary flex items-center gap-3"
             >
               Besök vår receptbank <ArrowRight />

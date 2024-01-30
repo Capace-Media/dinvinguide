@@ -45,25 +45,25 @@ export const dynamicSeo = async ({
           url:
             img?.url ||
             seo?.opengraphImage?.mediaItemUrl ||
-            previousMeta.openGraph.images[0].url,
+            previousMeta?.openGraph?.images[0]?.url,
           width: 800,
           height: 600,
           alt:
             img?.alt ||
             seo?.opengraphImage?.altText ||
-            previousMeta.openGraph.images[0].alt,
+            previousMeta?.openGraph?.images[0]?.alt,
         },
         {
           url:
             img?.url ||
             seo?.opengraphImage?.mediaItemUrl ||
-            previousMeta.openGraph.images[1].url,
+            previousMeta?.openGraph?.images[1]?.url,
           width: 1800,
           height: 1600,
           alt:
             img?.alt ||
             seo?.opengraphImage?.altText ||
-            previousMeta.openGraph.images[1].alt,
+            previousMeta?.openGraph?.images[1]?.alt,
         },
       ],
       locale: "sv_SE",

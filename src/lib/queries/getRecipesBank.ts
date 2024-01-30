@@ -201,3 +201,76 @@ export const getDrinkRecipe = async () => {
     };
   }
 };
+
+export const getChefRecipes = async (args: DataArgs) => {
+  const { after, before, first, last, search, id } = args;
+  try {
+    const res = await WPnext(
+      `
+      query getChefRecipes($id: ID!, $after: String, $before: String, $first: Int, $last: Int, $search: String) {
+        guestWriter(id: $id, idType: URI) {
+          name
+          recipes(
+                after: $after
+                before: $before
+                first: $first
+                last: $last
+                where: {search: $search}
+              ) {
+                edges {
+                  node {
+                    guestWriter {
+                      nodes {
+                        name
+                      }
+                    }
+                    acf_recipe {
+                      recepieCategories {
+                        slug
+                        name
+                      }
+                      skrivetAv {
+                        name
+                      }
+                      time {
+                        cookingTime
+                        prepTime
+                      }
+                      recipeAverageRating
+                    }
+                    id
+                    title
+                    slug
+                    featuredImage {
+                      node {
+                        altText
+                        mediaItemUrl
+                      }
+                    }
+                  }
+                }
+                pageInfo {
+                  endCursor
+                  hasNextPage
+                  hasPreviousPage
+                  startCursor
+                  offsetPagination {
+                    total
+                  }
+                }
+              }
+        }
+      }
+      `,
+      { after, before, search, first, last, id }
+    );
+
+    const data = res.data.guestWriter;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return {
+      message: getErrorMessage(error),
+    };
+  }
+};

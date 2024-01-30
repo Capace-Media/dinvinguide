@@ -92,9 +92,9 @@ const PlaylistTemplate = async ({ params, searchParams }: Props) => {
 
   const { video, setting } = posts;
 
-  // if (!posts) {
-  //   return notFound();
-  // }
+  if (!posts) {
+    return notFound();
+  }
 
   return (
     <>

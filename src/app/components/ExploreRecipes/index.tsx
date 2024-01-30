@@ -52,13 +52,13 @@ const ExploreRecipes: React.FC = async () => {
           <div className="flex gap-3">
             <Link
               className="lg:hover:scale-105 lg:duration-300 lg:ease-in-out uppercase text-brand-secondary flex flex-col justify-center items-center text-[14px] bg-white px-3 py-2"
-              href="/"
+              href="/recept/receptbanken"
             >
               Alla Recept
             </Link>
             <Link
               className="lg:hover:scale-105 lg:duration-300 lg:ease-in-out uppercase flex flex-col justify-between gap-2 text-white text-[14px] px-3 items-center h-[39px]"
-              href="/"
+              href="/recept/maltider/frukost"
             >
               <span></span>
               frukost
@@ -66,18 +66,18 @@ const ExploreRecipes: React.FC = async () => {
             </Link>
             <Link
               className="lg:hover:scale-105 lg:duration-300 lg:ease-in-out uppercase flex flex-col justify-between gap-2 text-white text-[14px] px-3 items-center h-[39px]"
-              href="/"
+              href="/recept/maltider/efterratter"
             >
               <span></span>
-              lunch
+              efterrätter
               <span className="bg-white w-full h-[3px] flex"></span>
             </Link>
             <Link
               className="lg:hover:scale-105 lg:duration-300 lg:ease-in-out uppercase flex flex-col justify-between gap-2 text-white text-[14px] px-3 items-center h-[39px]"
-              href="/"
+              href="/recept/maltider/huvudratter"
             >
               <span></span>
-              middag
+              huvudrätter
               <span className="bg-white w-full h-[3px] flex"></span>
             </Link>
           </div>
