@@ -91,7 +91,9 @@ const WordTemplate = async ({ params }: { params: { slug: string } }) => {
         <div className=" text-[#333] pt-10">
           <h1 className="font-sub pb-5">{data?.title}</h1>
           {data?.content && (
-            <p className=" italic text-[14px]">{handleParse(data?.content)}</p>
+            <div className=" italic text-[14px]">
+              {handleParse(data?.content)}
+            </div>
           )}
           {data?.GQL_Word_Content?.hurAndvandsOrdet?.alternativ1 && (
             <h2 className="font-sub">Hur andvänds ordet?</h2>

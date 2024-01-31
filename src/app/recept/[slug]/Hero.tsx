@@ -156,7 +156,7 @@ const RecipeHero = async ({
                 <div className="relative w-full h-full">
                   <Image
                     src={image?.mediaItemUrl}
-                    alt={image?.altText}
+                    alt={image?.altText ? image.altText : `Bild på ${title}`}
                     fill
                     style={{
                       objectFit: "cover",

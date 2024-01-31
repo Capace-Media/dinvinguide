@@ -120,7 +120,7 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position, pageType }) => {
                 src={isSrc}
                 fill
                 style={{ objectFit: "contain" }}
-                alt="Annons"
+                alt="Annons för viner"
                 onLoad={() => setImageLoaded(true)}
                 sizes="(min-width: 1040px) 980px, 280px"
               />

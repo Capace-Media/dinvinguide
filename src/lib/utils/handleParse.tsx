@@ -106,7 +106,11 @@ export default function handleParse(content?: string, parseClasses?: string) {
                 >
                   <Image
                     src={domNode.attribs.src}
-                    alt={domNode.attribs.alt}
+                    alt={
+                      domNode?.attribs?.alt
+                        ? domNode.attribs.alt
+                        : "Bild från DinVinguide.se"
+                    }
                     width={
                       domNode?.attribs?.width ? domNode.attribs.width : 300
                     }

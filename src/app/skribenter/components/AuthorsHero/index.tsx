@@ -37,7 +37,11 @@ const AuthorsHero = async ({ promise }: AuthorsHeroProps) => {
               <div className="relative w-full h-full">
                 <Image
                   src={data?.featuredImage?.node?.mediaItemUrl}
-                  alt={data?.featuredImage?.node?.altText}
+                  alt={
+                    data?.featuredImage?.node?.altText
+                      ? data.featuredImage.node.altText
+                      : "Bild från DinVinguide.se"
+                  }
                   fill
                   style={{
                     objectFit: "cover",

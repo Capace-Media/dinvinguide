@@ -59,7 +59,11 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
               <div className="relative w-full h-full">
                 <Image
                   src={data?.featuredImage?.node?.mediaItemUrl}
-                  alt={data?.featuredImage?.node?.altText}
+                  alt={
+                    data?.featuredImage?.node?.altText
+                      ? data.featuredImage.node.altText
+                      : "Bild från DinVinguide"
+                  }
                   fill
                   style={{
                     objectFit: "cover",

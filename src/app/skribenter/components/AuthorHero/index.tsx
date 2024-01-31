@@ -30,15 +30,21 @@ const AuthorHero = async ({ promise, word }: AuthorHeroProps) => {
 
         <div className=" md:bg-white w-[89%] lg:w-[85%] lg:h-[511px] h-[655px] absolute top-[13%] lg:top-[50%] lg:-translate-y-[40%] center-x z-10 grid grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 md:shadow-lg lg:p-4 lg:gap-8 gap-4">
           <div className="relative w-full row-span-1">
-            <Image
-              src={data.acf_user.bild.mediaItemUrl}
-              alt={data.acf_user.bild.altText}
-              fill
-              style={{
-                objectFit: "cover",
-                objectPosition: "top",
-              }}
-            />
+            {data?.acf_user?.bild?.mediaItemUrl && (
+              <Image
+                src={data.acf_user.bild.mediaItemUrl}
+                alt={
+                  data?.acf_user?.bild?.altText
+                    ? data.acf_user.bild.altText
+                    : `bild på ${data?.name}`
+                }
+                fill
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "top",
+                }}
+              />
+            )}
           </div>
 
           <div className="py-4 flex flex-col justify-between">
