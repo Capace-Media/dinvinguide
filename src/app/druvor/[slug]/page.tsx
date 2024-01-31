@@ -1,7 +1,11 @@
 import Loading from "@/app/loading";
+import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import GrapeTemplate from "@/components/Templates/GrapeTemplate";
+import { getGrapeSEO } from "@/lib/queries/SEO/getGrapeSEO";
 import { WPnext } from "@/lib/wp";
+import { Metadata, ResolvingMetadata } from "next";
 import { Suspense } from "react";
+import { MetaInfo } from "../../../../types/MetaInfoTypes";
 
 export async function generateStaticParams() {
   const { data } = await WPnext(
@@ -22,6 +26,35 @@ export async function generateStaticParams() {
     });
 
   return paths;
+}
+
+type Props = {
+  searchParams: { [key: string]: string | string[] | any | undefined | null };
+  params: { slug: string };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const page = await getGrapeSEO(`/druvor/${params.slug}`);
+
+  const seo: any = page?.seo;
+
+  const uri = `/druvor/${page?.slug}`;
+
+  const img = {
+    url: seo?.opengraphImage?.mediaItemUrl
+      ? seo.opengraphImage.mediaItemUrl
+      : "",
+    alt: seo?.opengraphImage?.altText ? seo.opengraphImage.altText : "",
+  };
+
+  const previousMeta: MetaInfo = (await parent) as unknown as MetaInfo;
+
+  const data = await dynamicSeo({ seo, previousMeta, uri, img });
+
+  return data;
 }
 
 const Grapes = ({ params }: { params: { slug: string } }) => {

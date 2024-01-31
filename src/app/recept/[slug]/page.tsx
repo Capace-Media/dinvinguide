@@ -1,6 +1,7 @@
 import Ads from "@/app/components/ads";
 import Loading from "@/app/loading";
 import RecipeTemplate from "@/components/Templates/RecipeTemplate";
+import { getRecipeSEO } from "@/lib/queries/SEO/getRecipeSEO";
 import {
   getPreviewRecipe,
   getSingleRecipe,
@@ -8,13 +9,40 @@ import {
 import { getErrorMessage } from "@/lib/utils/getErrorMessage";
 import generateRecipeSchema from "@/lib/utils/json-LD-Schemas/generateRecipeSchema";
 import WP from "@/lib/wp";
+import { Metadata, ResolvingMetadata } from "next";
 import { draftMode } from "next/headers";
 
+import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import { Suspense } from "react";
+import { MetaInfo } from "../../../../types/MetaInfoTypes";
 
 interface RecipeProps {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | any | undefined };
+}
+
+export async function generateMetadata(
+  { params, searchParams }: RecipeProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const page = await getRecipeSEO(`/recept/${params.slug}`);
+
+  const seo: any = page?.seo;
+
+  const uri = `/recept/${page?.slug}`;
+
+  const img = {
+    url: seo?.opengraphImage?.mediaItemUrl
+      ? seo.opengraphImage.mediaItemUrl
+      : "",
+    alt: seo?.opengraphImage?.altText ? seo.opengraphImage.altText : "",
+  };
+
+  const previousMeta: MetaInfo = (await parent) as unknown as MetaInfo;
+
+  const data = await dynamicSeo({ seo, previousMeta, uri, img });
+
+  return data;
 }
 
 type PropsPaths = {
