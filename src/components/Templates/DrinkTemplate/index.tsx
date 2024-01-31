@@ -1,5 +1,6 @@
 import Ads from "@/app/components/ads";
 import { getDrink } from "@/lib/queries/getDrink";
+import { notFound } from "next/navigation";
 import DLHero from "../HeroHeaders/DLHero";
 import TopListLinks from "../TopListsTemplate/TopListLinks";
 import Drink from "./Drink";
@@ -12,6 +13,10 @@ async function getDrinkData({ params }: { params: { slug: string } }) {
 
 const DrinkTemplate = async ({ params }: { params: { slug: string } }) => {
   const data = await getDrinkData({ params });
+
+  if (!data) {
+    return notFound();
+  }
 
   const { acf_drinks, ...rest } = data;
   const { passarTillRecept, ...acfData } = acf_drinks;

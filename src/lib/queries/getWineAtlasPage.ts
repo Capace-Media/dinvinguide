@@ -9,6 +9,8 @@ export const getWineAtlasPage = async (id: string) => {
           title
           content
           id
+          uri
+          slug
           modifiedGmt
           featuredImage {
             node {

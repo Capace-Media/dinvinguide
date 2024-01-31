@@ -10,6 +10,20 @@ html,
   margin: 0px;
 }
 
+.star__container {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.star__container input[type="radio"] {
+  display: none;
+}
+.star {
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 5px;
+}
+
 .drop-cap p:first-letter {
   float: left;
   font-size: 3em;

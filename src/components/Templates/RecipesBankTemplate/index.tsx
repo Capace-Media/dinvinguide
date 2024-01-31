@@ -1,4 +1,5 @@
 import Newsletter from "@/app/components/Newsletter";
+import Separater from "@/app/components/Separater";
 import Ads from "@/app/components/ads";
 import Recipes from "./Recipes";
 
@@ -11,6 +12,7 @@ const RecipesTemplate = ({ searchParams }: Props) => {
     <div className="">
       <Ads pageType="default" position="TOP" />
       <Recipes searchParams={searchParams} />
+      <Separater />
       <Ads pageType="default" position="MID" />
 
       <Newsletter />

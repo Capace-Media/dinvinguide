@@ -54,6 +54,18 @@ const RecipeByCategory = async ({ searchParams, params, mainSlug }: Props) => {
     search: searchData,
     id: idURI,
   });
+
+  if (promise?.edges?.length < 1) {
+    return (
+      <div className="layout bg-white">
+        <div>
+          <p className="uppercase text-[14px]">{mainSlug}</p>
+          <h1 className="capitalize">{title}</h1>
+        </div>
+        <p>Inga recept hittades...</p>
+      </div>
+    );
+  }
   return (
     <section className="">
       <div className="layout bg-white flex justify-between items-center">

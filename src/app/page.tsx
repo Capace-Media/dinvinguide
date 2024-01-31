@@ -2,6 +2,7 @@ import FrontHero from "@/components/Blocks/Hero-Header/FrontHero";
 import { getFrontPage } from "@/lib/queries/getFrontPage";
 import dynamic from "next/dynamic";
 
+import StarRating from "@/components/graphic/StarRating";
 import { Suspense } from "react";
 import Newsletter from "./components/Newsletter";
 import Ads from "./components/ads";
@@ -23,6 +24,7 @@ export default async function Home() {
     <>
       <FrontHero data={data?.page} />
       <Ads pageType="default" position="TOP" />
+
       <Suspense fallback={<p>Loading..</p>}>
         <ExplorePages />
       </Suspense>

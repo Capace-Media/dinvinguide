@@ -14,11 +14,11 @@ const SingleWineAtlas = async ({ params, searchParams }: Props) => {
       <PostTemplate post={data} />
 
       <div>
-        <h2>Läs mer om {data?.title}</h2>
         <MorePosts
           params={params}
           searchParams={searchParams}
           pageId={data?.id}
+          title={data?.title}
         />
       </div>
     </article>

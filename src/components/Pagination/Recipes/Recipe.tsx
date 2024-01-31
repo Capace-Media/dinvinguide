@@ -18,7 +18,7 @@ export const SkeletonLoader = () => {
 
 const Recipe = ({ recipe }: RecipeProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-
+  console.log("recipe?.acf_recipe =====>", recipe?.acf_recipe);
   return (
     <div className="group">
       <Link
@@ -84,26 +84,20 @@ const Recipe = ({ recipe }: RecipeProps) => {
 
       <div className="h-[6rem] rounded-b-[10px] flex flex-col justify-between py-2 px-2 bg-[#F5F5F5]">
         <div className="flex flex-col">
-          <p className="text-[#333] text-[14px] uppercase">
+          <p className="text-[#333] text-[12px] uppercase">
             {recipe?.acf_recipe?.skrivetAv
               ? recipe?.acf_recipe?.skrivetAv[0]?.name
-              : recipe?.guestWriter?.nodes
-              ? recipe?.questWriter?.nodes[0]?.name
               : "-"}
           </p>
 
           {recipe?.title && (
-            <h3
-              aria-label={recipe.title}
-              className="heading_truncated font-sub mb-2 text-[22px] text-brand-dark lg:group-hover:underline"
+            <Link
+              href={`/recept/${recipe?.slug}`}
+              aria-label={`Läs om ${recipe?.title}`}
+              className="heading_truncated font-sub mb-2 text-[18px] text-brand-dark lg:group-hover:underline"
             >
-              <Link
-                href={`/recept/${recipe?.slug}`}
-                aria-label={`Läs om ${recipe?.title}`}
-              >
-                {recipe.title}
-              </Link>
-            </h3>
+              {recipe.title}
+            </Link>
           )}
         </div>
 
