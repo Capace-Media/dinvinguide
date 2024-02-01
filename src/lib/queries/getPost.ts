@@ -146,6 +146,9 @@ export const getPost = async (id: string) => {
                     title
                     slug
                     uri
+                    acf_recipe{
+                      desc
+                    }
                     passarTills {
                       edges {
                         node {
