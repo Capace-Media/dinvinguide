@@ -93,7 +93,7 @@ function GrapeComponent({ data }: any) {
 function DrinkComponent({ data }: any) {
   return (
     <div>
-      <h2>{data.title}</h2>
+      <p>{data.title}</p>
       {/* Render other drink-specific details here */}
     </div>
   );
@@ -101,7 +101,6 @@ function DrinkComponent({ data }: any) {
 
 // RecipeComponent.js
 function RecipeComponent({ data }: any) {
-  console.log("data =====>", data);
   return (
     <section
       id="extraPuffRecipe"

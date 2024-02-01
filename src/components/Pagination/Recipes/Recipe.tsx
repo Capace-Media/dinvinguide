@@ -18,7 +18,7 @@ export const SkeletonLoader = () => {
 
 const Recipe = ({ recipe }: RecipeProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  console.log("recipe?.acf_recipe =====>", recipe?.acf_recipe);
+
   return (
     <div className="group">
       <Link

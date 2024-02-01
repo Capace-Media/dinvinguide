@@ -9,8 +9,39 @@ async function fetchPosts() {
   return data;
 }
 
+interface ArticleArray {
+  id: string;
+  title: string;
+  uri: string;
+  modifiedGmt: string;
+  acf_posts: {
+    ingress: string;
+  };
+  author: { node: any[] };
+  featuredImage: { node: any[] };
+}
+
 const LatestArticles = async () => {
   const posts = await fetchPosts();
+
+  const highlightedArticles: ArticleArray[] =
+    posts?.page?.GQL_frontPageFields?.highlightedArticles;
+
+  const latestArticles: ArticleArray[] = posts?.posts?.nodes;
+
+  // Determine the initial number of latest articles to include
+  let initialLatestCount = 8 - Math.min(8, highlightedArticles.length);
+
+  // Ensure we do not add more latestArticles than available or exceed the total count of 8
+  let combinedArticles = latestArticles.slice(0, initialLatestCount);
+
+  // Calculate remaining slots after adding the initial set of latestArticles
+  let remainingSlots = 8 - combinedArticles.length;
+
+  // Add highlightedArticles to fill up the remaining slots, ensuring not to exceed 8 in total
+  let additionalHighlighted = highlightedArticles.slice(0, remainingSlots);
+
+  combinedArticles = [...combinedArticles, ...additionalHighlighted];
 
   return (
     <div className="layout contain bg-white">
@@ -28,8 +59,8 @@ const LatestArticles = async () => {
         </Link>
       </div>
       <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
-        {posts?.posts?.nodes &&
-          posts.posts.nodes.map((post: any) => (
+        {combinedArticles &&
+          combinedArticles.map((post: any) => (
             <li key={post?.id}>
               <AuthorPost post={post} />
             </li>

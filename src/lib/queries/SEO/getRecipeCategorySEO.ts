@@ -46,7 +46,6 @@ export const getRecipeCategorySEO = async (id: string) => {
       { id }
     );
 
-    console.log("res =====>", res);
     const data = res.data.recipeCategory;
     return data;
   } catch (error) {
