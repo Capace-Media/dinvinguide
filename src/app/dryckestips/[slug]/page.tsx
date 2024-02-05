@@ -1,3 +1,5 @@
+import DrinkTipTemplate from "@/components/Templates/DrinkTipTemplate";
+
 type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined | null };
   params: { slug: string };
@@ -6,7 +8,7 @@ type Props = {
 const DrinkTipsPage = ({ searchParams, params }: Props) => {
   return (
     <div className="">
-      <h2>dryckestips</h2>
+      <DrinkTipTemplate searchParams={searchParams} params={params} />
     </div>
   );
 };

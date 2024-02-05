@@ -29,6 +29,7 @@ export const getDrinkTips = async (
               uri
               drinktipId
               id
+              modifiedGmt
               featuredImage {
                 node {
                   mediaItemUrl
@@ -79,14 +80,7 @@ export const fetchDrinktip = async (id: string) => {
           id
           slug
           uri
-          seo {
-            title
-            metaDesc
-            breadcrumbs {
-              url
-              text
-            }
-          }
+          modifiedGmt
           featuredImage {
             node {
               mediaItemUrl
