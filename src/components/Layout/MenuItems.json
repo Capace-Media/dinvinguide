@@ -19,6 +19,11 @@
       "id": "932ht23t23rfmc",
       "uri": "/dryckeslistan",
       "label": "Topplistor"
+    },
+    {
+      "id": "932ht23w24re33t23rfmc",
+      "uri": "/artiklar",
+      "label": "Artiklar"
     }
   ]
 }

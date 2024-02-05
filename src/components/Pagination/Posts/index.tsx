@@ -12,11 +12,14 @@ const Posts = ({ posts }: PostsProps) => {
           {posts &&
             posts.map((post: any, index: number) => {
               return (
-                <li key={post?.id} className="relative">
+                <li
+                  key={post?.node ? post.node.id : post?.id}
+                  className="relative"
+                >
                   {/* <span className=" absolute z-[8] top-[4px] left-[4px] bg-brand-primary text-white text-[13px] px-2 rounded-[10px]">
                       {index + 1}
                     </span> */}
-                  <Post post={post} />
+                  <Post post={post?.node ? post.node : post} />
                 </li>
               );
             })}

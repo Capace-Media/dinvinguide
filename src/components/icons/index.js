@@ -43,6 +43,7 @@ export { default as MailWhite } from "./MailWhite";
 export { default as Not } from "./Not";
 export { default as Printer } from "./Printer";
 export { default as RedWine } from "./RedWine";
+export { default as Search } from "./Search";
 export { default as Silver } from "./Silver";
 export { default as Skaldjur } from "./Skaldjur";
 export { default as Sparkle } from "./Sparkle";

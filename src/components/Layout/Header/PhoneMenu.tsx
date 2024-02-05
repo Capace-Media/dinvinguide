@@ -1,5 +1,6 @@
 "use client";
 
+import { Search } from "@/components/icons";
 import { Menu, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { forwardRef } from "react";

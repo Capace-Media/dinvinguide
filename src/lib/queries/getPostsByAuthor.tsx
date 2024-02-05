@@ -72,3 +72,77 @@ export const getPostsByAuthor = async (
     };
   }
 };
+
+type DataArgs = {
+  after?: string;
+  before?: string;
+  search?: string;
+  first?: number | null;
+  last?: number | null;
+};
+
+export const getAllArticles = async (args: DataArgs) => {
+  const { after, before, search, first, last } = args;
+  try {
+    const res = await WPnext(
+      `
+    query getAllArticles($after: String, $before: String, $search: String, $first: Int, $last: Int) {
+        posts(
+          first: $first
+          last: $last
+          after: $after
+          before: $before
+          where: { search: $search}
+        ) {
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            endCursor
+            offsetPagination {
+              total
+            }
+            startCursor
+          }
+          edges {
+            node {
+              id
+              title
+              uri
+              modifiedGmt
+              acf_posts {
+                ingress
+              }
+              author {
+                node {
+                  name
+                }
+              }
+              featuredImage {
+                node {
+                  altText
+                  mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
+                  title
+                  sizes(size: THUMBNAIL)
+                }
+              }
+            }
+          }
+        }
+      }
+      `,
+      { after, before, search, first, last }
+    );
+
+    const users = res.data.posts;
+    return users;
+  } catch (error) {
+    console.error(error);
+    return {
+      message: getErrorMessage(error),
+    };
+  }
+};
