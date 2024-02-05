@@ -32,5 +32,15 @@ export default async function sitemap() {
       lastModified: new Date(),
       priority: 1,
     },
+    {
+      url: `${baseUrl}/dryckestips`,
+      lastModified: new Date(),
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/artiklar`,
+      lastModified: new Date(),
+      priority: 1,
+    },
   ];
 }

@@ -19,6 +19,7 @@ export default function robots(): MetadataRoute.Robots {
       `${baseUrl}/recept/sitemap.xml`,
       `${baseUrl}/vin-tv/sitemap.xml`,
       `${baseUrl}/vinatlas/sitemap.xml`,
+      `${baseUrl}/dryckestips/sitemap.xml`,
     ],
   };
 }
