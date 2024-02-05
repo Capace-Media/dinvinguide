@@ -17,11 +17,11 @@ const PaginationForGuides = ({
   page,
   uri,
 }: PaginationForGuidesProps) => {
-  useEffect(() => {
-    if (idString && page) {
-      scrollToPosts(idString);
-    }
-  }, [page]);
+  // useEffect(() => {
+  //   if (idString && page) {
+  //     scrollToPosts(idString);
+  //   }
+  // }, [page]);
   return (
     <ul id={idString} className="grid md:grid-cols-2 gap-4 lg:grid-cols-4">
       {promise &&

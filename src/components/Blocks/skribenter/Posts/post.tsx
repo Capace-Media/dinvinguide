@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight } from "@/components/icons";
+import handleParse from "@/lib/utils/handleParse";
 import PrettyDate from "@/lib/utils/prettyDate";
 import Image from "next/image";
 import Link from "next/link";
@@ -58,9 +59,9 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
       <div className="h-[12.9rem] flex flex-col justify-between py-2">
         <div className="flex flex-col">
           {post?.modifiedGmt && (
-            <p className="text-brand-gray text-[14px]">
+            <div className="text-brand-gray text-[14px]">
               {PrettyDate(post.modifiedGmt)}
-            </p>
+            </div>
           )}
           {post?.title && (
             <h2
