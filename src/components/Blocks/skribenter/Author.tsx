@@ -17,25 +17,27 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
         }`}
       >
         <div className="w-full h-[366px] lg:h-[482px] relative m-auto lg:order-2">
-          <Image
-            src={author.acf_user.bild.mediaItemUrl}
-            alt={
-              author?.acf_user?.bild?.altText
-                ? author.acf_user.bild.altText
-                : author.acf_user.bild.title
-            }
-            fill
-            style={{
-              objectFit: "cover",
-              objectPosition: "top",
-            }}
-            sizes="
+          {author?.acf_user?.bildExtra?.mediaItemUrl && (
+            <Image
+              src={author.acf_user.bildExtra.mediaItemUrl}
+              alt={
+                author?.acf_user?.bildExtra?.altText
+                  ? author.acf_user.bildExtra.altText
+                  : author.acf_user.bildExtra.title
+              }
+              fill
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+              sizes="
             (min-width: 1880px) 761px,
             (min-width: 1040px) calc(45vw - 76px),
             (min-width: 780px) calc(100vw - 88px),
             calc(100vw - 32px)
           "
-          />
+            />
+          )}
         </div>
         <div
           className={`flex flex-col justify-between lg:order-1 ${

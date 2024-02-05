@@ -41,6 +41,11 @@ export const getAuthors = async () => {
                     }
                   }
                   acf_user {
+                    bildExtra {
+                      altText
+                      mediaItemUrl
+                      title
+                    }
                     instagram
                     facebook
                     twitter
