@@ -26,10 +26,10 @@ export default async function Home() {
       <Ads pageType="default" position="TOP" />
 
       <Suspense fallback={<p>Loading..</p>}>
-        <ExplorePages />
+        <LatestArticles />
       </Suspense>
       <Suspense fallback={<p>Loading..</p>}>
-        <LatestArticles />
+        <ExplorePages />
       </Suspense>
       <Ads pageType="default" position="MID" />
       <Suspense fallback={<p>Loading..</p>}>
