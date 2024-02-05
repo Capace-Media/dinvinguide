@@ -40,8 +40,18 @@ const isSlugArray = (slug: string): boolean =>
 const getSlugArray = (slug: string): string[] =>
   slug.includes("-") ? slug.split("-") : [slug];
 
-const matchesSlug = (toplist: TopList, slug: string): boolean =>
-  toplist.toplist.uri.split("/")[2] === slug;
+const matchesSlug = (toplist: TopList, slug: string): boolean => {
+  if (
+    slug === "box-pase-tetra" &&
+    toplist.toplist.uri.split("/")[2].includes(slug)
+  ) {
+    return true;
+  } else if (toplist.toplist.uri.split("/")[2] === slug) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 const matchesEco = (toplist: TopList, isEco: boolean): boolean =>
   isEco && toplist.toplist.acf_toplists.ekologiskt;
@@ -64,7 +74,9 @@ async function getWineData({
 }): Promise<{ data?: { toplist: TopList }; notFound?: boolean }> {
   try {
     const slugArray = getSlugArray(params.slug);
+
     const topListsResponse = await getToplists();
+
     if (!topListsResponse) {
       return { notFound: true };
     }
