@@ -1,4 +1,5 @@
 import { DlNextArrow } from "@/components/icons";
+import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -87,7 +88,7 @@ const Drink = ({ data }: DrinkProps) => {
             {data?.acf_drinks?.recension && (
               <div className="py-4">
                 <h3 className="uppercase">Recension:</h3>
-                <p>{data.acf_drinks?.recension}</p>
+                <div>{handleParse(data.acf_drinks?.recension)}</div>
               </div>
             )}
           </div>
