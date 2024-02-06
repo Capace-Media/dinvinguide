@@ -3,7 +3,6 @@ import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 
 import { getAuthor } from "@/lib/queries/getAuthor";
 
-
 import ExplorePages from "@/app/components/ExplorePages";
 import Newsletter from "@/app/components/Newsletter";
 import Ads from "@/app/components/ads";
@@ -109,7 +108,8 @@ async function SingleAuthorPage({ params, searchParams }: Props) {
             / <p className=" text-brand-dark">{data?.name}</p>
           </div>
           <h2 className=" font-sub text-[28px] md:text-[35px] lg:text-[42px] ">
-            {data?.firstName}s senaste artiklar
+            {data?.firstName + (data?.firstName.endsWith("s") ? "" : "s")}{" "}
+            senaste artiklar
           </h2>
         </div>
         <AuthorPosts
