@@ -1,4 +1,4 @@
-import { getRecipes } from "@/lib/queries/getRecipes";
+import { getHighlightedRecipes, getRecipes } from "@/lib/queries/getRecipes";
 import handleParse from "@/lib/utils/handleParse";
 import Link from "next/link";
 import HandleImage from "../image";
@@ -6,7 +6,12 @@ import HandleImage from "../image";
 async function fetchRecipes() {
   const data = await getRecipes();
 
-  return data;
+  const recipe = await getHighlightedRecipes();
+
+  return {
+    data: data,
+    recipe: recipe,
+  };
 }
 
 type Recipe = {
@@ -40,8 +45,26 @@ const getSizeProp = (index: number): string => {
 };
 
 const ExploreRecipes: React.FC = async () => {
-  const data = await fetchRecipes();
+  const res = await fetchRecipes();
 
+  const { data, recipe } = res;
+
+  const highlightedRecipe: any[] = recipe;
+
+  const latestRecipe: any[] = data?.recipes?.nodes;
+
+  let initialLatestCount = 7 - Math.min(7, highlightedRecipe.length);
+
+  // Ensure we do not add more latestArticles than available or exceed the total count of 8
+  let combinedArticles = latestRecipe.slice(0, initialLatestCount);
+
+  // Calculate remaining slots after adding the initial set of latestRecipe
+  let remainingSlots = 8 - combinedArticles.length;
+
+  // Add highlightedRecipe to fill up the remaining slots, ensuring not to exceed 8 in total
+  let additionalHighlighted = highlightedRecipe.slice(0, remainingSlots);
+
+  combinedArticles = [...combinedArticles, ...additionalHighlighted];
   return (
     <section className="relative w-full ">
       <div className="layout min-h-[322px] py-4 md:py-11 lg:py-20 bg-brand-secondary lg:min-h-[448px]">
@@ -88,8 +111,8 @@ const ExploreRecipes: React.FC = async () => {
 
       <div className="recipe-grid bg-white lg:bg-transparent layout py-4 md:py-11 lg:py-20">
         <div></div>
-        {data?.recipes?.nodes &&
-          data.recipes.nodes.map((recipe: Recipe, index: number) => (
+        {combinedArticles &&
+          combinedArticles.map((recipe: Recipe, index: number) => (
             <Link
               href={`/recept/${recipe?.slug}`}
               key={recipe?.id}
@@ -135,7 +158,7 @@ const ExploreRecipes: React.FC = async () => {
               <div className="absolute bottom-0 pointer-events-none left-0 p-4 lg:w-[70%] z-10 text-white">
                 {recipe?.acf_recipe?.skrivetAv && (
                   <p className="md:text-[12px] md:uppercase text-[12px]">
-                    {recipe.acf_recipe.skrivetAv[0].name}
+                    {recipe?.acf_recipe?.skrivetAv[0]?.name}
                   </p>
                 )}
                 {recipe?.title && (

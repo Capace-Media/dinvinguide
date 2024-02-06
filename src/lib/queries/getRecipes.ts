@@ -1,5 +1,5 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP, { WPnext } from "../wp";
+import { WPnext } from "../wp";
 
 export const getRecipes = async () => {
   try {
@@ -9,6 +9,7 @@ export const getRecipes = async () => {
               intro
             }
           }
+          
         recipes(first: 7) {
             nodes {
               title
@@ -43,6 +44,56 @@ export const getRecipes = async () => {
           }`);
 
     const data = res?.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return {
+      message: getErrorMessage(error),
+    };
+  }
+};
+
+export const getHighlightedRecipes = async () => {
+  try {
+    const res = await WPnext(`query getHighlightedRecipes {
+      page(id: "/", idType: URI) {
+        GQL_frontPageFields {
+          highlightedRecept {
+            ... on Recipe {
+              title
+              slug
+              id
+              modifiedGmt
+              featuredImage {
+                node {
+                  altText
+                  title
+                  mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+              }
+              acf_recipe {
+                recepieCategories {
+                  id
+                  name
+                  slug
+                }
+                skrivetAv {
+                  name
+                  id
+                  slug
+                }
+              }
+            }
+          }
+        }
+      }
+    }`);
+
+    const data = res?.data?.page?.GQL_frontPageFields?.highlightedRecept;
     return data;
   } catch (error) {
     console.error(error);
