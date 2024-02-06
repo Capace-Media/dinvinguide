@@ -1,5 +1,6 @@
 import Ads from "@/app/components/ads";
-import { getDrink } from "@/lib/queries/getDrink";
+import { getDrink, getPreviewDrink } from "@/lib/queries/getDrink";
+import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import DLHero from "../HeroHeaders/DLHero";
 import TopListLinks from "../TopListsTemplate/TopListLinks";
@@ -7,8 +8,20 @@ import Drink from "./Drink";
 import RelatedRecipes from "./RelatedRecipes";
 
 async function getDrinkData({ params }: { params: { slug: string } }) {
-  const data = await getDrink(`/drycker/${params?.slug}`);
-  return data;
+  const { slug } = params;
+  const { isEnabled } = draftMode();
+
+  if (!isEnabled) {
+    const data = await getDrink(`/drycker/${params?.slug}`);
+    return data;
+  }
+
+  if (isEnabled) {
+    const pid = parseInt(slug);
+    const preview = await getPreviewDrink(pid);
+
+    return preview;
+  }
 }
 
 const DrinkTemplate = async ({ params }: { params: { slug: string } }) => {

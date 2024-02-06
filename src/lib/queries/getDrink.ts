@@ -1,5 +1,6 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
 import { WPnext } from "../wp";
+import { DRINK } from "./fragments/Drink";
 import { SEO } from "./fragments/Seo";
 
 export const getDrink = async (id: string) => {
@@ -65,6 +66,34 @@ export const getDrink = async (id: string) => {
     );
 
     const data = res.data.drink;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return {
+      message: getErrorMessage(error),
+    };
+  }
+};
+
+export const getPreviewDrink = async (id: number) => {
+  try {
+    const res = await WPnext(
+      `query getPreviewDrink($id: ID!) {
+        drink(idType: DATABASE_ID, id: $id) {
+          ${DRINK}
+          preview {
+          node {
+         ${DRINK}
+        }
+      }
+        }
+      }`,
+      { id }
+    );
+
+    const data = res?.data?.drink?.preview?.node
+      ? res.data.drink.preview.node
+      : res.data.drink;
     return data;
   } catch (error) {
     console.error(error);
