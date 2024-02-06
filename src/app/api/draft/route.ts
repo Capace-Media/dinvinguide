@@ -29,4 +29,16 @@ export async function GET(request: Request) {
   if (type === "recipe") {
     redirect(`/recept/${pid}`);
   }
+
+  if (type === "dryck") {
+    redirect(`/drycker/${pid}`);
+  }
+
+  if (type === "druva") {
+    redirect(`/druvor/${pid}`);
+  }
+
+  if (type === "dryckestips") {
+    redirect(`/dryckestips/${pid}`);
+  }
 }
