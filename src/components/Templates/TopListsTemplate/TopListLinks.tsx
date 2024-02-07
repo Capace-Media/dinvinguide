@@ -24,7 +24,7 @@ const TopListLinks = async ({}: TopListLinksProps) => {
   }
 
   return (
-    <section className="relative z-10">
+    <section className="relative z-10 pb-10">
       <ul className="grid gap-3 md:grid-cols-2 lg:gap-0 ">
         {elements}
         <li className="">
