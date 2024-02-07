@@ -40,7 +40,7 @@ const DrinkTemplate = async ({ params }: { params: { slug: string } }) => {
       <Ads pageType="DL" position="TOP" />
       <Drink data={data} />
       <Ads pageType="DL" position="MID" />
-      <RelatedRecipes data={passarTillRecept[0]} />
+      {passarTillRecept && <RelatedRecipes data={passarTillRecept[0]} />}
       <Ads pageType="DL" position="BOTTOM" />
       <TopListLinks />
     </>

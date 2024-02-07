@@ -54,10 +54,10 @@ const Drink = ({ data }: DrinkProps) => {
             )}
             <p className="flex items-center gap-3">
               {/* <Flaska /> */}
-              {data.acf_drinks.forpackningar.name && (
+              {data?.acf_drinks?.forpackningar?.name && (
                 <span>{data?.acf_drinks?.forpackningar.name}</span>
               )}
-              {data.acf_drinks.dryckestyper && (
+              {data?.acf_drinks?.dryckestyper && (
                 <span>- {data?.acf_drinks?.dryckestyper.name}</span>
               )}
             </p>
