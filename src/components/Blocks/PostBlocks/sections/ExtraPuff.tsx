@@ -14,8 +14,6 @@ const ExtraPuff = ({ content }: ExtraPuffProps) => {
   const drinkRegex = new RegExp("^/drycker/");
   const recipeRegex = new RegExp("^/recept/");
 
-  console.log("data.uri =====>", data.uri);
-
   if (grapeRegex.test(data.uri)) {
     return <GrapeComponent data={data} />;
   } else if (drinkRegex.test(data.uri)) {
