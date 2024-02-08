@@ -106,8 +106,11 @@
   line-height: 23px;
 }
 
-.author_parse {
+.author_parse_one {
   @include truncated(5);
+  .parsed {
+    color: #fff;
+  }
 }
 .author_text {
   @include truncated(7);
@@ -239,6 +242,18 @@
     p {
       color: $whiteText;
     }
+  }
+}
+
+.parse-dark {
+  .parsed {
+    color: #333;
+  }
+}
+
+.parse-light {
+  .parsed {
+    color: #fff;
   }
 }
 .overlay {

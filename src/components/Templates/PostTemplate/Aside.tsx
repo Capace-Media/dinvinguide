@@ -1,5 +1,6 @@
 import AuthorPost from "@/components/Blocks/skribenter/Posts/post";
 import { Biggermail, Facebook, Instagram } from "@/components/icons";
+import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
 
 interface AsideProps {
@@ -28,7 +29,9 @@ const Aside = ({ author, related }: AsideProps) => {
         </div>
         <div className="text-white text-center py-10">
           <p className=" font-sub text-[29px] pb-6">{author?.name}</p>
-          <p className="text-[16px]">{author?.acf_user?.kortBeskrivning}</p>
+          <div className="text-[16px] author_parse_one">
+            {handleParse(author?.acf_user?.kortBeskrivning)}
+          </div>
           <div>
             <ul className="flex justify-center items-center gap-2 pt-6">
               <li>

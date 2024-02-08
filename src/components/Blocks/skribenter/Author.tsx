@@ -1,3 +1,4 @@
+import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
 import Link from "next/link";
 import AuthorPost from "./Posts/post";
@@ -58,11 +59,13 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
               </h2>
             </div>
 
-            <p
-              className={`author_parse text-[14px] md:text-[15px] leading-[26px]`}
+            <div
+              className={`author_parse text-[14px] md:text-[15px] leading-[26px] ${
+                index % 2 === 0 ? "parse-dark" : " parse-light"
+              }`}
             >
-              {author?.description}
-            </p>
+              {handleParse(author?.description)}
+            </div>
           </div>
 
           <div className="flex justify-between items-center">

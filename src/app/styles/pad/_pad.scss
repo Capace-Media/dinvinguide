@@ -95,4 +95,16 @@
       }
     }
   }
+
+  .parse-dark {
+    .parsed {
+      color: #333;
+    }
+  }
+
+  .parse-light {
+    .parsed {
+      color: #fff;
+    }
+  }
 }
