@@ -104,29 +104,31 @@ export default function handleParse(content?: string, parseClasses?: string) {
                     position: "relative",
                   }}
                 >
-                  <Image
-                    src={domNode.attribs.src}
-                    alt={
-                      domNode?.attribs?.alt
-                        ? domNode.attribs.alt
-                        : "Bild från DinVinguide.se"
-                    }
-                    width={
-                      domNode?.attribs?.width ? domNode.attribs.width : 300
-                    }
-                    height={
-                      domNode?.attribs?.height ? domNode.attribs.height : 300
-                    }
-                    style={{
-                      width: `${domNode?.attribs?.width}px`,
+                  {domNode?.attribs?.src && (
+                    <Image
+                      src={domNode.attribs.src}
+                      alt={
+                        domNode?.attribs?.alt
+                          ? domNode.attribs.alt
+                          : "Bild från DinVinguide.se"
+                      }
+                      width={
+                        domNode?.attribs?.width ? domNode.attribs.width : 300
+                      }
+                      height={
+                        domNode?.attribs?.height ? domNode.attribs.height : 300
+                      }
+                      style={{
+                        width: `${domNode?.attribs?.width}px`,
 
-                      height: `${domNode?.attribs?.height}px`,
+                        height: `${domNode?.attribs?.height}px`,
 
-                      objectFit: "cover",
-                    }}
-                    className={domNode.attribs.class}
-                    sizes={domNode?.attribs?.sizes}
-                  />
+                        objectFit: "cover",
+                      }}
+                      className={domNode.attribs.class}
+                      sizes={domNode?.attribs?.sizes}
+                    />
+                  )}
                 </div>
               );
             }

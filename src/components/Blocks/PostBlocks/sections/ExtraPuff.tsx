@@ -11,8 +11,10 @@ const ExtraPuff = ({ content }: ExtraPuffProps) => {
   const data = content && content?.extraPuff && content?.extraPuff[0];
 
   const grapeRegex = new RegExp("^/druvor/");
-  const drinkRegex = new RegExp("^/drinks/");
+  const drinkRegex = new RegExp("^/drycker/");
   const recipeRegex = new RegExp("^/recept/");
+
+  console.log("data.uri =====>", data.uri);
 
   if (grapeRegex.test(data.uri)) {
     return <GrapeComponent data={data} />;
@@ -92,9 +94,56 @@ function GrapeComponent({ data }: any) {
 // DrinkComponent.js
 function DrinkComponent({ data }: any) {
   return (
-    <div>
-      <p>{data.title}</p>
-      {/* Render other drink-specific details here */}
+    <div id="extraPuffDrink" className="flex justify-center group">
+      <div className="min-w-[200px] h-[350px] relative shake-image">
+        <Image
+          src={data.featuredImage.node.mediaItemUrl}
+          alt={
+            data?.featuredImage?.node?.altText
+              ? data.featuredImage.node.altText
+              : `bild på ${data?.title}`
+          }
+          fill
+          style={{
+            objectFit: "contain",
+          }}
+          sizes="(min-width: 1200px) 300px, (min-width: 768px) 384px, 100vw"
+          className=""
+        />
+      </div>
+      <div className="w-[50%] flex flex-col justify-center">
+        {data?.title && (
+          <Link
+            className="flex flex-col group"
+            href={`/drycker/${data?.slug}`}
+            aria-label={`Läs mer om ${data?.title}`}
+          >
+            <span className="group-hover:underline font-main uppercase text-[13px]">
+              drycker
+            </span>
+            <span className="group-hover:underline font-sub text-[22px]">
+              {data.title}
+            </span>
+          </Link>
+        )}
+        {/* {data?.acf_data?.skrivetAv && (
+          <p className="md:text-[12px] md:uppercase text-[12px] ">
+            {data.acf_data.skrivetAv[0].name}
+          </p>
+        )} */}
+        {data?.acf_recipe?.desc && (
+          <div className="md:text-[12px] text-[12px] ">
+            {handleParse(data.acf_recipe.desc)}
+          </div>
+        )}
+        <Link
+          href={`/drycker/${data?.slug}`}
+          aria-label={`Läs mer om ${data?.title}`}
+          className="btn w-[142px] mt-8"
+        >
+          Läs mer
+        </Link>
+      </div>
     </div>
   );
 }
