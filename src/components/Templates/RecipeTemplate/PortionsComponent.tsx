@@ -16,29 +16,6 @@ const PortionsComponent = ({
   const initialPortions = parseInt(portions, 10);
   const [isPortions, setPortions] = useState<number>(initialPortions);
 
-  // Initialize baseline quantities
-  // const baselineQuantities = useMemo(() => {
-  //   return (ingredients ?? []).map((node: { ingredienser: any[] }) => ({
-  //     ...node,
-  //     ingredienser: node.ingredienser.map((ing) => ({
-  //       ...ing,
-  //       baselineAntal: ing.antal / initialPortions,
-  //     })),
-  //   }));
-  // }, [ingredients, initialPortions]);
-
-  // // Calculate adjusted quantities
-  // const adjustedQuantities = useMemo(() => {
-  //   return baselineQuantities?.map(
-  //     (node: { ingredienser: { baselineAntal: any }[] }) => ({
-  //       ...node,
-  //       ingredienser: node.ingredienser.map((ing: { baselineAntal: any }) => ({
-  //         ...ing,
-  //         antal: +parseFloat((ing.baselineAntal! * isPortions).toFixed(1)),
-  //       })),
-  //     })
-  //   );
-  // }, [baselineQuantities, isPortions]);
   const baselineQuantities = useMemo(() => {
     return (ingredients ?? []).map((node: { ingredienser: any[] | null }) => ({
       ...node,

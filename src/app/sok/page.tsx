@@ -29,7 +29,7 @@ const SearchPage = async ({ searchParams, params }: Props) => {
         <Results
           data={data?.drinktips}
           title="Dryckestips"
-          baseURI="/drycker/"
+          baseURI="/dryckestips/"
         />
       )}
       {data?.posts?.nodes.length >= 1 && (
