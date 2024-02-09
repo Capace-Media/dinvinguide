@@ -78,11 +78,9 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
         <div className="flex justify-center items-center">
           <div className="flex flex-col gap-16">
             <div className="flex flex-col gap-1">
-              <Link href={data.uri}>
-                <h2 className="normal-case text-[38px] leading-10 font-display">
-                  {data.title}
-                </h2>
-              </Link>
+              <h1 className="normal-case text-[38px] leading-10 font-display">
+                {data.title}
+              </h1>
 
               {data?.acf_dryckestips?.betyget && (
                 <p className="text-[28px]">
