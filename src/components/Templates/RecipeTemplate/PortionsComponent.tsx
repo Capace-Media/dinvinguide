@@ -17,28 +17,54 @@ const PortionsComponent = ({
   const [isPortions, setPortions] = useState<number>(initialPortions);
 
   // Initialize baseline quantities
+  // const baselineQuantities = useMemo(() => {
+  //   return (ingredients ?? []).map((node: { ingredienser: any[] }) => ({
+  //     ...node,
+  //     ingredienser: node.ingredienser.map((ing) => ({
+  //       ...ing,
+  //       baselineAntal: ing.antal / initialPortions,
+  //     })),
+  //   }));
+  // }, [ingredients, initialPortions]);
+
+  // // Calculate adjusted quantities
+  // const adjustedQuantities = useMemo(() => {
+  //   return baselineQuantities?.map(
+  //     (node: { ingredienser: { baselineAntal: any }[] }) => ({
+  //       ...node,
+  //       ingredienser: node.ingredienser.map((ing: { baselineAntal: any }) => ({
+  //         ...ing,
+  //         antal: +parseFloat((ing.baselineAntal! * isPortions).toFixed(1)),
+  //       })),
+  //     })
+  //   );
+  // }, [baselineQuantities, isPortions]);
   const baselineQuantities = useMemo(() => {
-    return (ingredients ?? []).map((node: { ingredienser: any[] }) => ({
+    return (ingredients ?? []).map((node: { ingredienser: any[] | null }) => ({
       ...node,
-      ingredienser: node.ingredienser.map((ing) => ({
-        ...ing,
-        baselineAntal: ing.antal / initialPortions,
-      })),
+      ingredienser: node.ingredienser
+        ? node.ingredienser.map((ing) => ({
+            ...ing,
+            baselineAntal: ing.antal / initialPortions,
+          }))
+        : [],
     }));
   }, [ingredients, initialPortions]);
 
-  // Calculate adjusted quantities
   const adjustedQuantities = useMemo(() => {
-    return baselineQuantities?.map(
-      (node: { ingredienser: { baselineAntal: any }[] }) => ({
+    return baselineQuantities.map(
+      (node: { ingredienser: { baselineAntal: any }[] | null }) => ({
         ...node,
-        ingredienser: node.ingredienser.map((ing: { baselineAntal: any }) => ({
-          ...ing,
-          antal: +parseFloat((ing.baselineAntal! * isPortions).toFixed(1)),
-        })),
+        ingredienser: node.ingredienser
+          ? node.ingredienser.map((ing: { baselineAntal: any }) => ({
+              ...ing,
+              antal: +parseFloat((ing.baselineAntal! * isPortions).toFixed(1)),
+            }))
+          : [],
       })
     );
   }, [baselineQuantities, isPortions]);
+
   return (
     <section className="bg-[#F5F5F5] p-7 rounded-[8px]">
       {ingredients ? (
