@@ -41,6 +41,8 @@ export const getDrinkTips = async (
                 }
               }
               acf_dryckestips {
+                potentielltBetyg
+                betyget
                 dryckestyper
                 forpackningar
                 pris
@@ -92,6 +94,8 @@ export const fetchDrinktip = async (id: string) => {
             }
           }
           acf_dryckestips {
+            potentielltBetyg
+            betyget
             pris
             dryckestyper
             ekologiskt

@@ -57,6 +57,12 @@ const ExploreWineTips = async ({ searchParams }: Props) => {
                       {wine?.node?.title}
                     </h2>
 
+                    {wine?.node?.acf_dryckestips?.betyget && (
+                      <p className="text-[12px]">
+                        {wine.node.acf_dryckestips.betyget}/100
+                      </p>
+                    )}
+
                     <p className="text-[14px] flex">
                       {wine?.node?.acf_dryckestips?.dryckestyper} -{" "}
                       {wine?.node?.acf_dryckestips?.forpackningar}

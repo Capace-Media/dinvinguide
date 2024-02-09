@@ -84,6 +84,12 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
                 </h2>
               </Link>
 
+              {data?.acf_dryckestips?.betyget && (
+                <p className="text-[28px]">
+                  {data.acf_dryckestips.betyget}/100
+                </p>
+              )}
+
               {data?.acf_dryckestips?.land && (
                 <p className="space-x-1">
                   {data?.acf_dryckestips?.land && (
@@ -94,13 +100,17 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
                   )}
                 </p>
               )}
-              <p className="flex items-center gap-3">
+              <p className="flex items-center gap-2">
                 {/* <Flaska /> */}
                 {data?.acf_dryckestips?.forpackningar && (
                   <span>{data?.acf_dryckestips?.forpackningar}</span>
                 )}
+                {data?.acf_dryckestips?.forpackningar &&
+                data?.acf_dryckestips?.dryckestyper ? (
+                  <span>-</span>
+                ) : null}
                 {data?.acf_dryckestips?.dryckestyper && (
-                  <span>- {data?.acf_dryckestips?.dryckestyper}</span>
+                  <span>{data?.acf_dryckestips?.dryckestyper}</span>
                 )}
               </p>
               {/* test */}
@@ -127,6 +137,12 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
                   <span>{data.acf_dryckestips.pris}:-</span>
                 </p>
               )}
+              {data?.acf_dryckestips?.beskrivning && (
+                <div className="py-4">
+                  <h3 className="uppercase">beskrivning:</h3>
+                  <div>{handleParse(data.acf_dryckestips?.beskrivning)}</div>
+                </div>
+              )}
               {data?.acf_dryckestips?.recension && (
                 <div className="py-4">
                   <h3 className="uppercase">Recension:</h3>
@@ -134,12 +150,24 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
                 </div>
               )}
 
-              {data?.acf_dryckestips?.beskrivning && (
-                <div className="py-4">
-                  <h3 className="uppercase">beskrivning:</h3>
-                  <div>{handleParse(data.acf_dryckestips?.beskrivning)}</div>
-                </div>
-              )}
+              <div>
+                {data?.acf_dryckestips?.betyget && (
+                  <p>
+                    Betyg -{" "}
+                    <span className=" font-bold">
+                      {data.acf_dryckestips.betyget}
+                    </span>
+                  </p>
+                )}
+                {data?.acf_dryckestips?.potentielltBetyg && (
+                  <p>
+                    Potentiellt betyg -{" "}
+                    <span className=" font-bold">
+                      {data.acf_dryckestips.potentielltBetyg}
+                    </span>
+                  </p>
+                )}
+              </div>
             </div>
             {data?.acf_dryckestips?.bolagetAdress &&
             data?.acf_dryckestips?.bolagetAdress.includes("https://") ? (
