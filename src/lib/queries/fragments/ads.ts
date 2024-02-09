@@ -166,7 +166,7 @@ query fetchBottomAd {
                title
                acf_ads {
                  link
-                 mittenbanner {
+                 sidobanner {
                    mediaItemUrl
                    mediaDetails {
                     width

@@ -94,6 +94,7 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position, pageType }) => {
       setSrc(src);
     } else {
       const { href, src } = getAdData("desktop");
+
       setHref(href);
       setSrc(src);
     }
