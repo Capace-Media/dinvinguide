@@ -258,7 +258,7 @@ export const getPost = async (id: string) => {
 
 export const getPreviewPost = async (id: number) => {
   try {
-    const res = await WPnext(
+    const res = await WPServerSide(
       `query getPreviewPost($id: ID!) {
         post(idType: DATABASE_ID, id: $id) {
           ${POST}
