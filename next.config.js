@@ -97,6 +97,16 @@ const nextConfig = {
         destination: "/skribenter/jesper/:slug", // Matched parameters can be used in the destination
         permanent: true,
       },
+      {
+        source: "/anetterosvall",
+        destination: "/skribenter/anetterosvall", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/anetterosvall/:slug",
+        destination: "/skribenter/anetterosvall/:slug", // Matched parameters can be used in the destination
+        permanent: true,
+      },
     ];
   },
 };
