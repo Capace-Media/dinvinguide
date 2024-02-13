@@ -107,6 +107,98 @@ const nextConfig = {
         destination: "/skribenter/anetterosvall/:slug", // Matched parameters can be used in the destination
         permanent: true,
       },
+      {
+        source: "/annaantonia",
+        destination: "/skribenter/annaantonia", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/annaantonia/:slug",
+        destination: "/skribenter/annaantonia/:slug", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/eva",
+        destination: "/skribenter/eva", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/eva/:slug",
+        destination: "/skribenter/eva/:slug", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/happyfoodbypetra",
+        destination: "/skribenter/happyfoodbypetra", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/happyfoodbypetra/:slug",
+        destination: "/skribenter/happyfoodbypetra/:slug", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/harnsupsestormoilaychricalituriumaterverefertingue",
+        destination:
+          "/skribenter/harnsupsestormoilaychricalituriumaterverefertingue", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/harnsupsestormoilaychricalituriumaterverefertingue/:slug",
+        destination:
+          "/skribenter/harnsupsestormoilaychricalituriumaterverefertingue/:slug", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/jerry",
+        destination: "/skribenter/jerry", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/jerry/:slug",
+        destination: "/skribenter/jerry/:slug", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/maja",
+        destination: "/skribenter/maja", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/maja/:slug",
+        destination: "/skribenter/maja/:slug", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/nordefors",
+        destination: "/skribenter/nordefors", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/nordefors/:slug",
+        destination: "/skribenter/nordefors/:slug", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/raphael",
+        destination: "/skribenter/raphael", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/raphael/:slug",
+        destination: "/skribenter/raphael/:slug", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/tobias-pryssander",
+        destination: "/skribenter/tobias-pryssander", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/tobias-pryssander/:slug",
+        destination: "/skribenter/tobias-pryssander/:slug", // Matched parameters can be used in the destination
+        permanent: true,
+      },
     ];
   },
 };
