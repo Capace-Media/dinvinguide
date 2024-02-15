@@ -12,13 +12,13 @@ type DataArgs = {
 };
 
 export const getWhineAtlases = async (args: DataArgs) => {
-  const { after, before, first, last, parent } = args;
+  const { after, before, first, last, parent, search } = args;
   try {
     const res = await WPnext(
       `
-      query getWhineAtlases($parent: ID! = "cG9zdDo0NzcyMQ==", $after: String, $before: String, $first: Int, $last: Int) {
+      query getWhineAtlases($parent: ID! = "cG9zdDo0NzcyMQ==", $after: String, $before: String, $first: Int, $last: Int, $search: String) {
         pages(
-          where: {parent: $parent}
+          where: {orderby: {field: TITLE, order: ASC}, parent: $parent, search: $search}
           after: $after
           before: $before
           first: $first
@@ -50,7 +50,7 @@ export const getWhineAtlases = async (args: DataArgs) => {
         }
       }
       `,
-      { after, before, first, last, parent }
+      { after, before, first, last, parent, search }
     );
 
     const data = res.data.pages;
