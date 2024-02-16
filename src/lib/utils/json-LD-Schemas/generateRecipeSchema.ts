@@ -33,7 +33,10 @@ type RecipeSchemaProps = {
 };
 
 function cleanHtml(htmlString: any) {
-  // Remove HTML tags
+  // Check if htmlString is null or undefined before attempting to remove HTML tags
+  if (htmlString === null || typeof htmlString === "undefined") {
+    return "";
+  }
   return htmlString.replace(/<[^>]*>/g, "").trim();
 }
 
