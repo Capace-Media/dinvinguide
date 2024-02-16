@@ -19,7 +19,10 @@ const Posts = ({ posts }: PostsProps) => {
                   {/* <span className=" absolute z-[8] top-[4px] left-[4px] bg-brand-primary text-white text-[13px] px-2 rounded-[10px]">
                       {index + 1}
                     </span> */}
-                  <Post post={post?.node ? post.node : post} />
+                  <Post
+                    type={post.__typename}
+                    post={post?.node ? post.node : post}
+                  />
                 </li>
               );
             })}

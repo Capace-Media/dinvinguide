@@ -1,3 +1,4 @@
+import Search from "@/components/Blocks/Search";
 import PaginationController from "@/components/Pagination/Controller";
 import PaginationForGuides from "@/components/Pagination/Guider";
 
@@ -25,18 +26,27 @@ const WineSchoolPagination = async ({ params, searchParams }: Props) => {
     searchParams?.first ? searchParams?.first : postsPerPage
   );
   const endLast: number = parseInt(searchParams?.last);
+  const search: string = searchParams?.search ? searchParams.search : "";
 
   const promise = await getWineSchools({
     after: searchParams?.after,
     before: searchParams?.before,
     first: startFirst,
     last: endLast,
+    search: search,
   });
 
   return (
     <section className="layout bg-white">
       <div>
-        <h2 className="pb-10">Skolor hos DinVinguide</h2>
+        <div className="flex justify-between  items-center pb-10">
+          <div>
+            <h2 className="">Skolor hos DinVinguide</h2>
+          </div>
+          <div>
+            <Search placeholder="sök" />
+          </div>
+        </div>
 
         {promise?.edges && (
           <PaginationForGuides

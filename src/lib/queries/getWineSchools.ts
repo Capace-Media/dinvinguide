@@ -11,13 +11,13 @@ type DataArgs = {
 };
 
 export const getWineSchools = async (args: DataArgs) => {
-  const { after, before, first, last } = args;
+  const { after, before, first, last, search } = args;
   try {
     const res = await WPnext(
       `
-      query getWineSchools($parent: ID! = "cG9zdDo0Nzc0Mg==", $after: String, $before: String, $first: Int, $last: Int) {
+      query getWineSchools($parent: ID! = "cG9zdDo0Nzc0Mg==", $after: String, $before: String, $first: Int, $last: Int, $search: String) {
         pages(
-          where: {parent: $parent}
+          where: {orderby: {field: TITLE, order: ASC}, parent: $parent, search: $search}
           after: $after
           before: $before
           first: $first
@@ -49,7 +49,7 @@ export const getWineSchools = async (args: DataArgs) => {
         }
       }
       `,
-      { after, before, first, last }
+      { after, before, first, last, search }
     );
 
     const data = res.data.pages;

@@ -8,6 +8,7 @@ import { useState } from "react";
 
 interface PostProps {
   post: any;
+  type?: string;
 }
 
 export const SkeletonLoader = () => {
@@ -16,13 +17,13 @@ export const SkeletonLoader = () => {
   );
 };
 
-const Post = ({ post }: PostProps) => {
+const Post = ({ post, type }: PostProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <div className="group">
       <Link
-        href={`/skribenter${post.uri}`}
+        href={type === "Post" ? `/skribenter${post.uri}` : post?.uri}
         aria-label={`Läs om ${post?.title}`}
         className={`block w-full relative h-[12.2rem] overlay`}
       >
@@ -82,7 +83,7 @@ const Post = ({ post }: PostProps) => {
 
         {post?.uri && (
           <Link
-            href={`/skribenter${post.uri}`}
+            href={type === "Post" ? `/skribenter${post.uri}` : post?.uri}
             aria-label={`Läs om ${post?.title}`}
             className="flex items-center gap-3 lg:hover:underline text-brand-secondary"
           >

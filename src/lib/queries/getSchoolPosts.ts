@@ -9,9 +9,11 @@ export const getSchoolPosts = async (id: string) => {
           acf_overviewPage {
             sidor {
               ... on Post {
+                __typename
                 id
                 title
                 uri
+                slug
                 modifiedGmt
                 acf_posts {
                   ingress
@@ -33,9 +35,11 @@ export const getSchoolPosts = async (id: string) => {
                 }
               }
               ... on Page {
+                __typename
                 id
                 title
                 uri
+                slug
                 modifiedGmt
                 acf_posts {
                   ingress

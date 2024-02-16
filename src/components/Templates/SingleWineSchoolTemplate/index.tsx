@@ -15,6 +15,7 @@ type Props = {
 
 const SingleWineSchoolTemplate = async ({ params, searchParams }: Props) => {
   const { slug } = params;
+  console.log("slug =====>", slug);
   const data = await getPage(`/skolor/${slug}`);
 
   const posts = await getSchoolPosts(`/skolor/${slug}`);

@@ -1,5 +1,6 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
 import { WPnext } from "../wp";
+
 import { SEO } from "./fragments/Seo";
 
 export const getPage = async (id: string) => {
@@ -9,12 +10,37 @@ export const getPage = async (id: string) => {
         page(id: $id, idType: URI) {
           title
           content
+        
           page_content {
             intro
           }
           acf_explorer {
             slogan
           }
+          author {
+            node {
+              username
+              nicename
+              slug
+              name
+              description
+              acf_user {
+                email
+                facebook
+                instagram
+                kortBeskrivning
+                bild {
+                  altText
+                  mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+            
           ${SEO}
           featuredImage {
             node {
