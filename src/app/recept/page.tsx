@@ -49,7 +49,7 @@ const Recipes = async () => {
   const { data, recipes } = await getRecipeData();
   return (
     <>
-      <Suspense fallback={<Loading />}>
+      <Suspense key="recept" fallback={<Loading />}>
         <RecipeHero promise={recipes} />
         <RecipesTemplate />
       </Suspense>

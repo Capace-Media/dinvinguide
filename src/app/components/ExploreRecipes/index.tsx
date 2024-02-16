@@ -72,7 +72,7 @@ const ExploreRecipes: React.FC = async () => {
           <div className="recipe_parse">
             {handleParse(data?.page?.page_content?.intro)}
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-3 flex-wrap">
             <Link
               className="lg:hover:scale-105 lg:duration-300 lg:ease-in-out uppercase text-brand-secondary flex flex-col justify-center items-center text-[14px] bg-white px-3 py-2"
               href="/recept/receptbanken"

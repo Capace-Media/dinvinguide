@@ -17,7 +17,7 @@ const Meals = ({}: MealsProps) => {
         <h2 className="">Måltider</h2>
       </div>
 
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Link
           href="/recept/maltider/forratter"
           className="h-[200px] lg:hover:scale-[1.03] lg:ease-in-out lg:duration-300  bg-brand-primary text-white flex flex-col gap-3 justify-center items-center font-sub text-[27px]"
@@ -62,7 +62,7 @@ const Meals = ({}: MealsProps) => {
         </Link>
         <Link
           href="/recept/receptbanken"
-          className="h-[200px] lg:hover:scale-[1.03] lg:ease-in-out lg:duration-300 bg-brand-primary text-white flex flex-col gap-3 justify-center items-center font-sub text-[27px] col-span-2"
+          className="h-[200px] lg:hover:scale-[1.03] lg:ease-in-out lg:duration-300 bg-brand-primary text-white flex flex-col gap-3 justify-center items-center font-sub text-[27px] md:col-span-2"
         >
           <div className="flex items-center gap-6">
             <Efterratter />
