@@ -103,6 +103,7 @@ export const getPost = async (id: string) => {
                 fieldGroupName
                 extraPuff {
                   ... on Grape {
+                    __typename
                     title
                     slug
                     uri
@@ -121,6 +122,7 @@ export const getPost = async (id: string) => {
                     }
                   }
                   ... on Drink {
+                    __typename
                     title
                     slug
                     uri
@@ -143,6 +145,7 @@ export const getPost = async (id: string) => {
                     }
                   }
                   ... on Recipe {
+                    __typename
                     title
                     slug
                     uri

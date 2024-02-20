@@ -91,6 +91,7 @@ acf_posts {
       fieldGroupName
       extraPuff {
         ... on Grape {
+          __typename
           title
           slug
           uri
@@ -109,6 +110,7 @@ acf_posts {
           }
         }
         ... on Drink {
+          __typename
           title
           slug
           uri
@@ -131,6 +133,7 @@ acf_posts {
           }
         }
         ... on Recipe {
+          __typename
           title
           slug
           uri
