@@ -8,18 +8,17 @@ interface ExtraPuffProps {
 }
 
 const ExtraPuff = ({ content }: ExtraPuffProps) => {
-  console.log("content =====>", content);
   const data = content && content?.extraPuff && content?.extraPuff[0];
 
-  const grapeRegex = new RegExp("^/druvor/");
-  const drinkRegex = new RegExp("^/drycker/");
-  const recipeRegex = new RegExp("^/recept/");
+  // const grapeRegex = new RegExp("^/druvor/");
+  // const drinkRegex = new RegExp("^/drycker/");
+  // const recipeRegex = new RegExp("^/recept/");
 
   console.log("data?.__typename =====>", data?.__typename);
 
   if (data?.__typename === "Grape") {
     return <GrapeComponent data={data} />;
-  } else if (drinkRegex.test(data.uri)) {
+  } else if (data?.__typename === "Drink") {
     return <DrinkComponent data={data} />;
   } else if (data?.__typename === "Recipe") {
     return <RecipeComponent data={data} />;
