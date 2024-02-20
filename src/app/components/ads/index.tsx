@@ -6,7 +6,7 @@ import {
   AD_MID,
   AD_TOP,
 } from "@/lib/queries/fragments/ads";
-import { WPnext } from "@/lib/wp";
+import { WPAdd, WPnext } from "@/lib/wp";
 
 import AdBanner from "./AdBanner";
 
@@ -51,7 +51,7 @@ async function fetchAds(pageType: any, position: any) {
   const query = getAdQuery(pageType, position);
 
   try {
-    const data = await WPnext(query);
+    const data = await WPAdd(query);
     return data.data;
   } catch (error) {
     console.error("Fetch Ads Error:", error);
