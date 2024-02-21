@@ -20,6 +20,9 @@ export const componentsMap: any = {
   Faktalada: dynamic(() => import("./sections/Faktalada"), {
     ssr: false,
   }),
+  Video: dynamic(() => import("./sections/Video"), {
+    ssr: false,
+  }),
 };
 
 export const extractComponentKey = (fieldGroupName: string): string => {

@@ -1,3 +1,4 @@
+import Search from "@/components/Blocks/Search";
 import PaginationController from "@/components/Pagination/Controller";
 import Posts from "@/components/Pagination/Posts";
 import { getAllArticles } from "@/lib/queries/getPostsByAuthor";
@@ -25,7 +26,15 @@ const ArticleTemplate = async ({ searchParams }: Props) => {
   });
   return (
     <>
-      <h2 className="layout bg-white">Utforska alla våra artiklar</h2>
+      <div className="layout bg-white flex justify-between items-center">
+        <div>
+          <h1 className="layout bg-white">Utforska alla våra artiklar</h1>
+        </div>
+
+        <div>
+          <Search placeholder="Sök efter artiklar" />
+        </div>
+      </div>
       {promise?.edges && <Posts posts={promise?.edges} />}
       {promise?.pageInfo?.hasNextPage === true ||
       promise?.pageInfo?.hasPreviousPage === true ? (

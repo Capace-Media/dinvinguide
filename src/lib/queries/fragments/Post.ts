@@ -157,6 +157,10 @@ acf_posts {
         }
       }
     }
+    ... on Post_AcfPosts_Sektioner_Video {
+      fieldGroupName
+      url
+    }
     ... on Post_AcfPosts_Sektioner_Brodtext {
       text
       fieldGroupName

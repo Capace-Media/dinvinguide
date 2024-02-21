@@ -172,6 +172,10 @@ export const getPost = async (id: string) => {
                   }
                 }
               }
+              ... on Post_AcfPosts_Sektioner_Video {
+                fieldGroupName
+                url
+              }
               ... on Post_AcfPosts_Sektioner_Brodtext {
                 text
                 fieldGroupName
