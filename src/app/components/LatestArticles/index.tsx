@@ -46,13 +46,13 @@ const LatestArticles = async () => {
   return (
     <div className="layout contain bg-white">
       <div className="flex justify-between items-center">
-        <h2 className="heading">Upptäck våra senaste artiklar</h2>
+        <h2 className="heading">Upptäck våra artiklar</h2>
         <Link
-          href={`/skribenter`}
-          aria-label={`Läs om våra skribenter`}
+          href={`/artiklar`}
+          aria-label={`Utforska alla våra artiklar`}
           className="flex items-center gap-3 lg:hover:underline text-brand-secondary"
         >
-          <span>Upptäck alla skribenter</span>
+          <span>Utforska alla våra artiklar</span>
           <span>
             <ArrowRight />
           </span>

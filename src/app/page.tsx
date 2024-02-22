@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 
 import StarRating from "@/components/graphic/StarRating";
 import { Suspense } from "react";
+import ExclusiveDrinks from "./components/ExclusiveDrinks";
 import Newsletter from "./components/Newsletter";
 import Ads from "./components/ads";
 
@@ -27,6 +28,9 @@ export default async function Home() {
 
       <Suspense fallback={<p>Loading..</p>}>
         <LatestArticles />
+      </Suspense>
+      <Suspense fallback={<p>Loading..</p>}>
+        <ExclusiveDrinks />
       </Suspense>
       <Suspense fallback={<p>Loading..</p>}>
         <ExplorePages />

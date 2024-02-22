@@ -1,4 +1,4 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -16,6 +16,11 @@ export async function GET(request: NextRequest) {
 
   if (path === "/front-page") {
     revalidatePath("/");
+    return Response.json({ revalidated: true, now: Date.now(), status: 200 });
+  }
+
+  if (path === "ads") {
+    revalidateTag("ads");
     return Response.json({ revalidated: true, now: Date.now(), status: 200 });
   }
 

@@ -89,7 +89,7 @@ export const WPAdd = async (query: string, variables?: any) => {
         Authorization: `Basic ${auth}`,
         "Content-Type": "application/json",
       },
-      next: { revalidate: 18000 },
+      next: { tags: ["ads"] },
       body: JSON.stringify({
         query,
         variables: variables || null,
