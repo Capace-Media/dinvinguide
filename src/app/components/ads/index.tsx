@@ -6,7 +6,7 @@ import {
   AD_MID,
   AD_TOP,
 } from "@/lib/queries/fragments/ads";
-import { WPAdd, WPnext } from "@/lib/wp";
+import { WPAdd } from "@/lib/wp";
 
 import AdBanner from "./AdBanner";
 

@@ -1,11 +1,11 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import { WPnext, WPServerSide } from "../wp";
+import { WPServerSide, WPWine } from "../wp";
 import { DRINK } from "./fragments/Drink";
 import { SEO } from "./fragments/Seo";
 
 export const getDrink = async (id: string) => {
   try {
-    const res = await WPnext(
+    const res = await WPWine(
       `query getDrink($id: ID! ) {
         drink(id: $id, idType: URI) {
           title

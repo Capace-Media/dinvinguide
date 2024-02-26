@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import toObject from "dayjs/plugin/toObject";
 import weekday from "dayjs/plugin/weekday";
-import WP, { WPnext } from "../wp";
+import { WPWine } from "../wp";
 import { SEO } from "./fragments/Seo";
 dayjs.extend(toObject);
 dayjs.extend(weekday);
@@ -9,7 +9,7 @@ dayjs.extend(weekday);
 const batchLimit = 20;
 export const getToplistPaths = async () => {
   try {
-    const res = await WP(`
+    const res = await WPWine(`
         query getAllToplists {
           pageBy(uri: "topplistor") {
             id
@@ -54,7 +54,7 @@ export const getToplists = async (): Promise<ExtendedToplist[]> => {
   }
 
   try {
-    const res = await WP(`
+    const res = await WPWine(`
     query getAllToplists {
       pageBy(uri: "topplistor") {
         id
@@ -223,7 +223,7 @@ export const getPreviousToplistDrinks = async () => {
     const beforeDay = beforeDate.date;
 
     while (hasNextPage) {
-      const req = await WPnext(
+      const req = await WPWine(
         `
           query getPreviousDrinks(
             $afterYear: Int!
@@ -352,7 +352,7 @@ export const getCurrentToplistDrinks = async () => {
     const beforeDay = beforeDate.date + 1;
 
     while (hasNextPage) {
-      const req = await WPnext(
+      const req = await WPWine(
         `
           query getMoreArticles(
             $afterYear: Int!
@@ -478,7 +478,7 @@ export const getFallbackToplistDrinks = async () => {
     const beforeDay = beforeDate.date;
 
     while (hasNextPage) {
-      const req = await WPnext(
+      const req = await WPWine(
         `
           query getMoreArticles(
             $afterYear: Int!

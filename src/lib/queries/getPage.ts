@@ -10,7 +10,6 @@ export const getPage = async (id: string) => {
         page(id: $id, idType: URI) {
           title
           content
-        
           page_content {
             intro
           }
@@ -40,7 +39,6 @@ export const getPage = async (id: string) => {
               }
             }
           }
-            
           ${SEO}
           featuredImage {
             node {

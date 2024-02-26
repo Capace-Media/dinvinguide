@@ -106,3 +106,29 @@ export const WPAdd = async (query: string, variables?: any) => {
     return;
   }
 };
+
+export const WPWine = async (query: string, variables?: any) => {
+  try {
+    const response = await fetch(`${process.env.CMS_GRAPHQL_URI}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${auth}`,
+        "Content-Type": "application/json",
+      },
+      next: { tags: ["wine"] },
+      body: JSON.stringify({
+        query,
+        variables: variables || null,
+      }),
+    });
+
+    if (response.status === 500) {
+      throw response.statusText;
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("ERROR WP ====>", error);
+    return;
+  }
+};
