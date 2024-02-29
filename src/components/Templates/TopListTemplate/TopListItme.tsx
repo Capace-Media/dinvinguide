@@ -1,5 +1,6 @@
 "use client";
 import { Bronz, Guld, Silver } from "@/components/icons";
+import PrettyDate from "@/lib/utils/prettyDate";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -103,7 +104,12 @@ const TopListItem: React.FC<MyComponentProps> = ({
       <div className="flex justify-center items-center ">
         <div className="flex flex-col gap-16">
           <div className="flex flex-col gap-1">
-            <p className=" uppercase">Nr {index}</p>
+            <div className=" flex items-baseline gap-1">
+              <p className=" font-bold text-[18px] uppercase">Nr {index}</p>
+              <p className="text-[14px] text-brand-gray">
+                {"-"} {PrettyDate(data?.date)}
+              </p>
+            </div>
             <Link href={data.uri}>
               <h2 className="normal-case text-[38px] leading-10 font-display">
                 {data.title}

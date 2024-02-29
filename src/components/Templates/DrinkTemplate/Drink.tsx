@@ -9,7 +9,6 @@ interface DrinkProps {
 }
 
 const Drink = ({ data }: DrinkProps) => {
-  console.log("data =====>", data);
   return (
     <article className="lg:grid-cols-2 grid gap-8 lg:gap-0 relative z-10 dl-layout">
       <div className={`relative `}>
