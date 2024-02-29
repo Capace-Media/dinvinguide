@@ -96,11 +96,17 @@ const Drink = ({ data }: DrinkProps) => {
           data?.acf_drinks?.bolagetAdress.includes("https://") ? (
             <a
               href={data.acf_drinks.bolagetAdress}
-              className="flex items-center gap-3"
+              className="flex items-center gap-3 lg:hover:underline"
               target="_blank"
               rel="noreferrer"
             >
-              <span>Beställ på Systembolaget</span>
+              <span>
+                Beställ på{" "}
+                {new URL(data.acf_drinks.bolagetAdress).hostname.replace(
+                  "www.",
+                  ""
+                )}
+              </span>
               <DlNextArrow />
             </a>
           ) : null}

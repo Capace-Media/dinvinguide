@@ -49,9 +49,6 @@ let cache: { [key: string]: ExtendedToplist[] } = {};
 
 export const getToplists = async (): Promise<ExtendedToplist[]> => {
   // Check if data is already in cache
-  if (cache.toplists) {
-    return cache.toplists;
-  }
 
   try {
     const res = await WPWine(`
@@ -129,9 +126,6 @@ export const getToplists = async (): Promise<ExtendedToplist[]> => {
     // Parallel fetching
     const fetchPromises = toplists.map(fetchToplistData);
     const extendedToplists = await Promise.all(fetchPromises);
-
-    // Store in cache
-    cache.toplists = extendedToplists;
 
     return extendedToplists;
   } catch (error) {

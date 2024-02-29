@@ -11,6 +11,7 @@ export const getDrink = async (id: string) => {
           title
           uri
           date
+          modifiedGmt
           acf_drinks {
             dryckestyper {
               slug
