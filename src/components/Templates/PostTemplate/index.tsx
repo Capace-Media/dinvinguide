@@ -17,10 +17,10 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
       <div className="lg:col-span-3">
         <div className="flex justify-between gap-4 lg:flex-row flex-col">
           {post?.author?.name ? (
-            <ul className="flex gap-2 text-[14px] text-brand-secondary">
+            <ul className="flex gap-2 text-[13px] text-brand-secondary">
               <li>
                 <Link
-                  className=" text-brand-secondary lg:hover:underline"
+                  className=" text-brand-secondary  lg:hover:underline"
                   href="/"
                 >
                   Hem
@@ -38,7 +38,7 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
               {" / "}
               <li>
                 <Link
-                  className=" text-brand-secondary lg:hover:underline"
+                  className=" whitespace-nowrap text-brand-secondary lg:hover:underline"
                   href={`/skribenter/${post?.author?.slug}`}
                 >
                   {post?.author?.name}
@@ -46,7 +46,7 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
               </li>
               {" / "}
               <li>
-                <p className="text-brand-dark">{post?.title}</p>
+                <p className="text-brand-dark truncated-label">{post?.title}</p>
               </li>
             </ul>
           ) : post?.uri?.includes("/vinatlas/") ? (

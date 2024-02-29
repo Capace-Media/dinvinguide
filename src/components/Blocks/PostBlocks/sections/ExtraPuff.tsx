@@ -153,7 +153,7 @@ function RecipeComponent({ data }: any) {
       id="extraPuffRecipe"
       className="relative w-full gap-10 flex h-[330px] py-[2rem] "
     >
-      <div className="w-[50%] flex flex-col justify-center">
+      <div className="md:w-[50%] w-full flex flex-col justify-center">
         {data?.title && (
           <Link
             className="flex flex-col group"
@@ -187,7 +187,7 @@ function RecipeComponent({ data }: any) {
         </Link>
       </div>
 
-      <div className="w-[50%] h-full">
+      <div className="w-[50%] h-full hidden md:block">
         <div className="relative w-full h-full recipe-overlay">
           <Image
             src={data?.featuredImage?.node?.mediaItemUrl}
