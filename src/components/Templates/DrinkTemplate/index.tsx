@@ -1,6 +1,8 @@
 import Ads from "@/app/components/ads";
 import { getDrink, getPreviewDrink } from "@/lib/queries/getDrink";
+import PrettyDate from "@/lib/utils/prettyDate";
 import { draftMode } from "next/headers";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import DLHero from "../HeroHeaders/DLHero";
 import TopListLinks from "../TopListsTemplate/TopListLinks";
@@ -38,6 +40,7 @@ const DrinkTemplate = async ({ params }: { params: { slug: string } }) => {
     <>
       <DLHero hero={data} drinkType={data?.acf_drinks?.dryckestyper?.slug} />
       <Ads pageType="DL" position="TOP" />
+
       <Drink data={data} />
       <Ads pageType="DL" position="MID" />
       {passarTillRecept && (

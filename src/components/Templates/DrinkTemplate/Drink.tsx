@@ -1,5 +1,6 @@
 import { DlNextArrow } from "@/components/icons";
 import handleParse from "@/lib/utils/handleParse";
+import PrettyDate from "@/lib/utils/prettyDate";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,6 +9,7 @@ interface DrinkProps {
 }
 
 const Drink = ({ data }: DrinkProps) => {
+  console.log("data =====>", data);
   return (
     <article className="lg:grid-cols-2 grid gap-8 lg:gap-0 relative z-10 dl-layout">
       <div className={`relative `}>
@@ -36,6 +38,9 @@ const Drink = ({ data }: DrinkProps) => {
       <div className="flex justify-center items-center">
         <div className="flex flex-col gap-16">
           <div className="flex flex-col gap-1">
+            <div>
+              <p>{PrettyDate(data?.modifiedGmt)}</p>
+            </div>
             <Link href={data.uri}>
               <h2 className="normal-case text-[38px] leading-10 font-display">
                 {data.title}
