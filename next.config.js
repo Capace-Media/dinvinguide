@@ -199,6 +199,26 @@ const nextConfig = {
         destination: "/skribenter/tobias-pryssander/:slug", // Matched parameters can be used in the destination
         permanent: true,
       },
+      {
+        source: "/alla-drycker",
+        destination: "/dryckesutforskaren", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/alla-druvor",
+        destination: "/druvguiden", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/alla-recept",
+        destination: "/recept/receptbanken", // Matched parameters can be used in the destination
+        permanent: true,
+      },
+      {
+        source: "/bestchampagne",
+        destination: "/topplistor/champagne", // Matched parameters can be used in the destination
+        permanent: true,
+      },
     ];
   },
 };
