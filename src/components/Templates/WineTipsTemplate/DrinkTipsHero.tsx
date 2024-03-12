@@ -2,8 +2,6 @@ import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
 import Link from "next/link";
 
-import tips from "../../../../public/images/dryckestipbetyg.jpg";
-
 interface DrinkTipsHeroProps {
   data: any;
 }
@@ -101,15 +99,13 @@ const DrinkTipsHero = ({ data }: DrinkTipsHeroProps) => {
                   </ul>
                 </div>
                 <div className="bg-white w-[45%] relative h-full hidden lg:block">
-                  {tips && (
-                    <Image
-                      src={tips}
-                      alt="bild från DinVinguide"
-                      fill
-                      sizes="(min-width: 1860px) 278px, calc(19.63vw - 83px)"
-                      style={{ objectFit: "cover" }}
-                    />
-                  )}
+                  <Image
+                    src="/images/dryckestipbetyg.jpg"
+                    alt="bild från DinVinguide"
+                    fill
+                    sizes="(min-width: 1860px) 278px, calc(19.63vw - 83px)"
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
               </div>
             </div>
