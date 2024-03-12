@@ -8,6 +8,7 @@ interface DrinkTipsHeroProps {
 }
 
 const DrinkTipsHero = ({ data }: DrinkTipsHeroProps) => {
+  console.log("wine_image =====>", wine_image);
   return (
     <>
       <div className="layout w-full py-[73px] md:pt-[172px] bg-white">
