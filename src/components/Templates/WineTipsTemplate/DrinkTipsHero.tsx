@@ -1,14 +1,15 @@
 import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
 import Link from "next/link";
-import wine_image from "../../../../public/images/monster_av_vin.webp";
+
+import wine from "../../../../public/images/exclusiva_viner.webp";
 
 interface DrinkTipsHeroProps {
   data: any;
 }
 
 const DrinkTipsHero = ({ data }: DrinkTipsHeroProps) => {
-  console.log("wine_image =====>", wine_image);
+  console.log("wine_image =====>", wine);
   return (
     <>
       <div className="layout w-full py-[73px] md:pt-[172px] bg-white">
@@ -101,10 +102,10 @@ const DrinkTipsHero = ({ data }: DrinkTipsHeroProps) => {
                   </ul>
                 </div>
                 <div className="bg-white w-[45%] relative h-full hidden lg:block">
-                  {wine_image && (
+                  {wine && (
                     <Image
-                      src={wine_image}
-                      alt="En närbild av vinflaskor liggandes i ett trävinrack, där flaskorna är säkert placerade horisontellt i flera rader. Rackens struktur skapar ett återkommande mönster av cirkulära håligheter som håller flaskorna vid halsen, och visar en blandning av färgade folieförslutningar i guld, silver och brons som tillför en visuell variation och rikedom."
+                      src={wine}
+                      alt="bild från DinVinguide"
                       fill
                       sizes="(min-width: 1860px) 278px, calc(19.63vw - 83px)"
                       style={{ objectFit: "cover" }}
