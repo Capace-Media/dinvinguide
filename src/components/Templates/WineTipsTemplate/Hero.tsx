@@ -1,7 +1,7 @@
 import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
 import Link from "next/link";
-import wineImage from "../../../../public/images/monster_av_vin.webp";
+import wine_image from "../../../../public/images/monster_av_vin.webp";
 
 interface DrinkTipsHeroProps {
   data: any;
@@ -101,9 +101,10 @@ const DrinkTipsHero = ({ data }: DrinkTipsHeroProps) => {
                 </div>
                 <div className="bg-white w-[45%] relative h-full hidden lg:block">
                   <Image
-                    src={wineImage}
+                    src={wine_image}
                     alt="En närbild av vinflaskor liggandes i ett trävinrack, där flaskorna är säkert placerade horisontellt i flera rader. Rackens struktur skapar ett återkommande mönster av cirkulära håligheter som håller flaskorna vid halsen, och visar en blandning av färgade folieförslutningar i guld, silver och brons som tillför en visuell variation och rikedom."
                     fill
+                    sizes="(min-width: 1860px) 278px, calc(19.63vw - 83px)"
                     style={{ objectFit: "cover" }}
                   />
                 </div>
