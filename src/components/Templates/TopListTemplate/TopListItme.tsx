@@ -1,6 +1,7 @@
 "use client";
 import { Bronz, Guld, Silver } from "@/components/icons";
 import PrettyDate from "@/lib/utils/prettyDate";
+import { cleanUrl } from "@/lib/utils/urlUtils";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -75,7 +76,7 @@ const TopListItem: React.FC<MyComponentProps> = ({
       >
         {data?.featuredImage && data?.featuredImage.node && (
           <Link
-            href={data.uri}
+            href={`/drycker/${data?.slug}`}
             className={`flex justify-center  ${index % 2 === 0 ? "" : ""} `}
           >
             <figure className={`relative w-[200px] h-[522px]  `}>
@@ -110,7 +111,9 @@ const TopListItem: React.FC<MyComponentProps> = ({
                 {"-"} {PrettyDate(data?.date)}
               </p>
             </div>
-            <Link href={data.uri}>
+
+            {/* /org-de-rac-la-verne-cap-classique-brut%E2%81%A0 */}
+            <Link href={`/drycker/${data?.slug}`}>
               <h2 className="normal-case text-[38px] leading-10 font-display">
                 {data.title}
               </h2>
@@ -146,7 +149,7 @@ const TopListItem: React.FC<MyComponentProps> = ({
                     <span>Passar till: </span>
                     <Link
                       className="underline"
-                      href={data.acf_drinks.passarTillRecept[0].uri}
+                      href={cleanUrl(data.acf_drinks.passarTillRecept[0].uri)}
                     >
                       {data.acf_drinks.passarTillRecept[0].title}
                     </Link>
@@ -162,7 +165,7 @@ const TopListItem: React.FC<MyComponentProps> = ({
           </div>
 
           <Link href={data.uri} className="flex items-center gap-3">
-            <span>Läs mer om vinet</span>
+            <span>Läs mer om drycken</span>
           </Link>
         </div>
       </div>

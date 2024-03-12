@@ -61,6 +61,8 @@ export const getToplists = async (): Promise<ExtendedToplist[]> => {
               id
               uri
               title
+              slug
+     
               featuredImage {
                 node {
                   altText
@@ -257,6 +259,7 @@ export const getPreviousToplistDrinks = async () => {
                   date
                   uri
                   title
+                  slug
                   acf_drinks {
                     ekologiskt
                     betyg
@@ -271,6 +274,7 @@ export const getPreviousToplistDrinks = async () => {
                     passarTillRecept {
                       ... on Recipe {
                         title
+                        slug
                         uri
                       }
                     }
@@ -386,6 +390,7 @@ export const getCurrentToplistDrinks = async () => {
                   date
                   uri
                   title
+                  slug
                   acf_drinks {
                     ekologiskt
                     betyg
@@ -400,6 +405,7 @@ export const getCurrentToplistDrinks = async () => {
                     passarTillRecept {
                       ... on Recipe {
                         title
+                        slug
                         uri
           
                       }
@@ -512,6 +518,7 @@ export const getFallbackToplistDrinks = async () => {
                   date
                   uri
                   title
+                  slug
                   acf_drinks {
                     ekologiskt
                     betyg
@@ -527,6 +534,7 @@ export const getFallbackToplistDrinks = async () => {
                     passarTillRecept {
                       ... on Recipe {
                         title
+                        slug
                         uri
                       }
                     }
