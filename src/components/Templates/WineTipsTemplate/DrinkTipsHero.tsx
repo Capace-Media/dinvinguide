@@ -73,7 +73,7 @@ const DrinkTipsHero = ({ data }: DrinkTipsHeroProps) => {
                   </h2>
                   <ul className="text-white lg:pt-6 pt-3 flex flex-col gap-2 lg:gap-4">
                     <li className="flex justify-between items-center">
-                      <span className="font-sub">96-199</span>
+                      <span className="font-sub">96-100</span>
                       <span>Exceptionellt</span>
                     </li>
                     <li className="flex justify-between items-center">
