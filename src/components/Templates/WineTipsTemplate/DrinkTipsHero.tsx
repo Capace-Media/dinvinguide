@@ -2,14 +2,13 @@ import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
 import Link from "next/link";
 
-import wine from "../../../../public/images/exclusiva_viner.webp";
+// import wine from "../../../../public/images/exclusiva_viner.webp";
 
 interface DrinkTipsHeroProps {
   data: any;
 }
 
 const DrinkTipsHero = ({ data }: DrinkTipsHeroProps) => {
-  console.log("wine_image =====>", wine);
   return (
     <>
       <div className="layout w-full py-[73px] md:pt-[172px] bg-white">
@@ -102,7 +101,7 @@ const DrinkTipsHero = ({ data }: DrinkTipsHeroProps) => {
                   </ul>
                 </div>
                 <div className="bg-white w-[45%] relative h-full hidden lg:block">
-                  {wine && (
+                  {/* {wine && (
                     <Image
                       src={wine}
                       alt="bild från DinVinguide"
@@ -110,7 +109,7 @@ const DrinkTipsHero = ({ data }: DrinkTipsHeroProps) => {
                       sizes="(min-width: 1860px) 278px, calc(19.63vw - 83px)"
                       style={{ objectFit: "cover" }}
                     />
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>
