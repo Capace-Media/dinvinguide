@@ -1,19 +1,21 @@
 import Newsletter from "@/app/components/Newsletter";
 import Ads from "@/app/components/ads";
 import Line from "@/components/graphic/Line";
+import { getPage } from "@/lib/queries/getPage";
 import ExploreWineTips from "./ExploreWineTips";
+import DrinkTipsHero from "./Hero";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined | null };
   params: { slug: string };
 };
 
-const WineTipsTemplate = ({ params, searchParams }: Props) => {
+const WineTipsTemplate = async ({ params, searchParams }: Props) => {
+  const data = await getPage("/dryckestips");
+
   return (
     <>
-      <div className="layout bg-white pt-20">
-        <Line />
-      </div>
+      <DrinkTipsHero data={data} />
       <Ads pageType="DL" position="TOP" />
       <ExploreWineTips searchParams={searchParams} />
       <Ads pageType="DL" position="MID" />

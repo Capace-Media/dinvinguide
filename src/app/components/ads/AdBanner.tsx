@@ -108,7 +108,7 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position, pageType }) => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="relative lg:hover:scale-105 lg:duration-300 lg:ease-in-out block w-[280px] h-64 lg:w-[980px] lg:h-[200px]">
+      <div className="relative lg:hover:scale-[1.01] lg:hover:shadow-lg lg:duration-300 lg:ease-in-out block w-[280px] h-64 lg:w-[980px] lg:h-[200px]">
         {isHref && (
           <a
             href={isHref}
