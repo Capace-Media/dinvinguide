@@ -2,8 +2,8 @@ import Newsletter from "@/app/components/Newsletter";
 import Ads from "@/app/components/ads";
 import Line from "@/components/graphic/Line";
 import { getPage } from "@/lib/queries/getPage";
+import DrinkTipsHero from "./DrinkTipsHero";
 import ExploreWineTips from "./ExploreWineTips";
-import DrinkTipsHero from "./Hero";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined | null };

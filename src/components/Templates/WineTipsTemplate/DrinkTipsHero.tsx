@@ -101,13 +101,15 @@ const DrinkTipsHero = ({ data }: DrinkTipsHeroProps) => {
                   </ul>
                 </div>
                 <div className="bg-white w-[45%] relative h-full hidden lg:block">
-                  <Image
-                    src={wine_image}
-                    alt="En närbild av vinflaskor liggandes i ett trävinrack, där flaskorna är säkert placerade horisontellt i flera rader. Rackens struktur skapar ett återkommande mönster av cirkulära håligheter som håller flaskorna vid halsen, och visar en blandning av färgade folieförslutningar i guld, silver och brons som tillför en visuell variation och rikedom."
-                    fill
-                    sizes="(min-width: 1860px) 278px, calc(19.63vw - 83px)"
-                    style={{ objectFit: "cover" }}
-                  />
+                  {wine_image && (
+                    <Image
+                      src={wine_image}
+                      alt="En närbild av vinflaskor liggandes i ett trävinrack, där flaskorna är säkert placerade horisontellt i flera rader. Rackens struktur skapar ett återkommande mönster av cirkulära håligheter som håller flaskorna vid halsen, och visar en blandning av färgade folieförslutningar i guld, silver och brons som tillför en visuell variation och rikedom."
+                      fill
+                      sizes="(min-width: 1860px) 278px, calc(19.63vw - 83px)"
+                      style={{ objectFit: "cover" }}
+                    />
+                  )}
                 </div>
               </div>
             </div>
