@@ -2,6 +2,8 @@ import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
 import Link from "next/link";
 
+import headerimage from "./dryckestipbetyg.jpg";
+
 interface DrinkTipsHeroProps {
   data: any;
 }
@@ -100,7 +102,7 @@ const DrinkTipsHero = ({ data }: DrinkTipsHeroProps) => {
                 </div>
                 <div className="bg-white w-[45%] relative h-full hidden lg:block">
                   <Image
-                    src="/images/dryckestipbetyg.jpg"
+                    src={headerimage}
                     alt="bild från DinVinguide"
                     fill
                     sizes="(min-width: 1860px) 278px, calc(19.63vw - 83px)"
