@@ -52,7 +52,9 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
           </>
         )}
         <div className="absolute right-3 top-2 z-10 border-b-2 border-white ">
-          <p className="text-white uppercase">{post.author.node.name}</p>
+          {post?.author?.node?.name && (
+            <p className="text-white uppercase">{post.author.node.name}</p>
+          )}
         </div>
       </Link>
 
