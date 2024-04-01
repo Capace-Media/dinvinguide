@@ -100,7 +100,7 @@ export const getToplists = async (): Promise<ExtendedToplist[]> => {
         toplist,
         await getCurrentToplistDrinks()
       );
-
+      // console.log("drinks =====>", drinks);
       let previous = [];
       if (drinks.length < 3) {
         previous = await getToplistItems(
@@ -335,7 +335,7 @@ export const getCurrentToplistDrinks = async () => {
     //Set after day to last saturday
     const afterDate = currentToday.weekday(-8).toObject();
     //Set before day to closest satur
-    const beforeDate = currentToday.weekday(0).toObject();
+    const beforeDate = currentToday.weekday(1).toObject();
 
     let hasNextPage = true;
     let currentCursor = "";
