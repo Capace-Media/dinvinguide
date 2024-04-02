@@ -5,7 +5,6 @@ interface StorBildProps {
 }
 
 const StorBild = ({ content }: StorBildProps) => {
-  console.log("content =====>", content);
   return (
     <section className="relative flex justify-center w-full row py-[2rem]">
       {content?.img?.mediaItemUrl && (

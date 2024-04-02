@@ -77,8 +77,6 @@ async function getWineData({
 
     const topListsResponse = await getToplists();
 
-    //console.log("topListsResponse =====>", topListsResponse);
-
     if (!topListsResponse) {
       return { notFound: true };
     }

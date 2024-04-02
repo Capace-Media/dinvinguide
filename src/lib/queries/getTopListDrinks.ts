@@ -100,7 +100,7 @@ export const getToplists = async (): Promise<ExtendedToplist[]> => {
         toplist,
         await getCurrentToplistDrinks()
       );
-      // console.log("drinks =====>", drinks);
+
       let previous = [];
       if (drinks.length < 3) {
         previous = await getToplistItems(
