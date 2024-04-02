@@ -102,7 +102,7 @@ export const getToplists = async (): Promise<ExtendedToplist[]> => {
       );
 
       let previous = [];
-      if (drinks.length < 3) {
+      if (drinks?.length < 3) {
         previous = await getToplistItems(
           toplist,
           await getPreviousToplistDrinks()
@@ -110,7 +110,7 @@ export const getToplists = async (): Promise<ExtendedToplist[]> => {
       }
 
       let fallback = [];
-      if (drinks.length === 0 && previous.length === 0) {
+      if (drinks?.length === 0 && previous?.length === 0) {
         fallback = await getToplistItems(
           toplist,
           await getFallbackToplistDrinks()
@@ -330,24 +330,28 @@ export const getPreviousToplistDrinks = async () => {
 export const getCurrentToplistDrinks = async () => {
   try {
     //Function should return drinks published since sunday two weeks back to last saturday
+    //const currentToday = dayjs().locale("sv");
     const currentToday = dayjs().locale("sv");
+    // Set after day to the day after last Saturday
+    const afterDate = currentToday.weekday(-8).add(1, "day").toObject();
 
-    //Set after day to last saturday
-    const afterDate = currentToday.weekday(-8).toObject();
-    //Set before day to closest satur
-    const beforeDate = currentToday.weekday(1).toObject();
+    // Find the day after the closest past Saturday for `beforeDate`
+    const beforeDate = currentToday.weekday(0).add(1, "day").toObject();
+
+    console.log("beforeDate =====>", beforeDate);
 
     let hasNextPage = true;
     let currentCursor = "";
     let array = [];
 
+    // Note: No need to add 1 to the date here since we've already adjusted the dates correctly.
     const afterYear = afterDate.years;
-    const afterMonth = afterDate.months + 1;
-    const afterDay = afterDate.date + 1;
+    const afterMonth = afterDate.months + 1; // Month is 0-indexed, so add 1 to normalize.
+    const afterDay = afterDate.date; // Correct day already set with .add(1, 'day').
 
     const beforeYear = beforeDate.years;
-    const beforeMonth = beforeDate.months + 1;
-    const beforeDay = beforeDate.date + 1;
+    const beforeMonth = beforeDate.months + 1; // Same as above for month.
+    const beforeDay = beforeDate.date; // Correct day already set.
 
     while (hasNextPage) {
       const req = await WPWine(
