@@ -11,27 +11,29 @@ const WineExplorerList = ({ data }: WineExplorerListProps) => {
       {data &&
         data.map((wine: any) => {
           return (
-            <li key={wine.node.id} className="group">
+            <li key={wine?.node?.id} className="group">
               <Link
                 href={`/drycker/${wine?.node?.slug}`}
                 className="flex"
                 aria-label={`läs mer om ${wine?.node?.title}`}
               >
                 <div className="min-w-[100px] h-[150px] relative shake-image">
-                  <Image
-                    src={wine.node.featuredImage.node.mediaItemUrl}
-                    alt={
-                      wine?.node?.featuredImage?.node?.altText
-                        ? wine.node.featuredImage.node.altText
-                        : `bild på ${wine?.node?.title}`
-                    }
-                    fill
-                    style={{
-                      objectFit: "contain",
-                    }}
-                    sizes="(min-width: 1200px) 300px, (min-width: 768px) 384px, 100vw"
-                    className=""
-                  />
+                  {wine?.node?.featuredImage?.node?.mediaItemUrl && (
+                    <Image
+                      src={wine.node.featuredImage.node.mediaItemUrl}
+                      alt={
+                        wine?.node?.featuredImage?.node?.altText
+                          ? wine.node.featuredImage.node.altText
+                          : `bild på ${wine?.node?.title}`
+                      }
+                      fill
+                      style={{
+                        objectFit: "contain",
+                      }}
+                      sizes="(min-width: 1200px) 300px, (min-width: 768px) 384px, 100vw"
+                      className=""
+                    />
+                  )}
                 </div>
                 <div className=" flex gap-2 flex-col justify-center w-full p-4 ">
                   <h2 className="text-[17px] lg:group-hover:underline">

@@ -56,7 +56,11 @@ export const getPage = async (id: string) => {
       { id }
     );
 
-    const users = res.data.page;
+    if (!res) {
+      throw new Error(`Could not fetch page: ${id}`);
+    }
+
+    const users = res?.data?.page;
     return users;
   } catch (error) {
     console.error(error);
