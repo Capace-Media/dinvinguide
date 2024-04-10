@@ -1,6 +1,7 @@
 "use client";
 
 import { Edit } from "@/components/icons";
+import handleParse from "@/lib/utils/handleParse";
 import { useMemo, useState } from "react";
 interface PortionsComponentProps {
   ingredients?: any;
@@ -104,7 +105,7 @@ const PortionsComponent = ({
             {" "}
             <label className="text-[14px] recipe__label" htmlFor={others}>
               <input type="checkbox" id={others} />
-              {others}
+              {handleParse(others)}
               <span className="checkmark"></span>
             </label>
           </p>
