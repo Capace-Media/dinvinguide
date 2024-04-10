@@ -13,6 +13,9 @@ const ExtraPuff = ({ content }: ExtraPuffProps) => {
   // const grapeRegex = new RegExp("^/druvor/");
   // const drinkRegex = new RegExp("^/drycker/");
   // const recipeRegex = new RegExp("^/recept/");
+  if (!data) {
+    return null;
+  }
 
   if (data?.__typename === "Grape") {
     return <GrapeComponent data={data} />;
@@ -22,7 +25,8 @@ const ExtraPuff = ({ content }: ExtraPuffProps) => {
     return <RecipeComponent data={data} />;
   } else {
     // Fallback or default content
-    return <div>Default Content for {data.title}</div>;
+    console.log("data?.__typename =====>", data);
+    return <div>Default Content for {data?.__typename}</div>;
   }
 };
 
