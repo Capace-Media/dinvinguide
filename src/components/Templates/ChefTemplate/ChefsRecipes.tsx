@@ -39,8 +39,14 @@ const ChefsRecipes = async ({ searchParams, params, mainSlug }: Props) => {
     <section className="">
       <div className="layout bg-white flex justify-between items-center">
         <div>
-          <p className="uppercase text-[14px]">{mainSlug}</p>
-          <h1 className="capitalize">{promise.name}</h1>
+          {promise?.name && (
+            <>
+              <p className="uppercase text-[14px]">{mainSlug}</p>
+              <h1 className="capitalize">
+                {promise?.name ? promise.name : ""}
+              </h1>
+            </>
+          )}
         </div>
 
         <div>
