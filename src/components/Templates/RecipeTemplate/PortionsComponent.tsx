@@ -97,6 +97,19 @@ const PortionsComponent = ({
       ) : (
         <p>Inga ingredienser tillgängliga.</p>
       )}
+      {others && (
+        <div className="py-4">
+          <h3 className="text-[19px] pb-2">Övrigt:</h3>
+          <p>
+            {" "}
+            <label className="text-[14px] recipe__label" htmlFor={others}>
+              <input type="checkbox" id={others} />
+              {others}
+              <span className="checkmark"></span>
+            </label>
+          </p>
+        </div>
+      )}
     </section>
   );
 };
