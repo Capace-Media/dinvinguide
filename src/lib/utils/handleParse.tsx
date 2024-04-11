@@ -98,9 +98,9 @@ export default function handleParse(content?: string, parseClasses?: string) {
                 <div
                   className={domNode.attribs.class}
                   style={{
-                    width: `${domNode?.attribs?.width}px`,
+                    maxWidth: `${domNode?.attribs?.width}px`,
 
-                    height: `${domNode?.attribs?.height}px`,
+                    maxHeight: `${domNode?.attribs?.height}px`,
                     position: "relative",
                   }}
                 >
