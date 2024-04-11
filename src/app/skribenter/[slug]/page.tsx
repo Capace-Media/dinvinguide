@@ -9,6 +9,7 @@ import Ads from "@/app/components/ads";
 import WP from "@/lib/wp";
 import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
 import AuthorHero from "../components/AuthorHero";
 type PropsPaths = {
@@ -90,6 +91,11 @@ async function SingleAuthorPage({ params, searchParams }: Props) {
   const data = await getAuthorData(params?.slug, search);
 
   const { posts } = data;
+  console.log("posts =====>", posts);
+
+  if (!posts || !data) {
+    return notFound();
+  }
 
   return (
     <div key={params?.slug}>
@@ -108,7 +114,7 @@ async function SingleAuthorPage({ params, searchParams }: Props) {
             / <p className=" text-brand-dark">{data?.name}</p>
           </div>
           <h2 className=" font-sub text-[28px] md:text-[35px] lg:text-[42px] ">
-            {data?.firstName + (data?.firstName.endsWith("s") ? "" : "s")}{" "}
+            {data?.firstName + (data?.firstName?.endsWith("s") ? "" : "s")}{" "}
             senaste artiklar
           </h2>
         </div>
