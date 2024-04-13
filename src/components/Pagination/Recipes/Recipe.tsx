@@ -29,6 +29,7 @@ const Recipe = ({ recipe }: RecipeProps) => {
         {recipe?.featuredImage?.node?.mediaItemUrl && (
           <>
             <Image
+              unoptimized
               src={recipe.featuredImage.node.mediaItemUrl}
               alt={
                 recipe?.featuredImage?.node?.altText

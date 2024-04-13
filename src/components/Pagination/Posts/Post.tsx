@@ -30,6 +30,7 @@ const Post = ({ post, type }: PostProps) => {
         {post?.featuredImage?.node?.mediaItemUrl && (
           <>
             <Image
+              unoptimized
               src={post.featuredImage.node.mediaItemUrl}
               alt={
                 post?.featuredImage?.node?.altText

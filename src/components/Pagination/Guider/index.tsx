@@ -38,6 +38,7 @@ const PaginationForGuides = ({
                 <div className="relative h-[200px] w-full bg-[#F5F5F5]">
                   {item?.node?.featuredImage?.node?.mediaItemUrl && (
                     <Image
+                      unoptimized
                       src={item.node.featuredImage.node.mediaItemUrl}
                       alt={
                         item?.node?.featuredImage?.node?.altText
