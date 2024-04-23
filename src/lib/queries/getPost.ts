@@ -14,6 +14,9 @@ export const getPost = async (id: string) => {
           content
           modifiedGmt
           ${SEO}
+          acf_oldcontent {
+            oldContentAcf
+          }
           acf_posts {
             ingress
             lasMer {

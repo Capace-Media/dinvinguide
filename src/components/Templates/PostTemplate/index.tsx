@@ -119,6 +119,12 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
             {handleParse(post?.content)}
           </div>
         )}
+        {post?.acf_oldcontent?.oldContentAcf && (
+          <div>
+            <h1 className="font-sub pb-5">{post?.title}</h1>
+            {handleParse(post?.acf_oldcontent?.oldContentAcf)}
+          </div>
+        )}
       </div>
       <Aside
         author={post?.author?.node ? post?.author?.node : post?.author}
