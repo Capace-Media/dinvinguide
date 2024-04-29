@@ -7,6 +7,8 @@ export { default as DlTopNav } from "./DlTopNav";
 export { default as DvLogoBlackMini } from "./DvLogoBlackMini";
 export { default as DvLogoWhiteMini } from "./DvLogoWhiteMini";
 export { default as Dvg } from "./Dvg";
+export { default as DinSpritguideDark } from "./DinSpritguideDark";
+export { default as DinSpritguideWhite } from "./DinSpritguideWhite";
 export { default as ArrowRight } from "./ArrowRight";
 export { default as Avbrytare } from "./Avbrytare";
 export { default as Biggermail } from "./Biggermail";

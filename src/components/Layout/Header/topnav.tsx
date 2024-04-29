@@ -4,6 +4,8 @@ import {
   BcTopNav,
   DarkBcLogo,
   DarkDlLogo,
+  DinSpritguideDark,
+  DinSpritguideWhite,
   DlTopNav,
 } from "@/components/icons";
 import useRouteStyle from "@/hooks/useRouteStyle";
@@ -40,6 +42,18 @@ const TopNav = () => {
           <Link href="/dryckeslistan" aria-label="Gå till DryckesListan.se">
             {isDL ? <DarkDlLogo /> : <DlTopNav />}
           </Link>
+        </figure>
+        <figure>
+          <Avbrytare />
+        </figure>
+        <figure>
+          <a
+            target="_blank"
+            href="https://www.dinspritguide.se/"
+            aria-label="Gå till dinspritguide.se"
+          >
+            {!isDL ? <DinSpritguideWhite /> : <DinSpritguideDark />}
+          </a>
         </figure>
       </div>
     </div>
