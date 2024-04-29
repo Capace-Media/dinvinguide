@@ -19,6 +19,7 @@ interface FooterProps {}
 
 const Footer = ({}: FooterProps) => {
   const isDL = useRouteStyle();
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer
@@ -145,7 +146,7 @@ const Footer = ({}: FooterProps) => {
         className={`"border-t-2 w-full border-white flex flex-col lg:flex-row lg:justify-between items-center py-4 gap-2`}
       >
         <p className={`${isDL ? "text-[#333]" : "text-white"}`}>
-          2023 © Copyright - DinVinguide.se
+          {currentYear} © Copyright - DinVinguide.se
         </p>
         <p className={`${isDL ? "text-[#333]" : "text-white"} text-[14px]`}>
           Byggd med ♥ av{" "}
