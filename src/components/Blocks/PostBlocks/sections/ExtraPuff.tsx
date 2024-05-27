@@ -25,7 +25,6 @@ const ExtraPuff = ({ content }: ExtraPuffProps) => {
     return <RecipeComponent data={data} />;
   } else {
     // Fallback or default content
-    console.log("data?.__typename =====>", data);
     return <div>Default Content for {data?.__typename}</div>;
   }
 };
@@ -99,6 +98,7 @@ function DrinkComponent({ data }: any) {
     <div id="extraPuffDrink" className="flex justify-center group">
       <div className="min-w-[200px] h-[350px] relative shake-image">
         <Image
+          unoptimized
           src={data.featuredImage.node.mediaItemUrl}
           alt={
             data?.featuredImage?.node?.altText
@@ -194,6 +194,7 @@ function RecipeComponent({ data }: any) {
       <div className="w-[50%] h-full hidden md:block">
         <div className="relative w-full h-full recipe-overlay">
           <Image
+            unoptimized
             src={data?.featuredImage?.node?.mediaItemUrl}
             alt={data?.featuredImage?.node?.altText}
             style={{ objectFit: "cover" }}

@@ -31,6 +31,7 @@ const HandleImage = ({
       {srcProp && (
         <>
           <Image
+            unoptimized
             fill
             src={srcProp}
             alt={altProp ? altProp : "Bild från DinVinguide"}

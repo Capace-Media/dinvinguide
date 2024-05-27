@@ -17,6 +17,7 @@ export default function Newsletter() {
           <div className=" bg-white h-[224px] lg:h-[410px] w-[80%] absolute bottom-0 right-0">
             <div className="w-full h-full relative">
               <Image
+                unoptimized
                 src={vingard}
                 alt="Bild på en vinranka med vindruvor"
                 fill

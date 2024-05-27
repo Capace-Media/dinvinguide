@@ -106,6 +106,7 @@ export default function handleParse(content?: string, parseClasses?: string) {
                 >
                   {domNode?.attribs?.src && (
                     <Image
+                      unoptimized
                       src={domNode.attribs.src}
                       alt={
                         domNode?.attribs?.alt

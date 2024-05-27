@@ -83,8 +83,13 @@ const PortionsComponent = ({
                                 htmlFor={node?.rubrik + i}
                               >
                                 <input type="checkbox" id={node?.rubrik + i} />
-                                {ing?.antal} {ing?.enhet?.name} {ing?.namn}
-                                <span className="checkmark"></span>
+                                {ing?.antal === 0 ? "" : ing.antal}{" "}
+                                {ing?.enhet?.name === "x"
+                                  ? ""
+                                  : !ing?.enhet?.name
+                                  ? ""
+                                  : ing.enhet.name}{" "}
+                                {ing?.namn} <span className="checkmark"></span>
                               </label>
                             </li>
                           );

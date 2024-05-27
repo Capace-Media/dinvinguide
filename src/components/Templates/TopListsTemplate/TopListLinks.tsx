@@ -34,6 +34,7 @@ const TopListLinks = async ({}: TopListLinksProps) => {
               className={`relative w-full link-overlay h-[223.54px] lg:h-[312.84px]`}
             >
               <Image
+                unoptimized
                 src={drinks}
                 alt="Elegant rödvinflaska och fyllt vinglas på träunderlägg med marmorbakgrund för vinälskare."
                 fill
@@ -65,6 +66,7 @@ const TopListLinks = async ({}: TopListLinksProps) => {
               className={`relative w-full link-overlay h-[223.54px] lg:h-[312.84px]`}
             >
               <Image
+                unoptimized
                 src={recipes}
                 alt="Elegant rödvinflaska och fyllt vinglas på träunderlägg med marmorbakgrund för vinälskare."
                 fill

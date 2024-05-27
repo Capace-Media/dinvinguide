@@ -91,7 +91,6 @@ async function SingleAuthorPage({ params, searchParams }: Props) {
   const data = await getAuthorData(params?.slug, search);
 
   const { posts } = data;
-  console.log("posts =====>", posts);
 
   if (!posts || !data) {
     return notFound();

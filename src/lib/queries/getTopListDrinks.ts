@@ -338,8 +338,6 @@ export const getCurrentToplistDrinks = async () => {
     // Find the day after the closest past Saturday for `beforeDate`
     const beforeDate = currentToday.weekday(0).add(1, "day").toObject();
 
-    console.log("beforeDate =====>", beforeDate);
-
     let hasNextPage = true;
     let currentCursor = "";
     let array = [];

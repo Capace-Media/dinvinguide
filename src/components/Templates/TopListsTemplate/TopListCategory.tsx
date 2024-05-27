@@ -39,6 +39,7 @@ const TopListCategory = ({ data, index }: TopListCategoryProps) => {
         >
           {width && width < mobileBreakpoint ? (
             <Image
+              unoptimized
               src={data?.acf_toplists?.toplistImg?.mobile?.mediaItemUrl}
               alt={
                 data?.acf_toplists?.toplistImg?.mobile?.altText
@@ -53,6 +54,7 @@ const TopListCategory = ({ data, index }: TopListCategoryProps) => {
             />
           ) : (
             <Image
+              unoptimized
               src={data?.acf_toplists?.toplistImg?.desktop?.mediaItemUrl}
               alt={
                 data?.acf_toplists?.toplistImg?.desktop?.altText
