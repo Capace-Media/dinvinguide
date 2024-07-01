@@ -92,7 +92,7 @@ async function SingleAuthorPage({ params, searchParams }: Props) {
 
   const { posts } = data;
 
-  if (!posts || !data) {
+  if (!data) {
     return notFound();
   }
 
@@ -117,12 +117,19 @@ async function SingleAuthorPage({ params, searchParams }: Props) {
             senaste artiklar
           </h2>
         </div>
-        <AuthorPosts
-          params={params}
-          searchParams={searchParams}
-          postsCount={posts}
-          search={search}
-        />
+        {posts ? (
+          <AuthorPosts
+            params={params}
+            searchParams={searchParams}
+            postsCount={posts}
+            search={search}
+          />
+        ) : (
+          <p>
+            {data?.firstName} har inte skrivit några artiklar ännu, håll utkik
+            för framtida artiklar.
+          </p>
+        )}
       </section>
       <Ads pageType="default" position="MID" />
       <ExplorePages />

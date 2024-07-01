@@ -69,14 +69,13 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
           </div>
 
           <div className="flex justify-between items-center">
-            {author?.posts?.nodes.length > 0 && (
-              <Link
-                className={`${index % 2 === 0 ? "btn" : "btn-white"}`}
-                href={`/skribenter/${author?.slug}`}
-              >
-                Upptäck alla Artiklar
-              </Link>
-            )}
+            <Link
+              className={`${index % 2 === 0 ? "btn" : "btn-white"}`}
+              href={`/skribenter/${author?.slug}`}
+            >
+              Upptäck alla Artiklar
+            </Link>
+
             <SocialMedia index={index} social={author?.acf_user} />
           </div>
         </div>
