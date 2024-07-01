@@ -29,8 +29,8 @@ const AuthorHero = async ({ promise, word }: AuthorHeroProps) => {
           <div className="bg-white h-[50%] z-10 rotate-[8deg] lg:rotate-[7deg] center-x -bottom-[30%]  w-[200%] absolute"></div>
         </div>
 
-        <div className=" md:bg-white w-[89%] lg:w-[85%] lg:h-[511px] h-[655px] absolute top-[13%] lg:top-[50%] lg:-translate-y-[40%] center-x z-10 flex gap-8 lg:flex-row flex-col shadow-lg lg:p-4 p-2">
-          <div className="relative aspect-square">
+        <div className=" bg-white w-[89%] lg:w-[85%] lg:h-[511px] h-[655px] absolute top-[13%] lg:top-[50%] lg:-translate-y-[40%] center-x z-10 flex gap-8 lg:flex-row flex-col shadow-lg lg:p-4 p-2">
+          <div className="relative aspect-square min-w-[36%]">
             {data?.acf_user?.bild?.mediaItemUrl && (
               <Image
                 src={data.acf_user.bild.mediaItemUrl}
