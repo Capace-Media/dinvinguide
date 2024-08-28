@@ -82,7 +82,7 @@ async function fetchPosts() {
     }
   }`);
 
-  const data = res.data;
+  const data = res?.data;
   return data;
 }
 

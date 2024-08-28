@@ -2,7 +2,6 @@ import FrontHero from "@/components/Blocks/Hero-Header/FrontHero";
 import { getFrontPage } from "@/lib/queries/getFrontPage";
 import dynamic from "next/dynamic";
 
-import StarRating from "@/components/graphic/StarRating";
 import { Suspense } from "react";
 import ExclusiveDrinks from "./components/ExclusiveDrinks";
 import Newsletter from "./components/Newsletter";
