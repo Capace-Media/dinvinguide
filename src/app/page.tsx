@@ -2,6 +2,7 @@ import FrontHero from "@/components/Blocks/Hero-Header/FrontHero";
 import { getFrontPage } from "@/lib/queries/getFrontPage";
 import dynamic from "next/dynamic";
 
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import ExclusiveDrinks from "./components/ExclusiveDrinks";
 import Newsletter from "./components/Newsletter";
@@ -19,6 +20,9 @@ async function getData() {
 
 export default async function Home() {
   const data = await getData();
+  if (!data) {
+    return notFound();
+  }
 
   return (
     <>
