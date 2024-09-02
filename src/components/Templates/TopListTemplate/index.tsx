@@ -104,7 +104,6 @@ async function getWineData({
 
 const TopListTemplate = async ({ params }: { params: { slug: string } }) => {
   const data: any = await getWineData({ params });
-  console.log("data =====>", data);
 
   return (
     <>
