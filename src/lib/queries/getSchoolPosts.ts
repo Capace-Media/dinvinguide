@@ -1,9 +1,9 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import { WPnext } from "../wp";
+import WP from "../wp";
 
 export const getSchoolPosts = async (id: string) => {
   try {
-    const res = await WPnext(
+    const res = await WP(
       `query getWineSchools($id: ID!) {
         page(id: $id, idType: URI) {
           acf_overviewPage {
@@ -64,6 +64,7 @@ export const getSchoolPosts = async (id: string) => {
           }
         }
       }`,
+      null,
       { id }
     );
 

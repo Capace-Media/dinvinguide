@@ -1,5 +1,5 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import { WPnext } from "../wp";
+import WP from "../wp";
 
 type DataArgs = {
   after?: string;
@@ -13,7 +13,7 @@ type DataArgs = {
 export const getRecipesBank = async (args: DataArgs) => {
   const { after, before, first, last, search } = args;
   try {
-    const res = await WPnext(
+    const res = await WP(
       `
       query MyQuery2($after: String, $before: String, $first: Int, $last: Int, $search: String) {
         recipes(
@@ -60,13 +60,14 @@ export const getRecipesBank = async (args: DataArgs) => {
             hasNextPage
             hasPreviousPage
             startCursor
-            offsetPagination {
+       
               total
-            }
+      
           }
         }
       }
       `,
+      null,
       { after, before, search, first, last }
     );
 
@@ -83,7 +84,7 @@ export const getRecipesBank = async (args: DataArgs) => {
 export const getRecipesByCategory = async (args: DataArgs) => {
   const { after, before, first, last, search, id } = args;
   try {
-    const res = await WPnext(
+    const res = await WP(
       `
       query getRecipesByCategory($id: ID!, $after: String, $before: String, $first: Int, $last: Int, $search: String) {
         recipeCategory(id: $id, idType: URI) {
@@ -131,14 +132,15 @@ export const getRecipesByCategory = async (args: DataArgs) => {
                   hasNextPage
                   hasPreviousPage
                   startCursor
-                  offsetPagination {
+  
                     total
-                  }
+  
                 }
               }
         }
       }
       `,
+      null,
       { after, before, search, first, last, id }
     );
 
@@ -154,7 +156,7 @@ export const getRecipesByCategory = async (args: DataArgs) => {
 
 export const getDrinkRecipe = async () => {
   try {
-    const res = await WPnext(`query getDrinkRecipe($id: ID! = "drycker") {
+    const res = await WP(`query getDrinkRecipe($id: ID! = "drycker") {
       recipeCategory(id: $id, idType: SLUG) {
  
         recipes(first: 4) {
@@ -205,7 +207,7 @@ export const getDrinkRecipe = async () => {
 export const getChefRecipes = async (args: DataArgs) => {
   const { after, before, first, last, search, id } = args;
   try {
-    const res = await WPnext(
+    const res = await WP(
       `
       query getChefRecipes($id: ID!, $after: String, $before: String, $first: Int, $last: Int, $search: String) {
         guestWriter(id: $id, idType: URI) {
@@ -254,14 +256,15 @@ export const getChefRecipes = async (args: DataArgs) => {
                   hasNextPage
                   hasPreviousPage
                   startCursor
-                  offsetPagination {
+              
                     total
-                  }
+                 
                 }
               }
         }
       }
       `,
+      null,
       { after, before, search, first, last, id }
     );
 

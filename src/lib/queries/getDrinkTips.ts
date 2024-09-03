@@ -1,5 +1,5 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import { WPnext } from "../wp";
+import WP from "../wp";
 
 export const getDrinkTips = async (
   after?: string,
@@ -9,7 +9,7 @@ export const getDrinkTips = async (
   search?: string | null
 ) => {
   try {
-    const res = await WPnext(
+    const res = await WP(
       `
       query getDrink($after: String, $before: String, $first: Int, $last: Int) {
         drinktips(after: $after, before: $before, first: $first, last: $last) {
@@ -18,9 +18,9 @@ export const getDrinkTips = async (
             hasNextPage
             hasPreviousPage
             startCursor
-            offsetPagination {
+           
               total
-            }
+          
           }
           edges {
             node {
@@ -59,6 +59,7 @@ export const getDrinkTips = async (
         }
       }
       `,
+      null,
       { after, before, first, last }
     );
 
@@ -74,7 +75,7 @@ export const getDrinkTips = async (
 
 export const fetchDrinktip = async (id: string) => {
   try {
-    const res = await WPnext(
+    const res = await WP(
       `query fetchDrinktipBySlug($id: ID!) {
         drinktip(idType: URI, id: $id) {
           title
@@ -107,6 +108,7 @@ export const fetchDrinktip = async (id: string) => {
           }
         }
       }`,
+      null,
       { id }
     );
 

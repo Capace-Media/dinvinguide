@@ -11,6 +11,7 @@ export const getRecipeSEO = async (id: string) => {
           ${SEO}
         }
       }`,
+      null,
       { id }
     );
 

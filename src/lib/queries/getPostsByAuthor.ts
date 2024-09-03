@@ -1,5 +1,5 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import { WPnext } from "../wp";
+import WP from "../wp";
 
 export const getPostsByAuthor = async (
   after?: string,
@@ -10,7 +10,7 @@ export const getPostsByAuthor = async (
   last?: number | null
 ) => {
   try {
-    const res = await WPnext(
+    const res = await WP(
       `
     query getPostsByAuthor($after: String, $before: String, $search: String, $authorName: String, $first: Int, $last: Int) {
         posts(
@@ -24,9 +24,9 @@ export const getPostsByAuthor = async (
             hasNextPage
             hasPreviousPage
             endCursor
-            offsetPagination {
+     
               total
-            }
+       
             startCursor
           }
           edges {
@@ -60,6 +60,7 @@ export const getPostsByAuthor = async (
         }
       }
       `,
+      null,
       { after, before, search, authorName, first, last }
     );
 
@@ -84,7 +85,7 @@ type DataArgs = {
 export const getAllArticles = async (args: DataArgs) => {
   const { after, before, search, first, last } = args;
   try {
-    const res = await WPnext(
+    const res = await WP(
       `
     query getAllArticles($after: String, $before: String, $search: String, $first: Int, $last: Int) {
         posts(
@@ -98,9 +99,9 @@ export const getAllArticles = async (args: DataArgs) => {
             hasNextPage
             hasPreviousPage
             endCursor
-            offsetPagination {
+    
               total
-            }
+       
             startCursor
           }
           edges {
@@ -134,6 +135,7 @@ export const getAllArticles = async (args: DataArgs) => {
         }
       }
       `,
+      null,
       { after, before, search, first, last }
     );
 

@@ -1,13 +1,16 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP, { WPnext } from "../wp";
+import WP from "../wp";
 import { FRONT } from "./fragments/Front";
 
 export const getFrontPage = async () => {
   try {
-    const res = await WPnext(`query getFrontPage {
+    const res = await WP(
+      `query getFrontPage {
             ${FRONT}
   
-          }`);
+          }`,
+      ""
+    );
 
     const data = res.data;
     return data;

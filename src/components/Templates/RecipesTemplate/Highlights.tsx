@@ -1,8 +1,9 @@
 import Recipe from "@/components/Pagination/Recipes/Recipe";
-import { WPnext } from "@/lib/wp";
+import WP from "@/lib/wp";
+
 async function getData() {
   try {
-    const res = await WPnext(`
+    const res = await WP(`
     query getFeaturedRecipes($id: ID! = "/recept") {
       page(id: $id, idType: URI) {
         featured_recipes {

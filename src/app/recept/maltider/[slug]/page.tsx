@@ -1,7 +1,8 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import RecipeCategoryTemplate from "@/components/Templates/RecipeCategoryTemplate";
 import { getRecipeCategorySEO } from "@/lib/queries/SEO/getRecipeCategorySEO";
-import { WPnext } from "@/lib/wp";
+
+import WP from "@/lib/wp";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../../../types/MetaInfoTypes";
 
@@ -37,7 +38,7 @@ export async function generateMetadata(
 }
 
 export async function generateStaticParams() {
-  const data = await WPnext(`
+  const data = await WP(`
   query MyQuery2($id: ID! = "maltider") {
     recipeCategory(id: $id, idType: SLUG) {
       children(first: 6) {

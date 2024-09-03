@@ -11,6 +11,7 @@ export const getSEOByPage = async (id: string) => {
           ${SEO}
         }
       }`,
+      null,
       { id }
     );
 

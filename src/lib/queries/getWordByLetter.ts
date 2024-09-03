@@ -1,5 +1,5 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import { WPnext } from "../wp";
+import WP from "../wp";
 
 type DataArgs = {
   after?: string;
@@ -13,7 +13,7 @@ export const getWordByLetter = async (args: DataArgs) => {
   const { after, before, first, last, id } = args;
 
   try {
-    const res = await WPnext(
+    const res = await WP(
       `
       query getWordByLetter($id: ID!, $after: String, $before: String, $first: Int, $last: Int) {
         letter(id: $id, idType: SLUG) {
@@ -23,9 +23,9 @@ export const getWordByLetter = async (args: DataArgs) => {
               endCursor
               hasPreviousPage
               startCursor
-              offsetPagination {
+           
                 total
-              }
+        
             }
             edges {
               node {
@@ -38,6 +38,7 @@ export const getWordByLetter = async (args: DataArgs) => {
         }
       }
       `,
+      null,
       { after, before, first, last, id }
     );
 

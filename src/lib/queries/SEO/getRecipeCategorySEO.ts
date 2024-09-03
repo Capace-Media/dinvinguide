@@ -43,6 +43,7 @@ export const getRecipeCategorySEO = async (id: string) => {
           }
         }
       }`,
+      null,
       { id }
     );
 

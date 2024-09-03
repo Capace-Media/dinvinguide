@@ -20,13 +20,8 @@ const WineExplorerController = ({
   after,
   before,
 }: WineExplorerControllerProps) => {
-  const {
-    endCursor,
-    hasNextPage,
-    hasPreviousPage,
-    startCursor,
-    offsetPagination,
-  } = pageInfo;
+  const { endCursor, hasNextPage, hasPreviousPage, startCursor, total } =
+    pageInfo;
 
   const router = useRouter();
   const searchParams: any = useSearchParams();
@@ -74,7 +69,7 @@ const WineExplorerController = ({
           {page}
         </span>{" "}
         av {""}
-        {Math.ceil(parseInt(offsetPagination?.total) / parseInt(first))}
+        {Math.ceil(parseInt(total) / parseInt(first))}
       </div>
 
       <button

@@ -11,6 +11,7 @@ export const getDrinkSEO = async (id: string) => {
           ${SEO}
         }
       }`,
+      null,
       { id }
     );
 

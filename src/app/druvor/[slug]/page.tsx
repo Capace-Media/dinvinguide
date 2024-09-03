@@ -2,13 +2,13 @@ import Loading from "@/app/loading";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import GrapeTemplate from "@/components/Templates/GrapeTemplate";
 import { getGrapeSEO } from "@/lib/queries/SEO/getGrapeSEO";
-import { WPnext } from "@/lib/wp";
+import WP from "@/lib/wp";
 import { Metadata, ResolvingMetadata } from "next";
 import { Suspense } from "react";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
 
 export async function generateStaticParams() {
-  const { data } = await WPnext(
+  const { data } = await WP(
     `query getGrapes {
         grapes {
           nodes {

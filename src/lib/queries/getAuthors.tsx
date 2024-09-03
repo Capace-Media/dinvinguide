@@ -1,9 +1,9 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP, { WPnext } from "../wp";
+import WP from "../wp";
 
 export const getAuthors = async () => {
   try {
-    const res = await WPnext(`query getAllAuthors {
+    const res = await WP(`query getAllAuthors {
             acfOptionsSkribenter {
               acf_skribenter {
                 skribenter {

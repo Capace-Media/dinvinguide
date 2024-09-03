@@ -11,6 +11,7 @@ export const getWordSEO = async (id: string) => {
           ${SEO}
         }
       }`,
+      null,
       { id }
     );
 

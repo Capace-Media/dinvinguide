@@ -1,13 +1,14 @@
 import Newsletter from "@/app/components/Newsletter";
 import handleParse from "@/lib/utils/handleParse";
-import { WPnext } from "@/lib/wp";
+
+import WP from "@/lib/wp";
 import ExploreGuides from "../GuideTemplate/ExploreGuides";
 import links from "../GuideTemplate/guideLinks.json";
 import PageHero from "../HeroHeaders/PageHero";
 
 async function getGrapeData(id: string) {
   try {
-    const response = await WPnext(
+    const response = await WP(
       `
     query MyQuery($id: ID!) {
       grape(id: $id, idType: URI) {
@@ -30,6 +31,7 @@ async function getGrapeData(id: string) {
       }
     }
     `,
+      null,
       { id }
     );
 

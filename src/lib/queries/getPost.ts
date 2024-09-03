@@ -1,11 +1,11 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import { WPServerSide, WPnext } from "../wp";
+import WP, { WPServerSide } from "../wp";
 import { POST } from "./fragments/Post";
 import { SEO } from "./fragments/Seo";
 
 export const getPost = async (id: string) => {
   try {
-    const res = await WPnext(
+    const res = await WP(
       `query GET_POST($id: ID!) {
         post(idType: URI, id: $id) {
           title
@@ -253,6 +253,7 @@ export const getPost = async (id: string) => {
           }
         }
       }`,
+      null,
       { id }
     );
 

@@ -1,6 +1,7 @@
 import handleParse from "@/lib/utils/handleParse";
 import PrettyDate from "@/lib/utils/prettyDate";
-import { WPnext } from "@/lib/wp";
+
+import WP from "@/lib/wp";
 import Image from "next/image";
 import Link from "next/link";
 import { ParamsProps } from "../../../../types/Global";
@@ -8,7 +9,7 @@ import { ParamsProps } from "../../../../types/Global";
 async function getWordData(slug: string) {
   const id = `/glossary/${slug}`;
   try {
-    const res = await WPnext(
+    const res = await WP(
       `query getWordData($id: ID!) {
         glossary(id: $id, idType: URI) {
         id
@@ -38,6 +39,7 @@ async function getWordData(slug: string) {
         }
       }
     }`,
+      null,
       { id }
     );
 

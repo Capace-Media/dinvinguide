@@ -18,22 +18,28 @@ type PropsPaths = {
 export async function generateStaticParams() {
   //const authors = await getAuthors();
 
-  const authors = await WP(`query getAllAuthors {
-    acfOptionsSkribenter {
-      acf_skribenter {
-        skribenter {
-          slug
-        }
-      }
-    }
-  }`);
+  return [
+    { slug: "fredrikschelin" },
+    { slug: "anders" },
+    { slug: "sofiaander" },
+    { slug: "magnus" },
+  ];
+  // const authors = await WP(`query getAllAuthors {
+  //   acfOptionsSkribenter {
+  //     acf_skribenter {
+  //       skribenter {
+  //         slug
+  //       }
+  //     }
+  //   }
+  // }`);
 
-  return (
-    authors?.data?.acfOptionsSkribenter?.acf_skribenter?.skribenter &&
-    authors.data.acfOptionsSkribenter.acf_skribenter.skribenter.map(
-      (author: any) => ({ slug: author?.slug })
-    )
-  );
+  // return (
+  //   authors?.data?.acfOptionsSkribenter?.acf_skribenter?.skribenter &&
+  //   authors.data.acfOptionsSkribenter.acf_skribenter.skribenter.map(
+  //     (author: any) => ({ slug: author?.slug })
+  //   )
+  // );
 }
 
 type Props = {
@@ -46,7 +52,7 @@ async function getAuthorData(id: string, search?: string) {
 
   const authorProps = {
     ...data,
-    posts: data?.posts?.pageInfo?.offsetPagination?.total,
+    posts: data?.posts?.pageInfo?.total,
   };
 
   return authorProps;
