@@ -30,7 +30,13 @@ export const getToplistPaths = async () => {
       "wine"
     );
 
-    return res.data.pageBy.acf_topplistor.aktivaTopplistor;
+    const data = res?.data?.pageBy?.acf_topplistor?.aktivaTopplistor;
+    if (!data) {
+      throw Error(
+        "Something went wrong Could not read res.data.pageBy.acf_topplistor.aktivaTopplistor"
+      );
+    }
+    return data;
   } catch (error) {
     console.error("getTopListPaths ERROR =>", error);
   }
