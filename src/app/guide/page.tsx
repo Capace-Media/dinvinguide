@@ -18,6 +18,10 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const page = await getSEOByPage("/guide");
 
+  if (!page) {
+    return {};
+  }
+
   const seo: any = page?.seo;
 
   const uri = `/${page?.slug}`;

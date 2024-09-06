@@ -1,9 +1,9 @@
-import { WPnext } from "@/lib/wp";
+import WP from "@/lib/wp";
 
 export default async function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
-  const posts = await WPnext(`
+  const posts = await WP(`
   query getGrapes {
     grapes(first: 1000) {
       nodes {

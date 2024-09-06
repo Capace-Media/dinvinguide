@@ -1,9 +1,9 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import { WPnext } from "../wp";
+import WP from "../wp";
 
 export const getWineAtlasPage = async (id: string) => {
   try {
-    const res = await WPnext(
+    const res = await WP(
       `query GET_PAGE($id: ID!) {
         page(id: $id, idType: URI) {
           title
@@ -158,6 +158,7 @@ export const getWineAtlasPage = async (id: string) => {
           }
         }
       }`,
+      null,
       { id }
     );
 

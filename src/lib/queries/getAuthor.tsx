@@ -1,9 +1,9 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP, { WPnext } from "../wp";
+import WP from "../wp";
 
 export const getAuthor = async (id: string, search?: string) => {
   try {
-    const res = await WPnext(
+    const res = await WP(
       `query getAuthor($id: ID!, $search: String) {
         user(id: $id, idType: USERNAME) {
           username
@@ -53,14 +53,15 @@ export const getAuthor = async (id: string, search?: string) => {
           }
           posts(where: {search: $search}) {
             pageInfo {
-              offsetPagination {
+         
                 total
-              }
+           
             }
           }
           
         }
       }`,
+      "post",
       { id, search }
     );
 

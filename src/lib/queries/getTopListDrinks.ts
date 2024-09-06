@@ -1,7 +1,8 @@
 import dayjs from "dayjs";
 import toObject from "dayjs/plugin/toObject";
 import weekday from "dayjs/plugin/weekday";
-import { WPWine } from "../wp";
+
+import WP from "../wp";
 import { SEO } from "./fragments/Seo";
 dayjs.extend(toObject);
 dayjs.extend(weekday);
@@ -9,7 +10,8 @@ dayjs.extend(weekday);
 const batchLimit = 20;
 export const getToplistPaths = async () => {
   try {
-    const res = await WPWine(`
+    const res = await WP(
+      `
         query getAllToplists {
           pageBy(uri: "topplistor") {
             id
@@ -24,9 +26,17 @@ export const getToplistPaths = async () => {
             }
           }
         }
-      `);
+      `,
+      "wine"
+    );
 
-    return res.data.pageBy.acf_topplistor.aktivaTopplistor;
+    const data = res?.data?.pageBy?.acf_topplistor?.aktivaTopplistor;
+    if (!data) {
+      throw Error(
+        "Something went wrong Could not read res.data.pageBy.acf_topplistor.aktivaTopplistor"
+      );
+    }
+    return data;
   } catch (error) {
     console.error("getTopListPaths ERROR =>", error);
   }
@@ -51,7 +61,8 @@ export const getToplists = async (): Promise<ExtendedToplist[]> => {
   // Check if data is already in cache
 
   try {
-    const res = await WPWine(`
+    const res = await WP(
+      `
     query getAllToplists {
       pageBy(uri: "topplistor") {
         id
@@ -90,7 +101,9 @@ export const getToplists = async (): Promise<ExtendedToplist[]> => {
         }
       }
     }
-  `);
+  `,
+      "wine"
+    );
     const toplists: Toplist[] = res.data.pageBy.acf_topplistor.aktivaTopplistor;
 
     const fetchToplistData = async (
@@ -219,7 +232,7 @@ export const getPreviousToplistDrinks = async () => {
     const beforeDay = beforeDate.date;
 
     while (hasNextPage) {
-      const req = await WPWine(
+      const req = await WP(
         `
           query getPreviousDrinks(
             $afterYear: Int!
@@ -295,6 +308,7 @@ export const getPreviousToplistDrinks = async () => {
             }
           }
         `,
+        "wine",
         {
           batch: batchLimit,
           cursor: currentCursor,
@@ -352,7 +366,7 @@ export const getCurrentToplistDrinks = async () => {
     const beforeDay = beforeDate.date; // Correct day already set.
 
     while (hasNextPage) {
-      const req = await WPWine(
+      const req = await WP(
         `
           query getMoreArticles(
             $afterYear: Int!
@@ -429,6 +443,7 @@ export const getCurrentToplistDrinks = async () => {
             }
           }
         `,
+        "wine",
         {
           batch: batchLimit,
           cursor: currentCursor,
@@ -480,7 +495,7 @@ export const getFallbackToplistDrinks = async () => {
     const beforeDay = beforeDate.date;
 
     while (hasNextPage) {
-      const req = await WPWine(
+      const req = await WP(
         `
           query getMoreArticles(
             $afterYear: Int!
@@ -556,6 +571,7 @@ export const getFallbackToplistDrinks = async () => {
             }
           }
         `,
+        "wine",
         {
           batch: batchLimit,
           cursor: currentCursor,

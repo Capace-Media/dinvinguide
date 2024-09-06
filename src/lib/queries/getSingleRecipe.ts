@@ -1,11 +1,11 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import { WPServerSide, WPnext } from "../wp";
+import WP, { WPServerSide } from "../wp";
 import { RECIPE } from "./fragments/Recipe";
 import { SEO } from "./fragments/Seo";
 
 export const getSingleRecipe = async (id: string) => {
   try {
-    const res = await WPnext(
+    const res = await WP(
       `query GET_RECIPE($id: ID!) {
         recipe(id: $id, idType: URI) {
           title
@@ -113,6 +113,7 @@ export const getSingleRecipe = async (id: string) => {
           }
         }
       }`,
+      null,
       { id }
     );
 

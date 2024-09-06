@@ -77,6 +77,7 @@ async function getPlaylist(id: string) {
       }
     }
   }`,
+    null,
     { id }
   );
 

@@ -1,5 +1,5 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import { WPnext } from "../wp";
+import WP from "../wp";
 
 type DataArgs = {
   after?: string;
@@ -14,7 +14,7 @@ type DataArgs = {
 export const getWhineAtlases = async (args: DataArgs) => {
   const { after, before, first, last, parent, search } = args;
   try {
-    const res = await WPnext(
+    const res = await WP(
       `
       query getWhineAtlases($parent: ID! = "cG9zdDo0NzcyMQ==", $after: String, $before: String, $first: Int, $last: Int, $search: String) {
         pages(
@@ -43,13 +43,14 @@ export const getWhineAtlases = async (args: DataArgs) => {
             hasNextPage
             hasPreviousPage
             startCursor
-            offsetPagination {
+  
               total
-            }
+          
           }
         }
       }
       `,
+      null,
       { after, before, first, last, parent, search }
     );
 

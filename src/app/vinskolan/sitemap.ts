@@ -1,9 +1,9 @@
-import { WPnext } from "@/lib/wp";
+import WP from "@/lib/wp";
 
 export default async function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
-  const data = await WPnext(`
+  const data = await WP(`
   query getSchools($parent: ID! = "cG9zdDo0Nzc0Mg==") {
     pages(where: {parent: $parent}, first: 40) {
       nodes {

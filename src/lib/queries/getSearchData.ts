@@ -1,9 +1,9 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import { WPnext } from "../wp";
+import WP from "../wp";
 
 export const getSearchData = async (search: string) => {
   try {
-    const res = await WPnext(
+    const res = await WP(
       `query getSearchData($search: String) {
         drinktips(where: {search: $search}) {
           nodes {
@@ -71,6 +71,7 @@ export const getSearchData = async (search: string) => {
           }
         }
       }`,
+      null,
       { search }
     );
 

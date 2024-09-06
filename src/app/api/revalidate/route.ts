@@ -24,6 +24,15 @@ export async function GET(request: NextRequest) {
     return Response.json({ revalidated: true, now: Date.now(), status: 200 });
   }
 
+  if (path === "post") {
+    revalidateTag("post");
+    return Response.json({ revalidated: true, now: Date.now(), status: 200 });
+  }
+  if (path === "drink") {
+    revalidateTag("drink");
+    return Response.json({ revalidated: true, now: Date.now(), status: 200 });
+  }
+
   if (path === "wine") {
     revalidateTag("wine");
     return Response.json({ revalidated: true, now: Date.now(), status: 200 });

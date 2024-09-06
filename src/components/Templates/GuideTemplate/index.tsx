@@ -1,6 +1,7 @@
 import Newsletter from "@/app/components/Newsletter";
 import Ads from "@/app/components/ads";
 import { getPage } from "@/lib/queries/getPage";
+import { notFound } from "next/navigation";
 import PageHero from "../HeroHeaders/PageHero";
 import ExploreGuides from "./ExploreGuides";
 import links from "./guideLinks.json";
@@ -15,6 +16,7 @@ async function getGuidePage() {
 const GuideTemplate = async ({}: GuideTemplateProps) => {
   const data = await getGuidePage();
 
+  if (!data) return notFound();
   return (
     <>
       <PageHero data={data} links={links} />

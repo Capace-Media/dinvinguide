@@ -20,13 +20,8 @@ const DruvPaginationController = ({
   pageInfo,
   filter,
 }: DruvPaginationControllerProps) => {
-  const {
-    endCursor,
-    hasNextPage,
-    hasPreviousPage,
-    startCursor,
-    offsetPagination,
-  } = pageInfo;
+  const { endCursor, hasNextPage, hasPreviousPage, startCursor, total } =
+    pageInfo;
 
   const router = useRouter();
   const searchParams: any = useSearchParams();
@@ -76,7 +71,7 @@ const DruvPaginationController = ({
           {page}
         </span>{" "}
         av {""}
-        {Math.ceil(parseInt(offsetPagination?.total) / parseInt(first))}
+        {Math.ceil(parseInt(total) / parseInt(first))}
       </div>
 
       <button

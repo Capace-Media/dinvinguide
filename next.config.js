@@ -10,6 +10,12 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "cloud.dinvinguide.se",
+        port: "",
+        pathname: "/wp-content/**",
+      },
+      {
+        protocol: "https",
         hostname: "img.youtube.com",
       },
       {

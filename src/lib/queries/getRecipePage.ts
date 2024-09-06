@@ -1,9 +1,9 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import WP, { WPnext } from "../wp";
+import WP from "../wp";
 
 export const getRecipePage = async () => {
   try {
-    const res = await WPnext(`query getRecipePage {
+    const res = await WP(`query getRecipePage {
         page(id: "recept", idType: URI) {
             page_content {
               intro

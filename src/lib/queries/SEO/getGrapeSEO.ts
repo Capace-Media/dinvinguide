@@ -11,6 +11,7 @@ export const getGrapeSEO = async (id: string) => {
           ${SEO}
         }
       }`,
+      null,
       { id }
     );
 

@@ -1,5 +1,5 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
-import { WPnext } from "../wp";
+import WP from "../wp";
 
 export const getGapesByType = async (
   id?: string | null,
@@ -11,7 +11,7 @@ export const getGapesByType = async (
 ) => {
   try {
     if (id) {
-      const res = await WPnext(
+      const res = await WP(
         `
         query getGapesByType($id: ID!, $last: Int, $first: Int, $before: String, $after: String, $search: String) {
           grapeType(id: $id, idType: SLUG) {
@@ -40,21 +40,22 @@ export const getGapesByType = async (
                 hasNextPage
                 hasPreviousPage
                 startCursor
-                offsetPagination {
+        
                   total
-                }
+                
               }
             }
           }
         }
         `,
+        null,
         { after, before, first, last, id, search }
       );
 
       const data = res.data.grapeType.grapes;
       return data;
     } else {
-      const res = await WPnext(
+      const res = await WP(
         `
         query getGapes($last: Int, $first: Int, $before: String, $after: String, $search: String) {
             grapes(after: $after, first: $first, last: $last, before: $before, where: {search: $search}) {
@@ -81,14 +82,15 @@ export const getGapesByType = async (
                 hasNextPage
                 hasPreviousPage
                 startCursor
-                offsetPagination {
+           
                   total
-                }
+                
               }
             }
           }
         
         `,
+        null,
         { after, before, first, last, search }
       );
 
