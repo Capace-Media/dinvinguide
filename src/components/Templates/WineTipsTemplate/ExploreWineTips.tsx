@@ -70,9 +70,17 @@ const ExploreWineTips = async ({ searchParams }: Props) => {
                       {wine?.node?.acf_dryckestips?.forpackningar}
                     </p>
 
-                    <p className="text-[14px]">
-                      {wine?.node?.acf_dryckestips?.pris}
-                    </p>
+                    {wine?.node?.acf_dryckestips?.pris && (
+                      <p className="flex items-center gap-3 text-[14px]">
+                        {/* <Dollar /> */}
+                        {wine?.node?.acf_dryckestips?.pris?.includes("kr") ||
+                        wine?.node?.acf_dryckestips?.pris.includes("euro") ? (
+                          <span>{wine?.node?.acf_dryckestips?.pris}</span>
+                        ) : (
+                          <span>{wine?.node?.acf_dryckestips?.pris}kr</span>
+                        )}
+                      </p>
+                    )}
                   </div>
                 </Link>
               </li>

@@ -132,7 +132,12 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
               {data?.acf_dryckestips?.pris && (
                 <p className="flex items-center gap-3">
                   {/* <Dollar /> */}
-                  <span>{data.acf_dryckestips.pris}:-</span>
+                  {data.acf_dryckestips.pris.includes("kr") ||
+                  data.acf_dryckestips.pris.includes("euro") ? (
+                    <span>{data.acf_dryckestips.pris}</span>
+                  ) : (
+                    <span>{data.acf_dryckestips.pris}kr</span>
+                  )}
                 </p>
               )}
               {data?.acf_dryckestips?.beskrivning && (
