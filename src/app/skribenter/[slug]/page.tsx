@@ -16,30 +16,12 @@ type PropsPaths = {
   slug: string;
 };
 export async function generateStaticParams() {
-  //const authors = await getAuthors();
-
   return [
     { slug: "fredrikschelin" },
     { slug: "anders" },
     { slug: "sofiaander" },
     { slug: "magnus" },
   ];
-  // const authors = await WP(`query getAllAuthors {
-  //   acfOptionsSkribenter {
-  //     acf_skribenter {
-  //       skribenter {
-  //         slug
-  //       }
-  //     }
-  //   }
-  // }`);
-
-  // return (
-  //   authors?.data?.acfOptionsSkribenter?.acf_skribenter?.skribenter &&
-  //   authors.data.acfOptionsSkribenter.acf_skribenter.skribenter.map(
-  //     (author: any) => ({ slug: author?.slug })
-  //   )
-  // );
 }
 
 type Props = {

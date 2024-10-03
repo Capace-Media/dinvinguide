@@ -53,7 +53,7 @@ export const getPage = async (id: string) => {
           }
         }
       }`,
-      null,
+      "page",
       { id }
     );
 
