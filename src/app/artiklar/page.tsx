@@ -3,6 +3,7 @@ import ArticleTemplate from "@/components/Templates/ArticleTemplate";
 import Line from "@/components/graphic/Line";
 import { getSEOByPage } from "@/lib/queries/getSEOByPage";
 import { Metadata, ResolvingMetadata } from "next";
+import { revalidateTag } from "next/cache";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 import Newsletter from "../components/Newsletter";
 import Ads from "../components/ads";
