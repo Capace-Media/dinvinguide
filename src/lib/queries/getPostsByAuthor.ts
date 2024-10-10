@@ -135,7 +135,7 @@ export const getAllArticles = async (args: DataArgs) => {
         }
       }
       `,
-      null,
+      "post",
       { after, before, search, first, last }
     );
 
