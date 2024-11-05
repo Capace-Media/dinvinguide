@@ -33,7 +33,7 @@ export const viewport = {
 export const metadata: Metadata = {
   title: {
     template: "%s | DinVinguide.se",
-    default: "DinVinguide.se", // a default is required when creating a template
+    default: "DinVinguide.se",
   },
   other: {
     developer: [
