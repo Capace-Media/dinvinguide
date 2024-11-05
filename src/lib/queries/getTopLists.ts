@@ -44,7 +44,8 @@ export const getTopLists = async () => {
             }
           }
         }
-      }`
+      }`,
+      "page"
     );
 
     const users = res.data.page?.acf_topplistor?.aktivaTopplistor;
