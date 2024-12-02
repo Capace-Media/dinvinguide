@@ -13,7 +13,7 @@ interface ErrorProps {
 const ErrorPage: React.FC<ErrorProps> = ({ error, reset }) => {
   useEffect(() => {
     // Log the error to the console for developers
-    console.error(error);
+    console.error("<Error> page: ", error);
   }, [error]);
 
   return (
