@@ -12,7 +12,7 @@ export const getPost = async (id: string) => {
           slug
           uri
           content
-          modifiedGmt
+          modifiedGmt: dateGmt
           ${SEO}
           acf_oldcontent {
             oldContentAcf
@@ -25,7 +25,7 @@ export const getPost = async (id: string) => {
                 title
                 slug
                 uri
-                modifiedGmt
+                modifiedGmt: dateGmt
                 acf_posts {
                   ingress
                 }

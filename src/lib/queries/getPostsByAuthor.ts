@@ -34,7 +34,7 @@ export const getPostsByAuthor = async (
               id
               title
               uri
-              modifiedGmt
+              modifiedGmt: dateGmt
               acf_posts {
                 ingress
               }
@@ -109,7 +109,7 @@ export const getAllArticles = async (args: DataArgs) => {
               id
               title
               uri
-              modifiedGmt
+              modifiedGmt: dateGmt
               acf_posts {
                 ingress
               }

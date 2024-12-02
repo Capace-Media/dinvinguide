@@ -13,7 +13,7 @@ export const getPosts = async () => {
                 id
                 title
                 uri
-                modifiedGmt
+                modifiedGmt: dateGmt
                 acf_posts {
                   ingress
                 }

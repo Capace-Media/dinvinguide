@@ -14,7 +14,7 @@ export const getRecipePage = async () => {
               title
               slug
               id
-              modifiedGmt
+              modifiedGmt: dateGmt
               featuredImage {
                 node {
                   altText
