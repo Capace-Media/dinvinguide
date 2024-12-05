@@ -82,7 +82,7 @@ export default function handleParse(content?: string, parseClasses?: string) {
               }
               domNode.attribs.src = domNode.attribs.src.replace(
                 /^.*\/app\/uploads\//,
-                "https://media.dinvinguide.se/wp-content/uploads/"
+                "https://cloud.dinvinguide.se/wp-content/uploads/"
               );
               if (
                 !domNode.attribs.src.includes("https://") &&
@@ -91,6 +91,13 @@ export default function handleParse(content?: string, parseClasses?: string) {
                 domNode.attribs.src = domNode.attribs.src.replace(
                   "http://",
                   "https://"
+                );
+              }
+
+              if (domNode.attribs.src.includes("https://media.")) {
+                domNode.attribs.src = domNode.attribs.src.replace(
+                  "https://media.",
+                  "https://cloud."
                 );
               }
 
