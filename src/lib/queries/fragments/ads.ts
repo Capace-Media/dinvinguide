@@ -231,7 +231,7 @@ query fetchBottomDLAd {
             title
             acf_ads {
               link
-              toppbanner {
+              sidobanner: toppbanner {
                 mediaItemUrl
                 mediaDetails {
                   width

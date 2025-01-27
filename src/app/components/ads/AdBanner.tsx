@@ -67,6 +67,8 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position, pageType }) => {
         ? "sidobanner"
         : "mobilbanner";
 
+    console.log("ad ====>", ad);
+    console.log("bannerType ==>", bannerType);
     return {
       href: ad ? ad?.acf_ads?.link : fallbackAd?.acf_ads?.link,
       src: ad
@@ -94,6 +96,8 @@ const AdBanner: React.FC<AdBannerProps> = ({ ads, position, pageType }) => {
       setSrc(src);
     } else {
       const { href, src } = getAdData("desktop");
+
+      console.log("src ===>", src);
 
       setHref(href);
       setSrc(src);
