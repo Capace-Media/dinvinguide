@@ -13,7 +13,7 @@ type Props = {
 
 export async function generateMetadata(
   { params }: Props,
-  parent: ResolvingMetadata,
+  parent: ResolvingMetadata
 ): Promise<Metadata> {
   const uriString = params?.slug?.join("/");
   const post = await getSEOByPage(`/${uriString}`);
@@ -45,15 +45,19 @@ export async function generateMetadata(
 const AllPages = async ({ params, searchParams }: Props) => {
   const uri = params?.slug?.join("/");
 
+  if (uri.startsWith("topplistor")) {
+    return notFound(); // Return 404 if the route starts with 'topplistor'
+  }
+
   const data = await getPage(`/${uri}`);
 
   if (!data) {
     return notFound();
   }
   return (
-    <article className="layout bg-white">
+    <div className="layout bg-white">
       <PostTemplate post={data} />
-    </article>
+    </div>
   );
 };
 
