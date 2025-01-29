@@ -37,6 +37,10 @@ export async function GET(request: NextRequest) {
     revalidateTag("drink");
     return Response.json({ revalidated: true, now: Date.now(), status: 200 });
   }
+  if (path === "grape") {
+    revalidateTag("grape");
+    return Response.json({ revalidated: true, now: Date.now(), status: 200 });
+  }
 
   if (path === "wine") {
     revalidateTag("wine");
