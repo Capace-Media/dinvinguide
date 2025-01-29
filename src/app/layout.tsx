@@ -1,7 +1,7 @@
-import Analytics from "@/components/Analytics";
 import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
 import Provider from "@/lib/Provider";
+import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Abril_Fatface, Poppins } from "next/font/google";
 import { draftMode } from "next/headers";
@@ -138,6 +138,9 @@ export default function RootLayout({
 
   return (
     <html lang="sv">
+      <GoogleTagManager
+        gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string}
+      />
       <body className={`${poppins.variable} ${abrilFatface.variable}`}>
         <Provider>
           <Header />
@@ -153,7 +156,6 @@ export default function RootLayout({
                 </div>
               )}
             </main>
-            <Analytics />
           </Suspense>
           <Footer />
         </Provider>
