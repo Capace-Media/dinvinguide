@@ -31,7 +31,7 @@ async function getGrapeData(id: string) {
       }
     }
     `,
-      null,
+      "grape",
       { id }
     );
 
