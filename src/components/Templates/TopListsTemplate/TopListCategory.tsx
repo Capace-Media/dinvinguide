@@ -4,9 +4,10 @@ import { RedWine, Sparkle, WhiteWine } from "@/components/icons";
 import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
 import Link from "next/link";
+import { TopList } from "../../../../types/toplists";
 
 interface TopListCategoryProps {
-  data: any;
+  data: TopList;
   index: number;
 }
 

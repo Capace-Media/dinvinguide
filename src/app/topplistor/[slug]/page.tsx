@@ -3,7 +3,7 @@ import TopListTemplate from "@/components/Templates/TopListTemplate";
 import { getToplistPaths } from "@/lib/queries/getTopListDrinks";
 import { Suspense } from "react";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const data = await getToplistPaths();
