@@ -16,8 +16,6 @@ type Props = {
 const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
   const data = await fetchDrinktip(`/dryckestips/${params?.slug}`);
 
-  console.log(data);
-
   return (
     <>
       <div className="layout bg-white pt-28 ">

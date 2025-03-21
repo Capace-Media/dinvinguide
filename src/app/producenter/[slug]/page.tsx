@@ -55,8 +55,6 @@ const Supplier = async ({ params }: { params: { slug: string } }) => {
     return wine?.__typename === "Drinktip";
   };
 
-  console.log(data);
-
   return (
     <>
       <PageHero data={data} />
