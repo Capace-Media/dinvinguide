@@ -25,3 +25,69 @@ export const getSuppliersQuery = `
     }
   }
 `;
+
+export const getSupplierQuery = `
+  query getSupplierQuery($id: ID!) {
+   leverantR(id: $id, idType: SLUG) {
+    title
+    content
+    excerpt
+    featuredImage {
+      node {
+        altText
+        mediaItemUrl
+      }
+    }
+    drycker_to_leverantor {
+      drycker {
+        ... on Drink {
+          id
+          title
+          slug
+          __typename
+          acf_drinks {
+            dryckestyper {
+              name
+            }
+            forpackningar {
+              name
+            }
+          }
+          featuredImage {
+            node {
+              altText
+              mediaItemUrl
+            }
+          }
+        }
+        ... on Drinktip {
+          id
+          title
+          slug
+          __typename
+          acf_dryckestips {
+            potentielltBetyg
+            betyget
+            dryckestyper
+            forpackningar
+            pris
+            passarTillRecept {
+              ... on Recipe {
+                id
+                title
+                uri
+              }
+            }
+          }
+          featuredImage {
+            node {
+              altText
+              mediaItemUrl
+            }
+          }
+        }
+      }
+    }
+  }
+  }
+`;

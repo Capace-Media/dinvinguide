@@ -1,11 +1,13 @@
 "use server";
 
-import { getSuppliersQuery } from "@/lib/queries/suppliers";
+import { getSupplierQuery, getSuppliersQuery } from "@/lib/queries/suppliers";
 import { tryCatch } from "@/lib/utils/try-catch";
 import { gqlRequest } from "@/lib/wp/client";
 import {
   GetSuppliersParams,
+  SupplierData,
   SuppliersData,
+  TSupplier,
   TSuppliers,
 } from "../../../types/suppliers";
 
@@ -28,6 +30,7 @@ export async function getSuppliers({
         first,
         last,
       },
+      tag: ["leverantor"],
     })
   );
 
@@ -36,4 +39,30 @@ export async function getSuppliers({
   }
 
   return res?.data?.suppliers;
+}
+
+export async function getSupplier({
+  id,
+}: {
+  id: string;
+}): Promise<{ data: SupplierData | null; error: Error | null }> {
+  const {
+    data: res,
+    error,
+    status,
+  } = await tryCatch(
+    gqlRequest<TSupplier>({
+      query: getSupplierQuery,
+      variables: {
+        id: `/leverantor/${id}`,
+      },
+      tag: ["leverantor"],
+    })
+  );
+
+  if (status === "error" || error || !res?.data?.leverantR) {
+    return { data: null, error };
+  }
+
+  return { data: res?.data?.leverantR, error: null };
 }
