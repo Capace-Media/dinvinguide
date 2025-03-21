@@ -83,7 +83,7 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
               <h1 className="normal-case text-[38px] leading-10 font-display">
                 {data.title}
               </h1>
-              {data?.leverantorer_to_drink?.leverantorer?.length > 0 && (
+              {/* {data?.leverantorer_to_drink?.leverantorer?.length > 0 && (
                 <div className="flex items-center gap-2 py-2">
                   <h2 className="uppercase text-base">Producent: </h2>
                   <Link
@@ -94,7 +94,7 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
                     {data?.leverantorer_to_drink?.leverantorer[0].title}
                   </Link>
                 </div>
-              )}
+              )} */}
 
               {data?.acf_dryckestips?.betyget && (
                 <p className="text-[28px]">
