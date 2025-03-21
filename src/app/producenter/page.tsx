@@ -5,8 +5,10 @@ import { getSEOByPage } from "@/lib/queries/getSEOByPage";
 import { Metadata, ResolvingMetadata } from "next";
 
 import { MetaInfo } from "../../../types/MetaInfoTypes";
+import { getSuppliers } from "../actions/suppliers";
 import Ads from "../components/ads";
 import Newsletter from "../components/Newsletter";
+import SuppliersList from "./_components/SuppliersList";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined | null };
@@ -43,11 +45,12 @@ export async function generateMetadata(
 
 export default async function ProducenterPage() {
   const data = await getPage("/producenter");
+
   return (
     <>
       <PageHero data={data} />
       <Ads pageType="default" position="TOP" />
-
+      <SuppliersList />
       <Ads pageType="default" position="MID" />
       <Newsletter />
       <Ads pageType="default" position="BOTTOM" />
