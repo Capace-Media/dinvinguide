@@ -11,6 +11,16 @@ export const getDrink = async (id: string) => {
           uri
           date
           modifiedGmt
+          leverantorer_to_drink {
+            leverantorer {
+              ... on LeverantR {
+                id
+                title
+                slug
+                databaseId
+              }
+            }
+          }
           acf_drinks {
             dryckestyper {
               slug
