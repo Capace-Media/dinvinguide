@@ -7,14 +7,12 @@ import { notFound } from "next/navigation";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { slug: string[] };
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  params: Promise<{ slug: string[] }>;
 };
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   const uriString = params?.slug?.join("/");
   const post = await getSEOByPage(`/${uriString}`);
 
@@ -42,7 +40,8 @@ export async function generateMetadata(
   return data;
 }
 
-const AllPages = async ({ params, searchParams }: Props) => {
+const AllPages = async (props: Props) => {
+  const params = await props.params;
   const uri = params?.slug?.join("/");
 
   if (uri.startsWith("topplistor")) {

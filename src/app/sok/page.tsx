@@ -5,11 +5,12 @@ import Link from "next/link";
 import Newsletter from "../components/Newsletter";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { slug: string };
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  params: Promise<{ slug: string }>;
 };
 
-const SearchPage = async ({ searchParams, params }: Props) => {
+const SearchPage = async (props: Props) => {
+  const searchParams = await props.searchParams;
   const content = searchParams.search || "";
 
   const data = content ? await getSearchData(content) : null;

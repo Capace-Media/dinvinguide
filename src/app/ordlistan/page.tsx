@@ -2,12 +2,14 @@ import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import WordsTemplate from "@/components/Templates/WordsTemplate";
 import { getSEOByPage } from "@/lib/queries/getSEOByPage";
 import { Metadata, ResolvingMetadata } from "next";
-import { ParamsProps } from "../../../types/Global";
+
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { id: string };
+  searchParams: Promise<{
+    [key: string]: string | string[] | any | undefined | null;
+  }>;
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata(
@@ -34,7 +36,8 @@ export async function generateMetadata(
   return data;
 }
 
-const Words = ({ searchParams, params }: ParamsProps) => {
+const Words = async (props: Props) => {
+  const searchParams = await props.searchParams;
   return (
     <>
       <WordsTemplate searchParams={searchParams} />

@@ -17,14 +17,12 @@ import { Suspense } from "react";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
 
 interface RecipeProps {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | any | undefined };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined }>;
 }
 
-export async function generateMetadata(
-  { params, searchParams }: RecipeProps,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: RecipeProps, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   const page = await getRecipeSEO(`/recept/${params.slug}`);
 
   const seo: any = page?.seo;
@@ -87,7 +85,7 @@ async function getRecipeData(
   searchParams?: { [key: string]: string | string[] | any | undefined }
 ) {
   const uri = `/recept/${params.slug}`;
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
   if (!isEnabled) {
     const data = await getSingleRecipe(uri);
 
@@ -102,7 +100,9 @@ async function getRecipeData(
   }
 }
 
-const Recipe = async ({ params, searchParams }: RecipeProps) => {
+const Recipe = async (props: RecipeProps) => {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const uri = `/recept/${params.slug}`;
 
   const data = await getRecipeData(params, searchParams);

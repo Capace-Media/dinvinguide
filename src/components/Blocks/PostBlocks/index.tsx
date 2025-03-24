@@ -1,3 +1,4 @@
+"use client";
 import { FC, Suspense, memo } from "react";
 import { componentsMap, extractComponentKey } from "./componentConfig";
 

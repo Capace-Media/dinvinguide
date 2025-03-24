@@ -3,10 +3,11 @@ import WineSchoolTemplate from "@/components/Templates/WineSchoolTemplate";
 import { Suspense } from "react";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
 };
 
-const WineSchools = ({ searchParams }: Props) => {
+const WineSchools = async (props: Props) => {
+  const searchParams = await props.searchParams;
   const params = { slug: "skolor" };
   return (
     <Suspense fallback={<Loading />}>

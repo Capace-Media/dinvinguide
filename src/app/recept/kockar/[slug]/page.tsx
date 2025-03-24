@@ -1,11 +1,13 @@
 import ChefTemplate from "@/components/Templates/ChefTemplate";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { slug: string };
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  params: Promise<{ slug: string }>;
 };
 
-const Chef = ({ searchParams, params }: Props) => {
+const Chef = async (props: Props) => {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
   return (
     <>
       <ChefTemplate

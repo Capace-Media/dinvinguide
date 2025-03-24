@@ -43,7 +43,8 @@ type Props = {
 //   return data;
 // }
 
-const Supplier = async ({ params }: { params: { slug: string } }) => {
+const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
+  const params = await props.params;
   const { data, error } = await getSupplier({ slug: params.slug });
 
   if (error) {
