@@ -7,14 +7,12 @@ import { Suspense } from "react";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { slug: string };
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   const page = await getDrinkSEO(`/drycker/${params.slug}`);
 
   const seo: any = page?.seo;
@@ -35,7 +33,8 @@ export async function generateMetadata(
   return data;
 }
 
-const Drink = ({ params }: { params: { slug: string } }) => {
+const Drink = async (props: { params: Promise<{ slug: string }> }) => {
+  const params = await props.params;
   return (
     <>
       <Suspense fallback={<Loading />}>

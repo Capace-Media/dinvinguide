@@ -7,14 +7,12 @@ import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../../../types/MetaInfoTypes";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { slug: string };
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   const page = await getRecipeCategorySEO(
     `/receptkategorier/maltider/${params.slug}`
   );
@@ -58,7 +56,9 @@ export async function generateStaticParams() {
   return paths;
 }
 
-const Maltider = ({ searchParams, params }: Props) => {
+const Maltider = async (props: Props) => {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
   return (
     <>
       <RecipeCategoryTemplate

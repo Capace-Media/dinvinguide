@@ -13,7 +13,7 @@ const RecipePagination = ({ data, idString }: RecipePaginationProps) => {
     if (idString && data) {
       scrollToPosts(idString);
     }
-  }, [data]);
+  }, [data, idString]);
   return (
     <>
       <div className="layout bg-white contain">

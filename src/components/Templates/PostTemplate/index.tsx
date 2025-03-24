@@ -1,3 +1,4 @@
+"use client";
 import Line from "@/components/graphic/Line";
 import handleParse from "@/lib/utils/handleParse";
 import PrettyDate from "@/lib/utils/prettyDate";

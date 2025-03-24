@@ -3,14 +3,8 @@ import useWindowSize from "@/hooks/useWindowSize";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 import { Fragment } from "react";
-// import Nav from "./nav";
-// import TopNav from "./topnav";
-const TopNav = dynamic(() => import("./topnav"), {
-  suspense: true,
-});
-const Nav = dynamic(() => import("./nav"), {
-  suspense: true,
-});
+import Nav from "./nav";
+import TopNav from "./topnav";
 
 interface HeaderProps {}
 

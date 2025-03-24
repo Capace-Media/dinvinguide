@@ -11,7 +11,7 @@ import RelatedRecipes from "./RelatedRecipes";
 
 async function getDrinkData({ params }: { params: { slug: string } }) {
   const { slug } = params;
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
 
   if (!isEnabled) {
     const data = await getDrink(`/drycker/${params?.slug}`);

@@ -10,6 +10,14 @@ import { Suspense } from "react";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 import Loading from "../loading";
 import AuthorsHero from "./components/AuthorsHero";
+
+type Props = {
+  searchParams: Promise<{
+    [key: string]: string | string[] | any | undefined | null;
+  }>;
+  params: Promise<{ slug: string }>;
+};
+
 export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
@@ -44,10 +52,6 @@ async function getSEO() {
   const page = await getSEOByPage("/skribenter");
   return page;
 }
-type Props = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
 
 const Authors = async () => {
   const { data, pageData } = await getAuthorsData();

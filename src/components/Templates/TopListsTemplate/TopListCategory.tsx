@@ -1,10 +1,11 @@
-"use client";
-
+"use client";;
 import { RedWine, Sparkle, WhiteWine } from "@/components/icons";
 import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
 import Link from "next/link";
 import { TopList } from "../../../../types/toplists";
+
+import type { JSX } from "react";
 
 interface TopListCategoryProps {
   data: TopList;

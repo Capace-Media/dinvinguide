@@ -1,22 +1,26 @@
 import Newsletter from "@/app/components/Newsletter";
+
 import Ads from "@/app/components/ads";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import ExploreGuides from "@/components/Templates/GuideTemplate/ExploreGuides";
 import WordTemplate from "@/components/Templates/WordTemplate";
 import { getWordSEO } from "@/lib/queries/SEO/getWordSEO";
 import { Metadata, ResolvingMetadata } from "next";
-import { ParamsProps } from "../../../../types/Global";
+
+import ExploreGuides from "@/components/Templates/GuideTemplate/ExploreGuides";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { slug: string };
+  searchParams: Promise<{
+    [key: string]: string | string[] | any | undefined | null;
+  }>;
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  props: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  const params = await props.params;
   const page = await getWordSEO(`/glossary/${params.slug}`);
 
   const seo: any = page?.seo;
@@ -37,7 +41,10 @@ export async function generateMetadata(
   return data;
 }
 
-const Word = ({ searchParams, params }: ParamsProps) => {
+const WordDetailPage = async (props: Props) => {
+  const params = await props.params;
+  //const searchParams = await props.searchParams;
+
   return (
     <>
       <WordTemplate params={params} />
@@ -49,4 +56,4 @@ const Word = ({ searchParams, params }: ParamsProps) => {
   );
 };
 
-export default Word;
+export default WordDetailPage;

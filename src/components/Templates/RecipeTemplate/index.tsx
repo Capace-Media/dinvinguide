@@ -12,7 +12,7 @@ interface RecipeTemplateProps {
 const RecipeTemplate = ({ promise }: RecipeTemplateProps) => {
   const componentRef = useRef<HTMLDivElement | null>(null);
   const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
+    contentRef: componentRef,
   });
 
   return (

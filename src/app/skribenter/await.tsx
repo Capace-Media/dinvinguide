@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 export default async function Await<T>({
   promise,
   children,

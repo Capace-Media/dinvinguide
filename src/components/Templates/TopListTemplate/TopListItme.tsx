@@ -4,7 +4,7 @@ import PrettyDate from "@/lib/utils/prettyDate";
 import { cleanUrl } from "@/lib/utils/urlUtils";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type JSX } from "react";
 
 interface TopListItemProps {
   data: any;

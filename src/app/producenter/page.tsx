@@ -5,14 +5,16 @@ import { getSEOByPage } from "@/lib/queries/getSEOByPage";
 import { Metadata, ResolvingMetadata } from "next";
 
 import { MetaInfo } from "../../../types/MetaInfoTypes";
-import { getSuppliers } from "../actions/suppliers";
+
 import Ads from "../components/ads";
 import Newsletter from "../components/Newsletter";
 import SuppliersList from "./_components/SuppliersList";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { id: string };
+  searchParams: Promise<{
+    [key: string]: string | string[] | any | undefined | null;
+  }>;
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata(

@@ -22,6 +22,7 @@ const PhoneMenu = ({ menuItems }: any) => {
           </Menu.Button>
 
           <Transition
+            as="div"
             className={`fixed left-0 w-full h-full top-[65px] duration-75 ease-in-out `}
             enter="transition duration-100 ease-out"
             enterFrom="transform scale-95 opacity-0"

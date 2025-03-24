@@ -3,11 +3,13 @@ import { getWineAtlasPage } from "@/lib/queries/getWineAtlasPage";
 import MorePosts from "./MorePost";
 
 type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
 };
 
-const SingleWineAtlas = async ({ params, searchParams }: Props) => {
+const SingleWineAtlas = async (props: Props) => {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const data = await getWineAtlasPage(`/vinguide/vinatlas/${params.slug}`);
   return (
     <article className="layout bg-white">

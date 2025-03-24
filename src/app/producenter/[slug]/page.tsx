@@ -43,14 +43,13 @@ type Props = {
 //   return data;
 // }
 
-const Supplier = async ({ params }: { params: { slug: string } }) => {
+const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
+  const params = await props.params;
   const { data, error } = await getSupplier({ slug: params.slug });
 
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
-  console.log("data: ", data);
 
   // Type guard function
   const isDrinkTip = (wine: any): wine is DrinkTip => {

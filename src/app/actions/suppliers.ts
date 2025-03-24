@@ -47,7 +47,7 @@ export async function getSupplier({
   slug: string;
 }): Promise<{ data: SupplierData | null; error: Error | null }> {
   const id = `/leverantor/${slug}`;
-  console.log("id: ", id);
+
   const {
     data: res,
     error,
