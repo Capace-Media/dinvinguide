@@ -273,6 +273,16 @@ export const getPreviousToplistDrinks = async () => {
                   uri
                   title
                   slug
+                  leverantorer_to_drink {
+                    leverantorer {
+                      ... on LeverantR {
+                        id
+                        title
+                        slug
+                        databaseId
+                      }
+                    }
+                  }
                   acf_drinks {
                     ekologiskt
                     betyg
@@ -407,6 +417,16 @@ export const getCurrentToplistDrinks = async () => {
                   uri
                   title
                   slug
+                  leverantorer_to_drink {
+                    leverantorer {
+                      ... on LeverantR {
+                        id
+                        title
+                        slug
+                        databaseId
+                      }
+                    }
+                  }
                   acf_drinks {
                     ekologiskt
                     betyg
@@ -536,6 +556,16 @@ export const getFallbackToplistDrinks = async () => {
                   uri
                   title
                   slug
+                  leverantorer_to_drink {
+                    leverantorer {
+                      ... on LeverantR {
+                        id
+                        title
+                        slug
+                        databaseId
+                      }
+                    }
+                  }
                   acf_drinks {
                     ekologiskt
                     betyg
