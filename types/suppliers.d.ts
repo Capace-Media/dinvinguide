@@ -70,27 +70,27 @@ export interface DrinkTip extends DrinkBase {
 }
 
 export interface Drink extends DrinkBase {
-  __typename: "Drink";
+  __typename?: "Drink";
   acf_drinks?: {
     dryckestyper?: {
-      name: string;
+      name?: string;
     };
     forpackningar?: {
-      name: string;
+      name?: string;
     };
   };
 }
 
 export interface SupplierDrinkConnection {
-  drycker: (Drink | DrinkTip)[];
+  drycker?: (Drink | DrinkTip)[];
 }
 
 export interface SupplierData {
   title: string;
-  content: string;
-  excerpt: string;
-  drycker_to_leverantor: SupplierDrinkConnection;
-  featuredImage: SupplierFeaturedImage;
+  content?: string;
+  excerpt?: string;
+  drycker_to_leverantor?: SupplierDrinkConnection;
+  featuredImage?: SupplierFeaturedImage;
 }
 
 export interface TSupplier {

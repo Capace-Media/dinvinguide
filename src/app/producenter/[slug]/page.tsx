@@ -44,11 +44,13 @@ type Props = {
 // }
 
 const Supplier = async ({ params }: { params: { slug: string } }) => {
-  const { data, error } = await getSupplier({ id: params.slug });
+  const { data, error } = await getSupplier({ slug: params.slug });
 
   if (error) {
     return <div>Error: {error.message}</div>;
   }
+
+  console.log("data: ", data);
 
   // Type guard function
   const isDrinkTip = (wine: any): wine is DrinkTip => {

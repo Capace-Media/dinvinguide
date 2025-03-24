@@ -42,10 +42,12 @@ export async function getSuppliers({
 }
 
 export async function getSupplier({
-  id,
+  slug,
 }: {
-  id: string;
+  slug: string;
 }): Promise<{ data: SupplierData | null; error: Error | null }> {
+  const id = `/leverantor/${slug}`;
+  console.log("id: ", id);
   const {
     data: res,
     error,
@@ -54,7 +56,7 @@ export async function getSupplier({
     gqlRequest<TSupplier>({
       query: getSupplierQuery,
       variables: {
-        id: `/leverantor/${id}`,
+        id,
       },
       tag: ["leverantor"],
     })
@@ -64,5 +66,14 @@ export async function getSupplier({
     return { data: null, error };
   }
 
-  return { data: res?.data?.leverantR, error: null };
+  const leverantor = res.data.leverantR;
+
+  if (leverantor?.drycker_to_leverantor?.drycker) {
+    leverantor.drycker_to_leverantor.drycker =
+      leverantor.drycker_to_leverantor.drycker.filter(
+        (d: unknown) => d !== null
+      );
+  }
+
+  return { data: leverantor, error: null };
 }

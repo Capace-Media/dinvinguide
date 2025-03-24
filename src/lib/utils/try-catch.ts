@@ -20,6 +20,7 @@ export async function tryCatch<T, E = Error>(
 ): Promise<Result<T, E>> {
   try {
     const data = await promise;
+
     return { status: "success", data, error: null };
   } catch (error) {
     return {

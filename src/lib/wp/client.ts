@@ -16,14 +16,13 @@ export async function gqlRequest<T>({
   tag,
 }: GraphQLRequestProps): Promise<{ data: T | null; error: string | null }> {
   try {
-    const authString = `${env.CMS_GRAPHQL_AUTH_USER}:${env.CMS_GRAPHQL_AUTH_PASSWORD}`;
-    const authHeader = `Basic ${btoa(authString)}`;
+    // const authString = `${env.CMS_GRAPHQL_AUTH_USER}:${env.CMS_GRAPHQL_AUTH_PASSWORD}`;
+    // const authHeader = `Basic ${btoa(authString)}`;
 
     const fetchOptions: RequestInit = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: authHeader,
       },
       body: JSON.stringify({ query, variables }),
       cache: "force-cache",
