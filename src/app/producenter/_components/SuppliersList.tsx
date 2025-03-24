@@ -53,6 +53,10 @@ export default function SuppliersList() {
         first: before ? undefined : pageSize,
         last: before ? pageSize : undefined,
       }),
+    refetchOnMount: true,
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
+    staleTime: 60 * 1000,
   });
 
   // Handle navigation to next page
