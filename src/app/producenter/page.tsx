@@ -6,6 +6,12 @@ import { Metadata, ResolvingMetadata } from "next";
 
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+import { getSuppliers } from "../actions/suppliers";
 import Ads from "../components/ads";
 import Newsletter from "../components/Newsletter";
 import SuppliersList from "./_components/SuppliersList";
@@ -48,11 +54,18 @@ export async function generateMetadata(
 export default async function ProducenterPage() {
   const data = await getPage("/producenter");
 
+  const queryClient = new QueryClient();
+  queryClient.prefetchQuery({
+    queryKey: ["suppliers"],
+    queryFn: () => getSuppliers({}),
+  });
   return (
     <>
       <PageHero data={data} />
       <Ads pageType="default" position="TOP" />
-      <SuppliersList />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <SuppliersList />
+      </HydrationBoundary>
       <Ads pageType="default" position="MID" />
       <Newsletter />
       <Ads pageType="default" position="BOTTOM" />
