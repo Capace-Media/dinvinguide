@@ -49,7 +49,12 @@ export async function GET(request: NextRequest) {
   if (path === "leverantor") {
     revalidateTag("supplier");
     revalidatePath("/producenter");
-    return Response.json({ revalidated: true, now: Date.now(), status: 200 });
+    return Response.json({
+      revalidated: true,
+      now: Date.now(),
+      queryKey: "suppliers",
+      status: 200,
+    });
   }
   if (path) {
     revalidatePath(path);
