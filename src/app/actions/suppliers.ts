@@ -30,7 +30,7 @@ export async function getSuppliers({
         first,
         last,
       },
-      tag: ["leverantor"],
+      tag: ["supplier"],
     })
   );
 
@@ -58,7 +58,7 @@ export async function getSupplier({
       variables: {
         id,
       },
-      tag: ["leverantor"],
+      tag: ["supplier"],
     })
   );
 

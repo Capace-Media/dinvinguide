@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
     return Response.json({ revalidated: true, now: Date.now(), status: 200 });
   }
   if (path === "leverantor") {
-    revalidateTag("leverantor");
+    revalidateTag("supplier");
     return Response.json({ revalidated: true, now: Date.now(), status: 200 });
   }
   if (path) {
