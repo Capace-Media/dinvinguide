@@ -1,3 +1,5 @@
+@use "../_variables" as *;
+
 @media (min-width: 1024px) {
   .group:hover .shake-image {
     animation: shake 0.7s; /* duration of 0.5s */

@@ -13,8 +13,10 @@ async function getData() {
   return { page: res };
 }
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { id: string };
+  searchParams: Promise<{
+    [key: string]: string | string[] | any | undefined | null;
+  }>;
+  params: Promise<{ id: string }>;
 };
 
 export async function generateMetadata(

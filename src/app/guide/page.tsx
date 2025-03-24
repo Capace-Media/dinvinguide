@@ -8,8 +8,10 @@ import { MetaInfo } from "../../../types/MetaInfoTypes";
 import Loading from "../loading";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { id: string };
+  searchParams: Promise<{
+    [key: string]: string | string[] | any | undefined | null;
+  }>;
+  params: Promise<{ id: string }>;
 };
 
 export async function generateMetadata(
@@ -40,7 +42,10 @@ export async function generateMetadata(
   return data;
 }
 
-const Guider = () => {
+const GuidePage = async (props: Props) => {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
+
   return (
     <Suspense fallback={<Loading />}>
       <GuideTemplate />
@@ -48,4 +53,4 @@ const Guider = () => {
   );
 };
 
-export default Guider;
+export default GuidePage;

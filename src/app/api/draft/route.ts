@@ -27,7 +27,7 @@ export async function GET(request: Request): Promise<Response | void> {
     return new Response("Invalid token", { status: 401 });
   }
 
-  draftMode().enable();
+  (await draftMode()).enable();
 
   const basePathMapping: { [key: string]: () => string | undefined } = {
     post: () => (author ? `/skribenter/${author}/${pid}` : undefined),

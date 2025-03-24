@@ -2,14 +2,12 @@ import PostTemplate from "@/components/Templates/PostTemplate";
 import { getWineAtlasPage } from "@/lib/queries/getWineAtlasPage";
 
 type SingleWineAtlasIdProps = {
-  params: { slug: string; id: string };
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
+  params: Promise<{ slug: string; id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
 };
 
-const SingleWineAtlasId = async ({
-  params,
-  searchParams,
-}: SingleWineAtlasIdProps) => {
+const SingleWineAtlasId = async (props: SingleWineAtlasIdProps) => {
+  const params = await props.params;
   const data = await getWineAtlasPage(
     `/vinguide/vinatlas/${params.slug}/${params.id}`
   );

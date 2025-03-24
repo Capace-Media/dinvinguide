@@ -10,8 +10,8 @@ async function getSEO() {
 }
 
 type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | any | undefined };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined }>;
 };
 
 export async function generateMetadata(
@@ -38,7 +38,8 @@ export async function generateMetadata(
   return data;
 }
 
-const Drinks = ({ searchParams, params }: Props) => {
+const Drinks = async (props: Props) => {
+  const searchParams = await props.searchParams;
   return (
     <>
       <WineExplorerTemplate searchParams={searchParams} />

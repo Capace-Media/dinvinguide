@@ -7,8 +7,8 @@ import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import { Suspense } from "react";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { id: string };
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  params: Promise<{ id: string }>;
 };
 
 export async function generateMetadata(
@@ -34,7 +34,8 @@ export async function generateMetadata(
 
   return data;
 }
-const VinTV = ({ searchParams }: Props) => {
+const VinTV = async (props: Props) => {
+  const searchParams = await props.searchParams;
   const params = { slug: "vin-tv" };
   return (
     <Suspense fallback={<Loading />}>

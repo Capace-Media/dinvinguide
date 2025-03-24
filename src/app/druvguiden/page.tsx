@@ -8,8 +8,8 @@ import { Suspense } from "react";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { id: string };
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  params: Promise<{ id: string }>;
 };
 
 export async function generateMetadata(
@@ -36,7 +36,8 @@ export async function generateMetadata(
   return data;
 }
 
-const Druvguiden = ({ searchParams }: Props) => {
+const Druvguiden = async (props: Props) => {
+  const searchParams = await props.searchParams;
   const params = { slug: "druvguiden" };
   return (
     <Suspense fallback={<Loading />}>

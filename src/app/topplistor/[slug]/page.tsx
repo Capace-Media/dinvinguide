@@ -17,7 +17,8 @@ export async function generateStaticParams() {
 
   return paths;
 }
-const SingelTopList = ({ params }: { params: { slug: string } }) => {
+const SingelTopList = async (props: { params: Promise<{ slug: string }> }) => {
+  const params = await props.params;
   return (
     <Suspense fallback={<Loading />}>
       <TopListTemplate params={params} />

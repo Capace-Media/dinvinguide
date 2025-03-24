@@ -1,18 +1,19 @@
 import { getToplists } from "@/lib/queries/getTopListDrinks";
 import dynamic from "next/dynamic";
-
 const Newsletter = dynamic(() => import("@/app/components/Newsletter"), {
-  suspense: true,
+  loading: () => <p>Loading...</p>,
 });
-const Ads = dynamic(() => import("@/app/components/ads"), { suspense: true });
+const Ads = dynamic(() => import("@/app/components/ads"), {
+  loading: () => <p>Loading...</p>,
+});
 const DLHero = dynamic(() => import("../HeroHeaders/DLHero"), {
-  suspense: true,
+  loading: () => <p>Loading...</p>,
 });
 const TopListLinks = dynamic(() => import("../TopListsTemplate/TopListLinks"), {
-  suspense: true,
+  loading: () => <p>Loading...</p>,
 });
 const TopListItems = dynamic(() => import("./TopListItems"), {
-  suspense: true,
+  loading: () => <p>Loading...</p>,
 });
 
 interface Params {

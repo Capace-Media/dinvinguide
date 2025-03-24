@@ -9,8 +9,8 @@ import Newsletter from "../components/Newsletter";
 import Ads from "../components/ads";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { id: string };
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  params: Promise<{ id: string }>;
 };
 
 export async function generateMetadata(
@@ -37,7 +37,8 @@ export async function generateMetadata(
   return data;
 }
 
-const Articles = ({ searchParams, params }: Props) => {
+const Articles = async (props: Props) => {
+  const searchParams = await props.searchParams;
   return (
     <>
       <div className="layout bg-white pt-20">

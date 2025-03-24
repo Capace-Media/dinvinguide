@@ -84,6 +84,16 @@ export const fetchDrinktip = async (id: string) => {
           slug
           uri
           modifiedGmt
+          leverantorer_to_drink {
+            leverantorer {
+              ... on LeverantR {
+                id
+                title
+                slug
+                databaseId
+              }
+            }
+          }
           featuredImage {
             node {
               mediaItemUrl

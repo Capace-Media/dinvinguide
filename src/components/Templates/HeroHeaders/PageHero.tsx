@@ -26,6 +26,11 @@ const PageHero = ({ data, links, guide }: PageHeroProps) => {
                       <h1>{data?.title}</h1>
                       <p>{data?.acf_grape?.kortBeskrivning}</p>
                     </>
+                  ) : data?.excerpt ? (
+                    <>
+                      <h1>{data?.title}</h1>
+                      <p>{handleParse(data?.excerpt)}</p>
+                    </>
                   ) : (
                     <h1>{data?.title}</h1>
                   )}

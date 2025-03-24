@@ -25,8 +25,8 @@ export async function generateStaticParams() {
 }
 
 type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | any | undefined };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined }>;
 };
 
 async function getAuthorData(id: string, search?: string) {
@@ -40,10 +40,8 @@ async function getAuthorData(id: string, search?: string) {
   return authorProps;
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   const { slug } = params;
 
   const page = await getAuthorData(slug);
@@ -72,7 +70,9 @@ export async function generateMetadata(
   return data;
 }
 
-async function SingleAuthorPage({ params, searchParams }: Props) {
+async function SingleAuthorPage(props: Props) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const search =
     typeof searchParams.search === "string" ? searchParams.search : undefined;
 

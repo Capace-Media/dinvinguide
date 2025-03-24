@@ -81,6 +81,18 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
               <h1 className="normal-case text-[38px] leading-10 font-display">
                 {data.title}
               </h1>
+              {/* {data?.leverantorer_to_drink?.leverantorer?.length > 0 && (
+                <div className="flex items-center gap-2 py-2">
+                  <h2 className="uppercase text-base">Producent: </h2>
+                  <Link
+                    href={`/producenter/${data?.leverantorer_to_drink?.leverantorer[0].slug}`}
+                    className="underline text-brand-primary"
+                  >
+                    <span className="sr-only">Läs mer om </span>
+                    {data?.leverantorer_to_drink?.leverantorer[0].title}
+                  </Link>
+                </div>
+              )} */}
 
               {data?.acf_dryckestips?.betyget && (
                 <p className="text-[28px]">
@@ -172,6 +184,7 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
                 )}
               </div>
             </div>
+
             {data?.acf_dryckestips?.bolagetAdress &&
             data?.acf_dryckestips?.bolagetAdress.includes("https://") ? (
               <a

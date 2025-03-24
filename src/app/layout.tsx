@@ -129,12 +129,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const { isEnabled } = draftMode();
+export default async function RootLayout(
+  {
+    children,
+  }: {
+    children: React.ReactNode;
+  }
+) {
+  const { isEnabled } = await draftMode();
 
   return (
     <html lang="sv">
@@ -142,23 +144,21 @@ export default function RootLayout({
         gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string}
       />
       <body className={`${poppins.variable} ${abrilFatface.variable}`}>
-        <Provider>
-          <Header />
-          <Suspense fallback={<Loading />}>
-            <main className="">
-              {children}
-              {isEnabled && (
-                <div className="fixed bottom-0 z-20 bg-white gap-3 py-4 left-0 w-full flex justify-center items-center">
-                  <p>Förhandsgranskning</p>
-                  <Link href="/api/disable-draft" className="btn">
-                    Lämna
-                  </Link>
-                </div>
-              )}
-            </main>
-          </Suspense>
-          <Footer />
-        </Provider>
+        <Header />
+        <Suspense fallback={<Loading />}>
+          <main className="">
+            <Provider>{children}</Provider>
+            {isEnabled && (
+              <div className="fixed bottom-0 z-20 bg-white gap-3 py-4 left-0 w-full flex justify-center items-center">
+                <p>Förhandsgranskning</p>
+                <Link href="/api/disable-draft" className="btn">
+                  Lämna
+                </Link>
+              </div>
+            )}
+          </main>
+        </Suspense>
+        <Footer />
       </body>
     </html>
   );

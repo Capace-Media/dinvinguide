@@ -8,8 +8,8 @@ import { Metadata, ResolvingMetadata } from "next";
 import { draftMode } from "next/headers";
 import { MetaInfo } from "../../../../../types/MetaInfoTypes";
 type Props = {
-  params: { slug: string; post: string };
-  searchParams: { [key: string]: string | string[] | any | undefined };
+  params: Promise<{ slug: string; post: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined }>;
 };
 export async function generateStaticParams() {
   const posts = await WP(`
@@ -40,7 +40,7 @@ async function getPostData(
   params: { post: string; slug: string },
   searchParams?: { [key: string]: string | string[] | any | undefined }
 ) {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
   const { post, slug } = params;
 
   const uri = `/${slug}/${post}`;
@@ -71,10 +71,8 @@ async function getPostData(
   }
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   const post = await getPostData(params);
 
   const seo: any = post?.seo;
@@ -101,7 +99,9 @@ export async function generateMetadata(
   return data;
 }
 
-const Articlepost = async ({ params, searchParams }: Props) => {
+const Articlepost = async (props: Props) => {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const post = await getPostData(params, searchParams);
 
   const jsonLd = generateArticleSchema({

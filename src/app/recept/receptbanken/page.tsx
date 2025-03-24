@@ -5,8 +5,8 @@ import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { id: string };
+  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  params: Promise<{ id: string }>;
 };
 
 export async function generateMetadata(
@@ -33,7 +33,8 @@ export async function generateMetadata(
   return data;
 }
 
-const RecipesBank = ({ searchParams }: Props) => {
+const RecipesBank = async (props: Props) => {
+  const searchParams = await props.searchParams;
   return (
     <>
       <RecipesTemplate searchParams={searchParams} />
