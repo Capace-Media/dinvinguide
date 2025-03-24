@@ -11,7 +11,7 @@
     "svg": "svgr -d src/components/icons src/components/icons/svgs"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.17",
+    "@headlessui/react": "^2.2.0",
     "@next/third-parties": "15.2.3",
     "@tanstack/react-query": "^5.69.0",
     "@types/node": "20.10.5",
@@ -20,7 +20,7 @@
     "autoprefixer": "10.4.16",
     "dayjs": "^1.11.10",
     "eslint-config-next": "15.2.3",
-    "framer-motion": "^10.16.15",
+    "framer-motion": "^12.5.0",
     "html-react-parser": "^5.0.7",
     "next": "15.2.3",
     "next-seo": "^6.4.0",
@@ -28,7 +28,7 @@
     "postcss": "^8.4.31",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-to-print": "^2.14.15",
+    "react-to-print": "^3.0.5",
     "sass": "^1.67.0",
     "sharp": "^0.33.0",
     "tailwindcss": "3.3.7",

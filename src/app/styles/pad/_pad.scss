@@ -1,3 +1,5 @@
+@use "../_variables" as *;
+
 @media (min-width: 768px) {
   .recipe-grid {
     gap: 12px;
