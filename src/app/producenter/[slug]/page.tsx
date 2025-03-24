@@ -51,8 +51,6 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
     return <div>Error: {error.message}</div>;
   }
 
-  console.log("data: ", data);
-
   // Type guard function
   const isDrinkTip = (wine: any): wine is DrinkTip => {
     return wine?.__typename === "Drinktip";
