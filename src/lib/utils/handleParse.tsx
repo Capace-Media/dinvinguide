@@ -47,6 +47,13 @@ export default function handleParse(content?: string, parseClasses?: string) {
                 }
               }
 
+              if (domNode?.attribs?.href?.includes("cloud.dinvinguide.se")) {
+                domNode.attribs.href = domNode.attribs.href.replace(
+                  "cloud.dinvinguide.se",
+                  "dinvinguide.se"
+                );
+              }
+
               if (
                 !domNode?.attribs?.href?.includes("https://dinvinguide.se/") &&
                 !domNode?.attribs?.href?.includes("www.dinvinguide.se/") &&
@@ -101,42 +108,47 @@ export default function handleParse(content?: string, parseClasses?: string) {
                 );
               }
 
-              return (
+              // Check if the image is inside a paragraph
+              const isInsideParagraph = domNode.parent?.name === "p";
+
+              const imageComponent = (
+                <Image
+                  unoptimized
+                  src={domNode.attribs.src}
+                  alt={
+                    domNode?.attribs?.alt
+                      ? domNode.attribs.alt
+                      : "Bild från DinVinguide.se"
+                  }
+                  width={domNode?.attribs?.width ? domNode.attribs.width : 300}
+                  height={
+                    domNode?.attribs?.height ? domNode.attribs.height : 300
+                  }
+                  style={{
+                    maxWidth: `${domNode?.attribs?.width}px`,
+                    maxHeight: `${domNode?.attribs?.height}px`,
+                    width: `${domNode?.attribs?.width}px`,
+                    height: `${domNode?.attribs?.height}px`,
+                    objectFit: "cover",
+                  }}
+                  className={domNode.attribs.class}
+                  sizes={domNode?.attribs?.sizes}
+                />
+              );
+
+              // If inside paragraph, return Image directly, otherwise wrap in div
+              return isInsideParagraph ? (
+                imageComponent
+              ) : (
                 <div
                   className={domNode.attribs.class}
                   style={{
                     maxWidth: `${domNode?.attribs?.width}px`,
-
                     maxHeight: `${domNode?.attribs?.height}px`,
                     position: "relative",
                   }}
                 >
-                  {domNode?.attribs?.src && (
-                    <Image
-                      unoptimized
-                      src={domNode.attribs.src}
-                      alt={
-                        domNode?.attribs?.alt
-                          ? domNode.attribs.alt
-                          : "Bild från DinVinguide.se"
-                      }
-                      width={
-                        domNode?.attribs?.width ? domNode.attribs.width : 300
-                      }
-                      height={
-                        domNode?.attribs?.height ? domNode.attribs.height : 300
-                      }
-                      style={{
-                        width: `${domNode?.attribs?.width}px`,
-
-                        height: `${domNode?.attribs?.height}px`,
-
-                        objectFit: "cover",
-                      }}
-                      className={domNode.attribs.class}
-                      sizes={domNode?.attribs?.sizes}
-                    />
-                  )}
+                  {imageComponent}
                 </div>
               );
             }
