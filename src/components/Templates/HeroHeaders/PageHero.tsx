@@ -29,7 +29,7 @@ const PageHero = ({ data, links, guide }: PageHeroProps) => {
                   ) : data?.excerpt ? (
                     <>
                       <h1>{data?.title}</h1>
-                      <p>{handleParse(data?.excerpt)}</p>
+                      <div>{handleParse(data?.excerpt)}</div>
                     </>
                   ) : (
                     <h1>{data?.title}</h1>

@@ -13,19 +13,21 @@ const Aside = ({ author, related }: AsideProps) => {
     <aside className="md:col-span-2 lg:pl-10">
       <div className=" w-full bg-brand-primary p-4">
         <div className="relative w-full min-h-[500px]">
-          <Image
-            src={author?.acf_user?.bild?.mediaItemUrl}
-            alt={
-              author?.acf_user?.bild?.altText
-                ? author.acf_user.bild.altText
-                : "Bild från dinvinguide"
-            }
-            fill
-            style={{
-              objectFit: "cover",
-            }}
-            sizes="(min-width: 1860px) 551px, (min-width: 1040px) calc(36.88vw - 128px), (min-width: 780px) calc(40vw - 131px), calc(100vw - 104px)"
-          />
+          {author?.acf_user?.bild?.mediaItemUrl && (
+            <Image
+              src={author.acf_user.bild.mediaItemUrl}
+              alt={
+                author?.acf_user?.bild?.altText
+                  ? author.acf_user.bild.altText
+                  : "Bild från dinvinguide"
+              }
+              fill
+              style={{
+                objectFit: "cover",
+              }}
+              sizes="(min-width: 1860px) 551px, (min-width: 1040px) calc(36.88vw - 128px), (min-width: 780px) calc(40vw - 131px), calc(100vw - 104px)"
+            />
+          )}
         </div>
         <div className="text-white text-center py-10">
           <p className=" font-sub text-[29px] pb-6">{author?.name}</p>

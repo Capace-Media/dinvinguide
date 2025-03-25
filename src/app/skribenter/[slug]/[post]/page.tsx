@@ -71,7 +71,10 @@ async function getPostData(
   }
 }
 
-export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  props: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const params = await props.params;
   const post = await getPostData(params);
 
@@ -117,6 +120,8 @@ const Articlepost = async (props: Props) => {
       "https://media.dinvinguide.se/wp-content/uploads/2023/12/DinVinguidesLogo.png",
     articleBody: post?.acf_posts?.ingress,
   });
+
+  console.log("posts ===>", post);
   return (
     <article className="layout bg-white">
       <script

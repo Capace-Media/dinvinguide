@@ -1,7 +1,7 @@
 import parse, { DOMNode } from "html-react-parser";
 import Image from "next/image";
 
-export default function handleParse(content?: string, parseClasses?: string) {
+export default function handleParse(content: string, parseClasses?: string) {
   const thContents: any = [];
   let thIndex = 0;
   if (!content) {
@@ -151,6 +151,27 @@ export default function handleParse(content?: string, parseClasses?: string) {
                   {imageComponent}
                 </div>
               );
+            }
+
+            // Add new handling for paragraphs containing div elements
+            if (domNode.name === "p") {
+              // Check if paragraph contains any div elements
+              const hasDiv = domNode.children?.some(
+                (child: any) =>
+                  child.name === "div" ||
+                  (child.name === "a" &&
+                    child.children?.some((c: any) => c.name === "div"))
+              );
+
+              if (hasDiv) {
+                // Instead of wrapping in a paragraph, return the content directly
+                return domNode.children.map((child: any, index: number) => {
+                  if (typeof child === "string" || child.type === "text") {
+                    return <span key={index}>{child.data}</span>;
+                  }
+                  return parse(child.data || "");
+                });
+              }
             }
           },
         })}
