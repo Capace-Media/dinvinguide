@@ -31,6 +31,16 @@ const nextConfig = {
         destination: "/vinatlas",
         permanent: true,
       },
+      {
+        source: "/producenter",
+        destination: "/importorer",
+        permanent: true,
+      },
+      {
+        source: "/producenter/:slug",
+        destination: "/importorer/:slug",
+        permanent: true,
+      },
 
       {
         source: "/vinguide/vinatlas/:slug",
