@@ -57,6 +57,14 @@ const DrinkTipsHero = ({ data }: DrinkTipsHeroProps) => {
                     Receptbanken
                   </Link>
                 </li>
+                <li className="border-b-2 border-brand-primary">
+                  <Link
+                    className="uppercase text-brand-primary text-[14px]"
+                    href="/importorer"
+                  >
+                    Svenska importörer
+                  </Link>
+                </li>
               </menu>
             </div>
           </div>
