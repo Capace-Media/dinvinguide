@@ -27,7 +27,7 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const page = await getSEOByPage("/producenter");
+  const page = await getSEOByPage("/importorer");
 
   if (!page) {
     return {};
@@ -52,7 +52,7 @@ export async function generateMetadata(
 }
 
 export default async function ProducenterPage() {
-  const data = await getPage("/producenter");
+  const data = await getPage("/importorer");
 
   const queryClient = new QueryClient();
   queryClient.prefetchQuery({

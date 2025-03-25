@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
   }
   if (path === "supplier") {
     revalidateTag("supplier");
-    revalidatePath("/producenter");
+    revalidatePath("/importorer");
     return Response.json({
       revalidated: true,
       now: Date.now(),

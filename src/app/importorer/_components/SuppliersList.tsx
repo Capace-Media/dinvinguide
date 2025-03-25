@@ -145,7 +145,7 @@ export default function SuppliersList() {
             key={supplier.node.id}
             className="group lg:hover:-translate-y-[7px] lg:ease-in-out lg:duration-200"
           >
-            <Link href={`/producenter/${supplier.node.slug}`}>
+            <Link href={`/importorer/${supplier.node.slug}`}>
               <div className="relative h-[200px] w-full bg-[#F5F5F5] rounded-t-[10px]">
                 {supplier.node.featuredImage?.node?.mediaItemUrl ? (
                   <Image
