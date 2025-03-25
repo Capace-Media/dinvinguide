@@ -61,7 +61,7 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
       <PageHero data={data} />
       <article className="layout bg-white">
         <div className="lg:grid lg:grid-cols-2 py-10">
-          {handleParse(data?.content)}
+          {handleParse(data?.content || "")}
 
           <div></div>
         </div>
