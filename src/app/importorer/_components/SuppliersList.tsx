@@ -105,7 +105,7 @@ export default function SuppliersList() {
       <section className="bg-white layout contain">
         <div>
           <h2 className="text-[2rem] font-bold pb-10">
-            Utforska våra producenter
+            Utforska våra importörer
           </h2>
         </div>
 
@@ -135,7 +135,7 @@ export default function SuppliersList() {
     <section className="bg-white layout contain">
       <div>
         <h2 className="text-[2rem] font-bold pb-10">
-          Utforska våra producenter
+          Utforska våra importörer
         </h2>
       </div>
 

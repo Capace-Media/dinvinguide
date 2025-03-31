@@ -120,7 +120,7 @@ const TopListItem: React.FC<MyComponentProps> = ({
             </Link>
             {data?.leverantorer_to_drink?.leverantorer?.length > 0 && (
               <div className="flex items-center gap-2 py-2">
-                <h3 className="uppercase text-base">Producent: </h3>
+                <h3 className="uppercase text-base">Importör: </h3>
                 <Link
                   href={`/importorer/${data?.leverantorer_to_drink?.leverantorer[0].slug}`}
                   className="underline text-brand-primary"
