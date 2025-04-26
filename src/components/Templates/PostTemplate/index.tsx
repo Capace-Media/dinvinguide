@@ -94,7 +94,7 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
           <h1 className="font-sub pb-5">{post?.title}</h1>
           {post?.acf_posts?.ingress && (
             <div className=" italic text-[14px] pb-3">
-              {handleParse(post?.acf_posts?.ingress)}
+              {handleParse(post.acf_posts.ingress)}
             </div>
           )}
           {post?.featuredImage?.node?.mediaItemUrl && (
@@ -112,18 +112,18 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
           )}
         </div>
         {post?.acf_posts?.sektioner && (
-          <Blocks blocks={post?.acf_posts?.sektioner} />
+          <Blocks blocks={post.acf_posts.sektioner} />
         )}
         {post?.content && (
           <div>
             <h1 className="font-sub pb-5">{post?.title}</h1>
-            {handleParse(post?.content)}
+            {handleParse(post.content)}
           </div>
         )}
         {post?.acf_oldcontent?.oldContentAcf && (
           <div>
             <h1 className="font-sub pb-5">{post?.title}</h1>
-            {handleParse(post?.acf_oldcontent?.oldContentAcf)}
+            {handleParse(post.acf_oldcontent.oldContentAcf)}
           </div>
         )}
       </div>

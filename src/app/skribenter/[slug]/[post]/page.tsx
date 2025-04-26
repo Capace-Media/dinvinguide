@@ -121,7 +121,6 @@ const Articlepost = async (props: Props) => {
     articleBody: post?.acf_posts?.ingress,
   });
 
-  console.log("posts ===>", post);
   return (
     <article className="layout bg-white">
       <script

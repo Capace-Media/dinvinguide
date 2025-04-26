@@ -13,6 +13,7 @@ const WP = async (query: string, tag?: string | null, variables?: any) => {
       next: {
         tags: tag ? [tag as string] : ["collections"],
       },
+      cache: "force-cache",
       body: JSON.stringify({
         query,
         variables: variables || null,
