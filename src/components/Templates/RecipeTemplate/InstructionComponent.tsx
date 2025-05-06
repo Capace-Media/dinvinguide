@@ -1,4 +1,4 @@
-import Ads from "@/app/components/ads";
+import Ads from "@/app/_components/ads";
 import handleParse from "@/lib/utils/handleParse";
 
 interface InstructionComponentProps {

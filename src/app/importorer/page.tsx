@@ -11,9 +11,9 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
+import Ads from "../_components/ads";
+import Newsletter from "../_components/Newsletter";
 import { getSuppliers } from "../actions/suppliers";
-import Ads from "../components/ads";
-import Newsletter from "../components/Newsletter";
 import SuppliersList from "./_components/SuppliersList";
 
 type Props = {

@@ -2,10 +2,12 @@ import Search from "@/components/Blocks/Search";
 import { getSearchData } from "@/lib/queries/getSearchData";
 import Image from "next/image";
 import Link from "next/link";
-import Newsletter from "../components/Newsletter";
+import Newsletter from "../_components/Newsletter";
 
 type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  searchParams: Promise<{
+    [key: string]: string | string[] | any | undefined | null;
+  }>;
   params: Promise<{ slug: string }>;
 };
 

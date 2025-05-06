@@ -4,13 +4,13 @@ import dynamic from "next/dynamic";
 
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import ExclusiveDrinks from "./components/ExclusiveDrinks";
-import Newsletter from "./components/Newsletter";
-import Ads from "./components/ads";
+import ExclusiveDrinks from "./_components/ExclusiveDrinks";
+import Newsletter from "./_components/Newsletter";
+import Ads from "./_components/ads";
 
-const ExplorePages = dynamic(() => import("./components/ExplorePages"));
-const ExploreRecipes = dynamic(() => import("./components/ExploreRecipes"));
-const LatestArticles = dynamic(() => import("./components/LatestArticles"));
+const ExplorePages = dynamic(() => import("./_components/ExplorePages"));
+const ExploreRecipes = dynamic(() => import("./_components/ExploreRecipes"));
+const LatestArticles = dynamic(() => import("./_components/LatestArticles"));
 
 async function getData() {
   const res = await getFrontPage();

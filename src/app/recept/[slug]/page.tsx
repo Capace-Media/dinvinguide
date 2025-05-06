@@ -1,4 +1,4 @@
-import Ads from "@/app/components/ads";
+import Ads from "@/app/_components/ads";
 import Loading from "@/app/loading";
 import RecipeTemplate from "@/components/Templates/RecipeTemplate";
 import { getRecipeSEO } from "@/lib/queries/SEO/getRecipeSEO";
@@ -21,7 +21,10 @@ interface RecipeProps {
   searchParams: Promise<{ [key: string]: string | string[] | any | undefined }>;
 }
 
-export async function generateMetadata(props: RecipeProps, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  props: RecipeProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const params = await props.params;
   const page = await getRecipeSEO(`/recept/${params.slug}`);
 

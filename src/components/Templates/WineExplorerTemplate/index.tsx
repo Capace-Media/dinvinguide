@@ -1,4 +1,4 @@
-import Ads from "@/app/components/ads";
+import Ads from "@/app/_components/ads";
 import DLHero from "../HeroHeaders/DLHero";
 import TopListLinks from "../TopListsTemplate/TopListLinks";
 

@@ -1,6 +1,6 @@
-import Newsletter from "@/app/components/Newsletter";
-import Separater from "@/app/components/Separater";
-import Ads from "@/app/components/ads";
+import Newsletter from "@/app/_components/Newsletter";
+import Separater from "@/app/_components/Separater";
+import Ads from "@/app/_components/ads";
 import Recipes from "./Recipes";
 
 type Props = {

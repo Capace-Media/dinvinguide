@@ -1,4 +1,4 @@
-import Ads from "@/app/components/ads";
+import Ads from "@/app/_components/ads";
 import { getDrink, getPreviewDrink } from "@/lib/queries/getDrink";
 import PrettyDate from "@/lib/utils/prettyDate";
 import { draftMode } from "next/headers";

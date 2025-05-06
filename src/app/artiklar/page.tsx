@@ -5,11 +5,13 @@ import { getSEOByPage } from "@/lib/queries/getSEOByPage";
 import { Metadata, ResolvingMetadata } from "next";
 import { revalidateTag } from "next/cache";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
-import Newsletter from "../components/Newsletter";
-import Ads from "../components/ads";
+import Newsletter from "../_components/Newsletter";
+import Ads from "../_components/ads";
 
 type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  searchParams: Promise<{
+    [key: string]: string | string[] | any | undefined | null;
+  }>;
   params: Promise<{ id: string }>;
 };
 

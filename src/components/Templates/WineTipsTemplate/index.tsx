@@ -1,5 +1,5 @@
-import Newsletter from "@/app/components/Newsletter";
-import Ads from "@/app/components/ads";
+import Newsletter from "@/app/_components/Newsletter";
+import Ads from "@/app/_components/ads";
 import Line from "@/components/graphic/Line";
 import { getPage } from "@/lib/queries/getPage";
 import DrinkTipsHero from "./DrinkTipsHero";

@@ -1,7 +1,7 @@
 import React from "react";
 import AuthorComponent from "./Author";
 
-import Ads from "@/app/components/ads";
+import Ads from "@/app/_components/ads";
 
 interface AuthorsComponentProps {
   data: any;

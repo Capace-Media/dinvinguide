@@ -3,9 +3,9 @@ import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 
 import { getAuthor } from "@/lib/queries/getAuthor";
 
-import ExplorePages from "@/app/components/ExplorePages";
-import Newsletter from "@/app/components/Newsletter";
-import Ads from "@/app/components/ads";
+import ExplorePages from "@/app/_components/ExplorePages";
+import Newsletter from "@/app/_components/Newsletter";
+import Ads from "@/app/_components/ads";
 import WP from "@/lib/wp";
 import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
@@ -40,7 +40,10 @@ async function getAuthorData(id: string, search?: string) {
   return authorProps;
 }
 
-export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  props: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const params = await props.params;
   const { slug } = params;
 

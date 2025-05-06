@@ -1,5 +1,5 @@
+import Newsletter from "@/app/_components/Newsletter";
 import { getSupplier } from "@/app/actions/suppliers";
-import Newsletter from "@/app/components/Newsletter";
 import Loading from "@/app/loading";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import GrapeTemplate from "@/components/Templates/GrapeTemplate";

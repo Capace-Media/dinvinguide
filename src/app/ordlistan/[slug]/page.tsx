@@ -1,6 +1,6 @@
-import Newsletter from "@/app/components/Newsletter";
+import Newsletter from "@/app/_components/Newsletter";
 
-import Ads from "@/app/components/ads";
+import Ads from "@/app/_components/ads";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import WordTemplate from "@/components/Templates/WordTemplate";
 import { getWordSEO } from "@/lib/queries/SEO/getWordSEO";

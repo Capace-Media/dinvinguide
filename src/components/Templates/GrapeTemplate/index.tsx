@@ -1,4 +1,4 @@
-import Newsletter from "@/app/components/Newsletter";
+import Newsletter from "@/app/_components/Newsletter";
 import handleParse from "@/lib/utils/handleParse";
 
 import WP from "@/lib/wp";

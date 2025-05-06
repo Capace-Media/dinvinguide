@@ -1,9 +1,9 @@
 import { getToplists } from "@/lib/queries/getTopListDrinks";
 import dynamic from "next/dynamic";
-const Newsletter = dynamic(() => import("@/app/components/Newsletter"), {
+const Newsletter = dynamic(() => import("@/app/_components/Newsletter"), {
   loading: () => <p>Loading...</p>,
 });
-const Ads = dynamic(() => import("@/app/components/ads"), {
+const Ads = dynamic(() => import("@/app/_components/ads"), {
   loading: () => <p>Loading...</p>,
 });
 const DLHero = dynamic(() => import("../HeroHeaders/DLHero"), {

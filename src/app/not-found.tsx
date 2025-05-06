@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ExplorePages from "./components/ExplorePages";
+import ExplorePages from "./_components/ExplorePages";
 
 export default function NotFound() {
   return (

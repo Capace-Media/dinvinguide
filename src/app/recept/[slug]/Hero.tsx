@@ -1,4 +1,4 @@
-import Ads from "@/app/components/ads";
+import Ads from "@/app/_components/ads";
 import { ArrowRight, Printer, Time } from "@/components/icons";
 import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";

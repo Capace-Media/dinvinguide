@@ -1,5 +1,5 @@
-import Newsletter from "@/app/components/Newsletter";
-import Ads from "@/app/components/ads";
+import Newsletter from "@/app/_components/Newsletter";
+import Ads from "@/app/_components/ads";
 import Ingrediens from "../RecipesTemplate/Ingrediens";
 import Meals from "../RecipesTemplate/Meals";
 import ChefsRecipes from "./ChefsRecipes";

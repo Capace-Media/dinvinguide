@@ -1,6 +1,6 @@
-import Ads from "@/app/components/ads";
+import Ads from "@/app/_components/ads";
 
-import Newsletter from "@/app/components/Newsletter";
+import Newsletter from "@/app/_components/Newsletter";
 import DLHero from "../HeroHeaders/DLHero";
 import TopListCategories from "./TopListCategories";
 import TopListLinks from "./TopListLinks";

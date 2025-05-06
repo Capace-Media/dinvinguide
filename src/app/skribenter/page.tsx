@@ -1,7 +1,7 @@
 import AuthorsComponent from "@/components/Blocks/skribenter";
 import { getAuthors } from "@/lib/queries/getAuthors";
 import { getPage } from "@/lib/queries/getPage";
-import Ads from "../components/ads";
+import Ads from "../_components/ads";
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import { getSEOByPage } from "@/lib/queries/getSEOByPage";
