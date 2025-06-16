@@ -38,7 +38,7 @@ const Drink = ({ data }: DrinkProps) => {
         <div className="flex flex-col gap-16">
           <div className="flex flex-col gap-1">
             <div>
-              <p>{PrettyDate(data?.modifiedGmt)}</p>
+              <p>{PrettyDate(data?.date)}</p>
             </div>
 
             <h2 className="normal-case text-[38px] leading-10 font-display">
