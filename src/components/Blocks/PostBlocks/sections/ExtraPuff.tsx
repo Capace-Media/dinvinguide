@@ -8,6 +8,10 @@ interface ExtraPuffProps {
 }
 
 const ExtraPuff = ({ content }: ExtraPuffProps) => {
+  if (!content?.extraPuff) {
+    return null;
+  }
+
   const data = content && content?.extraPuff && content?.extraPuff[0];
 
   // const grapeRegex = new RegExp("^/druvor/");
