@@ -9,8 +9,6 @@ export default function DlMid() {
     queryFn: getMidDlAds,
   });
 
-  console.log(data);
-
   if (isLoading) return <DlAdSkeleton />;
   if (error) return <div>Error: {error.message}</div>;
 

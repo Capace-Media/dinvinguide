@@ -3,7 +3,6 @@
 import Image from "next/image";
 
 export default function DlAd({ data }: { data: any }) {
-  console.log("in my ad", data);
   return (
     <div className="bg-white layout contain">
       <div className="flex justify-center items-center">

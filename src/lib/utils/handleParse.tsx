@@ -93,16 +93,27 @@ export default function handleParse(
           src = src.replace("https://media.", "https://cloud.");
         }
 
-        // Return simple img tag - let CSS handle styling
+        // Parse width and height, provide defaults if not available
+        const width = domNode.attribs.width
+          ? parseInt(domNode.attribs.width)
+          : 800;
+        const height = domNode.attribs.height
+          ? parseInt(domNode.attribs.height)
+          : 600;
+
+        // Return Next.js Image component for optimization
         return (
-          <img
+          <Image
             src={src}
             alt={domNode.attribs.alt || "Bild från DinVinGuide"}
             className={domNode.attribs.class}
-            width={domNode.attribs.width}
-            height={domNode.attribs.height}
+            width={width}
+            height={height}
             loading="lazy"
-            decoding="async"
+            style={{
+              width: "auto",
+              height: "auto",
+            }}
           />
         );
       }
