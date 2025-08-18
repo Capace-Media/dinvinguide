@@ -92,6 +92,13 @@ export default function handleParse(
         if (src.includes("https://media.")) {
           src = src.replace("https://media.", "https://cloud.");
         }
+        // Transform dinvinguide.se to cloud.dinvinguide.se
+        if (src.includes("https://dinvinguide.se/")) {
+          src = src.replace(
+            "https://dinvinguide.se/",
+            "https://cloud.dinvinguide.se/"
+          );
+        }
 
         // Parse width and height, provide defaults if not available
         const width = domNode.attribs.width
@@ -101,21 +108,75 @@ export default function handleParse(
           ? parseInt(domNode.attribs.height)
           : 600;
 
-        // Return Next.js Image component for optimization
-        return (
+        // Check if the image is inside a paragraph
+        const isInsideParagraph = domNode.parent?.name === "p";
+
+        // Check if we're inside an inline parent element
+        const inlineParents = [
+          "a",
+          "span",
+          "strong",
+          "em",
+          "b",
+          "i",
+          "u",
+          "code",
+        ];
+        const isInsideInlineElement =
+          domNode.parent && inlineParents.includes(domNode.parent.name);
+
+        const imageComponent = (
           <Image
+            unoptimized
             src={src}
-            alt={domNode.attribs.alt || "Bild från DinVinGuide"}
-            className={domNode.attribs.class}
-            width={width}
-            height={height}
+            alt={domNode.attribs.alt || "Bild från DinVinguide"}
+            width={width || 300}
+            height={height || 300}
             loading="lazy"
             style={{
-              width: "auto",
-              height: "auto",
+              maxWidth: `${domNode?.attribs?.width}px`,
+              maxHeight: `${domNode?.attribs?.height}px`,
+              width: `${domNode?.attribs?.width}px`,
+              height: `${domNode?.attribs?.height}px`,
+              objectFit: "cover",
             }}
+            className={domNode.attribs.class}
+            sizes={domNode?.attribs?.sizes}
           />
         );
+
+        // If inside paragraph, return Image directly
+        // If inside inline element, wrap in span, otherwise wrap in div
+        if (isInsideParagraph) {
+          return imageComponent;
+        } else if (isInsideInlineElement) {
+          return (
+            <span
+              className={domNode.attribs.class}
+              style={{
+                maxWidth: `${domNode?.attribs?.width}px`,
+                maxHeight: `${domNode?.attribs?.height}px`,
+                position: "relative",
+                display: "inline-block",
+              }}
+            >
+              {imageComponent}
+            </span>
+          );
+        } else {
+          return (
+            <div
+              className={domNode.attribs.class}
+              style={{
+                maxWidth: `${domNode?.attribs?.width}px`,
+                maxHeight: `${domNode?.attribs?.height}px`,
+                position: "relative",
+              }}
+            >
+              {imageComponent}
+            </div>
+          );
+        }
       }
 
       if (domNode.name === "a") {
@@ -128,9 +189,21 @@ export default function handleParse(
             const originalString = domNode.attribs.href;
             domNode.attribs.href = originalString.replace(
               /^.*\/app\/uploads\//,
-              "https://media.dinvinguide.se/wp-content/uploads/"
+              "https://cloud.dinvinguide.se/wp-content/uploads/"
+            );
+          } else if (
+            domNode?.attribs?.href?.includes(
+              "dinvinguide.se/wp-content/uploads/"
+            ) &&
+            !domNode?.attribs?.href?.includes("cloud.dinvinguide.se")
+          ) {
+            // Only transform if it doesn't already have cloud.dinvinguide.se
+            domNode.attribs.href = domNode.attribs.href.replace(
+              "dinvinguide.se/wp-content/uploads/",
+              "cloud.dinvinguide.se/wp-content/uploads/"
             );
           }
+
           if (
             domNode?.attribs?.href?.includes("http://") &&
             !domNode?.attribs?.href?.includes("https://")
@@ -140,13 +213,6 @@ export default function handleParse(
               "https://"
             );
           }
-        }
-
-        if (domNode?.attribs?.href?.includes("cloud.dinvinguide.se")) {
-          domNode.attribs.href = domNode.attribs.href.replace(
-            "cloud.dinvinguide.se",
-            "dinvinguide.se"
-          );
         }
 
         if (

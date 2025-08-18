@@ -64,7 +64,12 @@ export const getPostsByAuthor = async (
       { after, before, search, authorName, first, last }
     );
 
-    const users = res.data.posts;
+    const users = res?.data?.posts;
+    if (!users) {
+      return {
+        message: "No articles by this author found",
+      };
+    }
     return users;
   } catch (error) {
     console.error(error);
@@ -139,7 +144,12 @@ export const getAllArticles = async (args: DataArgs) => {
       { after, before, search, first, last }
     );
 
-    const users = res.data.posts;
+    const users = res?.data?.posts;
+    if (!users) {
+      return {
+        message: "No articles found",
+      };
+    }
     return users;
   } catch (error) {
     console.error(error);
