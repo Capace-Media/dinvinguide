@@ -5,6 +5,10 @@ interface BrodtextProps {
 }
 
 const Brodtext = ({ content }: BrodtextProps) => {
+  if (!content.text) {
+    return null;
+  }
+
   return <section className="py-[2rem]">{handleParse(content.text)}</section>;
 };
 

@@ -11,8 +11,6 @@ export default function DlBottom() {
     queryFn: getBottomDlAds,
   });
 
-  console.log(data);
-
   if (isLoading) return <DlAdSkeleton />;
   if (error) return <div>Error: {error.message}</div>;
 

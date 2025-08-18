@@ -3,6 +3,10 @@ interface VideoProps {
 }
 
 const Video = ({ content }: VideoProps) => {
+  if (!content.url) {
+    return null;
+  }
+
   // Function to determine if the URL is from YouTube
   const isYouTubeUrl = (url: string): boolean => {
     const pattern = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;

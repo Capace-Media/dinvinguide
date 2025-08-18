@@ -7,8 +7,6 @@ import WP from "@/lib/wp";
 export async function getFallbackAd() {
   const ads = await tryCatch(WP(FALLBACK_AD, "ads"));
 
-  console.log("fallback ads ???", ads.data.data.options.settings.ad);
-
   if (isFailure(ads)) {
     return {
       status: "error",

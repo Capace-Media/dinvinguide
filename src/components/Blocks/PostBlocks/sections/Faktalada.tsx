@@ -1,6 +1,10 @@
 import handleParse from "@/lib/utils/handleParse";
 
 const Faktalada = ({ content }: any) => {
+  if (!content.text) {
+    return null;
+  }
+
   return (
     <section className="py-[2rem] drop-cap">
       {handleParse(content.text)}

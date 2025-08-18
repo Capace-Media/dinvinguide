@@ -32,12 +32,13 @@ async function getData(args: DataArgs) {
     last
   );
 
+  console.log(data);
   return {
-    posts: data.edges,
-    startCursor: data.pageInfo.startCursor,
-    endCursor: data.pageInfo.endCursor,
-    hasNextPage: data.pageInfo.hasNextPage,
-    hasPreviousPage: data.pageInfo.hasPreviousPage,
+    posts: data?.edges,
+    startCursor: data?.pageInfo?.startCursor,
+    endCursor: data?.pageInfo?.endCursor,
+    hasNextPage: data?.pageInfo?.hasNextPage,
+    hasPreviousPage: data?.pageInfo?.hasPreviousPage,
   };
 }
 const AuthorPosts = async ({
