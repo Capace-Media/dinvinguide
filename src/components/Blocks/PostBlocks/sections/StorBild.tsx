@@ -39,20 +39,17 @@ const StorBild = ({ content }: StorBildProps) => {
   return (
     <section className="py-[2rem]">
       <div className="relative row">
-        <div className="relative flex justify-center w-full">
+        <div
+          className="relative w-full"
+          style={{ aspectRatio: `${width} / ${height}` }}
+        >
           <Image
             src={img.mediaItemUrl}
-            width={width}
-            height={height}
             alt={altText}
-            className="max-w-full h-auto"
-            priority={false} // Enable lazy loading
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
-            style={{
-              width: "auto",
-              height: "auto",
-              maxWidth: "100%",
-            }}
+            fill
+            sizes="100vw"
+            className="object-contain" // or "object-cover"
+            priority={false}
           />
         </div>
 
