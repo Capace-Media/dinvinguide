@@ -39,20 +39,17 @@ const Mellanbild = ({ content }: MellanbildProps) => {
   return (
     <section className="py-[2rem]">
       <div className="relative row contain-sm">
-        <div className="relative flex justify-center">
+        <div
+          className="relative w-full"
+          style={{ aspectRatio: `${width} / ${height}` }}
+        >
           <Image
             src={img.mediaItemUrl}
-            width={width}
-            height={height}
             alt={altText}
-            className="max-w-full h-auto"
-            priority={false} // Enable lazy loading
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-            style={{
-              width: "auto",
-              height: "auto",
-              maxWidth: "100%",
-            }}
+            fill
+            sizes="100vw"
+            className="object-contain" // or "object-cover"
+            priority={false}
           />
         </div>
       </div>
