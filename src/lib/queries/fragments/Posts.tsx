@@ -1,5 +1,5 @@
 export const POSTS = `
-posts(first: 8) {
+posts(first: 8, where: {authorNotIn: [50]}) {
     nodes {
       id
       title
