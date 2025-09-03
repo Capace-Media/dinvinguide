@@ -92,13 +92,13 @@ export const getAllArticles = async (args: DataArgs) => {
   try {
     const res = await WP(
       `
-    query getAllArticles($after: String, $before: String, $search: String, $first: Int, $last: Int) {
+    query getAllArticles($after: String, $before: String, $search: String, $first: Int, $last: Int, $authorNotIn: [ID] = [50]) {
         posts(
           first: $first
           last: $last
           after: $after
           before: $before
-          where: { search: $search}
+          where: { search: $search, authorNotIn: $authorNotIn}
         ) {
           pageInfo {
             hasNextPage
