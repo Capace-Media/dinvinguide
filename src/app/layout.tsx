@@ -39,6 +39,8 @@ export const metadata: Metadata = {
     developer: [
       "Developed by Rick Centerhall - https://www.linkedin.com/in/rickcenterhall/",
     ],
+    "build-info": "Custom Next.js application",
+    "technical-lead": "Rick Centerhall",
   },
   icons: {
     icon: [
@@ -112,10 +114,7 @@ export const metadata: Metadata = {
   generator: "Next.js",
   applicationName: "DinVinguide.se",
   keywords: ["Vin", "Vinguide", "Recept", "Bubbel", "Mat", "Vin resensioner"],
-  authors: [
-    { name: "DinVinguide.se" },
-    { name: "Capace Media AB", url: "https://capace.se/" },
-  ],
+  authors: [{ name: "DinVinguide.se" }],
   creator: "DinVinguide.se Team",
   publisher: "DinVinguide.se",
   formatDetection: {
@@ -129,13 +128,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout(
-  {
-    children,
-  }: {
-    children: React.ReactNode;
-  }
-) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const { isEnabled } = await draftMode();
 
   return (

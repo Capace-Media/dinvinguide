@@ -20,9 +20,9 @@ export const dynamicSeo = async ({
     title: seo?.title || previousMeta.title,
     description: seo?.metaDesc || previousMeta.description,
     alternates: {
-      canonical: uri || previousMeta.alternates.canonical,
+      canonical: uri,
     },
-    keywords: [seo?.metaKeywords] || previousMeta.keywords,
+    keywords: seo?.metaKeywords ? [seo.metaKeywords] : previousMeta.keywords,
     authors: author
       ? [
           {
