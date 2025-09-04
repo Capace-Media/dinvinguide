@@ -49,7 +49,8 @@ const DLHero = ({ hero, drinkType, id }: DLHeroProps) => {
   return (
     <div className="w-full top-[72px] lg:h-[69vh] ">
       <div className="relative h-[16rem] md:h-[20rem] lg:h-[69vh] w-full">
-        <div className="absolute w-full h-full bg-black z-[5] opacity-10 center-x center-y"></div>
+        {/* Dark gradient overlay - left to right */}
+        <div className="absolute w-full h-full z-[5] bg-gradient-to-r from-black/60 via-black/40 to-black/10"></div>
         <Image
           src={determineImageSource()}
           alt={determineAltText()}
@@ -58,9 +59,12 @@ const DLHero = ({ hero, drinkType, id }: DLHeroProps) => {
           sizes="(min-width: 1880px) 1617px, (min-width: 1040px) calc(89.88vw - 55px), (min-width: 780px) calc(100vw - 88px), calc(100vw - 32px)"
           priority
         />
+
         <div className="layout hidden z-10 lg:block bg-transparent w-[50%] py-4 absolute  bottom-[5rem] ">
           {hero?.page_content?.intro && !hero?.acf_explorer?.slogan ? (
-            handleParse(hero?.page_content?.intro)
+            <div className="dl-hero-intro">
+              {handleParse(hero?.page_content?.intro)}
+            </div>
           ) : (
             <div>
               {drinkType || id === "dryckesutforskaren" ? (

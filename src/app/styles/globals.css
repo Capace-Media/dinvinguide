@@ -210,3 +210,14 @@ div.alignright {
     background-image: none !important;
   }
 }
+
+.dl-hero-intro .parsed h1,
+.dl-hero-intro .parsed p,
+.dl-hero-intro .parsed h2,
+.dl-hero-intro .parsed h3,
+.dl-hero-intro .parsed h4,
+.dl-hero-intro .parsed h5,
+.dl-hero-intro .parsed h6,
+.dl-hero-intro .parsed em {
+  @apply text-white;
+}
