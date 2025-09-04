@@ -11,7 +11,7 @@ async function fetchPosts() {
           title
           slug
           uri
-          drinktipId
+          
           id
           modifiedGmt
           featuredImage {
@@ -40,7 +40,6 @@ async function fetchPosts() {
           }
         }
       }
-    
     page(id: $id, idType: URI) {
       id
       GQL_frontPageFields {
@@ -49,7 +48,7 @@ async function fetchPosts() {
             title
             slug
             uri
-            drinktipId
+            
             id
             modifiedGmt
             featuredImage {
@@ -100,6 +99,7 @@ interface ArticleArray {
 
 const ExclusiveDrinks = async () => {
   const posts = await fetchPosts();
+  console.log("posts", posts);
 
   const highlightedDryckestips: any[] =
     posts?.page?.GQL_frontPageFields?.highlightedDryckestips;

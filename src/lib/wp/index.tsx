@@ -4,10 +4,14 @@ const auth = Buffer.from(
 
 const WP = async (query: string, tag?: string | null, variables?: any) => {
   try {
+    const authString = `${process.env.CMS_GRAPHQL_AUTH_USER as string}:${
+      process.env.APPLICATION_NEW_PASSWORD as string
+    }`;
+    const authHeader = `Basic ${btoa(authString)}`;
     const response = await fetch(process.env.CMS_GRAPHQL_URI as string, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.GRAPHQL_AUTH_JWT_AUTH_TOKEN}`,
+        Authorization: authHeader,
         "Content-Type": "application/json",
       },
       next: {
@@ -35,10 +39,14 @@ export default WP;
 
 export const WPServerSide = async (query: string, variables?: any) => {
   try {
+    const authString = `${process.env.CMS_GRAPHQL_AUTH_USER as string}:${
+      process.env.APPLICATION_NEW_PASSWORD as string
+    }`;
+    const authHeader = `Basic ${btoa(authString)}`;
     const response = await fetch(process.env.CMS_GRAPHQL_URI as string, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.GRAPHQL_AUTH_JWT_AUTH_TOKEN}`,
+        Authorization: authHeader,
         "Content-Type": "application/json",
       },
       cache: "no-cache",
