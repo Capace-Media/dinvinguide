@@ -90,6 +90,26 @@ acf_posts {
     ... on Post_AcfPosts_Sektioner_ExtraPuff {
       fieldGroupName
       extraPuff {
+             ... on Drinktip {
+                      __typename
+                      title
+                      slug
+                      uri
+                      featuredImage {
+                        node {
+                          mediaItemUrl
+                          mediaDetails {
+                            width
+                            height
+                          }
+                          altText
+                        }
+                      }
+                      acf_dryckestips {
+                        dryckestyper
+                        forpackningar
+                      }
+                    }
         ... on Grape {
           __typename
           title
