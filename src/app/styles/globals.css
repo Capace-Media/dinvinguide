@@ -65,13 +65,20 @@ html,
 }
 
 div.alignnone,
-div.alignleft {
+div.alignleft,
+span.alignleft {
   @apply mt-0 md:mr-3 md:float-left after:clear-both before:clear-both;
 }
-div.alignright {
+div.alignright,
+span.alignright {
   @apply mt-0 md:ml-3 md:float-right after:clear-both before:clear-both;
 }
-
+div.aligncenter {
+  @apply mt-0 md:mx-auto md:block after:clear-both before:clear-both;
+}
+span.aligncenter {
+  @apply mt-0 md:text-center md:block after:clear-both before:clear-both;
+}
 .layout {
   @apply px-4 md:px-11 lg:px-20 m-auto xl:max-w-[1777px];
 }
