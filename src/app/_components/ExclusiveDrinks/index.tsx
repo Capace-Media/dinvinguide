@@ -99,7 +99,6 @@ interface ArticleArray {
 
 const ExclusiveDrinks = async () => {
   const posts = await fetchPosts();
-  console.log("posts", posts);
 
   const highlightedDryckestips: any[] =
     posts?.page?.GQL_frontPageFields?.highlightedDryckestips;
