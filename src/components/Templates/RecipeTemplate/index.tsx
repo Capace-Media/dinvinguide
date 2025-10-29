@@ -1,6 +1,6 @@
 "use client";
 
-import RecipeHero from "@/app/recept/[slug]/Hero";
+import RecipeHero from "@/app/recept/Hero";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import RecipeContent from "./RecipeContent";

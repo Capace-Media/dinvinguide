@@ -1,5 +1,3 @@
-import Ads from "@/app/_components/ads";
-import Loading from "@/app/loading";
 import RecipeTemplate from "@/components/Templates/RecipeTemplate";
 import { getRecipeSEO } from "@/lib/queries/SEO/getRecipeSEO";
 import {
@@ -13,7 +11,6 @@ import { Metadata, ResolvingMetadata } from "next";
 import { draftMode } from "next/headers";
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import { Suspense } from "react";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
 
 interface RecipeProps {
@@ -148,9 +145,8 @@ const Recipe = async (props: RecipeProps) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Suspense fallback={<Loading />}>
-        <RecipeTemplate promise={data} />
-      </Suspense>
+
+      <RecipeTemplate promise={data} />
     </>
   );
 };
