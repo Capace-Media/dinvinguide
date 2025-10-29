@@ -61,29 +61,19 @@ const getPaths = async () => {
         }`
     );
 
-    // Add null/undefined checks before accessing nested properties
-    if (!res?.data?.recipes?.nodes) {
-      console.error("Failed to fetch recipes:", res);
-      return [];
-    }
-
     const data = res.data.recipes.nodes;
     return data;
   } catch (error) {
     console.error(error);
-    return [];
+    return {
+      message: getErrorMessage(error),
+    };
   }
 };
 
 export async function generateStaticParams() {
   const data = await getPaths();
   const paths: PropsPaths[] = [];
-
-  // Add check to ensure data is an array before mapping
-  if (!Array.isArray(data)) {
-    console.error("getPaths did not return an array");
-    return [];
-  }
 
   data.map((recipe: any) => {
     paths.push({ slug: recipe.slug });
