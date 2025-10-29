@@ -3,7 +3,7 @@ import { SEO } from "../../../types/page";
 
 interface DynamicSeoProps {
   seo: SEO;
-  previousMeta: MetaInfo;
+  previousMeta?: MetaInfo;
   author?: any;
   uri?: string;
   img?: any;
@@ -17,12 +17,11 @@ export const dynamicSeo = async ({
   img,
 }: DynamicSeoProps) => {
   const data = {
-    title: seo?.title || previousMeta.title,
-    description: seo?.metaDesc || previousMeta.description,
+    title: seo?.title,
+    description: seo?.metaDesc,
     alternates: {
       canonical: uri,
     },
-    keywords: seo?.metaKeywords ? [seo.metaKeywords] : previousMeta.keywords,
     authors: author
       ? [
           {
@@ -30,42 +29,29 @@ export const dynamicSeo = async ({
             url: author?.slug,
           },
         ]
-      : previousMeta?.authors,
+      : undefined,
     openGraph: {
-      title: seo?.opengraphTitle || seo?.title || previousMeta.title,
-      description:
-        seo?.opengraphDescription ||
-        seo?.metaDesc ||
-        previousMeta.openGraph.description,
+      title: seo?.opengraphTitle || seo?.title,
+      description: seo?.opengraphDescription || seo?.metaDesc || undefined,
       url: uri,
-      siteName: seo?.opengraphSiteName || previousMeta.openGraph.siteName,
+      siteName: seo?.opengraphSiteName,
 
       images: [
         {
-          url:
-            img?.url ||
-            seo?.opengraphImage?.mediaItemUrl ||
-            previousMeta?.openGraph?.images[0]?.url,
+          url: img?.url || seo?.opengraphImage?.mediaItemUrl || undefined,
           width: 800,
           height: 600,
-          alt:
-            img?.alt ||
-            seo?.opengraphImage?.altText ||
-            previousMeta?.openGraph?.images[0]?.alt,
+          alt: img?.alt || seo?.opengraphImage?.altText || undefined,
         },
         {
-          url:
-            img?.url ||
-            seo?.opengraphImage?.mediaItemUrl ||
-            previousMeta?.openGraph?.images[1]?.url,
+          url: img?.url || seo?.opengraphImage?.mediaItemUrl || undefined,
           width: 1800,
           height: 1600,
-          alt:
-            img?.alt ||
-            seo?.opengraphImage?.altText ||
-            previousMeta?.openGraph?.images[1]?.alt,
+          alt: img?.alt || seo?.opengraphImage?.altText || undefined,
         },
       ],
+      locale: "sv_SE",
+      type: "website",
     },
   };
 

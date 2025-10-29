@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   title: "Lär dig allt om vin och mat hos DinVinguide.se",
   other: {
     developer: "Rick Centerhall",
-    developerUrl: "https://rickcenterhall.com",
+    "developer-url": "https://www.linkedin.com/in/rickcenterhall/",
     copyright: "© DinVinguide.se - Developed by Rick Centerhall",
     humansTxt: "/humans.txt",
   },
@@ -64,7 +64,6 @@ export const metadata: Metadata = {
   },
   description:
     "Genom våra topplistor vill vi hjälpa dig att göra livet godare och bättre. Våra skribenter inspirerar och utbildar dig inom mat och dryck.",
-
   robots: {
     index: true,
     follow: true,
@@ -73,19 +72,12 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
-
   generator: "Next.js",
   applicationName: "DinVinguide.se",
   keywords: ["Vin", "Vinguide", "Recept", "Bubbel", "Mat", "Vin resensioner"],
   authors: [{ name: "DinVinguide.se" }],
   creator: "DinVinguide.se Team",
   publisher: "DinVinguide.se",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
 };
 
 export default async function RootLayout({
