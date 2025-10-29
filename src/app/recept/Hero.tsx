@@ -1,6 +1,7 @@
-import Ads from "@/app/_components/ads";
+"use client";
 import { ArrowRight, Printer, Time } from "@/components/icons";
-import handleParse from "@/lib/utils/handleParse";
+import handleParseClient from "@/lib/utils/handle-parse-client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -45,9 +46,7 @@ function updateCategoriesUri(
   }));
 }
 
-//
-
-const RecipeHero = async ({
+const RecipeHero = ({
   title,
   image,
   desc,
@@ -97,7 +96,9 @@ const RecipeHero = async ({
                 {title}
               </h1>
               <div className="flex flex-col gap-6 ">
-                <div className="text-[14px]">{handleParse(desc)}</div>
+                <div className="text-[14px] parsed">
+                  {handleParseClient(desc as string)}
+                </div>
               </div>
               <ul className="flex items-center gap-3">
                 {cookingTime && (

@@ -25,10 +25,8 @@ export const getFrontPage = async () => {
       ""
     );
 
-    console.log("res", res);
-
     const data = res?.data;
-    console.log("data", data);
+
     return data;
   } catch (error) {
     console.error(error);

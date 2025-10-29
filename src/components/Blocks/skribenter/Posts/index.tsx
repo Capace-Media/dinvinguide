@@ -32,7 +32,6 @@ async function getData(args: DataArgs) {
     last
   );
 
-  console.log(data);
   return {
     posts: data?.edges,
     startCursor: data?.pageInfo?.startCursor,

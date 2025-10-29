@@ -14,11 +14,6 @@ const ExtraPuff = ({ content }: ExtraPuffProps) => {
 
   const data = content && content?.extraPuff && content?.extraPuff[0];
 
-  console.log("data extraPuff", data);
-
-  // const grapeRegex = new RegExp("^/druvor/");
-  // const drinkRegex = new RegExp("^/drycker/");
-  // const recipeRegex = new RegExp("^/recept/");
   if (!data) {
     return null;
   }

@@ -1,4 +1,5 @@
 import Ads from "@/app/_components/ads";
+import handleParseClient from "@/lib/utils/handle-parse-client";
 import handleParse from "@/lib/utils/handleParse";
 
 interface InstructionComponentProps {
@@ -15,7 +16,9 @@ const InstructionComponent = ({
       <div className="flex justify-between items-center pb-10">
         <h2 className="text-[32px]">Instruktioner</h2>
       </div>
-      {!stepByStep && <>{handleParse(process)}</>}
+      {!stepByStep && (
+        <div className="parsed">{handleParseClient(process)}</div>
+      )}
 
       {stepByStep && (
         <>
@@ -23,8 +26,8 @@ const InstructionComponent = ({
             {stepByStep &&
               stepByStep.map((step: any) => {
                 return (
-                  <li key={step.instruktion}>
-                    <div>{handleParse(step.instruktion)}</div>
+                  <li key={step.instruktion} className="parsed">
+                    {handleParseClient(step.instruktion)}
                   </li>
                 );
               })}

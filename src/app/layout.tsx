@@ -31,16 +31,12 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: {
-    template: "%s | DinVinguide.se",
-    default: "DinVinguide.se",
-  },
+  title: "Lär dig allt om vin och mat hos DinVinguide.se",
   other: {
-    developer: [
-      "Developed by Rick Centerhall - https://www.linkedin.com/in/rickcenterhall/",
-    ],
-    "build-info": "Custom Next.js application",
-    "technical-lead": "Rick Centerhall",
+    developer: "Rick Centerhall",
+    "developer-url": "https://www.linkedin.com/in/rickcenterhall/",
+    copyright: "© DinVinguide.se - Developed by Rick Centerhall",
+    humansTxt: "/humans.txt",
   },
   icons: {
     icon: [
@@ -68,15 +64,6 @@ export const metadata: Metadata = {
   },
   description:
     "Genom våra topplistor vill vi hjälpa dig att göra livet godare och bättre. Våra skribenter inspirerar och utbildar dig inom mat och dryck.",
-  verification: {
-    google: "",
-    yandex: "",
-    yahoo: "",
-    other: {
-      me: ["", ""],
-    },
-  },
-
   robots: {
     index: true,
     follow: true,
@@ -85,47 +72,12 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
-  openGraph: {
-    title: {
-      template: "%s | DinVinguide.se",
-      default: "DinVinguide.se", // a default is required when creating a template
-    },
-    description:
-      "Genom våra topplistor vill vi hjälpa dig att göra livet godare och bättre. Våra skribenter inspirerar och utbildar dig inom mat och dryck.",
-    url: "/",
-    siteName: "DinVinguide.se",
-    images: [
-      {
-        url: "/images/seo-image.jpg",
-        width: 800,
-        height: 600,
-        alt: "Bild från DinVinguide.se",
-      },
-      {
-        url: "/images/seo-image.jpg",
-        width: 1800,
-        height: 1600,
-        alt: "Bild från DinVinguide.se",
-      },
-    ],
-    locale: "sv",
-    type: "website",
-  },
   generator: "Next.js",
   applicationName: "DinVinguide.se",
   keywords: ["Vin", "Vinguide", "Recept", "Bubbel", "Mat", "Vin resensioner"],
   authors: [{ name: "DinVinguide.se" }],
   creator: "DinVinguide.se Team",
   publisher: "DinVinguide.se",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
-  alternates: {
-    canonical: "/",
-  },
 };
 
 export default async function RootLayout({
