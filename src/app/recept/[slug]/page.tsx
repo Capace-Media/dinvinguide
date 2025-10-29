@@ -12,6 +12,8 @@ import { draftMode } from "next/headers";
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
+import buildRecipeSchema from "@/lib/utils/seo/schema/build-recipe-schema";
+import JsonLd from "@/components/json-ld";
 
 interface RecipeProps {
   params: Promise<{ slug: string }>;
@@ -107,45 +109,11 @@ const Recipe = async (props: RecipeProps) => {
 
   const data = await getRecipeData(params, searchParams);
 
-  const total =
-    data?.acf_recipe?.time?.prepTime && data?.acf_recipe?.time?.cookingTime
-      ? parseInt(data?.acf_recipe?.time?.prepTime) +
-        parseInt(data?.acf_recipe?.time?.cookingTime)
-      : "";
-
-  const jsonLd = generateRecipeSchema({
-    name: data?.title,
-    description: data?.acf_recipe?.desc,
-    image: data?.featuredImage?.node?.mediaItemUrl,
-    authorName: data?.acf_recipe?.skrivetAv
-      ? data?.acf_recipe?.skrivetAv[0]?.name
-      : "",
-    datePublished: data?.modifiedGmt,
-    prepTime: data?.acf_recipe?.time?.prepTime
-      ? data?.acf_recipe?.time?.prepTime
-      : "",
-    cookTime: data?.acf_recipe?.time?.cookingTime
-      ? data?.acf_recipe?.time?.cookingTime
-      : "",
-    totalTime: `${total}`,
-    recipeYield: data?.acf_recipe?.antalPortioner,
-    recipeCategory: data?.acf_recipe?.recepieCategories || [],
-    recipeCuisine: "",
-    ingredients: data?.acf_recipe?.receptdelar
-      ? data?.acf_recipe?.receptdelar
-      : [],
-    recipeInstructions: data?.acf_recipe?.beskrivningStegForSteg
-      ? data?.acf_recipe?.beskrivningStegForSteg
-      : [],
-  });
+  const jsonLd = buildRecipeSchema({ recipe: data });
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
+      <JsonLd json={jsonLd} id="recipe-schema" />
       <RecipeTemplate promise={data} />
     </>
   );
