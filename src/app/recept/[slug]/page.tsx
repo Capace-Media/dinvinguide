@@ -105,11 +105,12 @@ async function getRecipeData(
 const Recipe = async (props: RecipeProps) => {
   const searchParams = await props.searchParams;
   const params = await props.params;
-  const uri = `/recept/${params.slug}`;
 
   const data = await getRecipeData(params, searchParams);
 
   const jsonLd = buildRecipeSchema({ recipe: data });
+
+  console.log(jsonLd);
 
   return (
     <>

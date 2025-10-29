@@ -57,7 +57,7 @@ export default function buildRecipeSchema(
     recipeIngredient: [
       ...(recipe?.recipe?.acf_recipe?.receptdelar?.flatMap((part) =>
         part.ingredienser.map((ing) =>
-          `${ing.antal} ${ing.enhet.name} ${ing.namn}`.trim()
+          `${ing.antal ?? ""} ${ing.enhet?.name ?? ""} ${ing.namn ?? ""}`.trim()
         )
       ) || []),
       ...(recipe?.recipe?.acf_recipe?.ingredienserOvrigt
