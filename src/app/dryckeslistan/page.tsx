@@ -27,6 +27,7 @@ export async function generateMetadata(
 
   const seo: any = page?.seo;
 
+  console.log("seo", seo);
   const uri = `/dryckeslistan`;
 
   const img = {
