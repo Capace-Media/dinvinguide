@@ -66,8 +66,6 @@ export const dynamicSeo = async ({
             previousMeta?.openGraph?.images[1]?.alt,
         },
       ],
-      locale: "sv_SE",
-      type: "website",
     },
   };
 
