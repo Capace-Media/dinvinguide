@@ -1,5 +1,6 @@
 import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
+import CookieConsent from "@/components/CookieConsent";
 import Provider from "@/lib/Provider";
 import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
@@ -108,6 +109,7 @@ export default async function RootLayout({
           </main>
         </Suspense>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );
