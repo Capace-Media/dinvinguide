@@ -29,19 +29,16 @@ export default async function Home() {
       <FrontHero data={data?.page} />
       <Ads pageType="default" position="TOP" />
 
-      <Suspense fallback={<p>Loading..</p>}>
-        <LatestArticles />
-      </Suspense>
-      <Suspense fallback={<p>Loading..</p>}>
-        <ExclusiveDrinks />
-      </Suspense>
-      <Suspense fallback={<p>Loading..</p>}>
-        <ExplorePages />
-      </Suspense>
+      <LatestArticles />
+
+      <ExclusiveDrinks />
+
+      <ExplorePages />
+
       <Ads pageType="default" position="MID" />
-      <Suspense fallback={<p>Loading..</p>}>
-        <ExploreRecipes />
-      </Suspense>
+
+      <ExploreRecipes />
+
       <Ads pageType="default" position="BOTTOM" />
 
       <Newsletter />
