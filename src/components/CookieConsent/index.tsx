@@ -15,6 +15,8 @@ declare global {
 
 // Cookie banner configuration
 const cookieBannerConfig = {
+  // Cookie prefix for localStorage keys
+  cookiePrefix: process.env.NEXT_PUBLIC_COOKIE_PREFIX || "",
   // Cookie types configuration
   cookieTypes: [
     {
