@@ -18,7 +18,13 @@ interface ArticleArray {
     ingress: string;
   };
   author: { node: any[] };
-  featuredImage: { node: any[] };
+  featuredImage: {
+    node: {
+      mediaItemUrl: string;
+      altText: string;
+      mediaDetails: { width: number; height: number };
+    };
+  };
 }
 
 const LatestArticles = async () => {
@@ -60,7 +66,7 @@ const LatestArticles = async () => {
       </div>
       <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
         {combinedArticles &&
-          combinedArticles.map((post: any) => (
+          combinedArticles.map((post: ArticleArray) => (
             <li key={post?.id}>
               <AuthorPost post={post} />
             </li>

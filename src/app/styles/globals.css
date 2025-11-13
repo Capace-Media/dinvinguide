@@ -113,7 +113,7 @@ span.aligncenter {
 }
 
 .heading {
-  @apply pb-4 font-sub text-[24px] md:text-[28px] md:pb-6 lg:text-[44px] lg:pb-10 text-[#333];
+  @apply pb-4 font-sub text-[24px] md:text-[28px]  lg:text-[44px]  text-[#333];
 }
 .nav_button {
   width: 40px;

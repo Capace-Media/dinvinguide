@@ -18,8 +18,6 @@ export const SkeletonLoader = () => {
 };
 
 const AuthorPost = ({ post }: AuthorPostProps) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   return (
     <div className="group">
       <Link
@@ -36,19 +34,19 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
                   ? post.featuredImage.node.altText
                   : `bild på ${post.title}`
               }
-              onLoad={() => setImageLoaded(true)}
-              fill
-              style={{
-                objectFit: "cover",
-              }}
-              sizes="(min-width: 1880px) 389px, (min-width: 1040px) calc(22.44vw - 28px), (min-width: 780px) calc(100vw - 88px), calc(100vw - 32px)"
+              width={
+                post?.featuredImage?.node?.mediaDetails?.width
+                  ? post.featuredImage.node.mediaDetails.width
+                  : 400
+              }
+              height={
+                post?.featuredImage?.node?.mediaDetails?.height
+                  ? post.featuredImage.node.mediaDetails.height
+                  : 269
+              }
+              className="object-cover lg:w-full h-full"
+              sizes="(max-width: 768px) 92vw, (max-width: 1024px) 44vw, (max-width: 1790px) 22vw, 390px"
             />
-
-            {!imageLoaded && (
-              <div className="absolute top-0 left-0 right-0 bottom-0">
-                <SkeletonLoader />
-              </div>
-            )}
           </>
         )}
         <div className="absolute right-3 top-2 z-10 border-b-2 border-white ">
@@ -87,7 +85,7 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
           <Link
             href={`/skribenter${post.uri}`}
             aria-label={`Läs om ${post?.title}`}
-            className="flex items-center gap-3 lg:hover:underline text-brand-secondary"
+            className="flex items-center justify-center gap-3 lg:hover:underline text-brand-secondary border border-brand-primary px-4 py-2 rounded-md md:border-none md:justify-start md:px-0 md:py-0"
           >
             <span>Läs hela artikeln</span>
             <span>
