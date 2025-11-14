@@ -36,9 +36,12 @@ type Recipe = {
 // Helper function to determine the size property based on index.
 const getSizeProp = (index: number): string => {
   const sizesMapping: any = {
-    0: "(min-width: 1880px) 799px, (min-width: 1040px) calc(45vw - 38px), (min-width: 780px) calc(100vw - 88px), calc(100vw - 32px)",
-    1: "(min-width: 1880px) 389px, (min-width: 1040px) calc(22.44vw - 28px), (min-width: 780px) calc(50vw - 50px), calc(50vw - 20px)",
-    5: "(min-width: 1880px) 799px, (min-width: 1040px) calc(45vw - 38px), (min-width: 780px) calc(50vw - 50px), calc(50vw - 20px)",
+    0: "(max-width: 768px) 90vw, (max-width: 1024px) 90vw, (max-width: 1790px) 44vw, 799px",
+    1: "(max-width: 768px) 90vw, (max-width: 1024px) 48vw, (max-width: 1790px) 25vw, 390px",
+    2: "(max-width: 768px) 90vw, (max-width: 1024px) 48vw, (max-width: 1790px) 25vw, 390px",
+    3: "(max-width: 768px) 90vw, (max-width: 1024px) 48vw, (max-width: 1790px) 25vw, 390px",
+    4: "(max-width: 768px) 90vw, (max-width: 1024px) 48vw, (max-width: 1790px) 25vw, 390px",
+    5: "(max-width: 768px) 90vw, (max-width: 1024px) 43vw, (max-width: 1790px) 44vw, 800px",
   };
 
   return sizesMapping[index] || sizesMapping[1];
