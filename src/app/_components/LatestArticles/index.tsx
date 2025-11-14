@@ -47,7 +47,7 @@ const LatestArticles = async () => {
 
   return (
     <div className="layout contain bg-white">
-      <div className="">
+      <div className="md:flex md:justify-between md:items-center">
         <h2 className="heading">Upptäck våra artiklar</h2>
         <Link
           href={`/artiklar`}
