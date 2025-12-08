@@ -32,3 +32,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+0: "(max-width: 768px) 90vw, (max-width: 1024px) 90vw, (max-width: 1790px) 44vw, 799px",
+1: "(max-width: 768px) 90vw, (max-width: 1024px) 48vw, (max-width: 1790px) 25vw, 390px",
+2: "(max-width: 768px) 90vw, (max-width: 1024px) 48vw, (max-width: 1790px) 25vw, 390px",
+3: "(max-width: 768px) 90vw, (max-width: 1024px) 48vw, (max-width: 1790px) 25vw, 390px",
+4: "(max-width: 768px) 90vw, (max-width: 1024px) 48vw, (max-width: 1790px) 25vw, 390px",
+5: "(max-width: 768px) 90vw, (max-width: 1024px) 43vw, (max-width: 1790px) 44vw, 800px",

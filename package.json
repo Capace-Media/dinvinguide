@@ -7,48 +7,50 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "svg": "svgr -d src/components/icons src/components/icons/svgs"
   },
   "dependencies": {
-    "@headlessui/react": "^2.2.0",
-    "@next/third-parties": "15.2.3",
-    "@tanstack/react-query": "^5.69.0",
-    "@types/node": "20.10.5",
-    "@types/react": "19.0.12",
-    "@types/react-dom": "19.0.4",
+    "@headlessui/react": "^2.2.9",
+    "@next/third-parties": "16.0.7",
+    "@tanstack/react-query": "^5.90.12",
     "autoprefixer": "10.4.16",
-    "dayjs": "^1.11.10",
-    "dompurify": "^3.2.6",
-    "eslint-config-next": "15.2.3",
-    "framer-motion": "^12.5.0",
-    "html-react-parser": "^5.0.7",
-    "next": "15.2.3",
-    "next-seo": "^6.4.0",
-    "object.groupby": "^1.0.1",
-    "postcss": "^8.4.31",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "react-to-print": "^3.0.5",
-    "sass": "^1.67.0",
+    "dayjs": "^1.11.19",
+    "dompurify": "^3.3.0",
+    "eslint-config-next": "16.0.7",
+    "framer-motion": "^12.23.25",
+    "html-react-parser": "^5.2.10",
+    "next": "16.0.7",
+    "next-seo": "^6.8.0",
+    "object.groupby": "^1.0.3",
+    "postcss": "^8.5.6",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "react-to-print": "^3.2.0",
+    "sass": "^1.94.2",
     "schema-dts": "^1.1.5",
-    "sharp": "^0.33.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "3.3.7",
-    "typescript": "5.3.3",
-    "use-debounce": "^10.0.0",
+    "typescript": "5.9.3",
+    "use-debounce": "^10.0.6",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@svgr/cli": "^8.1.0",
     "@types/dompurify": "^3.2.0",
-    "@types/uuid": "^9.0.5",
-    "@typescript-eslint/eslint-plugin": "^6.7.0",
-    "eslint": "^8.49.0",
-    "postcss-nesting": "^12.0.1"
+    "@types/node": "20.10.5",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@types/uuid": "^9.0.8",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "eslint": "^9",
+    "postcss-nesting": "^12.1.5"
   },
-  "overrides": {
-    "@types/react": "19.0.12",
-    "@types/react-dom": "19.0.4"
-  },
-  "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
+  "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748",
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.2.7",
+      "@types/react-dom": "19.2.3"
+    }
+  }
 }
