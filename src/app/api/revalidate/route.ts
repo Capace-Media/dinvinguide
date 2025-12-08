@@ -20,34 +20,34 @@ export async function GET(request: NextRequest) {
   }
 
   if (path === "ads") {
-    revalidateTag("ads");
+    revalidateTag("ads", "max");
     return Response.json({ revalidated: true, now: Date.now(), status: 200 });
   }
 
   if (path === "page") {
-    revalidateTag("page");
+    revalidateTag("page", "max");
     return Response.json({ revalidated: true, now: Date.now(), status: 200 });
   }
 
   if (path === "post") {
-    revalidateTag("post");
+    revalidateTag("post", "max");
     return Response.json({ revalidated: true, now: Date.now(), status: 200 });
   }
   if (path === "drink") {
-    revalidateTag("drink");
+    revalidateTag("drink", "max");
     return Response.json({ revalidated: true, now: Date.now(), status: 200 });
   }
   if (path === "grape") {
-    revalidateTag("grape");
+    revalidateTag("grape", "max");
     return Response.json({ revalidated: true, now: Date.now(), status: 200 });
   }
 
   if (path === "wine") {
-    revalidateTag("wine");
+    revalidateTag("wine", "max");
     return Response.json({ revalidated: true, now: Date.now(), status: 200 });
   }
   if (path === "supplier") {
-    revalidateTag("supplier");
+    revalidateTag("supplier", "max");
     revalidatePath("/importorer");
     return Response.json({
       revalidated: true,
