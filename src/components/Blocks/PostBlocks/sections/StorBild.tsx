@@ -22,50 +22,25 @@ interface StorBildProps {
 }
 
 const StorBild = ({ content }: StorBildProps) => {
-  // Early return if no image data
   if (!content?.img?.mediaItemUrl) {
     return null;
   }
 
   const { img } = content;
 
-  // Fallback dimensions if mediaDetails is missing
-  const width = img.mediaDetails?.width || 1200;
-  const height = img.mediaDetails?.height || 800;
-
-  // Generate alt text with proper fallback logic
   const altText = img.altText || "Bild från DinVinGuide";
 
   return (
     <section className="py-[2rem]">
-      <div className="relative row">
-        <div
-          className="relative w-full"
-          style={{ aspectRatio: `${width} / ${height}` }}
-        >
-          <Image
-            src={img.mediaItemUrl}
-            alt={altText}
-            fill
-            sizes="100vw"
-            className="object-contain" // or "object-cover"
-            priority={false}
-          />
-        </div>
-
-        {/* Gallery button - uncomment and implement when needed */}
-        {/* {content.iGalleri && (
-          <button
-            className="absolute bottom-5 left-1/2 transform -translate-x-1/2 
-                       border-2 border-brand-red text-brand-red rounded 
-                       px-4 py-2 hover:text-white hover:bg-brand-red 
-                       transition-colors duration-200 md:bottom-14"
-            onClick={() => handleGallery(img.mediaItemUrl)}
-          >
-            Visa galleri
-          </button>
-        )} */}
-      </div>
+      <Image
+        src={img.mediaItemUrl}
+        alt={altText}
+        width={img.mediaDetails?.width}
+        height={img.mediaDetails?.height}
+        className="object-cover w-full h-full"
+        sizes="(max-width: 1024px) 93vw, (max-width: 1790px) 50vw, 952px"
+        priority={false}
+      />
     </section>
   );
 };

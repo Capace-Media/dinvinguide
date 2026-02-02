@@ -14,7 +14,7 @@ interface ImageData {
 
 interface MellanbildContent {
   img?: ImageData;
-  iGalleri?: boolean; // Based on GraphQL query structure
+  iGalleri?: boolean;
 }
 
 interface MellanbildProps {
@@ -22,37 +22,25 @@ interface MellanbildProps {
 }
 
 const Mellanbild = ({ content }: MellanbildProps) => {
-  // Simply return null if no image - don't render anything
   if (!content?.img?.mediaItemUrl) {
     return null;
   }
 
   const { img } = content;
 
-  // Fallback dimensions if mediaDetails is missing
-  const width = img.mediaDetails?.width || 800;
-  const height = img.mediaDetails?.height || 600;
-
-  // Generate alt text with fallback
   const altText = img.altText || "Bild från DinVinGuide";
 
   return (
     <section className="py-[2rem]">
-      <div className="relative row contain-sm">
-        <div
-          className="relative w-full"
-          style={{ aspectRatio: `${width} / ${height}` }}
-        >
-          <Image
-            src={img.mediaItemUrl}
-            alt={altText}
-            fill
-            sizes="100vw"
-            className="object-contain" // or "object-cover"
-            priority={false}
-          />
-        </div>
-      </div>
+      <Image
+        src={img.mediaItemUrl}
+        alt={altText}
+        width={img.mediaDetails?.width}
+        height={img.mediaDetails?.height}
+        sizes="(max-width: 1024px) 93vw, (max-width: 1790px) 50vw, 952px"
+        className="object-cover max-w-full h-full"
+        priority={false}
+      />
     </section>
   );
 };
