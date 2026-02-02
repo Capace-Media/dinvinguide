@@ -21,6 +21,10 @@ type Recipe = {
     node?: {
       mediaItemUrl: string;
       altText: string;
+      mediaDetails?: {
+        width?: number;
+        height?: number;
+      };
     };
   };
   acf_recipe?: {

@@ -33,6 +33,10 @@ export const getWineSchools = async (args: DataArgs) => {
                 node {
                   altText
                   mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
                 }
               }
             }

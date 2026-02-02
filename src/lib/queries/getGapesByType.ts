@@ -31,6 +31,10 @@ export const getGapesByType = async (
                     node {
                       altText
                       mediaItemUrl
+                      mediaDetails {
+                        width
+                        height
+                      }
                     }
                   }
                 }
@@ -73,6 +77,10 @@ export const getGapesByType = async (
                     node {
                       altText
                       mediaItemUrl
+                      mediaDetails {
+                        width
+                        height
+                      }
                     }
                   }
                 }

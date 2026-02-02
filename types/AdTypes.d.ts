@@ -2,6 +2,10 @@ export interface AdMedia {
   mediaItemUrl: string;
   id: string;
   altText: string;
+  mediaDetails?: {
+    width?: number;
+    height?: number;
+  };
 }
 
 export interface Ad {

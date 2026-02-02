@@ -1,4 +1,4 @@
-import HandleImage from "@/app/_components/image";
+
 import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,8 +27,7 @@ const ExtraPuff = ({ content }: ExtraPuffProps) => {
   } else if (data?.__typename === "Drinktip") {
     return <DrinktipComponent data={data} />;
   } else {
-    // Fallback or default content
-    return <div>Default Content for {data?.__typename}</div>;
+    return null;
   }
 };
 
@@ -37,9 +36,9 @@ export default ExtraPuff;
 function GrapeComponent({ data }: any) {
   return (
     <section
-      id="extraPuff"
-      className="relative w-full gap-10 flex h-[330px] py-[2rem]"
+      className="relative w-full gap-10 flex h-[330px] py-[2rem] odd:flex-row even:flex-row-reverse"
     >
+
       <div className="lg:w-[40%] hidden lg:flex lg:flex-col justify-center">
         {data?.title && (
           <Link
@@ -70,22 +69,29 @@ function GrapeComponent({ data }: any) {
       <Link
         href={`/druvor/${data?.slug}`}
         aria-label={`Läs mer om ${data?.title}`}
-        className="relative w-full lg:w-[60%]"
+        className="relative w-full group lg:w-[60%]"
       >
-        <HandleImage
-          srcProp={data?.featuredImage?.node?.mediaItemUrl}
-          altProp={data?.featuredImage?.node?.altText}
-          objectFitProp="cover"
-          classesProp="relative w-full h-full recipe-overlay"
+
+        <Image
+          src={data?.featuredImage?.node?.mediaItemUrl}
+          alt={
+            data?.featuredImage?.node?.altText
+              ? data.featuredImage.node.altText
+              : `bild på ${data?.title}`
+          }
+          width={data?.featuredImage?.node?.mediaDetails?.width}
+          height={data?.featuredImage?.node?.mediaDetails?.height}
+          className="object-cover w-full h-full"
+          sizes="(max-width: 1024px) 93vw, (max-width: 1790px) 29vw, 549px"
         />
-        <div className="absolute top-0 right-0 text-white p-4 flex gap-2"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent" />
         <div className="absolute bottom-0 pointer-events-none left-0 p-4 lg:w-[70%] z-10 text-white">
-          <p className="md:text-[12px] md:uppercase text-[12px] text-white">
+          <p className="text-[12px] text-white group-hover:underline">
             Druva
           </p>
 
           {data?.title && (
-            <h2 className="md:text-[18px] leading-6 text-[16px] lowercase font-sub text-white">
+            <h2 className="md:text-[18px] leading-6 text-[16px] lowercase font-sub text-white group-hover:underline">
               {data.title}
             </h2>
           )}
@@ -97,7 +103,7 @@ function GrapeComponent({ data }: any) {
 
 function DrinktipComponent({ data }: any) {
   return (
-    <div id="extraPuffDrink" className="flex justify-center group">
+    <section className="flex justify-center group odd:flex-row even:flex-row-reverse">
       <div className="min-w-[200px] h-[350px] relative shake-image">
         <Image
           unoptimized
@@ -148,14 +154,14 @@ function DrinktipComponent({ data }: any) {
           Läs mer <span className="sr-only">om {data?.title}</span>
         </Link>
       </div>
-    </div>
+    </section>
   );
 }
 
 // DrinkComponent.js
 function DrinkComponent({ data }: any) {
   return (
-    <div id="extraPuffDrink" className="flex justify-center group">
+    <section className="flex justify-center group odd:flex-row even:flex-row-reverse">
       <div className="min-w-[200px] h-[350px] relative shake-image">
         <Image
           unoptimized
@@ -206,7 +212,7 @@ function DrinkComponent({ data }: any) {
           Läs mer
         </Link>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -214,8 +220,7 @@ function DrinkComponent({ data }: any) {
 function RecipeComponent({ data }: any) {
   return (
     <section
-      id="extraPuffRecipe"
-      className="relative w-full gap-10 flex h-[330px] py-[2rem] "
+      className="relative w-full gap-10 flex h-[330px] py-[2rem] odd:flex-row even:flex-row-reverse"
     >
       <div className="md:w-[50%] w-full flex flex-col justify-center">
         {data?.title && (
@@ -232,11 +237,7 @@ function RecipeComponent({ data }: any) {
             </span>
           </Link>
         )}
-        {/* {data?.acf_data?.skrivetAv && (
-          <p className="md:text-[12px] md:uppercase text-[12px] ">
-            {data.acf_data.skrivetAv[0].name}
-          </p>
-        )} */}
+
         {data?.acf_recipe?.desc && (
           <div className="md:text-[12px] text-[12px] ">
             {handleParse(data.acf_recipe.desc)}
@@ -251,29 +252,37 @@ function RecipeComponent({ data }: any) {
         </Link>
       </div>
 
-      <div className="w-[50%] h-full hidden md:block">
-        <div className="relative w-full h-full recipe-overlay">
-          <Image
-            unoptimized
-            src={data?.featuredImage?.node?.mediaItemUrl}
-            alt={data?.featuredImage?.node?.altText}
-            style={{ objectFit: "cover" }}
-            fill
-          />
-          <div className="absolute bottom-0 left-0 p-2 z-[4]">
-            <p className="flex flex-col ">
-              <span className="text-white group-hover:underline font-main uppercase text-[12px]">
-                {data?.acf_data?.skrivetAv
-                  ? data.acf_data.skrivetAv[0].name
-                  : "-"}
-              </span>
-              <span className="text-white group-hover:underline font-sub text-[16px]">
-                {data.title}
-              </span>
-            </p>
-          </div>
+      <Link
+        href={`/druvor/${data?.slug}`}
+        aria-label={`Läs mer om ${data?.title}`}
+        className="relative w-full group lg:w-[60%]"
+      >
+
+        <Image
+          src={data?.featuredImage?.node?.mediaItemUrl}
+          alt={data?.featuredImage?.node?.altText}
+          width={data?.featuredImage?.node?.mediaDetails?.width}
+          height={data?.featuredImage?.node?.mediaDetails?.height}
+          className="object-cover w-full h-full"
+          sizes="(max-width: 1024px) 93vw, (max-width: 1790px) 29vw, 549px"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent" />
+        <div className="absolute bottom-0 left-0 p-2 z-[4] text-white">
+          <p className="flex flex-col group-hover:underline">
+            {data?.acf_data?.skrivetAv &&
+              (
+
+                <span className="group-hover:underline font-main uppercase text-[12px]">
+                  {data.acf_data.skrivetAv[0].name}
+                </span>
+              )}
+            <span className="group-hover:underline font-sub text-[16px]">
+              {data.title}
+            </span>
+          </p>
         </div>
-      </div>
+
+      </Link>
     </section>
   );
 }

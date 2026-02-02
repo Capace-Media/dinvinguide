@@ -21,6 +21,10 @@ async function getWordData(slug: string) {
           node {
             altText
             mediaItemUrl
+            mediaDetails {
+              width
+              height
+            }
           }
         }
         GQL_Word_Content {
