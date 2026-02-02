@@ -44,6 +44,10 @@ export const getAuthors = async () => {
                     bildExtra {
                       altText
                       mediaItemUrl
+                       mediaDetails {
+                        width
+                        height
+                      }
                       title
                     }
                     instagram

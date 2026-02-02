@@ -22,7 +22,7 @@ interface ArticleArray {
     node: {
       mediaItemUrl: string;
       altText: string;
-      mediaDetails: { width: number; height: number };
+      mediaDetails?: { width?: number; height?: number };
     };
   };
 }

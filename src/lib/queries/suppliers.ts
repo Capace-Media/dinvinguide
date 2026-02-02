@@ -18,6 +18,10 @@ export const getSuppliersQuery = `
               id
               altText
               mediaItemUrl
+              mediaDetails {
+                  width
+                  height
+              }
             }
           }
         }
@@ -36,6 +40,10 @@ export const getSupplierQuery = `
       node {
         altText
         mediaItemUrl
+        mediaDetails {
+          width
+          height
+        }
       }
     }
     drycker_to_leverantor {
@@ -57,6 +65,10 @@ export const getSupplierQuery = `
             node {
               altText
               mediaItemUrl
+              mediaDetails {
+                width
+                height
+              }
             }
           }
         }
@@ -83,6 +95,10 @@ export const getSupplierQuery = `
             node {
               altText
               mediaItemUrl
+              mediaDetails {
+                width
+                height
+              }
             }
           }
         }

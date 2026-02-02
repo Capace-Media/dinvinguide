@@ -13,6 +13,10 @@ export const getSearchData = async (search: string) => {
               node {
                 altText
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
               }
             }
           }
@@ -25,6 +29,10 @@ export const getSearchData = async (search: string) => {
               node {
                 altText
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
               }
             }
           }
@@ -42,6 +50,10 @@ export const getSearchData = async (search: string) => {
               node {
                 altText
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
               }
             }
           }
@@ -54,6 +66,10 @@ export const getSearchData = async (search: string) => {
               node {
                 altText
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
               }
             }
           }
@@ -66,6 +82,10 @@ export const getSearchData = async (search: string) => {
               node {
                 altText
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
               }
             }
           }

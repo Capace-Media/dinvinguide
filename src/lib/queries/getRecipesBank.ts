@@ -51,6 +51,10 @@ export const getRecipesBank = async (args: DataArgs) => {
                 node {
                   altText
                   mediaItemUrl
+                   mediaDetails {
+                        width
+                        height
+                      }
                 }
               }
             }
@@ -123,6 +127,10 @@ export const getRecipesByCategory = async (args: DataArgs) => {
                       node {
                         altText
                         mediaItemUrl
+                        mediaDetails {
+                          width
+                          height
+                        }
                       }
                     }
                   }
@@ -187,6 +195,10 @@ export const getDrinkRecipe = async () => {
               node {
                 altText
                 mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
               }
             }
           }
@@ -247,6 +259,10 @@ export const getChefRecipes = async (args: DataArgs) => {
                       node {
                         altText
                         mediaItemUrl
+                        mediaDetails {
+                          width
+                          height
+                        }
                       }
                     }
                   }

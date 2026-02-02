@@ -34,6 +34,10 @@ export const getWhineAtlases = async (args: DataArgs) => {
                 node {
                   altText
                   mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
                 }
               }
             }
