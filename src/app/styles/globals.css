@@ -46,6 +46,10 @@
   }
 }
 
+section {
+  clear: both;
+}
+
 @layer utilities {
   /* hamburger menu styles */
   body,

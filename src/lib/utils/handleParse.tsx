@@ -38,8 +38,6 @@ export default function handleParse(
   parseClasses?: string,
   noWrapper?: boolean
 ) {
-  const thContents: any = [];
-  let thIndex = 0;
   if (!content) {
     return null;
   }
