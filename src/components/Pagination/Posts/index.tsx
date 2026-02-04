@@ -16,7 +16,7 @@ const Posts = ({ posts }: PostsProps) => {
                   key={post?.node ? post.node.id : post?.id}
                   className="relative"
                 >
-                  {/* <span className=" absolute z-[8] top-[4px] left-[4px] bg-brand-primary text-white text-[13px] px-2 rounded-[10px]">
+                  {/* <span className=" absolute z-8 top-[4px] left-[4px] bg-brand-primary text-white text-[13px] px-2 rounded-[10px]">
                       {index + 1}
                     </span> */}
                   <Post

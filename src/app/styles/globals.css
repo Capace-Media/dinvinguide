@@ -1,35 +1,81 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* hamburger menu styles */
-body,
-html,
-* {
-  padding: 0px;
-  margin: 0px;
+@theme {
+  --width-calc-minus-80: calc(100% - 80px);
+  --width-calc-minus-44: calc(100% - 44px);
+  --width-calc-minus-16: calc(100% - 16px);
+
+  --height-calc-minus-80: calc(100% - 80px);
+  --height-calc-minus-44: calc(100% - 44px);
+  --height-calc-minus-16: calc(100% - 16px);
+
+  --color-brand-primary: #400d12;
+  --color-brand-secondary: #7b2e11;
+  --color-brand-beige: #f7f7e5;
+  --color-brand-dark: #333333;
+  --color-brand-gray: #666666;
+  --color-brand-light: #f0f0f0;
+  --color-brand-dl: #e1e5d4;
+
+  --font-main: var(--font-poppins), ui-sans-serif, system-ui;
+
+  --font-sub: var(--font-abrilFatface), serif;
+
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
 }
 
-.star__container {
-  font-family: sans-serif;
-  text-align: center;
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
 }
 
-.star__container input[type="radio"] {
-  display: none;
-}
-.star {
-  cursor: pointer;
-  font-size: 2rem;
-  margin: 5px;
-}
+@layer utilities {
+  /* hamburger menu styles */
+  body,
+  html,
+  * {
+    padding: 0px;
+    margin: 0px;
+  }
 
-.drop-cap p:first-letter {
-  float: left;
-  font-size: 3em;
-  line-height: 0.75;
-  margin-right: 0.1em;
-  margin-top: 0.1em;
+  .star__container {
+    font-family: sans-serif;
+    text-align: center;
+  }
+
+  .star__container input[type="radio"] {
+    display: none;
+  }
+  .star {
+    cursor: pointer;
+    font-size: 2rem;
+    margin: 5px;
+  }
+
+  .drop-cap p:first-letter {
+    float: left;
+    font-size: 3em;
+    line-height: 0.75;
+    margin-right: 0.1em;
+    margin-top: 0.1em;
+  }
 }
 @layer base {
   h1,
@@ -41,7 +87,7 @@ html,
     @apply font-sub text-[#333];
   }
   a {
-    @apply break-words text-[#333];
+    @apply wrap-break-word text-[#333];
   }
   h1 {
     @apply text-[42px] text-[#333];
@@ -84,7 +130,7 @@ span.aligncenter {
 }
 
 .dl-layout {
-  @apply px-4 md:px-20 lg:px-[8rem] m-auto xl:max-w-[1777px];
+  @apply px-4 md:px-20 lg:px-32 m-auto xl:max-w-[1777px];
 }
 .contain {
   @apply py-4 md:py-11 lg:py-20;
@@ -94,10 +140,10 @@ span.aligncenter {
   @apply my-4 md:my-11 lg:my-20;
 }
 .btn {
-  @apply bg-brand-secondary text-white py-[9px] shadow-sm flex justify-center items-center px-4 md:hover:scale-105 md:ease-in-out md:duration-300;
+  @apply bg-brand-secondary text-white py-[9px] shadow-xs flex justify-center items-center px-4 md:hover:scale-105 md:ease-in-out md:duration-300;
 }
 .btn-white {
-  @apply bg-white font-bold text-brand-secondary shadow-sm py-[9px] flex justify-center items-center px-4 md:hover:scale-105 md:ease-in-out md:duration-300;
+  @apply bg-white font-bold text-brand-secondary shadow-xs py-[9px] flex justify-center items-center px-4 md:hover:scale-105 md:ease-in-out md:duration-300;
 }
 
 .center {

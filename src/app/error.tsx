@@ -18,7 +18,7 @@ const ErrorPage: React.FC<ErrorProps> = ({ error, reset }) => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md max-w-md text-center">
+      <div className="bg-white p-8 rounded-sm shadow-md max-w-md text-center">
         <h1 className="text-3xl font-bold mb-4">Oj då! Något gick fel.</h1>
         <p className="text-gray-600 mb-6">
           Det verkar som om något gick snett när vi försökte ladda sidan.
@@ -37,7 +37,7 @@ const ErrorPage: React.FC<ErrorProps> = ({ error, reset }) => {
         </p>
         <button
           onClick={reset} // Attempt to reload the page when the button is clicked
-          className="px-4 py-2 bg-brand-primary text-white rounded hover:bg-brand-primary/70"
+          className="px-4 py-2 bg-brand-primary text-white rounded-sm hover:bg-brand-primary/70"
         >
           Ladda om sidan
         </button>

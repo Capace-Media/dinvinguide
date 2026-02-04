@@ -37,7 +37,7 @@ const WordsByLetter = async ({ searchParams }: WordsByLetterProps) => {
           ? "a"
           : word}
       </h2>
-      <ul className=" grid lg:grid-cols-3 lg:gap-[3.5rem] min-h-[185px] py-8 border-b-2 border-[#333] pb-[3rem]">
+      <ul className=" grid lg:grid-cols-3 lg:gap-14 min-h-[185px] py-8 border-b-2 border-[#333] pb-12">
         {promise.edges &&
           promise.edges.map((word: any) => {
             return (

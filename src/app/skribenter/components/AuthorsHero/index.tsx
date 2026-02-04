@@ -52,7 +52,7 @@ const AuthorsHero = async ({ promise }: AuthorsHeroProps) => {
               </div>
             )}
           </div>
-          <div className=" bg-brand-beige w-[85%] h-[100%] center-y absolute right-0"></div>
+          <div className=" bg-brand-beige w-[85%] h-full center-y absolute right-0"></div>
         </div>
       </div>
     </div>
