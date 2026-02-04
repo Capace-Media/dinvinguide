@@ -7,14 +7,6 @@ body {
   background-color: #e4e4e4;
 }
 
-.truncated-label {
-  @include truncated(1);
-}
-
-.capitalize-first::first-letter {
-  text-transform: uppercase;
-}
-
 .link-overlay {
   &::after {
     content: "";

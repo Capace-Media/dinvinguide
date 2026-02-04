@@ -47,7 +47,7 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
               </li>
               {" / "}
               <li>
-                <p className="text-brand-dark truncated-label">{post?.title}</p>
+                <p className="text-brand-dark line-clamp-1">{post?.title}</p>
               </li>
             </ul>
           ) : post?.uri?.includes("/vinatlas/") ? (

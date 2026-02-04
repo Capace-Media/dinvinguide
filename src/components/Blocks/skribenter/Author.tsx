@@ -45,22 +45,22 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
             index % 2 === 0 ? "text-brand-dark" : " text-brand-light"
           }`}
         >
-          <div className="flex flex-col gap-4 min-h-[240px]">
+          <div className="flex flex-col gap-4 min-h-60">
             <div>
               <h2
-                className={`text-[28px] flex flex-col md:text-[42px] lg:text-[53px] font-sub lg:leading-[72px]  ${
+                className={`text-[28px] flex flex-col md:text-[42px] lg:text-[53px] font-sub lg:leading-18  ${
                   index % 2 === 0 ? "text-brand-dark" : " text-brand-light"
                 }`}
               >
-                <span className=" font-main text-[18px] md:text-[23px] leading-[18px] md:leading-[23px]">
+                <span className=" font-main text-[18px] md:text-[23px] leading-4.5 md:leading-5.75">
                   Skribent
                 </span>
-                <span className="block capitalize-first">{author?.name}</span>
+                <span className="block">{author?.name}</span>
               </h2>
             </div>
 
             <div
-              className={`author_parse text-[14px] md:text-[15px] leading-[26px] ${
+              className={`line-clamp-12 text-[14px] md:text-[15px] leading-6-5 ${
                 index % 2 === 0 ? "parse-dark" : " parse-light"
               }`}
             >
