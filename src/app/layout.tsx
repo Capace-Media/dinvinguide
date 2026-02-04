@@ -76,9 +76,7 @@ export const metadata: Metadata = {
   generator: "Next.js",
   applicationName: "DinVinguide.se",
   keywords: ["Vin", "Vinguide", "Recept", "Bubbel", "Mat", "Vin resensioner"],
-  authors: [{ name: "DinVinguide.se" }],
-  creator: "DinVinguide.se Team",
-  publisher: "DinVinguide.se",
+  authors: [{ url: "/humans.txt" }],
 };
 
 export default async function RootLayout({
