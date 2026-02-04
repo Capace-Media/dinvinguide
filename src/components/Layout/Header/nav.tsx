@@ -5,10 +5,11 @@ import { DvLogoBlackMini, Logo, Search } from "@/components/icons";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import PhoneMenu from "./PhoneMenu";
+import MobileMenu from "./mobile-menu";
 
-interface NavProps { }
+interface NavProps {}
 
-const Nav = ({ }: NavProps) => {
+const Nav = ({}: NavProps) => {
   const [isMenuScroll, setIsMenuScroll] = useState<boolean>(false);
 
   useEffect(() => {
@@ -26,10 +27,11 @@ const Nav = ({ }: NavProps) => {
 
   return (
     <nav
-      className={`py-4 z-20 layout bg-white flex justify-between items-center w-full duration-75   transition-all ease-in-out ${isMenuScroll
-        ? "fixed top-0 center-x bg-white shadow-lg"
-        : "absolute center-x"
-        }`}
+      className={`py-4 z-20 layout bg-white flex justify-between items-center w-full duration-75   transition-all ease-in-out ${
+        isMenuScroll
+          ? "fixed top-0 center-x bg-white shadow-lg"
+          : "absolute center-x"
+      }`}
     >
       <Link
         href="/"
@@ -53,7 +55,9 @@ const Nav = ({ }: NavProps) => {
               className="hover:text-brand-primary hover:underline font-sub"
               key={item?.id}
             >
-              <Link href={item?.uri} className="font-sub">{item?.label}</Link>
+              <Link href={item?.uri} className="font-sub">
+                {item?.label}
+              </Link>
             </li>
           );
         })}
@@ -63,7 +67,8 @@ const Nav = ({ }: NavProps) => {
         <Link href="/sok" aria-label="gå till sök sidan">
           <Search />
         </Link>
-        <PhoneMenu menuItems={menuItems} />
+        {/*<PhoneMenu menuItems={menuItems} />*/}
+        <MobileMenu menuItems={menuItems.menu} />
       </div>
       <div className="lg:flex lg:items-center lg:gap-7 hidden">
         <Link href="/sok" aria-label="gå till sök sidan">

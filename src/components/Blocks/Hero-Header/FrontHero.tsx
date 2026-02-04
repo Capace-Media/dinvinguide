@@ -1,6 +1,8 @@
 "use client";
 
 import { ArrowRight } from "@/components/icons";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import handleParsed from "@/lib/utils/handleParse";
 
 import Image from "next/image";
@@ -22,26 +24,50 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
               {data?.content && handleParsed(data?.content)}
             </div>
             <ul className="font-main text-brand-primary uppercase flex whitespace-nowrap flex-wrap gap-4 font-medium">
-              <li className="bg-brand-primary px-3 py-2">
-                <Link href="/guide" className="text-white">
-                  Alla Guider
+              <li className="">
+                <Button asChild>
+                  <Link href="/guide">Alla Guider</Link>
+                </Button>
+              </li>
+              <li>
+                <Link
+                  className={cn(
+                    buttonVariants({ variant: "link", size: "link" })
+                  )}
+                  href="/druvguiden"
+                >
+                  Druvor
                 </Link>
               </li>
-              <li className="flex flex-col justify-center items-center">
-                <Link href="/druvguiden">Druvor</Link>
-                <span className="w-full h-0.5 block bg-brand-primary"></span>
+              <li>
+                <Link
+                  className={cn(
+                    buttonVariants({ variant: "link", size: "link" })
+                  )}
+                  href="/vinatlas"
+                >
+                  Vinatlas
+                </Link>
               </li>
-              <li className="flex flex-col justify-center items-center">
-                <Link href="/vinatlas">Vinatlas</Link>
-                <span className="w-full h-0.5 block bg-brand-primary"></span>
+              <li>
+                <Link
+                  className={cn(
+                    buttonVariants({ variant: "link", size: "link" })
+                  )}
+                  href="/vinskolan"
+                >
+                  Vinskolan
+                </Link>
               </li>
-              <li className="flex flex-col justify-center items-center">
-                <Link href="/vinskolan">Vinskolan</Link>
-                <span className="w-full h-0.5 block bg-brand-primary"></span>
-              </li>
-              <li className="flex flex-col justify-center items-center">
-                <Link href="/ordlistan">Ordlistan</Link>
-                <span className="w-full h-0.5 block bg-brand-primary"></span>
+              <li>
+                <Link
+                  className={cn(
+                    buttonVariants({ variant: "link", size: "link" })
+                  )}
+                  href="/ordlistan"
+                >
+                  Ordlistan
+                </Link>
               </li>
             </ul>
           </div>
