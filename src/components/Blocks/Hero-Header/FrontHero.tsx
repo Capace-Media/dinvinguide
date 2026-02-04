@@ -54,7 +54,7 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
         </div>
 
         <div className="w-full  order-first h-[370px] relative xl:order-last lg:h-[520px]">
-          <div className="absolute w-[85%] bottom-0 left-0 h-[300px] md:bg-blue-400 lg:bg-red-400 xl:bg-green-400 lg:h-[430px] z-10">
+          <div className="absolute w-[85%] bottom-0 left-0 h-[300px] lg:h-[430px] z-10">
             {data?.featuredImage?.node?.mediaItemUrl && (
               <div className="relative w-full h-full">
                 <Image
