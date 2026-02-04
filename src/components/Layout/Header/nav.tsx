@@ -6,9 +6,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import PhoneMenu from "./PhoneMenu";
 
-interface NavProps {}
+interface NavProps { }
 
-const Nav = ({}: NavProps) => {
+const Nav = ({ }: NavProps) => {
   const [isMenuScroll, setIsMenuScroll] = useState<boolean>(false);
 
   useEffect(() => {
@@ -26,11 +26,10 @@ const Nav = ({}: NavProps) => {
 
   return (
     <nav
-      className={`py-4 z-20 layout bg-white flex justify-between items-center w-full duration-75  transition-all ease-in-out ${
-        isMenuScroll
-          ? "fixed top-0 center-x bg-white shadow-lg"
-          : "absolute center-x"
-      }`}
+      className={`py-4 z-20 layout bg-white flex justify-between items-center w-full duration-75   transition-all ease-in-out ${isMenuScroll
+        ? "fixed top-0 center-x bg-white shadow-lg"
+        : "absolute center-x"
+        }`}
     >
       <Link
         href="/"
@@ -47,14 +46,14 @@ const Nav = ({}: NavProps) => {
         <Logo />
       </Link>
 
-      <ul className=" lg:flex hidden font-sub lg:gap-6 text-[19px] pr-28">
+      <ul className=" lg:flex hidden lg:gap-6 text-[19px] pr-28">
         {menuItems?.menu?.map((item: any) => {
           return (
             <li
-              className="hover:text-brand-primary hover:underline"
+              className="hover:text-brand-primary hover:underline font-sub"
               key={item?.id}
             >
-              <Link href={item?.uri}>{item?.label}</Link>
+              <Link href={item?.uri} className="font-sub">{item?.label}</Link>
             </li>
           );
         })}

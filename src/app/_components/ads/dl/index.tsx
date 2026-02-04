@@ -39,7 +39,7 @@ export function DlAdSkeleton() {
   return (
     <div className="bg-white layout contain">
       <div className="flex justify-center items-center">
-        <div className="block w-[280px] h-64 lg:w-[980px] lg:h-[200px] bg-brand-dl animate-pulse rounded"></div>
+        <div className="block w-[280px] h-64 lg:w-[980px] lg:h-[200px] bg-brand-dl animate-pulse rounded-sm"></div>
       </div>
     </div>
   );

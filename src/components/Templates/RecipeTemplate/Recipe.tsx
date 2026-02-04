@@ -27,7 +27,7 @@ const Recipe = ({
     <div className="">
       <nav className="flex justify-center items-center gap-4 md:hidden">
         <button
-          className={`w-[40%] py-2 border-[2px] border-b-0 border-brand-secondary rounded-t-[10px] ${
+          className={`w-[40%] py-2 border-2 border-b-0 border-brand-secondary rounded-t-[10px] ${
             isInstruction
               ? "bg-white text-brand-secondary"
               : "bg-brand-secondary text-white"
@@ -37,7 +37,7 @@ const Recipe = ({
           Ingredienser
         </button>
         <button
-          className={`w-[40%] py-2 border-[2px] border-b-0 border-brand-secondary rounded-t-[10px] ${
+          className={`w-[40%] py-2 border-2 border-b-0 border-brand-secondary rounded-t-[10px] ${
             !isInstruction
               ? "bg-white text-brand-secondary"
               : "bg-brand-secondary text-white"

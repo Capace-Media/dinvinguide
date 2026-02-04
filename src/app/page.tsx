@@ -13,7 +13,6 @@ import LatestArticles from "./_components/LatestArticles";
 
 async function getData() {
   const res = await getFrontPage();
-
   return res;
 }
 

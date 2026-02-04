@@ -31,7 +31,7 @@ const StorBild = ({ content }: StorBildProps) => {
   const altText = img.altText || "Bild från DinVinGuide";
 
   return (
-    <section className="py-[2rem]">
+    <section className="py-8">
       <Image
         src={img.mediaItemUrl}
         alt={altText}

@@ -36,7 +36,7 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
         </div>
 
         <div className="w-full  order-first h-[370px] relative md:order-last lg:h-[520px]">
-          <ul className="absolute recipe_page_grid w-[100%] center-y left-0 h-[89%] z-10">
+          <ul className="absolute recipe_page_grid w-full center-y left-0 h-[89%] z-10">
             {data?.recipes?.nodes &&
               data.recipes.nodes.map((recipe: any, index: number) => {
                 return (
@@ -98,7 +98,7 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
                 );
               })}
           </ul>
-          <div className=" bg-brand-beige w-[85%] md:w-[100%] h-[100%] center-y absolute -right-4 md:-right-11 lg:-right-20"></div>
+          <div className=" bg-brand-beige w-[85%] md:w-full h-full center-y absolute -right-4 md:-right-11 lg:-right-20"></div>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ const Brodtext = ({ content }: BrodtextProps) => {
     return null;
   }
 
-  return <section className="py-[2rem]">{handleParse(content.text)}</section>;
+  return <section className="py-8">{handleParse(content.text)}</section>;
 };
 
 export default Brodtext;

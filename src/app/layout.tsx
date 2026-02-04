@@ -87,11 +87,11 @@ export default async function RootLayout({
   const { isEnabled } = await draftMode();
 
   return (
-    <html lang="sv">
+    <html lang="sv" className={`${poppins.variable} ${abrilFatface.variable}`}>
       <GoogleTagManager
         gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string}
       />
-      <body className={`${poppins.variable} ${abrilFatface.variable}`}>
+      <body className={`font-main`}>
         <Header />
         <Suspense fallback={<Loading />}>
           <main className="">

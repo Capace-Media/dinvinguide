@@ -36,7 +36,7 @@ export default ExtraPuff;
 function GrapeComponent({ data }: any) {
   return (
     <section
-      className="relative w-full gap-10 flex h-[330px] py-[2rem] odd:flex-row even:flex-row-reverse"
+      className="relative w-full gap-10 flex h-[330px] py-8 odd:flex-row even:flex-row-reverse"
     >
 
       <div className="lg:w-[40%] hidden lg:flex lg:flex-col justify-center">
@@ -84,7 +84,7 @@ function GrapeComponent({ data }: any) {
           className="object-cover w-full h-full"
           sizes="(max-width: 1024px) 93vw, (max-width: 1790px) 29vw, 549px"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/15 to-transparent" />
         <div className="absolute bottom-0 pointer-events-none left-0 p-4 lg:w-[70%] z-10 text-white">
           <p className="text-[12px] text-white group-hover:underline">
             Druva
@@ -220,7 +220,7 @@ function DrinkComponent({ data }: any) {
 function RecipeComponent({ data }: any) {
   return (
     <section
-      className="relative w-full gap-10 flex h-[330px] py-[2rem] odd:flex-row even:flex-row-reverse"
+      className="relative w-full gap-10 flex h-[330px] py-8 odd:flex-row even:flex-row-reverse"
     >
       <div className="md:w-[50%] w-full flex flex-col justify-center">
         {data?.title && (
@@ -266,8 +266,8 @@ function RecipeComponent({ data }: any) {
           className="object-cover w-full h-full"
           sizes="(max-width: 1024px) 93vw, (max-width: 1790px) 29vw, 549px"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent" />
-        <div className="absolute bottom-0 left-0 p-2 z-[4] text-white">
+        <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/15 to-transparent" />
+        <div className="absolute bottom-0 left-0 p-2 z-4 text-white">
           <p className="flex flex-col group-hover:underline">
             {data?.acf_data?.skrivetAv &&
               (

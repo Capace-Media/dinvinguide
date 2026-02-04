@@ -11,8 +11,8 @@ const DrinkListLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="layout bg-white relative overflow-hidden">
       {width && width > mobileBreakpoint && (
-        <div className="absolute z-[5] -left-16 top-[26rem]">
-          <div className="relative w-[30vw] lg:h-[150rem] md:h-[100rem]  hidden md:block">
+        <div className="absolute z-5 -left-16 top-104">
+          <div className="relative w-[30vw] lg:h-600 md:h-400  hidden md:block">
             <Image
               src={leftImg}
               alt="dekoration bilder"
@@ -26,8 +26,8 @@ const DrinkListLayout = ({ children }: { children: React.ReactNode }) => {
       )}
       {children}
       {width && width > mobileBreakpoint && (
-        <div className="absolute z-[5] -right-16 top-[26rem]">
-          <div className="relative w-[30vw]  lg:h-[150rem] md:h-[100rem] hidden md:block">
+        <div className="absolute z-5 -right-16 top-104">
+          <div className="relative w-[30vw]  lg:h-600 md:h-400 hidden md:block">
             <Image
               src={rightImg}
               alt="dekoration bilder"

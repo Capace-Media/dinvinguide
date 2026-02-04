@@ -104,7 +104,7 @@ const Player = ({
         <div className="fixed bottom-0 left-0 flex items-center justify-between w-screen p-5">
           {episodeIndex !== 0 ? (
             <button
-              className="flex items-center px-3 py-1 space-x-3 rounded md:px-5 md:py-3 bg-black/10 hover:bg-black/20"
+              className="flex items-center px-3 py-1 space-x-3 rounded-sm md:px-5 md:py-3 bg-black/10 hover:bg-black/20"
               onClick={() => handlePreviousVideo()}
             >
               <svg
@@ -122,7 +122,7 @@ const Player = ({
           )}
           {episodeIndex !== maxIndex && (
             <button
-              className="flex items-center px-3 py-1 space-x-3 rounded md:px-5 md:py-3 bg-black/10 hover:bg-black/20"
+              className="flex items-center px-3 py-1 space-x-3 rounded-sm md:px-5 md:py-3 bg-black/10 hover:bg-black/20"
               onClick={() => handleNextVideo()}
             >
               <span>Nästa</span>

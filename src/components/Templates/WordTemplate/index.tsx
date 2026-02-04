@@ -132,7 +132,7 @@ const WordTemplate = async ({ params }: { params: { slug: string } }) => {
             )}
           </ul>
           {data?.featuredImage?.node?.mediaItemUrl && (
-            <div className=" relative py-10 w-[100%] lg:h-[555px] h-[322px]">
+            <div className=" relative py-10 w-full lg:h-[555px] h-[322px]">
               <Image
                 src={data?.featuredImage?.node?.mediaItemUrl}
                 alt={data?.title}
