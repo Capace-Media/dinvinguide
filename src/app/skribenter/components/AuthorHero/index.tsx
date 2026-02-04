@@ -69,7 +69,7 @@ const AuthorHero = async ({ promise, word }: AuthorHeroProps) => {
                     name="search"
                     id="search"
                     placeholder="Den som söker den finner..."
-                    className="py-3 pl-2 w-full focus:outline-none"
+                    className="py-3 pl-2 w-full focus:outline-hidden"
                   />
 
                   <button

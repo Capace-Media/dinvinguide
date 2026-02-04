@@ -11,9 +11,9 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
   const data = await promise;
 
   return (
-    <div className="layout w-full py-[73px] md:pt-[172px] bg-white">
-      <div className="grid md:grid-cols-2 gap-10 lg:gap-[180px] order-last md:order-first">
-        <div className="flex flex-col justify-between min-h-[461px]">
+    <div className="layout w-full py-18.25 md:pt-43 bg-white">
+      <div className="grid md:grid-cols-2 gap-10 lg:gap-45 order-last md:order-first">
+        <div className="flex flex-col justify-between min-h-115.25">
           <div className="flex flex-col gap-6 ">
             <div className="">
               {handleParse(data?.page?.page_content?.intro)}
@@ -27,7 +27,7 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
                       className="flex flex-col lg:hover:scale-105 lg:ease-in-out lg:duration-300 justify-center items-center"
                     >
                       <Link href={link.uri}>{link.title}</Link>
-                      <span className="w-full  h-[2px] block bg-brand-primary"></span>
+                      <span className="w-full  h-0.5 block bg-brand-primary"></span>
                     </li>
                   );
                 })}
@@ -35,8 +35,8 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
           </div>
         </div>
 
-        <div className="w-full  order-first h-[370px] relative md:order-last lg:h-[520px]">
-          <ul className="absolute recipe_page_grid w-[100%] center-y left-0 h-[89%] z-10">
+        <div className="w-full  order-first h-92.5 relative md:order-last lg:h-130">
+          <ul className="absolute recipe_page_grid w-full center-y left-0 h-[89%] z-10">
             {data?.recipes?.nodes &&
               data.recipes.nodes.map((recipe: any, index: number) => {
                 return (
@@ -76,12 +76,12 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
                               className="text-[12px] uppercase"
                             >
                               {displayTax.name}
-                              <span className="flex w-full h-[3px] bg-white"></span>
+                              <span className="flex w-full h-0.70 bg-white"></span>
                             </p>
                           ) : null;
                         })()}
                       </div>
-                      <div className="absolute bottom-0 pointer-events-none w-[300px] left-0 p-4 z-10">
+                      <div className="absolute bottom-0 pointer-events-none w-75 left-0 p-4 z-10">
                         {recipe?.acf_recipe?.skrivetAv && (
                           <p className="md:text-[12px] md:uppercase text-white text-[12px]">
                             {recipe.acf_recipe.skrivetAv[0].name}
@@ -98,7 +98,7 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
                 );
               })}
           </ul>
-          <div className=" bg-brand-beige w-[85%] md:w-[100%] h-[100%] center-y absolute -right-4 md:-right-11 lg:-right-20"></div>
+          <div className=" bg-brand-beige w-[85%] md:w-full h-full center-y absolute -right-4 md:-right-11 lg:-right-20"></div>
         </div>
       </div>
     </div>

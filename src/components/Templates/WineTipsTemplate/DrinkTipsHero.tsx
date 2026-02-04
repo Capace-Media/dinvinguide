@@ -119,7 +119,7 @@ const DrinkTipsHero = ({ data }: DrinkTipsHeroProps) => {
                 </div>
               </div>
             </div>
-            <div className=" bg-brand-beige w-[85%] md:w-[100%] h-[100%] center-y absolute -right-4 md:-right-11 lg:-right-20">
+            <div className=" bg-brand-beige w-[85%] md:w-full h-full center-y absolute -right-4 md:-right-11 lg:-right-20">
               {data?.featuredImage?.node?.mediaItemUrl && (
                 <Image
                   src={data?.featuredImage?.node?.mediaItemUrl}

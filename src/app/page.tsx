@@ -6,15 +6,53 @@ import { notFound } from "next/navigation";
 import ExclusiveDrinks from "./_components/ExclusiveDrinks";
 import Newsletter from "./_components/Newsletter";
 import Ads from "./_components/ads";
-
 import ExplorePages from "./_components/ExplorePages";
 import ExploreRecipes from "./_components/ExploreRecipes";
 import LatestArticles from "./_components/LatestArticles";
+import { Metadata } from "next";
 
 async function getData() {
-  const res = await getFrontPage();
+  try {
+    const res = await getFrontPage();
 
-  return res;
+    // Check if we got an error message back
+    if (res?.message) {
+      console.error("Front page data error:", res.message);
+      return null;
+    }
+
+    return res;
+  } catch (error) {
+    console.error("Failed to fetch front page data:", error);
+    return null;
+  }
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getData();
+  if (!data?.page) {
+    return {
+      title: "DinVinguide - Upptäck vin och mat",
+      description: "Din guide till vin, mat och dryckestips",
+    };
+  }
+  return {
+    title: data.page.seo?.title || "DinVinguide - Upptäck vin och mat",
+    description:
+      data.page.seo?.metaDesc || "Din guide till vin, mat och dryckestips",
+    openGraph: data.page.featuredImage?.node?.mediaItemUrl
+      ? {
+          images: [
+            {
+              url: data.page.featuredImage.node.mediaItemUrl,
+              width: data.page.featuredImage.node.mediaDetails?.width,
+              height: data.page.featuredImage.node.mediaDetails?.height,
+              alt: data.page.featuredImage.node.altText || "DinVinguide",
+            },
+          ],
+        }
+      : undefined,
+  };
 }
 
 export default async function Home() {

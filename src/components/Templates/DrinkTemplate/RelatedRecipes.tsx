@@ -26,7 +26,7 @@ const RelatedRecipes = ({ data }: RelatedRecipesProps) => {
             </Link>
           </div>
           <div className="w-full h-full">
-            <div className="relative w-[100%] md:w-[80%] h-[270px] lg:h-full">
+            <div className="relative w-full md:w-[80%] h-[270px] lg:h-full">
               {data?.featuredImage?.node?.mediaItemUrl &&
               data?.featuredImage?.node?.mediaItemUrl?.includes("https://") ? (
                 <Image

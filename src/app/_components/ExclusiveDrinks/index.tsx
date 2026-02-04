@@ -144,7 +144,7 @@ const ExclusiveDrinks = async () => {
       </div>
 
       <div className="pb-6">
-        <ul className="grid xl:grid-cols-4 md:grid-cols-2 gap-[4.3rem] pb-10 layout bg-white shadow-lg border-[#F0F0CC] border-b-[18px] ">
+        <ul className="grid xl:grid-cols-4 md:grid-cols-2 gap-[4.3rem] pb-10 layout bg-white shadow-lg border-[#F0F0CC] border-b-18 ">
           {combinedArticles &&
             combinedArticles.map((wine: any) => {
               return (
@@ -204,7 +204,7 @@ const ExclusiveDrinks = async () => {
       <Link
         href={`/dryckestips`}
         aria-label={`Utforska alla våra artiklar`}
-        className="btn md:hidden"
+        className="btn md:hidden!"
       >
         <span>Upptäck alla exklusiva drycker</span>
       </Link>

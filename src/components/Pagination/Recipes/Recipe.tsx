@@ -52,7 +52,7 @@ const Recipe = ({ recipe }: RecipeProps) => {
           </>
         )}
         <div className="absolute right-3 top-2 z-10 border-b-2 border-white "></div>
-        <div className="absolute top-0 right-0 text-white p-4 z-[2] flex gap-2">
+        <div className="absolute top-0 right-0 text-white p-4 z-2 flex gap-2">
           {(() => {
             const desiredOrder = [
               "huvudratter",
@@ -83,7 +83,7 @@ const Recipe = ({ recipe }: RecipeProps) => {
         </div>
       </Link>
 
-      <div className="h-[6rem] rounded-b-[10px] flex flex-col justify-between py-2 px-2 bg-[#F5F5F5]">
+      <div className="h-24 rounded-b-[10px] flex flex-col justify-between py-2 px-2 bg-[#F5F5F5]">
         <div className="flex flex-col">
           <p className="text-[#333] text-[12px] uppercase">
             {recipe?.acf_recipe?.skrivetAv

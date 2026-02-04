@@ -18,7 +18,7 @@ const ExploreGuides = ({}: ExploreGuidesProps) => {
             className=" relative min-h-[200px] md:min-h-[250px] h-full flex justify-center items-center"
             href="/vinskolan"
           >
-            <span className=" bg-[#0000005a] absolute top-0 left-0 w-full h-full z-[2]"></span>
+            <span className=" bg-[#0000005a] absolute top-0 left-0 w-full h-full z-2"></span>
             <Image
               src={vinskolan}
               alt="bild på fatlager"
@@ -27,7 +27,7 @@ const ExploreGuides = ({}: ExploreGuidesProps) => {
                 objectFit: "cover",
               }}
             />
-            <span className="absolute x-center y-center z-[3] text-white font-sub text-[22px] pb-1 border-b-2 ">
+            <span className="absolute x-center y-center z-3 text-white font-sub text-[22px] pb-1 border-b-2 ">
               Vinskolan
             </span>
           </Link>
@@ -37,7 +37,7 @@ const ExploreGuides = ({}: ExploreGuidesProps) => {
             className=" relative min-h-[200px] md:min-h-[250px] h-full flex justify-center items-center"
             href="/vinatlas"
           >
-            <span className=" bg-[#0000005a] absolute top-0 left-0 w-full h-full z-[2]"></span>
+            <span className=" bg-[#0000005a] absolute top-0 left-0 w-full h-full z-2"></span>
             <Image
               src={vinatlas}
               alt="bild på fatlager"
@@ -46,7 +46,7 @@ const ExploreGuides = ({}: ExploreGuidesProps) => {
                 objectFit: "cover",
               }}
             />
-            <span className="absolute x-center y-center z-[3] text-white font-sub text-[22px] pb-1 border-b-2 ">
+            <span className="absolute x-center y-center z-3 text-white font-sub text-[22px] pb-1 border-b-2 ">
               Vinatlas
             </span>
           </Link>
@@ -56,7 +56,7 @@ const ExploreGuides = ({}: ExploreGuidesProps) => {
             className=" relative min-h-[200px] md:min-h-[250px] h-full flex justify-center items-center"
             href="/druvguiden"
           >
-            <span className=" bg-[#0000005a] absolute top-0 left-0 w-full h-full z-[2]"></span>
+            <span className=" bg-[#0000005a] absolute top-0 left-0 w-full h-full z-2"></span>
             <Image
               src={druvguiden}
               alt="bild på fatlager"
@@ -65,7 +65,7 @@ const ExploreGuides = ({}: ExploreGuidesProps) => {
                 objectFit: "cover",
               }}
             />
-            <span className="absolute x-center y-center z-[3] text-white font-sub text-[22px] pb-1 border-b-2 ">
+            <span className="absolute x-center y-center z-3 text-white font-sub text-[22px] pb-1 border-b-2 ">
               Druvguiden
             </span>
           </Link>
@@ -75,7 +75,7 @@ const ExploreGuides = ({}: ExploreGuidesProps) => {
             className=" relative min-h-[200px] md:min-h-[250px] h-full flex justify-center items-center"
             href="/ordlistan"
           >
-            <span className=" bg-[#0000005a] absolute top-0 left-0 w-full h-full z-[2]"></span>
+            <span className=" bg-[#0000005a] absolute top-0 left-0 w-full h-full z-2"></span>
             <Image
               src={ordlista}
               alt="bild på fatlager"
@@ -85,7 +85,7 @@ const ExploreGuides = ({}: ExploreGuidesProps) => {
                 objectPosition: "bottom",
               }}
             />
-            <span className="absolute x-center y-center z-[3] text-white font-sub text-[22px] pb-1 border-b-2 ">
+            <span className="absolute x-center y-center z-3 text-white font-sub text-[22px] pb-1 border-b-2 ">
               Ordlistan
             </span>
           </Link>

@@ -121,11 +121,11 @@ export default function SuppliersList() {
 
         <div className="flex justify-center items-center gap-2 py-10">
           {/* Skeleton pagination */}
-          <div className="p-[10px] bg-gray-200 rounded-sm"></div>
+          <div className="p-[10px] bg-gray-200 rounded-xs"></div>
           <div className="flex justify-center items-center gap-3">
-            <div className="w-[28px] h-[28px] bg-gray-200 rounded-sm"></div>
+            <div className="w-[28px] h-[28px] bg-gray-200 rounded-xs"></div>
           </div>
-          <div className="p-[10px] bg-gray-200 rounded-sm"></div>
+          <div className="p-[10px] bg-gray-200 rounded-xs"></div>
         </div>
       </section>
     );
@@ -198,7 +198,7 @@ export default function SuppliersList() {
           {currentPage > 1 && (
             <button
               onClick={handlePreviousPage}
-              className="w-[28px] flex justify-center items-center h-[28px] text-gray-600 hover:bg-gray-100 rounded-sm"
+              className="w-[28px] flex justify-center items-center h-[28px] text-gray-600 hover:bg-gray-100 rounded-xs"
               disabled={!data?.pageInfo?.hasPreviousPage || isFetching}
             >
               {currentPage - 1}
@@ -214,7 +214,7 @@ export default function SuppliersList() {
           {data?.pageInfo?.hasNextPage && (
             <button
               onClick={handleNextPage}
-              className="w-[28px] flex justify-center items-center h-[28px] text-gray-600 hover:bg-gray-100 rounded-sm"
+              className="w-[28px] flex justify-center items-center h-[28px] text-gray-600 hover:bg-gray-100 rounded-xs"
               disabled={isFetching}
             >
               {currentPage + 1}
@@ -243,9 +243,9 @@ const SkeletonCard = () => (
   <div className="animate-pulse">
     <div className="h-[200px] w-full bg-gray-300 rounded-t-[10px]"></div>
     <div className="h-[89px] w-full bg-gray-200 p-2 rounded-b-[10px]">
-      <div className="h-5 bg-gray-300 rounded w-3/4 mb-2"></div>
-      <div className="h-3 bg-gray-300 rounded w-full mb-1"></div>
-      <div className="h-3 bg-gray-300 rounded w-2/3"></div>
+      <div className="h-5 bg-gray-300 rounded-sm w-3/4 mb-2"></div>
+      <div className="h-3 bg-gray-300 rounded-sm w-full mb-1"></div>
+      <div className="h-3 bg-gray-300 rounded-sm w-2/3"></div>
     </div>
   </div>
 );

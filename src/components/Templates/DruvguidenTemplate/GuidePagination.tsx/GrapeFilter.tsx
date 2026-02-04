@@ -20,7 +20,7 @@ const GrapeFilter = ({}: GrapeFilterProps) => {
               }}
               className="w-full relative h-[222px]"
             >
-              <span className="absolute w-full h-full top-0 left-0 bg-[#3333335a] z-[2]"></span>
+              <span className="absolute w-full h-full top-0 left-0 bg-[#3333335a] z-2"></span>
               <Image
                 src={green}
                 alt="bild på gröna druvor"
@@ -29,7 +29,7 @@ const GrapeFilter = ({}: GrapeFilterProps) => {
                   objectFit: "cover",
                 }}
               />
-              <p className="absolute z-[4] text-white font-sub center-x center-y text-[26px] border-b-2 border-white">
+              <p className="absolute z-4 text-white font-sub center-x center-y text-[26px] border-b-2 border-white">
                 Alla Druvor
               </p>
             </button>
@@ -43,7 +43,7 @@ const GrapeFilter = ({}: GrapeFilterProps) => {
               }}
               className="w-full relative h-[222px]"
             >
-              <span className="absolute w-full h-full top-0 left-0 bg-[#3333335a] z-[2]"></span>
+              <span className="absolute w-full h-full top-0 left-0 bg-[#3333335a] z-2"></span>
               <Image
                 src={green}
                 alt="bild på gröna druvor"
@@ -52,7 +52,7 @@ const GrapeFilter = ({}: GrapeFilterProps) => {
                   objectFit: "cover",
                 }}
               />
-              <p className="absolute z-[4] text-white font-sub center-x center-y text-[26px] border-b-2 border-white">
+              <p className="absolute z-4 text-white font-sub center-x center-y text-[26px] border-b-2 border-white">
                 Gröna druvor
               </p>
             </button>
@@ -66,7 +66,7 @@ const GrapeFilter = ({}: GrapeFilterProps) => {
               }}
               className="w-full relative h-[222px]"
             >
-              <span className="absolute w-full h-full top-0 left-0 bg-[#3333335a] z-[2]"></span>
+              <span className="absolute w-full h-full top-0 left-0 bg-[#3333335a] z-2"></span>
               <Image
                 src={blue}
                 alt="bild på blå druvor"
@@ -75,7 +75,7 @@ const GrapeFilter = ({}: GrapeFilterProps) => {
                   objectFit: "cover",
                 }}
               />
-              <p className="absolute z-[4] text-white font-sub center-x center-y text-[26px] border-b-2 border-white">
+              <p className="absolute z-4 text-white font-sub center-x center-y text-[26px] border-b-2 border-white">
                 Blåa druvor
               </p>
             </button>
