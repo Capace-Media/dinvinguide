@@ -11,8 +11,8 @@ interface AsideProps {
 const Aside = ({ author, related }: AsideProps) => {
   return (
     <aside className="md:col-span-2 lg:pl-10">
-      <div className=" w-full bg-brand-primary p-4">
-        <div className="relative w-full min-h-[500px]">
+      <div className="w-full bg-brand-primary p-4">
+        <div className="w-full">
           {author?.acf_user?.bild?.mediaItemUrl && (
             <Image
               src={author.acf_user.bild.mediaItemUrl}
@@ -21,11 +21,10 @@ const Aside = ({ author, related }: AsideProps) => {
                   ? author.acf_user.bild.altText
                   : "Bild från dinvinguide"
               }
-              fill
-              style={{
-                objectFit: "cover",
-              }}
-              sizes="(min-width: 1860px) 551px, (min-width: 1040px) calc(36.88vw - 128px), (min-width: 780px) calc(40vw - 131px), calc(100vw - 104px)"
+              width={author.acf_user.bild?.mediaDetails?.width}
+              height={author.acf_user.bild?.mediaDetails?.height}
+              className="object-cover"
+              sizes="(max-width: 1024px) 90vw, (max-width: 1790px) 29vw, 551px"
             />
           )}
         </div>
@@ -33,16 +32,16 @@ const Aside = ({ author, related }: AsideProps) => {
           <p className=" font-sub text-[29px] pb-6">
             {author?.name || "Okänd författare"}
           </p>
-          <div className="text-[16px] line-clamp-5 ">
+          <div className="text-[16px] line-clamp-5">
             {author?.acf_user?.kortBeskrivning
-              ? handleParse(author.acf_user.kortBeskrivning)
+              ? handleParse(author.acf_user.kortBeskrivning, "text-white")
               : "Ingen beskrivning tillgänglig."}
           </div>
           <div>
             <ul className="flex justify-center items-center gap-2 pt-6">
               <li>
                 <a
-                  className="min-h-10 min-w-[40px] flex justify-center items-end"
+                  className="min-h-10 min-w-10 flex justify-center items-end"
                   href={author?.acf_user?.facebook || "#"}
                   aria-label={`länk till ${
                     author?.name || "författarens"
@@ -53,7 +52,7 @@ const Aside = ({ author, related }: AsideProps) => {
               </li>
               <li>
                 <a
-                  className="min-h-[40px] min-w-[40px] flex justify-center items-end"
+                  className="min-h-10 min-w-10 flex justify-center items-end"
                   href={author?.acf_user?.instagram || "#"}
                   aria-label={`länk till ${
                     author?.name || "författarens"
@@ -64,7 +63,7 @@ const Aside = ({ author, related }: AsideProps) => {
               </li>
               <li>
                 <a
-                  className="min-h-[40px] min-w-[40px] flex justify-center items-end"
+                  className="min-h-10 min-w-10 flex justify-center items-end"
                   href={`mailto:${author?.acf_user?.email || ""}`}
                   aria-label={`länk till ${
                     author?.name || "författarens"
