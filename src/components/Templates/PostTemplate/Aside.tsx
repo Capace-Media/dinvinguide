@@ -33,7 +33,7 @@ const Aside = ({ author, related }: AsideProps) => {
           <p className=" font-sub text-[29px] pb-6">
             {author?.name || "Okänd författare"}
           </p>
-          <div className="text-[16px] author_parse_one">
+          <div className="text-[16px] line-clamp-5 ">
             {author?.acf_user?.kortBeskrivning
               ? handleParse(author.acf_user.kortBeskrivning)
               : "Ingen beskrivning tillgänglig."}
@@ -42,7 +42,7 @@ const Aside = ({ author, related }: AsideProps) => {
             <ul className="flex justify-center items-center gap-2 pt-6">
               <li>
                 <a
-                  className="min-h-[40px] min-w-[40px] flex justify-center items-end"
+                  className="min-h-10 min-w-[40px] flex justify-center items-end"
                   href={author?.acf_user?.facebook || "#"}
                   aria-label={`länk till ${
                     author?.name || "författarens"

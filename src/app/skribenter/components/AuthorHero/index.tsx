@@ -54,7 +54,7 @@ const AuthorHero = async ({ promise, word }: AuthorHeroProps) => {
                 <span className=" font-main text-[18px] md:text-[23px] leading-[18px] md:leading-[23px]">
                   Skribent
                 </span>
-                <span className="block capitalize-first">{data?.name}</span>
+                <span className="block ">{data?.name}</span>
               </h1>
               <div className="author_text text-[14px] leading-[23px]">
                 {handleParse(data?.description)}
