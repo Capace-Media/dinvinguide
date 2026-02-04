@@ -53,6 +53,7 @@ export default function MobileMenu({ menuItems }: Props) {
                 className="text-2xl hover:underline "
                 href={item.uri}
                 aria-label={`Gå till ${item.label} sidan`}
+                onClick={() => setIsOpen(false)}
               >
                 {item.label}
               </Link>
