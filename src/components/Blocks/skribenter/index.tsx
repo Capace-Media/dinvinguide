@@ -9,19 +9,18 @@ interface AuthorsComponentProps {
 
 const AuthorsComponent: React.FC<AuthorsComponentProps> = ({ data }) => {
   return (
-    <ul>
+    <div>
       {data?.skribenter &&
         data.skribenter.map((author: any, index: number) => (
-          <li key={author.id}>
-            <section key={author.id}>
-              <AuthorComponent author={author} index={index} />
-            </section>
+          <section key={author.id}>
+            <AuthorComponent author={author} index={index} />
+
             {/* After every third AuthorComponent, insert YourNewComponent */}
             {(index + 1) % 3 === 0 && <Ads pageType="default" position="MID" />}
-          </li>
+          </section>
         ))}
       <Ads pageType="default" position="BOTTOM" />
-    </ul>
+    </div>
   );
 };
 
