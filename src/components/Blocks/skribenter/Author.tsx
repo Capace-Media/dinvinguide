@@ -13,11 +13,11 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
   return (
     <div className="">
       <div
-        className={`layout contain flex flex-col md:grid md:grid-cols-2  md:gap-24 gap-4 ${
+        className={`layout contain flex flex-col md:flex-row md:grid-cols-7 md:gap-24 gap-4 ${
           index % 2 === 0 ? "bg-[#F6F6F6]" : "bg-brand-primary text-white"
         }`}
       >
-        <div className="w-full h-[366px] lg:h-[482px] relative m-auto lg:order-2">
+        <div className="w-full h-92.5 col-span-4 lg:h-122.5 lg:order-2">
           {author?.acf_user?.bildExtra?.mediaItemUrl && (
             <Image
               src={author.acf_user.bildExtra.mediaItemUrl}
@@ -26,11 +26,9 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
                   ? author.acf_user.bildExtra.altText
                   : author.acf_user.bildExtra.title
               }
-              fill
-              style={{
-                objectFit: "cover",
-                objectPosition: "center",
-              }}
+              width={author.acf_user.bildExtra?.mediaDetails?.width}
+              height={author.acf_user.bildExtra?.mediaDetails?.height}
+              className="object-contain h-92.5 lg:h-122.5"
               sizes="
             (min-width: 1880px) 761px,
             (min-width: 1040px) calc(45vw - 76px),
@@ -41,7 +39,7 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
           )}
         </div>
         <div
-          className={`flex flex-col justify-between lg:order-1 ${
+          className={`flex flex-col col-span-3 justify-between lg:order-1 max-w-150 ${
             index % 2 === 0 ? "text-brand-dark" : " text-brand-light"
           }`}
         >
