@@ -39,7 +39,7 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
           )}
         </div>
         <div
-          className={`flex flex-col col-span-3 justify-between lg:order-1 max-w-150 ${
+          className={`flex flex-col col-span-3 justify-between lg:order-1 max-w-170 ${
             index % 2 === 0 ? "text-brand-dark" : " text-brand-light"
           }`}
         >
@@ -58,7 +58,7 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
             </div>
 
             <div
-              className={`line-clamp-12 text-[14px] md:text-[15px] leading-6-5 ${
+              className={`line-clamp-6 lg:line-clamp-10 2xl:line-clamp-12 text-[14px] md:text-[15px] leading-6-5 ${
                 index % 2 === 0 ? "parse-dark" : " parse-light"
               }`}
             >
