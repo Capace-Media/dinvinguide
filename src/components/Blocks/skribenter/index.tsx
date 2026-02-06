@@ -1,13 +1,10 @@
-import React from "react";
 import AuthorComponent from "./Author";
 
 import Ads from "@/app/_components/ads";
+import { getAuthors } from "@/lib/queries/getAuthors";
 
-interface AuthorsComponentProps {
-  data: any;
-}
-
-const AuthorsComponent: React.FC<AuthorsComponentProps> = ({ data }) => {
+export default async function AuthorsComponent() {
+  const data = await getAuthors();
   return (
     <div>
       {data?.skribenter &&
@@ -22,6 +19,4 @@ const AuthorsComponent: React.FC<AuthorsComponentProps> = ({ data }) => {
       <Ads pageType="default" position="BOTTOM" />
     </div>
   );
-};
-
-export default AuthorsComponent;
+}
