@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import AuthorPost from "./Posts/post";
 import SocialMedia from "./SocialMedia";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
 interface AuthorComponentProps {
   author: any;
@@ -13,11 +15,11 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
   return (
     <div className="">
       <div
-        className={`layout contain flex flex-col md:flex-row md:grid-cols-7 md:gap-24 gap-4 ${
+        className={`layout contain flex flex-col md:flex-row lg:gap-24 gap-4 ${
           index % 2 === 0 ? "bg-[#F6F6F6]" : "bg-brand-primary text-white"
         }`}
       >
-        <div className="w-full h-92.5 col-span-4 lg:h-122.5 lg:order-2">
+        <div className="w-full h-92.5 lg:h-122.5 lg:order-2">
           {author?.acf_user?.bildExtra?.mediaItemUrl && (
             <Image
               src={author.acf_user.bildExtra.mediaItemUrl}
@@ -39,7 +41,7 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
           )}
         </div>
         <div
-          className={`flex flex-col col-span-3 justify-between lg:order-1 max-w-170 ${
+          className={`flex flex-col col-span-3 justify-between lg:order-1 md:w-3/4 lg:w-4/5 max-w-170 ${
             index % 2 === 0 ? "text-brand-dark" : " text-brand-light"
           }`}
         >
@@ -78,8 +80,22 @@ const AuthorComponent = ({ author, index }: AuthorComponentProps) => {
           </div>
         </div>
       </div>
+
       {author?.posts?.nodes ? (
-        <div className="layout bg-white contain">
+        <div className="layout bg-white contain pt-4! lg:pt-10!">
+          <div className="mb-5 flex justify-between items-center">
+            <h3 className="text-xl">{author?.name}s senaste artiklar</h3>
+
+            <Link
+              className={cn(
+                buttonVariants({ variant: "link" }),
+                "hidden md:block"
+              )}
+              href={`/skribenter/${author?.slug}`}
+            >
+              Se alla artiklar
+            </Link>
+          </div>
           <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
             {author?.posts?.nodes &&
               author.posts.nodes.map((post: any) => {

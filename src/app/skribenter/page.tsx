@@ -1,70 +1,47 @@
 import AuthorsComponent from "@/components/Blocks/skribenter";
-import { getAuthors } from "@/lib/queries/getAuthors";
 import { getPage } from "@/lib/queries/getPage";
 import Ads from "../_components/ads";
-
-import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import { getSEOByPage } from "@/lib/queries/getSEOByPage";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import { Suspense } from "react";
-import { MetaInfo } from "../../../types/MetaInfoTypes";
 import Loading from "../loading";
 import AuthorsHero from "./components/AuthorsHero";
 
-type Props = {
-  searchParams: Promise<{
-    [key: string]: string | string[] | any | undefined | null;
-  }>;
-  params: Promise<{ slug: string }>;
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getPage("skribenter");
+  const { seo } = data;
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const page = await getSEO();
-  const seo: any = page?.seo;
-
-  const uri = `/${page?.slug}`;
-
-  const img = {
-    url: seo?.opengraphImage?.mediaItemUrl
-      ? seo.opengraphImage.mediaItemUrl
-      : "",
-    alt: seo?.opengraphImage?.altText ? seo.opengraphImage.altText : "",
+  return {
+    title: seo?.title ? seo.title : "Authors",
+    description: seo?.metaDesc ? seo.metaDesc : "Authors",
+    openGraph: {
+      title: seo?.opengraphTitle || seo.title || "Authors",
+      description: seo.opengraphDescription || seo.metaDesc || "Authors",
+      url: `https://dinvinguide.se/skribenter`,
+      images: [
+        {
+          url: seo?.opengraphImage?.mediaItemUrl
+            ? seo.opengraphImage.mediaItemUrl
+            : "",
+          alt: seo?.opengraphImage?.altText ? seo.opengraphImage.altText : "",
+        },
+      ],
+    },
+    alternates: {
+      canonical: `https://dinvinguide.se/skribenter`,
+    },
   };
-
-  const previousMeta: MetaInfo = (await parent) as unknown as MetaInfo;
-
-  const data = await dynamicSeo({ seo, previousMeta, uri, img });
-
-  return data;
 }
 
-const getAuthorsData = async () => {
-  const data = await getAuthors();
+export default async function Authors() {
   const pageData = await getPage("skribenter");
-
-  return { data, pageData };
-};
-
-async function getSEO() {
-  const page = await getSEOByPage("/skribenter");
-  return page;
-}
-
-const Authors = async () => {
-  const { data, pageData } = await getAuthorsData();
 
   return (
     <>
+      <AuthorsHero promise={pageData} />
+      <Ads pageType="default" position="TOP" />
       <Suspense fallback={<Loading />}>
-        <AuthorsHero promise={pageData} />
-        <Ads pageType="default" position="TOP" />
-        <AuthorsComponent data={data} />
+        <AuthorsComponent />
       </Suspense>
     </>
   );
-};
-
-export default Authors;
+}
