@@ -6,6 +6,7 @@ import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 import Newsletter from "../_components/Newsletter";
 import Ads from "../_components/ads";
+import AllArticles from "./_components/articles";
 
 type Props = {
   searchParams: Promise<{
@@ -46,6 +47,7 @@ const Articles = async (props: Props) => {
         <Line />
       </div>
       <Ads pageType="default" position="TOP" />
+      <AllArticles />
       <ArticleTemplate searchParams={searchParams} />
       <Ads pageType="default" position="MID" />
       <Newsletter />

@@ -1,12 +1,8 @@
-const auth = Buffer.from(
-  process.env.CMS_GRAPHQL_AUTH_USER + ":" + process.env.CMS_GRAPHQL_AUTH_PASS
-).toString("base64");
 
 const WP = async (query: string, tag?: string | null, variables?: any) => {
   try {
-    const authString = `${process.env.CMS_GRAPHQL_AUTH_USER as string}:${
-      process.env.APPLICATION_NEW_PASSWORD as string
-    }`;
+    const authString = `${process.env.CMS_GRAPHQL_AUTH_USER as string}:${process.env.APPLICATION_NEW_PASSWORD as string
+      }`;
     const authHeader = `Basic ${btoa(authString)}`;
     const response = await fetch(process.env.CMS_GRAPHQL_URI as string, {
       method: "POST",
@@ -39,9 +35,8 @@ export default WP;
 
 export const WPServerSide = async (query: string, variables?: any) => {
   try {
-    const authString = `${process.env.CMS_GRAPHQL_AUTH_USER as string}:${
-      process.env.APPLICATION_NEW_PASSWORD as string
-    }`;
+    const authString = `${process.env.CMS_GRAPHQL_AUTH_USER as string}:${process.env.APPLICATION_NEW_PASSWORD as string
+      }`;
     const authHeader = `Basic ${btoa(authString)}`;
     const response = await fetch(process.env.CMS_GRAPHQL_URI as string, {
       method: "POST",
