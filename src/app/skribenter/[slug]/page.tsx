@@ -1,4 +1,4 @@
-import AuthorPosts from "@/components/Blocks/skribenter/Posts";
+
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 
 import { getAuthor } from "@/lib/queries/getAuthor";
@@ -6,15 +6,14 @@ import { getAuthor } from "@/lib/queries/getAuthor";
 import ExplorePages from "@/app/_components/ExplorePages";
 import Newsletter from "@/app/_components/Newsletter";
 import Ads from "@/app/_components/ads";
-import WP from "@/lib/wp";
+
 import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
 import AuthorHero from "../components/AuthorHero";
-type PropsPaths = {
-  slug: string;
-};
+import AllArticles from "@/app/artiklar/_components/articles";
+
 export async function generateStaticParams() {
   return [
     { slug: "fredrikschelin" },
@@ -61,9 +60,9 @@ export async function generateMetadata(
   };
   const author = page
     ? {
-        title: page?.name,
-        slug: `${process.env.NEXT_PUBLIC_SITE_URL}/skribenter/${page?.username}`,
-      }
+      title: page?.name,
+      slug: `${process.env.NEXT_PUBLIC_SITE_URL}/skribenter/${page?.username}`,
+    }
     : null;
 
   const previousMeta: MetaInfo = (await parent) as unknown as MetaInfo;
@@ -91,37 +90,17 @@ async function SingleAuthorPage(props: Props) {
     <div key={params?.slug}>
       <AuthorHero promise={data} word={search} />
       <Ads pageType="default" position="TOP" />
-      <section className="layout bg-white">
-        <div className="contain">
-          <div className="flex gap-2 text-brand-gray">
-            <Link href="/" className="text-brand-primary">
-              Hem
-            </Link>{" "}
-            /{" "}
-            <Link href="/skribenter" className="text-brand-primary">
-              Skribenter
-            </Link>{" "}
-            / <p className=" text-brand-dark">{data?.name}</p>
-          </div>
-          <h2 className=" font-sub text-[28px] md:text-[35px] lg:text-[42px] ">
-            {data?.firstName + (data?.firstName?.endsWith("s") ? "" : "s")}{" "}
-            senaste artiklar
-          </h2>
-        </div>
-        {posts ? (
-          <AuthorPosts
-            params={params}
-            searchParams={searchParams}
-            postsCount={posts}
-            search={search}
-          />
-        ) : (
-          <p>
-            {data?.firstName} har inte skrivit några artiklar ännu, håll utkik
-            för framtida artiklar.
-          </p>
-        )}
-      </section>
+      <div className="flex gap-2 text-brand-gray layout bg-white">
+        <Link href="/" className="text-brand-primary">
+          Hem
+        </Link>{" "}
+        /{" "}
+        <Link href="/skribenter" className="text-brand-primary">
+          Skribenter
+        </Link>{" "}
+        / <p className=" text-brand-dark">{data?.name}</p>
+      </div>
+      <AllArticles authorName={params?.slug} title={`${data?.firstName + (data?.firstName?.endsWith("s") ? "" : "s")} artiklar`} />
       <Ads pageType="default" position="MID" />
       <ExplorePages />
       <Ads pageType="default" position="BOTTOM" />

@@ -1,15 +1,7 @@
 import Newsletter from "@/app/_components/Newsletter";
 import Ads from "@/app/_components/ads";
-import AuthorPost from "@/components/Blocks/skribenter/Posts/post";
-import PaginationForGuides from "@/components/Pagination/Guider";
-import Posts from "@/components/Pagination/Posts";
-import { getPage } from "@/lib/queries/getPage";
-import { getSchoolPosts } from "@/lib/queries/getSchoolPosts";
 import WP from "@/lib/wp";
 import { notFound } from "next/navigation";
-import links from "../GuideTemplate/guideLinks.json";
-import PageHero from "../HeroHeaders/PageHero";
-import EpisodeCard from "./EpisodeCard";
 import EpisodeList from "./EpisodeList";
 
 type Props = {

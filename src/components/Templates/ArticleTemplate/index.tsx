@@ -37,7 +37,7 @@ const ArticleTemplate = async ({ searchParams }: Props) => {
       </div>
       {promise?.edges && <Posts posts={promise?.edges} />}
       {promise?.pageInfo?.hasNextPage === true ||
-      promise?.pageInfo?.hasPreviousPage === true ? (
+        promise?.pageInfo?.hasPreviousPage === true ? (
         <PaginationController
           pageInfo={promise?.pageInfo}
           uri="/artiklar"
