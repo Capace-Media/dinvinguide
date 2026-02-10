@@ -1,3 +1,26 @@
+import { IMAGE_CONTENT } from "./globals";
+
+export const POSTS_CONTENT = `
+    id
+    title
+    slug
+    modifiedGmt: dateGmt
+    acf_posts {
+      ingress
+    }
+    author {
+      node {
+        name
+        slug
+      }
+    }
+    featuredImage {
+      node {
+        ${IMAGE_CONTENT}
+      }
+    }
+`;
+
 export const POSTS = `
 query POSTS($after: String, $before: String, $search: String, $first: Int, $last: Int, $authorNotIn: [ID] = [50], $year: Int, $authorName: String) {
   posts(
@@ -16,31 +39,28 @@ query POSTS($after: String, $before: String, $search: String, $first: Int, $last
     }
     edges {
       node {
-        id
-        title
-        slug
-        modifiedGmt: dateGmt
-        acf_posts {
-          ingress
-        }
-        author {
-          node {
-            name
-            slug
-          }
-        }
-        featuredImage {
-          node {
-            altText
-            mediaDetails {
-              width
-              height
-            }
-            mediaItemUrl
+        ${POSTS_CONTENT}
+      }
+    }
+  }
+}
+`;
+
+export const HIGHLIGHTED_POSTS = `
+query getHighlightedPosts {
+    posts(first: 8, where: {authorNotIn: [50]}) {
+      nodes {
+        ${POSTS_CONTENT}
+      }
+    }
+    page(id: "/", idType: URI) {
+      GQL_frontPageFields {
+        highlightedArticles {
+          ... on Post {
+            ${POSTS_CONTENT}
           }
         }
       }
     }
   }
-}
 `;

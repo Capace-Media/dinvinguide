@@ -4,7 +4,6 @@ import PrettyDate from "@/lib/utils/prettyDate";
 import WP from "@/lib/wp";
 import Image from "next/image";
 import Link from "next/link";
-import { ParamsProps } from "../../../../types/Global";
 
 async function getWordData(slug: string) {
   const id = `/glossary/${slug}`;
@@ -171,16 +170,7 @@ const WordTemplate = async ({ params }: { params: { slug: string } }) => {
             </ul>
           </div>
         )}
-        {/* <div className="py-10">
-        <ul className="grid gap-6">
-          {related &&
-            related.map((post: any) => (
-              <li key={post?.id}>
-                <AuthorPost post={post} />
-              </li>
-            ))}
-        </ul>
-      </div> */}
+
       </aside>
     </article>
   );

@@ -39,11 +39,15 @@ function buildUrl(first: number, search: string, year: string, authorName: strin
     return `/api/posts?${params.toString()}`;
 }
 
-export default function AllArticles() {
+type Props = {
+    authorName?: string;
+    title: string;
+}
+export default function AllArticles(props: Props) {
     const [search, setSearch] = useState("");
     const [debouncedSearch, isSearchPending] = useDebounceValue(search, 400);
     const [year, setYear] = useState("");
-    const [authorName, setAuthorName] = useState("");
+    const [authorName, setAuthorName] = useState(props.authorName || "");
     const {
         data,
         isLoading,
@@ -63,8 +67,6 @@ export default function AllArticles() {
                 : undefined,
     });
 
-    console.log("data", data);
-
     const articles = data?.pages.flatMap(page => page?.posts?.edges ?? []) ?? [];
     const total = data?.pages[0]?.posts?.pageInfo?.total;
     const isSearching = isSearchPending || (isFetching && !isFetchingNextPage && !isLoading);
@@ -76,11 +78,11 @@ export default function AllArticles() {
 
                 <div className="md:flex md:justify-between md:items-center ">
                     <div>
-                        <h1>Utforska alla våra artiklar</h1>
+                        <h2>{props.title}</h2>
                     </div>
 
                     <div className="flex gap-3">
-                        {(search || year || authorName) && (
+                        {(search || year) && (
                             <Button
                                 variant="outline"
                                 onClick={() => { setSearch(""); setYear(""); setAuthorName(""); }}
@@ -132,7 +134,7 @@ export default function AllArticles() {
                 {articles.map((article: any) => (
                     <PostCard key={article.node.id} post={article.node} />
                 ))}
-                {isFetchingNextPage && Array.from({ length: 8 }).map((_, i) => (
+                {isFetchingNextPage && Array.from({ length: 16 }).map((_, i) => (
                     <PostCardSkeleton key={`next-${i}`} />
                 ))}
             </ul>

@@ -14,7 +14,6 @@ interface FrontHeroProps {
 }
 
 const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
-  console.log("data: ", data?.content);
   return (
     <div className="layout w-full py-18.25 xl:pt-43 bg-white">
       <div className="grid xl:grid-cols-2 order-last xl:order-first ">

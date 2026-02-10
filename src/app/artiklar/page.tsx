@@ -45,7 +45,6 @@ export async function generateMetadata(
 async function fetchPosts({ pageParam }: { pageParam: string }) {
   const res = await WP(POSTS, null, { first: 16, after: pageParam || undefined });
 
-  console.log("res?.data", res?.data);
   return res?.data;
 }
 
@@ -71,7 +70,7 @@ const Articles = async (props: Props) => {
       </div>
       <Ads pageType="default" position="TOP" />
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <AllArticles />
+        <AllArticles title="Utforska alla våra artiklar" />
       </HydrationBoundary>
       {/* <ArticleTemplate searchParams={searchParams} /> */}
       <Ads pageType="default" position="MID" />
