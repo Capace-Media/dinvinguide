@@ -8,6 +8,7 @@ import { Badge } from "./ui/badge";
 import Overlay from "./graphic/overlay";
 import PrettyDate from "@/lib/utils/prettyDate";
 import { Skeleton } from "./ui/skeleton";
+import { Button } from "./ui/button";
 
 export function PostCardSkeleton() {
     return (
@@ -40,7 +41,7 @@ export default function PostCard({ post }: { post: any }) {
     return (
         <li>
             <article>
-                <Card className="hover:shadow-lg shadow-md md:shadow-none md:hover:scale-[1.01] transition-all duration-300 pt-0 p-3 gap-1 border-none">
+                <Card className="relative hover:shadow-lg shadow-md md:shadow-none md:hover:scale-[1.01] transition-all duration-300 pt-0 p-3 gap-1 border-none">
                     <CardHeader className="relative h-[180px] overflow-hidden p-0">
                         {post.featuredImage?.node ? (
                             <Image
@@ -58,35 +59,41 @@ export default function PostCard({ post }: { post: any }) {
                         )}
                         <Overlay direction="t" weight="light" />
                         <Badge variant="ghost" className="absolute top-2 right-2 z-10">
-                            <Link href={`/skribenter/${post.author.node.slug}`} className="text-white underline text-[1rem]">
+                            <Link href={`/skribenter/${post.author.node.slug}`} className="relative z-10 text-white underline text-[1rem]">
                                 {post.author.node.name}
                             </Link>
                         </Badge>
                     </CardHeader>
-                    <CardContent className="p-0 flex flex-col justify-between h-[165px]">
-                        <div>
-                            <h3 className="line-clamp-1 font-bold text-lg">
-                                <Link href={articleUrl} className="hover:underline">
-                                    {post.title}
-                                </Link>
-                            </h3>
-                            <time dateTime={post.modifiedGmt} className="text-sm text-muted-foreground/60">
-                                {PrettyDate(post.modifiedGmt)}
-                            </time>
-                            <p className="line-clamp-3 text-sm text-muted-foreground">{post.acf_posts.ingress}</p>
-                        </div>
+                    <CardContent className="p-0">
+                        <Link href={articleUrl} className="group inline-flex flex-col justify-between h-[166px]">
 
-                        <Link
-                            href={articleUrl}
-                            aria-hidden="true"
-                            tabIndex={-1}
-                            className="flex items-center gap-3 lg:hover:underline text-brand-secondary"
-                        >
-                            <span>Läs hela artikeln</span>
-                            <span>
-                                <ArrowRight />
+
+                            <div>
+                                <div className="mb-1">
+                                    <h3 className="line-clamp-2 font-bold text-2xl group-hover:underline">
+
+                                        {post.title}
+
+                                    </h3>
+
+                                    <time dateTime={post.modifiedGmt} className="text-xs text-muted-foreground/60">
+                                        {PrettyDate(post.modifiedGmt)}
+                                    </time>
+                                </div>
+                                <p className="line-clamp-2 text-sm text-muted-foreground group-hover:underline">{post.acf_posts.ingress}</p>
+                            </div>
+
+                            <span className="hidden md:flex md:items-center md:gap-3 text-brand-secondary group-hover:underline">
+                                <span>Läs hela artikeln</span>
+                                <span>
+                                    <ArrowRight />
+                                </span>
                             </span>
+                            <Button variant="outline" className="w-full md:hidden">
+                                Läs hela artikeln
+                            </Button>
                         </Link>
+
                     </CardContent>
                 </Card>
             </article>
