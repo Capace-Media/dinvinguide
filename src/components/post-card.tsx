@@ -65,19 +65,22 @@ export default function PostCard({ post }: { post: any }) {
                         </Badge>
                     </CardHeader>
                     <CardContent className="p-0">
-                        <Link href={articleUrl} className="group inline-flex flex-col justify-between h-[165px]">
+                        <Link href={articleUrl} className="group inline-flex flex-col justify-between h-[166px]">
 
 
                             <div>
-                                <h3 className="line-clamp-1 font-bold text-lg group-hover:underline">
+                                <div className="mb-1">
+                                    <h3 className="line-clamp-2 font-bold text-2xl group-hover:underline">
 
-                                    {post.title}
+                                        {post.title}
 
-                                </h3>
-                                <time dateTime={post.modifiedGmt} className="text-sm text-muted-foreground/60">
-                                    {PrettyDate(post.modifiedGmt)}
-                                </time>
-                                <p className="line-clamp-3 text-sm text-muted-foreground group-hover:underline">{post.acf_posts.ingress}</p>
+                                    </h3>
+
+                                    <time dateTime={post.modifiedGmt} className="text-xs text-muted-foreground/60">
+                                        {PrettyDate(post.modifiedGmt)}
+                                    </time>
+                                </div>
+                                <p className="line-clamp-2 text-sm text-muted-foreground group-hover:underline">{post.acf_posts.ingress}</p>
                             </div>
 
                             <span className="hidden md:flex md:items-center md:gap-3 text-brand-secondary group-hover:underline">
