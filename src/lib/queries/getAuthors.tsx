@@ -1,5 +1,6 @@
 import { getErrorMessage } from "../utils/getErrorMessage";
 import WP from "../wp";
+import { POSTS_CONTENT } from "./posts";
 
 export const getAuthors = async () => {
   try {
@@ -13,31 +14,7 @@ export const getAuthors = async () => {
                   description
                   posts(first: 4) {
                     nodes {
-                      title
-                      slug
-                      uri
-                      id
-                      modifiedGmt
-                      author {
-                        node {
-                          name
-                        }
-                      }
-                      acf_posts {
-                        ingress
-                      }
-                      featuredImage {
-                        node {
-                          mediaItemUrl
-                          mediaDetails {
-                            width
-                            height
-                          }
-                          altText
-                          title
-                          
-                        }
-                      }
+                      ${POSTS_CONTENT}
                     }
                   }
                   acf_user {
@@ -72,31 +49,7 @@ export const getAuthors = async () => {
                   description
                   posts(first: 4) {
                     nodes {
-                      title
-                      slug
-                      uri
-                      id
-                      modifiedGmt
-                      author {
-                        node {
-                          name
-                        }
-                      }
-                      acf_posts {
-                        ingress
-                      }
-                      featuredImage {
-                        node {
-                          mediaItemUrl
-                          mediaDetails {
-                            width
-                            height
-                          }
-                          altText
-                          title
-                  
-                        }
-                      }
+                      ${POSTS_CONTENT}
                     }
                   }
                   acf_user {

@@ -67,8 +67,6 @@ export default function AllArticles(props: Props) {
                 : undefined,
     });
 
-    console.log("data", data);
-
     const articles = data?.pages.flatMap(page => page?.posts?.edges ?? []) ?? [];
     const total = data?.pages[0]?.posts?.pageInfo?.total;
     const isSearching = isSearchPending || (isFetching && !isFetchingNextPage && !isLoading);

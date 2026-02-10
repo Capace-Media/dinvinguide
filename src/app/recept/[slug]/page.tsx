@@ -5,7 +5,7 @@ import {
   getSingleRecipe,
 } from "@/lib/queries/getSingleRecipe";
 import { getErrorMessage } from "@/lib/utils/getErrorMessage";
-import generateRecipeSchema from "@/lib/utils/json-LD-Schemas/generateRecipeSchema";
+
 import WP from "@/lib/wp";
 import { Metadata, ResolvingMetadata } from "next";
 import { draftMode } from "next/headers";
@@ -109,8 +109,6 @@ const Recipe = async (props: RecipeProps) => {
   const data = await getRecipeData(params, searchParams);
 
   const jsonLd = buildRecipeSchema({ recipe: data });
-
-  console.log(jsonLd);
 
   return (
     <>

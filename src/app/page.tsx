@@ -10,6 +10,9 @@ import ExplorePages from "./_components/ExplorePages";
 import ExploreRecipes from "./_components/ExploreRecipes";
 import LatestArticles from "./_components/latest-articles";
 import { Metadata } from "next";
+import { Suspense } from "react";
+
+import { Spinner } from "@/components/ui/spinner";
 
 async function getData() {
   try {
@@ -65,14 +68,17 @@ export default async function Home() {
     <>
       <FrontHero data={data?.page} />
       <Ads pageType="default" position="TOP" />
+      <Suspense fallback={<Spinner className="size-4 animate-spin" />}>
 
-      <LatestArticles />
+        <LatestArticles />
+      </Suspense>
 
       <ExclusiveDrinks />
 
+      <Ads pageType="default" position="MID" />
+
       <ExplorePages />
 
-      <Ads pageType="default" position="MID" />
 
       <ExploreRecipes />
 

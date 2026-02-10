@@ -1,3 +1,5 @@
+import { IMAGE_CONTENT } from "./globals";
+
 export const POSTS_CONTENT = `
     id
     title
@@ -14,12 +16,7 @@ export const POSTS_CONTENT = `
     }
     featuredImage {
       node {
-        altText
-        mediaDetails {
-          width
-          height
-        }
-        mediaItemUrl
+        ${IMAGE_CONTENT}
       }
     }
 `;

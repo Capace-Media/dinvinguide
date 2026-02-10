@@ -2,6 +2,7 @@ import { getErrorMessage } from "../utils/getErrorMessage";
 import WP, { WPServerSide } from "../wp";
 import { POST } from "./fragments/Post";
 import { SEO } from "./fragments/Seo";
+import { POSTS_CONTENT } from "./posts";
 
 export const getPost = async (id: string) => {
   try {
@@ -21,30 +22,7 @@ export const getPost = async (id: string) => {
             ingress
             lasMer {
               ... on Post {
-                id
-                title
-                slug
-                uri
-                modifiedGmt: dateGmt
-                acf_posts {
-                  ingress
-                }
-                author {
-                  node {
-                    name
-                    nicename
-                  }
-                }
-                featuredImage {
-                  node {
-                    mediaItemUrl
-                    altText
-                    mediaDetails {
-                      width
-                      height
-                    }
-                  }
-                }
+                ${POSTS_CONTENT}
               }
               ... on Grape {
                 id
@@ -274,7 +252,7 @@ export const getPost = async (id: string) => {
         }
       }`,
       null,
-      { id }
+      { id },
     );
 
     const data = res.data.post;
@@ -300,7 +278,7 @@ export const getPreviewPost = async (id: number) => {
       }
         }
       }`,
-      { id }
+      { id },
     );
 
     const data = res?.data?.post?.preview?.node
