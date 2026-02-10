@@ -1,5 +1,5 @@
 import { ArrowRight } from "@/components/icons";
-import { getPosts } from "@/lib/queries/getPosts";
+
 import WP from "@/lib/wp";
 import Image from "next/image";
 import Link from "next/link";

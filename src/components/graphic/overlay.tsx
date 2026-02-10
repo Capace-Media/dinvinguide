@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 type Direction =
   | /** Top */ "t"
   | /** Right */ "r"
@@ -10,6 +12,7 @@ type Direction =
 
 type OverlayProps = {
   direction: Direction;
+  weight?: "light" | "dark";
 };
 
 const directionClasses = {
@@ -23,12 +26,18 @@ const directionClasses = {
   br: "bg-linear-to-br",
 } as const;
 
+const weightClasses = {
+  light: "from-black/5 via-black/25 to-black/45",
+  dark: "from-black/10 via-black/40 to-black/60",
+} as const;
+
 export default function Overlay(props: OverlayProps) {
   return (
     <div
-      className={`absolute top-0 bg-linear-to left-0 w-full h-full from-black/10 via-black/40 to-black/60 z-5 ${
-        directionClasses[props.direction]
-      }`}
+      className={cn("absolute top-0 bg-linear-to left-0 w-full h-full z-5",
+        directionClasses[props.direction],
+        weightClasses[props.weight ?? "dark"]
+      )}
     />
   );
 }

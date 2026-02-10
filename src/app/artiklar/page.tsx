@@ -1,11 +1,15 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import ArticleTemplate from "@/components/Templates/ArticleTemplate";
 import Line from "@/components/graphic/Line";
+import { getQueryClient } from "@/lib/get-query-client";
 import { getSEOByPage } from "@/lib/queries/getSEOByPage";
+import { POSTS } from "@/lib/queries/posts";
+import WP from "@/lib/wp";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 import Newsletter from "../_components/Newsletter";
 import Ads from "../_components/ads";
+import AllArticles from "./_components/articles";
 
 type Props = {
   searchParams: Promise<{
@@ -38,15 +42,38 @@ export async function generateMetadata(
   return data;
 }
 
+async function fetchPosts({ pageParam }: { pageParam: string }) {
+  const res = await WP(POSTS, null, { first: 16, after: pageParam || undefined });
+
+  console.log("res?.data", res?.data);
+  return res?.data;
+}
+
 const Articles = async (props: Props) => {
-  const searchParams = await props.searchParams;
+  // const searchParams = await props.searchParams;
+  const queryClient = getQueryClient();
+
+  // Prefetch the initial page of articles on the server
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ["articles", "", "", ""],
+    queryFn: fetchPosts,
+    initialPageParam: "",
+    getNextPageParam: (lastPage: any) =>
+      lastPage?.posts?.pageInfo?.hasNextPage
+        ? lastPage.posts.pageInfo.endCursor
+        : undefined,
+  });
+
   return (
     <>
       <div className="layout bg-white pt-20">
         <Line />
       </div>
       <Ads pageType="default" position="TOP" />
-      <ArticleTemplate searchParams={searchParams} />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <AllArticles />
+      </HydrationBoundary>
+      {/* <ArticleTemplate searchParams={searchParams} /> */}
       <Ads pageType="default" position="MID" />
       <Newsletter />
     </>
