@@ -11,6 +11,7 @@ import Loading from "./loading";
 import DraftModeBanner from "./_components/DraftModeBanner";
 import "./styles/global.scss";
 import "./styles/globals.css";
+import { cn } from "@/lib/utils";
 
 const abrilFatface = Abril_Fatface({
   subsets: ["latin"],
@@ -23,6 +24,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-poppins",
+  display: "swap",
 });
 export const viewport = {
   themeColor: "#400D12",
@@ -87,11 +89,11 @@ export default async function RootLayout({
   const { isEnabled } = await draftMode();
 
   return (
-    <html lang="sv" className={`${poppins.variable} ${abrilFatface.variable}`}>
+    <html lang="sv" className={cn(poppins.variable, abrilFatface.variable)}>
       <GoogleTagManager
         gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string}
       />
-      <body className={`font-main`}>
+      <body>
         <Header />
         <Suspense fallback={<Loading />}>
           <main className="">

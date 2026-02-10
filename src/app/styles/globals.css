@@ -22,9 +22,9 @@
   --color-brand-light: #f0f0f0;
   --color-brand-dl: #e1e5d4;
 
-  --font-main: var(--font-poppins), ui-sans-serif, system-ui;
+  --font-main: var(--font-poppins);
 
-  --font-sub: var(--font-abrilFatface), serif;
+  --font-sub: var(--font-abrilFatface);
 
   --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
   --background-image-gradient-conic: conic-gradient(
@@ -416,5 +416,7 @@ span.aligncenter {
   }
   body {
     @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
