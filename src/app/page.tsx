@@ -8,7 +8,7 @@ import Newsletter from "./_components/Newsletter";
 import Ads from "./_components/ads";
 import ExplorePages from "./_components/ExplorePages";
 import ExploreRecipes from "./_components/ExploreRecipes";
-import LatestArticles from "./_components/LatestArticles";
+import LatestArticles from "./_components/latest-articles";
 import { Metadata } from "next";
 
 async function getData() {
@@ -42,15 +42,15 @@ export async function generateMetadata(): Promise<Metadata> {
       data.page.seo?.metaDesc || "Din guide till vin, mat och dryckestips",
     openGraph: data.page.featuredImage?.node?.mediaItemUrl
       ? {
-          images: [
-            {
-              url: data.page.featuredImage.node.mediaItemUrl,
-              width: data.page.featuredImage.node.mediaDetails?.width,
-              height: data.page.featuredImage.node.mediaDetails?.height,
-              alt: data.page.featuredImage.node.altText || "DinVinguide",
-            },
-          ],
-        }
+        images: [
+          {
+            url: data.page.featuredImage.node.mediaItemUrl,
+            width: data.page.featuredImage.node.mediaDetails?.width,
+            height: data.page.featuredImage.node.mediaDetails?.height,
+            alt: data.page.featuredImage.node.altText || "DinVinguide",
+          },
+        ],
+      }
       : undefined,
   };
 }

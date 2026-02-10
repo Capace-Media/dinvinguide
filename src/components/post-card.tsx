@@ -41,7 +41,7 @@ export default function PostCard({ post }: { post: any }) {
     return (
         <li>
             <article>
-                <Card className="relative hover:shadow-lg shadow-md md:shadow-none md:hover:scale-[1.01] transition-all duration-300 pt-0 p-3 gap-1 border-none">
+                <Card className="relative hover:shadow-lg shadow-md md:shadow-none  transition-all duration-300 pt-0 p-3 gap-1 border-none">
                     <CardHeader className="relative h-[180px] overflow-hidden p-0">
                         {post.featuredImage?.node ? (
                             <Image
@@ -70,15 +70,15 @@ export default function PostCard({ post }: { post: any }) {
 
                             <div>
                                 <div className="mb-1">
-                                    <h3 className="line-clamp-2 font-bold text-2xl group-hover:underline">
+                                    <time dateTime={post.modifiedGmt} className="text-xs text-muted-foreground/60">
+                                        {PrettyDate(post.modifiedGmt)}
+                                    </time>
+                                    <h3 className="line-clamp-2 font-bold text-xl group-hover:underline">
 
                                         {post.title}
 
                                     </h3>
 
-                                    <time dateTime={post.modifiedGmt} className="text-xs text-muted-foreground/60">
-                                        {PrettyDate(post.modifiedGmt)}
-                                    </time>
                                 </div>
                                 <p className="line-clamp-2 text-sm text-muted-foreground group-hover:underline">{post.acf_posts.ingress}</p>
                             </div>

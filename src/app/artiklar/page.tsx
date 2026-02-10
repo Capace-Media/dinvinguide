@@ -71,7 +71,7 @@ const Articles = async (props: Props) => {
       </div>
       <Ads pageType="default" position="TOP" />
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <AllArticles />
+        <AllArticles title="Utforska alla våra artiklar" />
       </HydrationBoundary>
       {/* <ArticleTemplate searchParams={searchParams} /> */}
       <Ads pageType="default" position="MID" />
