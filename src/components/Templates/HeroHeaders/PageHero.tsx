@@ -11,7 +11,7 @@ interface PageHeroProps {
 const PageHero = ({ data, links, guide }: PageHeroProps) => {
   return (
     <>
-      <div className="layout w-full py-[73px] md:pt-[172px] bg-white">
+      <div className="layout w-full py-17 bg-white">
         <div className="grid md:grid-cols-2 gap-10 lg:gap-[180px] order-last md:order-first">
           <div className="flex flex-col justify-between gap-2 lg:min-h-[461px]">
             <div className="flex flex-col gap-3">

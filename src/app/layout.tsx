@@ -12,6 +12,8 @@ import DraftModeBanner from "./_components/DraftModeBanner";
 import "./styles/global.scss";
 import "./styles/globals.css";
 import { cn } from "@/lib/utils";
+import Script from "next/script";
+import ScrollToTopButton from "@/components/scroll-to-top-button";
 
 const abrilFatface = Abril_Fatface({
   subsets: ["latin"],
@@ -94,15 +96,33 @@ export default async function RootLayout({
         gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string}
       />
       <body>
-        <Header />
-        <Suspense fallback={<Loading />}>
+        <div className="relative">
+
+          <Header />
           <main className="">
             <Provider>{children}</Provider>
             <DraftModeBanner isEnabled={isEnabled} />
           </main>
-        </Suspense>
-        <Footer />
+          <Footer />
+        </div>
+        <>
+          <Script
+            strategy="lazyOnload"
+            type="text/javascript"
+            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          />
+          <Script
+            strategy="lazyOnload"
+            id="google-translate"
+            type="text/javascript"
+          >
+            {`function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'sv'}, 'google_translate_element');
+          }`}
+          </Script>
+        </>
         <CookieConsent />
+        <ScrollToTopButton />
       </body>
     </html>
   );

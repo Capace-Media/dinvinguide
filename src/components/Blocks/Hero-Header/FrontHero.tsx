@@ -15,7 +15,7 @@ interface FrontHeroProps {
 
 const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
   return (
-    <div className="layout w-full py-18.25 xl:pt-43 bg-white">
+    <div className="layout w-full py-17 bg-white">
       <div className="grid xl:grid-cols-2 order-last xl:order-first ">
         <div className="flex flex-col justify-between min-h-115.25">
           <div className="flex flex-col gap-6 max-w-150">
