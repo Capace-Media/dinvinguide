@@ -43,7 +43,7 @@ export async function generateMetadata(
 }
 
 async function fetchPosts({ pageParam }: { pageParam: string }) {
-  const res = await WP(POSTS, null, { first: 16, after: pageParam || undefined });
+  const res = await WP(POSTS, "post", { first: 16, after: pageParam || undefined });
 
   return res?.data;
 }
