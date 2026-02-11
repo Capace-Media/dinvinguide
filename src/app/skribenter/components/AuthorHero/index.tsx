@@ -1,18 +1,33 @@
-import SocialMedia from "@/components/Blocks/skribenter/SocialMedia";
-import { SubmitArrow } from "@/components/icons";
+"use client";
 import Image from "next/image";
 
 import handleParse from "@/lib/utils/handleParse";
 import heroImage from "../../../../../public/Images/Vinsamling-korkar.jpeg";
 import Search from "../Search";
+import { Button } from "@/components/ui/button";
+import { ArrowDown } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface AuthorHeroProps {
   promise?: any;
-  word?: string;
+
 }
 
-const AuthorHero = async ({ promise, word }: AuthorHeroProps) => {
-  const data = await promise;
+export default function AuthorHero({ promise }: AuthorHeroProps) {
+  const [data, setData] = useState(promise);
+
+  useEffect(() => {
+    setData(promise);
+  }, [promise]);
+
+  const scrollToArticles = () => {
+    const articles = document.getElementById("articles");
+    if (articles) {
+      const offset = 100;
+      const top = articles.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  };
 
   return (
     <section className="layout bg-white">
@@ -39,16 +54,14 @@ const AuthorHero = async ({ promise, word }: AuthorHeroProps) => {
                     ? data.acf_user.bild.altText
                     : `bild på ${data?.name}`
                 }
-                fill
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "top",
-                }}
+                width={data?.acf_user?.bild?.mediaDetails?.width}
+                height={data?.acf_user?.bild?.mediaDetails?.height}
+                className="object-cover w-full h-full"
               />
             )}
           </div>
 
-          <div className="py-4 flex flex-col justify-between">
+          <div className="pt-4 flex flex-col justify-between">
             <div>
               <h1 className="text-[28px] flex flex-col md:text-[42px] lg:text-[53px] font-sub lg:leading-18">
                 <span className=" font-main text-[18px] md:text-[23px] leading-4.5 md:leading-5.75">
@@ -56,13 +69,22 @@ const AuthorHero = async ({ promise, word }: AuthorHeroProps) => {
                 </span>
                 <span className="block ">{data?.name}</span>
               </h1>
-              <div className="author_text text-[14px] leading-5.75">
+              <div className="line-clamp-14 max-w-2xl text-[14px] leading-5.75">
                 {handleParse(data?.description)}
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas dicta cum debitis consectetur ad illo ratione iste optio, blanditiis officia exercitationem, eius, aperiam quos! Obcaecati voluptates repellendus itaque perspiciatis molestiae?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, deserunt odio eaque cumque quos ratione quidem. Similique doloremque, corporis tempore unde distinctio laborum sequi officia sed, perferendis dolores cum eius.
+                lorem
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, deserunt odio eaque cumque quos ratione quidem. Similique doloremque, corporis tempore unde distinctio laborum sequi officia sed, perferendis dolores cum eius.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas dicta cum debitis consectetur ad illo ratione iste optio, blanditiis officia exercitationem, eius, aperiam quos! Obcaecati voluptates repellendus itaque perspiciatis molestiae?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, deserunt odio eaque cumque quos ratione quidem. Similique doloremque, corporis tempore unde distinctio laborum sequi officia sed, perferendis dolores cum eius.
               </div>
             </div>
             <div>
-              <Search word={word} uri={data?.username} />
+              <Button onClick={scrollToArticles}>
+                Utforska {data?.firstName}s artiklar <ArrowDown />
+              </Button>
             </div>
+
           </div>
         </div>
       </div>
@@ -70,4 +92,4 @@ const AuthorHero = async ({ promise, word }: AuthorHeroProps) => {
   );
 };
 
-export default AuthorHero;
+

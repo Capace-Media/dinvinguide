@@ -13,7 +13,7 @@ export async function GET(request: Request) {
     : undefined;
   const authorName = searchParams.get("authorName") || undefined;
 
-  const res = await WP(POSTS, null, {
+  const res = await WP(POSTS, "post", {
     first,
     after,
     before,
