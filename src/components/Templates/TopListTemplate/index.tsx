@@ -6,9 +6,8 @@ const Newsletter = dynamic(() => import("@/app/_components/Newsletter"), {
 const Ads = dynamic(() => import("@/app/_components/ads"), {
   loading: () => <p>Loading...</p>,
 });
-const DLHero = dynamic(() => import("../HeroHeaders/DLHero"), {
-  loading: () => <p>Loading...</p>,
-});
+
+import DLHero from "../HeroHeaders/DLHero";
 const TopListLinks = dynamic(() => import("../TopListsTemplate/TopListLinks"), {
   loading: () => <p>Loading...</p>,
 });
