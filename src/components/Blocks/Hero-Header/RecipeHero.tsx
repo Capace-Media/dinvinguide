@@ -11,7 +11,7 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
   const data = await promise;
 
   return (
-    <div className="layout w-full py-18.25 md:pt-43 bg-white">
+    <div className="layout w-full py-17 bg-white">
       <div className="grid md:grid-cols-2 gap-10 lg:gap-45 order-last md:order-first">
         <div className="flex flex-col justify-between min-h-115.25">
           <div className="flex flex-col gap-6 ">
