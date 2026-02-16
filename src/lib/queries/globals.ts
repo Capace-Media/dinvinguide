@@ -6,3 +6,15 @@ export const IMAGE_CONTENT = `
     height
   }
 `;
+
+export const SEO = `seo {
+  title
+  metaDesc
+  opengraphDescription
+  opengraphImage {
+    altText
+    mediaItemUrl
+  }
+  opengraphTitle
+
+}`;

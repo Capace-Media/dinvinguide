@@ -27,13 +27,13 @@ export const getToplistPaths = async () => {
           }
         }
       `,
-      "wine"
+      "wine",
     );
 
     const data = res?.data?.pageBy?.acf_topplistor?.aktivaTopplistor;
     if (!data) {
       throw Error(
-        "Something went wrong Could not read res.data.pageBy.acf_topplistor.aktivaTopplistor"
+        "Something went wrong Could not read res.data.pageBy.acf_topplistor.aktivaTopplistor",
       );
     }
     return data;
@@ -102,45 +102,39 @@ export const getToplists = async (): Promise<ExtendedToplist[]> => {
       }
     }
   `,
-      "wine"
+      "wine",
     );
     const toplists: Toplist[] = res.data.pageBy.acf_topplistor.aktivaTopplistor;
 
-    const fetchToplistData = async (
-      toplist: Toplist
-    ): Promise<ExtendedToplist> => {
-      let drinks = await getToplistItems(
-        toplist,
-        await getCurrentToplistDrinks()
-      );
+    // Fetch each drink set once and reuse for all toplists (instead of per-toplist)
+    const [currentDrinksRaw, previousDrinksRaw, fallbackDrinksRaw] =
+      await Promise.all([
+        getCurrentToplistDrinks(),
+        getPreviousToplistDrinks(),
+        getFallbackToplistDrinks(),
+      ]);
 
-      let previous = [];
-      if (drinks?.length < 3) {
-        previous = await getToplistItems(
+    const extendedToplists: ExtendedToplist[] = await Promise.all(
+      toplists.map(async (toplist) => {
+        const drinks =
+          (await getToplistItems(toplist, currentDrinksRaw ?? [])) ?? [];
+        const previous =
+          drinks.length >= 3
+            ? []
+            : (await getToplistItems(toplist, previousDrinksRaw ?? [])) ?? [];
+        const fallback =
+          drinks.length === 0 && previous.length === 0
+            ? (await getToplistItems(toplist, fallbackDrinksRaw ?? [])) ?? []
+            : [];
+
+        return {
           toplist,
-          await getPreviousToplistDrinks()
-        );
-      }
-
-      let fallback = [];
-      if (drinks?.length === 0 && previous?.length === 0) {
-        fallback = await getToplistItems(
-          toplist,
-          await getFallbackToplistDrinks()
-        );
-      }
-
-      return {
-        toplist,
-        currentDrinks: drinks,
-        previousDrinks: previous,
-        fallbackDrinks: fallback,
-      };
-    };
-
-    // Parallel fetching
-    const fetchPromises = toplists.map(fetchToplistData);
-    const extendedToplists = await Promise.all(fetchPromises);
+          currentDrinks: drinks,
+          previousDrinks: previous,
+          fallbackDrinks: fallback,
+        };
+      }),
+    );
 
     return extendedToplists;
   } catch (error) {
@@ -164,7 +158,7 @@ export const getToplistItems = async (toplist: any, drinks: any) => {
         if (packaging && packaging.name) {
           return packaging.name;
         }
-      }
+      },
     );
 
     //Filter drinkes to only return drinks that includes the types and packages
@@ -328,7 +322,7 @@ export const getPreviousToplistDrinks = async () => {
           beforeYear,
           beforeMonth,
           beforeDay,
-        }
+        },
       );
 
       array.push(...req.data.drinks.edges);
@@ -473,7 +467,7 @@ export const getCurrentToplistDrinks = async () => {
           beforeYear,
           beforeMonth,
           beforeDay,
-        }
+        },
       );
 
       array.push(...req.data.drinks.edges);
@@ -611,7 +605,7 @@ export const getFallbackToplistDrinks = async () => {
           beforeYear,
           beforeMonth,
           beforeDay,
-        }
+        },
       );
 
       array.push(...req.data.drinks.edges);
