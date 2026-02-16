@@ -8,12 +8,8 @@ const Ads = dynamic(() => import("@/app/_components/ads"), {
 });
 
 import DLHero from "../HeroHeaders/DLHero";
-const TopListLinks = dynamic(() => import("../TopListsTemplate/TopListLinks"), {
-  loading: () => <p>Loading...</p>,
-});
-const TopListItems = dynamic(() => import("./TopListItems"), {
-  loading: () => <p>Loading...</p>,
-});
+import TopListItems from "./TopListItems";
+import TopListLinks from "../TopListsTemplate/TopListLinks";
 
 interface Params {
   slug: string;
