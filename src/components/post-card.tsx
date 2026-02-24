@@ -36,19 +36,19 @@ export function PostCardSkeleton() {
 }
 
 export default function PostCard({ post }: { post: any }) {
-    const articleUrl = `/skribenter/${post.author.node.slug}/${post.slug}`;
+    const articleUrl = post?.author?.node?.slug ? `/skribenter/${post?.author?.node?.slug}/${post?.slug}` : post?.uri;
 
     return (
         <li>
             <article>
                 <Card className="relative hover:shadow-lg shadow-md md:shadow-none  transition-all duration-300 pt-0 p-3 gap-1 border-none">
                     <CardHeader className="relative h-[180px] overflow-hidden p-0">
-                        {post.featuredImage?.node ? (
+                        {post?.featuredImage?.node ? (
                             <Image
                                 src={post.featuredImage.node.mediaItemUrl}
-                                alt={post.featuredImage.node.altText || `Bild på ${post.title}`}
-                                width={post.featuredImage.node.mediaDetails.width}
-                                height={post.featuredImage.node.mediaDetails.height}
+                                alt={post?.featuredImage?.node?.altText || `Bild på ${post?.title}`}
+                                width={post?.featuredImage?.node?.mediaDetails?.width}
+                                height={post?.featuredImage?.node?.mediaDetails?.height}
                                 sizes="(max-width: 768px) 92vw, (max-width: 1024px) 45vw, (max-width: 1280px) 27vw, (max-width: 1777px) 22vw, 381px"
                                 className="object-cover w-full h-full absolute top-0 left-0"
                             />
@@ -58,11 +58,13 @@ export default function PostCard({ post }: { post: any }) {
                             </div>
                         )}
                         <Overlay direction="t" weight="light" />
-                        <Badge variant="ghost" className="absolute top-2 right-2 z-10">
-                            <Link href={`/skribenter/${post.author.node.slug}`} className="relative z-10 text-white underline text-[1rem]">
-                                {post.author.node.name}
-                            </Link>
-                        </Badge>
+                        {post?.author?.node?.slug && (
+                            <Badge variant="ghost" className="absolute top-2 right-2 z-10">
+                                <Link href={`/skribenter/${post?.author?.node?.slug}`} className="relative z-10 text-white underline text-[1rem]">
+                                    {post?.author?.node?.name}
+                                </Link>
+                            </Badge>
+                        )}
                     </CardHeader>
                     <CardContent className="p-0">
                         <Link href={articleUrl} className="group inline-flex flex-col justify-between h-[166px]">
@@ -70,17 +72,22 @@ export default function PostCard({ post }: { post: any }) {
 
                             <div>
                                 <div className="mb-1">
-                                    <time dateTime={post.modifiedGmt} className="text-xs text-muted-foreground/60">
-                                        {PrettyDate(post.modifiedGmt)}
-                                    </time>
+                                    {post?.modifiedGmt && (
+
+                                        <time dateTime={post?.modifiedGmt} className="text-xs text-muted-foreground/60">
+                                            {PrettyDate(post?.modifiedGmt)}
+                                        </time>
+                                    )}
                                     <h3 className="line-clamp-2 font-bold text-xl group-hover:underline">
 
-                                        {post.title}
+                                        {post?.title}
 
                                     </h3>
 
                                 </div>
-                                <p className="line-clamp-2 text-sm text-muted-foreground group-hover:underline">{post.acf_posts.ingress}</p>
+                                {post?.acf_posts?.ingress && (
+                                    <p className="line-clamp-2 text-sm text-muted-foreground group-hover:underline">{post?.acf_posts?.ingress}</p>
+                                )}
                             </div>
 
                             <span className="hidden md:flex md:items-center md:gap-3 text-brand-secondary group-hover:underline">
