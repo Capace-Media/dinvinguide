@@ -1,6 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   images: {
+    minimumCacheTTL: 2678400, // 31 days
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",

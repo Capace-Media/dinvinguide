@@ -1,4 +1,3 @@
-
 import { getPage } from "@/lib/queries/getPage";
 import Ads from "../_components/ads";
 import { Metadata } from "next";
@@ -13,10 +12,15 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: seo?.title ? seo.title : "Skribenter | Din Vinguide",
-    description: seo?.metaDesc ? seo.metaDesc : "Möt våra skribenter och vinexperter på Din Vinguide.",
+    description: seo?.metaDesc
+      ? seo.metaDesc
+      : "Möt våra skribenter och vinexperter på Din Vinguide.",
     openGraph: {
       title: seo?.opengraphTitle || seo.title || "Skribenter | Din Vinguide",
-      description: seo.opengraphDescription || seo.metaDesc || "Möt våra skribenter och vinexperter på Din Vinguide.",
+      description:
+        seo.opengraphDescription ||
+        seo.metaDesc ||
+        "Möt våra skribenter och vinexperter på Din Vinguide.",
       url: `https://dinvinguide.se/skribenter`,
       images: [
         {

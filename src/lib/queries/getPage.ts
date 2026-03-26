@@ -1,9 +1,10 @@
+import { cache } from "react";
 import { getErrorMessage } from "../utils/getErrorMessage";
 import WP from "../wp";
 
 import { SEO } from "./fragments/Seo";
 
-export const getPage = async (id: string) => {
+export const getPage = cache(async (id: string) => {
   try {
     const res = await WP(
       `query GET_PAGE($id: ID!) {
@@ -69,4 +70,4 @@ export const getPage = async (id: string) => {
       message: getErrorMessage(error),
     };
   }
-};
+});
