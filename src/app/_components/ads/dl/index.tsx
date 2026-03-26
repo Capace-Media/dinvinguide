@@ -18,15 +18,8 @@ export default function DlAd({ data }: { data: any }) {
               src={data?.desktop?.mediaItemUrl}
               alt={`Advertisement: ${data?.desktop?.altText || data?.title}`}
               fill
+              sizes="(min-width: 1024px) 980px, 280px"
               style={{ objectFit: "contain" }}
-              className="hidden md:flex"
-            />
-            <Image
-              src={data?.desktop?.mediaItemUrl}
-              alt={`Advertisement: ${data?.desktop?.altText || data?.title}`}
-              fill
-              style={{ objectFit: "contain" }}
-              className="flex md:hidden"
             />
           </a>
         </div>
