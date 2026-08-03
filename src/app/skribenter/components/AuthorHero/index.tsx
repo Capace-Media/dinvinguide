@@ -71,12 +71,6 @@ export default function AuthorHero({ promise }: AuthorHeroProps) {
               </h1>
               <div className="line-clamp-14 max-w-2xl text-[14px] leading-5.75">
                 {handleParse(data?.description)}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas dicta cum debitis consectetur ad illo ratione iste optio, blanditiis officia exercitationem, eius, aperiam quos! Obcaecati voluptates repellendus itaque perspiciatis molestiae?
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, deserunt odio eaque cumque quos ratione quidem. Similique doloremque, corporis tempore unde distinctio laborum sequi officia sed, perferendis dolores cum eius.
-                lorem
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, deserunt odio eaque cumque quos ratione quidem. Similique doloremque, corporis tempore unde distinctio laborum sequi officia sed, perferendis dolores cum eius.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas dicta cum debitis consectetur ad illo ratione iste optio, blanditiis officia exercitationem, eius, aperiam quos! Obcaecati voluptates repellendus itaque perspiciatis molestiae?
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, deserunt odio eaque cumque quos ratione quidem. Similique doloremque, corporis tempore unde distinctio laborum sequi officia sed, perferendis dolores cum eius.
               </div>
             </div>
             <div>
