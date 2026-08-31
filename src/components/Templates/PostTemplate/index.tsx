@@ -98,7 +98,7 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
             </div>
           )}
           {post?.featuredImage?.node?.mediaItemUrl && (
-            <div className=" relative py-10 w-full lg:h-[555px] h-[322px]">
+            <div className=" relative py-10 w-full lg:h-138.75 h-80.5">
               <Image
                 src={post?.featuredImage?.node?.mediaItemUrl}
                 alt={post?.title}

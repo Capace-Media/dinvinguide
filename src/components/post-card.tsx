@@ -14,11 +14,11 @@ export function PostCardSkeleton() {
     return (
         <li>
             <Card className="pt-0 p-3 gap-1 border-none">
-                <CardHeader className="relative h-[180px] overflow-hidden p-0">
+                <CardHeader className="relative h-45 overflow-hidden p-0">
                     <Skeleton className="w-full h-full rounded-lg" />
                     <Skeleton className="absolute top-2 right-2 w-24 h-6 rounded-full" />
                 </CardHeader>
-                <CardContent className="p-0 flex flex-col justify-between h-[165px]">
+                <CardContent className="p-0 flex flex-col justify-between h-41.25">
                     <div className="space-y-2 pt-1">
                         <Skeleton className="h-5 w-3/4" />
                         <Skeleton className="h-3.5 w-24" />
@@ -42,7 +42,7 @@ export default function PostCard({ post }: { post: any }) {
         <li>
             <article>
                 <Card className="relative hover:shadow-lg shadow-md md:shadow-none  transition-all duration-300 pt-0 p-3 gap-1 border-none">
-                    <CardHeader className="relative h-[180px] overflow-hidden p-0">
+                    <CardHeader className="relative h-45 overflow-hidden p-0">
                         {post?.featuredImage?.node ? (
                             <Image
                                 src={post.featuredImage.node.mediaItemUrl}
@@ -67,7 +67,7 @@ export default function PostCard({ post }: { post: any }) {
                         )}
                     </CardHeader>
                     <CardContent className="p-0">
-                        <Link href={articleUrl} className="group inline-flex flex-col justify-between h-[166px]">
+                        <Link href={articleUrl} className="group inline-flex flex-col justify-between h-41.5">
 
 
                             <div>
