@@ -245,7 +245,7 @@ span.aligncenter {
 }
 
 #google_translate_element .skiptranslate select {
-  @apply w-[120px];
+  @apply w-30;
 }
 
 #google_translate_element .goog-te-gadget {

@@ -6,8 +6,6 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Abril_Fatface, Poppins } from "next/font/google";
 import { draftMode } from "next/headers";
-import { Suspense } from "react";
-import Loading from "./loading";
 import DraftModeBanner from "./_components/DraftModeBanner";
 import "./styles/global.scss";
 import "./styles/globals.css";

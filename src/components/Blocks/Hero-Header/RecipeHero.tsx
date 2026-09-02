@@ -1,6 +1,6 @@
 import HandleImage from "@/app/_components/image";
 import handleParse from "@/lib/utils/handleParse";
-import Image from "next/image";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import links from "./recipeTax.json";
 interface RecipeHeroProps {
@@ -36,17 +36,32 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
         </div>
 
         <div className="w-full  order-first h-92.5 relative md:order-last lg:h-130">
-          <ul className="absolute recipe_page_grid w-full center-y left-0 h-[89%] z-10">
+          <ul className="absolute grid grid-cols-2 grid-rows-2 gap-2 pointer-events-none w-full center-y left-0 h-[89%] z-10">
             {data?.recipes?.nodes &&
               data.recipes.nodes.map((recipe: any, index: number) => {
                 return (
-                  <li key={recipe.id + index}>
-                    <Link href={`/recept/${recipe?.slug}`} className="relative">
+                  <li
+                    key={recipe.id + index}
+                    className={cn(
+                      "pointer-events-auto",
+                      index === 0 && "row-span-2"
+                    )}
+                  >
+                    <Link
+                      href={`/recept/${recipe?.slug}`}
+                      className="relative block w-full h-full"
+                    >
                       <HandleImage
                         srcProp={recipe?.featuredImage?.node?.mediaItemUrl}
                         altProp={recipe?.featuredImage?.node?.altText}
                         objectFitProp="cover"
-                        classesProp="relative w-full h-full recipe-overlay"
+                        classesProp={cn(
+                          "relative w-full h-full overflow-hidden",
+                          "after:content-[''] after:absolute after:inset-0 after:pointer-events-none",
+                          "after:bg-linear-to-b after:from-transparent after:to-black/20",
+                          "[&_img]:transition-transform [&_img]:duration-300 [&_img]:ease-in-out",
+                          "hover:[&_img]:scale-119"
+                        )}
                       />
                       <div className="absolute top-0 right-0 text-white p-4 flex gap-2">
                         {(() => {
@@ -76,13 +91,13 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
                               className="text-[12px] uppercase"
                             >
                               {displayTax.name}
-                              <span className="flex w-full h-0.70 bg-white"></span>
+                              <span className="flex w-full h-0.5 bg-white"></span>
                             </p>
                           ) : null;
                         })()}
                       </div>
-                      <div className="absolute bottom-0 pointer-events-none w-75 left-0 p-4 z-10">
-                        {recipe?.acf_recipe?.skrivetAv && (
+                      <div className="absolute bottom-0 pointer-events-none w-full left-0 p-4 z-10">
+                        {recipe?.acf_recipe?.skrivetAv?.[0]?.name && (
                           <p className="md:text-[12px] md:uppercase text-white text-[12px]">
                             {recipe.acf_recipe.skrivetAv[0].name}
                           </p>
