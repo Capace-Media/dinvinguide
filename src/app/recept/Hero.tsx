@@ -71,9 +71,9 @@ const RecipeHero = ({
 
   return (
     <>
-      <div className="layout w-full py-[73px] md:pt-[172px] bg-white">
-        <div className="grid md:grid-cols-2 gap-10 lg:gap-[180px] order-last md:order-first">
-          <div className="flex flex-col justify-between gap-2 lg:min-h-[461px]">
+      <div className="layout w-full py-18.25 md:pt-43 bg-white">
+        <div className="grid md:grid-cols-2 gap-10 lg:gap-45 order-last md:order-first">
+          <div className="flex flex-col justify-between gap-2 lg:min-h-115.25">
             <div className="flex flex-col gap-3">
               <ul className="flex items-center gap-2 text-[11px] md:text-[14px] text-brand-secondary">
                 <li>
@@ -151,8 +151,8 @@ const RecipeHero = ({
             </div>
           </div>
 
-          <div className="w-full  order-first h-[370px] relative md:order-last lg:h-[520px]">
-            <div className="absolute w-[85%] center-y left-0 h-[300px] lg:h-[430px] z-10">
+          <div className="w-full  order-first h-92.5 relative md:order-last lg:h-130">
+            <div className="absolute w-[85%] center-y left-0 h-75 lg:h-107.5 z-10">
               {image?.mediaItemUrl && (
                 <div className="relative w-full h-full">
                   <Image

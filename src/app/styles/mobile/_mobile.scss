@@ -39,26 +39,6 @@
   }
 }
 
-.recipe_page_grid {
-  display: grid;
-  gap: 8px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  pointer-events: none;
-
-  & > :nth-child(1) {
-    grid-row: span 2 / span 2;
-    pointer-events: auto;
-  }
-
-  & > :nth-child(2) {
-    pointer-events: auto;
-  }
-  & > :nth-child(3) {
-    pointer-events: auto;
-  }
-}
-
 .select-plain {
   appearance: none;
   background: none;
