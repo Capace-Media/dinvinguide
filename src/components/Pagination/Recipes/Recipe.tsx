@@ -1,7 +1,8 @@
 "use client";
 
 import { ArrowRight } from "@/components/icons";
-import PrettyDate from "@/lib/utils/prettyDate";
+import { cn } from "@/lib/utils";
+import { Divide } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -24,7 +25,13 @@ const Recipe = ({ recipe }: RecipeProps) => {
       <Link
         href={`/recept/${recipe?.slug}`}
         aria-label={`Läs om ${recipe?.title}`}
-        className={`block w-full relative h-[13.2rem] overlay`}
+        className={cn(
+          "block w-full relative h-[13.2rem]",
+          // ersätter .overlay: mörk toning upptill så badgen syns mot bilden
+          "after:content-[''] after:absolute after:inset-0",
+          "after:bg-linear-to-b after:from-black/40 after:from-[16.35%]",
+          "after:to-transparent after:to-[49.69%]"
+        )}
       >
         {recipe?.featuredImage?.node?.mediaItemUrl && (
           <>
@@ -53,54 +60,34 @@ const Recipe = ({ recipe }: RecipeProps) => {
         )}
         <div className="absolute right-3 top-2 z-10 border-b-2 border-white "></div>
         <div className="absolute top-0 right-0 text-white p-4 z-2 flex gap-2">
-          {(() => {
-            const desiredOrder = [
-              "huvudratter",
-              "frukost",
-              "forratter",
-              "efterratter",
-              "tilltugg-snacks",
-              "specialkost",
-            ];
-
-            const matchingTax = desiredOrder.find((slug) => {
-              return recipe?.acf_recipe?.recepieCategories?.some(
-                (tax: any) => tax.slug === slug
-              );
-            });
-
-            const displayTax = recipe?.acf_recipe?.recepieCategories?.find(
-              (tax: any) => tax.slug === matchingTax
-            );
-
-            return displayTax ? (
-              <p key={displayTax.slug} className="text-[12px] uppercase">
-                {displayTax.name}
-                <span className="flex w-full h-[3px] bg-white"></span>
-              </p>
-            ) : null;
-          })()}
+          <p className="text-[12px] uppercase">
+            Recept
+            <span className="flex w-full h-px bg-white"></span>
+          </p>
         </div>
       </Link>
 
-      <div className="h-24 rounded-b-[10px] flex flex-col justify-between py-2 px-2 bg-[#F5F5F5]">
-        <div className="flex flex-col">
+      <div className="h-24 rounded-b-[10px] flex flex-col gap-1 py-2 px-2 bg-[#F5F5F5]">
+
           <p className="text-[#333] text-[12px] uppercase">
             {recipe?.acf_recipe?.skrivetAv
               ? recipe?.acf_recipe?.skrivetAv[0]?.name
-              : "-"}
+              : "DinVinguide"}
           </p>
 
           {recipe?.title && (
-            <Link
-              href={`/recept/${recipe?.slug}`}
-              aria-label={`Läs om ${recipe?.title}`}
-              className="heading_truncated font-sub mb-2 text-[18px] text-brand-dark lg:group-hover:underline"
-            >
-              {recipe.title}
-            </Link>
+            <h2>
+
+              <Link
+                href={`/recept/${recipe?.slug}`}
+                aria-label={`Läs om ${recipe?.title}`}
+                className="line-clamp-2 font-sub mb-2 text-[18px] text-brand-dark lg:group-hover:underline"
+              >
+                {recipe.title}
+              </Link>
+            </h2>
           )}
-        </div>
+
 
         {recipe?.uri && (
           <Link
