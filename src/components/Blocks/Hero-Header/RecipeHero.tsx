@@ -49,7 +49,7 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
                   >
                     <Link
                       href={`/recept/${recipe?.slug}`}
-                      className="relative block w-full h-full"
+                      className="relative block w-full h-full overflow-hidden"
                     >
                       <HandleImage
                         srcProp={recipe?.featuredImage?.node?.mediaItemUrl}
@@ -58,52 +58,25 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
                         classesProp={cn(
                           "relative w-full h-full overflow-hidden",
                           "after:content-[''] after:absolute after:inset-0 after:pointer-events-none",
-                          "after:bg-linear-to-b after:from-transparent after:to-black/20",
+                          "after:bg-linear-to-b after:from-transparent after:to-black/30",
                           "[&_img]:transition-transform [&_img]:duration-300 [&_img]:ease-in-out",
                           "hover:[&_img]:scale-119"
                         )}
                       />
-                      <div className="absolute top-0 right-0 text-white p-4 flex gap-2">
-                        {(() => {
-                          const desiredOrder = [
-                            "huvudratter",
-                            "frukost",
-                            "forratter",
-                            "efterratter",
-                            "tilltugg-snacks",
-                            "specialkost",
-                          ];
-
-                          const matchingTax = desiredOrder.find((slug) => {
-                            return recipe?.acf_recipe?.recepieCategories?.some(
-                              (tax: any) => tax.slug === slug
-                            );
-                          });
-
-                          const displayTax =
-                            recipe?.acf_recipe?.recepieCategories?.find(
-                              (tax: any) => tax.slug === matchingTax
-                            );
-
-                          return displayTax ? (
-                            <p
-                              key={displayTax.slug}
-                              className="text-[12px] uppercase"
-                            >
-                              {displayTax.name}
-                              <span className="flex w-full h-0.5 bg-white"></span>
-                            </p>
-                          ) : null;
-                        })()}
-                      </div>
                       <div className="absolute bottom-0 pointer-events-none w-full left-0 p-4 z-10">
                         {recipe?.acf_recipe?.skrivetAv?.[0]?.name && (
-                          <p className="md:text-[12px] md:uppercase text-white text-[12px]">
+                          <p className="md:text-[12px] md:uppercase text-white text-[12px] line-clamp-1">
                             {recipe.acf_recipe.skrivetAv[0].name}
                           </p>
                         )}
                         {recipe?.title && (
-                          <h2 className="md:text-[18px] leading-6 text-[16px] text-white lowercase font-sub">
+                          <h2
+                            className={cn(
+                              "md:text-[18px] leading-6 text-[16px] text-white lowercase font-sub",
+                              // långa titlar får inte växa ut ur kortet
+                              index === 0 ? "line-clamp-5 lg:line-clamp-6" : "line-clamp-2 lg:line-clamp-4"
+                            )}
+                          >
                             {recipe.title}
                           </h2>
                         )}
