@@ -1,5 +1,9 @@
 import Newsletter from "@/app/_components/Newsletter";
-import Ads from "@/app/_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import AdTop from "@/app/_components/ads/default/top";
+import AdMid from "@/app/_components/ads/default/mid";
+import AdBottom from "@/app/_components/ads/default/bottom";
+import { Suspense } from "react";
 import Ingrediens from "../RecipesTemplate/Ingrediens";
 import Meals from "../RecipesTemplate/Meals";
 import ChefsRecipes from "./ChefsRecipes";
@@ -13,17 +17,23 @@ type Props = {
 const ChefTemplate = async ({ searchParams, params, mainSlug }: Props) => {
   return (
     <div className="">
-      <Ads pageType="default" position="TOP" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
       <ChefsRecipes
         searchParams={searchParams}
         params={params}
         mainSlug={mainSlug}
       />
       <Meals />
-      <Ads pageType="default" position="MID" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
 
       <Ingrediens />
-      <Ads pageType="default" position="BOTTOM" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdBottom />
+      </Suspense>
 
       <Newsletter />
     </div>

@@ -1,4 +1,3 @@
-import Ads from "@/app/_components/ads";
 import handleParseClient from "@/lib/utils/handle-parse-client";
 import handleParse from "@/lib/utils/handleParse";
 

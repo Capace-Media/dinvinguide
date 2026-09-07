@@ -8,7 +8,10 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 import Newsletter from "../_components/Newsletter";
-import Ads from "../_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import AdTop from "@/app/_components/ads/default/top";
+import AdMid from "@/app/_components/ads/default/mid";
+import { Suspense } from "react";
 import AllArticles from "./_components/articles";
 
 type Props = {
@@ -68,12 +71,16 @@ const Articles = async (props: Props) => {
       <div className="layout bg-white pt-20">
         <Line />
       </div>
-      <Ads pageType="default" position="TOP" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <AllArticles title="Utforska alla våra artiklar" />
       </HydrationBoundary>
       {/* <ArticleTemplate searchParams={searchParams} /> */}
-      <Ads pageType="default" position="MID" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
       <Newsletter />
     </>
   );

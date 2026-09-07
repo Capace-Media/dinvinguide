@@ -1,5 +1,7 @@
 import Newsletter from "@/app/_components/Newsletter";
-import Ads from "@/app/_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import AdTop from "@/app/_components/ads/default/top";
+import { Suspense } from "react";
 import WP from "@/lib/wp";
 import { notFound } from "next/navigation";
 import EpisodeList from "./EpisodeList";
@@ -92,7 +94,9 @@ const PlaylistTemplate = async ({ params, searchParams }: Props) => {
   return (
     <>
       {/* <PageHero data={data} links={links} guide={"Vinskolan"} /> */}
-      <Ads pageType="default" position="TOP" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
       <div className="layout bg-white">
         <EpisodeList
           data={video?.episodes?.edges}

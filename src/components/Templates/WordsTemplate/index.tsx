@@ -1,4 +1,8 @@
-import Ads from "@/app/_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import AdTop from "@/app/_components/ads/default/top";
+import AdMid from "@/app/_components/ads/default/mid";
+import AdBottom from "@/app/_components/ads/default/bottom";
+import { Suspense } from "react";
 import words from "@/json/alphabet.json";
 import { getPage } from "@/lib/queries/getPage";
 import PageHero from "../HeroHeaders/PageHero";
@@ -18,7 +22,9 @@ const WordsTemplate = async ({ params, searchParams }: Props) => {
   return (
     <>
       <PageHero data={data} links={links} guide={"Våra guider"} />
-      <Ads pageType="default" position="TOP" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
       <div className="layout bg-white">
         <nav className="w-full">
           <ul className="flex flex-wrap w-full justify-center gap-[1.6rem]">
@@ -35,9 +41,13 @@ const WordsTemplate = async ({ params, searchParams }: Props) => {
           <WordsByLetter searchParams={searchParams} />
         </section>
       </div>
-      <Ads pageType="default" position="MID" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
       <Newsletter />
-      <Ads pageType="default" position="BOTTOM" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdBottom />
+      </Suspense>
     </>
   );
 };

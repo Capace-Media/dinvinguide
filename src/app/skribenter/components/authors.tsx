@@ -1,7 +1,10 @@
 import { AUTHORS } from "@/lib/queries/authors";
 import WP from "@/lib/wp";
 import { AuthorsData, Skribent } from "../../../../types/author";
-import Ads from "@/app/_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import AdMid from "@/app/_components/ads/default/mid";
+import AdBottom from "@/app/_components/ads/default/bottom";
+import { Suspense } from "react";
 import AuthorCard from "./author-card";
 
 async function fetchAuthors(): Promise<AuthorsData> {
@@ -19,11 +22,13 @@ export default async function AllAuthors() {
             {skribenter &&
                 skribenter.map((author: Skribent, index: number) => (
                     <section key={author.id}>
-                        {(index + 1) % 3 === 0 && <Ads pageType="default" position="MID" />}
+                        {(index + 1) % 3 === 0 && <Suspense fallback={<BannerSkeleton />}><AdMid /></Suspense>}
                         <AuthorCard author={author} index={index} />
                     </section>
                 ))}
-            <Ads pageType="default" position="BOTTOM" />
+            <Suspense fallback={<BannerSkeleton />}>
+              <AdBottom />
+            </Suspense>
         </div>
     );
 }

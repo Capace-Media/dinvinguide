@@ -1,6 +1,9 @@
 import Newsletter from "@/app/_components/Newsletter";
 import Separater from "@/app/_components/Separater";
-import Ads from "@/app/_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import AdTop from "@/app/_components/ads/default/top";
+import AdMid from "@/app/_components/ads/default/mid";
+import { Suspense } from "react";
 import Recipes from "./Recipes";
 
 type Props = {
@@ -10,10 +13,14 @@ type Props = {
 const RecipesTemplate = ({ searchParams }: Props) => {
   return (
     <div className="">
-      <Ads pageType="default" position="TOP" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
       <Recipes searchParams={searchParams} />
       <Separater />
-      <Ads pageType="default" position="MID" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
 
       <Newsletter />
     </div>

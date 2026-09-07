@@ -1,5 +1,7 @@
 import Newsletter from "@/app/_components/Newsletter";
-import Ads from "@/app/_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import AdTop from "@/app/_components/ads/default/top";
+import { Suspense } from "react";
 
 import Posts from "@/components/Pagination/Posts";
 import { getPage } from "@/lib/queries/getPage";
@@ -27,7 +29,9 @@ const SingleWineSchoolTemplate = async ({ params, searchParams }: Props) => {
   return (
     <>
       <PageHero data={data} links={links} guide={"Vinskolan"} />
-      <Ads pageType="default" position="TOP" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
       {posts?.acf_overviewPage?.sidor ? (
         <Posts posts={posts?.acf_overviewPage?.sidor} />
       ) : null}
