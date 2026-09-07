@@ -1,4 +1,8 @@
-import Ads from "@/app/_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import DlTop from "@/app/_components/ads/dl/top";
+import DlMid from "@/app/_components/ads/dl/mid";
+import DlBottom from "@/app/_components/ads/dl/bottom";
+import { Suspense } from "react";
 import { getDrink, getPreviewDrink } from "@/lib/queries/getDrink";
 import PrettyDate from "@/lib/utils/prettyDate";
 import { draftMode } from "next/headers";
@@ -39,14 +43,20 @@ const DrinkTemplate = async ({ params }: { params: { slug: string } }) => {
   return (
     <>
       <DLHero hero={data} drinkType={data?.acf_drinks?.dryckestyper?.slug} />
-      <Ads pageType="DL" position="TOP" />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlTop />
+      </Suspense>
 
       <Drink data={data} />
-      <Ads pageType="DL" position="MID" />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlMid />
+      </Suspense>
       {passarTillRecept && (
         <>
           <RelatedRecipes data={passarTillRecept[0]} />
-          <Ads pageType="DL" position="BOTTOM" />
+          <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+            <DlBottom />
+          </Suspense>
         </>
       )}
 

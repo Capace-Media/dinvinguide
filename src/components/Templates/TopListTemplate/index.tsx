@@ -1,9 +1,11 @@
 import { getToplists } from "@/lib/queries/getTopListDrinks";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import DlTop from "@/app/_components/ads/dl/top";
+import DlMid from "@/app/_components/ads/dl/mid";
+import DlBottom from "@/app/_components/ads/dl/bottom";
+import { Suspense } from "react";
 import dynamic from "next/dynamic";
 const Newsletter = dynamic(() => import("@/app/_components/Newsletter"), {
-  loading: () => <p>Loading...</p>,
-});
-const Ads = dynamic(() => import("@/app/_components/ads"), {
   loading: () => <p>Loading...</p>,
 });
 
@@ -104,11 +106,17 @@ const TopListTemplate = async ({ params }: { params: { slug: string } }) => {
   return (
     <>
       <DLHero hero={data?.data?.toplist?.toplist} />
-      <Ads pageType="DL" position="TOP" />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlTop />
+      </Suspense>
       <TopListItems data={data?.data?.toplist} />
-      <Ads pageType="DL" position="MID" />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlMid />
+      </Suspense>
       <TopListLinks />
-      <Ads pageType="DL" position="BOTTOM" />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlBottom />
+      </Suspense>
       <Newsletter />
     </>
   );

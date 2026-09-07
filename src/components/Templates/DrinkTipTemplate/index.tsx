@@ -1,5 +1,8 @@
 import Newsletter from "@/app/_components/Newsletter";
-import Ads from "@/app/_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import DlTop from "@/app/_components/ads/dl/top";
+import DlMid from "@/app/_components/ads/dl/mid";
+import { Suspense } from "react";
 import Line from "@/components/graphic/Line";
 import { DlNextArrow } from "@/components/icons";
 import { fetchDrinktip } from "@/lib/queries/getDrinkTips";
@@ -22,7 +25,9 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
         <Line />
       </div>
 
-      <Ads pageType="DL" position="TOP" />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlTop />
+      </Suspense>
 
       <div className="flex justify-between gap-4 lg:flex-row flex-col layout bg-white pb-10">
         <ul className="flex gap-2 text-[14px] text-brand-secondary">
@@ -56,7 +61,7 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
         <div className={`relative `}>
           {data?.featuredImage && data?.featuredImage.node && (
             <Link href={data.uri} className={`flex justify-center `}>
-              <figure className={`relative w-[200px] h-[522px]  `}>
+              <figure className={`relative w-50 h-130.5`}>
                 <Image
                   src={data?.featuredImage?.node?.mediaItemUrl}
                   fill
@@ -206,7 +211,9 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
           </div>
         </div>
       </article>
-      <Ads pageType="DL" position="MID" />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlMid />
+      </Suspense>
 
       <Newsletter />
     </>
