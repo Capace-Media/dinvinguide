@@ -1,20 +1,8 @@
-"use client";
+import { getTopDlAd } from "@/lib/fetchers/dl-ads";
+import Banner from "../banner";
 
-import { getTopDlAds } from "@/actions/ads/dl";
-import { useQuery } from "@tanstack/react-query";
-import DlAd, { DlAdSkeleton } from "./index";
-export default function DlTop() {
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["topDlAds"],
-    queryFn: getTopDlAds,
-  });
+export default async function DlTop() {
+  const ad = await getTopDlAd();
 
-  if (isLoading) return <DlAdSkeleton />;
-  if (error) return <div>Error: {error.message}</div>;
-
-  return (
-    <>
-      <DlAd data={data} />
-    </>
-  );
+  return ad ? <Banner ad={ad} priority /> : null;
 }

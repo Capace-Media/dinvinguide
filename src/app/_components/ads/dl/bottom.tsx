@@ -1,22 +1,8 @@
-"use client";
+import { getBottomDlAd } from "@/lib/fetchers/dl-ads";
+import Banner from "../banner";
 
-import { getBottomDlAds } from "@/actions/ads/dl";
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import DlAd, { DlAdSkeleton } from ".";
+export default async function DlBottom() {
+  const ad = await getBottomDlAd();
 
-export default function DlBottom() {
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["bottomDlAds"],
-    queryFn: getBottomDlAds,
-  });
-
-  if (isLoading) return <DlAdSkeleton />;
-  if (error) return <div>Error: {error.message}</div>;
-
-  return (
-    <>
-      <DlAd data={data} />
-    </>
-  );
+  return ad ? <Banner ad={ad} /> : null;
 }
