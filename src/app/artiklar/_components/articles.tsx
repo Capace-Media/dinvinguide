@@ -73,7 +73,7 @@ export default function AllArticles(props: Props) {
     const hasActiveFilters = !!(debouncedSearch || year || authorName);
 
     return (
-        <section className="bg-white px-[4px] md:px-[32px] lg:px-[68px] m-auto xl:max-w-444.25">
+        <section className="bg-white px-1 md:px-8 lg:px-17 m-auto xl:max-w-444.25">
             <div className="py-2 mx-3">
 
                 <div className="md:flex md:justify-between md:items-center ">
@@ -110,7 +110,7 @@ export default function AllArticles(props: Props) {
 
                     </div>
                 </div>
-                <div className="w-full h-[5px] my-3 bg-[#F7F7E5] lg:col-span-5"></div>
+                <div className="w-full h-1.25 my-3 bg-brand-beige lg:col-span-5"></div>
             </div>
 
             {error && <div>Fel: {error.message}</div>}

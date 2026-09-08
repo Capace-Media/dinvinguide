@@ -5,7 +5,11 @@ import { getAuthor } from "@/lib/queries/getAuthor";
 
 import ExplorePages from "@/app/_components/ExplorePages";
 import Newsletter from "@/app/_components/Newsletter";
-import Ads from "@/app/_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import AdTop from "@/app/_components/ads/default/top";
+import AdMid from "@/app/_components/ads/default/mid";
+import AdBottom from "@/app/_components/ads/default/bottom";
+import { Suspense } from "react";
 
 import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
@@ -89,7 +93,9 @@ async function SingleAuthorPage(props: Props) {
   return (
     <div key={params?.slug}>
       <AuthorHero promise={data} />
-      <Ads pageType="default" position="TOP" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
       <div className="flex gap-2 text-brand-gray layout bg-white">
         <Link href="/" className="text-brand-primary">
           Hem
@@ -98,15 +104,18 @@ async function SingleAuthorPage(props: Props) {
         <Link href="/skribenter" className="text-brand-primary">
           Skribenter
         </Link>{" "}
-        / <p className=" text-brand-dark">{data?.name}</p>
+        / <p className="text-brand-dark">{data?.name}</p>
       </div>
       <div id="articles">
-
         <AllArticles authorName={params?.slug} title={`${data?.firstName + (data?.firstName?.endsWith("s") ? "" : "s")} artiklar`} />
       </div>
-      <Ads pageType="default" position="MID" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
       <ExplorePages />
-      <Ads pageType="default" position="BOTTOM" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdBottom />
+      </Suspense>
       <Newsletter />
     </div>
   );

@@ -1,43 +1,12 @@
-export const FALLBACK_AD = `
-  query FALLBACK_AD {
+// Ads for the default (non-DL) page type. Each query fetches its slot and the
+// shared fallback ad in one request, aliased to the same shape so the fetcher
+// can try the slot first and fall through to the fallback.
+
+export const DEFAULT_TOP_AD = `
+  query DEFAULT_TOP_AD {
     options: acfOptionsAnnonsplaceringar {
       settings: acf_adsettings {
-        ad:fallbackannons {
-          ... on Ad {
-            id
-            title
-            acf_ads {
-              link
-              desktop: toppbanner {
-                mediaItemUrl
-                mediaDetails {
-                  width
-                  height
-                }
-                id
-                altText
-              }
-              mobile: mobilbanner {
-                mediaItemUrl
-                mediaDetails {
-                  width
-                  height
-                }
-                id
-                altText
-              }
-            }
-          }
-        }
-      }
-    }
-  }`;
-
-export const DL_TOP_AD = `
-  query DL_TOP_AD {
-    options: acfOptionsAnnonsplaceringar {
-      settings:acf_adsettings {
-        ad: adToppbannerDl {
+        slot: adToppbanner {
           banner {
             ... on Ad {
               id
@@ -46,58 +15,48 @@ export const DL_TOP_AD = `
                 link
                 desktop: toppbanner {
                   mediaItemUrl
+                  id
+                  altText
                   mediaDetails {
                     width
                     height
                   }
-                  id
-                altText
                 }
                 mobile: mobilbanner {
                   mediaItemUrl
+                  id
+                  altText
                   mediaDetails {
                     width
                     height
                   }
-                  id
-                altText
                 }
               }
             }
           }
         }
-      }
-    }
-  }`;
-
-export const DL_MID_AD = `
-  query DL_MID_AD {
-    options: acfOptionsAnnonsplaceringar {
-      settings: acf_adsettings {
-        ad: adMittenbannerDl {
-          banner {
-            ... on Ad {
-              id
-              title
-              acf_ads {
-                link
-                desktop: mittenbanner {
-                  mediaItemUrl
-                  mediaDetails {
-                    width
-                    height
-                  }
-                  id
+        fallback: fallbackannons {
+          ... on Ad {
+            id
+            title
+            acf_ads {
+              link
+              desktop: toppbanner {
+                mediaItemUrl
+                id
                 altText
+                mediaDetails {
+                  width
+                  height
                 }
-                mobile: mobilbanner {
-                  mediaItemUrl
-                  mediaDetails {
-                    width
-                    height
-                  }
-                  id
+              }
+              mobile: mobilbanner {
+                mediaItemUrl
+                id
                 altText
+                mediaDetails {
+                  width
+                  height
                 }
               }
             }
@@ -108,12 +67,40 @@ export const DL_MID_AD = `
   }
 `;
 
-export const DL_BOTTOM_AD = `
-query DL_BOTTOM_AD {
-  options: acfOptionsAnnonsplaceringar {
-    settings: acf_adsettings {
-      ad: adSidobannerDl {
-        banner {
+export const DEFAULT_MID_AD = `
+  query DEFAULT_MID_AD {
+    options: acfOptionsAnnonsplaceringar {
+      settings: acf_adsettings {
+        slot: adMittenbanner {
+          banner {
+            ... on Ad {
+              id
+              title
+              acf_ads {
+                link
+                desktop: mittenbanner {
+                  mediaItemUrl
+                  id
+                  altText
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+                mobile: mobilbanner {
+                  mediaItemUrl
+                  id
+                  altText
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+        }
+        fallback: fallbackannons {
           ... on Ad {
             id
             title
@@ -121,21 +108,21 @@ query DL_BOTTOM_AD {
               link
               desktop: toppbanner {
                 mediaItemUrl
+                id
+                altText
                 mediaDetails {
                   width
                   height
                 }
-                id
-              altText
               }
               mobile: mobilbanner {
                 mediaItemUrl
+                id
+                altText
                 mediaDetails {
                   width
                   height
                 }
-                id
-              altText
               }
             }
           }
@@ -143,5 +130,69 @@ query DL_BOTTOM_AD {
       }
     }
   }
- }
+`;
+
+export const DEFAULT_BOTTOM_AD = `
+  query DEFAULT_BOTTOM_AD {
+    options: acfOptionsAnnonsplaceringar {
+      settings: acf_adsettings {
+        slot: adSidobanner {
+          banner {
+            ... on Ad {
+              id
+              title
+              acf_ads {
+                link
+                desktop: sidobanner {
+                  mediaItemUrl
+                  id
+                  altText
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+                mobile: mobilbanner {
+                  mediaItemUrl
+                  id
+                  altText
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+        }
+        fallback: fallbackannons {
+          ... on Ad {
+            id
+            title
+            acf_ads {
+              link
+              desktop: toppbanner {
+                mediaItemUrl
+                id
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+              mobile: mobilbanner {
+                mediaItemUrl
+                id
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 `;

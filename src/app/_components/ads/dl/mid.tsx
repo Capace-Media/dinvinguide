@@ -1,20 +1,8 @@
-"use client";
+import { getMidDlAd } from "@/lib/fetchers/dl-ads";
+import Banner from "../banner";
 
-import { getMidDlAds } from "@/actions/ads/dl";
-import { useQuery } from "@tanstack/react-query";
-import DlAd, { DlAdSkeleton } from "./index";
-export default function DlMid() {
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["midDlAds"],
-    queryFn: getMidDlAds,
-  });
+export default async function DlMid() {
+  const ad = await getMidDlAd();
 
-  if (isLoading) return <DlAdSkeleton />;
-  if (error) return <div>Error: {error.message}</div>;
-
-  return (
-    <>
-      <DlAd data={data} />
-    </>
-  );
+  return ad ? <Banner ad={ad} /> : null;
 }

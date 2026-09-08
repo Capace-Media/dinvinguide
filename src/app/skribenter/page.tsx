@@ -1,5 +1,6 @@
 import { getPage } from "@/lib/queries/getPage";
-import Ads from "../_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import AdTop from "@/app/_components/ads/default/top";
 import { Metadata } from "next";
 import { Suspense } from "react";
 import Loading from "../loading";
@@ -43,7 +44,9 @@ export default async function Authors() {
   return (
     <>
       <AuthorsHero promise={pageData} />
-      <Ads pageType="default" position="TOP" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
       <Suspense fallback={<Loading />}>
         <AllAuthors />
       </Suspense>

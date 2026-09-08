@@ -5,7 +5,10 @@ import { notFound } from "next/navigation";
 
 import ExclusiveDrinks from "./_components/ExclusiveDrinks";
 import Newsletter from "./_components/Newsletter";
-import Ads from "./_components/ads";
+import { BannerSkeleton } from "./_components/ads/banner";
+import AdBottom from "./_components/ads/default/bottom";
+import AdMid from "./_components/ads/default/mid";
+import AdTop from "./_components/ads/default/top";
 import ExplorePages from "./_components/ExplorePages";
 import ExploreRecipes from "./_components/ExploreRecipes";
 import LatestArticles from "./_components/latest-articles";
@@ -67,22 +70,29 @@ export default async function Home() {
   return (
     <>
       <FrontHero data={data?.page} />
-      <Ads pageType="default" position="TOP" />
-      <Suspense fallback={<Spinner className="size-4 animate-spin" />}>
 
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
+
+      <Suspense fallback={<Spinner className="size-4 animate-spin" />}>
         <LatestArticles />
       </Suspense>
 
       <ExclusiveDrinks />
 
-      <Ads pageType="default" position="MID" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
 
       <ExplorePages />
 
 
       <ExploreRecipes />
 
-      <Ads pageType="default" position="BOTTOM" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdBottom />
+      </Suspense>
 
       <Newsletter />
     </>

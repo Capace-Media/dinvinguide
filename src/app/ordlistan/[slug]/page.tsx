@@ -1,6 +1,8 @@
 import Newsletter from "@/app/_components/Newsletter";
 
-import Ads from "@/app/_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import AdMid from "@/app/_components/ads/default/mid";
+import { Suspense } from "react";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import WordTemplate from "@/components/Templates/WordTemplate";
 import { getWordSEO } from "@/lib/queries/SEO/getWordSEO";
@@ -50,7 +52,9 @@ const WordDetailPage = async (props: Props) => {
       <WordTemplate params={params} />
 
       <ExploreGuides />
-      <Ads pageType="default" position="MID" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
       <Newsletter />
     </>
   );

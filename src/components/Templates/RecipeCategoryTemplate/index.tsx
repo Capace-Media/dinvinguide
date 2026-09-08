@@ -1,6 +1,10 @@
 import Newsletter from "@/app/_components/Newsletter";
 import Separater from "@/app/_components/Separater";
-import Ads from "@/app/_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import AdTop from "@/app/_components/ads/default/top";
+import AdMid from "@/app/_components/ads/default/mid";
+import AdBottom from "@/app/_components/ads/default/bottom";
+import { Suspense } from "react";
 import Line from "@/components/graphic/Line";
 import Ingrediens from "../RecipesTemplate/Ingrediens";
 import Meals from "../RecipesTemplate/Meals";
@@ -18,7 +22,9 @@ const RecipeCategoryTemplate = ({ searchParams, params, mainSlug }: Props) => {
       <div className="layout bg-white pt-28">
         <Line />
       </div>
-      <Ads pageType="default" position="TOP" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
       <RecipeByCategory
         searchParams={searchParams}
         params={params}
@@ -28,10 +34,14 @@ const RecipeCategoryTemplate = ({ searchParams, params, mainSlug }: Props) => {
       <Separater />
 
       <Meals />
-      <Ads pageType="default" position="MID" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
 
       <Ingrediens />
-      <Ads pageType="default" position="BOTTOM" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdBottom />
+      </Suspense>
 
       <Newsletter />
     </>

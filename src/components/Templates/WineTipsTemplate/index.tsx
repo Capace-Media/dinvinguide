@@ -1,5 +1,8 @@
 import Newsletter from "@/app/_components/Newsletter";
-import Ads from "@/app/_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import DlTop from "@/app/_components/ads/dl/top";
+import DlMid from "@/app/_components/ads/dl/mid";
+import { Suspense } from "react";
 import Line from "@/components/graphic/Line";
 import { getPage } from "@/lib/queries/getPage";
 import DrinkTipsHero from "./DrinkTipsHero";
@@ -16,9 +19,13 @@ const WineTipsTemplate = async ({ params, searchParams }: Props) => {
   return (
     <>
       <DrinkTipsHero data={data} />
-      <Ads pageType="DL" position="TOP" />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlTop />
+      </Suspense>
       <ExploreWineTips searchParams={searchParams} />
-      <Ads pageType="DL" position="MID" />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlMid />
+      </Suspense>
       <Newsletter />
     </>
   );

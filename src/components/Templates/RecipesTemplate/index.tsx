@@ -1,5 +1,9 @@
 import Newsletter from "@/app/_components/Newsletter";
-import Ads from "@/app/_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import AdTop from "@/app/_components/ads/default/top";
+import AdMid from "@/app/_components/ads/default/mid";
+import AdBottom from "@/app/_components/ads/default/bottom";
+import { Suspense } from "react";
 import Drycker from "./Drycker";
 import Highlights from "./Highlights";
 import Ingrediens from "./Ingrediens";
@@ -10,17 +14,23 @@ interface RecipesTemplateProps {}
 const RecipesTemplate = ({}: RecipesTemplateProps) => {
   return (
     <div className="">
-      <Ads pageType="default" position="TOP" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
       <Highlights />
       {/* Meals */}
       <Meals />
-      <Ads pageType="default" position="MID" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
       {/* Ingrediens */}
       <Ingrediens />
       {/* Drinks */}
       <Drycker />
       {/* Prepping */}
-      <Ads pageType="default" position="BOTTOM" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdBottom />
+      </Suspense>
       {/* Country */}
       <Newsletter />
     </div>

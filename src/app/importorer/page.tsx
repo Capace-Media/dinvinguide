@@ -11,7 +11,11 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import Ads from "../_components/ads";
+import { BannerSkeleton } from "@/app/_components/ads/banner";
+import AdTop from "@/app/_components/ads/default/top";
+import AdMid from "@/app/_components/ads/default/mid";
+import AdBottom from "@/app/_components/ads/default/bottom";
+import { Suspense } from "react";
 import Newsletter from "../_components/Newsletter";
 import { getSuppliers } from "../actions/suppliers";
 import SuppliersList from "./_components/SuppliersList";
@@ -62,13 +66,19 @@ export default async function ProducenterPage() {
   return (
     <>
       <PageHero data={data} />
-      <Ads pageType="default" position="TOP" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <SuppliersList />
       </HydrationBoundary>
-      <Ads pageType="default" position="MID" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
       <Newsletter />
-      <Ads pageType="default" position="BOTTOM" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdBottom />
+      </Suspense>
     </>
   );
 }
