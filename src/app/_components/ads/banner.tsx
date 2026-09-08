@@ -51,7 +51,11 @@ export default function Banner({
                 width={desktopImg.width}
                 height={desktopImg.height}
               />
-              <img {...mobileImg} className="w-full h-full object-contain" />
+              <img
+                {...mobileImg}
+                alt={alt}
+                className="w-full h-full object-contain"
+              />
             </picture>
           </a>
         </div>
