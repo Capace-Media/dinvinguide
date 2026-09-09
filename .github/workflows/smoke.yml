@@ -29,8 +29,4 @@ jobs:
       - run: bun run test:smoke
         env:
           BASE_URL: ${{ github.event.deployment_status.environment_url }}
-          # Preview deployments are behind Vercel SSO, which answers 200 with a
-          # login page. Without this the ad assertions all see zero slots.
-          # Vercel → Settings → Deployment Protection → Protection Bypass for
-          # Automation, then add it as a GitHub Actions secret.
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
