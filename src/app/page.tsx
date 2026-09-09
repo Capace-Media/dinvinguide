@@ -5,10 +5,10 @@ import { notFound } from "next/navigation";
 
 import ExclusiveDrinks from "./_components/ExclusiveDrinks";
 import Newsletter from "./_components/Newsletter";
-import { BannerSkeleton } from "./_components/ads/banner";
-import AdBottom from "./_components/ads/default/bottom";
-import AdMid from "./_components/ads/default/mid";
-import AdTop from "./_components/ads/default/top";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import AdBottom from "@/shared/components/ads/default/bottom";
+import AdMid from "@/shared/components/ads/default/mid";
+import AdTop from "@/shared/components/ads/default/top";
 import ExplorePages from "./_components/ExplorePages";
 import ExploreRecipes from "./_components/ExploreRecipes";
 import LatestArticles from "./_components/latest-articles";

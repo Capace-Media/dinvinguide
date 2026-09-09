@@ -1,7 +1,7 @@
-import { DL_BOTTOM_AD, DL_MID_AD, DL_TOP_AD } from "../queries/dl-ads";
-import { getAd } from "./ad-shape";
+import { DL_BOTTOM_AD, DL_MID_AD, DL_TOP_AD } from "../../queries/dl-ads";
+import { getAd } from "./shape";
 
-export type { Ad, AdImage } from "./ad-shape";
+export type { Ad, AdImage } from "./shape";
 
 export function getTopDlAd() {
   return getAd(DL_TOP_AD);

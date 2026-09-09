@@ -1,4 +1,4 @@
-import type { Ad } from "@/lib/fetchers/ad-shape";
+import type { Ad } from "@/lib/fetchers/ads/shape";
 import { getImageProps } from "next/image";
 
 export default function Banner({
@@ -33,7 +33,9 @@ export default function Banner({
   });
 
   return (
-    <div className="bg-white layout contain">
+    // data-ad-slot is a stable hook for the smoke tests — counting <picture>
+    // would break the moment anything else on the site uses one.
+    <div className="bg-white layout contain" data-ad-slot>
       <div className="flex justify-center items-center">
         <div className="lg:hover:scale-[1.01] lg:hover:shadow-lg lg:duration-300 lg:ease-in-out block w-70 h-64 lg:w-245 lg:h-50">
           <a

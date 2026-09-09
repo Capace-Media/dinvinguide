@@ -1,7 +1,7 @@
-import { BannerSkeleton } from "@/app/_components/ads/banner";
-import DlBottom from "@/app/_components/ads/dl/bottom";
-import DlMid from "@/app/_components/ads/dl/mid";
-import DlTop from "@/app/_components/ads/dl/top";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import DlBottom from "@/shared/components/ads/dl/bottom";
+import DlMid from "@/shared/components/ads/dl/mid";
+import DlTop from "@/shared/components/ads/dl/top";
 import Newsletter from "@/app/_components/Newsletter";
 import { Suspense } from "react";
 import DLHero from "../HeroHeaders/DLHero";

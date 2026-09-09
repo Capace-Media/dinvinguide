@@ -1,6 +1,6 @@
 import Newsletter from "@/app/_components/Newsletter";
-import { BannerSkeleton } from "@/app/_components/ads/banner";
-import AdTop from "@/app/_components/ads/default/top";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import AdTop from "@/shared/components/ads/default/top";
 import { Suspense } from "react";
 
 import Posts from "@/components/Pagination/Posts";

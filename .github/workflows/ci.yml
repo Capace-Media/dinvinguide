@@ -2,21 +2,30 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [dev] # TODO: drop ci-setup once verified
+    branches: [dev]
   pull_request:
     branches: [dev, main]
 
 jobs:
-  lint:
-    name: Lint
+  check:
+    name: Lint & unit tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: 1.4.0
 
+      - uses: actions/cache@v5
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+
       - run: bun install --frozen-lockfile
 
       - run: bun run lint
+
+      - run: bun run test:unit

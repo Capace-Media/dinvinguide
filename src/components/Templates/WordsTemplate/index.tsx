@@ -1,7 +1,7 @@
-import { BannerSkeleton } from "@/app/_components/ads/banner";
-import AdTop from "@/app/_components/ads/default/top";
-import AdMid from "@/app/_components/ads/default/mid";
-import AdBottom from "@/app/_components/ads/default/bottom";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import AdTop from "@/shared/components/ads/default/top";
+import AdMid from "@/shared/components/ads/default/mid";
+import AdBottom from "@/shared/components/ads/default/bottom";
 import { Suspense } from "react";
 import words from "@/json/alphabet.json";
 import { getPage } from "@/lib/queries/getPage";

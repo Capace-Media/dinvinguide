@@ -5,10 +5,10 @@ import { getAuthor } from "@/lib/queries/getAuthor";
 
 import ExplorePages from "@/app/_components/ExplorePages";
 import Newsletter from "@/app/_components/Newsletter";
-import { BannerSkeleton } from "@/app/_components/ads/banner";
-import AdTop from "@/app/_components/ads/default/top";
-import AdMid from "@/app/_components/ads/default/mid";
-import AdBottom from "@/app/_components/ads/default/bottom";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import AdTop from "@/shared/components/ads/default/top";
+import AdMid from "@/shared/components/ads/default/mid";
+import AdBottom from "@/shared/components/ads/default/bottom";
 import { Suspense } from "react";
 
 import { Metadata, ResolvingMetadata } from "next";

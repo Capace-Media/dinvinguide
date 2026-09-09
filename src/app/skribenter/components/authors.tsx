@@ -1,9 +1,9 @@
 import { AUTHORS } from "@/lib/queries/authors";
 import WP from "@/lib/wp";
 import { AuthorsData, Skribent } from "../../../../types/author";
-import { BannerSkeleton } from "@/app/_components/ads/banner";
-import AdMid from "@/app/_components/ads/default/mid";
-import AdBottom from "@/app/_components/ads/default/bottom";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import AdMid from "@/shared/components/ads/default/mid";
+import AdBottom from "@/shared/components/ads/default/bottom";
 import { Suspense } from "react";
 import AuthorCard from "./author-card";
 
