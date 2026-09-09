@@ -60,9 +60,14 @@ test("site under test is reachable and not behind an auth wall", async () => {
 // Vercel preview URLs sit behind SSO, which answers 200 with a login page
 // rather than the site. This secret (Vercel → Deployment Protection →
 // Protection Bypass for Automation) lets CI through.
+//
+// Header only — do NOT add x-vercel-set-bypass-cookie. That asks Vercel to
+// redirect in order to set a cookie, and fetch() does not persist cookies
+// between redirects, so it loops until TooManyRedirects. Sending the header on
+// every request makes the cookie unnecessary.
 const BYPASS = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
 const HEADERS: Record<string, string> = BYPASS
-  ? { "x-vercel-protection-bypass": BYPASS, "x-vercel-set-bypass-cookie": "true" }
+  ? { "x-vercel-protection-bypass": BYPASS }
   : {};
 
 async function get(path: string) {
@@ -70,12 +75,11 @@ async function get(path: string) {
   try {
     res = await fetch(BASE + path, { headers: HEADERS });
   } catch (cause) {
-    // A bare ConnectionRefused stack trace says nothing useful, and there is
-    // one per test. Replace it with the actual problem.
-    throw new Error(
-      `Could not reach ${BASE + path} — is the site running? (bun run dev)`,
-      { cause }
-    );
+    // A bare stack trace says nothing useful, and there is one per test.
+    // Surface the underlying reason — "connection refused" and "too many
+    // redirects" need very different fixes.
+    const why = cause instanceof Error ? cause.message : String(cause);
+    throw new Error(`Could not reach ${BASE + path}\n    ${why}`, { cause });
   }
   const html = await res.text();
   return { status: res.status, html };
