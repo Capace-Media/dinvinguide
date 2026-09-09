@@ -59,7 +59,9 @@ export default async function ProducenterPage() {
   const data = await getPage("/importorer");
 
   const queryClient = new QueryClient();
-  queryClient.prefetchQuery({
+  // Must be awaited: dehydrate() runs immediately, so without this the client
+  // receives an empty cache and refetches the supplier list on every load.
+  await queryClient.prefetchQuery({
     queryKey: ["suppliers"],
     queryFn: () => getSuppliers({}),
   });
@@ -70,7 +72,13 @@ export default async function ProducenterPage() {
         <AdTop />
       </Suspense>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <SuppliersList />
+        {/* SuppliersList calls useSearchParams(). Without a Suspense boundary
+            around it, Next bails the whole route out of static prerendering,
+            which baked every Suspense fallback on this page — including the
+            three ad slots — into the static HTML. */}
+        <Suspense fallback={null}>
+          <SuppliersList />
+        </Suspense>
       </HydrationBoundary>
       <Suspense fallback={<BannerSkeleton />}>
         <AdMid />
