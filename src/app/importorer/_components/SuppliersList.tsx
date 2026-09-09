@@ -121,11 +121,11 @@ export default function SuppliersList() {
 
         <div className="flex justify-center items-center gap-2 py-10">
           {/* Skeleton pagination */}
-          <div className="p-[10px] bg-gray-200 rounded-xs"></div>
+          <div className="p-2.5 bg-gray-200 rounded-xs"></div>
           <div className="flex justify-center items-center gap-3">
-            <div className="w-[28px] h-[28px] bg-gray-200 rounded-xs"></div>
+            <div className="w-7 h-7 bg-gray-200 rounded-xs"></div>
           </div>
-          <div className="p-[10px] bg-gray-200 rounded-xs"></div>
+          <div className="p-2.5 bg-gray-200 rounded-xs"></div>
         </div>
       </section>
     );
@@ -143,10 +143,10 @@ export default function SuppliersList() {
         {data?.edges?.map((supplier) => (
           <li
             key={supplier.node.id}
-            className="group lg:hover:-translate-y-[7px] lg:ease-in-out lg:duration-200"
+            className="group lg:hover:-translate-y-1.75 lg:ease-in-out lg:duration-200"
           >
             <Link href={`/importorer/${supplier.node.slug}`}>
-              <div className="relative h-[200px] w-full bg-[#F5F5F5] rounded-t-[10px]">
+              <div className="relative h-50 w-full bg-[#F5F5F5] rounded-t-2.5">
                 {supplier.node.featuredImage?.node?.mediaItemUrl ? (
                   <Image
                     src={supplier.node.featuredImage.node.mediaItemUrl}
@@ -166,7 +166,7 @@ export default function SuppliersList() {
                   </div>
                 )}
               </div>
-              <div className="h-[89px] w-full bg-[#F5F5F5] p-2 rounded-b-[10px]">
+              <div className="h-22.25 w-full bg-[#F5F5F5] p-2 rounded-b-2.5">
                 <h3 className="text-[18px] md:group-hover:underline">
                   {supplier.node.title}
                 </h3>
@@ -183,7 +183,7 @@ export default function SuppliersList() {
         <button
           onClick={handlePreviousPage}
           disabled={!data?.pageInfo?.hasPreviousPage || isFetching}
-          className="p-[10px] flex items-center justify-center"
+          className="p-2.5 flex items-center justify-center"
         >
           {!data?.pageInfo?.hasPreviousPage || isFetching ? (
             <ArrowPrevDis />
@@ -198,7 +198,7 @@ export default function SuppliersList() {
           {currentPage > 1 && (
             <button
               onClick={handlePreviousPage}
-              className="w-[28px] flex justify-center items-center h-[28px] text-gray-600 hover:bg-gray-100 rounded-xs"
+              className="w-7 flex justify-center items-center h-7 text-gray-600 hover:bg-gray-100 rounded-xs"
               disabled={!data?.pageInfo?.hasPreviousPage || isFetching}
             >
               {currentPage - 1}
@@ -206,7 +206,7 @@ export default function SuppliersList() {
           )}
 
           {/* Current page */}
-          <span className="w-[28px] flex justify-center items-center h-[28px] text-white bg-brand-secondary">
+          <span className="w-7 flex justify-center items-center h-7 text-white bg-brand-secondary">
             {currentPage}
           </span>
 
@@ -214,7 +214,7 @@ export default function SuppliersList() {
           {data?.pageInfo?.hasNextPage && (
             <button
               onClick={handleNextPage}
-              className="w-[28px] flex justify-center items-center h-[28px] text-gray-600 hover:bg-gray-100 rounded-xs"
+              className="w-7 flex justify-center items-center h-7 text-gray-600 hover:bg-gray-100 rounded-xs"
               disabled={isFetching}
             >
               {currentPage + 1}
@@ -225,7 +225,7 @@ export default function SuppliersList() {
         <button
           onClick={handleNextPage}
           disabled={!data?.pageInfo?.hasNextPage || isFetching}
-          className="p-[10px] flex items-center justify-center"
+          className="p-2.5 flex items-center justify-center"
         >
           {!data?.pageInfo?.hasNextPage || isFetching ? (
             <ArrowNextDis />
@@ -241,8 +241,8 @@ export default function SuppliersList() {
 
 const SkeletonCard = () => (
   <div className="animate-pulse">
-    <div className="h-[200px] w-full bg-gray-300 rounded-t-[10px]"></div>
-    <div className="h-[89px] w-full bg-gray-200 p-2 rounded-b-[10px]">
+    <div className="h-50 w-full bg-gray-300 rounded-t-2.5"></div>
+    <div className="h-22.25 w-full bg-gray-200 p-2 rounded-b-2.5">
       <div className="h-5 bg-gray-300 rounded-sm w-3/4 mb-2"></div>
       <div className="h-3 bg-gray-300 rounded-sm w-full mb-1"></div>
       <div className="h-3 bg-gray-300 rounded-sm w-2/3"></div>

@@ -1,115 +1,82 @@
-# Set up CI: make lint runnable, then enforce checks on PRs
+# Set up CI: lint, unit tests, and smoke tests as merge gates
 
 ## Context
 
-There is no CI and no branch protection. Vercel already covers more than it looks like, so this is smaller than a full CI build-out — but there are two real gaps, plus a broken script to fix first.
+Vercel already covers more than it looks like, so this was smaller than a full CI build-out.
 
-**What Vercel already does for us** (no work needed):
+**What Vercel does for us** (no work needed):
 
-- Type checks — `next build` runs `tsc` and `next.config.js` does not set `typescript.ignoreBuildErrors`
+- Type checks — `next build` runs `tsc`, and `next.config.js` does not set `typescript.ignoreBuildErrors`
 - Catches syntax errors, broken imports, and server/client boundary mistakes
 - Builds a preview deployment per PR and posts a status check
 
-**What nothing currently does:**
+**The gaps this issue closes:** ESLint never ran automatically, nothing blocked a merge, and nothing tested the app.
 
-- **ESLint never runs.** Next 16 removed `next lint`; `package.json` is migrated to standalone `eslint .`, so it only runs when someone types it by hand.
-- **Nothing blocks a merge.** A red Vercel check is advisory — there's no branch protection rule.
+Workflow is: commit to `dev` → PR `dev` → `main` → verify → merge. Branch protection targets `main` only; `dev` stays unprotected as the working branch.
 
-Duplicating `tsc` in GitHub Actions would be wasted minutes. The work is lint + enforcement.
+## Done
 
-## Blocker: `bun run lint` is currently broken
+### Fix `bun run lint` (was completely broken)
 
-```
-Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@eslint/compat'
-imported from /eslint.config.mjs
-```
+`eslint.config.mjs` imported `@eslint/compat` and `eslint-plugin-import`, neither of which was installed — and once that was resolved, ESLint 10 turned out to be incompatible with `eslint-config-next@16.3.4` (which depends on `typescript-eslint@^8`, giving `scopeManager.addGlobals is not a function`).
 
-`eslint.config.mjs` imports `@eslint/compat` and `eslint-plugin-import`, but neither is in `package.json`. Installed eslint packages are only `eslint`, `eslint-config-next`, `@typescript-eslint/eslint-plugin`.
+- [x] Dropped the `import` plugin from `eslint.config.mjs` — it was registered but no `import/*` rules used it, which removed the `@eslint/compat` dependency entirely
+- [x] Downgraded `eslint` 10 → 9.39.5, the version `eslint-config-next` actually supports
+- [x] `bun run lint` exits 0
 
-**This must be fixed before wiring lint into CI**, or CI is red on day one and everyone learns to ignore it.
+### Workflows
 
-- [ ] Add the missing deps: `bun add -d @eslint/compat eslint-plugin-import`
-- [ ] Or simplify `eslint.config.mjs` to drop the `import` plugin — it's declared but no `import/*` rules are actually configured, so `fixupPluginRules` + `@eslint/compat` may be removable entirely
-- [ ] Delete `.eslintrc.json` — legacy config, dead since ESLint 10 only reads flat config. Having both is confusing.
-- [ ] Confirm `bun run lint` exits 0, and fix or `eslint-disable` whatever it reports
+- [x] `.github/workflows/ci.yml` — lint + unit tests on push to `dev` and on PRs to `dev`/`main`
+- [x] `.github/workflows/smoke.yml` — smoke tests on `deployment_status`, against the real Vercel preview
+- [x] Bun version pinned to `1.4.0` rather than `latest`
+- [x] `actions/checkout@v5` and `actions/cache@v5` (v4 targets the deprecated Node 20)
+- [x] Bun install cache keyed on `bun.lock`
+- [x] Lint and unit tests share one job — billing rounds each job up to a whole minute
+- [x] Vercel Protection Bypass secret wired up (`VERCEL_AUTOMATION_BYPASS_SECRET`), since preview URLs sit behind SSO and answer 200 with a login page
 
-## Tasks
+### Branch protection
 
-### 1. Branch protection (highest value, ~5 minutes, no code)
+- [x] Rule on `main`, require a pull request before merging
+- [x] `Vercel` required
+- [x] Lock branch left off (it would block merges, not just pushes)
 
-Current workflow: work on `dev` → open a PR `dev` → `main` → check Vercel → merge.
-That already has a review point; it just isn't enforced.
+## Remaining
 
-- [ ] Settings → Branches → add rule for **`main` only**
-- [ ] Enable **Require status checks to pass before merging**
-- [ ] Select the **Vercel** check
-- [ ] Once the lint workflow exists (step 2), add its check here too
+### 1. Require the other two checks — the important one
 
-Leave `dev` unprotected — it's the working branch and is committed to
-directly by design.
+Currently only `Vercel` is required, so **a red Lint or Smoke check does not block a merge**. Both have now reported at least once, so they are selectable.
 
-This turns the existing manual "if everything checks out with Vercel I
-merge" step into something that can't be skipped by accident.
+- [ ] Settings → Branches → `main` → Require status checks → add **`Lint & unit tests`**
+      (note the name — the job was renamed when unit tests were added; a rule
+      referencing plain `Lint` will wait forever on a check that never reports)
+- [ ] Add **`Smoke tests`**
+- [ ] Untick **Require branches to be up to date** (`strict: true` today) — with a
+      single `dev` branch it just forces a sync from `main` after every merge
 
-### 2. Lint workflow
+### 2. Housekeeping
 
-- [ ] Add `.github/workflows/ci.yml`
-
-**Note: this project uses Bun** (`bun.lock` is the tracked lockfile, no `package-lock.json`). The workflow must use Bun, not npm:
-
-```yaml
-name: CI
-on:
-  pull_request:
-    branches: [main]   # the dev -> main PR: this is the merge gate
-  push:
-    branches: [dev]    # early feedback while working, before the PR exists
-
-jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-      - run: bun install --frozen-lockfile
-      - run: bun run lint
-```
-
-- [ ] Confirm it goes green on a throwaway PR
-- [ ] Add the `lint` check to the branch protection rule from step 1
+- [ ] `git rm .eslintrc.json` — dead since ESLint 9 flat config; having both is confusing
+- [ ] Add `"typecheck": "tsc --noEmit"` to scripts — handy locally even though Vercel covers it
+- [ ] Consider `engines` in `package.json` to document the expected runtime
 
 ### 3. Fix the three `set-state-in-effect` warnings
 
-`eslint-plugin-react-hooks` v7 flags `setState` called synchronously inside an
-effect. The rule is currently downgraded to `warn` in `eslint.config.mjs` so CI
-can enforce everything else; these should be fixed and the rule restored to
-`error`.
+`eslint-plugin-react-hooks` v7 flags `setState` called synchronously inside an effect. The rule is downgraded to `warn` in `eslint.config.mjs:15` so CI can enforce the rest of the ruleset. Probably deserves its own issue.
 
-- [ ] `src/hooks/useRouteStyle.ts:31` — `setDL()` in an effect; likely derivable from `usePathname()` without state at all
+- [ ] `src/hooks/useRouteStyle.ts:31` — `setDL()` in an effect; likely derivable from `usePathname()` with no state at all
 - [ ] `src/app/skribenter/components/AuthorHero/index.tsx:20` — `setData(promise)` in an effect keyed on `promise`
 - [ ] `src/components/Templates/PlaylistTemplate/Player.tsx:33` — `playAd()` in an effect on episode change
 - [ ] `src/app/skribenter/components/Search/index.tsx:27` — missing `router`/`uri` deps (`exhaustive-deps`)
 - [ ] Restore `"react-hooks/set-state-in-effect": "error"` once fixed
 
-### 4. Optional follow-ups
+## Out of scope
 
-- [ ] Add `"typecheck": "tsc --noEmit"` to scripts — useful locally even though Vercel covers it in CI
-- [ ] Pin a Bun version in the workflow instead of `latest`, so CI doesn't drift
-- [ ] Consider `engines` in `package.json` to document the expected runtime
-- [ ] Consider pre-commit lint via husky + lint-staged — faster feedback than waiting on CI
-
-## Explicitly out of scope
-
-- **Running `tsc` in Actions** — Vercel's build already does this
-- **Running `next build` in Actions** — needs `CMS_GRAPHQL_URI` and credentials as GitHub Secrets, and duplicates Vercel
-- **A test suite** — no test framework is installed; worth discussing separately. Smoke tests (assert a route 200s and renders its ad slots) would fit this project better than unit tests, since most code is thin presentation over CMS data.
+- **Running `tsc` in Actions** — Vercel's build already does it
+- **Running `next build` in Actions** — would need CMS credentials as secrets, and duplicates Vercel
 
 ## Notes
 
-- Local Node is v24; `package.json` has no `engines` or `packageManager` field.
-- `bun.lock` is tracked and not gitignored, so `--frozen-lockfile` is safe.
-- Workflow is: commit to `dev` → PR `dev` → `main` → verify Vercel → merge. Branch protection on `main` matches this exactly; `dev` stays unprotected.
-- The two triggers overlap slightly: pushing to `dev` while a PR is open runs lint twice for the same commit. Harmless, and cheap for a lint-only job — drop the `push` trigger if the duplication is annoying.
-- `main` is only ever written by merging the PR, so there's no `push: main` trigger — the PR check already covered that code.
+- `bun.lock` is the tracked lockfile — no `package-lock.json`, so workflows use Bun, not npm
+- Pushing to `dev` while a PR is open lints the same commit twice. Harmless and cheap; drop the `push` trigger if it bothers you
+- `main` is only written by merging a PR, so there is no `push: main` trigger
+- The smoke suite found a real bug on its first useful run: `/importorer` rendered 0 ads in production because `SuppliersList` calls `useSearchParams()` without a Suspense boundary, which bailed the whole route out of static prerendering. Invisible in `bun run dev` — only a production build shows it.

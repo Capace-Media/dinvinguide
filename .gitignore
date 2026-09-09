@@ -29,8 +29,10 @@ yarn-error.log*
 .env
 .zed
 ISSUE.md
+*-ISSUE.md
 CI-ISSUE.md
-
+AGENTS.md
+CLAUDE.md
 # vercel
 .vercel
 
