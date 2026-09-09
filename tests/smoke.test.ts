@@ -9,8 +9,21 @@ const BASE = process.env.BASE_URL ?? "http://localhost:3000";
 // Done synchronously via curl because test.skipIf needs the answer before the
 // tests are defined, and tsconfig targets es5, which disallows top-level await.
 const reachable =
-  Bun.spawnSync(["curl", "-s", "-o", "/dev/null", "-m", "5", BASE]).exitCode ===
-  0;
+  Bun.spawnSync([
+    "curl",
+    "-s",
+    "-o",
+    "/dev/null",
+    "-m",
+    "5",
+    ...(process.env.VERCEL_AUTOMATION_BYPASS_SECRET
+      ? [
+          "-H",
+          `x-vercel-protection-bypass: ${process.env.VERCEL_AUTOMATION_BYPASS_SECRET}`,
+        ]
+      : []),
+    BASE,
+  ]).exitCode === 0;
 
 // Nothing here skips. A skipped smoke test looks green while verifying
 // nothing, so an unreachable site is a real failure — it just needs to say so
@@ -18,7 +31,7 @@ const reachable =
 // first one.
 const smoke = test;
 
-test("site under test is reachable", () => {
+test("site under test is reachable and not behind an auth wall", async () => {
   if (!reachable) {
     throw new Error(
       `Nothing responding at ${BASE}\n` +
@@ -27,15 +40,35 @@ test("site under test is reachable", () => {
         `    Every test below will fail for this same reason.`
     );
   }
+
+  // Vercel's SSO page answers 200, so "reachable" alone is not enough — every
+  // ad assertion would fail with a confusing "expected 3, received 0".
+  const { html } = await get("/");
+  if (!html.includes('<html lang="sv"')) {
+    throw new Error(
+      `${BASE} responded, but it is not the site — most likely Vercel SSO.\n` +
+        `    Set VERCEL_AUTOMATION_BYPASS_SECRET (Vercel → Settings →\n` +
+        `    Deployment Protection → Protection Bypass for Automation)\n` +
+        `    and expose it to this job as a secret.`
+    );
+  }
 });
 
 // Pages render server-side, so counting resolved ad slots tells us the queries
 // returned data. A template that throws, or a query that returns null, drops
 // the count and fails here.
+// Vercel preview URLs sit behind SSO, which answers 200 with a login page
+// rather than the site. This secret (Vercel → Deployment Protection →
+// Protection Bypass for Automation) lets CI through.
+const BYPASS = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
+const HEADERS: Record<string, string> = BYPASS
+  ? { "x-vercel-protection-bypass": BYPASS, "x-vercel-set-bypass-cookie": "true" }
+  : {};
+
 async function get(path: string) {
   let res: Response;
   try {
-    res = await fetch(BASE + path);
+    res = await fetch(BASE + path, { headers: HEADERS });
   } catch (cause) {
     // A bare ConnectionRefused stack trace says nothing useful, and there is
     // one per test. Replace it with the actual problem.
