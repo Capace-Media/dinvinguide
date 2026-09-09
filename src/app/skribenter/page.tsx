@@ -1,6 +1,6 @@
 import { getPage } from "@/lib/queries/getPage";
-import { BannerSkeleton } from "@/app/_components/ads/banner";
-import AdTop from "@/app/_components/ads/default/top";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import AdTop from "@/shared/components/ads/default/top";
 import { Metadata } from "next";
 import { Suspense } from "react";
 import Loading from "../loading";

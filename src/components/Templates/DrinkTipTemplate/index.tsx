@@ -1,7 +1,7 @@
 import Newsletter from "@/app/_components/Newsletter";
-import { BannerSkeleton } from "@/app/_components/ads/banner";
-import DlTop from "@/app/_components/ads/dl/top";
-import DlMid from "@/app/_components/ads/dl/mid";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import DlTop from "@/shared/components/ads/dl/top";
+import DlMid from "@/shared/components/ads/dl/mid";
 import { Suspense } from "react";
 import Line from "@/components/graphic/Line";
 import { DlNextArrow } from "@/components/icons";

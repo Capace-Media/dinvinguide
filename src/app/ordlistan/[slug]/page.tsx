@@ -1,7 +1,7 @@
 import Newsletter from "@/app/_components/Newsletter";
 
-import { BannerSkeleton } from "@/app/_components/ads/banner";
-import AdMid from "@/app/_components/ads/default/mid";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import AdMid from "@/shared/components/ads/default/mid";
 import { Suspense } from "react";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import WordTemplate from "@/components/Templates/WordTemplate";

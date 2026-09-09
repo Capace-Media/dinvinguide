@@ -1,4 +1,4 @@
-import { getMidAd } from "@/lib/fetchers/default-ads";
+import { getMidAd } from "@/lib/fetchers/ads/default";
 import Banner from "../banner";
 
 export default async function AdMid() {

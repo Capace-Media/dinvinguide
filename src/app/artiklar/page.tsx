@@ -8,9 +8,9 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 import Newsletter from "../_components/Newsletter";
-import { BannerSkeleton } from "@/app/_components/ads/banner";
-import AdTop from "@/app/_components/ads/default/top";
-import AdMid from "@/app/_components/ads/default/mid";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import AdTop from "@/shared/components/ads/default/top";
+import AdMid from "@/shared/components/ads/default/mid";
 import { Suspense } from "react";
 import AllArticles from "./_components/articles";
 

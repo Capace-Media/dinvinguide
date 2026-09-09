@@ -1,4 +1,4 @@
-import WP from "../wp";
+import WP from "../../wp";
 
 export interface AdImage {
   mediaItemUrl: string;
@@ -43,7 +43,8 @@ interface AdResponse {
 
 // A slot is only renderable with both a link and a desktop image. Anything
 // else is treated as unfilled so the caller falls through to the fallback ad.
-function toAd(node?: AdNode | null): Ad | null {
+// Exported for unit tests.
+export function toAd(node?: AdNode | null): Ad | null {
   const acf = node?.acf_ads;
   if (!node || !acf?.link || !acf.desktop?.mediaItemUrl) return null;
 
