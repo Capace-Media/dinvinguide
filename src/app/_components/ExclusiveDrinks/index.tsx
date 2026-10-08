@@ -154,7 +154,7 @@ const ExclusiveDrinks = async () => {
                     className="flex"
                     aria-label={`läs mer om ${wine?.title}`}
                   >
-                    <div className="min-w-[100px] h-[160px] relative shake-image">
+                    <div className="min-w-[100px] h-[160px] relative lg:group-hover:animate-shake">
                       {wine?.featuredImage?.node?.mediaItemUrl && (
                         <Image
                           src={wine.featuredImage.node.mediaItemUrl}

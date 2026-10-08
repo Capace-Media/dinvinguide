@@ -31,6 +31,34 @@
     from 180deg at 50% 50%,
     var(--tw-gradient-stops)
   );
+
+  --animate-shake: shake 0.7s ease-in-out;
+  --animate-pulse-loader: pulse-loader 1.2s ease-in-out infinite;
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25%,
+    75% {
+      transform: translateX(-5px);
+    }
+    50% {
+      transform: translateX(5px);
+    }
+  }
+
+  @keyframes pulse-loader {
+    0% {
+      transform: scale(0);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
 }
 
 /*
@@ -62,20 +90,6 @@ section {
   * {
     padding: 0px;
     margin: 0px;
-  }
-
-  .star__container {
-    font-family: sans-serif;
-    text-align: center;
-  }
-
-  .star__container input[type="radio"] {
-    display: none;
-  }
-  .star {
-    cursor: pointer;
-    font-size: 2rem;
-    margin: 5px;
   }
 
   .drop-cap p:first-letter {
@@ -145,9 +159,6 @@ span.aligncenter {
   @apply py-4 md:py-11 lg:py-20;
 }
 
-.contain-m {
-  @apply my-4 md:my-11 lg:my-20;
-}
 .btn {
   @apply bg-brand-secondary text-white py-2.25 shadow-xs flex justify-center items-center px-4 md:hover:scale-105 md:ease-in-out md:duration-300;
 }
@@ -170,64 +181,6 @@ span.aligncenter {
 .heading {
   @apply pb-4 font-sub text-[24px] md:text-[28px]  lg:text-[44px]  text-[#333];
 }
-.nav_button {
-  width: 40px;
-  height: 40px;
-  margin-right: 21px;
-  z-index: 100 !important;
-}
-
-.nav_button .line {
-  width: 40px;
-  height: 4px;
-  background-color: #333; /* Replace with the value of your $blue variable */
-  border-radius: 2px;
-  display: block;
-  margin: 4px auto;
-  cursor: pointer;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-
-#nav_button.click {
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  -webkit-transition-delay: 0.6s;
-  -o-transition-delay: 0.6s;
-  transition-delay: 0.6s;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-#nav_button.click .line:nth-child(2) {
-  width: 0px;
-}
-
-#nav_button.click .line:nth-child(1),
-#nav_button.click .line:nth-child(3) {
-  -webkit-transition-delay: 0.3s;
-  -o-transition-delay: 0.3s;
-  transition-delay: 0.3s;
-}
-
-#nav_button.click .line:nth-child(1) {
-  -webkit-transform: translateY(8.5px);
-  -ms-transform: translateY(8.5px);
-  -o-transform: translateY(8.5px);
-  transform: translateY(8.5px);
-}
-
-#nav_button.click .line:nth-child(3) {
-  -webkit-transform: translateY(-8.5px) rotate(90deg);
-  -ms-transform: translateY(-8.5px) rotate(90deg);
-  -o-transform: translateY(-8.5px) rotate(90deg);
-  transform: translateY(-8.5px) rotate(90deg);
-}
-
 /*
   Google Translate widget overrides.
   These target DOM elements injected by Google's script at runtime,
@@ -266,6 +219,179 @@ span.aligncenter {
 
 #google_translate_element .goog-te-combo:focus {
   @apply outline-none! ring-1! ring-brand-primary!;
+}
+
+/*
+  WordPress content rendered through handleParse. We can't put classes on that
+  HTML, so it's styled through the .parsed wrapper (+ modifier classes).
+  Intentionally unlayered so it beats the `* { margin: 0; padding: 0 }` reset
+  in @layer utilities.
+*/
+.parsed {
+  color: var(--color-brand-dark);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-sub);
+    font-size: 23px;
+    padding-bottom: 1rem;
+    text-align: left !important;
+  }
+
+  h1 {
+    font-size: 32px;
+    line-height: 42.24px;
+    margin-bottom: 9px;
+
+    @variant md {
+      font-size: 39px;
+      line-height: 48.36px;
+    }
+    @variant lg {
+      font-size: 44px;
+      line-height: 59.36px;
+    }
+  }
+
+  p {
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-size: 14px;
+    padding-bottom: 1rem;
+  }
+
+  ol {
+    counter-reset: item;
+    list-style-type: none;
+    margin: 0;
+    padding: 0 0 0 40px;
+
+    li {
+      padding-bottom: 9px;
+      counter-increment: item;
+      position: relative;
+
+      &::before {
+        content: counter(item) ".";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: -30px;
+        top: 0;
+        width: 22px;
+        height: 22px;
+        border-radius: 2px;
+        color: white;
+        background-color: var(--color-brand-secondary);
+      }
+    }
+  }
+
+  a {
+    text-decoration: underline;
+    font-weight: 600;
+    color: var(--color-brand-secondary);
+  }
+}
+
+.front-parse .parsed {
+  color: var(--color-brand-dark);
+
+  h1 {
+    display: flex;
+    flex-direction: column;
+    font-size: 37px;
+    line-height: 37px;
+    padding-bottom: 4px;
+
+    @variant md {
+      font-size: 39px;
+      line-height: 39px;
+    }
+    @variant lg {
+      font-size: 66px;
+      line-height: 66px;
+    }
+
+    em {
+      font-size: 20px;
+      font-style: normal;
+      line-height: 22px;
+      font-family: var(--font-main);
+
+      @variant md {
+        line-height: 20px;
+      }
+    }
+  }
+
+  p {
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23px;
+    color: var(--color-brand-gray);
+  }
+}
+
+.recipe_parse .parsed {
+  color: white;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-main);
+    font-size: 16px;
+    line-height: 25px;
+    color: white;
+
+    @variant md {
+      font-size: 19px;
+      line-height: 29px;
+    }
+    @variant lg {
+      font-family: var(--font-sub);
+      font-size: 42px;
+      line-height: 46px;
+    }
+
+    strong {
+      font-size: 24px;
+      font-family: var(--font-sub);
+      color: white;
+
+      @variant md {
+        font-size: 28px;
+      }
+      @variant lg {
+        font-size: 44px;
+      }
+    }
+  }
+
+  p {
+    color: white;
+  }
+}
+
+.parse-dark .parsed {
+  color: var(--color-brand-dark);
+}
+
+.parse-light .parsed {
+  color: white;
+
+  @variant lg {
+    color: white !important;
+  }
 }
 
 .dl-hero-intro .parsed h1,
@@ -410,7 +536,7 @@ span.aligncenter {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#e4e4e4] text-foreground;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

@@ -7,7 +7,6 @@ import type { Metadata } from "next";
 import { Abril_Fatface, Poppins } from "next/font/google";
 import { draftMode } from "next/headers";
 import DraftModeBanner from "./_components/DraftModeBanner";
-import "./styles/global.scss";
 import "./styles/globals.css";
 import { cn } from "@/lib/utils";
 import Script from "next/script";

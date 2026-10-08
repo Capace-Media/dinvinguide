@@ -24,7 +24,7 @@ const SuitableWines = ({ data }: SuitableWinesProps) => {
                   aria-label={`läs mer om ${wine?.title}`}
                 >
                   {wine?.featuredImage?.node.mediaItemUrl && (
-                    <div className="min-w-[100px] h-[150px] relative shake-image">
+                    <div className="min-w-[100px] h-[150px] relative lg:group-hover:animate-shake">
                       <Image
                         src={wine.featuredImage.node.mediaItemUrl}
                         alt={

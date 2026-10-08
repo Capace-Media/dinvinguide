@@ -23,7 +23,7 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
       <Link
         href={`/skribenter${post.uri}`}
         aria-label={`Läs om ${post?.title}`}
-        className={`block w-full relative h-[12.2rem] overlay`}
+        className="block w-full relative h-[12.2rem] after:absolute after:inset-0 after:bg-[linear-gradient(180deg,rgba(0,0,0,0.4)_16.35%,rgba(0,0,0,0)_49.69%)]"
       >
         {post?.featuredImage?.node?.mediaItemUrl && (
           <>
@@ -66,7 +66,7 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
           {post?.title && (
             <h2
               aria-label={post.title}
-              className="heading_truncated font-sub mb-2 text-[22px] text-brand-dark"
+              className="line-clamp-1 font-sub mb-2 text-[22px] text-brand-dark"
             >
               {post.title}
             </h2>
@@ -74,7 +74,7 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
           {post?.acf_posts?.ingress && (
             <>
               <p
-                className="truncated text-[13px] text-brand-gray"
+                className="line-clamp-3 text-[13px] text-brand-gray"
                 dangerouslySetInnerHTML={{ __html: post.acf_posts.ingress }}
               />
             </>

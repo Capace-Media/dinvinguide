@@ -4,6 +4,13 @@ import { Edit } from "@/components/icons";
 import handleParseClient from "@/lib/utils/handle-parse-client";
 import handleParse from "@/lib/utils/handleParse";
 import { useMemo, useState } from "react";
+// Custom checkbox: the native input is hidden and the checkmark span draws the box + tick
+const checkboxLabelClasses =
+  "group relative block pl-[35px] mb-3 cursor-pointer select-none text-[14px]";
+const checkboxInputClasses = "peer absolute opacity-0 size-0 cursor-pointer";
+const checkmarkClasses =
+  "absolute top-0 left-0 size-5 bg-[#eee] border-2 border-brand-secondary rounded-[5px] group-hover:bg-[#ccc] after:absolute after:hidden after:left-1.5 after:top-[3.5px] after:w-[5px] after:h-2.5 after:border-brand-secondary after:border-r-[3px] after:border-b-[3px] after:rotate-45 peer-checked:after:block";
+
 interface PortionsComponentProps {
   ingredients?: any;
   others?: any;
@@ -56,7 +63,7 @@ const PortionsComponent = ({
                   value={isPortions}
                   onChange={(e: any) => setPortions(e.target.value)} // ... and update the state variable on any change!
                   id="portions"
-                  className="select-plain text-[14px]"
+                  className="appearance-none bg-transparent border-none p-0 m-0 w-auto cursor-pointer outline-none"
                 >
                   <option value={1}>1 portion</option>
                   <option value={2}>2 portioner</option>
@@ -80,17 +87,21 @@ const PortionsComponent = ({
                           return (
                             <li key={i + ing?.namn}>
                               <label
-                                className="text-[14px] recipe__label"
+                                className={checkboxLabelClasses}
                                 htmlFor={node?.rubrik + i}
                               >
-                                <input type="checkbox" id={node?.rubrik + i} />
+                                <input
+                                  type="checkbox"
+                                  id={node?.rubrik + i}
+                                  className={checkboxInputClasses}
+                                />
                                 {ing?.antal === 0 ? "" : ing.antal}{" "}
                                 {ing?.enhet?.name === "x"
                                   ? ""
                                   : !ing?.enhet?.name
                                   ? ""
                                   : ing.enhet.name}{" "}
-                                {ing?.namn} <span className="checkmark"></span>
+                                {ing?.namn} <span className={checkmarkClasses}></span>
                               </label>
                             </li>
                           );
@@ -109,10 +120,14 @@ const PortionsComponent = ({
           <h3 className="text-[19px] pb-2">Övrigt:</h3>
           <p>
             {" "}
-            <label className="text-[14px] recipe__label" htmlFor={others}>
-              <input type="checkbox" id={others} />
+            <label className={checkboxLabelClasses} htmlFor={others}>
+              <input
+                type="checkbox"
+                id={others}
+                className={checkboxInputClasses}
+              />
               {handleParseClient(others)}
-              <span className="checkmark"></span>
+              <span className={checkmarkClasses}></span>
             </label>
           </p>
         </div>
