@@ -4,17 +4,15 @@ import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdMid from "@/shared/components/ads/default/mid";
 import { Suspense } from "react";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import WordTemplate from "@/components/Templates/WordTemplate";
 import { getWord } from "@/lib/api/words/get-words";
+import { notFound } from "next/navigation";
 import { Metadata, ResolvingMetadata } from "next";
 
-import ExploreGuides from "@/components/Templates/GuideTemplate/ExploreGuides";
+import ExploreGuides from "@/components/shared/explore-guides";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
+import WordArticle from "@/components/features/ordlistan/word/word-article";
 
 type Props = {
-  searchParams: Promise<{
-    [key: string]: string | string[] | any | undefined | null;
-  }>;
   params: Promise<{ slug: string }>;
 };
 
@@ -45,11 +43,15 @@ export async function generateMetadata(
 
 const WordDetailPage = async (props: Props) => {
   const params = await props.params;
-  //const searchParams = await props.searchParams;
+  const word = await getWord(params.slug);
+
+  if (!word) {
+    notFound();
+  }
 
   return (
     <>
-      <WordTemplate params={params} />
+      <WordArticle word={word} />
 
       <ExploreGuides />
       <Suspense fallback={<BannerSkeleton />}>

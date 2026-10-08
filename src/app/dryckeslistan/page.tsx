@@ -1,21 +1,20 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import TopListsTemplate from "@/components/Templates/TopListsTemplate";
 import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
-
-interface TopListProps {}
-
-type Props = {
-  searchParams: Promise<{
-    [key: string]: string | string[] | any | undefined | null;
-  }>;
-  params: Promise<{ id: string }>;
-};
+import Newsletter from "@/components/shared/newsletter/newsletter";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import DlTop from "@/shared/components/ads/dl/top";
+import DlMid from "@/shared/components/ads/dl/mid";
+import DlBottom from "@/shared/components/ads/dl/bottom";
+import { Suspense } from "react";
+import DLHero from "@/components/shared/heroes/dl-hero";
+import TopListLinks from "@/components/shared/top-list-links";
+import TopListCategories from "@/components/features/dryckeslistan/top-list-categories";
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  _props: unknown,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/topplistor");
@@ -38,15 +37,25 @@ export async function generateMetadata(
   return data;
 }
 
-const TopList = async ({}: TopListProps) => {
+const TopList = async () => {
   const page = await getPage("/topplistor");
   if (!page) notFound();
 
-  const { seo, ...rest } = page;
-
   return (
     <>
-      <TopListsTemplate hero={rest} />
+      <DLHero hero={page} />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlTop />
+      </Suspense>
+      <TopListCategories />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlMid />
+      </Suspense>
+      <TopListLinks />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlBottom />
+      </Suspense>
+      <Newsletter />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import PostTemplate from "@/components/Templates/PostTemplate";
+import PostTemplate from "@/components/shared/post/post-template";
 import { getPost, getPostPaths, getPreviewPost } from "@/lib/api/posts/get-posts";
 import generateArticleSchema from "@/lib/utils/json-LD-Schemas/generateArticleSchema";
 

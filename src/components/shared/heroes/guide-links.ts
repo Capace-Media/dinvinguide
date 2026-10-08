@@ -1,0 +1,14 @@
+export interface GuideLink {
+  readonly id: string;
+  readonly uri: string;
+  readonly name: string;
+}
+
+export const guideLinks: readonly GuideLink[] = [
+  { id: "wkdsnvpksdmve312455", uri: "/guide", name: "Alla guider" },
+  { id: "wkdsnvp3567ksdmve3265712455", uri: "/druvguiden", name: "Druvor" },
+  { id: "wkdsn64326tefgd2455", uri: "/vinatlas", name: "Vinatlas" },
+  { id: "wkdsy23q4twe312455", uri: "/vinskolan", name: "Vinskolan" },
+  { id: "wk34ew12455", uri: "/ordlistan", name: "Ordlistan" },
+  { id: "wk3asdasd5", uri: "/importorer", name: "Svenska importörer" },
+];

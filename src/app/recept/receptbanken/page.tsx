@@ -1,16 +1,22 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import RecipesTemplate from "@/components/Templates/RecipesBankTemplate";
 import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
+import Newsletter from "@/components/shared/newsletter/newsletter";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import AdTop from "@/shared/components/ads/default/top";
+import AdMid from "@/shared/components/ads/default/mid";
+import { Suspense } from "react";
+import SectionSeparator from "@/components/shared/section-separator";
+import RecipeBankRecipes from "@/components/features/recept/receptbanken/recipe-bank-recipes";
+import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";
 
 type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
-  params: Promise<{ id: string }>;
+  searchParams: Promise<RouteSearchParams>;
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  _props: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/recept");
@@ -35,10 +41,19 @@ export async function generateMetadata(
 
 const RecipesBank = async (props: Props) => {
   const searchParams = await props.searchParams;
+
   return (
-    <>
-      <RecipesTemplate searchParams={searchParams} />
-    </>
+    <div>
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
+      <RecipeBankRecipes searchParams={searchParams} />
+      <SectionSeparator />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
+      <Newsletter />
+    </div>
   );
 };
 

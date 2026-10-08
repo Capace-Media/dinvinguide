@@ -1,4 +1,4 @@
-import PostTemplate from "@/components/Templates/PostTemplate";
+import PostTemplate from "@/components/shared/post/post-template";
 import { getWineAtlasPage } from "@/lib/api/pages/get-pages";
 
 type SingleWineAtlasIdProps = {
