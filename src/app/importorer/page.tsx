@@ -1,7 +1,6 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import PageHero from "@/components/Templates/HeroHeaders/PageHero";
-import { getPage } from "@/lib/queries/getPage";
-import { getSEOByPage } from "@/lib/queries/getSEOByPage";
+import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 
 import { MetaInfo } from "../../../types/MetaInfoTypes";
@@ -31,7 +30,7 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const page = await getSEOByPage("/importorer");
+  const page = await getPage("/importorer");
 
   if (!page) {
     return {};

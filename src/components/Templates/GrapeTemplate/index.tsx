@@ -1,56 +1,13 @@
 import Newsletter from "@/components/shared/newsletter/newsletter";
 import handleParse from "@/lib/utils/handleParse";
 
-import WP from "@/lib/wp";
+import { getGrape } from "@/lib/api/grapes/get-grapes";
 import ExploreGuides from "../GuideTemplate/ExploreGuides";
 import links from "../GuideTemplate/guideLinks.json";
 import PageHero from "../HeroHeaders/PageHero";
 
-async function getGrapeData(id: string) {
-  try {
-    const response = await WP(
-      `
-    query MyQuery($id: ID!) {
-      grape(id: $id, idType: URI) {
-        id
-        acf_grape {
-          kortBeskrivning
-          text
-          druvtyp {
-            name
-            slug
-          }
-        }
-        title
-        featuredImage {
-          node {
-            altText
-            mediaItemUrl
-          }
-        }
-      }
-    }
-    `,
-      "grape",
-      { id }
-    );
-
-    if (!response) {
-      throw new Error("No data found");
-    }
-
-    const data = response.data.grape;
-
-    return data;
-  } catch (error) {
-    console.error("no data found: =====>", error);
-    return null;
-  }
-}
-
 const GrapeTemplate = async ({ params }: { params: { slug: string } }) => {
-  const id: string = `/druvor/${params.slug}`;
-  const data = await getGrapeData(id);
+  const data = await getGrape(params.slug);
 
   return (
     <>

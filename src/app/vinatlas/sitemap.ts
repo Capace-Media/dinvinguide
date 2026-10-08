@@ -1,52 +1,20 @@
-import WP from "@/lib/wp";
+import { getWineAtlasSitemap } from "@/lib/api/sitemaps/get-sitemaps";
+import type { MetadataRoute } from "next";
 
-export default async function sitemap() {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const regions = await getWineAtlasSitemap();
 
-  const posts = await WP(`
-  query MyQuery2($parent: ID! = "cG9zdDo0NzcyMQ==") {
-    pages(where: {parent: $parent}, first: 50) {
-      nodes {
-        slug
-        modifiedGmt
-        children(first: 50) {
-          nodes {
-            slug
-            modifiedGmt
-          }
-        }
-      }
-    }
-  }
-  `);
-
-  const wineAtlas = posts?.data?.pages?.nodes;
-
-  async function createSitemap(wineAtlas: any) {
-    let array: any[] = [];
-
-    wineAtlas &&
-      wineAtlas.map((post: any) => {
-        array.push({
-          url: `${baseUrl}/vinatlas/${post?.slug}`,
-          lastModified: post.modifiedGmt,
-          priority: 0.8,
-        });
-
-        post?.children.nodes &&
-          post?.children.nodes?.map((child: any) => {
-            array.push({
-              url: `${baseUrl}/vinatlas/${post?.slug}/${child.slug}`,
-              lastModified: child.modifiedGmt,
-              priority: 0.5,
-            });
-          });
-      });
-
-    return array;
-  }
-
-  const myArray = await createSitemap(wineAtlas);
-
-  return myArray;
+  return regions.flatMap((region) => [
+    {
+      url: `${baseUrl}/vinatlas/${region.slug}`,
+      lastModified: region.modifiedGmt ?? undefined,
+      priority: 0.8,
+    },
+    ...(region.children?.nodes ?? []).map((child) => ({
+      url: `${baseUrl}/vinatlas/${region.slug}/${child.slug}`,
+      lastModified: child.modifiedGmt ?? undefined,
+      priority: 0.5,
+    })),
+  ]);
 }

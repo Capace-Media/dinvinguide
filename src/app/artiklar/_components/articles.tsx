@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 // import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select";
 import { SearchInput } from "@/components/ui/search-input";
 import { Spinner } from "@/components/ui/spinner";
+import type { PostsResponse } from "@/app/api/posts/route";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useDebounceValue } from "@/hooks/useDebounce";
 import { useState } from "react";
@@ -59,16 +60,16 @@ export default function AllArticles(props: Props) {
     } = useInfiniteQuery({
         queryKey: ["articles", debouncedSearch, year, authorName],
         queryFn: ({ pageParam }) =>
-            fetch(buildUrl(16, debouncedSearch, year, authorName, pageParam)).then(r => r.json()),
+            fetch(buildUrl(16, debouncedSearch, year, authorName, pageParam)).then(r => r.json() as Promise<PostsResponse>),
         initialPageParam: "",
         getNextPageParam: (lastPage) =>
             lastPage?.posts?.pageInfo?.hasNextPage
-                ? lastPage.posts.pageInfo.endCursor
+                ? lastPage.posts.pageInfo.endCursor ?? undefined
                 : undefined,
     });
 
     const articles = data?.pages.flatMap(page => page?.posts?.edges ?? []) ?? [];
-    const total = data?.pages[0]?.posts?.pageInfo?.total;
+    const total = data?.pages[0]?.posts?.pageInfo?.total ?? undefined;
     const isSearching = isSearchPending || (isFetching && !isFetchingNextPage && !isLoading);
     const hasActiveFilters = !!(debouncedSearch || year || authorName);
 
@@ -133,7 +134,7 @@ export default function AllArticles(props: Props) {
                 {isLoading && Array.from({ length: 16 }).map((_, i) => (
                     <PostCardSkeleton key={i} />
                 ))}
-                {articles.map((article: any) => (
+                {articles.map((article) => (
                     <PostCard key={article.node.id} post={article.node} />
                 ))}
                 {isFetchingNextPage && Array.from({ length: 16 }).map((_, i) => (

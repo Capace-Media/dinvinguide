@@ -1,5 +1,6 @@
-import WP from "@/lib/wp";
-import { POSTS } from "@/lib/queries/posts";
+import { getPosts, type PostsPage } from "@/lib/api/posts/get-posts";
+
+export type PostsResponse = { posts: PostsPage };
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -13,7 +14,7 @@ export async function GET(request: Request) {
     : undefined;
   const authorName = searchParams.get("authorName") || undefined;
 
-  const res = await WP(POSTS, "post", {
+  const posts = await getPosts({
     first,
     after,
     before,
@@ -22,9 +23,9 @@ export async function GET(request: Request) {
     authorName,
   });
 
-  if (!res?.data) {
+  if (!posts) {
     return Response.json({ error: "Failed to fetch" }, { status: 502 });
   }
 
-  return Response.json(res.data);
+  return Response.json({ posts } satisfies PostsResponse);
 }

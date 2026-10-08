@@ -1,65 +1,74 @@
-interface GraphQLRequestProps {
-  query: string;
-  tag?: string[];
-  variables?: Record<string, unknown>;
+import "server-only";
+import type { TypedDocumentString } from "./gql/graphql";
+
+interface WpQueryOptions {
+  // Cache tags for `revalidateTag`. Untagged queries share `collections`.
+  readonly tags?: readonly string[];
+  // Draft previews must always hit WordPress, so they skip the data cache.
+  readonly draft?: boolean;
 }
 
-const env = {
-  CMS_GRAPHQL_URI: process.env.CMS_GRAPHQL_URI as string,
-  CMS_GRAPHQL_AUTH_USER: process.env.CMS_GRAPHQL_AUTH_USER as string,
-  CMS_GRAPHQL_AUTH_PASSWORD: process.env.CMS_GRAPHQL_AUTH_PASS as string,
-  APPLICATION_NEW_PASSWORD: process.env.APPLICATION_NEW_PASSWORD as string,
-};
+// Queries without variables take no variables argument; queries with
+// variables require them, typed from the GraphQL document.
+type WpQueryArgs<TVariables> = TVariables extends Record<string, never>
+  ? [variables?: undefined, options?: WpQueryOptions]
+  : [variables: TVariables, options?: WpQueryOptions];
 
-export async function gqlRequest<T>({
-  query,
-  variables,
-  tag,
-}: GraphQLRequestProps): Promise<{ data: T | null; error: string | null }> {
+interface GraphQLResponse<TResult> {
+  data?: TResult | null;
+  errors?: readonly { message: string }[];
+}
+
+function authHeader() {
+  const user = process.env.CMS_GRAPHQL_AUTH_USER;
+  const password = process.env.APPLICATION_NEW_PASSWORD;
+  return `Basic ${btoa(`${user}:${password}`)}`;
+}
+
+// The only way the app talks to WordPress. Returns `null` when the request
+// fails, so callers render their empty state instead of crashing the page.
+// WPGraphQL can return partial data next to errors; that data is kept.
+export async function wpQuery<TResult, TVariables>(
+  query: TypedDocumentString<TResult, TVariables>,
+  ...[variables, options]: WpQueryArgs<TVariables>
+): Promise<TResult | null> {
+  const uri = process.env.CMS_GRAPHQL_URI;
+  if (!uri) {
+    console.error("WP query failed: CMS_GRAPHQL_URI is not set");
+    return null;
+  }
+
+  const cacheOptions: RequestInit = options?.draft
+    ? { cache: "no-store" }
+    : {
+        cache: "force-cache",
+        next: { tags: [...(options?.tags ?? ["collections"])] },
+      };
+
   try {
-    // const authString = `${env.CMS_GRAPHQL_AUTH_USER}:${env.CMS_GRAPHQL_AUTH_PASSWORD}`;
-    // const authHeader = `Basic ${btoa(authString)}`;
-
-    const authString = `${env.CMS_GRAPHQL_AUTH_USER}:${env.APPLICATION_NEW_PASSWORD}`;
-    const authHeader = `Basic ${btoa(authString)}`;
-    const fetchOptions: RequestInit = {
+    const res = await fetch(uri, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: authHeader,
+        Authorization: authHeader(),
       },
-      body: JSON.stringify({ query, variables }),
-      cache: "force-cache",
-      ...(tag && { next: { tags: tag } }),
-    };
-
-    const res = await fetch(env.CMS_GRAPHQL_URI, fetchOptions);
+      body: JSON.stringify({ query: query.toString(), variables }),
+      ...cacheOptions,
+    });
 
     if (!res.ok) {
-      return {
-        data: null,
-        error: `HTTP error! status: ${res.status}`,
-      };
+      console.error(`WP query failed: HTTP ${res.status}`);
+      return null;
     }
 
-    const json = await res.json();
-
-    if (json.errors) {
-      return {
-        data: null,
-        error: json.errors[0].message,
-      };
+    const json = (await res.json()) as GraphQLResponse<TResult>;
+    if (json.errors?.length) {
+      console.error("WP query errors:", json.errors.map((e) => e.message));
     }
 
-    return {
-      data: json.data,
-      error: null,
-    };
+    return json.data ?? null;
   } catch (error) {
-    return {
-      data: null,
-      error:
-        error instanceof Error ? error.message : "An unknown error occurred",
-    };
+    console.error("WP query failed:", error);
+    return null;
   }
 }

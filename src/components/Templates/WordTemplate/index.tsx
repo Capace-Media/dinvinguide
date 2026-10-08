@@ -1,64 +1,12 @@
 import handleParse from "@/lib/utils/handleParse";
 import PrettyDate from "@/lib/utils/prettyDate";
 
-import WP from "@/lib/wp";
+import { getWord } from "@/lib/api/words/get-words";
 import Image from "next/image";
 import Link from "next/link";
 
-async function getWordData(slug: string) {
-  const id = `/glossary/${slug}`;
-  try {
-    const res = await WP(
-      `query getWordData($id: ID!) {
-        glossary(id: $id, idType: URI) {
-        id
-        content
-        title
-        modifiedGmt
-        slug
-        featuredImage {
-          node {
-            altText
-            mediaItemUrl
-            mediaDetails {
-              width
-              height
-            }
-          }
-        }
-        GQL_Word_Content {
-          relateradTermer {
-            ... on Glossary {
-              id
-              slug
-              title
-            }
-          }
-          hurAndvandsOrdet {
-            alternativ1
-            alternativ2
-            alternativ3
-          }
-        }
-      }
-    }`,
-      null,
-      { id }
-    );
-
-    const data = res?.data?.glossary;
-    if (!data) {
-      throw new Error(`Could not fetch word data for ${id}`);
-    }
-    return data;
-  } catch (error) {
-    console.error("error =====>", error);
-    return null;
-  }
-}
-
 const WordTemplate = async ({ params }: { params: { slug: string } }) => {
-  const data = await getWordData(params?.slug);
+  const data = await getWord(params?.slug);
 
   return (
     <article className="lg:grid lg:grid-cols-5 gap-10 pt-[120px] layout bg-white">
@@ -88,7 +36,7 @@ const WordTemplate = async ({ params }: { params: { slug: string } }) => {
               <li className="text-[#333]">{data?.title}</li>
             </ul>
           )}
-          <time className="text-[14px]" dateTime={data?.modifiedGmt}>
+          <time className="text-[14px]" dateTime={data?.modifiedGmt ?? undefined}>
             {PrettyDate(data?.modifiedGmt)}
           </time>
         </div>
@@ -134,7 +82,7 @@ const WordTemplate = async ({ params }: { params: { slug: string } }) => {
             <div className=" relative py-10 w-full lg:h-[555px] h-[322px]">
               <Image
                 src={data?.featuredImage?.node?.mediaItemUrl}
-                alt={data?.title}
+                alt={data.title ?? ""}
                 fill
                 style={{
                   objectFit: "cover",

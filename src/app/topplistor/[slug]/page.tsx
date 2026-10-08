@@ -1,6 +1,6 @@
 import Loading from "@/app/loading";
 import TopListTemplate from "@/components/Templates/TopListTemplate";
-import { getToplistPaths } from "@/lib/queries/getTopListDrinks";
+import { getToplistPaths } from "@/lib/api/drinks/get-drinks";
 import { Suspense } from "react";
 
 export const dynamicParams = true;

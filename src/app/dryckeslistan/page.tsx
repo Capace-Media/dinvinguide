@@ -1,17 +1,12 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import TopListsTemplate from "@/components/Templates/TopListsTemplate";
-import { getPage } from "@/lib/queries/getPage";
-import { getSEOByPage } from "@/lib/queries/getSEOByPage";
+import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 
 interface TopListProps {}
 
-async function getData() {
-  const res = await getPage("/topplistor");
-
-  return { page: res };
-}
 type Props = {
   searchParams: Promise<{
     [key: string]: string | string[] | any | undefined | null;
@@ -23,7 +18,7 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const page = await getSEOByPage("/topplistor");
+  const page = await getPage("/topplistor");
 
   const seo: any = page?.seo;
 
@@ -44,7 +39,8 @@ export async function generateMetadata(
 }
 
 const TopList = async ({}: TopListProps) => {
-  const { page } = await getData();
+  const page = await getPage("/topplistor");
+  if (!page) notFound();
 
   const { seo, ...rest } = page;
 

@@ -1,4 +1,4 @@
-import { getWhineAtlases } from "@/lib/queries/getWineAtlases";
+import { getWineAtlases } from "@/lib/api/guides/get-guides";
 
 import Search from "@/components/Blocks/Search";
 import PaginationController from "@/components/Pagination/Controller";
@@ -28,7 +28,7 @@ const WineAtlasPagination = async ({ params, searchParams }: Props) => {
   const endLast: number = parseInt(searchParams?.last);
   const search: string = searchParams?.search ? searchParams.search : "";
 
-  const promise = await getWhineAtlases({
+  const promise = await getWineAtlases({
     after: searchParams?.after,
     before: searchParams?.before,
     first: startFirst,

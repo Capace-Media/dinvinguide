@@ -1,12 +1,12 @@
 import Recipe from "@/components/Pagination/Recipes/Recipe";
 import { WordArrow } from "@/components/icons";
-import { getDrinkRecipe } from "@/lib/queries/getRecipesBank";
+import { getDrinkRecipes } from "@/lib/api/recipes/get-recipes";
 import Link from "next/link";
 
 interface DryckerProps {}
 
 const Drycker = async ({}: DryckerProps) => {
-  const data = await getDrinkRecipe();
+  const recipes = await getDrinkRecipes();
 
   return (
     <div className="">
@@ -21,8 +21,7 @@ const Drycker = async ({}: DryckerProps) => {
           </Link>
         </div>
         <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
-          {data &&
-            data?.nodes?.map((recipe: any, index: number) => {
+          {recipes.map((recipe) => {
               return (
                 <li key={recipe?.id} className="relative">
                   <Recipe recipe={recipe} />

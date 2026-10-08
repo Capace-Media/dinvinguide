@@ -1,6 +1,6 @@
 import Loading from "@/app/loading";
 import VinTVTemplate from "@/components/Templates/VinTVTemplate";
-import { getSEOByPage } from "@/lib/queries/getSEOByPage";
+import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
@@ -15,7 +15,7 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const page = await getSEOByPage("/vin-tv");
+  const page = await getPage("/vin-tv");
 
   const seo: any = page?.seo;
 

@@ -1,29 +1,13 @@
-import WP from "@/lib/wp";
+import { getDrinkTipSitemap } from "@/lib/api/sitemaps/get-sitemaps";
+import type { MetadataRoute } from "next";
 
-export default async function sitemap() {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const nodes = await getDrinkTipSitemap();
 
-  const posts = await WP(`
-  query getdrinktips {
-    drinktips(first: 1000) {
-      nodes {
-        slug
-        modifiedGmt
-      }
-    }
-  }
-  `);
-
-  const drinkTips = posts?.data?.drinktips?.nodes;
-
-  const drinkTipsURL =
-    drinkTips?.map((post: any) => {
-      return {
-        url: `${baseUrl}/dryckestips/${post?.slug}`,
-        lastModified: post.modifiedGmt,
-        priority: 0.8,
-      };
-    }) ?? [];
-
-  return [...drinkTipsURL];
+  return nodes.map((node) => ({
+    url: `${baseUrl}/dryckestips/${node.slug}`,
+    lastModified: node.modifiedGmt ?? undefined,
+    priority: 0.8,
+  }));
 }

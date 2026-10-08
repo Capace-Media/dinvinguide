@@ -3,10 +3,9 @@ import PaginationController from "@/components/Pagination/Controller";
 
 import RecipePagination from "@/components/Pagination/Recipes";
 import {
-  getRecipesBank,
+  getRecipeCategory,
   getRecipesByCategory,
-} from "@/lib/queries/getRecipesBank";
-import WP from "@/lib/wp";
+} from "@/lib/api/recipes/get-recipes";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined | null };
@@ -14,22 +13,7 @@ type Props = {
   mainSlug?: string;
 };
 
-async function getTitle(id: string) {
-  const res = await WP(
-    `query MyQuery2($id: ID!) {
-    recipeCategory(id: $id, idType: SLUG) {
-      name
-  
-    }
-  }`,
-    null,
-    { id }
-  );
-
-  return res?.data?.recipeCategory?.name;
-}
 const RecipeByCategory = async ({ searchParams, params, mainSlug }: Props) => {
-  const title = await getTitle(params.slug);
   const postsPerPage: number =
     typeof window !== "undefined" && window.innerWidth >= 768 ? 4 : 16;
 
@@ -43,20 +27,21 @@ const RecipeByCategory = async ({ searchParams, params, mainSlug }: Props) => {
     ? `/receptkategorier/${mainSlug}/${params.slug}`
     : `/receptkategorier/${params.slug}`;
 
+  const title = (await getRecipeCategory(idURI))?.name;
+
   const uri = mainSlug
     ? `/recept/${mainSlug}/${params.slug}`
     : `/recept/${params.slug}`;
 
-  const promise = await getRecipesByCategory({
+  const promise = await getRecipesByCategory(idURI, {
     after: searchParams?.after,
     before: searchParams?.before,
     first: startFirst,
     last: endLast,
     search: searchData,
-    id: idURI,
   });
 
-  if (promise?.edges?.length < 1) {
+  if (!promise?.edges?.length) {
     return (
       <div className="layout bg-white">
         <div>

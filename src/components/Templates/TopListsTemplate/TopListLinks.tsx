@@ -1,4 +1,4 @@
-import { getTopLists } from "@/lib/queries/getTopLists";
+import { getTopLists } from "@/lib/api/pages/get-pages";
 import Image from "next/image";
 import Link from "next/link";
 import TopListCategory from "./TopListCategory";
@@ -8,17 +8,12 @@ import recipes from "../../../../public/Images/receptutforskaren.jpeg";
 import Overlay from "@/components/graphic/overlay";
 
 interface TopListLinksProps {}
-async function getData() {
-  const res = await getTopLists();
-
-  return { data: res };
-}
 
 const TopListLinks = async ({}: TopListLinksProps) => {
-  const { data } = await getData();
+  const data = await getTopLists();
   const elements = [];
   // Start from the second last element and iterate to the end
-  for (let i = data.length - 2; i < data.length; i++) {
+  for (let i = Math.max(data.length - 2, 0); i < data.length; i++) {
     elements.push(
       <TopListCategory key={data[i].id} data={data[i]} index={i} />
     );

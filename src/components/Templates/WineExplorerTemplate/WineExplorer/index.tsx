@@ -1,4 +1,4 @@
-import { getDrinks } from "@/lib/queries/getDrinks";
+import { getDrinks } from "@/lib/api/drinks/get-drinks";
 
 import WineExplorerController from "./WineExplorerController";
 import WineExplorerList from "./WineExplorerList";
@@ -17,9 +17,9 @@ const WineExplorer = async ({
   const after = searchParams?.after;
   const before = searchParams?.before;
 
-  const data = await getDrinks(after, before, first, last);
-
-  const { edges, pageInfo } = data;
+  const data = await getDrinks({ after, before, first, last });
+  const edges = data?.edges ?? [];
+  const pageInfo = data?.pageInfo;
 
   return (
     <div className="dl-layout relative z-10">

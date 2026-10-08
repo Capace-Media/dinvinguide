@@ -1,12 +1,9 @@
 import RecipeTemplate from "@/components/Templates/RecipeTemplate";
-import { getRecipeSEO } from "@/lib/queries/SEO/getRecipeSEO";
 import {
   getPreviewRecipe,
-  getSingleRecipe,
-} from "@/lib/queries/getSingleRecipe";
-import { getErrorMessage } from "@/lib/utils/getErrorMessage";
-
-import WP from "@/lib/wp";
+  getRecipe,
+  getRecipeSlugs,
+} from "@/lib/api/recipes/get-recipes";
 import { Metadata, ResolvingMetadata } from "next";
 import { draftMode } from "next/headers";
 
@@ -25,9 +22,9 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const params = await props.params;
-  const page = await getRecipeSEO(`/recept/${params.slug}`);
+  const page = await getRecipe(`/recept/${params.slug}`);
 
-  const seo: any = page?.seo;
+  const seo = page?.seo;
 
   const uri = `/recept/${page?.slug}`;
 
@@ -45,68 +42,23 @@ export async function generateMetadata(
   return data;
 }
 
-type PropsPaths = {
-  slug: string;
-};
-
-const getPaths = async () => {
-  try {
-    const res = await WP(
-      `query getRecipes {
-            recipes {
-                nodes {
-                  slug
-                }
-              }
-        }`
-    );
-
-    const data = res.data.recipes.nodes;
-    return data;
-  } catch (error) {
-    console.error(error);
-    return {
-      message: getErrorMessage(error),
-    };
-  }
-};
-
 export async function generateStaticParams() {
-  const data = await getPaths();
-  const paths: PropsPaths[] = [];
-
-  data.map((recipe: any) => {
-    paths.push({ slug: recipe.slug });
-  });
-
-  return paths;
+  const slugs = await getRecipeSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
-async function getRecipeData(
-  params: { slug: string },
-  searchParams?: { [key: string]: string | string[] | any | undefined }
-) {
-  const uri = `/recept/${params.slug}`;
+async function getRecipeData(params: { slug: string }) {
   const { isEnabled } = await draftMode();
-  if (!isEnabled) {
-    const data = await getSingleRecipe(uri);
-
-    return data;
-  }
-
   if (isEnabled) {
-    const pid = parseInt(params?.slug);
-    const data = await getPreviewRecipe(pid);
-
-    return data;
+    return getPreviewRecipe(parseInt(params.slug));
   }
+  return getRecipe(`/recept/${params.slug}`);
 }
 
 const Recipe = async (props: RecipeProps) => {
-  const searchParams = await props.searchParams;
   const params = await props.params;
 
-  const data = await getRecipeData(params, searchParams);
+  const data = await getRecipeData(params);
 
   const jsonLd = buildRecipeSchema({ recipe: data });
 

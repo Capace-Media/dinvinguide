@@ -1,5 +1,5 @@
 import HandleImage from "@/components/shared/handle-image";
-import type { FrontPageRecipe } from "@/lib/schemas/front-page";
+import type { FrontPageRecipe } from "@/lib/api/pages/get-pages";
 import { cn } from "@/lib/utils";
 import handleParse from "@/lib/utils/handleParse";
 import { mergeLatestWithHighlighted } from "@/lib/utils/merge-latest-with-highlighted";
@@ -46,9 +46,9 @@ const CATEGORY_ORDER = [
 const getDisplayCategory = (recipe: FrontPageRecipe) => {
   const categories = recipe.acf_recipe?.recepieCategories ?? [];
   const slug = CATEGORY_ORDER.find((orderSlug) =>
-    categories.some((category) => category.slug === orderSlug)
+    categories.some((category) => category?.slug === orderSlug)
   );
-  return categories.find((category) => category.slug === slug);
+  return categories.find((category) => category?.slug === slug);
 };
 
 interface ExploreRecipesProps {
@@ -113,7 +113,7 @@ const ExploreRecipes = ({ intro, latest, highlighted }: ExploreRecipesProps) => 
         <div className="hidden lg:block lg:col-span-2 lg:row-span-3"></div>
         {recipes.map((recipe, index) => {
           const category = getDisplayCategory(recipe);
-          const author = recipe.acf_recipe?.skrivetAv[0];
+          const author = recipe.acf_recipe?.skrivetAv?.[0];
 
           return (
             <Link

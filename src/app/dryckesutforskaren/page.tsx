@@ -1,11 +1,11 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import WineExplorerTemplate from "@/components/Templates/WineExplorerTemplate";
 
-import { getSEOByPage } from "@/lib/queries/getSEOByPage";
+import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 async function getSEO() {
-  const data = await getSEOByPage("/dryckesutforskaren");
+  const data = await getPage("/dryckesutforskaren");
   return data;
 }
 

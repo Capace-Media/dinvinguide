@@ -1,29 +1,12 @@
-import WP from "@/lib/wp";
+import { getPlaylistSitemap } from "@/lib/api/sitemaps/get-sitemaps";
+import type { MetadataRoute } from "next";
 
-export default async function sitemap() {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const playlists = await getPlaylistSitemap();
 
-  const posts = await WP(`
-  query MyQuery2 {
-    playlists(first: 50) {
-      nodes {
-        slug
-
-      }
-    }
-  }
-  `);
-
-  const playlist = posts?.data?.playlists?.nodes;
-
-  const playlistURL =
-    playlist?.map((post: any) => {
-      return {
-        url: `${baseUrl}/vin-tv/spellistan/${post?.slug}`,
-
-        priority: 0.1,
-      };
-    }) ?? [];
-
-  return [...playlistURL];
+  return playlists.map((playlist) => ({
+    url: `${baseUrl}/vin-tv/spellistan/${playlist.slug}`,
+    priority: 0.1,
+  }));
 }

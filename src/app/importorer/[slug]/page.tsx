@@ -1,30 +1,18 @@
 import Newsletter from "@/components/shared/newsletter/newsletter";
-import { getSupplier } from "@/app/actions/suppliers";
 import PageHero from "@/components/Templates/HeroHeaders/PageHero";
+import { getSupplier } from "@/lib/api/suppliers/get-suppliers";
 import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
 import Link from "next/link";
-
-
-import { DrinkTip } from "../../../../types/suppliers";
-
-type Props = {
-  searchParams: { [key: string]: string | string[] | any | undefined | null };
-  params: { slug: string };
-};
+import { notFound } from "next/navigation";
 
 const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params;
-  const { data, error } = await getSupplier({ slug: params.slug });
+  const data = await getSupplier(params.slug);
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
+  if (!data) {
+    notFound();
   }
-
-  // Type guard function
-  const isDrinkTip = (wine: any): wine is DrinkTip => {
-    return wine?.__typename === "Drinktip";
-  };
 
   return (
     <>
@@ -38,7 +26,7 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
         <div className="flex flex-col gap-4">
           <h2 className="text-2xl font-bold">Bedömda viner</h2>
           <ul className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 border-t pt-4">
-            {data?.drycker_to_leverantor?.drycker?.map((wine) => {
+            {data.drinks.map((wine) => {
               if (wine.__typename === "Drinktip") {
                 return (
                   <li key={wine.id} className="group">
@@ -70,25 +58,22 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
                           {wine?.title}
                         </h3>
 
-                        {isDrinkTip(wine) && wine.acf_dryckestips?.betyget && (
+                        {wine.acf_dryckestips?.betyget && (
                           <p className="text-[12px]">
                             {wine.acf_dryckestips.betyget}/100
                           </p>
                         )}
 
                         <p className="text-[14px] flex">
-                          {isDrinkTip(wine) &&
-                            wine.acf_dryckestips?.dryckestyper}{" "}
+                          {wine.acf_dryckestips?.dryckestyper}{" "}
                           -{" "}
-                          {isDrinkTip(wine) &&
-                            wine.acf_dryckestips?.forpackningar}
+                          {wine.acf_dryckestips?.forpackningar}
                         </p>
 
-                        {isDrinkTip(wine) && wine.acf_dryckestips?.pris && (
+                        {wine.acf_dryckestips?.pris && (
                           <p className="flex items-center gap-3 text-[14px]">
                             {/* <Dollar /> */}
-                            {isDrinkTip(wine) &&
-                              (wine.acf_dryckestips.pris.includes("kr") ||
+                            {(wine.acf_dryckestips.pris.includes("kr") ||
                               wine.acf_dryckestips.pris.includes("euro") ? (
                                 <span>{wine.acf_dryckestips.pris}</span>
                               ) : (
@@ -107,7 +92,7 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
           <h2 className="text-2xl font-bold">Viner</h2>
 
           <ul className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 border-t pt-4">
-            {data?.drycker_to_leverantor?.drycker?.map((wine) => {
+            {data.drinks.map((wine) => {
               if (wine.__typename === "Drink") {
                 return (
                   <li key={wine?.id} className="group">

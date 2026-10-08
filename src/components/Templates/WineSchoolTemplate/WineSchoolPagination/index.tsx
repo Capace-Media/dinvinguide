@@ -2,7 +2,7 @@ import Search from "@/components/Blocks/Search";
 import PaginationController from "@/components/Pagination/Controller";
 import PaginationForGuides from "@/components/Pagination/Guider";
 
-import { getWineSchools } from "@/lib/queries/getWineSchools";
+import { getWineSchools } from "@/lib/api/guides/get-guides";
 
 type DataArgs = {
   after?: string;

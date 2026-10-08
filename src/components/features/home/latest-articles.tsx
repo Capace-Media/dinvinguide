@@ -1,5 +1,5 @@
 import PostCard from "@/components/post-card";
-import type { FrontPagePost } from "@/lib/schemas/front-page";
+import type { FrontPagePost } from "@/lib/api/pages/get-pages";
 import { mergeLatestWithHighlighted } from "@/lib/utils/merge-latest-with-highlighted";
 import { MoveRight } from "lucide-react";
 import Link from "next/link";

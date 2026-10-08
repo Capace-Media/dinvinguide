@@ -1,4 +1,4 @@
-import type { Drinktip } from "@/lib/schemas/front-page";
+import type { FrontPageDrinktip } from "@/lib/api/pages/get-pages";
 import { mergeLatestWithHighlighted } from "@/lib/utils/merge-latest-with-highlighted";
 import { MoveRight } from "lucide-react";
 import Image from "next/image";
@@ -7,8 +7,8 @@ import Link from "next/link";
 const DRINK_COUNT = 4;
 
 interface ExclusiveDrinksProps {
-  latest: readonly Drinktip[];
-  highlighted: readonly Drinktip[];
+  latest: readonly FrontPageDrinktip[];
+  highlighted: readonly FrontPageDrinktip[];
 }
 
 const ExclusiveDrinks = ({ latest, highlighted }: ExclusiveDrinksProps) => {

@@ -1,14 +1,14 @@
-"use client";;
+"use client";
 import { RedWine, Sparkle, WhiteWine } from "@/components/icons";
 import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
 import Link from "next/link";
-import { TopList } from "../../../../types/toplists";
+import type { ActiveTopList } from "@/lib/api/pages/get-pages";
 
 import type { JSX } from "react";
 
 interface TopListCategoryProps {
-  data: TopList;
+  data: ActiveTopList;
   index: number;
 }
 
@@ -27,6 +27,10 @@ const TopListCategory = ({ data, index }: TopListCategoryProps) => {
   const IconComponent = IconMapping[data.id];
   const width = useWindowSize();
   const mobileBreakpoint = 1024;
+  const image =
+    width && width < mobileBreakpoint
+      ? data.acf_toplists?.toplistImg?.mobile
+      : data.acf_toplists?.toplistImg?.desktop;
   return (
     <li className="">
       <Link
@@ -39,30 +43,11 @@ const TopListCategory = ({ data, index }: TopListCategoryProps) => {
             index === 2 || index === 3 ? "lg:order-1" : ""
           }`}
         >
-          {width && width < mobileBreakpoint ? (
+          {image?.mediaItemUrl && (
             <Image
               unoptimized
-              src={data?.acf_toplists?.toplistImg?.mobile?.mediaItemUrl}
-              alt={
-                data?.acf_toplists?.toplistImg?.mobile?.altText
-                  ? data.acf_toplists.toplistImg.mobile.altText
-                  : data?.acf_toplists?.toplistImg?.mobile?.title
-              }
-              fill
-              style={{
-                objectFit: "cover",
-              }}
-              sizes="(min-width: 1380px) 980px, (min-width: 1040px) calc(81.25vw - 125px), (min-width: 380px) 280px, calc(73.33vw + 16px)"
-            />
-          ) : (
-            <Image
-              unoptimized
-              src={data?.acf_toplists?.toplistImg?.desktop?.mediaItemUrl}
-              alt={
-                data?.acf_toplists?.toplistImg?.desktop?.altText
-                  ? data.acf_toplists.toplistImg.desktop.altText
-                  : data?.acf_toplists?.toplistImg?.desktop?.title
-              }
+              src={image.mediaItemUrl}
+              alt={image.altText || image.title || ""}
               fill
               style={{
                 objectFit: "cover",

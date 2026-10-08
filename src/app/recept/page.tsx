@@ -2,9 +2,8 @@ import RecipeHero from "@/components/Blocks/Hero-Header/RecipeHero";
 import RecipesTemplate from "@/components/Templates/RecipesTemplate";
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import { getPage } from "@/lib/queries/getPage";
-import { getRecipePage } from "@/lib/queries/getRecipePage";
-import { getSEOByPage } from "@/lib/queries/getSEOByPage";
+import { getPage } from "@/lib/api/pages/get-pages";
+import { getRecipePage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 import { Suspense } from "react";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
@@ -16,18 +15,12 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-const getRecipeData = async () => {
-  const data = await getPage("recept");
-  const recipes = getRecipePage();
-
-  return { data, recipes };
-};
 
 export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const page = await getSEOByPage("/recept");
+  const page = await getPage("/recept");
 
   const seo: any = page?.seo;
 
@@ -48,7 +41,7 @@ export async function generateMetadata(
 }
 
 const Recipes = async () => {
-  const { data, recipes } = await getRecipeData();
+  const recipes = getRecipePage();
   return (
     <>
       <Suspense key="recept" fallback={<Loading />}>

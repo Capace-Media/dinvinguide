@@ -1,7 +1,6 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import PostTemplate from "@/components/Templates/PostTemplate";
-import { getPage } from "@/lib/queries/getPage";
-import { getSEOByPage } from "@/lib/queries/getSEOByPage";
+import { getPage } from "@/lib/api/pages/get-pages";
 import { isWordPressInternalPath } from "@/lib/utils/wp-paths";
 import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
@@ -18,28 +17,23 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
     notFound();
   }
   const uriString = params?.slug?.join("/");
-  const post = await getSEOByPage(`/${uriString}`);
+  const post = await getPage(`/${uriString}`);
 
   const seo: any = post?.seo;
 
   const uri = `/${uriString}`;
 
-  const img = {
-    url: post?.acf_user?.bild?.mediaItemUrl
-      ? post.acf_user.bild.mediaItemUrl
-      : "",
-    alt: post?.acf_user?.bild?.altText ? post.acf_user.bild.altText : "",
-  };
-  const author = post
+  const authorNode = post?.author?.node;
+  const author = authorNode?.slug
     ? {
-        title: post?.author?.name,
-        slug: `${process.env.NEXT_PUBLIC_SITE_URL}/skribenter/${post?.author?.username}`,
+        title: authorNode.name,
+        slug: `${process.env.NEXT_PUBLIC_SITE_URL}/skribenter/${authorNode.slug}`,
       }
     : null;
 
   const previousMeta: MetaInfo = (await parent) as unknown as MetaInfo;
 
-  const data = await dynamicSeo({ seo, previousMeta, author, uri, img });
+  const data = await dynamicSeo({ seo, previousMeta, author, uri });
 
   return data;
 }
