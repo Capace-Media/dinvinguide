@@ -47,7 +47,7 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
                       className="flex"
                       aria-label={`läs mer om ${wine?.title}`}
                     >
-                      <div className="min-w-25 h-37.5 relative shake-image">
+                      <div className="min-w-25 h-37.5 relative lg:group-hover:animate-shake">
                         {wine?.featuredImage?.node?.mediaItemUrl && (
                           <Image
                             src={wine.featuredImage.node.mediaItemUrl}
@@ -116,7 +116,7 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
                       className="flex"
                       aria-label={`läs mer om ${wine?.title}`}
                     >
-                      <div className="min-w-25 h-37.5 relative shake-image">
+                      <div className="min-w-25 h-37.5 relative lg:group-hover:animate-shake">
                         {wine?.featuredImage?.node?.mediaItemUrl && (
                           <Image
                             src={wine.featuredImage.node.mediaItemUrl}

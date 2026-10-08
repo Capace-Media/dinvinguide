@@ -17,7 +17,7 @@ const WineExplorerList = ({ data }: WineExplorerListProps) => {
                 className="flex"
                 aria-label={`läs mer om ${wine?.node?.title}`}
               >
-                <div className="min-w-[100px] h-[150px] relative shake-image">
+                <div className="min-w-[100px] h-[150px] relative lg:group-hover:animate-shake">
                   {wine?.node?.featuredImage?.node?.mediaItemUrl && (
                     <Image
                       src={wine.node.featuredImage.node.mediaItemUrl}
