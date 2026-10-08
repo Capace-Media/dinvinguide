@@ -2,6 +2,7 @@ import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import PostTemplate from "@/components/Templates/PostTemplate";
 import { getPage } from "@/lib/queries/getPage";
 import { getSEOByPage } from "@/lib/queries/getSEOByPage";
+import { isWordPressInternalPath } from "@/lib/utils/wp-paths";
 import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
@@ -13,6 +14,9 @@ type Props = {
 
 export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const params = await props.params;
+  if (isWordPressInternalPath(params?.slug ?? [])) {
+    notFound();
+  }
   const uriString = params?.slug?.join("/");
   const post = await getSEOByPage(`/${uriString}`);
 
@@ -46,6 +50,10 @@ const AllPages = async (props: Props) => {
 
   if (uri.startsWith("topplistor")) {
     return notFound(); // Return 404 if the route starts with 'topplistor'
+  }
+
+  if (isWordPressInternalPath(params?.slug ?? [])) {
+    return notFound();
   }
 
   const data = await getPage(`/${uri}`);
