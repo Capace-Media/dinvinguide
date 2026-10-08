@@ -28,13 +28,24 @@ interface AdNode {
   } | null;
 }
 
-// Every ad query aliases its slot to `slot` and its fallback to `fallback`, so
-// one response shape covers both the default and DL page types.
+export interface AdSlots {
+  top: Ad | null;
+  mid: Ad | null;
+  bottom: Ad | null;
+}
+
+type AdSlot = { banner?: AdNode[] | null }[] | null;
+
+// Every ad query aliases its slots to `top`/`mid`/`bottom` and its fallback
+// to `fallback`, so one response shape covers both the default and DL page
+// types.
 interface AdResponse {
   data?: {
     options?: {
       settings?: {
-        slot?: { banner?: AdNode[] | null }[] | null;
+        top?: AdSlot;
+        mid?: AdSlot;
+        bottom?: AdSlot;
         fallback?: AdNode[] | null;
       } | null;
     } | null;
@@ -60,9 +71,15 @@ export function toAd(node?: AdNode | null): Ad | null {
 // WP() catches its own errors and returns undefined, so there is nothing to
 // try/catch here — an unreachable CMS reads the same as an empty slot, and
 // both mean "render no ad".
-export async function getAd(query: string): Promise<Ad | null> {
+export async function getAds(query: string): Promise<AdSlots> {
   const res: AdResponse = await WP(query, "ads");
   const settings = res?.data?.options?.settings;
+  const fallback = toAd(settings?.fallback?.[0]);
+  const pick = (slot?: AdSlot) => toAd(slot?.[0]?.banner?.[0]) ?? fallback;
 
-  return toAd(settings?.slot?.[0]?.banner?.[0]) ?? toAd(settings?.fallback?.[0]);
+  return {
+    top: pick(settings?.top),
+    mid: pick(settings?.mid),
+    bottom: pick(settings?.bottom),
+  };
 }
