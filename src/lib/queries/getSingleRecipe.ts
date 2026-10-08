@@ -1,13 +1,15 @@
+import { cache } from "react";
 import { getErrorMessage } from "../utils/getErrorMessage";
 import WP, { WPServerSide } from "../wp";
 import { RECIPE } from "./fragments/Recipe";
 import { SEO } from "./fragments/Seo";
 
-export const getSingleRecipe = async (id: string) => {
+export const getSingleRecipe = cache(async (id: string) => {
   try {
     const res = await WP(
       `query GET_RECIPE($id: ID!) {
         recipe(id: $id, idType: URI) {
+          slug
           title
           modifiedGmt
           ${SEO}
@@ -125,7 +127,7 @@ export const getSingleRecipe = async (id: string) => {
       message: getErrorMessage(error),
     };
   }
-};
+});
 
 export const getPreviewRecipe = async (id: number) => {
   try {

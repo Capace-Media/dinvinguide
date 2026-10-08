@@ -1,6 +1,6 @@
 import Loading from "@/app/loading";
 import DruvguidenTemplate from "@/components/Templates/DruvguidenTemplate";
-import { getSEOByPage } from "@/lib/queries/getSEOByPage";
+import { getPage } from "@/lib/queries/getPage";
 import { Metadata, ResolvingMetadata } from "next";
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
@@ -16,7 +16,7 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const page = await getSEOByPage("/druvguiden");
+  const page = await getPage("/druvguiden");
 
   const seo: any = page?.seo;
 

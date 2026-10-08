@@ -1,5 +1,7 @@
+import { cache } from "react";
 import { getErrorMessage } from "../utils/getErrorMessage";
 import WP from "../wp";
+import { SEO } from "./fragments/Seo";
 
 export const getDrinkTips = async (
   after?: string,
@@ -73,11 +75,12 @@ export const getDrinkTips = async (
   }
 };
 
-export const fetchDrinktip = async (id: string) => {
+export const fetchDrinktip = cache(async (id: string) => {
   try {
     const res = await WP(
       `query fetchDrinktipBySlug($id: ID!) {
         drinktip(idType: URI, id: $id) {
+          ${SEO}
           title
           date
           id
@@ -130,4 +133,4 @@ export const fetchDrinktip = async (id: string) => {
       message: getErrorMessage(error),
     };
   }
-};
+});

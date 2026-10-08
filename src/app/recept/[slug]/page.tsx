@@ -1,5 +1,4 @@
 import RecipeTemplate from "@/components/Templates/RecipeTemplate";
-import { getRecipeSEO } from "@/lib/queries/SEO/getRecipeSEO";
 import {
   getPreviewRecipe,
   getSingleRecipe,
@@ -25,7 +24,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const params = await props.params;
-  const page = await getRecipeSEO(`/recept/${params.slug}`);
+  const page = await getSingleRecipe(`/recept/${params.slug}`);
 
   const seo: any = page?.seo;
 

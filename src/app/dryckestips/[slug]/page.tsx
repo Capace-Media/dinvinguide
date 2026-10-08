@@ -1,6 +1,6 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import DrinkTipTemplate from "@/components/Templates/DrinkTipTemplate";
-import { getDrinkTipsSEO } from "@/lib/queries/SEO/getDrinkTipsSEO";
+import { fetchDrinktip } from "@/lib/queries/getDrinkTips";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
 
@@ -11,7 +11,7 @@ type Props = {
 
 export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const params = await props.params;
-  const page = await getDrinkTipsSEO(`/dryckestips/${params.slug}`);
+  const page = await fetchDrinktip(`/dryckestips/${params.slug}`);
 
   const seo: any = page?.seo;
 

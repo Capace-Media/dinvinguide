@@ -6,7 +6,7 @@ import {
   getRecipesBank,
   getRecipesByCategory,
 } from "@/lib/queries/getRecipesBank";
-import WP from "@/lib/wp";
+import { getRecipeCategory } from "@/lib/queries/get-recipe-category";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined | null };
@@ -14,22 +14,7 @@ type Props = {
   mainSlug?: string;
 };
 
-async function getTitle(id: string) {
-  const res = await WP(
-    `query MyQuery2($id: ID!) {
-    recipeCategory(id: $id, idType: SLUG) {
-      name
-  
-    }
-  }`,
-    null,
-    { id }
-  );
-
-  return res?.data?.recipeCategory?.name;
-}
 const RecipeByCategory = async ({ searchParams, params, mainSlug }: Props) => {
-  const title = await getTitle(params.slug);
   const postsPerPage: number =
     typeof window !== "undefined" && window.innerWidth >= 768 ? 4 : 16;
 
@@ -42,6 +27,8 @@ const RecipeByCategory = async ({ searchParams, params, mainSlug }: Props) => {
   const idURI = mainSlug
     ? `/receptkategorier/${mainSlug}/${params.slug}`
     : `/receptkategorier/${params.slug}`;
+
+  const title = (await getRecipeCategory(idURI))?.name;
 
   const uri = mainSlug
     ? `/recept/${mainSlug}/${params.slug}`

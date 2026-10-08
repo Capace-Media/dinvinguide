@@ -1,7 +1,7 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import Line from "@/components/graphic/Line";
 import { getQueryClient } from "@/lib/get-query-client";
-import { getSEOByPage } from "@/lib/queries/getSEOByPage";
+import { getPage } from "@/lib/queries/getPage";
 import { POSTS } from "@/lib/queries/posts";
 import WP from "@/lib/wp";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
@@ -25,7 +25,7 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const page = await getSEOByPage("/artiklar");
+  const page = await getPage("/artiklar");
 
   const seo: any = page?.seo;
 
