@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight } from "@/components/icons";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import handleParsed from "@/lib/utils/handleParse";
 
@@ -24,9 +24,9 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
             </div>
             <ul className="font-main text-brand-primary uppercase flex whitespace-nowrap flex-wrap gap-4 font-medium">
               <li className="">
-                <Button asChild>
-                  <Link href="/guide">Alla Guider</Link>
-                </Button>
+                <Link className={buttonVariants()} href="/guide">
+                  Alla Guider
+                </Link>
               </li>
               <li>
                 <Link
