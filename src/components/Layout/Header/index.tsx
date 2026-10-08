@@ -45,8 +45,11 @@ export default function Header() {
 
                 <NavigationMenuItem key={item.id}>
 
-                  <NavigationMenuLink asChild className={cn("text-base font-sub hover:underline")}>
-                    <Link href={item.uri}>{item.label}</Link>
+                  <NavigationMenuLink
+                    render={<Link href={item.uri} />}
+                    className={cn("text-base font-sub hover:underline")}
+                  >
+                    {item.label}
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
