@@ -26,7 +26,7 @@ export default function MobileMenu({ menuItems }: Props) {
 
       <Popover open={isOpen} onOpenChange={setIsOpen} >
         <PopoverTrigger
-          render={<Button variant="ghost" size="icon-lg" className="pointer" />}
+          render={<Button variant="ghost" size="icon-lg" className="cursor-pointer" />}
         >
           <div className="relative size-6">
             <span

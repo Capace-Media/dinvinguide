@@ -6,7 +6,7 @@ const EpisodeCard = ({ episode, index, handlePlaylist }: any) => {
       onClick={() => handlePlaylist(index)}
       className="group cursor-pointer hover:ring-2 transition-all ring-brand-red relative grid md:gap-5 md:grid-cols-[150px_1fr_100px] lg:grid-cols-[250px_1fr_100px] bg-white rounded-sm overflow-hidden"
     >
-      <figure className="relative aspect-w-16 aspect-h-9">
+      <figure className="relative">
         {episode?.acf_episode?.thumbnail && (
           <Image
             src={episode.acf_episode.thumbnail}

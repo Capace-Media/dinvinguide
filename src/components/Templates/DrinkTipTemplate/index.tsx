@@ -83,7 +83,7 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
         <div className="flex justify-center items-center">
           <div className="flex flex-col gap-16">
             <div className="flex flex-col gap-1">
-              <h1 className="normal-case text-[38px] leading-10 font-display">
+              <h1 className="normal-case text-[38px] leading-10">
                 {data.title}
               </h1>
               {data?.leverantorer_to_drink?.leverantorer?.length > 0 && (

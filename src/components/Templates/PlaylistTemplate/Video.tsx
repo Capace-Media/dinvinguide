@@ -10,7 +10,7 @@ const Video = ({ episode }: any) => {
     }
   }
   return (
-    <div className="aspect-w-16 aspect-h-9">
+    <div>
       {isPlayable && (
         <>
           <iframe

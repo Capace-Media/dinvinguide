@@ -114,7 +114,7 @@ const TopListItem: React.FC<MyComponentProps> = ({
 
             {/* /org-de-rac-la-verne-cap-classique-brut%E2%81%A0 */}
             <Link href={`/drycker/${data?.slug}`}>
-              <h2 className="normal-case text-[38px] leading-10 font-display">
+              <h2 className="normal-case text-[38px] leading-10">
                 {data.title}
               </h2>
             </Link>

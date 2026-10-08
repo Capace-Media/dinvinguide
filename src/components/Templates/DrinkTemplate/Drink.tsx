@@ -41,7 +41,7 @@ const Drink = ({ data }: DrinkProps) => {
               <p>{PrettyDate(data?.date)}</p>
             </div>
 
-            <h2 className="normal-case text-[38px] leading-10 font-display">
+            <h2 className="normal-case text-[38px] leading-10">
               {data.title}
             </h2>
             {data?.leverantorer_to_drink?.leverantorer?.length > 0 && (

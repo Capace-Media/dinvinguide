@@ -31,7 +31,7 @@ const EpisodeList = ({ data, playlist, settings }: EpisodeListProps) => {
   return (
     <>
       {data ? (
-        <ul className="space-y-3 contain-sm row">
+        <ul className="space-y-3">
           {data?.map(({ node: episode }: any, index: number) => (
             <EpisodeCard
               key={episode.title}
