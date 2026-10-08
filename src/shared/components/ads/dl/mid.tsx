@@ -1,4 +1,4 @@
-import { getMidDlAd } from "@/lib/fetchers/ads/dl";
+import { getMidDlAd } from "@/lib/api/ads/get-ads";
 import Banner from "../banner";
 
 export default async function DlMid() {

@@ -2,7 +2,7 @@ import Search from "@/components/Blocks/Search";
 import PaginationController from "@/components/Pagination/Controller";
 
 import RecipePagination from "@/components/Pagination/Recipes";
-import { getRecipesBank } from "@/lib/queries/getRecipesBank";
+import { getRecipes } from "@/lib/api/recipes/get-recipes";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined | null };
@@ -18,7 +18,7 @@ const Recipes = async ({ searchParams }: Props) => {
   const endLast: number = parseInt(searchParams?.last);
   const searchData: string = searchParams?.search || "";
 
-  const promise = await getRecipesBank({
+  const promise = await getRecipes({
     after: searchParams?.after,
     before: searchParams?.before,
     first: startFirst,

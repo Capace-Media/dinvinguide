@@ -1,7 +1,7 @@
 import Loading from "@/app/loading";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import DrinkTemplate from "@/components/Templates/DrinkTemplate";
-import { getDrink } from "@/lib/queries/getDrink";
+import { getDrink } from "@/lib/api/drinks/get-drinks";
 import { Metadata, ResolvingMetadata } from "next";
 import { Suspense } from "react";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";

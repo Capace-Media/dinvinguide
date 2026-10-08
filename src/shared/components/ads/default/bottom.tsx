@@ -1,4 +1,4 @@
-import { getBottomAd } from "@/lib/fetchers/ads/default";
+import { getBottomAd } from "@/lib/api/ads/get-ads";
 import Banner from "../banner";
 
 export default async function AdBottom() {

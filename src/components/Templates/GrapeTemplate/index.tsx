@@ -1,7 +1,7 @@
 import Newsletter from "@/components/shared/newsletter/newsletter";
 import handleParse from "@/lib/utils/handleParse";
 
-import { getGrape } from "@/lib/queries/get-grape";
+import { getGrape } from "@/lib/api/grapes/get-grapes";
 import ExploreGuides from "../GuideTemplate/ExploreGuides";
 import links from "../GuideTemplate/guideLinks.json";
 import PageHero from "../HeroHeaders/PageHero";

@@ -1,5 +1,5 @@
 import PostTemplate from "@/components/Templates/PostTemplate";
-import { getWineAtlasPage } from "@/lib/queries/getWineAtlasPage";
+import { getWineAtlasPage } from "@/lib/api/pages/get-pages";
 
 type SingleWineAtlasIdProps = {
   params: Promise<{ slug: string; id: string }>;

@@ -5,11 +5,12 @@ import DlMid from "@/shared/components/ads/dl/mid";
 import { Suspense } from "react";
 import Line from "@/components/graphic/Line";
 import { DlNextArrow } from "@/components/icons";
-import { fetchDrinktip } from "@/lib/queries/getDrinkTips";
+import { getDrinkTip } from "@/lib/api/drink-tips/get-drink-tips";
 import handleParse from "@/lib/utils/handleParse";
 import PrettyDate from "@/lib/utils/prettyDate";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined | null };
@@ -17,7 +18,10 @@ type Props = {
 };
 
 const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
-  const data = await fetchDrinktip(`/dryckestips/${params?.slug}`);
+  const data = await getDrinkTip(`/dryckestips/${params?.slug}`);
+  if (!data) notFound();
+  const image = data.featuredImage?.node;
+  const supplier = data.leverantorer_to_drink?.leverantorer?.[0];
 
   return (
     <>
@@ -52,26 +56,24 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
           </li>
         </ul>
 
-        <time className="text-[14px]" dateTime={data?.modifiedGmt}>
-          {PrettyDate(data?.modifiedGmt)}
+        <time className="text-[14px]" dateTime={data.modifiedGmt ?? undefined}>
+          {PrettyDate(data.modifiedGmt)}
         </time>
       </div>
 
       <article className="lg:grid-cols-2 grid gap-8 lg:gap-0 relative z-10 layout bg-white">
         <div className={`relative `}>
-          {data?.featuredImage && data?.featuredImage.node && (
-            <Link href={data.uri} className={`flex justify-center `}>
+          {image?.mediaItemUrl && (
+            <Link href={data.uri ?? ""} className={`flex justify-center `}>
               <figure className={`relative w-50 h-130.5`}>
                 <Image
-                  src={data?.featuredImage?.node?.mediaItemUrl}
+                  src={image.mediaItemUrl}
                   fill
                   style={{
                     objectFit: "contain",
                   }}
                   alt={
-                    data.featuredImage.node.altText
-                      ? data.featuredImage.node.altText
-                      : `Bild på ${data?.title}`
+                    image.altText ? image.altText : `Bild på ${data.title}`
                   }
                   sizes="200px"
                 />
@@ -86,15 +88,15 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
               <h1 className="normal-case text-[38px] leading-10">
                 {data.title}
               </h1>
-              {data?.leverantorer_to_drink?.leverantorer?.length > 0 && (
+              {supplier && (
                 <div className="flex items-center gap-2 py-2">
                   <h2 className="uppercase text-base">Importör: </h2>
                   <Link
-                    href={`/importorer/${data?.leverantorer_to_drink?.leverantorer[0].slug}`}
+                    href={`/importorer/${supplier.slug}`}
                     className="underline text-brand-primary"
                   >
                     <span className="sr-only">Läs mer om </span>
-                    {data?.leverantorer_to_drink?.leverantorer[0].title}
+                    {supplier.title}
                   </Link>
                 </div>
               )}
@@ -105,16 +107,6 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
                 </p>
               )}
 
-              {data?.acf_dryckestips?.land && (
-                <p className="space-x-1">
-                  {data?.acf_dryckestips?.land && (
-                    <span>{data?.acf_dryckestips?.land}</span>
-                  )}
-                  {data?.acf_dryckestips?.argang && (
-                    <span>{data?.acf_dryckestips?.argang}</span>
-                  )}
-                </p>
-              )}
               <p className="flex items-center gap-2">
                 {/* <Flaska /> */}
                 {data?.acf_dryckestips?.forpackningar && (
@@ -128,24 +120,6 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
                   <span>{data?.acf_dryckestips?.dryckestyper}</span>
                 )}
               </p>
-              {/* test */}
-
-              {data?.acf_dryckestips?.passarTillRecept &&
-                data?.acf_dryckestips?.passarTillRecept?.length > 0 && (
-                  <div className="flex items-baseline gap-3">
-                    {/* <Passar /> */}
-
-                    <p>
-                      <span>Passar till: </span>
-                      <Link
-                        className="underline"
-                        href={`/recept/${data.acf_dryckestips.passarTillRecept[0].slug}`}
-                      >
-                        {data.acf_dryckestips.passarTillRecept[0].title}
-                      </Link>
-                    </p>
-                  </div>
-                )}
               {data?.acf_dryckestips?.pris && (
                 <p className="flex items-center gap-3">
                   {/* <Dollar /> */}

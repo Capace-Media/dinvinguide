@@ -1,27 +1,13 @@
-import WP from "@/lib/wp";
+import { getWineSchoolSitemap } from "@/lib/api/sitemaps/get-sitemaps";
+import type { MetadataRoute } from "next";
 
-export default async function sitemap() {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const schools = await getWineSchoolSitemap();
 
-  const data = await WP(`
-  query getSchools($parent: ID! = "cG9zdDo0Nzc0Mg==") {
-    pages(where: {parent: $parent}, first: 40) {
-      nodes {
-        slug
-        modifiedGmt
-      }
-    }
-  }
-  `);
-
-  const schoolURL =
-    data?.data?.pages?.nodes?.map((school: any) => {
-      return {
-        url: `${baseUrl}/vinskolan/${school.slug}`,
-        lastModified: school.modifiedGmt,
-        priority: 1,
-      };
-    }) ?? [];
-
-  return [...schoolURL];
+  return schools.map((school) => ({
+    url: `${baseUrl}/vinskolan/${school.slug}`,
+    lastModified: school.modifiedGmt ?? undefined,
+    priority: 1,
+  }));
 }

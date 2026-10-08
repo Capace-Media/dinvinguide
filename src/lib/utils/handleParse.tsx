@@ -34,7 +34,7 @@ function containsBlockElements(node: any): boolean {
 }
 
 export default function handleParse(
-  content?: string,
+  content?: string | null,
   parseClasses?: string,
   noWrapper?: boolean
 ) {

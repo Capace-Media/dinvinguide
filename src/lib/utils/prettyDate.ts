@@ -1,4 +1,4 @@
-const PrettyDate = (uglyDate: string) => {
+const PrettyDate = (uglyDate?: string | null) => {
   if (uglyDate) {
     const prettyDate = new Intl.DateTimeFormat("sv-SE", {
       year: "numeric",

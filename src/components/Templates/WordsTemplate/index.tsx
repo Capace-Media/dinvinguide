@@ -4,7 +4,7 @@ import AdMid from "@/shared/components/ads/default/mid";
 import AdBottom from "@/shared/components/ads/default/bottom";
 import { Suspense } from "react";
 import words from "@/json/alphabet.json";
-import { getPage } from "@/lib/queries/getPage";
+import { getPage } from "@/lib/api/pages/get-pages";
 import PageHero from "../HeroHeaders/PageHero";
 
 import Newsletter from "@/components/shared/newsletter/newsletter";

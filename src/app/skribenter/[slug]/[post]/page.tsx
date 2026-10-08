@@ -1,9 +1,8 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import PostTemplate from "@/components/Templates/PostTemplate";
-import { getPost, getPreviewPost } from "@/lib/queries/getPost";
+import { getPost, getPostPaths, getPreviewPost } from "@/lib/api/posts/get-posts";
 import generateArticleSchema from "@/lib/utils/json-LD-Schemas/generateArticleSchema";
 
-import WP from "@/lib/wp";
 import { Metadata, ResolvingMetadata } from "next";
 import { draftMode } from "next/headers";
 import { MetaInfo } from "../../../../../types/MetaInfoTypes";
@@ -12,63 +11,26 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | any | undefined }>;
 };
 export async function generateStaticParams() {
-  const posts = await WP(`
-    query getPosts {
-        posts {
-          nodes {
-            slug
-            author {
-              node {
-                slug
-              }
-            }
-          }
-        }
-      }
-    `);
-
-  return (
-    posts?.data?.posts?.nodes &&
-    posts.data.posts.nodes.map((post: any) => ({
-      slug: post?.author?.node?.slug,
-      post: post.slug,
-    }))
-  );
+  const posts = await getPostPaths();
+  return posts.map((post) => ({
+    slug: post.author?.node?.slug,
+    post: post.slug,
+  }));
 }
 
-async function getPostData(
-  params: { post: string; slug: string },
-  searchParams?: { [key: string]: string | string[] | any | undefined }
-) {
+async function getPostData(params: { post: string; slug: string }) {
   const { isEnabled } = await draftMode();
   const { post, slug } = params;
 
-  const uri = `/${slug}/${post}`;
-
-  if (!isEnabled) {
-    const data = await getPost(uri);
-
-    const postProps = {
-      ...data,
-      type: "published",
-      author: data?.author?.node,
-    };
-
-    return postProps;
-  }
-
   if (isEnabled) {
-    const pid = parseInt(post);
-    const preview = await getPreviewPost(pid);
-
-    const postProps = {
-      ...preview,
-      type: "preview",
-      author: preview?.author?.node,
-    };
-
-    return postProps;
+    const preview = await getPreviewPost(parseInt(post));
+    return preview
+      ? { ...preview, type: "preview", author: preview.author?.node }
+      : null;
   }
+
+  const data = await getPost(`/${slug}/${post}`);
+  return data ? { ...data, type: "published", author: data.author?.node } : null;
 }
 
 export async function generateMetadata(
@@ -78,16 +40,10 @@ export async function generateMetadata(
   const params = await props.params;
   const post = await getPostData(params);
 
-  const seo: any = post?.seo;
+  const seo = post && "seo" in post ? post.seo : null;
 
   const uri = `/skribenter/${post?.uri}`;
 
-  const img = {
-    url: post?.acf_user?.bild?.mediaItemUrl
-      ? post.acf_user.bild.mediaItemUrl
-      : "",
-    alt: post?.acf_user?.bild?.altText ? post.acf_user.bild.altText : "",
-  };
   const author = post
     ? {
         title: post?.author?.name,
@@ -97,20 +53,19 @@ export async function generateMetadata(
 
   const previousMeta: MetaInfo = (await parent) as unknown as MetaInfo;
 
-  const data = await dynamicSeo({ seo, previousMeta, author, uri, img });
+  const data = await dynamicSeo({ seo, previousMeta, author, uri });
 
   return data;
 }
 
 const Articlepost = async (props: Props) => {
-  const searchParams = await props.searchParams;
   const params = await props.params;
-  const post = await getPostData(params, searchParams);
+  const post = await getPostData(params);
 
   const jsonLd = generateArticleSchema({
     title: post?.title,
     description: post?.acf_posts?.ingress,
-    url: process.env.NEXT_PUBLIC_SITE_URL + post?.uri,
+    url: `${process.env.NEXT_PUBLIC_SITE_URL}${post?.uri}`,
     images: [post?.featuredImage?.node?.mediaItemUrl],
     datePublished: post?.modifiedGmt,
     dateModified: post?.modifiedGmt,

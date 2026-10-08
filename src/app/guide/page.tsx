@@ -2,7 +2,7 @@ import GuideTemplate from "@/components/Templates/GuideTemplate";
 import { Metadata, ResolvingMetadata } from "next";
 import { Suspense } from "react";
 import Loading from "../loading";
-import { getPage } from "@/lib/queries/getPage";
+import { getPage } from "@/lib/api/pages/get-pages";
 import PageHero from "@/components/Templates/HeroHeaders/PageHero";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdTop from "@/shared/components/ads/default/top";

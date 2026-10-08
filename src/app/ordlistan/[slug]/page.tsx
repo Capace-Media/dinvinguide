@@ -5,7 +5,7 @@ import AdMid from "@/shared/components/ads/default/mid";
 import { Suspense } from "react";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import WordTemplate from "@/components/Templates/WordTemplate";
-import { getWord } from "@/lib/queries/get-word";
+import { getWord } from "@/lib/api/words/get-words";
 import { Metadata, ResolvingMetadata } from "next";
 
 import ExploreGuides from "@/components/Templates/GuideTemplate/ExploreGuides";

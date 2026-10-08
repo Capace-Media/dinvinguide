@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import DLHero from "../HeroHeaders/DLHero";
 import TopListLinks from "../TopListsTemplate/TopListLinks";
 
-import { getPage } from "@/lib/queries/getPage";
+import { getPage } from "@/lib/api/pages/get-pages";
 import PageIntro from "../Module/PageIntro";
 import WineExplorer from "./WineExplorer";
 

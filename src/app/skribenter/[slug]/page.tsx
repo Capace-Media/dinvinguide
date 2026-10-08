@@ -1,7 +1,7 @@
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 
-import { getAuthor } from "@/lib/queries/getAuthor";
+import { getAuthor } from "@/lib/api/authors/get-authors";
 
 import ExplorePages from "@/components/shared/explore-pages";
 import Newsletter from "@/components/shared/newsletter/newsletter";
@@ -34,13 +34,9 @@ type Props = {
 
 async function getAuthorData(id: string, search?: string) {
   const data = await getAuthor(id, search);
+  if (!data) return null;
 
-  const authorProps = {
-    ...data,
-    posts: data?.posts?.pageInfo?.total,
-  };
-
-  return authorProps;
+  return { ...data, posts: data.posts?.pageInfo?.total };
 }
 
 export async function generateMetadata(
@@ -52,7 +48,7 @@ export async function generateMetadata(
 
   const page = await getAuthorData(slug);
 
-  const seo: any = page?.seo;
+  const seo = page?.seo;
 
   const uri = `/skribenter/${page?.username}`;
 
@@ -83,8 +79,6 @@ async function SingleAuthorPage(props: Props) {
     typeof searchParams.search === "string" ? searchParams.search : undefined;
 
   const data = await getAuthorData(params?.slug, search);
-
-  const { posts } = data;
 
   if (!data) {
     return notFound();

@@ -1,29 +1,13 @@
-import WP from "@/lib/wp";
+import { getGrapeSitemap } from "@/lib/api/sitemaps/get-sitemaps";
+import type { MetadataRoute } from "next";
 
-export default async function sitemap() {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const nodes = await getGrapeSitemap();
 
-  const posts = await WP(`
-  query getGrapes {
-    grapes(first: 1000) {
-      nodes {
-        slug
-        modifiedGmt
-      }
-    }
-  }
-  `);
-
-  const grape = posts?.data?.grapes?.nodes;
-
-  const grapeURL =
-    grape?.map((post: any) => {
-      return {
-        url: `${baseUrl}/druvor/${post?.slug}`,
-        lastModified: post.modifiedGmt,
-        priority: 0.5,
-      };
-    }) ?? [];
-
-  return [...grapeURL];
+  return nodes.map((node) => ({
+    url: `${baseUrl}/druvor/${node.slug}`,
+    lastModified: node.modifiedGmt ?? undefined,
+    priority: 0.5,
+  }));
 }

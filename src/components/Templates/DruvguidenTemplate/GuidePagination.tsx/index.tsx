@@ -1,4 +1,4 @@
-import { getGapesByType } from "@/lib/queries/getGapesByType";
+import { getGrapes as fetchGrapes } from "@/lib/api/grapes/get-grapes";
 import Image from "next/image";
 import Link from "next/link";
 import DruvPaginationController from "./DruvPaginationController";
@@ -19,7 +19,7 @@ type Props = {
 };
 async function getGrapes(args: DataArgs) {
   const { after, before, id, search = "", first, last } = args;
-  const data = await getGapesByType(id, after, before, first, last, search);
+  const data = await fetchGrapes(id, { after, before, first, last, search });
 
   return data;
 }

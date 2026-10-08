@@ -4,7 +4,7 @@ import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
 
 export default defineConfig([
   {
-    ignores: [".next/**", "node_modules/**"],
+    ignores: [".next/**", "node_modules/**", "src/lib/wp/gql/**"],
   },
   {
     extends: [...nextCoreWebVitals],

@@ -1,4 +1,4 @@
-import { getToplists } from "@/lib/queries/getTopListDrinks";
+import { getToplists } from "@/lib/api/drinks/get-drinks";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import DlTop from "@/shared/components/ads/dl/top";
 import DlMid from "@/shared/components/ads/dl/mid";

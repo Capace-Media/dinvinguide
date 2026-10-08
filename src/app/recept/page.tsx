@@ -2,8 +2,8 @@ import RecipeHero from "@/components/Blocks/Hero-Header/RecipeHero";
 import RecipesTemplate from "@/components/Templates/RecipesTemplate";
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import { getPage } from "@/lib/queries/getPage";
-import { getRecipePage } from "@/lib/queries/getRecipePage";
+import { getPage } from "@/lib/api/pages/get-pages";
+import { getRecipePage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 import { Suspense } from "react";
 import { MetaInfo } from "../../../types/MetaInfoTypes";

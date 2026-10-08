@@ -4,7 +4,7 @@ import DlTop from "@/shared/components/ads/dl/top";
 import DlMid from "@/shared/components/ads/dl/mid";
 import { Suspense } from "react";
 import Line from "@/components/graphic/Line";
-import { getPage } from "@/lib/queries/getPage";
+import { getPage } from "@/lib/api/pages/get-pages";
 import DrinkTipsHero from "./DrinkTipsHero";
 import ExploreWineTips from "./ExploreWineTips";
 

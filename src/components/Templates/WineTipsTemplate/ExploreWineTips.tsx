@@ -1,5 +1,5 @@
 import PaginationController from "@/components/Pagination/Controller";
-import { getDrinkTips } from "@/lib/queries/getDrinkTips";
+import { getDrinkTips } from "@/lib/api/drink-tips/get-drink-tips";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,9 +17,9 @@ const ExploreWineTips = async ({ searchParams }: Props) => {
   const after = searchParams?.after;
   const before = searchParams?.before;
 
-  const data = await getDrinkTips(after, before, first, last);
-
-  const { edges, pageInfo } = data;
+  const data = await getDrinkTips({ after, before, first, last });
+  const edges = data?.edges ?? [];
+  const pageInfo = data?.pageInfo;
 
   return (
     <div className="">

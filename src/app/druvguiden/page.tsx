@@ -1,6 +1,6 @@
 import Loading from "@/app/loading";
 import DruvguidenTemplate from "@/components/Templates/DruvguidenTemplate";
-import { getPage } from "@/lib/queries/getPage";
+import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";

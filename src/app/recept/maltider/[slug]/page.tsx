@@ -1,8 +1,9 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import RecipeCategoryTemplate from "@/components/Templates/RecipeCategoryTemplate";
-import { getRecipeCategory } from "@/lib/queries/get-recipe-category";
-
-import WP from "@/lib/wp";
+import {
+  getRecipeCategory,
+  getRecipeCategoryChildSlugs,
+} from "@/lib/api/recipes/get-recipes";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../../../types/MetaInfoTypes";
 
@@ -17,7 +18,7 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
     `/receptkategorier/maltider/${params.slug}`
   );
 
-  const seo: any = page?.seo;
+  const seo = page?.seo;
 
   const uri = `/recept/maltider/${page?.slug}`;
 
@@ -36,24 +37,8 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
 }
 
 export async function generateStaticParams() {
-  const data = await WP(`
-  query MyQuery2($id: ID! = "maltider") {
-    recipeCategory(id: $id, idType: SLUG) {
-      children(first: 6) {
-        nodes {
-          slug
-        }
-      }
-    }
-  }`);
-  const paths: any[] = [];
-
-  data?.data?.recipeCategory?.children?.nodes &&
-    data.data.recipeCategory.children.nodes.map((recipe: any) => {
-      paths.push({ slug: recipe.slug });
-    });
-
-  return paths;
+  const slugs = await getRecipeCategoryChildSlugs("maltider", 6);
+  return slugs.map((slug) => ({ slug }));
 }
 
 const Maltider = async (props: Props) => {

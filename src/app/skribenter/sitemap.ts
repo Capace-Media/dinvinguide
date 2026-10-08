@@ -1,34 +1,16 @@
-import WP from "@/lib/wp";
+import { getPostSitemap } from "@/lib/api/sitemaps/get-sitemaps";
+import type { MetadataRoute } from "next";
 
-export default async function sitemap() {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
-  const posts = await WP(`
-  query getPosts {
-      posts(first: 1000) {
-        nodes {
-          slug
-          modifiedGmt
-          author {
-            node {
-              slug
-            }
-          }
-        }
-      }
-    }
-  `);
+  const articles = await getPostSitemap();
 
-  const articles = posts?.data?.posts?.nodes;
-
-  const articlesURL =
-    articles?.map((post: any) => {
-      return {
-        url: `${baseUrl}/skribenter/${post?.author?.node?.slug}/${post?.slug}`,
-        lastModified: post.modifiedGmt,
-        priority: 0.5,
-      };
-    }) ?? [];
+  const articlesURL = articles.map((post) => ({
+    url: `${baseUrl}/skribenter/${post.author?.node?.slug}/${post.slug}`,
+    lastModified: post.modifiedGmt ?? undefined,
+    priority: 0.5,
+  }));
 
   return [
     {

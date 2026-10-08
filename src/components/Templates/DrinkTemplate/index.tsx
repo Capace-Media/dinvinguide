@@ -3,7 +3,7 @@ import DlTop from "@/shared/components/ads/dl/top";
 import DlMid from "@/shared/components/ads/dl/mid";
 import DlBottom from "@/shared/components/ads/dl/bottom";
 import { Suspense } from "react";
-import { getDrink, getPreviewDrink } from "@/lib/queries/getDrink";
+import { getDrink, getPreviewDrink } from "@/lib/api/drinks/get-drinks";
 import PrettyDate from "@/lib/utils/prettyDate";
 import { draftMode } from "next/headers";
 import Link from "next/link";
@@ -17,17 +17,11 @@ async function getDrinkData({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const { isEnabled } = await draftMode();
 
-  if (!isEnabled) {
-    const data = await getDrink(`/drycker/${params?.slug}`);
-    return data;
-  }
-
   if (isEnabled) {
-    const pid = parseInt(slug);
-    const preview = await getPreviewDrink(pid);
-
-    return preview;
+    return getPreviewDrink(parseInt(slug));
   }
+
+  return getDrink(`/drycker/${slug}`);
 }
 
 const DrinkTemplate = async ({ params }: { params: { slug: string } }) => {
@@ -37,12 +31,11 @@ const DrinkTemplate = async ({ params }: { params: { slug: string } }) => {
     return notFound();
   }
 
-  const { acf_drinks, ...rest } = data;
-  const { passarTillRecept, ...acfData } = acf_drinks;
+  const passarTillRecept = data.acf_drinks?.passarTillRecept;
 
   return (
     <>
-      <DLHero hero={data} drinkType={data?.acf_drinks?.dryckestyper?.slug} />
+      <DLHero hero={data} drinkType={data.acf_drinks?.dryckestyper?.slug ?? undefined} />
       <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
         <DlTop />
       </Suspense>

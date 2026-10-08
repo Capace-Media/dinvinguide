@@ -1,29 +1,13 @@
-import WP from "@/lib/wp";
+import { getWordSitemap } from "@/lib/api/sitemaps/get-sitemaps";
+import type { MetadataRoute } from "next";
 
-export default async function sitemap() {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const nodes = await getWordSitemap();
 
-  const posts = await WP(`
-  query MyQuery2 {
-    glossaries(first: 100) {
-      nodes {
-        slug
-        modifiedGmt
-      }
-    }
-  }
-  `);
-
-  const glossarie = posts?.data?.glossaries?.nodes;
-
-  const glossarieURL =
-    glossarie?.map((post: any) => {
-      return {
-        url: `${baseUrl}/ordlistan/${post?.slug}`,
-        lastModified: post.modifiedGmt,
-        priority: 0.5,
-      };
-    }) ?? [];
-
-  return [...glossarieURL];
+  return nodes.map((node) => ({
+    url: `${baseUrl}/ordlistan/${node.slug}`,
+    lastModified: node.modifiedGmt ?? undefined,
+    priority: 0.5,
+  }));
 }

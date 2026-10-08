@@ -1,4 +1,4 @@
-import { getTopDlAd } from "@/lib/fetchers/ads/dl";
+import { getTopDlAd } from "@/lib/api/ads/get-ads";
 import Banner from "../banner";
 
 export default async function DlTop() {

@@ -1,6 +1,6 @@
 import PaginationController from "@/components/Pagination/Controller";
 import { WordArrow } from "@/components/icons";
-import { getWordByLetter } from "@/lib/queries/getWordByLetter";
+import { getWordsByLetter } from "@/lib/api/words/get-words";
 import Link from "next/link";
 
 interface WordsByLetterProps {
@@ -16,7 +16,7 @@ const WordsByLetter = async ({ searchParams }: WordsByLetterProps) => {
   );
   const endLast: number = parseInt(searchParams?.last);
 
-  const promise = await getWordByLetter({
+  const promise = await getWordsByLetter({
     after: searchParams?.after,
     before: searchParams?.before,
     id: searchParams?.filter || "a",
@@ -38,8 +38,8 @@ const WordsByLetter = async ({ searchParams }: WordsByLetterProps) => {
           : word}
       </h2>
       <ul className=" grid lg:grid-cols-3 lg:gap-14 min-h-[185px] py-8 border-b-2 border-[#333] pb-12">
-        {promise.edges &&
-          promise.edges.map((word: any) => {
+        {promise?.edges &&
+          promise.edges.map((word) => {
             return (
               <li key={word.node.id}>
                 <Link
