@@ -90,17 +90,19 @@ export default function AllArticles(props: Props) {
                                 Rensa filter
                             </Button>
                         )}
-                        {/* <NativeSelect value={year} onChange={(e) => setYear(e.target.value)}>
+                        {/*
+                        <NativeSelect value={year} onChange={(e) => setYear(e.target.value)}>
                         <NativeSelectOption value="">Alla år</NativeSelectOption>
                         {years.map((y) => (
                             <NativeSelectOption key={y} value={y}>{y}</NativeSelectOption>
                         ))}
-                    </NativeSelect>
-                    <NativeSelect value={authorName} onChange={(e) => setAuthorName(e.target.value)}>
-                        {authors.map((author) => (
-                            <NativeSelectOption key={author.value} value={author.value}>{author.name}</NativeSelectOption>
-                        ))}
-                    </NativeSelect> */}
+                        </NativeSelect>
+                        <NativeSelect value={authorName} onChange={(e) => setAuthorName(e.target.value)}>
+                            {authors.map((author) => (
+                                <NativeSelectOption key={author.value} value={author.value}>{author.name}</NativeSelectOption>
+                            ))}
+                        </NativeSelect>
+                        */}
                         <SearchInput
                             placeholder="Sök artiklar..."
                             value={search}

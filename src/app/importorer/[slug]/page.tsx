@@ -1,47 +1,17 @@
 import Newsletter from "@/app/_components/Newsletter";
 import { getSupplier } from "@/app/actions/suppliers";
-import Loading from "@/app/loading";
-import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import GrapeTemplate from "@/components/Templates/GrapeTemplate";
 import PageHero from "@/components/Templates/HeroHeaders/PageHero";
-import { getGrapeSEO } from "@/lib/queries/SEO/getGrapeSEO";
 import handleParse from "@/lib/utils/handleParse";
-import WP from "@/lib/wp";
-import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense } from "react";
-import { MetaInfo } from "../../../../types/MetaInfoTypes";
+
+
 import { DrinkTip } from "../../../../types/suppliers";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined | null };
   params: { slug: string };
 };
-
-// export async function generateMetadata(
-//   { params, searchParams }: Props,
-//   parent: ResolvingMetadata
-// ): Promise<Metadata> {
-//   const page = await getGrapeSEO(`/druvor/${params.slug}`);
-
-//   const seo: any = page?.seo;
-
-//   const uri = `/druvor/${page?.slug}`;
-
-//   const img = {
-//     url: seo?.opengraphImage?.mediaItemUrl
-//       ? seo.opengraphImage.mediaItemUrl
-//       : "",
-//     alt: seo?.opengraphImage?.altText ? seo.opengraphImage.altText : "",
-//   };
-
-//   const previousMeta: MetaInfo = (await parent) as unknown as MetaInfo;
-
-//   const data = await dynamicSeo({ seo, previousMeta, uri, img });
-
-//   return data;
-// }
 
 const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params;
@@ -77,7 +47,7 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
                       className="flex"
                       aria-label={`läs mer om ${wine?.title}`}
                     >
-                      <div className="min-w-[100px] h-[150px] relative shake-image">
+                      <div className="min-w-25 h-37.5 relative shake-image">
                         {wine?.featuredImage?.node?.mediaItemUrl && (
                           <Image
                             src={wine.featuredImage.node.mediaItemUrl}
@@ -146,7 +116,7 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
                       className="flex"
                       aria-label={`läs mer om ${wine?.title}`}
                     >
-                      <div className="min-w-[100px] h-[150px] relative shake-image">
+                      <div className="min-w-25 h-37.5 relative shake-image">
                         {wine?.featuredImage?.node?.mediaItemUrl && (
                           <Image
                             src={wine.featuredImage.node.mediaItemUrl}

@@ -6,7 +6,6 @@ import { gqlRequest } from "@/lib/wp/client";
 import {
   GetSuppliersParams,
   SupplierData,
-  SuppliersData,
   TSupplier,
   TSuppliers,
 } from "../../../types/suppliers";
