@@ -193,7 +193,7 @@ function BottlePuff({
 
   return (
     <section className="flex flex-col md:flex-row md:items-center gap-8 py-8 group">
-      <div className="relative w-full md:w-auto md:min-w-50 h-70 md:h-87.5 shake-image shrink-0">
+      <div className="relative w-full md:w-auto md:min-w-50 h-70 md:h-87.5 lg:group-hover:animate-shake shrink-0">
         <FeaturedImage data={data} fill unoptimized />
       </div>
 

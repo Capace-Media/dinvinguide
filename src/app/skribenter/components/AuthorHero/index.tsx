@@ -32,7 +32,7 @@ export default function AuthorHero({ promise }: AuthorHeroProps) {
   return (
     <section className="layout bg-white">
       <div className="overflow-hidden h-199.75 relative lg:h-177.75 text-brand-dark">
-        <div className="h-93 lg:h-127.75 bg-brand-primary relative mask">
+        <div className="h-93 lg:h-127.75 bg-brand-primary relative after:absolute after:inset-0 after:bg-[#15151599]">
           <Image
             src={heroImage}
             alt="Samling av vinflaskkorkar med olika märken och tryck, perfekt för vinälskare i Sverige."

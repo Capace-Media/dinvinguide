@@ -1,5 +1,6 @@
 import { getHighlightedRecipes, getRecipes } from "@/lib/queries/getRecipes";
 import handleParse from "@/lib/utils/handleParse";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import HandleImage from "../image";
 
@@ -50,6 +51,18 @@ const getSizeProp = (index: number): string => {
 
   return sizesMapping[index] || sizesMapping[1];
 };
+
+// Per-item grid placement (mobile: 2 cols, desktop: 4 cols). Items past the
+// list keep the grid's pointer-events-none, matching the original layout.
+const gridItemClasses = [
+  "col-span-2 lg:row-span-4",
+  "lg:row-span-3",
+  "lg:row-span-3",
+  "lg:row-span-4",
+  "row-span-2",
+  "row-span-2 lg:col-span-2",
+  "lg:row-span-2",
+].map((classes) => `pointer-events-auto ${classes}`);
 
 const ExploreRecipes: React.FC = async () => {
   const res = await fetchRecipes();
@@ -116,20 +129,31 @@ const ExploreRecipes: React.FC = async () => {
 
       <div className="layout lg:h-[720px] bg-white"></div>
 
-      <div className="recipe-grid bg-white lg:bg-transparent layout py-4 md:py-11 lg:py-20">
-        <div></div>
+      <div
+        className={cn(
+          "grid gap-2 grid-cols-2 grid-rows-[repeat(5,minmax(150px,1fr))] pointer-events-none md:gap-3",
+          "lg:gap-5 lg:absolute lg:top-0 lg:left-1/2 lg:-translate-x-1/2 lg:size-full lg:grid-cols-4 lg:grid-rows-[repeat(8,minmax(109px,1fr))]",
+          "bg-white lg:bg-transparent layout py-4 md:py-11 lg:py-20"
+        )}
+      >
+        {/* Empty cell that reserves the space under the intro text on desktop */}
+        <div className="hidden lg:block lg:col-span-2 lg:row-span-3"></div>
         {combinedArticles &&
           combinedArticles.map((recipe: Recipe, index: number) => (
             <Link
               href={`/recept/${recipe?.slug}`}
               key={recipe?.id}
-              className="relative "
+              className={cn("relative", gridItemClasses[index])}
             >
               <HandleImage
                 srcProp={recipe?.featuredImage?.node?.mediaItemUrl}
                 altProp={recipe?.featuredImage?.node?.altText}
                 objectFitProp="cover"
-                classesProp="relative w-full h-full recipe-overlay"
+                classesProp={cn(
+                  "relative w-full h-full overflow-hidden",
+                  "[&_img]:transition-transform [&_img]:duration-300 [&_img]:ease-in-out [&_img]:hover:scale-[1.19]",
+                  "after:absolute after:inset-0 after:pointer-events-none after:bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.203)_100%)]"
+                )}
                 sizesProp={getSizeProp(index)}
               />
               <div className="absolute top-0 right-0 text-white p-4 flex gap-2">
