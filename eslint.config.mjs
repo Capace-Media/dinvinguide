@@ -10,7 +10,7 @@ export default defineConfig([
     extends: [...nextCoreWebVitals],
     rules: {
       // eslint-plugin-react-hooks v7 added this rule and it flags three
-      // pre-existing components (AuthorHero, PlaylistTemplate/Player,
+      // pre-existing components (AuthorHero, vin-tv playlist Player,
       // useRouteStyle). Downgraded to a warning so CI can enforce the rest of
       // the ruleset; fixing those three properly is tracked separately.
       "react-hooks/set-state-in-effect": "warn",

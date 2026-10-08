@@ -1,16 +1,22 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import WineTipsTemplate from "@/components/Templates/WineTipsTemplate";
 import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
+import Newsletter from "@/components/shared/newsletter/newsletter";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import DlTop from "@/shared/components/ads/dl/top";
+import DlMid from "@/shared/components/ads/dl/mid";
+import { Suspense } from "react";
+import DrinkTipsHero from "@/components/features/dryckestips/drink-tips-hero";
+import ExploreWineTips from "@/components/features/dryckestips/explore-wine-tips";
+import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";
 
 type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
-  params: Promise<{ slug: string }>;
+  searchParams: Promise<RouteSearchParams>;
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  _props: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/dryckestips");
@@ -34,11 +40,20 @@ export async function generateMetadata(
 }
 
 const DrinkTips = async (props: Props) => {
-  const params = await props.params;
   const searchParams = await props.searchParams;
+  const page = await getPage("/dryckestips");
+
   return (
     <>
-      <WineTipsTemplate searchParams={searchParams} params={params} />
+      <DrinkTipsHero page={page} />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlTop />
+      </Suspense>
+      <ExploreWineTips searchParams={searchParams} />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlMid />
+      </Suspense>
+      <Newsletter />
     </>
   );
 };

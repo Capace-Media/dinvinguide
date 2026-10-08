@@ -1,16 +1,16 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import RecipeCategoryTemplate from "@/components/Templates/RecipeCategoryTemplate";
+import RecipeCategoryTemplate from "@/components/features/recept/category/recipe-category-template";
 import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
+import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";
 
 type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
-  params: Promise<{ id: string }>;
+  searchParams: Promise<RouteSearchParams>;
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  _props: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/recept/drycker");
@@ -36,11 +36,7 @@ export async function generateMetadata(
 const Drycker = async (props: Props) => {
   const searchParams = await props.searchParams;
   const params = { slug: "drycker" };
-  return (
-    <>
-      <RecipeCategoryTemplate searchParams={searchParams} params={params} />
-    </>
-  );
+  return <RecipeCategoryTemplate searchParams={searchParams} params={params} />;
 };
 
 export default Drycker;

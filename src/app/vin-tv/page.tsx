@@ -1,18 +1,19 @@
-import Loading from "@/app/loading";
-import VinTVTemplate from "@/components/Templates/VinTVTemplate";
 import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import { Suspense } from "react";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
-type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
-  params: Promise<{ id: string }>;
-};
+import Newsletter from "@/components/shared/newsletter/newsletter";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import AdTop from "@/shared/components/ads/default/top";
+import AdMid from "@/shared/components/ads/default/mid";
+import AdBottom from "@/shared/components/ads/default/bottom";
+import PageHero from "@/components/shared/heroes/page-hero";
+import { guideLinks } from "@/components/shared/heroes/guide-links";
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  _props: unknown,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/vin-tv");
@@ -34,13 +35,23 @@ export async function generateMetadata(
 
   return data;
 }
-const VinTV = async (props: Props) => {
-  const searchParams = await props.searchParams;
-  const params = { slug: "vin-tv" };
+const VinTV = async () => {
+  const page = await getPage("/vin-tv");
+
   return (
-    <Suspense fallback={<Loading />}>
-      <VinTVTemplate params={params} searchParams={searchParams} />
-    </Suspense>
+    <>
+      <PageHero page={page} links={guideLinks} />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
+      <Newsletter />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdBottom />
+      </Suspense>
+    </>
   );
 };
 

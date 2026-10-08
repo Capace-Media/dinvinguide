@@ -1,4 +1,4 @@
-import RecipeTemplate from "@/components/Templates/RecipeTemplate";
+import RecipeTemplate from "@/components/features/recept/recipe/recipe-template";
 import {
   getPreviewRecipe,
   getRecipe,
@@ -6,6 +6,7 @@ import {
 } from "@/lib/api/recipes/get-recipes";
 import { Metadata, ResolvingMetadata } from "next";
 import { draftMode } from "next/headers";
+import { notFound } from "next/navigation";
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
@@ -60,12 +61,16 @@ const Recipe = async (props: RecipeProps) => {
 
   const data = await getRecipeData(params);
 
+  if (!data) {
+    notFound();
+  }
+
   const jsonLd = buildRecipeSchema({ recipe: data });
 
   return (
     <>
       <JsonLd json={jsonLd} id="recipe-schema" />
-      <RecipeTemplate promise={data} />
+      <RecipeTemplate recipe={data} />
     </>
   );
 };

@@ -1,14 +1,15 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import RecipeCategoryTemplate from "@/components/Templates/RecipeCategoryTemplate";
+import RecipeCategoryTemplate from "@/components/features/recept/category/recipe-category-template";
 import {
   getRecipeCategory,
   getRecipeCategoryChildSlugs,
 } from "@/lib/api/recipes/get-recipes";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../../../types/MetaInfoTypes";
+import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";
 
 type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  searchParams: Promise<RouteSearchParams>;
   params: Promise<{ slug: string }>;
 };
 
@@ -45,13 +46,11 @@ const Maltider = async (props: Props) => {
   const params = await props.params;
   const searchParams = await props.searchParams;
   return (
-    <>
-      <RecipeCategoryTemplate
-        searchParams={searchParams}
-        params={params}
-        mainSlug="maltider"
-      />
-    </>
+    <RecipeCategoryTemplate
+      searchParams={searchParams}
+      params={params}
+      mainSlug="maltider"
+    />
   );
 };
 

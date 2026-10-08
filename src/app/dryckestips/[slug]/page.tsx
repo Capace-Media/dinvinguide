@@ -1,11 +1,17 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import DrinkTipTemplate from "@/components/Templates/DrinkTipTemplate";
 import { getDrinkTip } from "@/lib/api/drink-tips/get-drink-tips";
 import { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
+import Newsletter from "@/components/shared/newsletter/newsletter";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import DlTop from "@/shared/components/ads/dl/top";
+import DlMid from "@/shared/components/ads/dl/mid";
+import { Suspense } from "react";
+import Line from "@/components/graphic/Line";
+import DrinkTipDetails from "@/components/features/dryckestips/drink-tip/drink-tip-details";
 
 type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
   params: Promise<{ slug: string }>;
 };
 
@@ -33,10 +39,25 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
 
 const DrinkTipsPage = async (props: Props) => {
   const params = await props.params;
-  const searchParams = await props.searchParams;
+  const drinkTip = await getDrinkTip(`/dryckestips/${params.slug}`);
+
+  if (!drinkTip) {
+    notFound();
+  }
+
   return (
     <>
-      <DrinkTipTemplate searchParams={searchParams} params={params} />
+      <div className="layout bg-white pt-28">
+        <Line />
+      </div>
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlTop />
+      </Suspense>
+      <DrinkTipDetails drinkTip={drinkTip} />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlMid />
+      </Suspense>
+      <Newsletter />
     </>
   );
 };
