@@ -1,5 +1,5 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import PostTemplate from "@/components/Templates/PostTemplate";
+import PostTemplate from "@/components/shared/post/post-template";
 import { getPage } from "@/lib/api/pages/get-pages";
 import { isWordPressInternalPath } from "@/lib/utils/wp-paths";
 import { Metadata, ResolvingMetadata } from "next";

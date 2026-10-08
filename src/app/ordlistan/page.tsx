@@ -1,19 +1,27 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import WordsTemplate from "@/components/Templates/WordsTemplate";
 import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 
 import { MetaInfo } from "../../../types/MetaInfoTypes";
+import Newsletter from "@/components/shared/newsletter/newsletter";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import AdTop from "@/shared/components/ads/default/top";
+import AdMid from "@/shared/components/ads/default/mid";
+import AdBottom from "@/shared/components/ads/default/bottom";
+import { Suspense } from "react";
+import PageHero from "@/components/shared/heroes/page-hero";
+import LetterFilter from "@/components/features/ordlistan/letter-filter";
+import WordsByLetter from "@/components/features/ordlistan/words-by-letter";
+import alphabet from "@/json/alphabet.json";
+import guides from "@/json/guides.json";
+import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";
 
 type Props = {
-  searchParams: Promise<{
-    [key: string]: string | string[] | any | undefined | null;
-  }>;
-  params: Promise<{ slug: string }>;
+  searchParams: Promise<RouteSearchParams>;
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  _props: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/ordlistan");
@@ -38,9 +46,37 @@ export async function generateMetadata(
 
 const Words = async (props: Props) => {
   const searchParams = await props.searchParams;
+  const page = await getPage("/ordlistan");
+  const activeFilter =
+    typeof searchParams.filter === "string" ? searchParams.filter : undefined;
+
   return (
     <>
-      <WordsTemplate searchParams={searchParams} />
+      <PageHero page={page} links={guides} guide="Våra guider" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
+      <div className="layout bg-white">
+        <nav className="w-full">
+          <ul className="flex flex-wrap w-full justify-center gap-[1.6rem]">
+            {alphabet.map((letter) => (
+              <li key={letter.id}>
+                <LetterFilter letter={letter} activeFilter={activeFilter} />
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <section className="py-10">
+          <WordsByLetter searchParams={searchParams} />
+        </section>
+      </div>
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
+      <Newsletter />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdBottom />
+      </Suspense>
     </>
   );
 };

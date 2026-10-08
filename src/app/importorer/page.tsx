@@ -1,5 +1,5 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import PageHero from "@/components/Templates/HeroHeaders/PageHero";
+import PageHero from "@/components/shared/heroes/page-hero";
 import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 
@@ -66,7 +66,7 @@ export default async function ProducenterPage() {
   });
   return (
     <>
-      <PageHero data={data} />
+      <PageHero page={data} />
       <Suspense fallback={<BannerSkeleton />}>
         <AdTop />
       </Suspense>

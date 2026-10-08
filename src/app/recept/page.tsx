@@ -1,23 +1,23 @@
 import RecipeHero from "@/components/Blocks/Hero-Header/RecipeHero";
-import RecipesTemplate from "@/components/Templates/RecipesTemplate";
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import { getPage } from "@/lib/api/pages/get-pages";
 import { getRecipePage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
-import { Suspense } from "react";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
-import Loading from "../loading";
-type Props = {
-  searchParams: Promise<{
-    [key: string]: string | string[] | any | undefined | null;
-  }>;
-  params: Promise<{ slug: string }>;
-};
-
+import Newsletter from "@/components/shared/newsletter/newsletter";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import AdTop from "@/shared/components/ads/default/top";
+import AdMid from "@/shared/components/ads/default/mid";
+import AdBottom from "@/shared/components/ads/default/bottom";
+import { Suspense } from "react";
+import Drinks from "@/components/features/recept/drinks";
+import Highlights from "@/components/features/recept/highlights";
+import Ingredients from "@/components/features/recept/ingredients";
+import Meals from "@/components/features/recept/meals";
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  _props: unknown,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/recept");
@@ -42,12 +42,24 @@ export async function generateMetadata(
 
 const Recipes = async () => {
   const recipes = getRecipePage();
+
   return (
     <>
-      <Suspense key="recept" fallback={<Loading />}>
-        <RecipeHero promise={recipes} />
-        <RecipesTemplate />
+      <RecipeHero promise={recipes} />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
       </Suspense>
+      <Highlights />
+      <Meals />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
+      <Ingredients />
+      <Drinks />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdBottom />
+      </Suspense>
+      <Newsletter />
     </>
   );
 };

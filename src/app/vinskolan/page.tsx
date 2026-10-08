@@ -1,18 +1,38 @@
-import Loading from "@/app/loading";
-import WineSchoolTemplate from "@/components/Templates/WineSchoolTemplate";
 import { Suspense } from "react";
+import Newsletter from "@/components/shared/newsletter/newsletter";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import AdTop from "@/shared/components/ads/default/top";
+import AdMid from "@/shared/components/ads/default/mid";
+import AdBottom from "@/shared/components/ads/default/bottom";
+import PageHero from "@/components/shared/heroes/page-hero";
+import { guideLinks } from "@/components/shared/heroes/guide-links";
+import WineSchoolPagination from "@/components/features/vinskolan/wine-school-pagination";
+import { getPage } from "@/lib/api/pages/get-pages";
+import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";
 
 type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  searchParams: Promise<RouteSearchParams>;
 };
 
 const WineSchools = async (props: Props) => {
   const searchParams = await props.searchParams;
-  const params = { slug: "skolor" };
+  const page = await getPage("/skolor");
+
   return (
-    <Suspense fallback={<Loading />}>
-      <WineSchoolTemplate params={params} searchParams={searchParams} />
-    </Suspense>
+    <>
+      <PageHero page={page} links={guideLinks} guide="Alla Guider" />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
+      <WineSchoolPagination searchParams={searchParams} />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
+      <Newsletter />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdBottom />
+      </Suspense>
+    </>
   );
 };
 

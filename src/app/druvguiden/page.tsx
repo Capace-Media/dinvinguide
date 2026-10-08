@@ -1,14 +1,21 @@
-import Loading from "@/app/loading";
-import DruvguidenTemplate from "@/components/Templates/DruvguidenTemplate";
 import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import { Suspense } from "react";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
+import Newsletter from "@/components/shared/newsletter/newsletter";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import AdTop from "@/shared/components/ads/default/top";
+import AdMid from "@/shared/components/ads/default/mid";
+import AdBottom from "@/shared/components/ads/default/bottom";
+import PageHero from "@/components/shared/heroes/page-hero";
+import { guideLinks } from "@/components/shared/heroes/guide-links";
+import GrapePagination from "@/components/features/druvguiden/grape-pagination";
+import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";
 
 type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  searchParams: Promise<RouteSearchParams>;
   params: Promise<{ id: string }>;
 };
 
@@ -38,11 +45,23 @@ export async function generateMetadata(
 
 const Druvguiden = async (props: Props) => {
   const searchParams = await props.searchParams;
-  const params = { slug: "druvguiden" };
+  const page = await getPage("/druvguiden");
+
   return (
-    <Suspense fallback={<Loading />}>
-      <DruvguidenTemplate params={params} searchParams={searchParams} />
-    </Suspense>
+    <>
+      <PageHero page={page} links={guideLinks} />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdTop />
+      </Suspense>
+      <GrapePagination searchParams={searchParams} />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdMid />
+      </Suspense>
+      <Newsletter />
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdBottom />
+      </Suspense>
+    </>
   );
 };
 

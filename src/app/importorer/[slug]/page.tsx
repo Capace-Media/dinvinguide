@@ -1,5 +1,5 @@
 import Newsletter from "@/components/shared/newsletter/newsletter";
-import PageHero from "@/components/Templates/HeroHeaders/PageHero";
+import PageHero from "@/components/shared/heroes/page-hero";
 import { getSupplier } from "@/lib/api/suppliers/get-suppliers";
 import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
@@ -16,7 +16,7 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
 
   return (
     <>
-      <PageHero data={data} />
+      <PageHero page={data} />
       <article className="layout bg-white">
         <div className="lg:grid lg:grid-cols-2 py-10">
           {handleParse(data?.content || "")}

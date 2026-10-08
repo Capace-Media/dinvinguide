@@ -1,21 +1,29 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import WineExplorerTemplate from "@/components/Templates/WineExplorerTemplate";
 
 import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import DlTop from "@/shared/components/ads/dl/top";
+import DlMid from "@/shared/components/ads/dl/mid";
+import DlBottom from "@/shared/components/ads/dl/bottom";
+import { Suspense } from "react";
+import DLHero from "@/components/shared/heroes/dl-hero";
+import TopListLinks from "@/components/shared/top-list-links";
+import WineExplorer from "@/components/features/dryckesutforskaren/wine-explorer";
+import handleParse from "@/lib/utils/handleParse";
+import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";
 async function getSEO() {
   const data = await getPage("/dryckesutforskaren");
   return data;
 }
 
 type Props = {
-  params: Promise<{ slug: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined }>;
+  searchParams: Promise<RouteSearchParams>;
 };
 
 export async function generateMetadata(
-  { params }: Props,
+  _props: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getSEO();
@@ -40,9 +48,25 @@ export async function generateMetadata(
 
 const Drinks = async (props: Props) => {
   const searchParams = await props.searchParams;
+  const page = await getSEO();
+
   return (
     <>
-      <WineExplorerTemplate searchParams={searchParams} />
+      <DLHero hero={page} id="dryckesutforskaren" />
+      <section className="layout py-5 md:py-12">
+        {handleParse(page?.page_content?.intro ?? "")}
+      </section>
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlTop />
+      </Suspense>
+      <WineExplorer searchParams={searchParams} />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlMid />
+      </Suspense>
+      <TopListLinks />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlBottom />
+      </Suspense>
     </>
   );
 };

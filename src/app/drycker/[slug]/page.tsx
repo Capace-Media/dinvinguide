@@ -1,13 +1,20 @@
-import Loading from "@/app/loading";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import DrinkTemplate from "@/components/Templates/DrinkTemplate";
-import { getDrink } from "@/lib/api/drinks/get-drinks";
+import { getDrink, getPreviewDrink } from "@/lib/api/drinks/get-drinks";
+import { draftMode } from "next/headers";
+import { notFound } from "next/navigation";
 import { Metadata, ResolvingMetadata } from "next";
-import { Suspense } from "react";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
+import { BannerSkeleton } from "@/shared/components/ads/banner";
+import DlTop from "@/shared/components/ads/dl/top";
+import DlMid from "@/shared/components/ads/dl/mid";
+import DlBottom from "@/shared/components/ads/dl/bottom";
+import { Suspense } from "react";
+import DLHero from "@/components/shared/heroes/dl-hero";
+import TopListLinks from "@/components/shared/top-list-links";
+import DrinkDetails from "@/components/features/drycker/drink/drink";
+import RelatedRecipes from "@/components/features/drycker/drink/related-recipes";
 
 type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
   params: Promise<{ slug: string }>;
 };
 
@@ -33,13 +40,46 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
   return data;
 }
 
-const Drink = async (props: { params: Promise<{ slug: string }> }) => {
+async function getDrinkData(slug: string) {
+  const { isEnabled } = await draftMode();
+  if (isEnabled) {
+    return getPreviewDrink(parseInt(slug));
+  }
+  return getDrink(`/drycker/${slug}`);
+}
+
+const Drink = async (props: Props) => {
   const params = await props.params;
+  const drink = await getDrinkData(params.slug);
+
+  if (!drink) {
+    notFound();
+  }
+
+  const recipes = drink.acf_drinks?.passarTillRecept;
+
   return (
     <>
-      <Suspense fallback={<Loading />}>
-        <DrinkTemplate params={params} />
+      <DLHero
+        hero={drink}
+        drinkType={drink.acf_drinks?.dryckestyper?.slug ?? undefined}
+      />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlTop />
       </Suspense>
+      <DrinkDetails drink={drink} />
+      <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+        <DlMid />
+      </Suspense>
+      {recipes && (
+        <>
+          {recipes[0] && <RelatedRecipes recipe={recipes[0]} />}
+          <Suspense fallback={<BannerSkeleton tone="bg-brand-dl" />}>
+            <DlBottom />
+          </Suspense>
+        </>
+      )}
+      <TopListLinks />
     </>
   );
 };
