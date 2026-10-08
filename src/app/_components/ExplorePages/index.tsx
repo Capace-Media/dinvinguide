@@ -15,7 +15,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
     <>
       <section className="layout contain  bg-white">
         <h2 className="pb-4">Utforska populära sidor</h2>
-        <ul className="grid gap-4 md:grid-cols-2 md:grid-rows-[repeat(5, 240px)] md:auto-rows-[240px] md:grid-rows-[repeat(2, 240px)] lg:grid-cols-4 lg:grid-rows-[repeat(2, 260px)] lg:auto-rows-[260px] ">
+        <ul className="grid gap-4 md:grid-cols-2 md:auto-rows-[240px] lg:grid-cols-4 lg:auto-rows-[260px] ">
           <li className="relative md:row-span-2 group">
             <Link href="/skribenter" className="block h-[200px] md:h-full">
               <Image

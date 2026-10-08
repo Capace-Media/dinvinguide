@@ -27,7 +27,7 @@ const ExploreGuides = ({}: ExploreGuidesProps) => {
                 objectFit: "cover",
               }}
             />
-            <span className="absolute x-center y-center z-3 text-white font-sub text-[22px] pb-1 border-b-2 ">
+            <span className="absolute z-3 text-white font-sub text-[22px] pb-1 border-b-2 ">
               Vinskolan
             </span>
           </Link>
@@ -46,7 +46,7 @@ const ExploreGuides = ({}: ExploreGuidesProps) => {
                 objectFit: "cover",
               }}
             />
-            <span className="absolute x-center y-center z-3 text-white font-sub text-[22px] pb-1 border-b-2 ">
+            <span className="absolute z-3 text-white font-sub text-[22px] pb-1 border-b-2 ">
               Vinatlas
             </span>
           </Link>
@@ -65,7 +65,7 @@ const ExploreGuides = ({}: ExploreGuidesProps) => {
                 objectFit: "cover",
               }}
             />
-            <span className="absolute x-center y-center z-3 text-white font-sub text-[22px] pb-1 border-b-2 ">
+            <span className="absolute z-3 text-white font-sub text-[22px] pb-1 border-b-2 ">
               Druvguiden
             </span>
           </Link>
@@ -85,7 +85,7 @@ const ExploreGuides = ({}: ExploreGuidesProps) => {
                 objectPosition: "bottom",
               }}
             />
-            <span className="absolute x-center y-center z-3 text-white font-sub text-[22px] pb-1 border-b-2 ">
+            <span className="absolute z-3 text-white font-sub text-[22px] pb-1 border-b-2 ">
               Ordlistan
             </span>
           </Link>

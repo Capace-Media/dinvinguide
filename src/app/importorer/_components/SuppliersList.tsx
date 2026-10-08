@@ -146,7 +146,7 @@ export default function SuppliersList() {
             className="group lg:hover:-translate-y-1.75 lg:ease-in-out lg:duration-200"
           >
             <Link href={`/importorer/${supplier.node.slug}`}>
-              <div className="relative h-50 w-full bg-[#F5F5F5] rounded-t-2.5">
+              <div className="relative h-50 w-full bg-[#F5F5F5] rounded-t-[10px]">
                 {supplier.node.featuredImage?.node?.mediaItemUrl ? (
                   <Image
                     src={supplier.node.featuredImage.node.mediaItemUrl}
@@ -166,7 +166,7 @@ export default function SuppliersList() {
                   </div>
                 )}
               </div>
-              <div className="h-22.25 w-full bg-[#F5F5F5] p-2 rounded-b-2.5">
+              <div className="h-22.25 w-full bg-[#F5F5F5] p-2 rounded-b-[10px]">
                 <h3 className="text-[18px] md:group-hover:underline">
                   {supplier.node.title}
                 </h3>
@@ -241,8 +241,8 @@ export default function SuppliersList() {
 
 const SkeletonCard = () => (
   <div className="animate-pulse">
-    <div className="h-50 w-full bg-gray-300 rounded-t-2.5"></div>
-    <div className="h-22.25 w-full bg-gray-200 p-2 rounded-b-2.5">
+    <div className="h-50 w-full bg-gray-300 rounded-t-[10px]"></div>
+    <div className="h-22.25 w-full bg-gray-200 p-2 rounded-b-[10px]">
       <div className="h-5 bg-gray-300 rounded-sm w-3/4 mb-2"></div>
       <div className="h-3 bg-gray-300 rounded-sm w-full mb-1"></div>
       <div className="h-3 bg-gray-300 rounded-sm w-2/3"></div>

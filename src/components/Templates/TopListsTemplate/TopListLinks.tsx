@@ -43,7 +43,7 @@ const TopListLinks = async ({}: TopListLinksProps) => {
                 }}
                 sizes="(min-width: 1380px) 980px, (min-width: 1040px) calc(81.25vw - 125px), (min-width: 380px) 280px, calc(73.33vw + 16px)"
               />
-              <div className="flex z-10 justify-between lg:items-end absolute bottom bottom-4 left-4">
+              <div className="flex z-10 justify-between lg:items-end absolute bottom-4 left-4">
                 <div>
                   <p className="group-hover:underline uppercase text-white text-[14px]">
                     Dryckesutforskaren
@@ -74,7 +74,7 @@ const TopListLinks = async ({}: TopListLinksProps) => {
                 }}
                 sizes="(min-width: 1380px) 980px, (min-width: 1040px) calc(81.25vw - 125px), (min-width: 380px) 280px, calc(73.33vw + 16px)"
               />
-              <div className="flex z-10 justify-between lg:items-end absolute bottom bottom-4 left-4">
+              <div className="flex z-10 justify-between lg:items-end absolute bottom-4 left-4">
                 <div className="">
                   <p className="uppercase group-hover:underline text-white text-[14px]">
                     ReceptUTFORSKAREN

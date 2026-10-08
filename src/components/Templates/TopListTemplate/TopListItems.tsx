@@ -33,7 +33,7 @@ const TopListItems = ({ data }: TopListItemsProps) => {
               })}
           </>
         ) : (
-          <div className="flex flex-col grid-cols-2 gap-16 lg:grid contain-sm">
+          <div className="flex flex-col grid-cols-2 gap-16 lg:grid">
             <p>Nya viner till topplistan kommer snart!</p>
           </div>
         )}
