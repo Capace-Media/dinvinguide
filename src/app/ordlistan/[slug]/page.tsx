@@ -5,7 +5,7 @@ import AdMid from "@/shared/components/ads/default/mid";
 import { Suspense } from "react";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import WordTemplate from "@/components/Templates/WordTemplate";
-import { getWordSEO } from "@/lib/queries/SEO/getWordSEO";
+import { getWord } from "@/lib/queries/get-word";
 import { Metadata, ResolvingMetadata } from "next";
 
 import ExploreGuides from "@/components/Templates/GuideTemplate/ExploreGuides";
@@ -23,7 +23,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const params = await props.params;
-  const page = await getWordSEO(`/glossary/${params.slug}`);
+  const page = await getWord(params.slug);
 
   const seo: any = page?.seo;
 

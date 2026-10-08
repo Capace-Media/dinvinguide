@@ -1,12 +1,16 @@
+import { cache } from "react";
 import { getErrorMessage } from "../utils/getErrorMessage";
 import WP, { WPServerSide } from "../wp";
+import { SEO } from "./fragments/Seo";
 import { DRINK } from "./fragments/Drink";
 
-export const getDrink = async (id: string) => {
+export const getDrink = cache(async (id: string) => {
   try {
     const res = await WP(
       `query getDrink($id: ID! ) {
         drink(id: $id, idType: URI) {
+          slug
+          ${SEO}
           title
           uri
           date
@@ -84,7 +88,7 @@ export const getDrink = async (id: string) => {
       message: getErrorMessage(error),
     };
   }
-};
+});
 
 export const getPreviewDrink = async (id: number) => {
   try {

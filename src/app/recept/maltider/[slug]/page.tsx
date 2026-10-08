@@ -1,6 +1,6 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import RecipeCategoryTemplate from "@/components/Templates/RecipeCategoryTemplate";
-import { getRecipeCategorySEO } from "@/lib/queries/SEO/getRecipeCategorySEO";
+import { getRecipeCategory } from "@/lib/queries/get-recipe-category";
 
 import WP from "@/lib/wp";
 import { Metadata, ResolvingMetadata } from "next";
@@ -13,7 +13,7 @@ type Props = {
 
 export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const params = await props.params;
-  const page = await getRecipeCategorySEO(
+  const page = await getRecipeCategory(
     `/receptkategorier/maltider/${params.slug}`
   );
 

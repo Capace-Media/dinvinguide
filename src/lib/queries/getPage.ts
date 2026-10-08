@@ -9,6 +9,7 @@ export const getPage = cache(async (id: string) => {
     const res = await WP(
       `query GET_PAGE($id: ID!) {
         page(id: $id, idType: URI) {
+          slug
           title
           content
           page_content {

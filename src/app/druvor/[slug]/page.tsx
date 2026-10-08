@@ -1,7 +1,7 @@
 import Loading from "@/app/loading";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import GrapeTemplate from "@/components/Templates/GrapeTemplate";
-import { getGrapeSEO } from "@/lib/queries/SEO/getGrapeSEO";
+import { getGrape } from "@/lib/queries/get-grape";
 import WP from "@/lib/wp";
 import { Metadata, ResolvingMetadata } from "next";
 import { Suspense } from "react";
@@ -35,7 +35,7 @@ type Props = {
 
 export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const params = await props.params;
-  const page = await getGrapeSEO(`/druvor/${params.slug}`);
+  const page = await getGrape(params.slug);
 
   const seo: any = page?.seo;
 
