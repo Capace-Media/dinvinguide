@@ -87,8 +87,8 @@ const ExploreRecipes: React.FC = async () => {
   combinedArticles = [...combinedArticles, ...additionalHighlighted];
   return (
     <section className="relative w-full ">
-      <div className="layout min-h-[322px] py-4 md:py-11 lg:py-20 bg-brand-secondary lg:min-h-[448px]">
-        <div className="flex flex-col justify-between min-h-[278px] lg:w-[40%]">
+      <div className="layout min-h-80.5 py-4 md:py-11 lg:py-20 bg-brand-secondary lg:min-h-112">
+        <div className="flex flex-col justify-between min-h-69.5 lg:w-[40%]">
           <div className="recipe_parse">
             {handleParse(data?.page?.page_content?.intro)}
           </div>
@@ -100,34 +100,34 @@ const ExploreRecipes: React.FC = async () => {
               Alla Recept
             </Link>
             <Link
-              className="lg:hover:scale-105 lg:duration-300 lg:ease-in-out uppercase flex flex-col justify-between gap-2 text-white text-[14px] px-3 items-center h-[39px]"
+              className="lg:hover:scale-105 lg:duration-300 lg:ease-in-out uppercase flex flex-col justify-between gap-2 text-white text-[14px] px-3 items-center h-9.75"
               href="/recept/maltider/frukost"
             >
               <span></span>
               frukost
-              <span className="bg-white w-full h-[3px] flex"></span>
+              <span className="bg-white w-full h-0.75 flex"></span>
             </Link>
             <Link
-              className="lg:hover:scale-105 lg:duration-300 lg:ease-in-out uppercase flex flex-col justify-between gap-2 text-white text-[14px] px-3 items-center h-[39px]"
+              className="lg:hover:scale-105 lg:duration-300 lg:ease-in-out uppercase flex flex-col justify-between gap-2 text-white text-[14px] px-3 items-center h-9.75"
               href="/recept/maltider/efterratter"
             >
               <span></span>
               efterrätter
-              <span className="bg-white w-full h-[3px] flex"></span>
+              <span className="bg-white w-full h-0.75 flex"></span>
             </Link>
             <Link
-              className="lg:hover:scale-105 lg:duration-300 lg:ease-in-out uppercase flex flex-col justify-between gap-2 text-white text-[14px] px-3 items-center h-[39px]"
+              className="lg:hover:scale-105 lg:duration-300 lg:ease-in-out uppercase flex flex-col justify-between gap-2 text-white text-[14px] px-3 items-center h-9.75"
               href="/recept/maltider/huvudratter"
             >
               <span></span>
               huvudrätter
-              <span className="bg-white w-full h-[3px] flex"></span>
+              <span className="bg-white w-full h-0.75 flex"></span>
             </Link>
           </div>
         </div>
       </div>
 
-      <div className="layout lg:h-[720px] bg-white"></div>
+      <div className="layout lg:h-180 bg-white"></div>
 
       <div
         className={cn(
@@ -181,7 +181,7 @@ const ExploreRecipes: React.FC = async () => {
                   return displayTax ? (
                     <p key={displayTax.slug} className="text-[12px] uppercase">
                       {displayTax.name}
-                      <span className="flex w-full h-[3px] bg-white"></span>
+                      <span className="flex w-full h-0.75 bg-white"></span>
                     </p>
                   ) : null;
                 })()}
