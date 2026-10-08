@@ -1,4 +1,4 @@
-import { getBottomDlAd } from "@/lib/fetchers/ads/dl";
+import { getBottomDlAd } from "@/lib/api/ads/get-ads";
 import Banner from "../banner";
 
 export default async function DlBottom() {

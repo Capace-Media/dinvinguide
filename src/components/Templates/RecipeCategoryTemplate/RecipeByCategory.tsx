@@ -3,10 +3,9 @@ import PaginationController from "@/components/Pagination/Controller";
 
 import RecipePagination from "@/components/Pagination/Recipes";
 import {
-  getRecipesBank,
+  getRecipeCategory,
   getRecipesByCategory,
-} from "@/lib/queries/getRecipesBank";
-import { getRecipeCategory } from "@/lib/queries/get-recipe-category";
+} from "@/lib/api/recipes/get-recipes";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined | null };
@@ -34,16 +33,15 @@ const RecipeByCategory = async ({ searchParams, params, mainSlug }: Props) => {
     ? `/recept/${mainSlug}/${params.slug}`
     : `/recept/${params.slug}`;
 
-  const promise = await getRecipesByCategory({
+  const promise = await getRecipesByCategory(idURI, {
     after: searchParams?.after,
     before: searchParams?.before,
     first: startFirst,
     last: endLast,
     search: searchData,
-    id: idURI,
   });
 
-  if (promise?.edges?.length < 1) {
+  if (!promise?.edges?.length) {
     return (
       <div className="layout bg-white">
         <div>

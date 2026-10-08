@@ -1,4 +1,4 @@
-import { getWhineAtlases } from "@/lib/queries/getWineAtlases";
+import { getChildPages } from "@/lib/api/guides/get-guides";
 
 import PaginationController from "@/components/Pagination/Controller";
 import PaginationForGuides from "@/components/Pagination/Guider";
@@ -28,15 +28,14 @@ const MorePosts = async ({ params, searchParams, pageId, title }: Props) => {
   );
   const endLast: number = parseInt(searchParams?.last);
 
-  const promise = await getWhineAtlases({
+  const promise = await getChildPages(pageId, {
     after: searchParams?.after,
     before: searchParams?.before,
     first: startFirst,
     last: endLast,
-    parent: pageId,
   });
 
-  if (promise?.edges?.length < 1) {
+  if (!promise?.edges?.length) {
     return null;
   }
 

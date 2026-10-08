@@ -1,31 +1,14 @@
 import Loading from "@/app/loading";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import GrapeTemplate from "@/components/Templates/GrapeTemplate";
-import { getGrape } from "@/lib/queries/get-grape";
-import WP from "@/lib/wp";
+import { getGrape, getGrapeSlugs } from "@/lib/api/grapes/get-grapes";
 import { Metadata, ResolvingMetadata } from "next";
 import { Suspense } from "react";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
 
 export async function generateStaticParams() {
-  const { data } = await WP(
-    `query getGrapes {
-        grapes {
-          nodes {
-            slug
-          }
-        }
-      }`
-  );
-
-  const paths: any[] = [];
-
-  data?.grapes?.nodes &&
-    data.grapes.nodes.map((grape: any) => {
-      paths.push({ slug: grape.slug });
-    });
-
-  return paths;
+  const slugs = await getGrapeSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 type Props = {

@@ -1,7 +1,7 @@
 import handleParse from "@/lib/utils/handleParse";
 import PrettyDate from "@/lib/utils/prettyDate";
 
-import { getWord } from "@/lib/queries/get-word";
+import { getWord } from "@/lib/api/words/get-words";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -36,7 +36,7 @@ const WordTemplate = async ({ params }: { params: { slug: string } }) => {
               <li className="text-[#333]">{data?.title}</li>
             </ul>
           )}
-          <time className="text-[14px]" dateTime={data?.modifiedGmt}>
+          <time className="text-[14px]" dateTime={data?.modifiedGmt ?? undefined}>
             {PrettyDate(data?.modifiedGmt)}
           </time>
         </div>
@@ -82,7 +82,7 @@ const WordTemplate = async ({ params }: { params: { slug: string } }) => {
             <div className=" relative py-10 w-full lg:h-[555px] h-[322px]">
               <Image
                 src={data?.featuredImage?.node?.mediaItemUrl}
-                alt={data?.title}
+                alt={data.title ?? ""}
                 fill
                 style={{
                   objectFit: "cover",

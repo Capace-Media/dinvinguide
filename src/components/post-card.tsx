@@ -9,6 +9,7 @@ import Overlay from "./graphic/overlay";
 import PrettyDate from "@/lib/utils/prettyDate";
 import { Skeleton } from "./ui/skeleton";
 import { Button } from "./ui/button";
+import type { PostCardFieldsFragment } from "@/lib/wp/gql/graphql";
 
 export function PostCardSkeleton() {
     return (
@@ -35,20 +36,24 @@ export function PostCardSkeleton() {
     );
 }
 
-export default function PostCard({ post }: { post: any }) {
-    const articleUrl = post?.author?.node?.slug ? `/skribenter/${post?.author?.node?.slug}/${post?.slug}` : post?.uri;
+// Pages linked from "läs mer" have no author slug, so they link by `uri`.
+type PostCardPost = PostCardFieldsFragment & { uri?: string | null };
+
+export default function PostCard({ post }: { post: PostCardPost }) {
+    const image = post.featuredImage?.node;
+    const articleUrl = post.author?.node?.slug ? `/skribenter/${post.author.node.slug}/${post.slug}` : post.uri ?? "";
 
     return (
         <li>
             <article>
                 <Card className="relative hover:shadow-lg shadow-md md:shadow-none  transition-all duration-300 pt-0 p-3 gap-1 border-none">
                     <CardHeader className="relative h-45 overflow-hidden p-0">
-                        {post?.featuredImage?.node ? (
+                        {image?.mediaItemUrl ? (
                             <Image
-                                src={post.featuredImage.node.mediaItemUrl}
-                                alt={post?.featuredImage?.node?.altText || `Bild på ${post?.title}`}
-                                width={post?.featuredImage?.node?.mediaDetails?.width}
-                                height={post?.featuredImage?.node?.mediaDetails?.height}
+                                src={image.mediaItemUrl}
+                                alt={image.altText || `Bild på ${post.title}`}
+                                width={image.mediaDetails?.width ?? undefined}
+                                height={image.mediaDetails?.height ?? undefined}
                                 sizes="(max-width: 768px) 92vw, (max-width: 1024px) 45vw, (max-width: 1280px) 27vw, (max-width: 1777px) 22vw, 381px"
                                 className="object-cover w-full h-full absolute top-0 left-0"
                             />

@@ -3,6 +3,7 @@
 - Keep TypeScript strict and resolve type error instead of weakening compiler options.
 - Avoid `any`. Treat data from requests, responses, and other external boundaries as `unknown` until it has been validated or narrowed.
 - Derive request and response types from shared Zod schemas when possible so runtime validation and static types stay aligned.
+- WordPress data goes through `wpQuery` in `src/lib/wp/client.ts`, with queries written as `graphql()` documents in `src/lib/api/<domain>/queries.ts`. Response and variable types come from GraphQL Codegen: run `bun run codegen` after editing a query and `bun run schema:pull` after changing fields in WordPress. Use Zod for the other boundaries (route and search params, API route input).
 - Use `import type` for type-only imports.
 - Mark values `readonly` when callers should not mutate them, and avoid mutatuing objects received from another layer.
 - Choose descriptive domain names instead of generic names such as `Data`, `Item`, or `Result`.

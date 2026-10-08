@@ -1,15 +1,15 @@
 type ArticleSchemaProps = {
-  title?: string;
-  description?: string;
-  url?: string;
-  images?: string[];
-  datePublished?: string;
-  dateModified?: string;
-  authorName?: string;
+  title?: string | null;
+  description?: string | null;
+  url?: string | null;
+  images?: readonly (string | null | undefined)[];
+  datePublished?: string | null;
+  dateModified?: string | null;
+  authorName?: string | null;
   publisherName?: string;
   publisherLogo?: string;
 
-  articleBody?: string;
+  articleBody?: string | null;
 };
 
 const generateArticleSchema = ({

@@ -1,4 +1,4 @@
-import { getPage } from "@/lib/queries/getPage";
+import { getPage } from "@/lib/api/pages/get-pages";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdTop from "@/shared/components/ads/default/top";
 import { Metadata } from "next";
@@ -9,18 +9,18 @@ import AllAuthors from "./components/authors";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getPage("skribenter");
-  const { seo } = data;
+  const seo = data?.seo;
 
   return {
-    title: seo?.title ? seo.title : "Skribenter | Din Vinguide",
+    title: seo?.title ? seo?.title : "Skribenter | Din Vinguide",
     description: seo?.metaDesc
       ? seo.metaDesc
       : "Möt våra skribenter och vinexperter på Din Vinguide.",
     openGraph: {
-      title: seo?.opengraphTitle || seo.title || "Skribenter | Din Vinguide",
+      title: seo?.opengraphTitle || seo?.title || "Skribenter | Din Vinguide",
       description:
-        seo.opengraphDescription ||
-        seo.metaDesc ||
+        seo?.opengraphDescription ||
+        seo?.metaDesc ||
         "Möt våra skribenter och vinexperter på Din Vinguide.",
       url: `https://dinvinguide.se/skribenter`,
       images: [

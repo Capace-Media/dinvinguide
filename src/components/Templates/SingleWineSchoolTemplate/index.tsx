@@ -4,8 +4,8 @@ import AdTop from "@/shared/components/ads/default/top";
 import { Suspense } from "react";
 
 import Posts from "@/components/Pagination/Posts";
-import { getPage } from "@/lib/queries/getPage";
-import { getSchoolPosts } from "@/lib/queries/getSchoolPosts";
+import { getPage } from "@/lib/api/pages/get-pages";
+import { getSchoolPosts } from "@/lib/api/posts/get-posts";
 import { notFound } from "next/navigation";
 import links from "../GuideTemplate/guideLinks.json";
 import PageHero from "../HeroHeaders/PageHero";
@@ -32,9 +32,7 @@ const SingleWineSchoolTemplate = async ({ params, searchParams }: Props) => {
       <Suspense fallback={<BannerSkeleton />}>
         <AdTop />
       </Suspense>
-      {posts?.acf_overviewPage?.sidor ? (
-        <Posts posts={posts?.acf_overviewPage?.sidor} />
-      ) : null}
+      {posts.length > 0 ? <Posts posts={posts} /> : null}
       <Newsletter />
     </>
   );

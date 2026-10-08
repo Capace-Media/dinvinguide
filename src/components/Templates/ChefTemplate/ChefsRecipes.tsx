@@ -2,7 +2,7 @@ import Search from "@/components/Blocks/Search";
 import PaginationController from "@/components/Pagination/Controller";
 
 import RecipePagination from "@/components/Pagination/Recipes";
-import { getChefRecipes } from "@/lib/queries/getRecipesBank";
+import { getChefRecipes } from "@/lib/api/recipes/get-recipes";
 
 type Props = {
   searchParams?: { [key: string]: string | string[] | any | undefined | null };
@@ -26,13 +26,12 @@ const ChefsRecipes = async ({ searchParams, params, mainSlug }: Props) => {
     ? `/recept/${mainSlug}/${params?.slug}`
     : `/recept/${params?.slug}`;
 
-  const promise = await getChefRecipes({
+  const promise = await getChefRecipes(idURI, {
     after: searchParams?.after,
     before: searchParams?.before,
     first: startFirst,
     last: endLast,
     search: searchData,
-    id: idURI,
   });
 
   return (

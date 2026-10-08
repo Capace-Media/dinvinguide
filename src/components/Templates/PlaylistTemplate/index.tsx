@@ -2,7 +2,7 @@ import Newsletter from "@/components/shared/newsletter/newsletter";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdTop from "@/shared/components/ads/default/top";
 import { Suspense } from "react";
-import WP from "@/lib/wp";
+import { getPlaylist } from "@/lib/api/playlists/get-playlists";
 import { notFound } from "next/navigation";
 import EpisodeList from "./EpisodeList";
 
@@ -11,85 +11,15 @@ type Props = {
   searchParams: { [key: string]: string | string[] | any | undefined | null };
 };
 
-async function getPlaylist(id: string) {
-  const res = await WP(
-    `query fetchPlaylist($id: ID!) {
-      acfOptionsInstallningarTv {
-        tvOptionsPage {
-          vintvTitle
-          vintvIngress
-          vintvBillboardBild {
-            mediaItemUrl
-          }
-          vintvBillboardDelay
-          vintvBillboardLink
-          vintvBillboardLinkWindow
-          vintvBillboardShow
-          vintvBillboardText
-        }
-      }
-    playlist(idType: URI, id: $id) {
-      name
-      slug
-      description
-      acf_tvSpellistor {
-        thumbnail
-      }
-      seo {
-        metaDesc
-        title
-        opengraphTitle
-        opengraphDescription
-        opengraphImage {
-          mediaItemUrl
-        }
-      }
-      episodes {
-        edges {
-          node {
-            id
-            title
-            seo {
-              metaDesc
-              title
-              opengraphTitle
-              opengraphDescription
-              opengraphImage {
-                mediaItemUrl
-              }
-            }
-            acf_episode {
-              thumbnail
-              beskrivning
-              videoId
-            }
-          }
-        }
-      }
-      acf_tvSpellistor {
-        desc
-      }
-    }
-  }`,
-    null,
-    { id }
-  );
-
-  const data = res?.data?.playlist;
-
-  const settings = res?.data?.acfOptionsInstallningarTv;
-  return { video: data, setting: settings };
-}
-
 const PlaylistTemplate = async ({ params, searchParams }: Props) => {
   const { slug } = params;
   const posts = await getPlaylist(`/spellistor/${slug}`);
 
-  const { video, setting } = posts;
-
   if (!posts) {
     return notFound();
   }
+
+  const { video, setting } = posts;
 
   return (
     <>

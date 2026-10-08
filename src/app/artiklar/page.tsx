@@ -1,9 +1,8 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import Line from "@/components/graphic/Line";
 import { getQueryClient } from "@/lib/get-query-client";
-import { getPage } from "@/lib/queries/getPage";
-import { POSTS } from "@/lib/queries/posts";
-import WP from "@/lib/wp";
+import { getPage } from "@/lib/api/pages/get-pages";
+import { getPosts } from "@/lib/api/posts/get-posts";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
@@ -46,9 +45,9 @@ export async function generateMetadata(
 }
 
 async function fetchPosts({ pageParam }: { pageParam: string }) {
-  const res = await WP(POSTS, "post", { first: 16, after: pageParam || undefined });
+  const posts = await getPosts({ first: 16, after: pageParam || undefined });
 
-  return res?.data;
+  return { posts };
 }
 
 const Articles = async (props: Props) => {
@@ -60,7 +59,7 @@ const Articles = async (props: Props) => {
     queryKey: ["articles", "", "", ""],
     queryFn: fetchPosts,
     initialPageParam: "",
-    getNextPageParam: (lastPage: any) =>
+    getNextPageParam: (lastPage: Awaited<ReturnType<typeof fetchPosts>>) =>
       lastPage?.posts?.pageInfo?.hasNextPage
         ? lastPage.posts.pageInfo.endCursor
         : undefined,
@@ -77,7 +76,6 @@ const Articles = async (props: Props) => {
       <HydrationBoundary state={dehydrate(queryClient)}>
         <AllArticles title="Utforska alla våra artiklar" />
       </HydrationBoundary>
-      {/* <ArticleTemplate searchParams={searchParams} /> */}
       <Suspense fallback={<BannerSkeleton />}>
         <AdMid />
       </Suspense>

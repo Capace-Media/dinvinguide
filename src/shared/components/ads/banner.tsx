@@ -1,4 +1,4 @@
-import type { Ad } from "@/lib/fetchers/ads/shape";
+import type { Ad } from "@/lib/api/ads/ad-slots";
 import { getImageProps } from "next/image";
 
 export default function Banner({

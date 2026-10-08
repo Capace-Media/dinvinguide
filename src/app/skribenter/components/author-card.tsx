@@ -5,11 +5,11 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import PostCard from "@/components/post-card";
-import { Skribent } from "../../../../types/author";
+import type { Writer } from "@/lib/api/authors/get-authors";
 import SocialMedia from "@/components/Blocks/skribenter/SocialMedia";
 
 type AuthorComponentProps = {
-    author: Skribent;
+    author: Writer;
     index: number;
 }
 
@@ -29,8 +29,8 @@ export default function AuthorCard(props: AuthorComponentProps) {
                                     ? props.author.acf_user.bildExtra.altText
                                     : "Bild på " + props.author.name
                             }
-                            width={props.author.acf_user.bildExtra?.mediaDetails?.width}
-                            height={props.author.acf_user.bildExtra?.mediaDetails?.height}
+                            width={props.author.acf_user.bildExtra?.mediaDetails?.width ?? undefined}
+                            height={props.author.acf_user.bildExtra?.mediaDetails?.height ?? undefined}
                             className="object-contain h-92.5 lg:h-122.5"
                             sizes="(max-width: 768px) 90vw, (max-width: 1777px) 45vw, 845px"
                         />
@@ -87,7 +87,7 @@ export default function AuthorCard(props: AuthorComponentProps) {
                     </div>
                     <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-2 md:gap-0">
                         {props.author?.posts?.nodes &&
-                            props.author.posts.nodes.map((post: any) => {
+                            props.author.posts.nodes.map((post) => {
                                 return (
                                     <PostCard key={post.id} post={post} />
                                 );

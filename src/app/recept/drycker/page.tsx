@@ -1,6 +1,6 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import RecipeCategoryTemplate from "@/components/Templates/RecipeCategoryTemplate";
-import { getPage } from "@/lib/queries/getPage";
+import { getPage } from "@/lib/api/pages/get-pages";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../../types/MetaInfoTypes";
 

@@ -4,8 +4,8 @@ import ExploreRecipes from "@/components/features/home/explore-recipes";
 import LatestArticles from "@/components/features/home/latest-articles";
 import ExplorePages from "@/components/shared/explore-pages";
 import Newsletter from "@/components/shared/newsletter/newsletter";
-import { preloadDefaultAds } from "@/lib/fetchers/ads/default";
-import { getFrontPage } from "@/lib/queries/get-front-page";
+import { preloadDefaultAds } from "@/lib/api/ads/get-ads";
+import { getFrontPage } from "@/lib/api/pages/get-pages";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdBottom from "@/shared/components/ads/default/bottom";
 import AdMid from "@/shared/components/ads/default/mid";
@@ -48,25 +48,23 @@ export default async function Home() {
     return notFound();
   }
 
-  const { page, recipePage, posts, drinktips, recipes } = frontPage;
-  const highlights = page.GQL_frontPageFields;
 
   return (
     <>
-      <FrontHero data={page} />
+      <FrontHero data={frontPage.page} />
 
       <Suspense fallback={<BannerSkeleton />}>
         <AdTop />
       </Suspense>
 
       <LatestArticles
-        latest={posts?.nodes ?? []}
-        highlighted={highlights?.highlightedArticles ?? []}
+        latest={frontPage.latestPosts}
+        highlighted={frontPage.highlightedPosts}
       />
 
       <ExclusiveDrinks
-        latest={drinktips?.nodes ?? []}
-        highlighted={highlights?.highlightedDryckestips ?? []}
+        latest={frontPage.latestDrinktips}
+        highlighted={frontPage.highlightedDrinktips}
       />
 
       <Suspense fallback={<BannerSkeleton />}>
@@ -76,9 +74,9 @@ export default async function Home() {
       <ExplorePages />
 
       <ExploreRecipes
-        intro={recipePage?.page_content?.intro}
-        latest={recipes?.nodes ?? []}
-        highlighted={highlights?.highlightedRecept ?? []}
+        intro={frontPage.recipeIntro}
+        latest={frontPage.latestRecipes}
+        highlighted={frontPage.highlightedRecipes}
       />
 
       <Suspense fallback={<BannerSkeleton />}>
