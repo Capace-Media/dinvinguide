@@ -3,8 +3,8 @@ import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 
 import { getAuthor } from "@/lib/queries/getAuthor";
 
-import ExplorePages from "@/app/_components/ExplorePages";
-import Newsletter from "@/app/_components/Newsletter";
+import ExplorePages from "@/components/shared/explore-pages";
+import Newsletter from "@/components/shared/newsletter/newsletter";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdTop from "@/shared/components/ads/default/top";
 import AdMid from "@/shared/components/ads/default/mid";

@@ -6,7 +6,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Abril_Fatface, Poppins } from "next/font/google";
 import { draftMode } from "next/headers";
-import DraftModeBanner from "./_components/DraftModeBanner";
+import DraftModeBanner from "@/components/shared/draft-mode-banner";
 import "./styles/globals.css";
 import { cn } from "@/lib/utils";
 import Script from "next/script";

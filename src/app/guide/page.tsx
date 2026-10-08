@@ -8,7 +8,7 @@ import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdTop from "@/shared/components/ads/default/top";
 import ExploreGuides from "@/components/Templates/GuideTemplate/ExploreGuides";
 import AdMid from "@/shared/components/ads/default/mid";
-import Newsletter from "../_components/Newsletter";
+import Newsletter from "@/components/shared/newsletter/newsletter";
 import AdBottom from "@/shared/components/ads/default/bottom";
 import { notFound } from "next/navigation";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";

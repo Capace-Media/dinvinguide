@@ -1,5 +1,5 @@
-import Newsletter from "@/app/_components/Newsletter";
-import Separater from "@/app/_components/Separater";
+import Newsletter from "@/components/shared/newsletter/newsletter";
+import SectionSeparator from "@/components/shared/section-separator";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdTop from "@/shared/components/ads/default/top";
 import AdMid from "@/shared/components/ads/default/mid";
@@ -31,7 +31,7 @@ const RecipeCategoryTemplate = ({ searchParams, params, mainSlug }: Props) => {
         mainSlug={mainSlug}
       />
 
-      <Separater />
+      <SectionSeparator />
 
       <Meals />
       <Suspense fallback={<BannerSkeleton />}>

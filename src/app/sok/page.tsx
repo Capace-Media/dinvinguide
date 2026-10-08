@@ -2,7 +2,7 @@ import Search from "@/components/Blocks/Search";
 import { getSearchData } from "@/lib/queries/getSearchData";
 import Image from "next/image";
 import Link from "next/link";
-import Newsletter from "../_components/Newsletter";
+import Newsletter from "@/components/shared/newsletter/newsletter";
 
 type Props = {
   searchParams: Promise<{

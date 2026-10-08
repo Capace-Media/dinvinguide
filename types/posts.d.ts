@@ -38,15 +38,3 @@ export interface PostsVariables {
   year?: number;
   authorName?: string;
 }
-
-// HIGHLIGHTED_POSTS query response
-export interface HighlightedPostsData {
-  posts: {
-    nodes: PostNode[];
-  };
-  page: {
-    GQL_frontPageFields: {
-      highlightedArticles: PostNode[];
-    };
-  };
-}
