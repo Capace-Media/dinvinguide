@@ -7,7 +7,7 @@ import WP from "@/lib/wp";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { Metadata, ResolvingMetadata } from "next";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
-import Newsletter from "../_components/Newsletter";
+import Newsletter from "@/components/shared/newsletter/newsletter";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdTop from "@/shared/components/ads/default/top";
 import AdMid from "@/shared/components/ads/default/mid";

@@ -3,17 +3,18 @@
 import { SubmitArrow } from "@/components/icons";
 
 import { useState } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 
 const NewsletterForm = () => {
   const [email, setEmail] = useState("");
   const [bot, setBot] = useState("");
   const [ageChecked, setAgeChecked] = useState(false);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const hiddenInput = e?.target[2]?.value;
 
-    if (hiddenInput) {
+    // Honeypot: the hidden "error" input is only filled in by bots
+    if (bot) {
       alert("Var vänlig bekräfta att du är en människa och inte en robot");
       return;
     }
@@ -28,10 +29,10 @@ const NewsletterForm = () => {
     }
 
     // Only submit the form if ageChecked is true
-    e.target.submit();
+    e.currentTarget.submit();
   };
 
-  const handleCheckboxChange = (e: any) => {
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAgeChecked(e.target.checked);
   };
   return (

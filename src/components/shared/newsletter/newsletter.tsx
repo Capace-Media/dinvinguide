@@ -4,7 +4,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import vingard from "../../../../public/Images/gronadruvklasar_i_vingard.jpeg";
 
-const NewsletterForm = dynamic(() => import("./NewletterForm"), {
+const NewsletterForm = dynamic(() => import("./newsletter-form"), {
   ssr: false,
 });
 

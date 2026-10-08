@@ -45,22 +45,3 @@ query POSTS($after: String, $before: String, $search: String, $first: Int, $last
   }
 }
 `;
-
-export const HIGHLIGHTED_POSTS = `
-query getHighlightedPosts {
-    posts(first: 8, where: {authorNotIn: [50]}) {
-      nodes {
-        ${POSTS_CONTENT}
-      }
-    }
-    page(id: "/", idType: URI) {
-      GQL_frontPageFields {
-        highlightedArticles {
-          ... on Post {
-            ${POSTS_CONTENT}
-          }
-        }
-      }
-    }
-  }
-`;

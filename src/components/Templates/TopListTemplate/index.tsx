@@ -5,7 +5,7 @@ import DlMid from "@/shared/components/ads/dl/mid";
 import DlBottom from "@/shared/components/ads/dl/bottom";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
-const Newsletter = dynamic(() => import("@/app/_components/Newsletter"), {
+const Newsletter = dynamic(() => import("@/components/shared/newsletter/newsletter"), {
   loading: () => <p>Loading...</p>,
 });
 

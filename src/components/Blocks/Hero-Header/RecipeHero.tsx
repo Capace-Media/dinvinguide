@@ -1,4 +1,4 @@
-import HandleImage from "@/app/_components/image";
+import HandleImage from "@/components/shared/handle-image";
 import handleParse from "@/lib/utils/handleParse";
 import { cn } from "@/lib/utils";
 import Link from "next/link";

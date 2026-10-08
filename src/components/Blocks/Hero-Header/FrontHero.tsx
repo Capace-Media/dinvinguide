@@ -95,6 +95,8 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
                   width={data?.featuredImage?.node?.mediaDetails?.width}
                   height={data?.featuredImage?.node?.mediaDetails?.height}
                   sizes="(max-width: 1280px) 80vw, (max-width: 1790px) 39vw, 688px"
+                  loading="eager"
+                  fetchPriority="high"
                   className="object-cover w-full h-full"
                 />
               </div>
