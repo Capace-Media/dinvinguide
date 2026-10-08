@@ -1,4 +1,4 @@
-import Newsletter from "@/app/_components/Newsletter";
+import Newsletter from "@/components/shared/newsletter/newsletter";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdTop from "@/shared/components/ads/default/top";
 import { Suspense } from "react";

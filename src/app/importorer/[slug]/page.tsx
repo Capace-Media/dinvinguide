@@ -1,4 +1,4 @@
-import Newsletter from "@/app/_components/Newsletter";
+import Newsletter from "@/components/shared/newsletter/newsletter";
 import { getSupplier } from "@/app/actions/suppliers";
 import PageHero from "@/components/Templates/HeroHeaders/PageHero";
 import handleParse from "@/lib/utils/handleParse";

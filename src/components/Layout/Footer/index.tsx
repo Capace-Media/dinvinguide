@@ -143,7 +143,7 @@ const Footer = ({}: FooterProps) => {
       </div>
 
       <div
-        className={`"border-t-2 w-full border-white flex flex-col lg:flex-row lg:justify-between items-center py-4 gap-2`}
+        className={`border-t-2 w-full border-white flex flex-col lg:flex-row lg:justify-between items-center py-4 gap-2`}
       >
         <p className={`${isDL ? "text-[#333]" : "text-white"}`}>
           {currentYear} © Copyright - DinVinguide.se

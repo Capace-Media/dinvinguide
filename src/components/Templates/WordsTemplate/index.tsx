@@ -7,7 +7,7 @@ import words from "@/json/alphabet.json";
 import { getPage } from "@/lib/queries/getPage";
 import PageHero from "../HeroHeaders/PageHero";
 
-import Newsletter from "@/app/_components/Newsletter";
+import Newsletter from "@/components/shared/newsletter/newsletter";
 import links from "@/json/guides.json";
 import Link from "next/link";
 import LetterFilter from "./LetterFilter";

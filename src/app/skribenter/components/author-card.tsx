@@ -52,7 +52,7 @@ export default function AuthorCard(props: AuthorComponentProps) {
                             </h2>
                         </div>
                         <div
-                            className={`line-clamp-6 lg:line-clamp-10 2xl:line-clamp-12 text-[14px] md:text-[15px] leading-6-5 ${props.index % 2 === 0 ? "parse-dark" : "parse-light"}`}
+                            className={`line-clamp-6 lg:line-clamp-10 2xl:line-clamp-12 text-[14px] md:text-[15px] leading-6.5 ${props.index % 2 === 0 ? "parse-dark" : "parse-light"}`}
                         >
                             {handleParse(props.author?.description)}
                         </div>

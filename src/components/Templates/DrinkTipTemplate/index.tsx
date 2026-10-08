@@ -1,4 +1,4 @@
-import Newsletter from "@/app/_components/Newsletter";
+import Newsletter from "@/components/shared/newsletter/newsletter";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import DlTop from "@/shared/components/ads/dl/top";
 import DlMid from "@/shared/components/ads/dl/mid";
@@ -83,7 +83,7 @@ const DrinkTipTemplate = async ({ searchParams, params }: Props) => {
         <div className="flex justify-center items-center">
           <div className="flex flex-col gap-16">
             <div className="flex flex-col gap-1">
-              <h1 className="normal-case text-[38px] leading-10 font-display">
+              <h1 className="normal-case text-[38px] leading-10">
                 {data.title}
               </h1>
               {data?.leverantorer_to_drink?.leverantorer?.length > 0 && (

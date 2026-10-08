@@ -1,21 +1,16 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface HandleImageProps {
   classesProp?: string;
-  srcProp?: string | any;
-  altProp?: string;
-  sizesProp?: string | any;
-  objectFitProp?: "cover" | "contain" | undefined;
-  objectPositionProp?: string | undefined;
+  srcProp?: string | null;
+  altProp?: string | null;
+  sizesProp?: string;
+  objectFitProp?: "cover" | "contain";
+  objectPositionProp?: string;
 }
-
-const SkeletonLoader = () => {
-  return (
-    <div className="aspect-square animate-pulse h-full w-full overflow-hidden bg-gray-400"></div>
-  );
-};
 
 const HandleImage = ({
   classesProp,
@@ -43,9 +38,7 @@ const HandleImage = ({
             }}
           />
           {!imageLoaded && (
-            <div className="absolute top-0 left-0 right-0 bottom-0">
-              <SkeletonLoader />
-            </div>
+            <Skeleton className="absolute inset-0 rounded-none" />
           )}
         </>
       )}

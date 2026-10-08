@@ -16,7 +16,7 @@ import AdTop from "@/shared/components/ads/default/top";
 import AdMid from "@/shared/components/ads/default/mid";
 import AdBottom from "@/shared/components/ads/default/bottom";
 import { Suspense } from "react";
-import Newsletter from "../_components/Newsletter";
+import Newsletter from "@/components/shared/newsletter/newsletter";
 import { getSuppliers } from "../actions/suppliers";
 import SuppliersList from "./_components/SuppliersList";
 

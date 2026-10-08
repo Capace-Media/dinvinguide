@@ -1,21 +1,21 @@
 import Link from "next/link";
-import druvguiden from "../../../../public/Images/gronadruvklasar_i_vingard.jpeg";
-import skribenter from "../../../../public/Images/vinproppar_samling.jpeg";
-import Separater from "../Separater";
+import druvguiden from "../../../public/Images/gronadruvklasar_i_vingard.jpeg";
+import skribenter from "../../../public/Images/vinproppar_samling.jpeg";
+import SectionSeparator from "./section-separator";
 
-import vinskolan from "../../../../public/Images/fatlager.jpeg";
-import ordlista from "../../../../public/Images/vin_glas_bilder.jpeg";
-import recept from "../../../../public/Images/vin_och_ost_bord.jpeg";
-import vinatlas from "../../../../public/Images/vintradgardsbild.jpeg";
+import vinskolan from "../../../public/Images/fatlager.jpeg";
+import ordlista from "../../../public/Images/vin_glas_bilder.jpeg";
+import recept from "../../../public/Images/vin_och_ost_bord.jpeg";
+import vinatlas from "../../../public/Images/vintradgardsbild.jpeg";
 import Image from "next/image";
-interface ExplorePagesProps {}
 
-const ExplorePages = ({}: ExplorePagesProps) => {
+
+const ExplorePages = () => {
   return (
     <>
       <section className="layout contain  bg-white">
         <h2 className="pb-4">Utforska populära sidor</h2>
-        <ul className="grid gap-4 md:grid-cols-2 md:grid-rows-[repeat(5, 240px)] md:auto-rows-[240px] md:grid-rows-[repeat(2, 240px)] lg:grid-cols-4 lg:grid-rows-[repeat(2, 260px)] lg:auto-rows-[260px] ">
+        <ul className="grid gap-4 md:grid-cols-2 md:auto-rows-[240px] lg:grid-cols-4 lg:auto-rows-[260px] ">
           <li className="relative md:row-span-2 group">
             <Link href="/skribenter" className="block h-[200px] md:h-full">
               <Image
@@ -129,7 +129,7 @@ const ExplorePages = ({}: ExplorePagesProps) => {
           </li>
         </ul>
       </section>
-      <Separater />
+      <SectionSeparator />
     </>
   );
 };
