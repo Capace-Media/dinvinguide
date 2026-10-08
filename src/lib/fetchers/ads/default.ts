@@ -1,20 +1,27 @@
-import {
-  DEFAULT_BOTTOM_AD,
-  DEFAULT_MID_AD,
-  DEFAULT_TOP_AD,
-} from "../../queries/default-ads";
-import { getAd } from "./shape";
+import "server-only";
+import { cache } from "react";
+import { DEFAULT_ADS } from "../../queries/default-ads";
+import { getAds } from "./shape";
 
-export type { Ad, AdImage } from "./shape";
+export type { Ad, AdImage, AdSlots } from "./shape";
 
-export function getTopAd() {
-  return getAd(DEFAULT_TOP_AD);
+// One request for all three slots, shared by every slot on the page.
+export const getDefaultAds = cache(() => getAds(DEFAULT_ADS));
+
+// Starts the ad request without waiting for it. Call it before other awaits so
+// the ads load in parallel with the rest of the page's data.
+export const preloadDefaultAds = () => {
+  void getDefaultAds();
+};
+
+export async function getTopAd() {
+  return (await getDefaultAds()).top;
 }
 
-export function getMidAd() {
-  return getAd(DEFAULT_MID_AD);
+export async function getMidAd() {
+  return (await getDefaultAds()).mid;
 }
 
-export function getBottomAd() {
-  return getAd(DEFAULT_BOTTOM_AD);
+export async function getBottomAd() {
+  return (await getDefaultAds()).bottom;
 }

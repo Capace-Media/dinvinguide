@@ -4,6 +4,7 @@ import ExploreRecipes from "@/components/features/home/explore-recipes";
 import LatestArticles from "@/components/features/home/latest-articles";
 import ExplorePages from "@/components/shared/explore-pages";
 import Newsletter from "@/components/shared/newsletter/newsletter";
+import { preloadDefaultAds } from "@/lib/fetchers/ads/default";
 import { getFrontPage } from "@/lib/queries/get-front-page";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdBottom from "@/shared/components/ads/default/bottom";
@@ -40,6 +41,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
+  // Start the ad request now so it runs alongside the front page fetch
+  preloadDefaultAds();
   const frontPage = await getFrontPage();
   if (!frontPage) {
     return notFound();

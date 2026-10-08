@@ -31,7 +31,7 @@ describe("toAd", () => {
     });
   });
 
-  // Each of these means "slot is unfilled", so getAd falls through to the
+  // Each of these means "slot is unfilled", so getAds falls through to the
   // fallback ad rather than rendering a broken banner.
   test("returns null when the node is missing", () => {
     expect(toAd(undefined)).toBeNull();
@@ -82,40 +82,63 @@ describe("toAd", () => {
   });
 });
 
-// getAd picks the slot ad, then the fallback, then nothing. Mocking WP() lets
-// us drive that chain without a CMS — the smoke tests cover the real thing.
-describe("getAd fallback chain", () => {
+// getAds picks each slot's ad, then the shared fallback, then nothing. Mocking
+// WP() lets us drive that chain without a CMS — the smoke tests cover the
+// real thing.
+describe("getAds fallback chain", () => {
   // bun test shares one global across files by default, so an un-restored
   // module mock would leak into every other test file in the run.
   afterAll(() => mock.restore());
 
-  const wrap = (slot: unknown, fallback: unknown) => ({
-    data: { options: { settings: { slot, fallback } } },
+  const fallback = { ...node, id: "fallback-1", title: "Fallback" };
+  const filled = (id: string) => [{ banner: [{ ...node, id }] }];
+  const empty = [{ banner: [] }];
+
+  const wrap = (settings: Record<string, unknown>) => ({
+    data: { options: { settings } },
   });
 
-  async function getAdWith(response: unknown) {
+  async function getAdsWith(response: unknown) {
     mock.module("../../wp", () => ({ default: async () => response }));
-    const { getAd } = await import("./shape");
-    return getAd("query");
+    const { getAds } = await import("./shape");
+    return getAds("query");
   }
 
-  test("prefers the slot ad when it is filled", async () => {
-    const fallback = { ...node, id: "fallback-1", title: "Fallback" };
-    const ad = await getAdWith(wrap([{ banner: [node] }], [fallback]));
-    expect(ad?.id).toBe("ad-1");
+  test("fills each slot from its own ad", async () => {
+    const ads = await getAdsWith(
+      wrap({
+        top: filled("top-1"),
+        mid: filled("mid-1"),
+        bottom: filled("bottom-1"),
+        fallback: [fallback],
+      })
+    );
+    expect(ads.top?.id).toBe("top-1");
+    expect(ads.mid?.id).toBe("mid-1");
+    expect(ads.bottom?.id).toBe("bottom-1");
   });
 
-  test("falls through to the fallback when the slot is empty", async () => {
-    const fallback = { ...node, id: "fallback-1", title: "Fallback" };
-    const ad = await getAdWith(wrap([{ banner: [] }], [fallback]));
-    expect(ad?.id).toBe("fallback-1");
+  test("falls through to the fallback only for empty slots", async () => {
+    const ads = await getAdsWith(
+      wrap({ top: filled("top-1"), mid: empty, bottom: null, fallback: [fallback] })
+    );
+    expect(ads.top?.id).toBe("top-1");
+    expect(ads.mid?.id).toBe("fallback-1");
+    expect(ads.bottom?.id).toBe("fallback-1");
   });
 
-  test("returns null when both are empty", async () => {
-    expect(await getAdWith(wrap([], []))).toBeNull();
+  test("returns null for slots when both are empty", async () => {
+    const ads = await getAdsWith(
+      wrap({ top: empty, mid: [], bottom: empty, fallback: [] })
+    );
+    expect(ads).toEqual({ top: null, mid: null, bottom: null });
   });
 
-  test("returns null when the CMS is unreachable", async () => {
-    expect(await getAdWith(undefined)).toBeNull();
+  test("returns null for every slot when the CMS is unreachable", async () => {
+    expect(await getAdsWith(undefined)).toEqual({
+      top: null,
+      mid: null,
+      bottom: null,
+    });
   });
 });
