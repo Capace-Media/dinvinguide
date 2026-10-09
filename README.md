@@ -4,6 +4,10 @@ DinVinguide is a Swedish editorial site for wine, food, and drink. It brings tog
 
 The site is a modern frontend for content managed in WordPress. It fetches editorial data through WPGraphQL and renders it with Next.js, with support for previews and targeted cache revalidation when content changes.
 
+## Project history
+
+The current design and application structure were introduced in a major V3 rebuild on 18 September 2023. That release established the shared header, footer, mobile navigation, icons, global styling, search route, and WordPress integration that form the foundation of the site today.
+
 ## Technology
 
 - [Next.js 16](https://nextjs.org/) with the App Router and Turbopack
