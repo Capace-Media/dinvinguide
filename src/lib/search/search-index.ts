@@ -53,6 +53,14 @@ export async function createSearchIndex(
     db,
     records.map(({ id, title, excerpt, type }) => ({ id, title, excerpt, type }))
   );
+
+  // Orama memoizes every token it normalizes, including search terms, in a Map
+  // that lives as long as the index. Unique queries would grow it without
+  // limit, so searches tokenize uncached; normalizing a few words is cheap.
+  const { tokenizer } = db;
+  const tokenize = tokenizer.tokenize.bind(tokenizer);
+  tokenizer.tokenize = (raw, language, prop) => tokenize(raw, language, prop, false);
+
   return { db, records: new Map(records.map((record) => [record.id, record])) };
 }
 
