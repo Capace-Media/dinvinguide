@@ -9,7 +9,6 @@ import {
   PostsQuery,
   PreviewPostQuery,
   SchoolPostsQuery,
-  SearchQuery,
 } from "./queries";
 
 // Cached per request so `generateMetadata` and the page share one fetch.
@@ -46,8 +45,4 @@ export async function getSchoolPosts(uri: string) {
   const page = data?.page;
   if (!page) return null;
   return page.acf_overviewPage?.sidor?.filter(isPresent) ?? [];
-}
-
-export async function getSearchResults(search: string) {
-  return wpQuery(SearchQuery, { search });
 }
