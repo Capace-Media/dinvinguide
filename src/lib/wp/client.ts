@@ -4,12 +4,15 @@ import type { TypedDocumentString } from "./gql/graphql";
 interface WpQueryOptions {
   // Cache tags for `revalidateTag`. Untagged queries share `collections`.
   readonly tags?: readonly string[];
+  // Seconds before a cached response is refreshed. `false` caches until
+  // a tag is revalidated.
+  readonly revalidate?: number | false;
   // Draft previews must always hit WordPress, so they skip the data cache.
   readonly draft?: boolean;
 }
 
-// Queries without variables take no variables argument; queries with
-// variables require them, typed from the GraphQL document.
+const DEFAULT_REVALIDATE_SECONDS = 60 * 60 * 24; // 1 day
+
 type WpQueryArgs<TVariables> = TVariables extends Record<string, never>
   ? [variables?: undefined, options?: WpQueryOptions]
   : [variables: TVariables, options?: WpQueryOptions];
@@ -25,9 +28,6 @@ function authHeader() {
   return `Basic ${btoa(`${user}:${password}`)}`;
 }
 
-// The only way the app talks to WordPress. Returns `null` when the request
-// fails, so callers render their empty state instead of crashing the page.
-// WPGraphQL can return partial data next to errors; that data is kept.
 export async function wpQuery<TResult, TVariables>(
   query: TypedDocumentString<TResult, TVariables>,
   ...[variables, options]: WpQueryArgs<TVariables>
@@ -42,7 +42,10 @@ export async function wpQuery<TResult, TVariables>(
     ? { cache: "no-store" }
     : {
         cache: "force-cache",
-        next: { tags: [...(options?.tags ?? ["collections"])] },
+        next: {
+          revalidate: options?.revalidate ?? DEFAULT_REVALIDATE_SECONDS,
+          tags: [...(options?.tags ?? ["collections"])],
+        },
       };
 
   try {
