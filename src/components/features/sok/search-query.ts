@@ -7,10 +7,19 @@ export const searchQueryKey = (q: string | null, type: SearchType | undefined) =
 
 export const SEARCH_PAGE_SIZE = 20;
 
+// Plural for the type filter, singular for a single result.
 export const SEARCH_TYPE_LABELS: Readonly<Record<SearchType, string>> = {
   post: "Artiklar",
   recipe: "Recept",
   drinktip: "Dryckestips",
   drink: "Drycker",
   grape: "Druvor",
+};
+
+export const SEARCH_TYPE_ITEM_LABELS: Readonly<Record<SearchType, string>> = {
+  post: "Artikel",
+  recipe: "Recept",
+  drinktip: "Dryckestips",
+  drink: "Dryck",
+  grape: "Druva",
 };

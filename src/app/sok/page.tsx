@@ -38,14 +38,18 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
   return (
     <div className="layout bg-white">
-      <div className="pt-20 pb-7">
+      <div className="pt-12 pb-8 lg:pt-16">
         <h2>Sök på DinVinguide.se</h2>
-        <p>Sök bland recept, dryckestips, artiklar, drycker och druvor</p>
+        <p className="mt-2 text-brand-gray">
+          Sök bland recept, dryckestips, artiklar, drycker och druvor
+        </p>
       </div>
 
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <SiteSearch initialSearch={params.q ?? ""} initialType={params.type} />
-      </HydrationBoundary>
+      <div className="pb-16">
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <SiteSearch initialSearch={params.q ?? ""} initialType={params.type} />
+        </HydrationBoundary>
+      </div>
 
       <Newsletter />
     </div>

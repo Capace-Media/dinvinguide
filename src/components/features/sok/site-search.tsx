@@ -7,21 +7,17 @@ import type { SearchResponse } from "@/app/api/search/route";
 import { Button } from "@/components/ui/button";
 import { SearchInput } from "@/components/ui/search-input";
 import { Spinner } from "@/components/ui/spinner";
+import { SearchX } from "lucide-react";
 import { useDebounceValue } from "@/hooks/useDebounce";
-import {
-  normalizeQuery,
-  SEARCH_TYPES,
-  type SearchType,
-} from "@/lib/search/search-types";
+import { normalizeQuery, type SearchType } from "@/lib/search/search-types";
 import {
   SearchResultItem,
   SearchResultItemSkeleton,
 } from "./search-result-item";
-import {
-  SEARCH_PAGE_SIZE,
-  SEARCH_TYPE_LABELS,
-  searchQueryKey,
-} from "./search-query";
+import { SEARCH_PAGE_SIZE, searchQueryKey } from "./search-query";
+import { SearchTypeFilter } from "./search-type-filter";
+
+const formatCount = (count: number) => count.toLocaleString("sv-SE");
 
 async function fetchSearchPage(
   q: string,
@@ -71,7 +67,6 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
     isPending,
     isFetching,
     isFetchingNextPage,
-    isPlaceholderData,
     hasNextPage,
     fetchNextPage,
   } = useInfiniteQuery({
@@ -89,62 +84,62 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
   const hits = data?.pages.flatMap((page) => page.hits) ?? [];
   const isSearching = isTyping || (isFetching && !isFetchingNextPage);
   const showSkeleton = q !== null && isPending;
+  const allCount = firstPage
+    ? Object.values(firstPage.countsByType).reduce((sum, count) => sum + count, 0)
+    : 0;
 
   return (
-    <section className="space-y-6">
-      <SearchInput
-        placeholder="Sök recept, dryckestips, artiklar, drycker och druvor"
-        value={search}
-        onChange={setSearch}
-        total={q && firstPage && !isPlaceholderData ? firstPage.total : undefined}
-        className="sm:max-w-xl"
-      />
+    <section>
+      <div className="max-w-3xl space-y-3">
+        <SearchInput
+          placeholder="Sök recept, dryckestips, artiklar, drycker och druvor"
+          value={search}
+          onChange={setSearch}
+          className="sm:max-w-none"
+        />
 
-      {q && firstPage && (
-        <div className="flex flex-wrap gap-2" aria-label="Filtrera på innehållstyp">
-          <Button
-            size="sm"
-            variant={type ? "outline" : "default"}
-            aria-pressed={!type}
-            onClick={() => setType(undefined)}
-          >
-            Alla
-          </Button>
-          {SEARCH_TYPES.map((searchType) => (
-            <Button
-              key={searchType}
-              size="sm"
-              variant={type === searchType ? "default" : "outline"}
-              aria-pressed={type === searchType}
-              disabled={firstPage.countsByType[searchType] === 0}
-              onClick={() => setType(searchType)}
-            >
-              {SEARCH_TYPE_LABELS[searchType]} ({firstPage.countsByType[searchType]})
-            </Button>
-          ))}
-        </div>
-      )}
+        {q && firstPage && allCount > 0 && (
+          <SearchTypeFilter
+            counts={firstPage.countsByType}
+            total={allCount}
+            value={type}
+            onChange={setType}
+          />
+        )}
+      </div>
 
-      <p aria-live="polite" className="text-sm text-muted-foreground">
-        {!q ? null : isSearching ? (
+      <p aria-live="polite" className="mt-6 mb-2 min-h-5 text-sm text-brand-gray">
+        {!q ? (
+          "Skriv minst två tecken för att söka."
+        ) : isSearching ? (
           "Söker..."
         ) : error ? (
           error.message
-        ) : firstPage?.total === 0 ? (
+        ) : firstPage && firstPage.total > 0 ? (
           <>
-            Inga träffar för <strong>&quot;{q}&quot;</strong>. Prova ett annat sökord.
-          </>
-        ) : firstPage ? (
-          <>
-            {firstPage.total} {firstPage.total === 1 ? "träff" : "träffar"} för{" "}
-            <strong>&quot;{q}&quot;</strong>
+            {formatCount(firstPage.total)} {firstPage.total === 1 ? "träff" : "träffar"} för{" "}
+            <strong className="text-brand-dark">&quot;{q}&quot;</strong>
           </>
         ) : null}
       </p>
 
+      {q && firstPage?.total === 0 && !isSearching && (
+        <div className="flex max-w-3xl flex-col items-center gap-3 rounded-lg bg-brand-beige px-6 py-12 text-center">
+          <SearchX className="size-10 text-brand-secondary" aria-hidden />
+          <p className="text-lg text-brand-dark">
+            Inga träffar för <strong>&quot;{q}&quot;</strong>
+          </p>
+          <p className="text-sm text-brand-gray">
+            Kontrollera stavningen eller prova ett bredare sökord, till exempel en druva eller ett land.
+          </p>
+        </div>
+      )}
+
       <ul
         aria-busy={isSearching}
-        className={`grid gap-2 md:grid-cols-2 transition-opacity duration-200 ${isSearching ? "opacity-50" : "opacity-100"}`}
+        // Negative margin lines the rows' content up with the input; the padding
+        // is only there for the hover background.
+        className={`-mx-3 grid gap-x-8 lg:grid-cols-2 transition-opacity duration-200 ${isSearching ? "opacity-50" : "opacity-100"}`}
       >
         {showSkeleton &&
           Array.from({ length: 6 }, (_, i) => <SearchResultItemSkeleton key={i} />)}
@@ -152,13 +147,16 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
           <SearchResultItem key={hit.id} hit={hit} />
         ))}
         {isFetchingNextPage &&
-          Array.from({ length: 4 }, (_, i) => (
+          Array.from({ length: 3 }, (_, i) => (
             <SearchResultItemSkeleton key={`next-${i}`} />
           ))}
       </ul>
 
-      {hasNextPage && (
-        <div className="flex justify-center">
+      {hasNextPage && firstPage && (
+        <div className="flex flex-col items-center gap-2 pt-8">
+          <p className="text-sm text-brand-gray">
+            Visar {formatCount(hits.length)} av {formatCount(firstPage.total)}
+          </p>
           <Button
             variant="outline"
             onClick={() => fetchNextPage()}
