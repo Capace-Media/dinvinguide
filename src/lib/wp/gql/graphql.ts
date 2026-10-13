@@ -444,13 +444,6 @@ export type SchoolPostsQuery = { page: { acf_overviewPage: { sidor: Array<
         | { __typename: 'Post', title: string | null, id: string, uri: string | null, slug: string | null, modifiedGmt: string | null, acf_posts: { ingress: string | null } | null, author: { node: { name: string | null } } | null, featuredImage: { node: { altText: string | null, mediaItemUrl: string | null, mediaDetails: { width: number | null, height: number | null } | null } } | null }
        | null> | null } | null } | null };
 
-export type SearchQueryVariables = Exact<{
-  search?: string | null | undefined;
-}>;
-
-
-export type SearchQuery = { drinktips: { nodes: Array<{ title: string | null, slug: string | null, featuredImage: { node: { altText: string | null, mediaItemUrl: string | null, mediaDetails: { width: number | null, height: number | null } | null } } | null }> } | null, recipes: { nodes: Array<{ title: string | null, slug: string | null, featuredImage: { node: { altText: string | null, mediaItemUrl: string | null, mediaDetails: { width: number | null, height: number | null } | null } } | null }> } | null, posts: { nodes: Array<{ title: string | null, slug: string | null, author: { node: { slug: string | null } } | null, featuredImage: { node: { altText: string | null, mediaItemUrl: string | null, mediaDetails: { width: number | null, height: number | null } | null } } | null }> } | null, drinks: { nodes: Array<{ title: string | null, slug: string | null, featuredImage: { node: { altText: string | null, mediaItemUrl: string | null, mediaDetails: { width: number | null, height: number | null } | null } } | null }> } | null, grapes: { nodes: Array<{ title: string | null, slug: string | null, featuredImage: { node: { altText: string | null, mediaItemUrl: string | null, mediaDetails: { width: number | null, height: number | null } | null } } | null }> } | null };
-
 export type RecipeFieldsFragment = { title: string | null, featuredImage: { node: { title: string | null, altText: string | null, mediaItemUrl: string | null, mediaDetails: { width: number | null, height: number | null } | null } } | null, acf_recipe: { desc: string | null, processen: string | null, recipeAverageRating: number | null, recipeRatingCount: number | null, ingredienserOvrigt: string | null, antalPortioner: string | null, receptdelar: Array<{ rubrik: string | null, ingredienser: Array<{ antal: number | null, namn: string | null, enhet: { name: string | null } | null } | null> | null } | null> | null, beskrivningStegForSteg: Array<{ instruktion: string | null } | null> | null, skrivetAv: Array<{ slug: string | null, name: string | null, id: string } | null> | null, recepieCategories: Array<{ id: string, slug: string | null, uri: string | null, name: string | null } | null> | null, kok: Array<{ name: string | null, slug: string | null, id: string } | null> | null, passandeDrycker: Array<{ id: string, slug: string | null, title: string | null, acf_drinks: { dryckestyper: { name: string | null } | null, forpackningar: { name: string | null } | null } | null, featuredImage: { node: { altText: string | null, mediaItemUrl: string | null, mediaDetails: { width: number | null, height: number | null } | null } } | null } | null> | null, time: { cookingTime: number | null, prepTime: number | null } | null, bilder: Array<{ kortBeskrivning: string | null, img: { id: string, altText: string | null, mediaItemUrl: string | null, mediaDetails: { width: number | null, height: number | null } | null } | null } | null> | null, nutritions: { energKcal: string | null, fett: string | null, fieldGroupName: string | null, kolhydrater: string | null, protein: string | null } | null } | null };
 
 export type RecipeQueryVariables = Exact<{
@@ -557,6 +550,46 @@ export type FeaturedRecipesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type FeaturedRecipesQuery = { page: { featured_recipes: { rubrik: string | null, utvaldaRecept: Array<{ __typename: 'Recipe', id: string, title: string | null, slug: string | null, featuredImage: { node: { altText: string | null, mediaItemUrl: string | null } } | null, acf_recipe: { skrivetAv: Array<{ name: string | null } | null> | null } | null } | null> | null } | null } | null };
+
+export type PostSearchSourceQueryVariables = Exact<{
+  first: number;
+  after?: string | null | undefined;
+}>;
+
+
+export type PostSearchSourceQuery = { posts: { pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ title: string | null, slug: string | null, date: string | null, modifiedGmt: string | null, excerpt: string | null, author: { node: { slug: string | null } } | null, featuredImage: { node: { mediaItemUrl: string | null, altText: string | null } } | null }> } | null };
+
+export type RecipeSearchSourceQueryVariables = Exact<{
+  first: number;
+  after?: string | null | undefined;
+}>;
+
+
+export type RecipeSearchSourceQuery = { recipes: { pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ title: string | null, slug: string | null, date: string | null, modifiedGmt: string | null, acf_recipe: { desc: string | null } | null, featuredImage: { node: { mediaItemUrl: string | null, altText: string | null } } | null }> } | null };
+
+export type DrinktipSearchSourceQueryVariables = Exact<{
+  first: number;
+  after?: string | null | undefined;
+}>;
+
+
+export type DrinktipSearchSourceQuery = { drinktips: { pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ title: string | null, slug: string | null, date: string | null, modifiedGmt: string | null, acf_dryckestips: { beskrivning: string | null } | null, featuredImage: { node: { mediaItemUrl: string | null, altText: string | null } } | null }> } | null };
+
+export type DrinkSearchSourceQueryVariables = Exact<{
+  first: number;
+  after?: string | null | undefined;
+}>;
+
+
+export type DrinkSearchSourceQuery = { drinks: { pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ title: string | null, slug: string | null, date: string | null, modifiedGmt: string | null, acf_drinks: { beskrivning: string | null } | null, featuredImage: { node: { mediaItemUrl: string | null, altText: string | null } } | null }> } | null };
+
+export type GrapeSearchSourceQueryVariables = Exact<{
+  first: number;
+  after?: string | null | undefined;
+}>;
+
+
+export type GrapeSearchSourceQuery = { grapes: { pageInfo: { hasNextPage: boolean, endCursor: string | null }, nodes: Array<{ title: string | null, slug: string | null, date: string | null, modifiedGmt: string | null, acf_grape: { kortBeskrivning: string | null } | null, featuredImage: { node: { mediaItemUrl: string | null, altText: string | null } } | null }> } | null };
 
 export type GrapeSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3761,77 +3794,6 @@ fragment SchoolPostFields on ContentNode {
   slug
   modifiedGmt
 }`) as unknown as TypedDocumentString<SchoolPostsQuery, SchoolPostsQueryVariables>;
-export const SearchDocument = new TypedDocumentString(`
-    query Search($search: String) {
-  drinktips(where: { search: $search }) {
-    nodes {
-      title
-      slug
-      featuredImage {
-        node {
-          ...ImageFields
-        }
-      }
-    }
-  }
-  recipes(where: { search: $search }) {
-    nodes {
-      title
-      slug
-      featuredImage {
-        node {
-          ...ImageFields
-        }
-      }
-    }
-  }
-  posts(where: { search: $search }) {
-    nodes {
-      title
-      slug
-      author {
-        node {
-          slug
-        }
-      }
-      featuredImage {
-        node {
-          ...ImageFields
-        }
-      }
-    }
-  }
-  drinks(where: { search: $search }) {
-    nodes {
-      title
-      slug
-      featuredImage {
-        node {
-          ...ImageFields
-        }
-      }
-    }
-  }
-  grapes(where: { search: $search }) {
-    nodes {
-      title
-      slug
-      featuredImage {
-        node {
-          ...ImageFields
-        }
-      }
-    }
-  }
-}
-    fragment ImageFields on MediaItem {
-  altText
-  mediaItemUrl
-  mediaDetails {
-    width
-    height
-  }
-}`) as unknown as TypedDocumentString<SearchQuery, SearchQueryVariables>;
 export const RecipeDocument = new TypedDocumentString(`
     query Recipe($id: ID!) {
   recipe(id: $id, idType: URI) {
@@ -4404,6 +4366,134 @@ export const FeaturedRecipesDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<FeaturedRecipesQuery, FeaturedRecipesQueryVariables>;
+export const PostSearchSourceDocument = new TypedDocumentString(`
+    query PostSearchSource($first: Int!, $after: String) {
+  posts(first: $first, after: $after) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      title
+      slug
+      date
+      modifiedGmt
+      excerpt
+      author {
+        node {
+          slug
+        }
+      }
+      featuredImage {
+        node {
+          mediaItemUrl
+          altText
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<PostSearchSourceQuery, PostSearchSourceQueryVariables>;
+export const RecipeSearchSourceDocument = new TypedDocumentString(`
+    query RecipeSearchSource($first: Int!, $after: String) {
+  recipes(first: $first, after: $after) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      title
+      slug
+      date
+      modifiedGmt
+      acf_recipe {
+        desc
+      }
+      featuredImage {
+        node {
+          mediaItemUrl
+          altText
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<RecipeSearchSourceQuery, RecipeSearchSourceQueryVariables>;
+export const DrinktipSearchSourceDocument = new TypedDocumentString(`
+    query DrinktipSearchSource($first: Int!, $after: String) {
+  drinktips(first: $first, after: $after) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      title
+      slug
+      date
+      modifiedGmt
+      acf_dryckestips {
+        beskrivning
+      }
+      featuredImage {
+        node {
+          mediaItemUrl
+          altText
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<DrinktipSearchSourceQuery, DrinktipSearchSourceQueryVariables>;
+export const DrinkSearchSourceDocument = new TypedDocumentString(`
+    query DrinkSearchSource($first: Int!, $after: String) {
+  drinks(first: $first, after: $after) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      title
+      slug
+      date
+      modifiedGmt
+      acf_drinks {
+        beskrivning
+      }
+      featuredImage {
+        node {
+          mediaItemUrl
+          altText
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<DrinkSearchSourceQuery, DrinkSearchSourceQueryVariables>;
+export const GrapeSearchSourceDocument = new TypedDocumentString(`
+    query GrapeSearchSource($first: Int!, $after: String) {
+  grapes(first: $first, after: $after) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      title
+      slug
+      date
+      modifiedGmt
+      acf_grape {
+        kortBeskrivning
+      }
+      featuredImage {
+        node {
+          mediaItemUrl
+          altText
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GrapeSearchSourceQuery, GrapeSearchSourceQueryVariables>;
 export const GrapeSitemapDocument = new TypedDocumentString(`
     query GrapeSitemap {
   grapes(first: 1000) {
