@@ -14,6 +14,12 @@ export async function GET(request: NextRequest) {
     });
   }
 
+  // Lists, the front page and sitemaps are cached under `collections`, so any
+  // content update must refresh them too.
+  if (path) {
+    revalidateTag("collections", "max");
+  }
+
   if (path === "/front-page") {
     revalidatePath("/");
     return Response.json({ revalidated: true, now: Date.now(), status: 200 });

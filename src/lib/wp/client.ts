@@ -2,13 +2,16 @@ import "server-only";
 import type { TypedDocumentString } from "./gql/graphql";
 
 interface WpQueryOptions {
+  // Cache tags for `revalidateTag`. Untagged queries share `collections`.
   readonly tags?: readonly string[];
+  // Seconds before a cached response is refreshed. `false` caches until
+  // a tag is revalidated.
   readonly revalidate?: number | false;
+  // Draft previews must always hit WordPress, so they skip the data cache.
   readonly draft?: boolean;
 }
-const DEFAULT_REVALIDATE_SECONDS = 3600;
 
-
+const DEFAULT_REVALIDATE_SECONDS = 60 * 60 * 24; // 1 day
 
 type WpQueryArgs<TVariables> = TVariables extends Record<string, never>
   ? [variables?: undefined, options?: WpQueryOptions]
