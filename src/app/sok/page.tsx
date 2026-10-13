@@ -29,11 +29,14 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
   const queryClient = getQueryClient();
   if (params.q) {
-    await queryClient.prefetchInfiniteQuery({
-      queryKey: searchQueryKey(params.q, params.type),
-      queryFn: () => searchSite({ ...params, page: 1 }),
-      initialPageParam: 1,
-    });
+    // A failed prefetch still renders the page; the client query retries.
+    await queryClient
+      .infiniteQuery({
+        queryKey: searchQueryKey(params.q, params.type),
+        queryFn: () => searchSite({ ...params, page: 1 }),
+        initialPageParam: 1,
+      })
+      .catch((error: unknown) => console.error("Search prefetch failed:", error));
   }
 
   return (
