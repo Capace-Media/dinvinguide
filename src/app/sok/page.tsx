@@ -8,7 +8,11 @@ import {
 import Newsletter from "@/components/shared/newsletter/newsletter";
 import { getQueryClient } from "@/lib/get-query-client";
 import { parseSearchParams } from "@/lib/search/search-params";
-import { searchSite } from "@/lib/search/search-service";
+import {
+  isSearchIndexReady,
+  searchSite,
+  warmSearchIndex,
+} from "@/lib/search/search-service";
 import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";
 
 // Result pages are endless variations of the same content; keep them out of
@@ -28,7 +32,11 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const params = parseSearchParams({ q: search, type, limit: String(SEARCH_PAGE_SIZE) });
 
   const queryClient = getQueryClient();
-  if (params.q) {
+  if (params.q && !isSearchIndexReady()) {
+    // Render now and let the client fetch the results (showing its skeleton)
+    // instead of holding the whole page until a cold index is built.
+    warmSearchIndex();
+  } else if (params.q) {
     // A failed prefetch still renders the page; the client query retries.
     await queryClient
       .infiniteQuery({
