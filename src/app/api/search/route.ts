@@ -2,6 +2,10 @@ import { parseSearchParams } from "@/lib/search/search-params";
 import { searchSite } from "@/lib/search/search-service";
 import type { SearchResults } from "@/lib/search/search-index";
 
+// The first search on an instance may build the index from WordPress (~35 s
+// when the fetch cache is empty); let it finish rather than time out.
+export const maxDuration = 60;
+
 export type SearchResponse = SearchResults;
 
 export async function GET(request: Request) {
