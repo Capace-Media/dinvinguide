@@ -39,7 +39,7 @@ export function SearchResultItem({ hit }: { hit: SearchRecord }) {
 
 export function SearchResultItemSkeleton() {
   return (
-    <li className="flex gap-4 border-b border-brand-light p-3">
+    <li aria-hidden="true" className="flex gap-4 border-b border-brand-light p-3">
       <Skeleton className="size-20 shrink-0" />
       <div className="flex-1 space-y-2 pt-1">
         <Skeleton className="h-3 w-32" />
