@@ -55,6 +55,20 @@ async function getSearchIndex(): Promise<SearchIndex> {
   return stale.index;
 }
 
+// False until this instance has built its first index. A cold build reads every
+// record from WordPress (~35 s on an empty fetch cache), so pages check this
+// rather than make a visitor wait for it.
+export function isSearchIndexReady(): boolean {
+  return state !== null;
+}
+
+// Starts the index build without waiting for it. Later searches join it.
+export function warmSearchIndex(): void {
+  getSearchIndex().catch((error: unknown) => {
+    console.error("Search index warm-up failed:", error);
+  });
+}
+
 const EMPTY_COUNTS = Object.fromEntries(
   SEARCH_TYPES.map((type) => [type, 0])
 ) as SearchResults["countsByType"];

@@ -26,6 +26,19 @@ jobs:
 
       - run: bun install --frozen-lockfile
 
+      # Build the search index and fill the data cache with every search record
+      # page, so no visitor waits for a cold build (~35 s). No --fail: the smoke
+      # tests report a broken search; this line just logs how long it took.
+      - name: Warm search index
+        run: >-
+          curl -sS -o /dev/null -m 120
+          -H "x-vercel-protection-bypass: $VERCEL_AUTOMATION_BYPASS_SECRET"
+          -w "Search warm-up: %{http_code} in %{time_total}s\n"
+          "$BASE_URL/api/search?q=vin"
+        env:
+          BASE_URL: ${{ github.event.deployment_status.environment_url }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+
       - run: bun run test:smoke
         env:
           BASE_URL: ${{ github.event.deployment_status.environment_url }}
