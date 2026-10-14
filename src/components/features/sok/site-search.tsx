@@ -1,6 +1,6 @@
 "use client";
 
-import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { SearchResponse } from "@/app/api/search/route";
@@ -77,7 +77,10 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
     getNextPageParam: (lastPage) =>
       lastPage.page < lastPage.pageCount ? lastPage.page + 1 : undefined,
     enabled: q !== null,
-    placeholderData: keepPreviousData,
+    // Counts for a different query must not appear under the new search term.
+    // Reuse them when only the type changes, since facets ignore the active type.
+    placeholderData: (previousData, previousQuery) =>
+      previousQuery?.queryKey[1] === q ? previousData : undefined,
   });
 
   const firstPage = data?.pages[0];
@@ -90,25 +93,36 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
 
   return (
     <section>
-      <div className="max-w-3xl space-y-3">
+      <div className="max-w-3xl">
+        <label htmlFor="site-search-input" className="block text-sm font-medium text-brand-dark">
+          Sök på DinVinguide
+        </label>
         <SearchInput
-          placeholder="Sök recept, dryckestips, artiklar, drycker och druvor"
+          id="site-search-input"
+          type="search"
+          clearable
+          placeholder="T.ex. Rioja eller pasta"
           value={search}
-          onChange={setSearch}
-          className="sm:max-w-none"
+          onChange={(value) => {
+            setSearch(value);
+            if (!value.trim()) setType(undefined);
+          }}
+          className="mt-2 h-11 sm:max-w-none"
         />
 
         {q && firstPage && allCount > 0 && (
-          <SearchTypeFilter
-            counts={firstPage.countsByType}
-            total={allCount}
-            value={type}
-            onChange={setType}
-          />
+          <div className="mt-4">
+            <SearchTypeFilter
+              counts={firstPage.countsByType}
+              total={allCount}
+              value={type}
+              onChange={setType}
+            />
+          </div>
         )}
       </div>
 
-      <p aria-live="polite" className="mt-6 mb-2 min-h-5 text-sm text-brand-gray">
+      <p role="status" aria-atomic="true" className="mt-6 mb-2 min-h-5 text-sm text-brand-gray">
         {!q ? (
           "Skriv minst två tecken för att söka."
         ) : isSearching ? (
@@ -120,6 +134,8 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
             {formatCount(firstPage.total)} {firstPage.total === 1 ? "träff" : "träffar"} för{" "}
             <strong className="text-brand-dark">&quot;{q}&quot;</strong>
           </>
+        ) : firstPage?.total === 0 ? (
+          `Inga träffar för "${q}".`
         ) : null}
       </p>
 
