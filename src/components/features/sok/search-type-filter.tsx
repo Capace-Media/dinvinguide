@@ -24,25 +24,27 @@ function FilterChip({ label, count, isActive, onClick }: FilterChipProps) {
       aria-pressed={isActive}
       onClick={onClick}
       className={cn(
-        "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-4 py-1.5 text-sm transition-colors",
+        "inline-flex min-h-11 items-center gap-1.5 rounded-full border px-4 py-1.5 text-sm transition-colors outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
         isActive
           ? "border-brand-primary bg-brand-primary text-white"
           : "border-brand-light bg-white text-brand-dark hover:border-brand-primary"
       )}
     >
       {label}
-      <span className={isActive ? "text-white/70" : "text-brand-gray"}>{count}</span>
+      <span className={isActive ? "text-white/90" : "text-brand-gray"}>{count}</span>
     </button>
   );
 }
 
 // Types without hits are hidden rather than disabled, so the row stays short.
 export function SearchTypeFilter({ counts, total, value, onChange }: SearchTypeFilterProps) {
+  const visibleTypes = SEARCH_TYPES.filter((type) => counts[type] > 0 || type === value);
+
   return (
     <div
       role="group"
       aria-label="Filtrera på innehållstyp"
-      className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1"
+      className="flex flex-wrap gap-2"
     >
       <FilterChip
         label="Alla"
@@ -50,7 +52,7 @@ export function SearchTypeFilter({ counts, total, value, onChange }: SearchTypeF
         isActive={!value}
         onClick={() => onChange(undefined)}
       />
-      {SEARCH_TYPES.filter((type) => counts[type] > 0 || type === value).map((type) => (
+      {visibleTypes.map((type) => (
         <FilterChip
           key={type}
           label={SEARCH_TYPE_LABELS[type]}
