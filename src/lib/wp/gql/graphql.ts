@@ -4368,7 +4368,11 @@ export const FeaturedRecipesDocument = new TypedDocumentString(`
     `) as unknown as TypedDocumentString<FeaturedRecipesQuery, FeaturedRecipesQueryVariables>;
 export const PostSearchSourceDocument = new TypedDocumentString(`
     query PostSearchSource($first: Int!, $after: String) {
-  posts(first: $first, after: $after) {
+  posts(
+    first: $first
+    after: $after
+    where: { orderby: [{ field: DATE, order: ASC }] }
+  ) {
     pageInfo {
       hasNextPage
       endCursor
@@ -4396,7 +4400,11 @@ export const PostSearchSourceDocument = new TypedDocumentString(`
     `) as unknown as TypedDocumentString<PostSearchSourceQuery, PostSearchSourceQueryVariables>;
 export const RecipeSearchSourceDocument = new TypedDocumentString(`
     query RecipeSearchSource($first: Int!, $after: String) {
-  recipes(first: $first, after: $after) {
+  recipes(
+    first: $first
+    after: $after
+    where: { orderby: [{ field: DATE, order: ASC }] }
+  ) {
     pageInfo {
       hasNextPage
       endCursor
@@ -4421,7 +4429,11 @@ export const RecipeSearchSourceDocument = new TypedDocumentString(`
     `) as unknown as TypedDocumentString<RecipeSearchSourceQuery, RecipeSearchSourceQueryVariables>;
 export const DrinktipSearchSourceDocument = new TypedDocumentString(`
     query DrinktipSearchSource($first: Int!, $after: String) {
-  drinktips(first: $first, after: $after) {
+  drinktips(
+    first: $first
+    after: $after
+    where: { orderby: [{ field: DATE, order: ASC }] }
+  ) {
     pageInfo {
       hasNextPage
       endCursor
@@ -4446,7 +4458,11 @@ export const DrinktipSearchSourceDocument = new TypedDocumentString(`
     `) as unknown as TypedDocumentString<DrinktipSearchSourceQuery, DrinktipSearchSourceQueryVariables>;
 export const DrinkSearchSourceDocument = new TypedDocumentString(`
     query DrinkSearchSource($first: Int!, $after: String) {
-  drinks(first: $first, after: $after) {
+  drinks(
+    first: $first
+    after: $after
+    where: { orderby: [{ field: DATE, order: ASC }] }
+  ) {
     pageInfo {
       hasNextPage
       endCursor
@@ -4471,7 +4487,11 @@ export const DrinkSearchSourceDocument = new TypedDocumentString(`
     `) as unknown as TypedDocumentString<DrinkSearchSourceQuery, DrinkSearchSourceQueryVariables>;
 export const GrapeSearchSourceDocument = new TypedDocumentString(`
     query GrapeSearchSource($first: Int!, $after: String) {
-  grapes(first: $first, after: $after) {
+  grapes(
+    first: $first
+    after: $after
+    where: { orderby: [{ field: DATE, order: ASC }] }
+  ) {
     pageInfo {
       hasNextPage
       endCursor
