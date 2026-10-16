@@ -13,6 +13,8 @@ const PATHNAME = "search/records.json.gz";
 export interface StoredSnapshot {
   readonly snapshot: SearchSnapshot;
   readonly etag: string;
+  // For the cold-start log in `search-service.ts`.
+  readonly timings: { readonly downloadMs: number; readonly decodeMs: number };
 }
 
 // The same credentials the SDK looks for; checked first so a missing store is
@@ -28,11 +30,18 @@ export async function readSearchSnapshot(
 ): Promise<StoredSnapshot | "unchanged" | null> {
   if (!hasBlobCredentials()) return null;
   try {
+    const startedAt = performance.now();
     const result = await get(PATHNAME, { access: "private", ifNoneMatch: etag });
     if (!result) return null;
     if (result.statusCode === 304) return "unchanged";
     const bytes = new Uint8Array(await new Response(result.stream).arrayBuffer());
-    return { snapshot: await decodeSnapshot(bytes), etag: result.blob.etag };
+    const downloadedAt = performance.now();
+    const snapshot = await decodeSnapshot(bytes);
+    const timings = {
+      downloadMs: Math.round(downloadedAt - startedAt),
+      decodeMs: Math.round(performance.now() - downloadedAt),
+    };
+    return { snapshot, etag: result.blob.etag, timings };
   } catch (error) {
     console.error("Search snapshot read failed:", error);
     return null;
