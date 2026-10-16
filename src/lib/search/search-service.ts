@@ -1,4 +1,5 @@
 import "server-only";
+import { after } from "next/server";
 import { getSearchRecords } from "@/lib/api/search/get-search-records";
 import {
   createSearchIndex,
@@ -7,16 +8,20 @@ import {
   type SearchIndex,
   type SearchResults,
 } from "./search-index";
+import type { SearchRecord } from "./search-records";
 import { SEARCH_TYPES, type SiteSearchParams } from "./search-params";
+import { readSearchSnapshot, writeSearchSnapshot } from "./search-snapshot";
 
 // How often a warm instance re-reads the records to see if content changed.
-// Reading them hits the fetch cache, not WordPress, but is still ~20 lookups.
+// Reading them hits the fetch cache, not WordPress, but is still ~80 lookups.
 const RECHECK_INTERVAL_MS = 5 * 60 * 1000;
 
 interface IndexState {
   readonly version: string;
   readonly index: SearchIndex;
   readonly checkedAt: number;
+  // ETag of the stored snapshot this instance last read or wrote.
+  readonly snapshotEtag: string | null;
 }
 
 // One index per server instance. Its size is bounded by the site's content,
@@ -24,12 +29,73 @@ interface IndexState {
 let state: IndexState | null = null;
 let pending: Promise<IndexState> | null = null;
 
-async function loadIndex(previous: IndexState | null): Promise<IndexState> {
+function saveSnapshot(
+  version: string,
+  records: readonly SearchRecord[],
+  ifMatch: string | null
+): Promise<string | null> {
+  const snapshot = { version, builtAt: new Date().toISOString(), records };
+  return writeSearchSnapshot(snapshot, ifMatch ?? undefined);
+}
+
+// A new instance starts from the stored snapshot: one download instead of
+// ~80 WordPress pages. Only without one does a visitor wait on WordPress.
+async function loadInitialIndex(): Promise<IndexState> {
+  const stored = await readSearchSnapshot();
+  if (stored && stored !== "unchanged") {
+    const { snapshot, etag } = stored;
+    const age = Date.now() - Date.parse(snapshot.builtAt);
+    return {
+      version: snapshot.version,
+      index: await createSearchIndex(snapshot.records),
+      // An older snapshot is rechecked against WordPress on the next search.
+      checkedAt: age < RECHECK_INTERVAL_MS ? Date.now() : 0,
+      snapshotEtag: etag,
+    };
+  }
+
   const records = await getSearchRecords();
   const version = getIndexVersion(records);
-  const index =
-    previous?.version === version ? previous.index : await createSearchIndex(records);
-  return { version, index, checkedAt: Date.now() };
+  return {
+    version,
+    index: await createSearchIndex(records),
+    checkedAt: Date.now(),
+    snapshotEtag: await saveSnapshot(version, records, null),
+  };
+}
+
+// Runs in the background on a warm instance. Picks up a snapshot another
+// instance saved, then checks WordPress (through the fetch cache) and saves a
+// new snapshot when the content changed.
+async function recheckIndex(current: IndexState): Promise<IndexState> {
+  let next = current;
+  const stored = await readSearchSnapshot(current.snapshotEtag ?? undefined);
+  if (stored && stored !== "unchanged") {
+    next =
+      stored.snapshot.version === current.version
+        ? { ...current, snapshotEtag: stored.etag }
+        : {
+            version: stored.snapshot.version,
+            index: await createSearchIndex(stored.snapshot.records),
+            checkedAt: current.checkedAt,
+            snapshotEtag: stored.etag,
+          };
+  }
+
+  const records = await getSearchRecords();
+  const version = getIndexVersion(records);
+  if (version === next.version && next.snapshotEtag) {
+    return { ...next, checkedAt: Date.now() };
+  }
+
+  const index = version === next.version ? next.index : await createSearchIndex(records);
+  const snapshotEtag = await saveSnapshot(version, records, next.snapshotEtag);
+  return {
+    version,
+    index,
+    checkedAt: Date.now(),
+    snapshotEtag: snapshotEtag ?? next.snapshotEtag,
+  };
 }
 
 async function getSearchIndex(): Promise<SearchIndex> {
@@ -37,7 +103,7 @@ async function getSearchIndex(): Promise<SearchIndex> {
   if (state && isFresh) return state.index;
 
   // Concurrent requests share one load instead of each building an index.
-  pending ??= loadIndex(state)
+  pending ??= (state ? recheckIndex(state) : loadInitialIndex())
     .then((next) => (state = next))
     .finally(() => {
       pending = null;
@@ -48,25 +114,45 @@ async function getSearchIndex(): Promise<SearchIndex> {
   // A warm instance keeps answering from the old index while it rechecks. If
   // the recheck fails (WordPress down), keep that index until the next interval.
   const stale = state;
-  pending.catch((error: unknown) => {
-    console.error("Search index refresh failed:", error);
-    if (state === stale) state = { ...stale, checkedAt: Date.now() };
-  });
+  after(
+    pending.catch((error: unknown) => {
+      console.error("Search index refresh failed:", error);
+      if (state === stale) state = { ...stale, checkedAt: Date.now() };
+    })
+  );
   return stale.index;
 }
 
-// False until this instance has built its first index. A cold build reads every
-// record from WordPress (~35 s on an empty fetch cache), so pages check this
-// rather than make a visitor wait for it.
+// False until this instance has its first index. Pages check this rather than
+// make a visitor wait for the index to load.
 export function isSearchIndexReady(): boolean {
   return state !== null;
 }
 
-// Starts the index build without waiting for it. Later searches join it.
+// Starts loading the index without waiting for it. Later searches join it.
 export function warmSearchIndex(): void {
-  getSearchIndex().catch((error: unknown) => {
-    console.error("Search index warm-up failed:", error);
-  });
+  after(
+    getSearchIndex().catch((error: unknown) => {
+      console.error("Search index warm-up failed:", error);
+    })
+  );
+}
+
+// For the daily cron: saves a new snapshot when WordPress content changed, so
+// the snapshot stays current even on days without searches.
+export async function refreshSearchSnapshot(): Promise<{
+  readonly version: string;
+  readonly changed: boolean;
+}> {
+  const records = await getSearchRecords();
+  const version = getIndexVersion(records);
+  const stored = await readSearchSnapshot();
+  const current = stored && stored !== "unchanged" ? stored : null;
+  if (current?.snapshot.version === version) return { version, changed: false };
+
+  const etag = await saveSnapshot(version, records, current?.etag ?? null);
+  if (!etag) throw new Error("Search snapshot could not be saved");
+  return { version, changed: true };
 }
 
 const EMPTY_COUNTS = Object.fromEntries(

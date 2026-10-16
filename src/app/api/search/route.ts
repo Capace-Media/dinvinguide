@@ -2,9 +2,9 @@ import { parseSearchParams } from "@/lib/search/search-params";
 import { searchSite } from "@/lib/search/search-service";
 import type { SearchResults } from "@/lib/search/search-index";
 
-// The first search on an instance may build the index from WordPress (~35 s
-// when the fetch cache is empty); let it finish rather than time out.
-export const maxDuration = 60;
+// Without a stored snapshot the first search on an instance builds the index
+// from WordPress, which took over 60 s once; let it finish rather than time out.
+export const maxDuration = 300;
 
 export type SearchResponse = SearchResults;
 
