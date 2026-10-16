@@ -7,7 +7,7 @@ import type { SearchResponse } from "@/app/api/search/route";
 import { Button } from "@/components/ui/button";
 import { SearchInput } from "@/components/ui/search-input";
 import { Spinner } from "@/components/ui/spinner";
-import { SearchX } from "lucide-react";
+import { CircleAlert, SearchX } from "lucide-react";
 import { useDebounceValue } from "@/hooks/useDebounce";
 import { normalizeQuery, type SearchType } from "@/lib/search/search-types";
 import {
@@ -18,6 +18,12 @@ import { SEARCH_PAGE_SIZE, searchQueryKey } from "./search-query";
 import { SearchTypeFilter } from "./search-type-filter";
 
 const formatCount = (count: number) => count.toLocaleString("sv-SE");
+
+// A search normally answers in well under a second. Past this, show an error
+// with a retry button instead of leaving the skeleton up indefinitely.
+const SEARCH_TIMEOUT_MS = 20_000;
+
+class SearchTimeoutError extends Error {}
 
 async function fetchSearchPage(
   q: string,
@@ -32,7 +38,20 @@ async function fetchSearchPage(
   });
   if (type) params.set("type", type);
 
-  const response = await fetch(`/api/search?${params}`, { signal });
+  const timeout = AbortSignal.timeout(SEARCH_TIMEOUT_MS);
+  let response: Response;
+  try {
+    response = await fetch(`/api/search?${params}`, {
+      signal: AbortSignal.any([signal, timeout]),
+    });
+  } catch (error) {
+    if (timeout.aborted) {
+      throw new SearchTimeoutError(
+        "Sökningen tar längre tid än vanligt. Försök igen om en stund."
+      );
+    }
+    throw error;
+  }
   if (!response.ok) throw new Error("Sökningen är inte tillgänglig just nu.");
   return response.json() as Promise<SearchResponse>;
 }
@@ -69,6 +88,7 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
+    refetch,
   } = useInfiniteQuery({
     queryKey: searchQueryKey(q, type),
     queryFn: ({ pageParam, signal }) =>
@@ -77,6 +97,9 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
     getNextPageParam: (lastPage) =>
       lastPage.page < lastPage.pageCount ? lastPage.page + 1 : undefined,
     enabled: q !== null,
+    // One quick retry for a network blip; a timeout already waited long enough.
+    retry: (failureCount, queryError) =>
+      failureCount < 1 && !(queryError instanceof SearchTimeoutError),
     // Counts for a different query must not appear under the new search term.
     // Reuse them when only the type changes, since facets ignore the active type.
     placeholderData: (previousData, previousQuery) =>
@@ -86,7 +109,8 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
   const firstPage = data?.pages[0];
   const hits = data?.pages.flatMap((page) => page.hits) ?? [];
   const isSearching = isTyping || (isFetching && !isFetchingNextPage);
-  const showSkeleton = q !== null && isPending;
+  // Also while "Försök igen" refetches after an error, which is not pending.
+  const showSkeleton = q !== null && !firstPage && (isPending || isFetching);
   const allCount = firstPage
     ? Object.values(firstPage.countsByType).reduce((sum, count) => sum + count, 0)
     : 0;
@@ -138,6 +162,16 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
           `Inga träffar för "${q}".`
         ) : null}
       </p>
+
+      {q && error && !firstPage && !isSearching && (
+        <div className="flex max-w-3xl flex-col items-center gap-3 rounded-lg bg-brand-beige px-6 py-12 text-center">
+          <CircleAlert className="size-10 text-brand-secondary" aria-hidden />
+          <p className="text-lg text-brand-dark">{error.message}</p>
+          <Button variant="outline" onClick={() => refetch()}>
+            Försök igen
+          </Button>
+        </div>
+      )}
 
       {q && firstPage?.total === 0 && !isSearching && (
         <div className="flex max-w-3xl flex-col items-center gap-3 rounded-lg bg-brand-beige px-6 py-12 text-center">
