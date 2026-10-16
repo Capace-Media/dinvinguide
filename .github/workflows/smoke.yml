@@ -31,7 +31,7 @@ jobs:
       # tests report a broken search; this line just logs how long it took.
       - name: Warm search index
         run: >-
-          curl -sS -o /dev/null -m 120
+          curl -sS -o /dev/null -m 300
           -H "x-vercel-protection-bypass: $VERCEL_AUTOMATION_BYPASS_SECRET"
           -w "Search warm-up: %{http_code} in %{time_total}s\n"
           "$BASE_URL/api/search?q=vin"
