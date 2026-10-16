@@ -38,30 +38,60 @@ function saveSnapshot(
   return writeSearchSnapshot(snapshot, ifMatch ?? undefined);
 }
 
+const elapsedSince = (startedAt: number) => Math.round(performance.now() - startedAt);
+
+// One line per new instance, so the logs show where a cold start's time goes.
+// `uptime` is how long the server process had run before this load began.
+function logColdStart(source: string, timings: Readonly<Record<string, number>>): void {
+  const parts = Object.entries(timings).map(([name, ms]) => `${name} ${ms} ms`);
+  console.info(`Search index cold start (${source}): ${parts.join(", ")}`);
+}
+
 // A new instance starts from the stored snapshot: one download instead of
 // ~80 WordPress pages. Only without one does a visitor wait on WordPress.
 async function loadInitialIndex(): Promise<IndexState> {
+  const startedAt = performance.now();
+  const uptime = Math.round(process.uptime() * 1000);
+
   const stored = await readSearchSnapshot();
   if (stored && stored !== "unchanged") {
     const { snapshot, etag } = stored;
     const age = Date.now() - Date.parse(snapshot.builtAt);
+    const buildStartedAt = performance.now();
+    const index = await createSearchIndex(snapshot.records);
+    logColdStart(`snapshot, ${snapshot.records.length} records`, {
+      uptime,
+      download: stored.timings.downloadMs,
+      decode: stored.timings.decodeMs,
+      build: elapsedSince(buildStartedAt),
+      total: elapsedSince(startedAt),
+    });
     return {
       version: snapshot.version,
-      index: await createSearchIndex(snapshot.records),
+      index,
       // An older snapshot is rechecked against WordPress on the next search.
       checkedAt: age < RECHECK_INTERVAL_MS ? Date.now() : 0,
       snapshotEtag: etag,
     };
   }
 
+  const fetchStartedAt = performance.now();
   const records = await getSearchRecords();
   const version = getIndexVersion(records);
-  return {
-    version,
-    index: await createSearchIndex(records),
-    checkedAt: Date.now(),
-    snapshotEtag: await saveSnapshot(version, records, null),
-  };
+  const fetchMs = elapsedSince(fetchStartedAt);
+  const buildStartedAt = performance.now();
+  const index = await createSearchIndex(records);
+  const buildMs = elapsedSince(buildStartedAt);
+  const saveStartedAt = performance.now();
+  const snapshotEtag = await saveSnapshot(version, records, null);
+  logColdStart(`WordPress, ${records.length} records`, {
+    uptime,
+    fetch: fetchMs,
+    build: buildMs,
+    save: elapsedSince(saveStartedAt),
+    total: elapsedSince(startedAt),
+  });
+  return { version, index, checkedAt: Date.now(), snapshotEtag };
 }
 
 // Runs in the background on a warm instance. Picks up a snapshot another
