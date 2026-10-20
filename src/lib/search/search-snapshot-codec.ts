@@ -24,10 +24,13 @@ const recordSchema = z.object({
   modified: z.string(),
 });
 
+// Only the first record is checked: validating all ~19 400 took ~0.6 s of
+// every cold start on Vercel. The file is only written by this code, so one
+// record is enough to catch a format change between deployments.
 const snapshotSchema = z.object({
   version: z.string(),
   builtAt: z.iso.datetime(),
-  records: z.array(recordSchema),
+  records: z.array(z.unknown()),
 });
 
 const gzipAsync = promisify(gzip);
@@ -41,5 +44,7 @@ export async function encodeSnapshot(snapshot: SearchSnapshot): Promise<Uint8Arr
 // outdated file falls back to WordPress instead of becoming the index.
 export async function decodeSnapshot(bytes: Uint8Array): Promise<SearchSnapshot> {
   const json: unknown = JSON.parse((await gunzipAsync(bytes)).toString("utf8"));
-  return snapshotSchema.parse(json);
+  const { version, builtAt, records } = snapshotSchema.parse(json);
+  if (records.length > 0) recordSchema.parse(records[0]);
+  return { version, builtAt, records: records as SearchRecord[] };
 }

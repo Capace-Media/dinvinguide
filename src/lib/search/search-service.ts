@@ -10,7 +10,11 @@ import {
 } from "./search-index";
 import type { SearchRecord } from "./search-records";
 import { SEARCH_TYPES, type SiteSearchParams } from "./search-params";
-import { readSearchSnapshot, writeSearchSnapshot } from "./search-snapshot";
+import {
+  readSearchSnapshot,
+  writeSearchSnapshot,
+  type StoredSnapshot,
+} from "./search-snapshot";
 
 // How often a warm instance re-reads the records to see if content changed.
 // Reading them hits the fetch cache, not WordPress, but is still ~80 lookups.
@@ -24,10 +28,18 @@ interface IndexState {
   readonly snapshotEtag: string | null;
 }
 
+interface IndexStore {
+  state: IndexState | null;
+  pending: Promise<IndexState> | null;
+}
+
 // One index per server instance. Its size is bounded by the site's content,
 // not by traffic, and it is replaced (never added to) when content changes.
-let state: IndexState | null = null;
-let pending: Promise<IndexState> | null = null;
+// Kept on `globalThis` because Next bundles `src/instrumentation.ts` apart from
+// the routes, each with its own copy of this module; the preload there and
+// the searches here must share one index.
+const globalStore = globalThis as { __dvgSearchIndex?: IndexStore };
+const store = (globalStore.__dvgSearchIndex ??= { state: null, pending: null });
 
 function saveSnapshot(
   version: string,
@@ -38,6 +50,10 @@ function saveSnapshot(
   return writeSearchSnapshot(snapshot, ifMatch ?? undefined);
 }
 
+// What started a new instance's first load, so the logs show how often the
+// preload in `src/instrumentation.ts` finishes before anyone searches.
+type LoadTrigger = "preload" | "search";
+
 const elapsedSince = (startedAt: number) => Math.round(performance.now() - startedAt);
 
 // One line per new instance, so the logs show where a cold start's time goes.
@@ -45,6 +61,32 @@ const elapsedSince = (startedAt: number) => Math.round(performance.now() - start
 function logColdStart(source: string, timings: Readonly<Record<string, number>>): void {
   const parts = Object.entries(timings).map(([name, ms]) => `${name} ${ms} ms`);
   console.info(`Search index cold start (${source}): ${parts.join(", ")}`);
+}
+
+async function indexFromSnapshot(
+  stored: StoredSnapshot,
+  trigger: LoadTrigger,
+  startedAt: number,
+  uptime: number
+): Promise<IndexState> {
+  const { snapshot, etag } = stored;
+  const age = Date.now() - Date.parse(snapshot.builtAt);
+  const buildStartedAt = performance.now();
+  const index = await createSearchIndex(snapshot.records);
+  logColdStart(`${trigger}, snapshot, ${snapshot.records.length} records`, {
+    uptime,
+    download: stored.timings.downloadMs,
+    decode: stored.timings.decodeMs,
+    build: elapsedSince(buildStartedAt),
+    total: elapsedSince(startedAt),
+  });
+  return {
+    version: snapshot.version,
+    index,
+    // An older snapshot is rechecked against WordPress on the next search.
+    checkedAt: age < RECHECK_INTERVAL_MS ? Date.now() : 0,
+    snapshotEtag: etag,
+  };
 }
 
 // A new instance starts from the stored snapshot: one download instead of
@@ -55,24 +97,7 @@ async function loadInitialIndex(): Promise<IndexState> {
 
   const stored = await readSearchSnapshot();
   if (stored && stored !== "unchanged") {
-    const { snapshot, etag } = stored;
-    const age = Date.now() - Date.parse(snapshot.builtAt);
-    const buildStartedAt = performance.now();
-    const index = await createSearchIndex(snapshot.records);
-    logColdStart(`snapshot, ${snapshot.records.length} records`, {
-      uptime,
-      download: stored.timings.downloadMs,
-      decode: stored.timings.decodeMs,
-      build: elapsedSince(buildStartedAt),
-      total: elapsedSince(startedAt),
-    });
-    return {
-      version: snapshot.version,
-      index,
-      // An older snapshot is rechecked against WordPress on the next search.
-      checkedAt: age < RECHECK_INTERVAL_MS ? Date.now() : 0,
-      snapshotEtag: etag,
-    };
+    return indexFromSnapshot(stored, "search", startedAt, uptime);
   }
 
   const fetchStartedAt = performance.now();
@@ -84,7 +109,7 @@ async function loadInitialIndex(): Promise<IndexState> {
   const buildMs = elapsedSince(buildStartedAt);
   const saveStartedAt = performance.now();
   const snapshotEtag = await saveSnapshot(version, records, null);
-  logColdStart(`WordPress, ${records.length} records`, {
+  logColdStart(`search, WordPress, ${records.length} records`, {
     uptime,
     fetch: fetchMs,
     build: buildMs,
@@ -129,34 +154,63 @@ async function recheckIndex(current: IndexState): Promise<IndexState> {
 }
 
 async function getSearchIndex(): Promise<SearchIndex> {
-  const isFresh = state && Date.now() - state.checkedAt < RECHECK_INTERVAL_MS;
-  if (state && isFresh) return state.index;
+  const current = store.state;
+  if (current && Date.now() - current.checkedAt < RECHECK_INTERVAL_MS) {
+    return current.index;
+  }
 
   // Concurrent requests share one load instead of each building an index.
-  pending ??= (state ? recheckIndex(state) : loadInitialIndex())
-    .then((next) => (state = next))
+  const pending = (store.pending ??= (
+    current ? recheckIndex(current) : loadInitialIndex()
+  )
+    .then((next) => (store.state = next))
     .finally(() => {
-      pending = null;
-    });
+      store.pending = null;
+    }));
 
-  if (!state) return (await pending).index;
+  if (!current) return (await pending).index;
 
   // A warm instance keeps answering from the old index while it rechecks. If
   // the recheck fails (WordPress down), keep that index until the next interval.
-  const stale = state;
   after(
     pending.catch((error: unknown) => {
       console.error("Search index refresh failed:", error);
-      if (state === stale) state = { ...stale, checkedAt: Date.now() };
+      if (store.state === current) store.state = { ...current, checkedAt: Date.now() };
     })
   );
-  return stale.index;
+  return current.index;
 }
 
 // False until this instance has its first index. Pages check this rather than
 // make a visitor wait for the index to load.
 export function isSearchIndexReady(): boolean {
-  return state !== null;
+  return store.state !== null;
+}
+
+// Called once when a server starts (`src/instrumentation.ts`). Snapshot only:
+// outside a request the fetch cache is not used, so falling back to WordPress
+// would walk all ~80 pages uncached, and a search joining that would wait for
+// it. Without a snapshot, the first search loads the index as usual.
+export async function preloadSearchIndex(): Promise<void> {
+  const startedAt = performance.now();
+  const uptime = Math.round(process.uptime() * 1000);
+  try {
+    const stored = await readSearchSnapshot();
+    if (!stored || stored === "unchanged") {
+      console.info("Search index preload skipped: no snapshot available");
+      return;
+    }
+    // A search that arrived during the download has started its own load.
+    if (store.state || store.pending) return;
+    store.pending = indexFromSnapshot(stored, "preload", startedAt, uptime)
+      .then((next) => (store.state = next))
+      .finally(() => {
+        store.pending = null;
+      });
+    await store.pending;
+  } catch (error) {
+    console.error("Search index preload failed:", error);
+  }
 }
 
 // Starts loading the index without waiting for it. Later searches join it.
