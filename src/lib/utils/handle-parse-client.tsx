@@ -28,6 +28,7 @@ export default function handleParseClient(content?: string) {
         }
 
         node.attribs.src = src;
+        node.attribs.style = "max-width: 100%; height: auto;";
         return;
       }
 

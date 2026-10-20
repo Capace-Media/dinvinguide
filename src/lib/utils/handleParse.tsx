@@ -136,10 +136,9 @@ export default function handleParse(
             height={height || 300}
             loading="lazy"
             style={{
-              maxWidth: `${domNode?.attribs?.width}px`,
-              maxHeight: `${domNode?.attribs?.height}px`,
-              width: `${domNode?.attribs?.width}px`,
-              height: `${domNode?.attribs?.height}px`,
+              width: "100%",
+              maxWidth: `${width}px`,
+              height: "auto",
               objectFit: "cover",
             }}
             className={domNode.attribs.class}
@@ -156,8 +155,8 @@ export default function handleParse(
             <span
               className={domNode.attribs.class}
               style={{
-                maxWidth: `${domNode?.attribs?.width}px`,
-                maxHeight: `${domNode?.attribs?.height}px`,
+                width: `${width}px`,
+                maxWidth: "100%",
                 position: "relative",
                 display: "inline-block",
               }}
@@ -170,8 +169,8 @@ export default function handleParse(
             <div
               className={domNode.attribs.class}
               style={{
-                maxWidth: `${domNode?.attribs?.width}px`,
-                maxHeight: `${domNode?.attribs?.height}px`,
+                width: `${width}px`,
+                maxWidth: "100%",
                 position: "relative",
               }}
             >
