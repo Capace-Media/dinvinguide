@@ -1,5 +1,5 @@
 import "server-only";
-import { BlobPreconditionFailedError, get, put } from "@vercel/blob";
+import { BlobError, BlobPreconditionFailedError, get, put } from "@vercel/blob";
 import { decodeSnapshot, encodeSnapshot, type SearchSnapshot } from "./search-snapshot-codec";
 
 export type { SearchSnapshot };
@@ -23,6 +23,25 @@ function hasBlobCredentials(): boolean {
   return Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID);
 }
 
+// `BLOB_STORE_ID` alone works on Vercel inside a request (OIDC), but not
+// locally or at server start. That is a setup gap, not a failure: warn once
+// per process (on `globalThis`, shared with the `instrumentation.ts` bundle).
+const globalWarnings = globalThis as { __dvgBlobCredentialsWarned?: boolean };
+
+function logSnapshotError(action: "read" | "write", error: unknown): void {
+  const isMissingCredentials =
+    error instanceof BlobError && error.message.includes("No blob credentials");
+  if (!isMissingCredentials) {
+    console.error(`Search snapshot ${action} failed:`, error);
+    return;
+  }
+  if (globalWarnings.__dvgBlobCredentialsWarned) return;
+  globalWarnings.__dvgBlobCredentialsWarned = true;
+  console.warn(
+    "Search snapshot disabled: no Blob credentials. Set BLOB_READ_WRITE_TOKEN to use it."
+  );
+}
+
 // `"unchanged"` when the stored file still has `etag`, so a recheck costs no
 // download. `null` when there is no snapshot or it cannot be read.
 export async function readSearchSnapshot(
@@ -43,7 +62,7 @@ export async function readSearchSnapshot(
     };
     return { snapshot, etag: result.blob.etag, timings };
   } catch (error) {
-    console.error("Search snapshot read failed:", error);
+    logSnapshotError("read", error);
     return null;
   }
 }
@@ -67,7 +86,7 @@ export async function writeSearchSnapshot(
     return result.etag;
   } catch (error) {
     if (error instanceof BlobPreconditionFailedError) return null;
-    console.error("Search snapshot write failed:", error);
+    logSnapshotError("write", error);
     return null;
   }
 }
