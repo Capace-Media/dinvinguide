@@ -46,7 +46,9 @@ test("a file that is not a snapshot is rejected", async () => {
   expect(decodeSnapshot(notASnapshot)).rejects.toThrow();
 });
 
-test("a record with an unknown type is rejected", async () => {
+// Only the first record is validated (see `decodeSnapshot`), so a format
+// change shows up there.
+test("a first record with an unknown type is rejected", async () => {
   const outdated = {
     ...snapshot,
     records: [{ ...snapshot.records[0], type: "podcast" }],
