@@ -76,8 +76,12 @@ export default function handleParse(
 
       // ... rest of your existing image/link logic ...
       if (domNode.name === "img") {
-        // Just fix the src URL and let Next.js handle the rest
-        let src = domNode.attribs.src;
+        // Just fix the src URL and let Next.js handle the rest. Some WordPress
+        // images only have `data-src` (lazy loading); with no URL at all, drop
+        // the image rather than crash the whole page.
+        let src: string | undefined =
+          domNode.attribs?.src || domNode.attribs?.["data-src"];
+        if (!src) return <></>;
 
         // Fix URL if needed
         src = src.replace(
@@ -183,7 +187,7 @@ export default function handleParse(
         );
 
         if (imgChild) {
-          if (domNode?.attribs?.href.includes("/app/uploads/")) {
+          if (domNode?.attribs?.href?.includes("/app/uploads/")) {
             const originalString = domNode.attribs.href;
             domNode.attribs.href = originalString.replace(
               /^.*\/app\/uploads\//,
