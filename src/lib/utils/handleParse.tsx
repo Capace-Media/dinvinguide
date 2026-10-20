@@ -33,6 +33,10 @@ function containsBlockElements(node: any): boolean {
   return false;
 }
 
+// Page builder shortcodes (`[section]`, `[row]`) that were migrated into the
+// content as literal `*section*` / `*row*` text.
+const LEFTOVER_SHORTCODES = /\*(?:section|row)\*/g;
+
 export default function handleParse(
   content?: string | null,
   parseClasses?: string,
@@ -45,6 +49,15 @@ export default function handleParse(
   // Skip preprocessing entirely - let html-react-parser handle it with strict options
   const options: HTMLReactParserOptions = {
     replace: (domNode: DOMNode | any) => {
+      if (
+        domNode.type === "text" &&
+        typeof domNode.data === "string" &&
+        LEFTOVER_SHORTCODES.test(domNode.data)
+      ) {
+        LEFTOVER_SHORTCODES.lastIndex = 0;
+        return <>{domNode.data.replace(LEFTOVER_SHORTCODES, "")}</>;
+      }
+
       // Force all problematic nesting to be valid
       if (domNode.name === "p" && domNode.children) {
         // Check if p contains ANY block elements (even nested ones)

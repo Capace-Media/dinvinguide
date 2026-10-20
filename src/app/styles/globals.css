@@ -229,6 +229,7 @@ span.aligncenter {
 */
 .parsed {
   color: var(--color-brand-dark);
+  overflow-wrap: anywhere;
 
   /* CMS content carries fixed pixel widths (images, captions, embeds). */
   img,
