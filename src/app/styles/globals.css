@@ -229,6 +229,20 @@ span.aligncenter {
 */
 .parsed {
   color: var(--color-brand-dark);
+  overflow-wrap: anywhere;
+
+  /* CMS content carries fixed pixel widths (images, captions, embeds). */
+  img,
+  figure,
+  .wp-caption,
+  iframe,
+  table {
+    max-width: 100%;
+  }
+
+  img {
+    height: auto;
+  }
 
   h1,
   h2,
