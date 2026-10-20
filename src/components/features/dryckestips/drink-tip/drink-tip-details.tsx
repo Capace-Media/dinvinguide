@@ -67,8 +67,8 @@ const DrinkTipDetails = ({ drinkTip }: DrinkTipDetailsProps) => {
           )}
         </div>
 
-        <div className="flex justify-center items-center">
-          <div className="flex flex-col gap-16">
+        <div className="flex justify-center items-center min-w-0">
+          <div className="flex flex-col gap-16 min-w-0 max-w-full">
             <div className="flex flex-col gap-1">
               <h1 className="normal-case text-[38px] leading-10">
                 {drinkTip.title}
@@ -105,13 +105,13 @@ const DrinkTipDetails = ({ drinkTip }: DrinkTipDetailsProps) => {
               {acf?.beskrivning && (
                 <div className="py-4">
                   <h3 className="uppercase">beskrivning:</h3>
-                  <div>{handleParse(acf.beskrivning)}</div>
+                  <div className="whitespace-normal wrap-anywhere">{handleParse(acf.beskrivning)}</div>
                 </div>
               )}
               {acf?.recension && (
                 <div className="py-4">
                   <h3 className="uppercase">Recension:</h3>
-                  <div>{handleParse(acf.recension)}</div>
+                  <div className="whitespace-normal wrap-anywhere">{handleParse(acf.recension)}</div>
                 </div>
               )}
 
