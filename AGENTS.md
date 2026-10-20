@@ -13,7 +13,7 @@ DinVinguide is a blog about food and drink, especially about Wine that's the mai
 * Do not create Git commits or push changes. The repository owner reviews and performs all commits and pushes.
 * after every task give me a short commit msg like "feat: implemented a new form for recipies"
 * **Confirm the branch before planning implementation work.** When asked to plan an
-implementation task, ask whether to continue on the current branch or create a new branch from the latest `dev` branch. If creating a branch, use a short, descriptive name, such as
+implementation task, ask whether to continue on the current branch or create a new branch from the latest `main` branch. If creating a branch, use a short, descriptive name, such as
 `feat/profile-form` or `fix/checkout-validation`.
 
 ## Linting
