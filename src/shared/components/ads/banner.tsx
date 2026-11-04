@@ -35,17 +35,17 @@ export default function Banner({
   return (
     // data-ad-slot is a stable hook for the smoke tests — counting <picture>
     // would break the moment anything else on the site uses one.
-    <div className="bg-white layout contain" data-ad-slot>
-      <div className="flex justify-center items-center">
-        <div className="lg:hover:scale-[1.01] lg:hover:shadow-lg lg:duration-300 lg:ease-in-out block w-70 h-64 lg:w-245 lg:h-50">
+    <div className="layout contain bg-white" data-ad-slot>
+      <div className="flex items-center justify-center">
+        <div className="block h-64 w-70 lg:h-50 lg:w-245 lg:duration-300 lg:ease-in-out lg:hover:scale-[1.01] lg:hover:shadow-lg">
           <a
             href={ad.link}
             target="_blank"
             rel="noreferrer"
-            className="block relative w-full h-full"
+            className="relative block h-full w-full"
             aria-label={`Annons: ${ad.title}`}
           >
-            <picture className="block w-full h-full">
+            <picture className="block h-full w-full">
               <source
                 media="(min-width: 1024px)"
                 srcSet={desktopImg.srcSet}
@@ -56,7 +56,7 @@ export default function Banner({
               <img
                 {...mobileImg}
                 alt={alt}
-                className="w-full h-full object-contain"
+                className="h-full w-full object-contain"
               />
             </picture>
           </a>
@@ -68,12 +68,16 @@ export default function Banner({
 
 // `tone` is the only thing that differs between page types — DL pages use the
 // DL brand colour for the pulse.
-export function BannerSkeleton({ tone = "bg-brand-primary" }: { tone?: string }) {
+export function BannerSkeleton({
+  tone = "bg-brand-primary",
+}: {
+  tone?: string;
+}) {
   return (
-    <div className="bg-white layout contain">
-      <div className="flex justify-center items-center">
+    <div className="layout contain bg-white">
+      <div className="flex items-center justify-center">
         <div
-          className={`block w-70 h-64 lg:w-245 lg:h-50 ${tone} animate-pulse rounded-sm`}
+          className={`block h-64 w-70 lg:h-50 lg:w-245 ${tone} animate-pulse rounded-sm`}
         ></div>
       </div>
     </div>

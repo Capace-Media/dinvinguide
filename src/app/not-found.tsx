@@ -5,13 +5,13 @@ export default function NotFound() {
   return (
     <section className="layout bg-white pt-12 pb-16 md:pt-20 md:pb-24">
       {/* Decorative top bar */}
-      <div className="w-full h-2 bg-brand-beige rounded-full mb-12"></div>
+      <div className="mb-12 h-2 w-full rounded-full bg-brand-beige"></div>
 
       {/* Main content */}
-      <div className="flex flex-col items-center text-center max-w-2xl mx-auto">
+      <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
         {/* Wine glass icon/illustration */}
         <div className="relative mb-8">
-          <div className="text-[120px] md:text-[180px] leading-none select-none opacity-10 font-sub text-brand-primary">
+          <div className="font-sub text-[120px] leading-none text-brand-primary opacity-10 select-none md:text-[180px]">
             404
           </div>
           <div className="absolute inset-0 flex items-center justify-center">
@@ -23,7 +23,7 @@ export default function NotFound() {
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="w-16 h-16 md:w-24 md:h-24 text-brand-secondary"
+              className="h-16 w-16 text-brand-secondary md:h-24 md:w-24"
             >
               <path d="M8 22h8" />
               <path d="M12 11v11" />
@@ -34,20 +34,20 @@ export default function NotFound() {
         </div>
 
         {/* Heading */}
-        <h1 className="font-sub text-3xl md:text-5xl text-brand-primary mb-4">
+        <h1 className="mb-4 font-sub text-3xl text-brand-primary md:text-5xl">
           Hoppsan! Sidan hittades inte
         </h1>
 
         {/* Description */}
-        <p className="text-brand-gray text-lg md:text-xl mb-4 max-w-md">
+        <p className="mb-4 max-w-md text-lg text-brand-gray md:text-xl">
           Det verkar som att denna sida har tappat korken och rullat iväg.
         </p>
-        <p className="text-brand-gray mb-8">
+        <p className="mb-8 text-brand-gray">
           Oroa dig inte – det finns mycket mer att utforska i vår vinkällare!
         </p>
 
         {/* Action buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+        <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
           <Link
             href="/"
             className="btn px-8 py-3 text-center"
@@ -65,36 +65,36 @@ export default function NotFound() {
         </div>
 
         {/* Quick links */}
-        <div className="mt-12 pt-8 border-t border-brand-light w-full">
-          <p className="text-sm text-brand-gray mb-4">Populära sidor:</p>
+        <div className="mt-12 w-full border-t border-brand-light pt-8">
+          <p className="mb-4 text-sm text-brand-gray">Populära sidor:</p>
           <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             <Link
               href="/dryckestips"
-              className="text-brand-secondary hover:underline transition-all"
+              className="text-brand-secondary transition-all hover:underline"
             >
               Dryckestips
             </Link>
             <Link
               href="/recept"
-              className="text-brand-secondary hover:underline transition-all"
+              className="text-brand-secondary transition-all hover:underline"
             >
               Recept
             </Link>
             <Link
               href="/vinskolan"
-              className="text-brand-secondary hover:underline transition-all"
+              className="text-brand-secondary transition-all hover:underline"
             >
               Vinskolan
             </Link>
             <Link
               href="/druvguiden"
-              className="text-brand-secondary hover:underline transition-all"
+              className="text-brand-secondary transition-all hover:underline"
             >
               Druvguiden
             </Link>
             <Link
               href="/vinatlas"
-              className="text-brand-secondary hover:underline transition-all"
+              className="text-brand-secondary transition-all hover:underline"
             >
               Vinatlas
             </Link>

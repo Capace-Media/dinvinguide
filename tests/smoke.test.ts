@@ -37,7 +37,7 @@ test("site under test is reachable and not behind an auth wall", async () => {
       `Nothing responding at ${BASE}\n` +
         `    • locally:  start it with  bun run dev\n` +
         `    • in CI:    set BASE_URL to the deployment under test\n` +
-        `    Every test below will fail for this same reason.`
+        `    Every test below will fail for this same reason.`,
     );
   }
 
@@ -49,7 +49,7 @@ test("site under test is reachable and not behind an auth wall", async () => {
       `${BASE} responded, but it is not the site — most likely Vercel SSO.\n` +
         `    Set VERCEL_AUTOMATION_BYPASS_SECRET (Vercel → Settings →\n` +
         `    Deployment Protection → Protection Bypass for Automation)\n` +
-        `    and expose it to this job as a secret.`
+        `    and expose it to this job as a secret.`,
     );
   }
 });
@@ -90,8 +90,7 @@ async function get(path: string) {
 //
 // Matches the rendered attribute exactly: React also echoes the markup into
 // the RSC flight payload as \"data-ad-slot\":true, which would double-count.
-const countAds = (html: string) =>
-  html.split('data-ad-slot="true"').length - 1;
+const countAds = (html: string) => html.split('data-ad-slot="true"').length - 1;
 
 // Static routes, one per template family. Counts verified against the live CMS.
 const ROUTES: Array<{ path: string; ads: number }> = [
@@ -135,7 +134,11 @@ const DYNAMIC: Array<{ listing: string; pattern: RegExp; ads: number }> = [
   { listing: "/ordlistan", pattern: /href="(\/ordlistan\/[^"]+)"/, ads: 1 },
   { listing: "/vinskolan", pattern: /href="(\/vinskolan\/[^"]+)"/, ads: 1 },
   { listing: "/skribenter", pattern: /href="(\/skribenter\/[^"]+)"/, ads: 3 },
-  { listing: "/dryckeslistan", pattern: /href="(\/topplistor\/[^"]+)"/, ads: 3 },
+  {
+    listing: "/dryckeslistan",
+    pattern: /href="(\/topplistor\/[^"]+)"/,
+    ads: 3,
+  },
   { listing: "/dryckestips", pattern: /href="(\/dryckestips\/[^"]+)"/, ads: 2 },
 ];
 

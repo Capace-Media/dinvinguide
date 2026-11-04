@@ -15,8 +15,13 @@ interface RecipeBankRecipesProps {
 }
 
 const RecipeBankRecipes = async ({ searchParams }: RecipeBankRecipesProps) => {
-  const { after, before, first, last, search = "" } =
-    parsePaginationSearchParams(searchParams, RECIPES_PER_PAGE);
+  const {
+    after,
+    before,
+    first,
+    last,
+    search = "",
+  } = parsePaginationSearchParams(searchParams, RECIPES_PER_PAGE);
 
   const recipes = await getRecipes({
     after,
@@ -27,9 +32,9 @@ const RecipeBankRecipes = async ({ searchParams }: RecipeBankRecipesProps) => {
   });
   return (
     <section>
-      <div className="layout bg-white flex justify-between items-center">
+      <div className="layout flex items-center justify-between bg-white">
         <div>
-          <p className="uppercase text-[14px]">receptbanken</p>
+          <p className="text-[14px] uppercase">receptbanken</p>
           <h1>Utforska alla recept</h1>
         </div>
 

@@ -18,14 +18,14 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
     <>
       <PageHero page={data} />
       <article className="layout bg-white">
-        <div className="lg:grid lg:grid-cols-2 py-10">
+        <div className="py-10 lg:grid lg:grid-cols-2">
           {handleParse(data?.content || "")}
 
           <div></div>
         </div>
         <div className="flex flex-col gap-4">
           <h2 className="text-2xl font-bold">Bedömda viner</h2>
-          <ul className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 border-t pt-4">
+          <ul className="grid gap-4 border-t pt-4 md:grid-cols-3 lg:grid-cols-4">
             {data.drinks.map((wine) => {
               if (wine.__typename === "Drinktip") {
                 return (
@@ -35,7 +35,7 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
                       className="flex"
                       aria-label={`läs mer om ${wine?.title}`}
                     >
-                      <div className="min-w-25 h-37.5 relative lg:group-hover:animate-shake">
+                      <div className="relative h-37.5 min-w-25 lg:group-hover:animate-shake">
                         {wine?.featuredImage?.node?.mediaItemUrl && (
                           <Image
                             src={wine.featuredImage.node.mediaItemUrl}
@@ -53,7 +53,7 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
                           />
                         )}
                       </div>
-                      <div className=" flex gap-2 flex-col justify-center w-full p-4 ">
+                      <div className="flex w-full flex-col justify-center gap-2 p-4">
                         <h3 className="text-[17px] lg:group-hover:underline">
                           {wine?.title}
                         </h3>
@@ -64,21 +64,20 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
                           </p>
                         )}
 
-                        <p className="text-[14px] flex">
-                          {wine.acf_dryckestips?.dryckestyper}{" "}
-                          -{" "}
+                        <p className="flex text-[14px]">
+                          {wine.acf_dryckestips?.dryckestyper} -{" "}
                           {wine.acf_dryckestips?.forpackningar}
                         </p>
 
                         {wine.acf_dryckestips?.pris && (
                           <p className="flex items-center gap-3 text-[14px]">
                             {/* <Dollar /> */}
-                            {(wine.acf_dryckestips.pris.includes("kr") ||
-                              wine.acf_dryckestips.pris.includes("euro") ? (
-                                <span>{wine.acf_dryckestips.pris}</span>
-                              ) : (
-                                <span>{wine.acf_dryckestips.pris}kr</span>
-                              ))}
+                            {wine.acf_dryckestips.pris.includes("kr") ||
+                            wine.acf_dryckestips.pris.includes("euro") ? (
+                              <span>{wine.acf_dryckestips.pris}</span>
+                            ) : (
+                              <span>{wine.acf_dryckestips.pris}kr</span>
+                            )}
                           </p>
                         )}
                       </div>
@@ -91,7 +90,7 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
 
           <h2 className="text-2xl font-bold">Viner</h2>
 
-          <ul className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 border-t pt-4">
+          <ul className="grid gap-4 border-t pt-4 md:grid-cols-3 lg:grid-cols-4">
             {data.drinks.map((wine) => {
               if (wine.__typename === "Drink") {
                 return (
@@ -101,7 +100,7 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
                       className="flex"
                       aria-label={`läs mer om ${wine?.title}`}
                     >
-                      <div className="min-w-25 h-37.5 relative lg:group-hover:animate-shake">
+                      <div className="relative h-37.5 min-w-25 lg:group-hover:animate-shake">
                         {wine?.featuredImage?.node?.mediaItemUrl && (
                           <Image
                             src={wine.featuredImage.node.mediaItemUrl}
@@ -119,12 +118,12 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
                           />
                         )}
                       </div>
-                      <div className=" flex gap-2 flex-col justify-center w-full p-4 ">
+                      <div className="flex w-full flex-col justify-center gap-2 p-4">
                         <h3 className="text-[17px] lg:group-hover:underline">
                           {wine?.title}
                         </h3>
 
-                        <p className="text-[14px] flex">
+                        <p className="flex text-[14px]">
                           {wine?.acf_drinks?.dryckestyper?.name} -{" "}
                           {wine?.acf_drinks?.forpackningar?.name}
                         </p>

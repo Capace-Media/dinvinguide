@@ -141,7 +141,10 @@ describe("toSearchRecords", () => {
     const [record] = toSearchRecords({
       ...empty,
       drinks: [
-        { ...drink, acf_drinks: { beskrivning: "Mycket fruktig. ".repeat(40) } },
+        {
+          ...drink,
+          acf_drinks: { beskrivning: "Mycket fruktig. ".repeat(40) },
+        },
       ],
     });
     expect(record.excerpt.length).toBeGreaterThan(0);
@@ -162,7 +165,11 @@ describe("toSearchRecords", () => {
       ...empty,
       drinks: [
         { ...drink, featuredImage: null },
-        { ...drink, slug: "utan-url", featuredImage: { node: { mediaItemUrl: null, altText: null } } },
+        {
+          ...drink,
+          slug: "utan-url",
+          featuredImage: { node: { mediaItemUrl: null, altText: null } },
+        },
       ],
     });
     expect(records).toHaveLength(2);

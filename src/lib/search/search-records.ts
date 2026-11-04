@@ -31,7 +31,9 @@ interface ContentSource {
 
 interface PostSource extends ContentSource {
   readonly excerpt?: string | null;
-  readonly author?: { readonly node?: { readonly slug?: string | null } | null } | null;
+  readonly author?: {
+    readonly node?: { readonly slug?: string | null } | null;
+  } | null;
 }
 interface RecipeSource extends ContentSource {
   readonly acf_recipe?: { readonly desc?: string | null } | null;
@@ -73,14 +75,20 @@ const NAMED_ENTITIES: Readonly<Record<string, string>> = {
 };
 
 function decodeEntities(text: string) {
-  return text.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (entity, code: string) => {
-    if (code[0] === "#") {
-      const isHex = code[1] === "x" || code[1] === "X";
-      const point = Number.parseInt(code.slice(isHex ? 2 : 1), isHex ? 16 : 10);
-      return Number.isNaN(point) ? entity : String.fromCodePoint(point);
-    }
-    return NAMED_ENTITIES[code.toLowerCase()] ?? entity;
-  });
+  return text.replace(
+    /&(#x[0-9a-f]+|#\d+|[a-z]+);/gi,
+    (entity, code: string) => {
+      if (code[0] === "#") {
+        const isHex = code[1] === "x" || code[1] === "X";
+        const point = Number.parseInt(
+          code.slice(isHex ? 2 : 1),
+          isHex ? 16 : 10,
+        );
+        return Number.isNaN(point) ? entity : String.fromCodePoint(point);
+      }
+      return NAMED_ENTITIES[code.toLowerCase()] ?? entity;
+    },
+  );
 }
 
 // WordPress fields hold HTML; search and the result list only need text.
@@ -100,7 +108,7 @@ function toRecord(
   type: SearchType,
   node: ContentSource,
   url: (slug: string) => string | null,
-  excerpt: string | null | undefined
+  excerpt: string | null | undefined,
 ): SearchRecord | null {
   const title = node.title?.trim();
   const slug = node.slug;
@@ -137,25 +145,40 @@ export function toSearchRecords(sources: SearchSources): SearchRecord[] {
           const author = post.author?.node?.slug;
           return author ? `/skribenter/${author}/${slug}` : null;
         },
-        post.excerpt
-      )
+        post.excerpt,
+      ),
     ),
     ...sources.recipes.map((recipe) =>
-      toRecord("recipe", recipe, (slug) => `/recept/${slug}`, recipe.acf_recipe?.desc)
+      toRecord(
+        "recipe",
+        recipe,
+        (slug) => `/recept/${slug}`,
+        recipe.acf_recipe?.desc,
+      ),
     ),
     ...sources.drinktips.map((tip) =>
       toRecord(
         "drinktip",
         tip,
         (slug) => `/dryckestips/${slug}`,
-        tip.acf_dryckestips?.beskrivning
-      )
+        tip.acf_dryckestips?.beskrivning,
+      ),
     ),
     ...sources.drinks.map((drink) =>
-      toRecord("drink", drink, (slug) => `/drycker/${slug}`, drink.acf_drinks?.beskrivning)
+      toRecord(
+        "drink",
+        drink,
+        (slug) => `/drycker/${slug}`,
+        drink.acf_drinks?.beskrivning,
+      ),
     ),
     ...sources.grapes.map((grape) =>
-      toRecord("grape", grape, (slug) => `/druvor/${slug}`, grape.acf_grape?.kortBeskrivning)
+      toRecord(
+        "grape",
+        grape,
+        (slug) => `/druvor/${slug}`,
+        grape.acf_grape?.kortBeskrivning,
+      ),
     ),
   ].filter(isRecord);
 }

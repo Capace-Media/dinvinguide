@@ -11,7 +11,7 @@ async function main() {
 
   if (!uri || !user || !password) {
     throw new Error(
-      "Missing CMS_GRAPHQL_URI, CMS_GRAPHQL_AUTH_USER or APPLICATION_NEW_PASSWORD"
+      "Missing CMS_GRAPHQL_URI, CMS_GRAPHQL_AUTH_USER or APPLICATION_NEW_PASSWORD",
     );
   }
 
@@ -33,7 +33,7 @@ async function main() {
     throw new Error(
       `Introspection failed (${res.status}): ${
         json.errors?.[0]?.message ?? "no data"
-      }`
+      }`,
     );
   }
 

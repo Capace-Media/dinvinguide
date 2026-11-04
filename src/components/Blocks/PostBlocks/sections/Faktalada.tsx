@@ -6,9 +6,7 @@ const Faktalada = ({ content }: any) => {
   }
 
   return (
-    <section className="py-8 drop-cap">
-      {handleParse(content.text)}
-    </section>
+    <section className="drop-cap py-8">{handleParse(content.text)}</section>
   );
 };
 

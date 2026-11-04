@@ -50,7 +50,7 @@ const DrinkDetails = ({ drink }: DrinkDetailsProps) => {
       {acf?.recension && (
         <div className="py-4">
           <h3 className="uppercase">Recension:</h3>
-          <div className="whitespace-normal wrap-anywhere">
+          <div className="wrap-anywhere whitespace-normal">
             {handleParse(acf.recension)}
           </div>
         </div>

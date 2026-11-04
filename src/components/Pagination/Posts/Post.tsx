@@ -13,7 +13,7 @@ interface PostProps {
 
 export const SkeletonLoader = () => {
   return (
-    <div className="aspect-square animate-pulse h-full w-full overflow-hidden rounded-lg bg-brand-primary"></div>
+    <div className="aspect-square h-full w-full animate-pulse overflow-hidden rounded-lg bg-brand-primary"></div>
   );
 };
 
@@ -25,7 +25,7 @@ const Post = ({ post, type }: PostProps) => {
       <Link
         href={type === "Post" ? `/skribenter${post.uri}` : post?.uri}
         aria-label={`Läs om ${post?.title}`}
-        className="block w-full relative h-[12.2rem] after:absolute after:inset-0 after:bg-[linear-gradient(180deg,rgba(0,0,0,0.4)_16.35%,rgba(0,0,0,0)_49.69%)]"
+        className="relative block h-[12.2rem] w-full after:absolute after:inset-0 after:bg-[linear-gradient(180deg,rgba(0,0,0,0.4)_16.35%,rgba(0,0,0,0)_49.69%)]"
       >
         {post?.featuredImage?.node?.mediaItemUrl && (
           <>
@@ -46,30 +46,30 @@ const Post = ({ post, type }: PostProps) => {
             />
 
             {!imageLoaded && (
-              <div className="absolute top-0 left-0 right-0 bottom-0">
+              <div className="absolute top-0 right-0 bottom-0 left-0">
                 <SkeletonLoader />
               </div>
             )}
           </>
         )}
-        <div className="absolute right-3 top-2 z-10 border-b-2 border-white ">
+        <div className="absolute top-2 right-3 z-10 border-b-2 border-white">
           {post?.author?.node?.name && (
             <p className="text-white uppercase">{post.author.node.name}</p>
           )}
         </div>
       </Link>
 
-      <div className="h-[12.9rem] flex flex-col justify-between py-2">
+      <div className="flex h-[12.9rem] flex-col justify-between py-2">
         <div className="flex flex-col">
           {post?.modifiedGmt && (
-            <p className="text-brand-gray text-[14px]">
+            <p className="text-[14px] text-brand-gray">
               {PrettyDate(post.modifiedGmt)}
             </p>
           )}
           {post?.title && (
             <h2
               aria-label={post.title}
-              className="line-clamp-1 font-sub mb-2 text-[22px] text-brand-dark"
+              className="mb-2 line-clamp-1 font-sub text-[22px] text-brand-dark"
             >
               {post.title}
             </h2>
@@ -88,7 +88,7 @@ const Post = ({ post, type }: PostProps) => {
           <Link
             href={type === "Post" ? `/skribenter${post.uri}` : post?.uri}
             aria-label={`Läs om ${post?.title}`}
-            className="flex items-center gap-3 lg:hover:underline text-brand-secondary"
+            className="flex items-center gap-3 text-brand-secondary lg:hover:underline"
           >
             <span>Läs hela artikeln</span>
             <span>

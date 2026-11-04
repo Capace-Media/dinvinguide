@@ -15,7 +15,7 @@ export function SearchResultItem({ hit }: { hit: SearchRecord }) {
         <SearchResultThumbnail hit={hit} />
         <div className="min-w-0 flex-1 space-y-1">
           <p className="text-xs text-brand-gray">
-            <span className="font-medium uppercase tracking-wide text-brand-secondary">
+            <span className="font-medium tracking-wide text-brand-secondary uppercase">
               {SEARCH_TYPE_ITEM_LABELS[hit.type]}
             </span>
             {hit.date && (
@@ -29,7 +29,9 @@ export function SearchResultItem({ hit }: { hit: SearchRecord }) {
             {hit.title}
           </h3>
           {hit.excerpt && (
-            <p className="line-clamp-2 text-sm text-brand-gray">{hit.excerpt}</p>
+            <p className="line-clamp-2 text-sm text-brand-gray">
+              {hit.excerpt}
+            </p>
           )}
         </div>
       </Link>
@@ -39,7 +41,10 @@ export function SearchResultItem({ hit }: { hit: SearchRecord }) {
 
 export function SearchResultItemSkeleton() {
   return (
-    <li aria-hidden="true" className="flex gap-4 border-b border-brand-light p-3">
+    <li
+      aria-hidden="true"
+      className="flex gap-4 border-b border-brand-light p-3"
+    >
       <Skeleton className="size-20 shrink-0" />
       <div className="flex-1 space-y-2 pt-1">
         <Skeleton className="h-3 w-32" />

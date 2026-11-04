@@ -6,18 +6,22 @@ import { Suspense } from "react";
 import AuthorCard from "./author-card";
 
 export default async function AllAuthors() {
-    const skribenter = await getWriters();
-    return (
-        <div>
-            {skribenter.map((author, index) => (
-                    <section key={author.id}>
-                        {(index + 1) % 3 === 0 && <Suspense fallback={<BannerSkeleton />}><AdMid /></Suspense>}
-                        <AuthorCard author={author} index={index} />
-                    </section>
-                ))}
+  const skribenter = await getWriters();
+  return (
+    <div>
+      {skribenter.map((author, index) => (
+        <section key={author.id}>
+          {(index + 1) % 3 === 0 && (
             <Suspense fallback={<BannerSkeleton />}>
-              <AdBottom />
+              <AdMid />
             </Suspense>
-        </div>
-    );
+          )}
+          <AuthorCard author={author} index={index} />
+        </section>
+      ))}
+      <Suspense fallback={<BannerSkeleton />}>
+        <AdBottom />
+      </Suspense>
+    </div>
+  );
 }

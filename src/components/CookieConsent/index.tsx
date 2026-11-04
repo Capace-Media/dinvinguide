@@ -122,7 +122,7 @@ export default function CookieConsent() {
   useEffect(() => {
     if (typeof document !== "undefined" && !cssLoadedRef.current) {
       const existingLink = document.querySelector(
-        'link[href="/silktide/silktide-consent-manager.css"]'
+        'link[href="/silktide/silktide-consent-manager.css"]',
       );
       if (!existingLink) {
         const link = document.createElement("link");
@@ -147,7 +147,7 @@ export default function CookieConsent() {
 
     try {
       window.silktideCookieBannerManager.updateCookieBannerConfig(
-        cookieBannerConfig
+        cookieBannerConfig,
       );
       initializedRef.current = true;
     } catch (error) {

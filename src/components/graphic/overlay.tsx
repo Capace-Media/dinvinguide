@@ -34,9 +34,10 @@ const weightClasses = {
 export default function Overlay(props: OverlayProps) {
   return (
     <div
-      className={cn("absolute top-0 left-0 w-full h-full z-5",
+      className={cn(
+        "absolute top-0 left-0 z-5 h-full w-full",
         directionClasses[props.direction],
-        weightClasses[props.weight ?? "dark"]
+        weightClasses[props.weight ?? "dark"],
       )}
     />
   );

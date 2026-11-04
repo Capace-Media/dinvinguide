@@ -39,11 +39,11 @@ const NewsletterForm = () => {
     <div>
       <div className="text-[#333]">
         <h2 className="font-main text-[19px]">Nyhetsbrev</h2>
-        <h3 className=" font-sub text-[32px] lg:text-[38px] xl:text-[42px]">
+        <h3 className="font-sub text-[32px] lg:text-[38px] xl:text-[42px]">
           Registrera dig för vårt <br /> inspirerande nyhetsbrev
         </h3>
 
-        <p className="text-brand-gray text-main text-[14px] py-4">
+        <p className="text-main py-4 text-[14px] text-brand-gray">
           och få information om inspirerande artiklar, exklusiva viner,
           erbjudanden samt innehåll om alkoholhaltiga drycker. (Du kan när som
           helst avregistrera dig).
@@ -57,7 +57,7 @@ const NewsletterForm = () => {
         className=""
         onSubmit={handleSubmit}
       >
-        <div className="w-full bg-white relative mb-4">
+        <div className="relative mb-4 w-full bg-white">
           <input
             type="email"
             name="fields[email]"
@@ -65,12 +65,12 @@ const NewsletterForm = () => {
             placeholder="Skriv din e-post här"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="py-3 pl-2 w-full focus:outline-hidden"
+            className="w-full py-3 pl-2 focus:outline-hidden"
           />
 
           <button
             type="submit"
-            className=" bg-brand-secondary p-2 absolute right-2 center-y"
+            className="center-y absolute right-2 bg-brand-secondary p-2"
             aria-label="Registrera email till vårt nyhetsbrev"
           >
             <SubmitArrow />
@@ -90,7 +90,7 @@ const NewsletterForm = () => {
 
         <label
           htmlFor="ageChecked"
-          className="text-[12px] text-[#4d4d4d] flex items-center gap-2 cursor-pointer"
+          className="flex cursor-pointer items-center gap-2 text-[12px] text-[#4d4d4d]"
         >
           <input
             id="ageChecked"

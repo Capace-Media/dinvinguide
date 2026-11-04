@@ -49,13 +49,13 @@ const PaginationController = ({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   return (
-    <div className="flex justify-center items-center gap-2 py-10 layout bg-white">
+    <div className="layout flex items-center justify-center gap-2 bg-white py-10">
       <button
         aria-label="föregående sida för posterna"
-        className={` p-[10px] flex items-center justify-center ${
+        className={`flex items-center justify-center p-[10px] ${
           !hasPreviousPage
             ? ""
-            : "md:hover:scale-110 md:ease-in-out md:duration-300"
+            : "md:duration-300 md:ease-in-out md:hover:scale-110"
         }`}
         disabled={!hasPreviousPage}
         onClick={() => {
@@ -67,15 +67,15 @@ const PaginationController = ({
             }${identifier ? `&identifier=${identifier}` : ""}&search=${
               search ? search : ""
             }`,
-            { scroll: true }
+            { scroll: true },
           );
         }}
       >
         {!hasPreviousPage ? <ArrowPrevDis /> : <ArrowPrevActive />}
       </button>
 
-      <div className="flex justify-center items-center gap-3">
-        <span className="w-[28px] flex justify-center items-center h-[28px] text-white bg-brand-secondary">
+      <div className="flex items-center justify-center gap-3">
+        <span className="flex h-[28px] w-[28px] items-center justify-center bg-brand-secondary text-white">
           {page}
         </span>{" "}
         av {""}
@@ -84,10 +84,10 @@ const PaginationController = ({
 
       <button
         aria-label="nästa sida för posterna"
-        className={` p-[10px] flex items-center justify-center ${
+        className={`flex items-center justify-center p-[10px] ${
           !hasNextPage
             ? ""
-            : "md:hover:scale-110 md:ease-in-out md:duration-300"
+            : "md:duration-300 md:ease-in-out md:hover:scale-110"
         }`}
         disabled={!hasNextPage}
         onClick={() => {
@@ -99,7 +99,7 @@ const PaginationController = ({
             }${identifier ? `&identifier=${identifier}` : ""}&search=${
               search ? search : ""
             }`,
-            { scroll: true }
+            { scroll: true },
           );
         }}
       >

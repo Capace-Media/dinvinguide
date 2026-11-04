@@ -13,7 +13,7 @@ interface AuthorPostProps {
 
 export const SkeletonLoader = () => {
   return (
-    <div className="aspect-square animate-pulse h-full w-full overflow-hidden rounded-lg bg-brand-primary"></div>
+    <div className="aspect-square h-full w-full animate-pulse overflow-hidden rounded-lg bg-brand-primary"></div>
   );
 };
 
@@ -23,7 +23,7 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
       <Link
         href={`/skribenter${post.uri}`}
         aria-label={`Läs om ${post?.title}`}
-        className="block w-full relative h-[12.2rem] after:absolute after:inset-0 after:bg-[linear-gradient(180deg,rgba(0,0,0,0.4)_16.35%,rgba(0,0,0,0)_49.69%)]"
+        className="relative block h-[12.2rem] w-full after:absolute after:inset-0 after:bg-[linear-gradient(180deg,rgba(0,0,0,0.4)_16.35%,rgba(0,0,0,0)_49.69%)]"
       >
         {post?.featuredImage?.node?.mediaItemUrl && (
           <>
@@ -44,29 +44,29 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
                   ? post.featuredImage.node.mediaDetails.height
                   : 269
               }
-              className="object-cover lg:w-full h-full"
+              className="h-full object-cover lg:w-full"
               sizes="(max-width: 768px) 92vw, (max-width: 1024px) 44vw, (max-width: 1790px) 22vw, 390px"
             />
           </>
         )}
-        <div className="absolute right-3 top-2 z-10 border-b-2 border-white ">
+        <div className="absolute top-2 right-3 z-10 border-b-2 border-white">
           {post?.author?.node?.name && (
             <p className="text-white uppercase">{post.author.node.name}</p>
           )}
         </div>
       </Link>
 
-      <div className="h-[12.9rem] flex flex-col justify-between py-2">
+      <div className="flex h-[12.9rem] flex-col justify-between py-2">
         <div className="flex flex-col">
           {post?.modifiedGmt && (
-            <div className="text-brand-gray text-[14px]">
+            <div className="text-[14px] text-brand-gray">
               {PrettyDate(post.modifiedGmt)}
             </div>
           )}
           {post?.title && (
             <h2
               aria-label={post.title}
-              className="line-clamp-1 font-sub mb-2 text-[22px] text-brand-dark"
+              className="mb-2 line-clamp-1 font-sub text-[22px] text-brand-dark"
             >
               {post.title}
             </h2>
@@ -85,7 +85,7 @@ const AuthorPost = ({ post }: AuthorPostProps) => {
           <Link
             href={`/skribenter${post.uri}`}
             aria-label={`Läs om ${post?.title}`}
-            className="flex items-center justify-center gap-3 lg:hover:underline text-brand-secondary border border-brand-primary px-4 py-2 rounded-md md:border-none md:justify-start md:px-0 md:py-0"
+            className="flex items-center justify-center gap-3 rounded-md border border-brand-primary px-4 py-2 text-brand-secondary md:justify-start md:border-none md:px-0 md:py-0 lg:hover:underline"
           >
             <span>Läs hela artikeln</span>
             <span>

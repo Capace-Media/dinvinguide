@@ -35,22 +35,22 @@ const Portions = ({ ingredients, others, portions }: PortionsProps) => {
           ).toFixed(1),
         })),
       })),
-    [ingredients, initialPortions, selectedPortions]
+    [ingredients, initialPortions, selectedPortions],
   );
 
   return (
-    <section className="bg-[#F5F5F5] p-7 rounded-[8px]">
+    <section className="rounded-[8px] bg-[#F5F5F5] p-7">
       {ingredients ? (
         <>
-          <div className="flex justify-between items-center pb-10">
+          <div className="flex items-center justify-between pb-10">
             <h2 className="text-[24px]">Ingredienser</h2>
             <div>
-              <label htmlFor="portions" className="flex gap-3 items-center">
+              <label htmlFor="portions" className="flex items-center gap-3">
                 <select
                   value={selectedPortions}
                   onChange={(e) => setSelectedPortions(Number(e.target.value))}
                   id="portions"
-                  className="appearance-none bg-transparent border-none p-0 m-0 w-auto cursor-pointer outline-none"
+                  className="m-0 w-auto cursor-pointer appearance-none border-none bg-transparent p-0 outline-none"
                 >
                   <option value={1}>1 portion</option>
                   <option value={2}>2 portioner</option>
@@ -64,37 +64,38 @@ const Portions = ({ ingredients, others, portions }: PortionsProps) => {
           </div>
           <ul className="flex flex-col gap-4">
             {adjustedQuantities.map((node, index) => {
-                return (
-                  <li key={`${index}${node.rubrik}`}>
-                    <h3 className="text-[23px] pb-4">{node.rubrik}</h3>
-                    <ol className="gap-1 flex flex-col">
-                      {node.ingredienser.map((ing, i) => {
-                          return (
-                            <li key={`${i}${ing.namn}`}>
-                              <label
-                                className={checkboxLabelClasses}
-                                htmlFor={`${node.rubrik}${i}`}
-                              >
-                                <input
-                                  type="checkbox"
-                                  id={`${node.rubrik}${i}`}
-                                  className={checkboxInputClasses}
-                                />
-                                {ing.antal === 0 ? "" : ing.antal}{" "}
-                                {ing?.enhet?.name === "x"
-                                  ? ""
-                                  : !ing?.enhet?.name
-                                  ? ""
-                                  : ing.enhet.name}{" "}
-                                {ing?.namn} <span className={checkmarkClasses}></span>
-                              </label>
-                            </li>
-                          );
-                        })}
-                    </ol>
-                  </li>
-                );
-              })}
+              return (
+                <li key={`${index}${node.rubrik}`}>
+                  <h3 className="pb-4 text-[23px]">{node.rubrik}</h3>
+                  <ol className="flex flex-col gap-1">
+                    {node.ingredienser.map((ing, i) => {
+                      return (
+                        <li key={`${i}${ing.namn}`}>
+                          <label
+                            className={checkboxLabelClasses}
+                            htmlFor={`${node.rubrik}${i}`}
+                          >
+                            <input
+                              type="checkbox"
+                              id={`${node.rubrik}${i}`}
+                              className={checkboxInputClasses}
+                            />
+                            {ing.antal === 0 ? "" : ing.antal}{" "}
+                            {ing?.enhet?.name === "x"
+                              ? ""
+                              : !ing?.enhet?.name
+                                ? ""
+                                : ing.enhet.name}{" "}
+                            {ing?.namn}{" "}
+                            <span className={checkmarkClasses}></span>
+                          </label>
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </li>
+              );
+            })}
           </ul>
         </>
       ) : (
@@ -102,7 +103,7 @@ const Portions = ({ ingredients, others, portions }: PortionsProps) => {
       )}
       {others && (
         <div className="py-4">
-          <h3 className="text-[19px] pb-2">Övrigt:</h3>
+          <h3 className="pb-2 text-[19px]">Övrigt:</h3>
           <p>
             {" "}
             <label className={checkboxLabelClasses} htmlFor={others}>

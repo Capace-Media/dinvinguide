@@ -11,7 +11,7 @@ const Citat = ({ content }: CitatProps) => {
 
   return (
     <section className="py-8">
-      <blockquote className="text-[27px] font-sub">
+      <blockquote className="font-sub text-[27px]">
         {handleParse(content?.text, undefined, true)}
       </blockquote>
     </section>

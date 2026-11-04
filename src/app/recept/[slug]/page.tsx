@@ -20,7 +20,7 @@ interface RecipeProps {
 
 export async function generateMetadata(
   props: RecipeProps,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const params = await props.params;
   const page = await getRecipe(`/recept/${params.slug}`);

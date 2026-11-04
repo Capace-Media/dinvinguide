@@ -38,7 +38,7 @@ const WineAtlasPagination = async ({
   return (
     <section className="layout bg-white">
       <div>
-        <div className="flex justify-between items-center pb-10">
+        <div className="flex items-center justify-between pb-10">
           <div>
             <h2>Skolor hos DinVinguide</h2>
           </div>

@@ -4,7 +4,7 @@ import { parseSearchParams, SEARCH_TYPES } from "./search-params";
 describe("parseSearchParams q", () => {
   test("trims, collapses whitespace and lowercases", () => {
     expect(parseSearchParams({ q: "  RIOJA   Reserva " }).q).toBe(
-      "rioja reserva"
+      "rioja reserva",
     );
   });
 
@@ -67,9 +67,13 @@ describe("parseSearchParams limit", () => {
 
 describe("parseSearchParams type", () => {
   test("covers the five content types", () => {
-    expect([...SEARCH_TYPES].sort()).toEqual(
-      ["drink", "drinktip", "grape", "post", "recipe"]
-    );
+    expect([...SEARCH_TYPES].sort()).toEqual([
+      "drink",
+      "drinktip",
+      "grape",
+      "post",
+      "recipe",
+    ]);
   });
 
   test.each([...SEARCH_TYPES])("accepts %p", (type) => {
@@ -84,6 +88,11 @@ describe("parseSearchParams type", () => {
 
 test("never throws on unexpected input", () => {
   expect(() =>
-    parseSearchParams({ q: ["", ""], page: ["x"], limit: undefined, foo: "bar" })
+    parseSearchParams({
+      q: ["", ""],
+      page: ["x"],
+      limit: undefined,
+      foo: "bar",
+    }),
   ).not.toThrow();
 });

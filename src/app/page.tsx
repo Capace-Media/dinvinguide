@@ -27,15 +27,15 @@ export async function generateMetadata(): Promise<Metadata> {
     description: page?.seo?.metaDesc || FALLBACK_DESCRIPTION,
     openGraph: image?.mediaItemUrl
       ? {
-        images: [
-          {
-            url: image.mediaItemUrl,
-            width: image.mediaDetails?.width ?? undefined,
-            height: image.mediaDetails?.height ?? undefined,
-            alt: image.altText || "DinVinguide",
-          },
-        ],
-      }
+          images: [
+            {
+              url: image.mediaItemUrl,
+              width: image.mediaDetails?.width ?? undefined,
+              height: image.mediaDetails?.height ?? undefined,
+              alt: image.altText || "DinVinguide",
+            },
+          ],
+        }
       : undefined,
   };
 }
@@ -47,7 +47,6 @@ export default async function Home() {
   if (!frontPage) {
     return notFound();
   }
-
 
   return (
     <>

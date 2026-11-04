@@ -5,7 +5,9 @@ import MorePosts from "./MorePost";
 
 type Props = {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  searchParams: Promise<{
+    [key: string]: string | string[] | any | undefined | null;
+  }>;
 };
 
 const SingleWineAtlas = async (props: Props) => {

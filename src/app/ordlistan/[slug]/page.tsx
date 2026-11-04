@@ -18,7 +18,7 @@ type Props = {
 
 export async function generateMetadata(
   props: Props,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const params = await props.params;
   const page = await getWord(params.slug);

@@ -40,7 +40,7 @@ const LEFTOVER_SHORTCODES = /\*(?:section|row)\*/g;
 export default function handleParse(
   content?: string | null,
   parseClasses?: string,
-  noWrapper?: boolean
+  noWrapper?: boolean,
 ) {
   if (!content) {
     return null;
@@ -99,7 +99,7 @@ export default function handleParse(
         // Fix URL if needed
         src = src.replace(
           /^.*\/app\/uploads\//,
-          "https://cloud.dinvinguide.se/wp-content/uploads/"
+          "https://cloud.dinvinguide.se/wp-content/uploads/",
         );
         if (src.includes("http://") && !src.includes("https://")) {
           src = src.replace("http://", "https://");
@@ -111,7 +111,7 @@ export default function handleParse(
         if (src.includes("https://dinvinguide.se/")) {
           src = src.replace(
             "https://dinvinguide.se/",
-            "https://cloud.dinvinguide.se/"
+            "https://cloud.dinvinguide.se/",
           );
         }
 
@@ -195,7 +195,7 @@ export default function handleParse(
 
       if (domNode.name === "a") {
         const imgChild = Array.from(domNode.children).find(
-          (childNode: any) => childNode?.name === "img"
+          (childNode: any) => childNode?.name === "img",
         );
 
         if (imgChild) {
@@ -203,18 +203,18 @@ export default function handleParse(
             const originalString = domNode.attribs.href;
             domNode.attribs.href = originalString.replace(
               /^.*\/app\/uploads\//,
-              "https://cloud.dinvinguide.se/wp-content/uploads/"
+              "https://cloud.dinvinguide.se/wp-content/uploads/",
             );
           } else if (
             domNode?.attribs?.href?.includes(
-              "dinvinguide.se/wp-content/uploads/"
+              "dinvinguide.se/wp-content/uploads/",
             ) &&
             !domNode?.attribs?.href?.includes("cloud.dinvinguide.se")
           ) {
             // Only transform if it doesn't already have cloud.dinvinguide.se
             domNode.attribs.href = domNode.attribs.href.replace(
               "dinvinguide.se/wp-content/uploads/",
-              "cloud.dinvinguide.se/wp-content/uploads/"
+              "cloud.dinvinguide.se/wp-content/uploads/",
             );
           }
 
@@ -224,7 +224,7 @@ export default function handleParse(
           ) {
             domNode.attribs.href = domNode.attribs.href.replace(
               "http://",
-              "https://"
+              "https://",
             );
           }
         }
@@ -253,7 +253,7 @@ export default function handleParse(
         ) {
           domNode.attribs.href = domNode.attribs.href.replace(
             "http://www.",
-            "https://"
+            "https://",
           );
         }
       }

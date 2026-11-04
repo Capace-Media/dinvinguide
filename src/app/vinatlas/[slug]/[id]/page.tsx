@@ -3,13 +3,15 @@ import { getWineAtlasPage } from "@/lib/api/pages/get-pages";
 
 type SingleWineAtlasIdProps = {
   params: Promise<{ slug: string; id: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  searchParams: Promise<{
+    [key: string]: string | string[] | any | undefined | null;
+  }>;
 };
 
 const SingleWineAtlasId = async (props: SingleWineAtlasIdProps) => {
   const params = await props.params;
   const data = await getWineAtlasPage(
-    `/vinguide/vinatlas/${params.slug}/${params.id}`
+    `/vinguide/vinatlas/${params.slug}/${params.id}`,
   );
 
   return (

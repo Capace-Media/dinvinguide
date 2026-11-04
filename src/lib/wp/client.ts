@@ -13,9 +13,10 @@ interface WpQueryOptions {
 
 const DEFAULT_REVALIDATE_SECONDS = 60 * 60 * 24; // 1 day
 
-type WpQueryArgs<TVariables> = TVariables extends Record<string, never>
-  ? [variables?: undefined, options?: WpQueryOptions]
-  : [variables: TVariables, options?: WpQueryOptions];
+type WpQueryArgs<TVariables> =
+  TVariables extends Record<string, never>
+    ? [variables?: undefined, options?: WpQueryOptions]
+    : [variables: TVariables, options?: WpQueryOptions];
 
 interface GraphQLResponse<TResult> {
   data?: TResult | null;
@@ -66,7 +67,10 @@ export async function wpQuery<TResult, TVariables>(
 
     const json = (await res.json()) as GraphQLResponse<TResult>;
     if (json.errors?.length) {
-      console.error("WP query errors:", json.errors.map((e) => e.message));
+      console.error(
+        "WP query errors:",
+        json.errors.map((e) => e.message),
+      );
     }
 
     return json.data ?? null;

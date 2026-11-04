@@ -1,6 +1,10 @@
 import { create, insertMultiple, search } from "@orama/orama";
 import { stemmer } from "@orama/stemmers/swedish";
-import { SEARCH_TYPES, type SearchType, type SiteSearchParams } from "./search-params";
+import {
+  SEARCH_TYPES,
+  type SearchType,
+  type SiteSearchParams,
+} from "./search-params";
 import type { SearchRecord } from "./search-records";
 
 // In-memory full-text index over the search records. Pure and synchronous in
@@ -46,12 +50,17 @@ export interface SearchResults {
 }
 
 export async function createSearchIndex(
-  records: readonly SearchRecord[]
+  records: readonly SearchRecord[],
 ): Promise<SearchIndex> {
   const db = createDatabase();
   await insertMultiple(
     db,
-    records.map(({ id, title, excerpt, type }) => ({ id, title, excerpt, type }))
+    records.map(({ id, title, excerpt, type }) => ({
+      id,
+      title,
+      excerpt,
+      type,
+    })),
   );
 
   // Orama memoizes every token it normalizes, including search terms, in a Map
@@ -59,7 +68,8 @@ export async function createSearchIndex(
   // limit, so searches tokenize uncached; normalizing a few words is cheap.
   const { tokenizer } = db;
   const tokenize = tokenizer.tokenize.bind(tokenizer);
-  tokenizer.tokenize = (raw, language, prop) => tokenize(raw, language, prop, false);
+  tokenizer.tokenize = (raw, language, prop) =>
+    tokenize(raw, language, prop, false);
 
   return { db, records: new Map(records.map((record) => [record.id, record])) };
 }
@@ -70,7 +80,7 @@ const TITLE_BOOST = { title: 3 };
 
 export async function searchContent(
   index: SearchIndex,
-  { q, type, page, limit }: SearchContentParams
+  { q, type, page, limit }: SearchContentParams,
 ): Promise<SearchResults> {
   const countByType = (tolerance: number) =>
     search(index.db, {
@@ -99,7 +109,10 @@ export async function searchContent(
   // The counts drive the type filter chips, so they ignore the active type.
   const facetValues = all.facets?.type?.values ?? {};
   const countsByType = Object.fromEntries(
-    SEARCH_TYPES.map((searchType) => [searchType, facetValues[searchType] ?? 0])
+    SEARCH_TYPES.map((searchType) => [
+      searchType,
+      facetValues[searchType] ?? 0,
+    ]),
   ) as Record<SearchType, number>;
 
   const results = type

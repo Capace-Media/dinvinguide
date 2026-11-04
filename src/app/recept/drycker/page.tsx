@@ -11,7 +11,7 @@ type Props = {
 
 export async function generateMetadata(
   _props: Props,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const page = await getPage("/recept/drycker");
 

@@ -36,12 +36,11 @@ interface PostTemplateProps {
   post: PostTemplatePost | null;
 }
 
-const isAuthorEdge = (
-  author: PostAuthor | AuthorEdge
-): author is AuthorEdge => "node" in author;
+const isAuthorEdge = (author: PostAuthor | AuthorEdge): author is AuthorEdge =>
+  "node" in author;
 
 const hasFieldGroupName = (
-  section: PostSection | null
+  section: PostSection | null,
 ): section is PostSection & { fieldGroupName: string } =>
   typeof section?.fieldGroupName === "string";
 
@@ -58,15 +57,15 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
   const sections = post?.acf_posts?.sektioner?.filter(hasFieldGroupName);
 
   return (
-    <article className="lg:grid lg:grid-cols-5 gap-10 pt-30">
+    <article className="gap-10 pt-30 lg:grid lg:grid-cols-5">
       <Line />
       <div className="lg:col-span-3">
-        <div className="flex justify-between gap-4 lg:flex-row flex-col">
+        <div className="flex flex-col justify-between gap-4 lg:flex-row">
           {writer?.name ? (
             <ul className="flex gap-2 text-[13px] text-brand-secondary">
               <li>
                 <Link
-                  className=" text-brand-secondary  lg:hover:underline"
+                  className="text-brand-secondary lg:hover:underline"
                   href="/"
                 >
                   Hem
@@ -75,7 +74,7 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
               {" / "}
               <li>
                 <Link
-                  className=" text-brand-secondary lg:hover:underline"
+                  className="text-brand-secondary lg:hover:underline"
                   href="/skribenter"
                 >
                   skribenter
@@ -84,7 +83,7 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
               {" / "}
               <li>
                 <Link
-                  className=" whitespace-nowrap text-brand-secondary lg:hover:underline"
+                  className="whitespace-nowrap text-brand-secondary lg:hover:underline"
                   href={`/skribenter/${writer.slug}`}
                 >
                   {writer.name}
@@ -92,14 +91,14 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
               </li>
               {" / "}
               <li>
-                <p className="text-brand-dark line-clamp-1">{post?.title}</p>
+                <p className="line-clamp-1 text-brand-dark">{post?.title}</p>
               </li>
             </ul>
           ) : post?.uri?.includes("/vinatlas/") ? (
             <ul className="flex gap-2 text-[14px] text-brand-secondary">
               <li>
                 <Link
-                  className=" text-brand-secondary lg:hover:underline"
+                  className="text-brand-secondary lg:hover:underline"
                   href="/"
                 >
                   Hem
@@ -108,7 +107,7 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
               {" / "}
               <li>
                 <Link
-                  className=" text-brand-secondary lg:hover:underline"
+                  className="text-brand-secondary lg:hover:underline"
                   href={`/guide`}
                 >
                   Guide
@@ -117,7 +116,7 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
               {" / "}
               <li>
                 <Link
-                  className=" text-brand-secondary lg:hover:underline"
+                  className="text-brand-secondary lg:hover:underline"
                   href="/vinatlas"
                 >
                   Vinatlas
@@ -130,20 +129,23 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
               </li>
             </ul>
           ) : null}
-          <time className="text-[14px]" dateTime={post?.modifiedGmt ?? undefined}>
+          <time
+            className="text-[14px]"
+            dateTime={post?.modifiedGmt ?? undefined}
+          >
             {PrettyDate(post?.modifiedGmt)}
           </time>
         </div>
 
-        <div className=" text-brand-dark pt-10">
-          <h1 className="font-sub pb-5">{post?.title}</h1>
+        <div className="pt-10 text-brand-dark">
+          <h1 className="pb-5 font-sub">{post?.title}</h1>
           {post?.acf_posts?.ingress && (
-            <div className=" italic text-[14px] pb-3">
+            <div className="pb-3 text-[14px] italic">
               {handleParse(post.acf_posts.ingress)}
             </div>
           )}
           {post?.featuredImage?.node?.mediaItemUrl && (
-            <div className=" relative py-10 w-full lg:h-138.75 h-80.5">
+            <div className="relative h-80.5 w-full py-10 lg:h-138.75">
               <Image
                 src={post?.featuredImage?.node?.mediaItemUrl}
                 alt={post?.title ?? ""}
@@ -159,21 +161,18 @@ const PostTemplate = ({ post }: PostTemplateProps) => {
         {sections && <Blocks blocks={sections} />}
         {post?.content && (
           <div>
-            <h1 className="font-sub pb-5">{post?.title}</h1>
+            <h1 className="pb-5 font-sub">{post?.title}</h1>
             {handleParse(post.content)}
           </div>
         )}
         {post?.acf_oldcontent?.oldContentAcf && (
           <div>
-            <h1 className="font-sub pb-5">{post?.title}</h1>
+            <h1 className="pb-5 font-sub">{post?.title}</h1>
             {handleParse(post.acf_oldcontent.oldContentAcf)}
           </div>
         )}
       </div>
-      <Aside
-        author={author}
-        related={post?.acf_posts?.lasMer}
-      />
+      <Aside author={author} related={post?.acf_posts?.lasMer} />
     </article>
   );
 };

@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { Search } from "lucide-react"
-import { useRef } from "react"
+import { Search } from "lucide-react";
+import { useRef } from "react";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from "@/components/ui/input-group"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/input-group";
+import { cn } from "@/lib/utils";
 
 interface SearchInputProps {
-  id?: string
-  placeholder?: string
-  value: string
-  onChange: (value: string) => void
-  type?: "text" | "search"
-  clearable?: boolean
-  total?: number
-  className?: string
-  hitLabel?: { singular: string; plural: string }
+  id?: string;
+  placeholder?: string;
+  value: string;
+  onChange: (value: string) => void;
+  type?: "text" | "search";
+  clearable?: boolean;
+  total?: number;
+  className?: string;
+  hitLabel?: { singular: string; plural: string };
 }
 
 export function SearchInput({
@@ -33,7 +33,7 @@ export function SearchInput({
   className,
   hitLabel = { singular: "träff", plural: "träffar" },
 }: SearchInputProps) {
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <InputGroup className={cn("w-full sm:max-w-xs", className)}>
@@ -48,7 +48,9 @@ export function SearchInput({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={clearable ? "[&::-webkit-search-cancel-button]:hidden" : undefined}
+        className={
+          clearable ? "[&::-webkit-search-cancel-button]:hidden" : undefined
+        }
       />
       {clearable && value && (
         <InputGroupAddon align="inline-end" className="py-0">
@@ -56,8 +58,8 @@ export function SearchInput({
             aria-label="Rensa sökning"
             className="min-h-11 min-w-11"
             onClick={() => {
-              onChange("")
-              inputRef.current?.focus()
+              onChange("");
+              inputRef.current?.focus();
             }}
           >
             Rensa
@@ -70,5 +72,5 @@ export function SearchInput({
         </InputGroupAddon>
       )}
     </InputGroup>
-  )
+  );
 }

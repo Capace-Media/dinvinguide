@@ -36,47 +36,47 @@ const GrapePagination = async ({ searchParams }: GrapePaginationProps) => {
       <GrapeFilter />
       <div>
         <h2 className="pb-10">Utforska druvor från hela världen</h2>
-        <ul className="grid md:grid-cols-2 gap-4 lg:grid-cols-4">
+        <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {grapes?.edges.map((grape) => {
-              return (
-                <li
-                  key={grape.node.id}
-                  className="group lg:hover:-translate-y-1.75 lg:ease-in-out lg:duration-200"
+            return (
+              <li
+                key={grape.node.id}
+                className="group lg:duration-200 lg:ease-in-out lg:hover:-translate-y-1.75"
+              >
+                <Link
+                  href={`/druvor/${grape.node.slug}`}
+                  aria-label={`Läs mer om ${grape.node.title}`}
                 >
-                  <Link
-                    href={`/druvor/${grape.node.slug}`}
-                    aria-label={`Läs mer om ${grape.node.title}`}
-                  >
-                    <div className="relative h-50 w-full bg-[#F5F5F5]">
-                      {grape.node.featuredImage?.node?.mediaItemUrl && (
-                        <Image
-                          src={grape.node.featuredImage.node.mediaItemUrl}
-                          alt={
-                            grape.node.featuredImage?.node?.altText
-                              ? grape.node.featuredImage.node.altText
-                              : `bild på ${grape.node.acf_grape?.druvtyp?.name}`
-                          }
-                          fill
-                          style={{
-                            objectFit: "cover",
-                            borderRadius: "5px 5px 0px 0px",
-                          }}
-                        />
-                      )}
-                    </div>
-                    <div className="h-17.25 w-full bg-[#F5F5F5] p-2 rounded-b-[10px]">
-                      <p className="text-[12px]">
-                        {grape.node.acf_grape?.druvtyp?.name &&
-                          grape.node.acf_grape.druvtyp.name}
-                      </p>
-                      <h3 className="text-[18px] md:group-hover:underline">
-                        {grape.node.title}
-                      </h3>
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
+                  <div className="relative h-50 w-full bg-[#F5F5F5]">
+                    {grape.node.featuredImage?.node?.mediaItemUrl && (
+                      <Image
+                        src={grape.node.featuredImage.node.mediaItemUrl}
+                        alt={
+                          grape.node.featuredImage?.node?.altText
+                            ? grape.node.featuredImage.node.altText
+                            : `bild på ${grape.node.acf_grape?.druvtyp?.name}`
+                        }
+                        fill
+                        style={{
+                          objectFit: "cover",
+                          borderRadius: "5px 5px 0px 0px",
+                        }}
+                      />
+                    )}
+                  </div>
+                  <div className="h-17.25 w-full rounded-b-[10px] bg-[#F5F5F5] p-2">
+                    <p className="text-[12px]">
+                      {grape.node.acf_grape?.druvtyp?.name &&
+                        grape.node.acf_grape.druvtyp.name}
+                    </p>
+                    <h3 className="text-[18px] md:group-hover:underline">
+                      {grape.node.title}
+                    </h3>
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         {grapes?.pageInfo && (

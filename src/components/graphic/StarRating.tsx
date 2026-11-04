@@ -12,7 +12,7 @@ const StarRating = () => {
   //   );
   // };
   return (
-    <div className="font-[sans-serif] text-center">
+    <div className="text-center font-[sans-serif]">
       {/* <h1>Star rating</h1>
       {[...Array(totalStars)].map((star, index) => {
         const currentRating: any = index + 1;

@@ -44,25 +44,25 @@ const Player = ({
 
   return (
     <>
-      <div className="fixed top-0 left-0 z-50 w-screen h-screen bg-white">
+      <div className="fixed top-0 left-0 z-50 h-screen w-screen bg-white">
         <button
           type="button"
           aria-label="Stäng spelaren"
-          className="fixed top-5 right-5 text-black cursor-pointer"
+          className="fixed top-5 right-5 cursor-pointer text-black"
           onClick={() => handlePlaylist(null)}
         >
           <X className="size-10" aria-hidden />
         </button>
 
-        <div className="flex items-center justify-center w-full h-full">
-          <div className="w-full max-w-2xl mx-auto md:max-w-4xl lg:max-w-6xl">
+        <div className="flex h-full w-full items-center justify-center">
+          <div className="mx-auto w-full max-w-2xl md:max-w-4xl lg:max-w-6xl">
             {isAd ? (
               <div className="text-center">
                 <h2>Videon presenteras av</h2>
                 <a
                   href={billboard?.vintvBillboardLink ?? undefined}
                   target="_blank"
-                  className="relative block w-full h-56 max-w-3xl mx-auto"
+                  className="relative mx-auto block h-56 w-full max-w-3xl"
                   rel="noreferrer"
                 >
                   {billboard?.vintvBillboardBild?.mediaItemUrl && (
@@ -95,10 +95,10 @@ const Player = ({
             )}
           </div>
         </div>
-        <div className="fixed bottom-0 left-0 flex items-center justify-between w-screen p-5">
+        <div className="fixed bottom-0 left-0 flex w-screen items-center justify-between p-5">
           {episodeIndex !== 0 ? (
             <button
-              className="flex items-center px-3 py-1 space-x-3 rounded-sm md:px-5 md:py-3 bg-black/10 hover:bg-black/20"
+              className="flex items-center space-x-3 rounded-sm bg-black/10 px-3 py-1 hover:bg-black/20 md:px-5 md:py-3"
               onClick={() => handlePreviousVideo()}
             >
               <ArrowLeft className="size-5" aria-hidden />
@@ -109,7 +109,7 @@ const Player = ({
           )}
           {episodeIndex !== maxIndex && (
             <button
-              className="flex items-center px-3 py-1 space-x-3 rounded-sm md:px-5 md:py-3 bg-black/10 hover:bg-black/20"
+              className="flex items-center space-x-3 rounded-sm bg-black/10 px-3 py-1 hover:bg-black/20 md:px-5 md:py-3"
               onClick={() => handleNextVideo()}
             >
               <span>Nästa</span>

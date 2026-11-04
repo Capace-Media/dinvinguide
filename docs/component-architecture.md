@@ -4,10 +4,10 @@
 
 Keep Nextjs route files small and focused on:
 
-* route definitions;
-* route parameters;
-* loaders and route-level data dependencies; and
-* top-level page composition.
+- route definitions;
+- route parameters;
+- loaders and route-level data dependencies; and
+- top-level page composition.
 
 Do not implement an entire page in a route file.
 
@@ -41,9 +41,9 @@ should be placed under:
 
 Extract a section into a separate component when it:
 
-* represents a distinct part of the page;
-* manages its own state, queries, mutations, or event handlers;
-* contains substantial JSX or business logic; or
-* is easier to understand and test in isolation.
+- represents a distinct part of the page;
+- manages its own state, queries, mutations, or event handlers;
+- contains substantial JSX or business logic; or
+- is easier to understand and test in isolation.
 
 Avoid extracting trivial wrappers that do not improve readability or maintainability.

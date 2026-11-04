@@ -23,13 +23,13 @@ const PaginationForGuides = ({
   //   }
   // }, [page]);
   return (
-    <ul id={idString} className="grid md:grid-cols-2 gap-4 lg:grid-cols-4">
+    <ul id={idString} className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       {promise &&
         promise.map((item: any) => {
           return (
             <li
               key={item?.node?.id}
-              className="group lg:hover:-translate-y-[7px] lg:ease-in-out lg:duration-200"
+              className="group lg:duration-200 lg:ease-in-out lg:hover:-translate-y-[7px]"
             >
               <Link
                 href={`${uri}/${item?.node?.slug}`}
@@ -53,7 +53,7 @@ const PaginationForGuides = ({
                     />
                   )}
                 </div>
-                <div className="h-[69px] w-full bg-[#F5F5F5] p-2 rounded-b-[10px]">
+                <div className="h-[69px] w-full rounded-b-[10px] bg-[#F5F5F5] p-2">
                   <p className="text-[12px]">
                     {item?.node?.acf_grape?.druvtyp?.name &&
                       item.node.acf_grape.druvtyp.name}

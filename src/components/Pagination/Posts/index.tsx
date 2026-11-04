@@ -7,8 +7,8 @@ interface PostsProps {
 const Posts = ({ posts }: PostsProps) => {
   return (
     <>
-      <div className="layout bg-white contain">
-        <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
+      <div className="layout contain bg-white">
+        <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {posts &&
             posts.map((post: any, index: number) => {
               return (

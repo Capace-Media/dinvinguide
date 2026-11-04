@@ -44,7 +44,7 @@ const store = (globalStore.__dvgSearchIndex ??= { state: null, pending: null });
 function saveSnapshot(
   version: string,
   records: readonly SearchRecord[],
-  ifMatch: string | null
+  ifMatch: string | null,
 ): Promise<string | null> {
   const snapshot = { version, builtAt: new Date().toISOString(), records };
   return writeSearchSnapshot(snapshot, ifMatch ?? undefined);
@@ -54,11 +54,15 @@ function saveSnapshot(
 // preload in `src/instrumentation.ts` finishes before anyone searches.
 type LoadTrigger = "preload" | "search";
 
-const elapsedSince = (startedAt: number) => Math.round(performance.now() - startedAt);
+const elapsedSince = (startedAt: number) =>
+  Math.round(performance.now() - startedAt);
 
 // One line per new instance, so the logs show where a cold start's time goes.
 // `uptime` is how long the server process had run before this load began.
-function logColdStart(source: string, timings: Readonly<Record<string, number>>): void {
+function logColdStart(
+  source: string,
+  timings: Readonly<Record<string, number>>,
+): void {
   const parts = Object.entries(timings).map(([name, ms]) => `${name} ${ms} ms`);
   console.info(`Search index cold start (${source}): ${parts.join(", ")}`);
 }
@@ -67,7 +71,7 @@ async function indexFromSnapshot(
   stored: StoredSnapshot,
   trigger: LoadTrigger,
   startedAt: number,
-  uptime: number
+  uptime: number,
 ): Promise<IndexState> {
   const { snapshot, etag } = stored;
   const age = Date.now() - Date.parse(snapshot.builtAt);
@@ -143,7 +147,8 @@ async function recheckIndex(current: IndexState): Promise<IndexState> {
     return { ...next, checkedAt: Date.now() };
   }
 
-  const index = version === next.version ? next.index : await createSearchIndex(records);
+  const index =
+    version === next.version ? next.index : await createSearchIndex(records);
   const snapshotEtag = await saveSnapshot(version, records, next.snapshotEtag);
   return {
     version,
@@ -175,8 +180,9 @@ async function getSearchIndex(): Promise<SearchIndex> {
   after(
     pending.catch((error: unknown) => {
       console.error("Search index refresh failed:", error);
-      if (store.state === current) store.state = { ...current, checkedAt: Date.now() };
-    })
+      if (store.state === current)
+        store.state = { ...current, checkedAt: Date.now() };
+    }),
   );
   return current.index;
 }
@@ -218,7 +224,7 @@ export function warmSearchIndex(): void {
   after(
     getSearchIndex().catch((error: unknown) => {
       console.error("Search index warm-up failed:", error);
-    })
+    }),
   );
 }
 
@@ -240,14 +246,16 @@ export async function refreshSearchSnapshot(): Promise<{
 }
 
 const EMPTY_COUNTS = Object.fromEntries(
-  SEARCH_TYPES.map((type) => [type, 0])
+  SEARCH_TYPES.map((type) => [type, 0]),
 ) as SearchResults["countsByType"];
 
 export function emptySearchResults(page = 1): SearchResults {
   return { hits: [], total: 0, page, pageCount: 0, countsByType: EMPTY_COUNTS };
 }
 
-export async function searchSite(params: SiteSearchParams): Promise<SearchResults> {
+export async function searchSite(
+  params: SiteSearchParams,
+): Promise<SearchResults> {
   if (!params.q) return emptySearchResults(params.page);
   const index = await getSearchIndex();
   return searchContent(index, { ...params, q: params.q });

@@ -1,6 +1,10 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import PostTemplate from "@/components/shared/post/post-template";
-import { getPost, getPostPaths, getPreviewPost } from "@/lib/api/posts/get-posts";
+import {
+  getPost,
+  getPostPaths,
+  getPreviewPost,
+} from "@/lib/api/posts/get-posts";
 import generateArticleSchema from "@/lib/utils/json-LD-Schemas/generateArticleSchema";
 
 import { Metadata, ResolvingMetadata } from "next";
@@ -30,12 +34,14 @@ async function getPostData(params: { post: string; slug: string }) {
   }
 
   const data = await getPost(`/${slug}/${post}`);
-  return data ? { ...data, type: "published", author: data.author?.node } : null;
+  return data
+    ? { ...data, type: "published", author: data.author?.node }
+    : null;
 }
 
 export async function generateMetadata(
   props: Props,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const params = await props.params;
   const post = await getPostData(params);

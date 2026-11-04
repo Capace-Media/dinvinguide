@@ -1,5 +1,9 @@
 import { expect, test } from "bun:test";
-import { createSearchIndex, searchContent, type SearchIndex } from "./search-index";
+import {
+  createSearchIndex,
+  searchContent,
+  type SearchIndex,
+} from "./search-index";
 import type { SearchRecord } from "./search-records";
 
 // The index lives for the whole server instance, so anything a search adds to
@@ -37,6 +41,10 @@ test("searching still works after many unique queries", async () => {
   for (let i = 0; i < 200; i++) {
     await searchContent(index, { q: `slump${i}`, page: 1, limit: 20 });
   }
-  const result = await searchContent(index, { q: "körsbär", page: 1, limit: 5 });
+  const result = await searchContent(index, {
+    q: "körsbär",
+    page: 1,
+    limit: 5,
+  });
   expect(result.total).toBe(50);
 });

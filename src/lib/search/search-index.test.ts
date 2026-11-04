@@ -12,7 +12,7 @@ const record = (
   type: SearchType,
   title: string,
   excerpt = "",
-  modified = "2025-01-01T00:00:00"
+  modified = "2025-01-01T00:00:00",
 ): SearchRecord => ({
   id,
   type,
@@ -118,9 +118,13 @@ describe("searchContent type filter", () => {
   test("includes every type in the counts, with 0 for no hits", async () => {
     const index = await createSearchIndex(records);
     const result = await searchContent(index, { ...params, q: "merlot" });
-    expect(Object.keys(result.countsByType).sort()).toEqual(
-      ["drink", "drinktip", "grape", "post", "recipe"]
-    );
+    expect(Object.keys(result.countsByType).sort()).toEqual([
+      "drink",
+      "drinktip",
+      "grape",
+      "post",
+      "recipe",
+    ]);
     expect(result.countsByType.recipe).toBe(0);
   });
 });
@@ -128,12 +132,16 @@ describe("searchContent type filter", () => {
 describe("searchContent paging", () => {
   // Own fixture so typo tolerance cannot pull in unrelated records.
   const bordeaux = Array.from({ length: 12 }, (_, i) =>
-    record(`bordeaux-${i}`, "drink", `Bordeaux ${String.fromCharCode(97 + i)}`)
+    record(`bordeaux-${i}`, "drink", `Bordeaux ${String.fromCharCode(97 + i)}`),
   );
 
   test("reports the total and page count", async () => {
     const index = await createSearchIndex(bordeaux);
-    const result = await searchContent(index, { q: "bordeaux", page: 1, limit: 5 });
+    const result = await searchContent(index, {
+      q: "bordeaux",
+      page: 1,
+      limit: 5,
+    });
     expect(result.total).toBe(12);
     expect(result.pageCount).toBe(3);
     expect(result.page).toBe(1);
@@ -144,8 +152,8 @@ describe("searchContent paging", () => {
     const index = await createSearchIndex(bordeaux);
     const pages = await Promise.all(
       [1, 2, 3].map((page) =>
-        searchContent(index, { q: "bordeaux", page, limit: 5 })
-      )
+        searchContent(index, { q: "bordeaux", page, limit: 5 }),
+      ),
     );
     const ids = pages.flatMap((result) => result.hits.map((hit) => hit.id));
 
@@ -155,7 +163,11 @@ describe("searchContent paging", () => {
 
   test("returns no hits past the last page but keeps the total", async () => {
     const index = await createSearchIndex(bordeaux);
-    const result = await searchContent(index, { q: "bordeaux", page: 4, limit: 5 });
+    const result = await searchContent(index, {
+      q: "bordeaux",
+      page: 4,
+      limit: 5,
+    });
     expect(result.hits).toEqual([]);
     expect(result.total).toBe(12);
     expect(result.page).toBe(4);
@@ -174,7 +186,9 @@ describe("getIndexVersion", () => {
 
   test("changes when a record is modified", () => {
     const edited = records.map((item) =>
-      item.id === "merlot" ? { ...item, modified: "2026-06-01T00:00:00" } : item
+      item.id === "merlot"
+        ? { ...item, modified: "2026-06-01T00:00:00" }
+        : item,
     );
     expect(getIndexVersion(edited)).not.toBe(getIndexVersion(records));
   });

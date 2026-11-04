@@ -6,16 +6,16 @@ const Highlights = async () => {
 
   return (
     <div>
-      <div className="layout bg-white contain">
+      <div className="layout contain bg-white">
         <h2 className="py-5">{featured?.heading}</h2>
-        <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
+        <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {featured?.recipes.map((recipe) => {
-              return (
-                <li key={recipe?.id} className="relative">
-                  <Recipe recipe={recipe} />
-                </li>
-              );
-            })}
+            return (
+              <li key={recipe?.id} className="relative">
+                <Recipe recipe={recipe} />
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

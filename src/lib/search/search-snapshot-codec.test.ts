@@ -1,8 +1,13 @@
 import { expect, test } from "bun:test";
 import { gzipSync } from "node:zlib";
-import { decodeSnapshot, encodeSnapshot, type SearchSnapshot } from "./search-snapshot-codec";
+import {
+  decodeSnapshot,
+  encodeSnapshot,
+  type SearchSnapshot,
+} from "./search-snapshot-codec";
 
-const gzipJson = (value: unknown) => new Uint8Array(gzipSync(JSON.stringify(value)));
+const gzipJson = (value: unknown) =>
+  new Uint8Array(gzipSync(JSON.stringify(value)));
 
 const snapshot: SearchSnapshot = {
   version: "2-abc123",
@@ -14,7 +19,10 @@ const snapshot: SearchSnapshot = {
       title: "Pasta carbonara",
       excerpt: "Krämig pasta med ägg och pecorino.",
       url: "/recept/pasta-carbonara",
-      image: { url: "https://media.dinvinguide.se/wp-content/pasta.jpg", alt: "Pasta" },
+      image: {
+        url: "https://media.dinvinguide.se/wp-content/pasta.jpg",
+        alt: "Pasta",
+      },
       date: "2025-01-01T00:00:00",
       modified: "2025-02-01T00:00:00",
     },

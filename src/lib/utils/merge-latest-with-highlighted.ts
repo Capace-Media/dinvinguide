@@ -3,13 +3,10 @@
 export function mergeLatestWithHighlighted<T>(
   latest: readonly T[],
   highlighted: readonly T[],
-  total: number
+  total: number,
 ): T[] {
   const latestCount = total - Math.min(total, highlighted.length);
   const latestItems = latest.slice(0, latestCount);
 
-  return [
-    ...latestItems,
-    ...highlighted.slice(0, total - latestItems.length),
-  ];
+  return [...latestItems, ...highlighted.slice(0, total - latestItems.length)];
 }

@@ -15,7 +15,7 @@ interface WineExplorerProps {
 const WineExplorer = async ({ searchParams }: WineExplorerProps) => {
   const { after, before, first, last } = parsePaginationSearchParams(
     searchParams,
-    DRINKS_PER_PAGE
+    DRINKS_PER_PAGE,
   );
 
   const drinks = await getDrinks({ after, before, first, last });
@@ -24,7 +24,7 @@ const WineExplorer = async ({ searchParams }: WineExplorerProps) => {
 
   return (
     <div className="dl-layout relative z-10">
-      <h2 className="pb-10 md:pb-20 text-center">
+      <h2 className="pb-10 text-center md:pb-20">
         Utforska de viner som redaktionen har testat
       </h2>
       <WineExplorerList drinks={edges} />

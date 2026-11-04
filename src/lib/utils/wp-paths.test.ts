@@ -19,7 +19,9 @@ describe("isWordPressInternalPath", () => {
   });
 
   test("blocks catch-all slug arrays", () => {
-    expect(isWordPressInternalPath(["wp-json", "wp", "v2", "pages"])).toBe(true);
+    expect(isWordPressInternalPath(["wp-json", "wp", "v2", "pages"])).toBe(
+      true,
+    );
   });
 
   test.each([

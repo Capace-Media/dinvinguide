@@ -16,9 +16,19 @@ DinVinguide is a blog about food and drink, especially about Wine that's the mai
 implementation task, ask whether to continue on the current branch or create a new branch from the latest `main` branch. If creating a branch, use a short, descriptive name, such as
 `feat/profile-form` or `fix/checkout-validation`.
 
+## Testing and verification
+
+* Before implementing a bug fix or changing application behavior, read docs/testing.md to determine the required tests and verification.
+* During planning, identify the observable behavior affected and decide whether existing tests cover it.
+* For reproducible bug fixes, add a regression test first when practical, and confirm it fails for the expected reason before implementing the fix.
+* For new or changed behavior involving validation, data transformations, persistence, or integration boundaries, add or update tests unless existing tests already adequately cover the behavior.
+* Do not add tests merely because a file changed. Follow docs/testing.md for test scope, placement, and commands.
+* Before handoff, run the applicable checks and tests. Briefly report the results and explain any decision not to add tests for changed behavior.
+
+
 ## Linting
 
-* After making changes, run `bun run lint` and fix all errors.
+* After making changes, run `bun run fmt` and `bun run lint` and fix all errors.
 
 ## Versioning
 
@@ -45,6 +55,7 @@ Read only the documentation relevant to the current task:
 * Follow any more-specific `AGENTS.md` files in the directories being modified.
 * Before creating or modifying a route or React component, read `docs/component-architecture.md`.
 * Before creating or modifying user interface code, styles, icons, or loading states, read `docs/ui-conventions.md`.
+* Before creating or modifying tests, read `docs/testing.md`.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

@@ -18,7 +18,7 @@ import Meals from "@/components/features/recept/meals";
 
 export async function generateMetadata(
   _props: unknown,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const page = await getPage("/recept");
 

@@ -36,13 +36,17 @@ const snapshotSchema = z.object({
 const gzipAsync = promisify(gzip);
 const gunzipAsync = promisify(gunzip);
 
-export async function encodeSnapshot(snapshot: SearchSnapshot): Promise<Uint8Array> {
+export async function encodeSnapshot(
+  snapshot: SearchSnapshot,
+): Promise<Uint8Array> {
   return new Uint8Array(await gzipAsync(JSON.stringify(snapshot)));
 }
 
 // Throws on anything that is not a snapshot this code wrote, so a corrupt or
 // outdated file falls back to WordPress instead of becoming the index.
-export async function decodeSnapshot(bytes: Uint8Array): Promise<SearchSnapshot> {
+export async function decodeSnapshot(
+  bytes: Uint8Array,
+): Promise<SearchSnapshot> {
   const json: unknown = JSON.parse((await gunzipAsync(bytes)).toString("utf8"));
   const { version, builtAt, records } = snapshotSchema.parse(json);
   if (records.length > 0) recordSchema.parse(records[0]);

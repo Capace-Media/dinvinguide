@@ -11,12 +11,12 @@ const NewsletterForm = dynamic(() => import("./newsletter-form"), {
 export default function Newsletter() {
   return (
     <section className="">
-      <div className="bg-white h-2 md:h-6 lg:h-10 layout"></div>
-      <div className="contain layout bg-[#F6F6F6] grid md:grid-cols-2 gap-10 md:gap-16 lg:gap-20">
+      <div className="layout h-2 bg-white md:h-6 lg:h-10"></div>
+      <div className="contain layout grid gap-10 bg-[#F6F6F6] md:grid-cols-2 md:gap-16 lg:gap-20">
         <div className="relative h-[300px] lg:h-[482px]">
-          <div className=" bg-brand-primary h-[224px] lg:h-[410px] w-[80%] absolute top-0 left-0"></div>
-          <div className=" bg-white h-[224px] lg:h-[410px] w-[80%] absolute bottom-0 right-0">
-            <div className="w-full h-full relative">
+          <div className="absolute top-0 left-0 h-[224px] w-[80%] bg-brand-primary lg:h-[410px]"></div>
+          <div className="absolute right-0 bottom-0 h-[224px] w-[80%] bg-white lg:h-[410px]">
+            <div className="relative h-full w-full">
               <Image
                 unoptimized
                 src={vingard}
@@ -33,7 +33,7 @@ export default function Newsletter() {
 
         <NewsletterForm />
       </div>
-      <div className="bg-white h-2 md:h-6 lg:h-10 layout"></div>
+      <div className="layout h-2 bg-white md:h-6 lg:h-10"></div>
     </section>
   );
 }

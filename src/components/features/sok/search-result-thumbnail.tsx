@@ -1,4 +1,11 @@
-import { ChefHat, Grape, Lightbulb, Newspaper, Wine, type LucideIcon } from "lucide-react";
+import {
+  ChefHat,
+  Grape,
+  Lightbulb,
+  Newspaper,
+  Wine,
+  type LucideIcon,
+} from "lucide-react";
 import Image from "next/image";
 import type { SearchRecord } from "@/lib/search/search-records";
 import type { SearchType } from "@/lib/search/search-types";
@@ -30,7 +37,7 @@ export function SearchResultThumbnail({ hit }: { hit: SearchRecord }) {
     <div
       className={cn(
         "relative size-20 shrink-0 overflow-hidden rounded-md",
-        isBottle(hit.type) && "bg-brand-light"
+        isBottle(hit.type) && "bg-brand-light",
       )}
     >
       <Image

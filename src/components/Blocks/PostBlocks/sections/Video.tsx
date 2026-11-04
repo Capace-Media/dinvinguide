@@ -23,7 +23,7 @@ const Video = ({ content }: VideoProps) => {
 
       return (
         <iframe
-          className="w-full aspect-video"
+          className="aspect-video w-full"
           src={embedUrl}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -33,7 +33,7 @@ const Video = ({ content }: VideoProps) => {
     } else {
       // For direct video links, use a video tag
       return (
-        <video className="w-full aspect-video" controls preload="none">
+        <video className="aspect-video w-full" controls preload="none">
           <source src={url} type="video/mp4" />
           Your browser does not support the video tag.
         </video>

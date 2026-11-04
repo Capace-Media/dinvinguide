@@ -46,8 +46,14 @@ const TopNav = () => {
   const isDL = useRouteStyle();
 
   return (
-    <nav aria-label="Partner-sajter" className={cn("flex justify-center items-center", isDL ? "bg-brand-dl text-[#333]" : "bg-brand-primary text-white")}>
-      <ul className="flex flex-wrap md:flex-nowrap  w-[400px] md:w-full justify-center items-center gap-3 py-3  px-2">
+    <nav
+      aria-label="Partner-sajter"
+      className={cn(
+        "flex items-center justify-center",
+        isDL ? "bg-brand-dl text-[#333]" : "bg-brand-primary text-white",
+      )}
+    >
+      <ul className="flex w-[400px] flex-wrap items-center justify-center gap-3 px-2 py-3 md:w-full md:flex-nowrap">
         {NAV_ITEMS.map((item, index) => {
           const Icon = isDL ? item.darkIcon : item.lightIcon;
           const isLast = index === NAV_ITEMS.length - 1;
@@ -72,7 +78,14 @@ const TopNav = () => {
                 )}
               </li>
               {!isLast && (
-                <Separator orientation="vertical" className={cn("data-[orientation=vertical]:h-5", nextToLast ? "hidden md:block" : "", isDL ? "bg-[#333333c4]" : "")} />
+                <Separator
+                  orientation="vertical"
+                  className={cn(
+                    "data-[orientation=vertical]:h-5",
+                    nextToLast ? "hidden md:block" : "",
+                    isDL ? "bg-[#333333c4]" : "",
+                  )}
+                />
               )}
             </Fragment>
           );

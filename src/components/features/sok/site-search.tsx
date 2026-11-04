@@ -29,7 +29,7 @@ async function fetchSearchPage(
   q: string,
   type: SearchType | undefined,
   page: number,
-  signal: AbortSignal
+  signal: AbortSignal,
 ): Promise<SearchResponse> {
   const params = new URLSearchParams({
     q,
@@ -47,7 +47,7 @@ async function fetchSearchPage(
   } catch (error) {
     if (timeout.aborted) {
       throw new SearchTimeoutError(
-        "Sökningen tar längre tid än vanligt. Försök igen om en stund."
+        "Sökningen tar längre tid än vanligt. Försök igen om en stund.",
       );
     }
     throw error;
@@ -77,7 +77,9 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
     if (q) params.set("search", q);
     if (q && type) params.set("type", type);
     const query = params.toString();
-    router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
+    router.replace(query ? `${pathname}?${query}` : pathname, {
+      scroll: false,
+    });
   }, [q, type, pathname, router]);
 
   const {
@@ -112,13 +114,19 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
   // Also while "Försök igen" refetches after an error, which is not pending.
   const showSkeleton = q !== null && !firstPage && (isPending || isFetching);
   const allCount = firstPage
-    ? Object.values(firstPage.countsByType).reduce((sum, count) => sum + count, 0)
+    ? Object.values(firstPage.countsByType).reduce(
+        (sum, count) => sum + count,
+        0,
+      )
     : 0;
 
   return (
     <section>
       <div className="max-w-3xl">
-        <label htmlFor="site-search-input" className="block text-sm font-medium text-brand-dark">
+        <label
+          htmlFor="site-search-input"
+          className="block text-sm font-medium text-brand-dark"
+        >
           Sök på DinVinguide
         </label>
         <SearchInput
@@ -146,7 +154,11 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
         )}
       </div>
 
-      <p role="status" aria-atomic="true" className="mt-6 mb-2 min-h-5 text-sm text-brand-gray">
+      <p
+        role="status"
+        aria-atomic="true"
+        className="mt-6 mb-2 min-h-5 text-sm text-brand-gray"
+      >
         {!q ? (
           "Skriv minst två tecken för att söka."
         ) : isSearching ? (
@@ -155,7 +167,8 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
           error.message
         ) : firstPage && firstPage.total > 0 ? (
           <>
-            {formatCount(firstPage.total)} {firstPage.total === 1 ? "träff" : "träffar"} för{" "}
+            {formatCount(firstPage.total)}{" "}
+            {firstPage.total === 1 ? "träff" : "träffar"} för{" "}
             <strong className="text-brand-dark">&quot;{q}&quot;</strong>
           </>
         ) : firstPage?.total === 0 ? (
@@ -180,7 +193,8 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
             Inga träffar för <strong>&quot;{q}&quot;</strong>
           </p>
           <p className="text-sm text-brand-gray">
-            Kontrollera stavningen eller prova ett bredare sökord, till exempel en druva eller ett land.
+            Kontrollera stavningen eller prova ett bredare sökord, till exempel
+            en druva eller ett land.
           </p>
         </div>
       )}
@@ -189,10 +203,12 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
         aria-busy={isSearching}
         // Negative margin lines the rows' content up with the input; the padding
         // is only there for the hover background.
-        className={`-mx-3 grid gap-x-8 lg:grid-cols-2 transition-opacity duration-200 ${isSearching ? "opacity-50" : "opacity-100"}`}
+        className={`-mx-3 grid gap-x-8 transition-opacity duration-200 lg:grid-cols-2 ${isSearching ? "opacity-50" : "opacity-100"}`}
       >
         {showSkeleton &&
-          Array.from({ length: 6 }, (_, i) => <SearchResultItemSkeleton key={i} />)}
+          Array.from({ length: 6 }, (_, i) => (
+            <SearchResultItemSkeleton key={i} />
+          ))}
         {hits.map((hit) => (
           <SearchResultItem key={hit.id} hit={hit} />
         ))}

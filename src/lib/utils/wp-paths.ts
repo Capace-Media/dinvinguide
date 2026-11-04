@@ -23,7 +23,6 @@ function normalizePath(path: string | string[]): string {
   return p.replace(/\\/g, "/").replace(/^\/+/, "").toLowerCase();
 }
 
-
 export function isWordPressInternalPath(path: string | string[]): boolean {
   const p = normalizePath(path);
   return (

@@ -11,23 +11,23 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
   const data = await promise;
 
   return (
-    <div className="layout w-full py-17 bg-white">
-      <div className="grid md:grid-cols-2 gap-10 lg:gap-45 order-last md:order-first">
-        <div className="flex flex-col justify-between min-h-115.25">
-          <div className="flex flex-col gap-6 ">
+    <div className="layout w-full bg-white py-17">
+      <div className="order-last grid gap-10 md:order-first md:grid-cols-2 lg:gap-45">
+        <div className="flex min-h-115.25 flex-col justify-between">
+          <div className="flex flex-col gap-6">
             <div className="">
               {handleParse(data?.page?.page_content?.intro)}
             </div>
-            <ul className="font-main text-brand-primary uppercase flex whitespace-nowrap flex-wrap gap-4 font-medium">
+            <ul className="flex flex-wrap gap-4 font-main font-medium whitespace-nowrap text-brand-primary uppercase">
               {links?.recipeCategories &&
                 links.recipeCategories.map((link: any) => {
                   return (
                     <li
                       key={link.id}
-                      className="flex flex-col lg:hover:scale-105 lg:ease-in-out lg:duration-300 justify-center items-center"
+                      className="flex flex-col items-center justify-center lg:duration-300 lg:ease-in-out lg:hover:scale-105"
                     >
                       <Link href={link.uri}>{link.title}</Link>
-                      <span className="w-full  h-0.5 block bg-brand-primary"></span>
+                      <span className="block h-0.5 w-full bg-brand-primary"></span>
                     </li>
                   );
                 })}
@@ -35,8 +35,8 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
           </div>
         </div>
 
-        <div className="w-full  order-first h-92.5 relative md:order-last lg:h-130">
-          <ul className="absolute grid grid-cols-2 grid-rows-2 gap-2 pointer-events-none w-full center-y left-0 h-[89%] z-10">
+        <div className="relative order-first h-92.5 w-full md:order-last lg:h-130">
+          <ul className="center-y pointer-events-none absolute left-0 z-10 grid h-[89%] w-full grid-cols-2 grid-rows-2 gap-2">
             {data?.recipes?.nodes &&
               data.recipes.nodes.map((recipe: any, index: number) => {
                 return (
@@ -44,37 +44,39 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
                     key={recipe.id + index}
                     className={cn(
                       "pointer-events-auto",
-                      index === 0 && "row-span-2"
+                      index === 0 && "row-span-2",
                     )}
                   >
                     <Link
                       href={`/recept/${recipe?.slug}`}
-                      className="relative block w-full h-full overflow-hidden"
+                      className="relative block h-full w-full overflow-hidden"
                     >
                       <HandleImage
                         srcProp={recipe?.featuredImage?.node?.mediaItemUrl}
                         altProp={recipe?.featuredImage?.node?.altText}
                         objectFitProp="cover"
                         classesProp={cn(
-                          "relative w-full h-full overflow-hidden",
-                          "after:content-[''] after:absolute after:inset-0 after:pointer-events-none",
+                          "relative h-full w-full overflow-hidden",
+                          "after:pointer-events-none after:absolute after:inset-0 after:content-['']",
                           "after:bg-linear-to-b after:from-transparent after:to-black/30",
                           "[&_img]:transition-transform [&_img]:duration-300 [&_img]:ease-in-out",
-                          "hover:[&_img]:scale-119"
+                          "hover:[&_img]:scale-119",
                         )}
                       />
-                      <div className="absolute bottom-0 pointer-events-none w-full left-0 p-4 z-10">
+                      <div className="pointer-events-none absolute bottom-0 left-0 z-10 w-full p-4">
                         {recipe?.acf_recipe?.skrivetAv?.[0]?.name && (
-                          <p className="md:text-[12px] md:uppercase text-white text-[12px] line-clamp-1">
+                          <p className="line-clamp-1 text-[12px] text-white md:text-[12px] md:uppercase">
                             {recipe.acf_recipe.skrivetAv[0].name}
                           </p>
                         )}
                         {recipe?.title && (
                           <h2
                             className={cn(
-                              "md:text-[18px] leading-6 text-[16px] text-white lowercase font-sub",
+                              "font-sub text-[16px] leading-6 text-white lowercase md:text-[18px]",
                               // långa titlar får inte växa ut ur kortet
-                              index === 0 ? "line-clamp-5 lg:line-clamp-6" : "line-clamp-2 lg:line-clamp-4"
+                              index === 0
+                                ? "line-clamp-5 lg:line-clamp-6"
+                                : "line-clamp-2 lg:line-clamp-4",
                             )}
                           >
                             {recipe.title}
@@ -86,7 +88,7 @@ const RecipeHero = async ({ promise }: RecipeHeroProps) => {
                 );
               })}
           </ul>
-          <div className=" bg-brand-beige w-[85%] md:w-full h-full center-y absolute -right-4 md:-right-11 lg:-right-20"></div>
+          <div className="center-y absolute -right-4 h-full w-[85%] bg-brand-beige md:-right-11 md:w-full lg:-right-20"></div>
         </div>
       </div>
     </div>

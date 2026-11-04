@@ -17,7 +17,7 @@ const DrinkTipDetails = ({ drinkTip }: DrinkTipDetailsProps) => {
 
   return (
     <>
-      <div className="flex justify-between gap-4 lg:flex-row flex-col layout bg-white pb-10">
+      <div className="layout flex flex-col justify-between gap-4 bg-white pb-10 lg:flex-row">
         <ul className="flex gap-2 text-[14px] text-brand-secondary">
           <li>
             <Link className="text-brand-secondary lg:hover:underline" href="/">
@@ -40,7 +40,10 @@ const DrinkTipDetails = ({ drinkTip }: DrinkTipDetailsProps) => {
           </li>
         </ul>
 
-        <time className="text-[14px]" dateTime={drinkTip.modifiedGmt ?? undefined}>
+        <time
+          className="text-[14px]"
+          dateTime={drinkTip.modifiedGmt ?? undefined}
+        >
           {PrettyDate(drinkTip.modifiedGmt)}
         </time>
       </div>
@@ -73,13 +76,17 @@ const DrinkTipDetails = ({ drinkTip }: DrinkTipDetailsProps) => {
         {acf?.beskrivning && (
           <div className="py-4">
             <h3 className="uppercase">beskrivning:</h3>
-            <div className="whitespace-normal wrap-anywhere">{handleParse(acf.beskrivning)}</div>
+            <div className="wrap-anywhere whitespace-normal">
+              {handleParse(acf.beskrivning)}
+            </div>
           </div>
         )}
         {acf?.recension && (
           <div className="py-4">
             <h3 className="uppercase">Recension:</h3>
-            <div className="whitespace-normal wrap-anywhere">{handleParse(acf.recension)}</div>
+            <div className="wrap-anywhere whitespace-normal">
+              {handleParse(acf.recension)}
+            </div>
           </div>
         )}
 

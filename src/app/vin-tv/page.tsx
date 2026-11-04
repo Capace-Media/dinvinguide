@@ -14,7 +14,7 @@ import { guideLinks } from "@/components/shared/heroes/guide-links";
 
 export async function generateMetadata(
   _props: unknown,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const page = await getPage("/vin-tv");
 

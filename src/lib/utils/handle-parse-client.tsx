@@ -15,7 +15,7 @@ export default function handleParseClient(content?: string) {
 
         src = src.replace(
           /^.*\/app\/uploads\//,
-          "https://cloud.dinvinguide.se/wp-content/uploads/"
+          "https://cloud.dinvinguide.se/wp-content/uploads/",
         );
         if (src.startsWith("http://")) src = src.replace("http://", "https://");
         if (src.includes("https://media."))
@@ -23,7 +23,7 @@ export default function handleParseClient(content?: string) {
         if (src.startsWith("https://dinvinguide.se/")) {
           src = src.replace(
             "https://dinvinguide.se/",
-            "https://cloud.dinvinguide.se/"
+            "https://cloud.dinvinguide.se/",
           );
         }
 

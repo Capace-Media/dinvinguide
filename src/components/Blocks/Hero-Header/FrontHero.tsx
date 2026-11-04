@@ -15,14 +15,14 @@ interface FrontHeroProps {
 
 const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
   return (
-    <div className="layout w-full py-17 bg-white">
-      <div className="grid xl:grid-cols-2 order-last xl:order-first ">
-        <div className="flex flex-col justify-between min-h-115.25">
-          <div className="flex flex-col gap-6 max-w-150">
+    <div className="layout w-full bg-white py-17">
+      <div className="order-last grid xl:order-first xl:grid-cols-2">
+        <div className="flex min-h-115.25 flex-col justify-between">
+          <div className="flex max-w-150 flex-col gap-6">
             <div className="front-parse">
               {data?.content && handleParsed(data?.content)}
             </div>
-            <ul className="font-main text-brand-primary uppercase flex whitespace-nowrap flex-wrap gap-4 font-medium">
+            <ul className="flex flex-wrap gap-4 font-main font-medium whitespace-nowrap text-brand-primary uppercase">
               <li className="">
                 <Link className={buttonVariants()} href="/guide">
                   Alla Guider
@@ -31,7 +31,7 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
               <li>
                 <Link
                   className={cn(
-                    buttonVariants({ variant: "link", size: "link" })
+                    buttonVariants({ variant: "link", size: "link" }),
                   )}
                   href="/druvguiden"
                 >
@@ -41,7 +41,7 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
               <li>
                 <Link
                   className={cn(
-                    buttonVariants({ variant: "link", size: "link" })
+                    buttonVariants({ variant: "link", size: "link" }),
                   )}
                   href="/vinatlas"
                 >
@@ -51,7 +51,7 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
               <li>
                 <Link
                   className={cn(
-                    buttonVariants({ variant: "link", size: "link" })
+                    buttonVariants({ variant: "link", size: "link" }),
                   )}
                   href="/vinskolan"
                 >
@@ -61,7 +61,7 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
               <li>
                 <Link
                   className={cn(
-                    buttonVariants({ variant: "link", size: "link" })
+                    buttonVariants({ variant: "link", size: "link" }),
                   )}
                   href="/ordlistan"
                 >
@@ -74,17 +74,17 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
           <div className="pt-6">
             <Link
               href="/recept/receptbanken"
-              className="lg:hover:underline italic text-brand-secondary flex items-center gap-3"
+              className="flex items-center gap-3 text-brand-secondary italic lg:hover:underline"
             >
               Besök vår receptbank <ArrowRight />
             </Link>
           </div>
         </div>
 
-        <div className="w-full  order-first h-92.5 relative xl:order-last lg:h-130">
-          <div className="absolute w-[85%] bottom-0 left-0 h-75 lg:h-107.5 z-10">
+        <div className="relative order-first h-92.5 w-full lg:h-130 xl:order-last">
+          <div className="absolute bottom-0 left-0 z-10 h-75 w-[85%] lg:h-107.5">
             {data?.featuredImage?.node?.mediaItemUrl && (
-              <div className="relative w-full h-full">
+              <div className="relative h-full w-full">
                 <Image
                   src={data?.featuredImage?.node?.mediaItemUrl}
                   alt={
@@ -97,12 +97,12 @@ const FrontHero: React.FC<FrontHeroProps> = ({ data }) => {
                   sizes="(max-width: 1280px) 80vw, (max-width: 1790px) 39vw, 688px"
                   loading="eager"
                   fetchPriority="high"
-                  className="object-cover w-full h-full"
+                  className="h-full w-full object-cover"
                 />
               </div>
             )}
           </div>
-          <div className="bg-brand-primary w-[85%] h-75 lg:h-107.5 top-0 absolute right-0"></div>
+          <div className="absolute top-0 right-0 h-75 w-[85%] bg-brand-primary lg:h-107.5"></div>
         </div>
       </div>
     </div>

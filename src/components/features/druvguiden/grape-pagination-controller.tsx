@@ -27,13 +27,13 @@ const GrapePaginationController = ({
   const page = searchParams.get("page") ?? "1";
 
   return (
-    <div className="flex justify-center items-center gap-2 py-10">
+    <div className="flex items-center justify-center gap-2 py-10">
       <button
         aria-label="föregående sida för posterna"
-        className={` p-2.5 flex items-center justify-center ${
+        className={`flex items-center justify-center p-2.5 ${
           !hasPreviousPage
             ? ""
-            : "md:hover:scale-110 md:ease-in-out md:duration-300"
+            : "md:duration-300 md:ease-in-out md:hover:scale-110"
         }`}
         disabled={!hasPreviousPage}
         onClick={() => {
@@ -43,15 +43,15 @@ const GrapePaginationController = ({
             }&last=16&first=null&before=${startCursor}&filter=${
               filter ? filter : ""
             }`,
-            { scroll: false }
+            { scroll: false },
           );
         }}
       >
         {!hasPreviousPage ? <ArrowPrevDis /> : <ArrowPrevActive />}
       </button>
 
-      <div className="flex justify-center items-center gap-3">
-        <span className="w-7 flex justify-center items-center h-7 text-white bg-brand-secondary">
+      <div className="flex items-center justify-center gap-3">
+        <span className="flex h-7 w-7 items-center justify-center bg-brand-secondary text-white">
           {page}
         </span>{" "}
         av {""}
@@ -60,10 +60,10 @@ const GrapePaginationController = ({
 
       <button
         aria-label="nästa sida för posterna"
-        className={` p-2.5 flex items-center justify-center ${
+        className={`flex items-center justify-center p-2.5 ${
           !hasNextPage
             ? ""
-            : "md:hover:scale-110 md:ease-in-out md:duration-300"
+            : "md:duration-300 md:ease-in-out md:hover:scale-110"
         }`}
         disabled={!hasNextPage}
         onClick={() => {
@@ -73,7 +73,7 @@ const GrapePaginationController = ({
             }&first=16&last=null&after=${endCursor}&filter=${
               filter ? filter : ""
             }`,
-            { scroll: false }
+            { scroll: false },
           );
         }}
       >

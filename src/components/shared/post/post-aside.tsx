@@ -46,8 +46,7 @@ const Aside = ({ author, related }: AsideProps) => {
   return (
     <aside className="md:col-span-2 lg:pl-10">
       <div className="md:px-3">
-
-        <div className="w-full bg-brand-primary p-5 ">
+        <div className="w-full bg-brand-primary p-5">
           <div className="w-full">
             {author?.acf_user?.bild?.mediaItemUrl && (
               <Image
@@ -64,43 +63,46 @@ const Aside = ({ author, related }: AsideProps) => {
               />
             )}
           </div>
-          <div className="text-white text-center py-10">
-            <p className=" font-sub text-[29px] pb-6">
+          <div className="py-10 text-center text-white">
+            <p className="pb-6 font-sub text-[29px]">
               {author?.name || "Okänd författare"}
             </p>
-            <div className="text-[16px] line-clamp-5">
+            <div className="line-clamp-5 text-[16px]">
               {author?.acf_user?.kortBeskrivning
                 ? handleParse(author.acf_user.kortBeskrivning, "text-white")
                 : "Ingen beskrivning tillgänglig."}
             </div>
             <div>
-              <ul className="flex justify-center items-center gap-2 pt-6">
+              <ul className="flex items-center justify-center gap-2 pt-6">
                 <li>
                   <a
-                    className="min-h-10 min-w-10 flex justify-center items-end"
+                    className="flex min-h-10 min-w-10 items-end justify-center"
                     href={author?.acf_user?.facebook || "#"}
-                    aria-label={`länk till ${author?.name || "författarens"
-                      } facebook`}
+                    aria-label={`länk till ${
+                      author?.name || "författarens"
+                    } facebook`}
                   >
                     <Facebook />
                   </a>
                 </li>
                 <li>
                   <a
-                    className="min-h-10 min-w-10 flex justify-center items-end"
+                    className="flex min-h-10 min-w-10 items-end justify-center"
                     href={author?.acf_user?.instagram || "#"}
-                    aria-label={`länk till ${author?.name || "författarens"
-                      } instagram`}
+                    aria-label={`länk till ${
+                      author?.name || "författarens"
+                    } instagram`}
                   >
                     <Instagram />
                   </a>
                 </li>
                 <li>
                   <a
-                    className="min-h-10 min-w-10 flex justify-center items-end"
+                    className="flex min-h-10 min-w-10 items-end justify-center"
                     href={`mailto:${author?.acf_user?.email || ""}`}
-                    aria-label={`länk till ${author?.name || "författarens"
-                      } email`}
+                    aria-label={`länk till ${
+                      author?.name || "författarens"
+                    } email`}
                   >
                     <Biggermail />
                   </a>
@@ -112,11 +114,13 @@ const Aside = ({ author, related }: AsideProps) => {
       </div>
       <div className="py-2">
         <ul className="grid gap-2">
-          {related && related.length > 0 ? (
-            related.filter(isPresent).map((post) => (
-              <PostCard key={post.id} post={toPostCardPost(post)} />
-            ))
-          ) : null}
+          {related && related.length > 0
+            ? related
+                .filter(isPresent)
+                .map((post) => (
+                  <PostCard key={post.id} post={toPostCardPost(post)} />
+                ))
+            : null}
         </ul>
       </div>
     </aside>
