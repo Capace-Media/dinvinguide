@@ -75,12 +75,11 @@ const Post = ({ post, type }: PostProps) => {
             </h2>
           )}
           {post?.acf_posts?.ingress && (
-            <>
-              <p
-                className="line-clamp-3 text-[13px] text-brand-gray"
-                dangerouslySetInnerHTML={{ __html: post.acf_posts.ingress }}
-              />
-            </>
+            <p
+              className="line-clamp-3 text-[13px] text-brand-gray"
+              // biome-ignore lint/security/noDangerouslySetInnerHtml: ingress is HTML written in our own WordPress
+              dangerouslySetInnerHTML={{ __html: post.acf_posts.ingress }}
+            />
           )}
         </div>
 

@@ -6,10 +6,10 @@ import { Suspense } from "react";
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import { getWord } from "@/lib/api/words/get-words";
 import { notFound } from "next/navigation";
-import { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 
 import ExploreGuides from "@/components/shared/explore-guides";
-import { MetaInfo } from "../../../../types/MetaInfoTypes";
+import type { MetaInfo } from "../../../../types/MetaInfoTypes";
 import WordArticle from "@/components/features/ordlistan/word/word-article";
 
 type Props = {

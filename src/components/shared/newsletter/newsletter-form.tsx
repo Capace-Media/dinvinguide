@@ -56,6 +56,7 @@ const NewsletterForm = () => {
         target="_blank"
         className=""
         onSubmit={handleSubmit}
+        rel="noopener"
       >
         <div className="relative mb-4 w-full bg-white">
           <input

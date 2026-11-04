@@ -2,8 +2,8 @@ import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import { getDrink, getPreviewDrink } from "@/lib/api/drinks/get-drinks";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
-import { Metadata, ResolvingMetadata } from "next";
-import { MetaInfo } from "../../../../types/MetaInfoTypes";
+import type { Metadata, ResolvingMetadata } from "next";
+import type { MetaInfo } from "../../../../types/MetaInfoTypes";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import DlTop from "@/shared/components/ads/dl/top";
 import DlMid from "@/shared/components/ads/dl/mid";
@@ -46,7 +46,7 @@ export async function generateMetadata(
 async function getDrinkData(slug: string) {
   const { isEnabled } = await draftMode();
   if (isEnabled) {
-    return getPreviewDrink(parseInt(slug));
+    return getPreviewDrink(parseInt(slug, 10));
   }
   return getDrink(`/drycker/${slug}`);
 }

@@ -191,6 +191,7 @@ span.aligncenter {
   @apply overflow-hidden;
 }
 
+/* biome-ignore-start lint/complexity/noImportantStyles: Google Translate injects its own styles at runtime, see the comment above */
 #google_translate_element .skiptranslate {
   @apply block! opacity-100!;
   font-size: 0 !important;
@@ -216,6 +217,7 @@ span.aligncenter {
   font-size: 14px !important;
   line-height: normal !important;
 }
+/* biome-ignore-end lint/complexity/noImportantStyles: end of the Google Translate overrides */
 
 #google_translate_element .goog-te-combo:focus {
   @apply outline-none! ring-1! ring-brand-primary!;
@@ -253,6 +255,7 @@ span.aligncenter {
     font-family: var(--font-sub);
     font-size: 23px;
     padding-bottom: 1rem;
+    /* biome-ignore lint/complexity/noImportantStyles: parsed WordPress headings carry inline text-align styles */
     text-align: left !important;
   }
 
@@ -306,6 +309,7 @@ span.aligncenter {
     }
   }
 
+  /* biome-ignore lint/style/noDescendingSpecificity: false positive, the Google Translate selector above targets unrelated elements */
   a {
     text-decoration: underline;
     font-weight: 600;
@@ -404,6 +408,7 @@ span.aligncenter {
   color: white;
 
   @variant lg {
+    /* biome-ignore lint/complexity/noImportantStyles: parsed WordPress content carries inline colors */
     color: white !important;
   }
 }
@@ -415,7 +420,10 @@ span.aligncenter {
 .dl-hero-intro .parsed h4,
 .dl-hero-intro .parsed h5,
 .dl-hero-intro .parsed h6,
-.dl-hero-intro .parsed em {
+/* biome-ignore lint/style/noDescendingSpecificity: false positive, the earlier `em` rule sits in a different scope and reordering could change the cascade */
+  .dl-hero-intro
+  .parsed
+  em {
   @apply text-white;
 }
 

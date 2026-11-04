@@ -1,10 +1,10 @@
-import * as React from "react";
 const SvgForratter = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={35}
     height={36}
     fill="none"
+    aria-hidden="true"
     {...props}
   >
     <g fill="#fff" clipPath="url(#forratter_svg__a)">

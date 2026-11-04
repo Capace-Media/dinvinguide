@@ -1,9 +1,9 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import PageHero from "@/components/shared/heroes/page-hero";
 import { getPage } from "@/lib/api/pages/get-pages";
-import { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 
-import { MetaInfo } from "../../../types/MetaInfoTypes";
+import type { MetaInfo } from "../../../types/MetaInfoTypes";
 
 import {
   dehydrate,
@@ -27,7 +27,7 @@ type Props = {
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  _props: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const page = await getPage("/importorer");

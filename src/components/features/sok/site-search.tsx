@@ -207,14 +207,20 @@ export function SiteSearch({ initialSearch, initialType }: SiteSearchProps) {
       >
         {showSkeleton &&
           Array.from({ length: 6 }, (_, i) => (
-            <SearchResultItemSkeleton key={i} />
+            <SearchResultItemSkeleton
+              // biome-ignore lint/suspicious/noArrayIndexKey: static skeleton placeholders have no identity
+              key={i}
+            />
           ))}
         {hits.map((hit) => (
           <SearchResultItem key={hit.id} hit={hit} />
         ))}
         {isFetchingNextPage &&
           Array.from({ length: 3 }, (_, i) => (
-            <SearchResultItemSkeleton key={`next-${i}`} />
+            <SearchResultItemSkeleton
+              // biome-ignore lint/suspicious/noArrayIndexKey: static skeleton placeholders have no identity
+              key={`next-${i}`}
+            />
           ))}
       </ul>
 

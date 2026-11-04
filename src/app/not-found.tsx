@@ -1,5 +1,4 @@
 import Link from "next/link";
-import ExplorePages from "@/components/shared/explore-pages";
 
 export default function NotFound() {
   return (
@@ -17,6 +16,7 @@ export default function NotFound() {
           <div className="absolute inset-0 flex items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

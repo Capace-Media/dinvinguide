@@ -5,9 +5,5 @@ export default function TopListLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <>
-      <DrinkListLayout>{children}</DrinkListLayout>
-    </>
-  );
+  return <DrinkListLayout>{children}</DrinkListLayout>;
 }

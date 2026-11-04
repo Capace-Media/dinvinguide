@@ -35,6 +35,7 @@ const Player = ({
     }, billboardDelay * 1000);
     return () => clearTimeout(adTimer);
   }, [billboardDelay]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: episodeIndex is the trigger, not a value read inside the effect
   useEffect(() => {
     // Show the billboard every time the episode changes.
     playAd();
@@ -43,82 +44,82 @@ const Player = ({
   const episode = episodes[episodeIndex].node;
 
   return (
-    <>
-      <div className="fixed top-0 left-0 z-50 h-screen w-screen bg-white">
-        <button
-          type="button"
-          aria-label="Stäng spelaren"
-          className="fixed top-5 right-5 cursor-pointer text-black"
-          onClick={() => handlePlaylist(null)}
-        >
-          <X className="size-10" aria-hidden />
-        </button>
+    <div className="fixed top-0 left-0 z-50 h-screen w-screen bg-white">
+      <button
+        type="button"
+        aria-label="Stäng spelaren"
+        className="fixed top-5 right-5 cursor-pointer text-black"
+        onClick={() => handlePlaylist(null)}
+      >
+        <X className="size-10" aria-hidden />
+      </button>
 
-        <div className="flex h-full w-full items-center justify-center">
-          <div className="mx-auto w-full max-w-2xl md:max-w-4xl lg:max-w-6xl">
-            {isAd ? (
-              <div className="text-center">
-                <h2>Videon presenteras av</h2>
+      <div className="flex h-full w-full items-center justify-center">
+        <div className="mx-auto w-full max-w-2xl md:max-w-4xl lg:max-w-6xl">
+          {isAd ? (
+            <div className="text-center">
+              <h2>Videon presenteras av</h2>
+              <a
+                href={billboard?.vintvBillboardLink ?? undefined}
+                target="_blank"
+                className="relative mx-auto block h-56 w-full max-w-3xl"
+                rel="noreferrer"
+              >
+                {billboard?.vintvBillboardBild?.mediaItemUrl && (
+                  <Image
+                    src={billboard.vintvBillboardBild.mediaItemUrl}
+                    fill
+                    style={{ objectFit: "contain" }}
+                    priority
+                    alt="Annons"
+                  />
+                )}
+              </a>
+              <p>Videon spelar snart</p>
+            </div>
+          ) : (
+            <div className="text-center">
+              <Video episode={episode} />
+              <p className="mt-4 text-[12px]">
+                <span>Fungerar inte videon? </span>
                 <a
-                  href={billboard?.vintvBillboardLink ?? undefined}
+                  className="hover:text-brand-bronze"
                   target="_blank"
-                  className="relative mx-auto block h-56 w-full max-w-3xl"
+                  href={`https://www.youtube.com/watch?v=${episode.acf_episode?.videoId}`}
                   rel="noreferrer"
                 >
-                  {billboard?.vintvBillboardBild?.mediaItemUrl && (
-                    <Image
-                      src={billboard.vintvBillboardBild.mediaItemUrl}
-                      fill
-                      style={{ objectFit: "contain" }}
-                      priority
-                      alt="Annons"
-                    />
-                  )}
+                  klicka här för att se den på Youtube
                 </a>
-                <p>Videon spelar snart</p>
-              </div>
-            ) : (
-              <div className="text-center">
-                <Video episode={episode} />
-                <p className="mt-4 text-[12px]">
-                  <span>Fungerar inte videon? </span>
-                  <a
-                    className="hover:text-brand-bronze"
-                    target="_blank"
-                    href={`https://www.youtube.com/watch?v=${episode.acf_episode?.videoId}`}
-                    rel="noreferrer"
-                  >
-                    klicka här för att se den på Youtube
-                  </a>
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="fixed bottom-0 left-0 flex w-screen items-center justify-between p-5">
-          {episodeIndex !== 0 ? (
-            <button
-              className="flex items-center space-x-3 rounded-sm bg-black/10 px-3 py-1 hover:bg-black/20 md:px-5 md:py-3"
-              onClick={() => handlePreviousVideo()}
-            >
-              <ArrowLeft className="size-5" aria-hidden />
-              <span>Föregående</span>
-            </button>
-          ) : (
-            <div />
-          )}
-          {episodeIndex !== maxIndex && (
-            <button
-              className="flex items-center space-x-3 rounded-sm bg-black/10 px-3 py-1 hover:bg-black/20 md:px-5 md:py-3"
-              onClick={() => handleNextVideo()}
-            >
-              <span>Nästa</span>
-              <ArrowRight className="size-5" aria-hidden />
-            </button>
+              </p>
+            </div>
           )}
         </div>
       </div>
-    </>
+      <div className="fixed bottom-0 left-0 flex w-screen items-center justify-between p-5">
+        {episodeIndex !== 0 ? (
+          <button
+            type="button"
+            className="flex items-center space-x-3 rounded-sm bg-black/10 px-3 py-1 hover:bg-black/20 md:px-5 md:py-3"
+            onClick={() => handlePreviousVideo()}
+          >
+            <ArrowLeft className="size-5" aria-hidden />
+            <span>Föregående</span>
+          </button>
+        ) : (
+          <div />
+        )}
+        {episodeIndex !== maxIndex && (
+          <button
+            type="button"
+            className="flex items-center space-x-3 rounded-sm bg-black/10 px-3 py-1 hover:bg-black/20 md:px-5 md:py-3"
+            onClick={() => handleNextVideo()}
+          >
+            <span>Nästa</span>
+            <ArrowRight className="size-5" aria-hidden />
+          </button>
+        )}
+      </div>
+    </div>
   );
 };
 

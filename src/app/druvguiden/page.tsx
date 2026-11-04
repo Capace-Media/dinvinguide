@@ -1,9 +1,9 @@
 import { getPage } from "@/lib/api/pages/get-pages";
-import { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import { Suspense } from "react";
-import { MetaInfo } from "../../../types/MetaInfoTypes";
+import type { MetaInfo } from "../../../types/MetaInfoTypes";
 import Newsletter from "@/components/shared/newsletter/newsletter";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdTop from "@/shared/components/ads/default/top";
@@ -20,7 +20,7 @@ type Props = {
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  _props: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const page = await getPage("/druvguiden");

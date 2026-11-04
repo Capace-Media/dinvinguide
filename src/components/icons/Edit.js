@@ -1,10 +1,10 @@
-import * as React from "react";
 const SvgEdit = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={20}
     height={18}
     fill="none"
+    aria-hidden="true"
     {...props}
   >
     <path

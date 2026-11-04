@@ -101,22 +101,22 @@ export default async function RootLayout({
           </main>
           <Footer />
         </div>
-        <>
-          <Script
-            strategy="lazyOnload"
-            type="text/javascript"
-            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-          />
-          <Script
-            strategy="lazyOnload"
-            id="google-translate"
-            type="text/javascript"
-          >
-            {`function googleTranslateElementInit() {
+
+        <Script
+          strategy="lazyOnload"
+          type="text/javascript"
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+        />
+        <Script
+          strategy="lazyOnload"
+          id="google-translate"
+          type="text/javascript"
+        >
+          {`function googleTranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'sv'}, 'google_translate_element');
           }`}
-          </Script>
-        </>
+        </Script>
+
         <CookieConsent />
         <ScrollToTopButton />
       </body>

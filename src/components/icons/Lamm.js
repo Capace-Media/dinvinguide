@@ -1,10 +1,10 @@
-import * as React from "react";
 const SvgLamm = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={50}
     height={40}
     fill="none"
+    aria-hidden="true"
     {...props}
   >
     <g clipPath="url(#lamm_svg__a)">

@@ -50,10 +50,9 @@ export function SearchTypeFilter({
   );
 
   return (
-    <div
-      role="group"
+    <fieldset
       aria-label="Filtrera på innehållstyp"
-      className="flex flex-wrap gap-2"
+      className="flex min-w-0 flex-wrap gap-2"
     >
       <FilterChip
         label="Alla"
@@ -70,6 +69,6 @@ export function SearchTypeFilter({
           onClick={() => onChange(type)}
         />
       ))}
-    </div>
+    </fieldset>
   );
 }

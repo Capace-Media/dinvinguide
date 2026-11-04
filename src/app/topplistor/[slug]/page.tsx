@@ -22,14 +22,7 @@ export const dynamicParams = true;
 export async function generateStaticParams() {
   const data = await getToplistPaths();
 
-  const paths: any[] = [];
-
-  data &&
-    data.map((topList: any) => {
-      paths.push({ slug: topList.slug });
-    });
-
-  return paths;
+  return data.map((topList) => ({ slug: topList.slug }));
 }
 const SingelTopList = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params;

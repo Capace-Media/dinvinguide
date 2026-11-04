@@ -8,8 +8,6 @@ import {
 
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { useEffect, useState } from "react";
-
 interface PaginationControllerProps {
   pageInfo: any;
   filter?: string;
@@ -23,7 +21,6 @@ const PaginationController = ({
   pageInfo,
   filter,
   uri,
-  id,
   search,
   identifier,
 }: PaginationControllerProps) => {
@@ -36,21 +33,10 @@ const PaginationController = ({
 
   const page = searchParams.get("page") ?? "1";
 
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    handleResize(); // Initial check
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
   return (
     <div className="layout flex items-center justify-center gap-2 bg-white py-10">
       <button
+        type="button"
         aria-label="föregående sida för posterna"
         className={`flex items-center justify-center p-[10px] ${
           !hasPreviousPage
@@ -79,10 +65,11 @@ const PaginationController = ({
           {page}
         </span>{" "}
         av {""}
-        {Math.ceil(parseInt(total) / parseInt(first))}
+        {Math.ceil(parseInt(total, 10) / parseInt(first, 10))}
       </div>
 
       <button
+        type="button"
         aria-label="nästa sida för posterna"
         className={`flex items-center justify-center p-[10px] ${
           !hasNextPage

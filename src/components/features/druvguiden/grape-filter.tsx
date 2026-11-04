@@ -13,6 +13,7 @@ const GrapeFilter = () => {
         <ul className="grid grid-cols-3 gap-4">
           <li>
             <button
+              type="button"
               onClick={() => {
                 router.push(`/druvguiden`, { scroll: false });
               }}
@@ -34,6 +35,7 @@ const GrapeFilter = () => {
           </li>
           <li>
             <button
+              type="button"
               onClick={() => {
                 router.push(`/druvguiden?filter=grona-druvsorter`, {
                   scroll: false,
@@ -57,6 +59,7 @@ const GrapeFilter = () => {
           </li>
           <li>
             <button
+              type="button"
               onClick={() => {
                 router.push(`/druvguiden?filter=bla-druvsorter`, {
                   scroll: false,

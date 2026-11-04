@@ -1,10 +1,10 @@
-import * as React from "react";
 const SvgGuld = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={219}
     height={220}
     fill="none"
+    aria-hidden="true"
     {...props}
   >
     <g filter="url(#guld_svg__a)">

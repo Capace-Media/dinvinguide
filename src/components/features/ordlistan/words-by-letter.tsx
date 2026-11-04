@@ -41,20 +41,19 @@ const WordsByLetter = async ({ searchParams }: WordsByLetterProps) => {
         {letterLabels[letter] ?? letter}
       </h2>
       <ul className="grid min-h-46.25 border-b-2 border-brand-dark py-8 pb-12 lg:grid-cols-3 lg:gap-14">
-        {words?.edges &&
-          words.edges.map((word) => {
-            return (
-              <li key={word.node.id}>
-                <Link
-                  className="flex items-center justify-between pr-20"
-                  href={`/ordlistan/${word.node.slug}`}
-                >
-                  {word.node.title}
-                  <MoveRight className="size-6" strokeWidth={1} aria-hidden />
-                </Link>
-              </li>
-            );
-          })}
+        {words?.edges?.map((word) => {
+          return (
+            <li key={word.node.id}>
+              <Link
+                className="flex items-center justify-between pr-20"
+                href={`/ordlistan/${word.node.slug}`}
+              >
+                {word.node.title}
+                <MoveRight className="size-6" strokeWidth={1} aria-hidden />
+              </Link>
+            </li>
+          );
+        })}
       </ul>
       {words?.pageInfo?.hasNextPage === true ||
       words?.pageInfo?.hasPreviousPage === true ? (

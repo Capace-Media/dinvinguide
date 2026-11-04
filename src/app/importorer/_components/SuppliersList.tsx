@@ -88,18 +88,6 @@ export default function SuppliersList() {
     }
   };
 
-  // Handle changing page size
-  const handlePageSizeChange = (newSize: number) => {
-    router.push(
-      `${pathname}?${createQueryString({
-        pageSize: String(newSize),
-        after: null,
-        before: null,
-        page: "1", // Reset to page 1 when changing page size
-      })}`,
-    );
-  };
-
   if (status === "pending")
     return (
       <section className="layout contain bg-white">
@@ -113,7 +101,11 @@ export default function SuppliersList() {
           {Array(pageSize)
             .fill(0)
             .map((_, index) => (
-              <li key={`skeleton-${index}`} className="group">
+              <li
+                // biome-ignore lint/suspicious/noArrayIndexKey: static skeleton placeholders have no identity
+                key={`skeleton-${index}`}
+                className="group"
+              >
                 <SkeletonCard />
               </li>
             ))}
@@ -181,6 +173,7 @@ export default function SuppliersList() {
 
       <div className="flex items-center justify-center gap-2 py-10">
         <button
+          type="button"
           onClick={handlePreviousPage}
           disabled={!data?.pageInfo?.hasPreviousPage || isFetching}
           className="flex items-center justify-center p-2.5"
@@ -197,6 +190,7 @@ export default function SuppliersList() {
           {/* Show previous page number if available */}
           {currentPage > 1 && (
             <button
+              type="button"
               onClick={handlePreviousPage}
               className="flex h-7 w-7 items-center justify-center rounded-xs text-gray-600 hover:bg-gray-100"
               disabled={!data?.pageInfo?.hasPreviousPage || isFetching}
@@ -213,6 +207,7 @@ export default function SuppliersList() {
           {/* Show next page number if available */}
           {data?.pageInfo?.hasNextPage && (
             <button
+              type="button"
               onClick={handleNextPage}
               className="flex h-7 w-7 items-center justify-center rounded-xs text-gray-600 hover:bg-gray-100"
               disabled={isFetching}
@@ -223,6 +218,7 @@ export default function SuppliersList() {
         </div>
 
         <button
+          type="button"
           onClick={handleNextPage}
           disabled={!data?.pageInfo?.hasNextPage || isFetching}
           className="flex items-center justify-center p-2.5"

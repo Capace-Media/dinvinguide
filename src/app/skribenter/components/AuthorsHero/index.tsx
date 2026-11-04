@@ -15,18 +15,17 @@ const AuthorsHero = async ({ promise }: AuthorsHeroProps) => {
           <div className="flex flex-col gap-6">
             <div className="front-parse">{handleParse(data?.content)}</div>
             <ul className="flex flex-wrap gap-4 font-main font-medium whitespace-nowrap text-brand-primary uppercase">
-              {links?.authors &&
-                links.authors.map((link: any) => {
-                  return (
-                    <li
-                      key={link?.id}
-                      className="flex flex-col items-center justify-center lg:duration-300 lg:ease-in-out lg:hover:scale-105"
-                    >
-                      <Link href={link.uri}>{link.title}</Link>
-                      <span className="block h-[2px] w-full bg-brand-primary"></span>
-                    </li>
-                  );
-                })}
+              {links?.authors?.map((link: any) => {
+                return (
+                  <li
+                    key={link?.id}
+                    className="flex flex-col items-center justify-center lg:duration-300 lg:ease-in-out lg:hover:scale-105"
+                  >
+                    <Link href={link.uri}>{link.title}</Link>
+                    <span className="block h-[2px] w-full bg-brand-primary"></span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

@@ -13,6 +13,7 @@
       "!**/public",
       "!**/src/lib/wp/gql",
       "!**/src/lib/wp/schema.graphql",
+      "!**/src/components/icons/svgs",
       "!**/*.tsbuildinfo",
       "!**/next-env.d.ts"
     ]

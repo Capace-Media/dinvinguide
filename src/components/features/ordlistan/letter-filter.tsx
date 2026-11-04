@@ -16,6 +16,7 @@ const LetterFilter = ({ letter, activeFilter }: LetterFilterProps) => {
 
   return (
     <button
+      type="button"
       className={`rounded-md px-2 py-1 text-[22px] duration-200 ease-in-out lg:hover:underline ${
         isActive ? "bg-brand-secondary text-white" : ""
       }`}

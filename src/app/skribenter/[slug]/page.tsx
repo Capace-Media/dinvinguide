@@ -10,10 +10,10 @@ import AdMid from "@/shared/components/ads/default/mid";
 import AdBottom from "@/shared/components/ads/default/bottom";
 import { Suspense } from "react";
 
-import { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MetaInfo } from "../../../../types/MetaInfoTypes";
+import type { MetaInfo } from "../../../../types/MetaInfoTypes";
 import AuthorHero from "../components/AuthorHero";
 import AllArticles from "@/app/artiklar/_components/articles";
 

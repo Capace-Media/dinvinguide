@@ -3,15 +3,6 @@ import { getChildPages } from "@/lib/api/guides/get-guides";
 import PaginationController from "@/components/Pagination/Controller";
 import PaginationForGuides from "@/components/Pagination/Guider";
 
-type DataArgs = {
-  after?: string;
-  before?: string;
-  id?: string | null;
-  search?: string;
-  first?: number;
-  last?: number | null;
-};
-
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | any | undefined | null };
@@ -25,8 +16,9 @@ const MorePosts = async ({ params, searchParams, pageId, title }: Props) => {
 
   const startFirst: number = parseInt(
     searchParams?.first ? searchParams?.first : postsPerPage,
+    10,
   );
-  const endLast: number = parseInt(searchParams?.last);
+  const endLast: number = parseInt(searchParams?.last, 10);
 
   const promise = await getChildPages(pageId, {
     after: searchParams?.after,

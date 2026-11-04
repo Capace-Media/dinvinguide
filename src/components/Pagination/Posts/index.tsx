@@ -6,29 +6,23 @@ interface PostsProps {
 
 const Posts = ({ posts }: PostsProps) => {
   return (
-    <>
-      <div className="layout contain bg-white">
-        <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {posts &&
-            posts.map((post: any, index: number) => {
-              return (
-                <li
-                  key={post?.node ? post.node.id : post?.id}
-                  className="relative"
-                >
-                  {/* <span className=" absolute z-8 top-[4px] left-[4px] bg-brand-primary text-white text-[13px] px-2 rounded-[10px]">
+    <div className="layout contain bg-white">
+      <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {posts?.map((post: any) => {
+          return (
+            <li key={post?.node ? post.node.id : post?.id} className="relative">
+              {/* <span className=" absolute z-8 top-[4px] left-[4px] bg-brand-primary text-white text-[13px] px-2 rounded-[10px]">
                       {index + 1}
                     </span> */}
-                  <Post
-                    type={post.__typename}
-                    post={post?.node ? post.node : post}
-                  />
-                </li>
-              );
-            })}
-        </ul>
-      </div>
-    </>
+              <Post
+                type={post.__typename}
+                post={post?.node ? post.node : post}
+              />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 

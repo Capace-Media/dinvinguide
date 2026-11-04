@@ -1,5 +1,5 @@
 "use client";
-import { FC, Suspense, memo } from "react";
+import { type FC, Suspense, memo } from "react";
 import { componentsMap, extractComponentKey } from "./componentConfig";
 
 interface Section {
@@ -13,7 +13,11 @@ interface BlocksProps {
 const Blocks: FC<BlocksProps> = ({ blocks }) => (
   <>
     {blocks?.map((section, index) => (
-      <Block section={section} key={section.fieldGroupName + index} />
+      <Block
+        section={section}
+        // biome-ignore lint/suspicious/noArrayIndexKey: CMS blocks have no id and the same block type can repeat
+        key={section.fieldGroupName + index}
+      />
     ))}
   </>
 );

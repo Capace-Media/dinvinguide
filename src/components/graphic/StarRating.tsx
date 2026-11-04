@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 
 const StarRating = () => {
   // const [rating, setRating] = useState<any>(null);

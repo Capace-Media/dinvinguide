@@ -4,8 +4,8 @@ import {
   getRecipeCategory,
   getRecipeCategoryChildSlugs,
 } from "@/lib/api/recipes/get-recipes";
-import { Metadata, ResolvingMetadata } from "next";
-import { MetaInfo } from "../../../../../types/MetaInfoTypes";
+import type { Metadata, ResolvingMetadata } from "next";
+import type { MetaInfo } from "../../../../../types/MetaInfoTypes";
 import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";
 
 type Props = {

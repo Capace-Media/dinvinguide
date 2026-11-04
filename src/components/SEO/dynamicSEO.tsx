@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MetaInfo } from "../../../types/MetaInfoTypes";
+import type { MetaInfo } from "../../../types/MetaInfoTypes";
 
 // The Yoast fields metadata reads. Both `SeoFields` (posts, pages) and
 // `TaxonomySeoFields` (categories) satisfy it.
