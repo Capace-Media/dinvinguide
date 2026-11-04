@@ -12,7 +12,7 @@ The current design and application structure were introduced in a major V3 rebui
 
 - [Next.js 16](https://nextjs.org/) with the App Router and Turbopack
 - [React 19](https://react.dev/) and [TypeScript](https://www.typescriptlang.org/)
-- [Bun](https://bun.sh/) for package management, scripts, and tests
+- [Bun](https://bun.sh/) for package management and scripts, and [Vitest](https://vitest.dev/) for tests
 - [Tailwind CSS 4](https://tailwindcss.com/) and Base UI for the interface
 - WordPress and WPGraphQL as the content platform
 - GraphQL Code Generator for typed content queries
@@ -56,23 +56,23 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 ## Scripts
 
-| Command               | Description                                                                  |
-| --------------------- | ---------------------------------------------------------------------------- |
-| `bun run dev`         | Start the local Next.js development server with Turbopack.                   |
-| `bun run build`       | Create a production build.                                                   |
-| `bun run start`       | Run the production server after a successful build.                          |
-| `bun run lint`        | Run Biome lint across the project.                                           |
-| `bun run fmt`         | Format the project with Biome.                                               |
-| `bun run fmt:check`   | Check formatting without changing files.                                     |
-| `bun run typecheck`   | Run `tsc --noEmit`.                                                          |
-| `bun run test`        | Run the Bun test suite.                                                      |
-| `bun run test:unit`   | Run unit tests under `src`.                                                  |
-| `bun run test:smoke`  | Run browserless smoke tests against `BASE_URL` or `http://localhost:3000`.   |
-| `bun run codegen`     | Generate typed GraphQL documents from the committed WordPress schema.        |
-| `bun run schema:pull` | Fetch the current WordPress schema, then regenerate typed GraphQL documents. |
-| `bun run svg`         | Generate React icon components from SVG assets.                              |
+| Command               | Description                                                                      |
+| --------------------- | -------------------------------------------------------------------------------- |
+| `bun run dev`         | Start the local Next.js development server with Turbopack.                       |
+| `bun run build`       | Create a production build.                                                       |
+| `bun run start`       | Run the production server after a successful build.                              |
+| `bun run lint`        | Run Biome lint across the project.                                               |
+| `bun run fmt`         | Format the project with Biome.                                                   |
+| `bun run fmt:check`   | Check formatting without changing files.                                         |
+| `bun run typecheck`   | Run `tsc --noEmit`.                                                              |
+| `bun run test`        | Run the Vitest unit and integration tests (what CI runs).                        |
+| `bun run test:unit`   | Run unit tests under `src`.                                                      |
+| `bun run test:smoke`  | Run browserless smoke tests against `SMOKE_BASE_URL` or `http://localhost:3000`. |
+| `bun run codegen`     | Generate typed GraphQL documents from the committed WordPress schema.            |
+| `bun run schema:pull` | Fetch the current WordPress schema, then regenerate typed GraphQL documents.     |
+| `bun run svg`         | Generate React icon components from SVG assets.                                  |
 
-Smoke tests need a reachable running site. When testing a protected Vercel preview, set `BASE_URL` and `VERCEL_AUTOMATION_BYPASS_SECRET` for the test process.
+Smoke tests need a reachable running site. When testing a protected Vercel preview, set `SMOKE_BASE_URL` and `VERCEL_AUTOMATION_BYPASS_SECRET` for the test process.
 
 ## Content and caching
 
@@ -91,7 +91,8 @@ src/shared/       Components shared across route families
 src/json/         Static guide and taxonomy data
 public/           Images, icons, consent assets, and web manifest files
 scripts/          Repository maintenance scripts, including schema retrieval
-tests/            End-to-end smoke tests
+tests/            Integration tests (API auth) and smoke tests
+test-utils/       Shared test helpers (dummy env, backend mocks)
 ```
 
 ## Quality checks
@@ -102,6 +103,9 @@ Run formatting and linting before opening a pull request:
 bun run fmt
 bun run lint
 bun run typecheck
+bun run test
 ```
 
-Run the relevant unit tests for code changes, and use smoke tests against a local server or preview deployment when changing routes, templates, CMS queries, or advertising placements.
+Run `bun run test` for code changes (CI requires the `ci` check: format, lint, typecheck and tests), and use smoke tests against a local server or preview deployment when changing routes, templates, CMS queries, or advertising placements.
+
+Operations (deploy, rollback, secrets, backups, monitoring): see [`docs/runbook.md`](docs/runbook.md).

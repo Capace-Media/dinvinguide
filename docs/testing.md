@@ -38,4 +38,4 @@ Follow existing test-runner conventions where required. Do not move unrelated te
 
 Run the relevant test suite during implementation. Before handoff, run the applicable project checks and tests
 
-Run all tests with `bun run test` (Vitest). `tests/integration/api-auth.test.ts` checks that every route under `app/api` returns 401 without a session. A new route is covered automatically unless it is added to `PUBLIC_ROUTES` in that file, which needs the repository owner's approval.
+Run all tests with `bun run test` (Vitest). `tests/integration/api-auth.test.ts` checks that every route under `app/api` returns 401 without a session. The site has no user accounts, so for routes protected by a secret (`/api/draft`, `/api/revalidate`, `/api/search/refresh`) "without a session" means without that secret. A new route is covered automatically unless it is added to `PUBLIC_ROUTES` in that file, which needs the repository owner's approval.

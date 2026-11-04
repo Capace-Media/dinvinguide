@@ -1,3 +1,4 @@
+import { bearerToken, isValidSecret } from "@/lib/auth/secret";
 import { refreshSearchSnapshot } from "@/lib/search/search-service";
 
 // Called by the daily Vercel cron (`vercel.json`), which sends `CRON_SECRET`
@@ -5,8 +6,8 @@ import { refreshSearchSnapshot } from "@/lib/search/search-service";
 export const maxDuration = 300;
 
 export async function GET(request: Request) {
-  const secret = process.env.CRON_SECRET;
-  if (!secret || request.headers.get("authorization") !== `Bearer ${secret}`) {
+  const token = bearerToken(request.headers.get("authorization"));
+  if (!isValidSecret(token, process.env.CRON_SECRET)) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 

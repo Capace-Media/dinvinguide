@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { toAd, toAdSlots } from "./ad-slots";
 
 // Minimal valid shapes, spread-and-override per test so each case shows only

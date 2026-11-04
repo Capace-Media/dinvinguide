@@ -1,7 +1,9 @@
-import { expect, test } from "bun:test";
+import { spawnSync } from "node:child_process";
+import { expect, test } from "vitest";
 
 // Point this at a Vercel preview URL in CI, or leave it for a local dev server.
-const BASE = process.env.BASE_URL ?? "http://localhost:3000";
+// Not `BASE_URL`: Vitest overwrites that with the Vite base path ("/").
+const BASE = process.env.SMOKE_BASE_URL ?? "http://localhost:3000";
 
 // These tests need a running site. Rather than 38 ConnectionRefused failures
 // when you forget `bun run dev`, probe once and skip with a clear message.
@@ -9,8 +11,7 @@ const BASE = process.env.BASE_URL ?? "http://localhost:3000";
 // Done synchronously via curl because test.skipIf needs the answer before the
 // tests are defined, and tsconfig targets es5, which disallows top-level await.
 const reachable =
-  Bun.spawnSync([
-    "curl",
+  spawnSync("curl", [
     "-s",
     "-o",
     "/dev/null",
@@ -23,7 +24,7 @@ const reachable =
         ]
       : []),
     BASE,
-  ]).exitCode === 0;
+  ]).status === 0;
 
 // Nothing here skips. A skipped smoke test looks green while verifying
 // nothing, so an unreachable site is a real failure — it just needs to say so
@@ -36,7 +37,7 @@ test("site under test is reachable and not behind an auth wall", async () => {
     throw new Error(
       `Nothing responding at ${BASE}\n` +
         `    • locally:  start it with  bun run dev\n` +
-        `    • in CI:    set BASE_URL to the deployment under test\n` +
+        `    • in CI:    set SMOKE_BASE_URL to the deployment under test\n` +
         `    Every test below will fail for this same reason.`,
     );
   }
