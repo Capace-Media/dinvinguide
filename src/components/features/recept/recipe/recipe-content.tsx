@@ -44,7 +44,7 @@ const RecipeContent = ({ recipe }: RecipeContentProps) => {
               process={acf?.processen}
               stepByStep={acf?.beskrivningStegForSteg}
             />
-            <div className="my-14 w-full h-2.5 bg-[#F0F0CC]"></div>
+            <div className="my-14 h-2.5 w-full bg-[#F0F0CC]"></div>
             <SuitableWines drinks={acf?.passandeDrycker} />
           </div>
         </div>

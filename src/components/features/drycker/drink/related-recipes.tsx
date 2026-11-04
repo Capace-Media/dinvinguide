@@ -9,10 +9,10 @@ interface RelatedRecipesProps {
 
 const RelatedRecipes = ({ recipe }: RelatedRecipesProps) => {
   return (
-    <section className="relative w-full lg:h-125 z-10 h-175">
-      <div className="absolute bg-[#F8F8F9] h-full lg:w-[calc(100%+10rem)] md:w-[calc(100%+5.5rem)] w-[calc(100%+2rem)] center-x center-y dl-layout">
-        <div className="grid lg:grid-cols-2 h-full md:py-20 py-10 gap-10">
-          <div className="w-full h-full flex flex-col justify-between md:w-[80%]">
+    <section className="relative z-10 h-175 w-full lg:h-125">
+      <div className="center-x center-y dl-layout absolute h-full w-[calc(100%+2rem)] bg-[#F8F8F9] md:w-[calc(100%+5.5rem)] lg:w-[calc(100%+10rem)]">
+        <div className="grid h-full gap-10 py-10 md:py-20 lg:grid-cols-2">
+          <div className="flex h-full w-full flex-col justify-between md:w-[80%]">
             <div className="lg:pr-20">
               <p>Passar med</p>
               <h2>{recipe.title}</h2>
@@ -20,15 +20,15 @@ const RelatedRecipes = ({ recipe }: RelatedRecipesProps) => {
             </div>
 
             <Link
-              className="relative flex items-center gap-2 cursor-pointer lg:hover:underline lg:ease-in-out lg:duration-300"
+              className="relative flex cursor-pointer items-center gap-2 lg:duration-300 lg:ease-in-out lg:hover:underline"
               href={`/recept/${recipe.slug}`}
             >
               <span>Gå till recept</span>{" "}
               <ArrowRight className="size-3" strokeWidth={1.2} aria-hidden />
             </Link>
           </div>
-          <div className="w-full h-full">
-            <div className="relative w-full md:w-[80%] h-67.5 lg:h-full">
+          <div className="h-full w-full">
+            <div className="relative h-67.5 w-full md:w-[80%] lg:h-full">
               {recipe.featuredImage?.node.mediaItemUrl?.includes("https://") ? (
                 <Image
                   src={recipe.featuredImage.node.mediaItemUrl}

@@ -9,21 +9,21 @@ interface AuthorsHeroProps {
 const AuthorsHero = async ({ promise }: AuthorsHeroProps) => {
   const data = await promise;
   return (
-    <div className="layout w-full py-[73px] md:pt-[172px] bg-white">
-      <div className="grid md:grid-cols-2 gap-10 lg:gap-[180px] order-last md:order-first">
-        <div className="flex flex-col justify-between min-h-[461px]">
-          <div className="flex flex-col gap-6 ">
+    <div className="layout w-full bg-white py-[73px] md:pt-[172px]">
+      <div className="order-last grid gap-10 md:order-first md:grid-cols-2 lg:gap-[180px]">
+        <div className="flex min-h-[461px] flex-col justify-between">
+          <div className="flex flex-col gap-6">
             <div className="front-parse">{handleParse(data?.content)}</div>
-            <ul className="font-main text-brand-primary uppercase flex whitespace-nowrap flex-wrap gap-4 font-medium">
+            <ul className="flex flex-wrap gap-4 font-main font-medium whitespace-nowrap text-brand-primary uppercase">
               {links?.authors &&
                 links.authors.map((link: any) => {
                   return (
                     <li
                       key={link?.id}
-                      className="flex flex-col lg:hover:scale-105 lg:ease-in-out lg:duration-300 justify-center items-center"
+                      className="flex flex-col items-center justify-center lg:duration-300 lg:ease-in-out lg:hover:scale-105"
                     >
                       <Link href={link.uri}>{link.title}</Link>
-                      <span className="w-full  h-[2px] block bg-brand-primary"></span>
+                      <span className="block h-[2px] w-full bg-brand-primary"></span>
                     </li>
                   );
                 })}
@@ -31,10 +31,10 @@ const AuthorsHero = async ({ promise }: AuthorsHeroProps) => {
           </div>
         </div>
 
-        <div className="w-full  order-first h-[370px] relative md:order-last lg:h-[520px]">
-          <div className="absolute w-[89%] center-y left-0 h-[89%] z-10">
+        <div className="relative order-first h-[370px] w-full md:order-last lg:h-[520px]">
+          <div className="center-y absolute left-0 z-10 h-[89%] w-[89%]">
             {data?.featuredImage?.node?.mediaItemUrl && (
-              <div className="relative w-full h-full">
+              <div className="relative h-full w-full">
                 <Image
                   src={data?.featuredImage?.node?.mediaItemUrl}
                   alt={
@@ -52,7 +52,7 @@ const AuthorsHero = async ({ promise }: AuthorsHeroProps) => {
               </div>
             )}
           </div>
-          <div className=" bg-brand-beige w-[85%] h-full center-y absolute right-0"></div>
+          <div className="center-y absolute right-0 h-full w-[85%] bg-brand-beige"></div>
         </div>
       </div>
     </div>

@@ -171,15 +171,15 @@ span.aligncenter {
 }
 
 .center-y {
-  @apply top-2/4  -translate-y-2/4;
+  @apply top-2/4 -translate-y-2/4;
 }
 
 .center-x {
-  @apply left-2/4  -translate-x-2/4;
+  @apply left-2/4 -translate-x-2/4;
 }
 
 .heading {
-  @apply pb-4 font-sub text-[24px] md:text-[28px]  lg:text-[44px]  text-[#333];
+  @apply pb-4 font-sub text-[24px] md:text-[28px] lg:text-[44px] text-[#333];
 }
 /*
   Google Translate widget overrides.

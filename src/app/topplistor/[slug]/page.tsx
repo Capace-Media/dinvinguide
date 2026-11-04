@@ -14,7 +14,7 @@ import TopListItems from "@/components/features/topplistor/top-list/top-list-ite
 
 const Newsletter = dynamic(
   () => import("@/components/shared/newsletter/newsletter"),
-  { loading: () => <NewsletterSkeleton /> }
+  { loading: () => <NewsletterSkeleton /> },
 );
 
 export const dynamicParams = true;

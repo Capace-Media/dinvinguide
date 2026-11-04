@@ -22,7 +22,7 @@ type Props = {
 
 export async function generateMetadata(
   _props: Props,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const page = await getPage("/ordlistan");
 
@@ -58,7 +58,7 @@ const Words = async (props: Props) => {
       </Suspense>
       <div className="layout bg-white">
         <nav className="w-full">
-          <ul className="flex flex-wrap w-full justify-center gap-[1.6rem]">
+          <ul className="flex w-full flex-wrap justify-center gap-[1.6rem]">
             {alphabet.map((letter) => (
               <li key={letter.id}>
                 <LetterFilter letter={letter} activeFilter={activeFilter} />

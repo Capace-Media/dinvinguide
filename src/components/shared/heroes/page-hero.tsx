@@ -22,11 +22,11 @@ interface PageHeroProps {
 const PageHero = ({ page, links, guide }: PageHeroProps) => {
   return (
     <>
-      <div className="layout w-full py-17 bg-white">
-        <div className="grid md:grid-cols-2 gap-10 lg:gap-45 order-last md:order-first">
+      <div className="layout w-full bg-white py-17">
+        <div className="order-last grid gap-10 md:order-first md:grid-cols-2 lg:gap-45">
           <div className="flex flex-col justify-between gap-2 lg:min-h-115.25">
             <div className="flex flex-col gap-3">
-              <div className="flex flex-col gap-6 ">
+              <div className="flex flex-col gap-6">
                 <div className="text-[14px]">
                   <p>{guide}</p>
 
@@ -57,7 +57,7 @@ const PageHero = ({ page, links, guide }: PageHeroProps) => {
                         key={node?.id}
                       >
                         <Link
-                          className="uppercase text-brand-primary text-[14px]"
+                          className="text-[14px] text-brand-primary uppercase"
                           href={`${node?.uri}`}
                         >
                           {node?.name}
@@ -69,10 +69,10 @@ const PageHero = ({ page, links, guide }: PageHeroProps) => {
             </div>
           </div>
 
-          <div className="w-full  order-first h-92.5 relative md:order-last lg:h-130">
-            <div className="absolute w-[85%] center-y left-0 h-75 lg:h-107.5 z-10">
+          <div className="relative order-first h-92.5 w-full md:order-last lg:h-130">
+            <div className="center-y absolute left-0 z-10 h-75 w-[85%] lg:h-107.5">
               {page?.featuredImage?.node?.mediaItemUrl && (
-                <div className="relative w-full h-full shadow-xl">
+                <div className="relative h-full w-full shadow-xl">
                   <Image
                     src={page?.featuredImage?.node?.mediaItemUrl}
                     alt={
@@ -90,7 +90,7 @@ const PageHero = ({ page, links, guide }: PageHeroProps) => {
                 </div>
               )}
             </div>
-            <div className=" bg-brand-beige w-[85%] md:w-full h-full center-y absolute -right-4 md:-right-11 lg:-right-20"></div>
+            <div className="center-y absolute -right-4 h-full w-[85%] bg-brand-beige md:-right-11 md:w-full lg:-right-20"></div>
           </div>
         </div>
       </div>

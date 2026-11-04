@@ -35,16 +35,16 @@ bun install
 
 Configure the required environment variables in your local environment. Keep credentials out of version control.
 
-| Variable | Purpose |
-| --- | --- |
-| `CMS_GRAPHQL_URI` | WordPress WPGraphQL endpoint used by the application and schema pull script. |
-| `CMS_GRAPHQL_AUTH_USER` | Username for authenticated GraphQL requests. |
-| `APPLICATION_NEW_PASSWORD` | Password for authenticated GraphQL requests. |
-| `PREVIEW_TOKEN` | Secret required to enable WordPress draft previews. |
-| `REVALIDATION_SECRET_TOKEN` | Secret required by the on-demand revalidation endpoint. |
-| `NEXT_PUBLIC_SITE_URL` | Public canonical site URL used by metadata, robots, and sitemaps. |
-| `NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID` | Google Tag Manager container ID. |
-| `NEXT_PUBLIC_COOKIE_PREFIX` | Cookie-consent storage prefix. |
+| Variable                            | Purpose                                                                      |
+| ----------------------------------- | ---------------------------------------------------------------------------- |
+| `CMS_GRAPHQL_URI`                   | WordPress WPGraphQL endpoint used by the application and schema pull script. |
+| `CMS_GRAPHQL_AUTH_USER`             | Username for authenticated GraphQL requests.                                 |
+| `APPLICATION_NEW_PASSWORD`          | Password for authenticated GraphQL requests.                                 |
+| `PREVIEW_TOKEN`                     | Secret required to enable WordPress draft previews.                          |
+| `REVALIDATION_SECRET_TOKEN`         | Secret required by the on-demand revalidation endpoint.                      |
+| `NEXT_PUBLIC_SITE_URL`              | Public canonical site URL used by metadata, robots, and sitemaps.            |
+| `NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID` | Google Tag Manager container ID.                                             |
+| `NEXT_PUBLIC_COOKIE_PREFIX`         | Cookie-consent storage prefix.                                               |
 
 Start the development server:
 
@@ -56,18 +56,21 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 ## Scripts
 
-| Command | Description |
-| --- | --- |
-| `bun run dev` | Start the local Next.js development server with Turbopack. |
-| `bun run build` | Create a production build. |
-| `bun run start` | Run the production server after a successful build. |
-| `bun run lint` | Run ESLint across the project. |
-| `bun run test` | Run the Bun test suite. |
-| `bun run test:unit` | Run unit tests under `src`. |
-| `bun run test:smoke` | Run browserless smoke tests against `BASE_URL` or `http://localhost:3000`. |
-| `bun run codegen` | Generate typed GraphQL documents from the committed WordPress schema. |
+| Command               | Description                                                                  |
+| --------------------- | ---------------------------------------------------------------------------- |
+| `bun run dev`         | Start the local Next.js development server with Turbopack.                   |
+| `bun run build`       | Create a production build.                                                   |
+| `bun run start`       | Run the production server after a successful build.                          |
+| `bun run lint`        | Run Biome lint across the project.                                           |
+| `bun run fmt`         | Format the project with Biome.                                               |
+| `bun run fmt:check`   | Check formatting without changing files.                                     |
+| `bun run typecheck`   | Run `tsc --noEmit`.                                                          |
+| `bun run test`        | Run the Bun test suite.                                                      |
+| `bun run test:unit`   | Run unit tests under `src`.                                                  |
+| `bun run test:smoke`  | Run browserless smoke tests against `BASE_URL` or `http://localhost:3000`.   |
+| `bun run codegen`     | Generate typed GraphQL documents from the committed WordPress schema.        |
 | `bun run schema:pull` | Fetch the current WordPress schema, then regenerate typed GraphQL documents. |
-| `bun run svg` | Generate React icon components from SVG assets. |
+| `bun run svg`         | Generate React icon components from SVG assets.                              |
 
 Smoke tests need a reachable running site. When testing a protected Vercel preview, set `BASE_URL` and `VERCEL_AUTOMATION_BYPASS_SECRET` for the test process.
 
@@ -93,10 +96,12 @@ tests/            End-to-end smoke tests
 
 ## Quality checks
 
-Run linting before opening a pull request:
+Run formatting and linting before opening a pull request:
 
 ```bash
+bun run fmt
 bun run lint
+bun run typecheck
 ```
 
 Run the relevant unit tests for code changes, and use smoke tests against a local server or preview deployment when changing routes, templates, CMS queries, or advertising placements.

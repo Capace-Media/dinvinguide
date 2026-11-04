@@ -23,7 +23,7 @@ interface WordsByLetterProps {
 const WordsByLetter = async ({ searchParams }: WordsByLetterProps) => {
   const { after, before, first, last, filter } = parsePaginationSearchParams(
     searchParams,
-    WORDS_PER_PAGE
+    WORDS_PER_PAGE,
   );
   const letter = filter || "a";
 
@@ -37,16 +37,16 @@ const WordsByLetter = async ({ searchParams }: WordsByLetterProps) => {
 
   return (
     <div>
-      <h2 className="leading-[6.9rem] text-[6.9rem] uppercase py-4">
+      <h2 className="py-4 text-[6.9rem] leading-[6.9rem] uppercase">
         {letterLabels[letter] ?? letter}
       </h2>
-      <ul className="grid lg:grid-cols-3 lg:gap-14 min-h-46.25 py-8 border-b-2 border-brand-dark pb-12">
+      <ul className="grid min-h-46.25 border-b-2 border-brand-dark py-8 pb-12 lg:grid-cols-3 lg:gap-14">
         {words?.edges &&
           words.edges.map((word) => {
             return (
               <li key={word.node.id}>
                 <Link
-                  className="flex justify-between items-center pr-20"
+                  className="flex items-center justify-between pr-20"
                   href={`/ordlistan/${word.node.slug}`}
                 >
                   {word.node.title}

@@ -5,7 +5,7 @@
 export function register() {
   if (process.env.NEXT_RUNTIME === "nodejs") {
     void import("@/lib/search/search-service").then(({ preloadSearchIndex }) =>
-      preloadSearchIndex()
+      preloadSearchIndex(),
     );
   }
 }

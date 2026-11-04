@@ -24,7 +24,7 @@ const MorePosts = async ({ params, searchParams, pageId, title }: Props) => {
     typeof window !== "undefined" && window.innerWidth >= 768 ? 4 : 16;
 
   const startFirst: number = parseInt(
-    searchParams?.first ? searchParams?.first : postsPerPage
+    searchParams?.first ? searchParams?.first : postsPerPage,
   );
   const endLast: number = parseInt(searchParams?.last);
 
@@ -40,7 +40,7 @@ const MorePosts = async ({ params, searchParams, pageId, title }: Props) => {
   }
 
   return (
-    <section className=" pb-10">
+    <section className="pb-10">
       <div>
         <h2 className="pb-10">Läs mer om {title}</h2>
         <PaginationForGuides

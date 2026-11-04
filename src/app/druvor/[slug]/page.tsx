@@ -18,7 +18,10 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  props: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const params = await props.params;
   const page = await getGrape(params.slug);
 
@@ -51,7 +54,7 @@ const Grapes = async (props: Props) => {
   return (
     <>
       <PageHero page={grape} links={guideLinks} guide="Druvguiden" />
-      <article className="layout bg-white lg:grid lg:grid-cols-2 py-10">
+      <article className="layout bg-white py-10 lg:grid lg:grid-cols-2">
         <div>{handleParse(grape.acf_grape?.text ?? "")}</div>
         <div></div>
       </article>

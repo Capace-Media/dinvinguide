@@ -26,14 +26,14 @@ interface Category {
 
 function updateCategoriesUri(
   categories: Category[] | null,
-  excludeNames: string[]
+  excludeNames: string[],
 ): Category[] | null {
   if (!categories || categories.length === 0) {
     return null;
   }
 
   const filteredCategories = categories.filter(
-    (category) => !excludeNames?.includes(category?.slug)
+    (category) => !excludeNames?.includes(category?.slug),
   );
 
   if (filteredCategories?.length === 0) {
@@ -71,11 +71,11 @@ const RecipeHero = ({
 
   return (
     <>
-      <div className="layout w-full py-18.25 md:pt-43 bg-white">
-        <div className="grid md:grid-cols-2 gap-10 lg:gap-45 order-last md:order-first">
+      <div className="layout w-full bg-white py-18.25 md:pt-43">
+        <div className="order-last grid gap-10 md:order-first md:grid-cols-2 lg:gap-45">
           <div className="flex flex-col justify-between gap-2 lg:min-h-115.25">
             <div className="flex flex-col gap-3">
-              <ul className="flex items-center gap-2 text-[11px] md:text-[14px] text-brand-secondary">
+              <ul className="flex items-center gap-2 text-[11px] text-brand-secondary md:text-[14px]">
                 <li>
                   <Link className="text-brand-secondary" href="/">
                     Hem
@@ -95,8 +95,8 @@ const RecipeHero = ({
               <h1 className="text-[24px] md:text-[32px] lg:text-[42px]">
                 {title}
               </h1>
-              <div className="flex flex-col gap-6 ">
-                <div className="text-[14px] parsed">
+              <div className="flex flex-col gap-6">
+                <div className="parsed text-[14px]">
                   {handleParseClient(desc as string)}
                 </div>
               </div>
@@ -129,7 +129,7 @@ const RecipeHero = ({
                         key={node?.id}
                       >
                         <Link
-                          className="uppercase text-brand-primary text-[14px]"
+                          className="text-[14px] text-brand-primary uppercase"
                           href={`/recept${node?.uri}`}
                         >
                           {node?.name}
@@ -142,7 +142,7 @@ const RecipeHero = ({
             <div>
               {author && (
                 <Link
-                  className={`italic text-[14px] flex items-center gap-3 text-brand-secondary lg:hover:underline pt-10`}
+                  className={`flex items-center gap-3 pt-10 text-[14px] text-brand-secondary italic lg:hover:underline`}
                   href={`/recept/kockar/${author[0]?.slug}`}
                 >
                   recept av {author[0]?.name} <ArrowRight />
@@ -151,10 +151,10 @@ const RecipeHero = ({
             </div>
           </div>
 
-          <div className="w-full  order-first h-92.5 relative md:order-last lg:h-130">
-            <div className="absolute w-[85%] center-y left-0 h-75 lg:h-107.5 z-10">
+          <div className="relative order-first h-92.5 w-full md:order-last lg:h-130">
+            <div className="center-y absolute left-0 z-10 h-75 w-[85%] lg:h-107.5">
               {image?.mediaItemUrl && (
-                <div className="relative w-full h-full">
+                <div className="relative h-full w-full">
                   <Image
                     src={image?.mediaItemUrl}
                     alt={image?.altText ? image.altText : `Bild på ${title}`}
@@ -168,7 +168,7 @@ const RecipeHero = ({
                 </div>
               )}
             </div>
-            <div className=" bg-brand-beige w-[85%] md:w-full h-full center-y absolute -right-4 md:-right-11 lg:-right-20"></div>
+            <div className="center-y absolute -right-4 h-full w-[85%] bg-brand-beige md:-right-11 md:w-full lg:-right-20"></div>
           </div>
         </div>
       </div>

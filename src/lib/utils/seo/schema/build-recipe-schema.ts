@@ -25,12 +25,9 @@ export default function buildRecipeSchema({
   const prepTime = prepMinutes ? `PT${prepMinutes}M` : undefined;
   const cookTime = cookMinutes ? `PT${cookMinutes}M` : undefined;
   const totalTime =
-    prepMinutes && cookMinutes
-      ? `PT${prepMinutes + cookMinutes}M`
-      : undefined;
+    prepMinutes && cookMinutes ? `PT${prepMinutes + cookMinutes}M` : undefined;
   const recipeYield = recipe?.acf_recipe?.antalPortioner?.toString();
-  const stepByStepInstructions =
-    recipe?.acf_recipe?.beskrivningStegForSteg;
+  const stepByStepInstructions = recipe?.acf_recipe?.beskrivningStegForSteg;
   const processHtml = recipe?.acf_recipe?.processen;
 
   const recipeInstructions = stepByStepInstructions?.length
@@ -40,15 +37,14 @@ export default function buildRecipeSchema({
         text: step?.instruktion ?? undefined,
       }))
     : processHtml
-    ? cleanHtml(processHtml)
-    : undefined;
+      ? cleanHtml(processHtml)
+      : undefined;
 
   return {
     "@context": "https://schema.org",
     "@type": "Recipe",
     name: recipe?.seo?.title ?? undefined,
-    description:
-      recipe?.seo?.metaDesc || recipe?.acf_recipe?.desc || undefined,
+    description: recipe?.seo?.metaDesc || recipe?.acf_recipe?.desc || undefined,
     image:
       recipe?.seo?.opengraphImage?.mediaItemUrl ||
       recipe?.featuredImage?.node?.mediaItemUrl ||
@@ -70,8 +66,8 @@ export default function buildRecipeSchema({
     recipeIngredient: [
       ...(recipe?.acf_recipe?.receptdelar?.flatMap((part) =>
         (part?.ingredienser ?? []).map((ing) =>
-          `${ing?.antal ?? ""} ${ing?.enhet?.name ?? ""} ${ing?.namn ?? ""}`.trim()
-        )
+          `${ing?.antal ?? ""} ${ing?.enhet?.name ?? ""} ${ing?.namn ?? ""}`.trim(),
+        ),
       ) || []),
       ...(recipe?.acf_recipe?.ingredienserOvrigt
         ? [recipe.acf_recipe.ingredienserOvrigt]

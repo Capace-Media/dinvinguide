@@ -13,10 +13,13 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  props: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const params = await props.params;
   const page = await getRecipeCategory(
-    `/receptkategorier/ingrediens/${params.slug}`
+    `/receptkategorier/ingrediens/${params.slug}`,
   );
 
   const seo = page?.seo;

@@ -16,9 +16,8 @@ export async function getAuthor(username: string, search?: string) {
 export async function getWriters() {
   const data = await wpQuery(AuthorsQuery);
   return (
-    data?.acfOptionsSkribenter?.acf_skribenter?.skribenter?.filter(
-      isPresent,
-    ) ?? []
+    data?.acfOptionsSkribenter?.acf_skribenter?.skribenter?.filter(isPresent) ??
+    []
   );
 }
 

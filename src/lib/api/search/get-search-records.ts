@@ -1,6 +1,9 @@
 import "server-only";
 import { wpQuery } from "@/lib/wp/client";
-import { toSearchRecords, type SearchRecord } from "@/lib/search/search-records";
+import {
+  toSearchRecords,
+  type SearchRecord,
+} from "@/lib/search/search-records";
 import {
   DrinkSearchSourceQuery,
   DrinktipSearchSourceQuery,
@@ -26,14 +29,18 @@ interface Connection<TNode> {
 
 type PageFetcher<TNode> = (
   first: number,
-  after: string | null
+  after: string | null,
 ) => Promise<Connection<TNode> | null | undefined>;
 
 async function fetchPageWithRetry<TNode>(
   fetchPage: PageFetcher<TNode>,
-  after: string | null
+  after: string | null,
 ): Promise<Connection<TNode>> {
-  for (let first = PAGE_SIZE; first >= MIN_PAGE_SIZE; first = Math.floor(first / 2)) {
+  for (
+    let first = PAGE_SIZE;
+    first >= MIN_PAGE_SIZE;
+    first = Math.floor(first / 2)
+  ) {
     const connection = await fetchPage(first, after);
     if (connection) return connection;
   }
@@ -42,16 +49,22 @@ async function fetchPageWithRetry<TNode>(
   throw new Error("Search records: WordPress query failed");
 }
 
-async function fetchAllNodes<TNode>(fetchPage: PageFetcher<TNode>): Promise<TNode[]> {
+async function fetchAllNodes<TNode>(
+  fetchPage: PageFetcher<TNode>,
+): Promise<TNode[]> {
   const nodes: TNode[] = [];
   let after: string | null = null;
 
   for (let page = 0; page < MAX_PAGES; page++) {
-    const connection: Connection<TNode> = await fetchPageWithRetry(fetchPage, after);
+    const connection: Connection<TNode> = await fetchPageWithRetry(
+      fetchPage,
+      after,
+    );
 
     nodes.push(...connection.nodes);
 
-    if (!connection.pageInfo.hasNextPage || !connection.pageInfo.endCursor) break;
+    if (!connection.pageInfo.hasNextPage || !connection.pageInfo.endCursor)
+      break;
     after = connection.pageInfo.endCursor;
   }
 
@@ -62,20 +75,25 @@ async function fetchAllNodes<TNode>(fetchPage: PageFetcher<TNode>): Promise<TNod
 // default `collections` tag, so the revalidate webhook refreshes it.
 export async function getSearchRecords(): Promise<SearchRecord[]> {
   const [posts, recipes, drinktips, drinks, grapes] = await Promise.all([
-    fetchAllNodes(async (first, after) =>
-      (await wpQuery(PostSearchSourceQuery, { first, after }))?.posts
+    fetchAllNodes(
+      async (first, after) =>
+        (await wpQuery(PostSearchSourceQuery, { first, after }))?.posts,
     ),
-    fetchAllNodes(async (first, after) =>
-      (await wpQuery(RecipeSearchSourceQuery, { first, after }))?.recipes
+    fetchAllNodes(
+      async (first, after) =>
+        (await wpQuery(RecipeSearchSourceQuery, { first, after }))?.recipes,
     ),
-    fetchAllNodes(async (first, after) =>
-      (await wpQuery(DrinktipSearchSourceQuery, { first, after }))?.drinktips
+    fetchAllNodes(
+      async (first, after) =>
+        (await wpQuery(DrinktipSearchSourceQuery, { first, after }))?.drinktips,
     ),
-    fetchAllNodes(async (first, after) =>
-      (await wpQuery(DrinkSearchSourceQuery, { first, after }))?.drinks
+    fetchAllNodes(
+      async (first, after) =>
+        (await wpQuery(DrinkSearchSourceQuery, { first, after }))?.drinks,
     ),
-    fetchAllNodes(async (first, after) =>
-      (await wpQuery(GrapeSearchSourceQuery, { first, after }))?.grapes
+    fetchAllNodes(
+      async (first, after) =>
+        (await wpQuery(GrapeSearchSourceQuery, { first, after }))?.grapes,
     ),
   ]);
 

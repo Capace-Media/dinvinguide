@@ -1,4 +1,3 @@
-
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 
 import { getAuthor } from "@/lib/api/authors/get-authors";
@@ -41,7 +40,7 @@ async function getAuthorData(id: string, search?: string) {
 
 export async function generateMetadata(
   props: Props,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const params = await props.params;
   const { slug } = params;
@@ -60,9 +59,9 @@ export async function generateMetadata(
   };
   const author = page
     ? {
-      title: page?.name,
-      slug: `${process.env.NEXT_PUBLIC_SITE_URL}/skribenter/${page?.username}`,
-    }
+        title: page?.name,
+        slug: `${process.env.NEXT_PUBLIC_SITE_URL}/skribenter/${page?.username}`,
+      }
     : null;
 
   const previousMeta: MetaInfo = (await parent) as unknown as MetaInfo;
@@ -90,7 +89,7 @@ async function SingleAuthorPage(props: Props) {
       <Suspense fallback={<BannerSkeleton />}>
         <AdTop />
       </Suspense>
-      <div className="flex gap-2 text-brand-gray layout bg-white">
+      <div className="layout flex gap-2 bg-white text-brand-gray">
         <Link href="/" className="text-brand-primary">
           Hem
         </Link>{" "}
@@ -101,7 +100,10 @@ async function SingleAuthorPage(props: Props) {
         / <p className="text-brand-dark">{data?.name}</p>
       </div>
       <div id="articles">
-        <AllArticles authorName={params?.slug} title={`${data?.firstName + (data?.firstName?.endsWith("s") ? "" : "s")} artiklar`} />
+        <AllArticles
+          authorName={params?.slug}
+          title={`${data?.firstName + (data?.firstName?.endsWith("s") ? "" : "s")} artiklar`}
+        />
       </div>
       <Suspense fallback={<BannerSkeleton />}>
         <AdMid />

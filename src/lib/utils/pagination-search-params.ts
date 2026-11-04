@@ -25,7 +25,7 @@ const paginationSearchParamsSchema = z.object({
 // Cursor pagination params shared by the paginated listing pages.
 export function parsePaginationSearchParams(
   searchParams: RouteSearchParams,
-  defaultFirst: number
+  defaultFirst: number,
 ) {
   const { first, last, ...rest } =
     paginationSearchParamsSchema.parse(searchParams);

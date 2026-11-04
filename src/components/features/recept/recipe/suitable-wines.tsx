@@ -17,44 +17,44 @@ const SuitableWines = ({ drinks }: SuitableWinesProps) => {
 
       <ul className="flex flex-wrap gap-6 py-8">
         {drinks.filter(isPresent).map((wine) => {
-            return (
-              <li key={wine.id} className="group max-w-77.75">
-                <Link
-                  href={`/drycker/${wine?.slug}`}
-                  className="flex"
-                  aria-label={`läs mer om ${wine?.title}`}
-                >
-                  {wine.featuredImage?.node.mediaItemUrl && (
-                    <div className="min-w-25 h-37.5 relative lg:group-hover:animate-shake">
-                      <Image
-                        src={wine.featuredImage.node.mediaItemUrl}
-                        alt={
-                          wine.featuredImage.node.altText
-                            ? wine.featuredImage.node.altText
-                            : `bild på ${wine.title}`
-                        }
-                        fill
-                        style={{
-                          objectFit: "contain",
-                        }}
-                        sizes="(min-width: 1200px) 300px, (min-width: 768px) 384px, 100vw"
-                      />
-                    </div>
-                  )}
-                  <div className=" flex gap-2 flex-col justify-center w-full p-4 ">
-                    <h2 className="text-[17px] lg:group-hover:underline">
-                      {wine?.title}
-                    </h2>
-
-                    <p className="text-[14px] flex">
-                      {wine?.acf_drinks?.dryckestyper?.name} -{" "}
-                      {wine?.acf_drinks?.forpackningar?.name}
-                    </p>
+          return (
+            <li key={wine.id} className="group max-w-77.75">
+              <Link
+                href={`/drycker/${wine?.slug}`}
+                className="flex"
+                aria-label={`läs mer om ${wine?.title}`}
+              >
+                {wine.featuredImage?.node.mediaItemUrl && (
+                  <div className="relative h-37.5 min-w-25 lg:group-hover:animate-shake">
+                    <Image
+                      src={wine.featuredImage.node.mediaItemUrl}
+                      alt={
+                        wine.featuredImage.node.altText
+                          ? wine.featuredImage.node.altText
+                          : `bild på ${wine.title}`
+                      }
+                      fill
+                      style={{
+                        objectFit: "contain",
+                      }}
+                      sizes="(min-width: 1200px) 300px, (min-width: 768px) 384px, 100vw"
+                    />
                   </div>
-                </Link>
-              </li>
-            );
-          })}
+                )}
+                <div className="flex w-full flex-col justify-center gap-2 p-4">
+                  <h2 className="text-[17px] lg:group-hover:underline">
+                    {wine?.title}
+                  </h2>
+
+                  <p className="flex text-[14px]">
+                    {wine?.acf_drinks?.dryckestyper?.name} -{" "}
+                    {wine?.acf_drinks?.forpackningar?.name}
+                  </p>
+                </div>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </section>
   );

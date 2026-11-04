@@ -15,7 +15,7 @@ const EpisodeCard = ({ episode, index, onSelect }: EpisodeCardProps) => {
   return (
     <li
       onClick={() => onSelect(index)}
-      className="group cursor-pointer hover:ring-2 transition-all ring-brand-red relative grid md:gap-5 md:grid-cols-[150px_1fr_100px] lg:grid-cols-[250px_1fr_100px] bg-white rounded-sm overflow-hidden"
+      className="group ring-brand-red relative grid cursor-pointer overflow-hidden rounded-sm bg-white transition-all hover:ring-2 md:grid-cols-[150px_1fr_100px] md:gap-5 lg:grid-cols-[250px_1fr_100px]"
     >
       <figure className="relative">
         {thumbnail && (
@@ -36,13 +36,13 @@ const EpisodeCard = ({ episode, index, onSelect }: EpisodeCardProps) => {
         ) : null}
       </figure>
       <div className="flex flex-col justify-center p-5 lg:p-5">
-        <h2 className="text-base normal-case lg:text-xl md:line-clamp-1 text-brand-red">
+        <h2 className="text-brand-red text-base normal-case md:line-clamp-1 lg:text-xl">
           {episode.title}
         </h2>
       </div>
-      <div className="absolute top-3 left-3 md:top-0 md:left-0 md:relative md:p-5 md:flex md:items-center md:justify-center">
+      <div className="absolute top-3 left-3 md:relative md:top-0 md:left-0 md:flex md:items-center md:justify-center md:p-5">
         <CirclePlay
-          className="m-1 text-white md:text-brand-red size-7"
+          className="md:text-brand-red m-1 size-7 text-white"
           aria-hidden
         />
       </div>

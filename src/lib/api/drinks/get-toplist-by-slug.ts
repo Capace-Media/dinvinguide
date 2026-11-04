@@ -18,7 +18,7 @@ const isEcoToplist = (toplist: ExtendedToplist) =>
 // The toplist for `/topplistor/<slug>`, or the organic toplist for
 // `/topplistor/ekologiskt`.
 export async function getToplistBySlug(
-  slug: string
+  slug: string,
 ): Promise<ExtendedToplist | null> {
   try {
     const toplists = await getToplists();
@@ -27,7 +27,7 @@ export async function getToplistBySlug(
     return (
       toplists.find(
         (toplist) =>
-          matchesSlug(toplist, slug) || (isEcoSlug && isEcoToplist(toplist))
+          matchesSlug(toplist, slug) || (isEcoSlug && isEcoToplist(toplist)),
       ) ?? null
     );
   } catch (error) {

@@ -23,12 +23,12 @@ const Footer = ({}: FooterProps) => {
 
   return (
     <footer
-      className={`relative z-10 layout pt-11 ${
-        isDL ? "text-[#333] bg-brand-dl" : "text-white bg-brand-primary"
+      className={`layout relative z-10 pt-11 ${
+        isDL ? "bg-brand-dl text-[#333]" : "bg-brand-primary text-white"
       }`}
     >
-      <div className="flex flex-col lg:flex-row w-full lg:items-baseline items-center gap-11 lg:gap-20 py-11">
-        <div className="flex flex-col text-center lg:items-start lg:text-start items-center lg:w-[40%] gap-6">
+      <div className="flex w-full flex-col items-center gap-11 py-11 lg:flex-row lg:items-baseline lg:gap-20">
+        <div className="flex flex-col items-center gap-6 text-center lg:w-[40%] lg:items-start lg:text-start">
           <figure>{isDL ? <DarkDvgLogo /> : <DvLogoWhiteMini />}</figure>
           <p className={`${isDL ? "text-[#333]" : "text-white"}`}>
             DinVinguide.se är en guide för människor som har mat, dryck, vin och
@@ -40,7 +40,7 @@ const Footer = ({}: FooterProps) => {
             Välkommen till DinVinguide.se!
           </p>
         </div>
-        <div className="text-center flex flex-col lg:items-start lg:text-start items-center gap-4 lg:w-[20%]">
+        <div className="flex flex-col items-center gap-4 text-center lg:w-[20%] lg:items-start lg:text-start">
           <h2
             className={`font-sub text-xl ${
               isDL ? "text-[#333]" : "text-white"
@@ -85,7 +85,7 @@ const Footer = ({}: FooterProps) => {
             <span>Facebook</span>
           </a>
         </div>
-        <div className="flex flex-col text-center gap-5 lg:items-start lg:text-start lg:w-[20%]">
+        <div className="flex flex-col gap-5 text-center lg:w-[20%] lg:items-start lg:text-start">
           <h2
             className={`font-sub text-xl ${
               isDL ? "text-[#333]" : "text-white"
@@ -94,7 +94,7 @@ const Footer = ({}: FooterProps) => {
             Information
           </h2>
 
-          <ul className="flex flex-col lg:text-start text-center gap-2">
+          <ul className="flex flex-col gap-2 text-center lg:text-start">
             {menuItems?.menu?.map((item: any) => {
               return (
                 <li
@@ -113,7 +113,7 @@ const Footer = ({}: FooterProps) => {
           </ul>
         </div>
 
-        <div className="flex flex-col text-center gap-4 items-center lg:items-start lg:text-start lg:w-[20%]">
+        <div className="flex flex-col items-center gap-4 text-center lg:w-[20%] lg:items-start lg:text-start">
           <h2
             className={`font-sub text-xl ${
               isDL ? "text-[#333]" : "text-white"
@@ -143,7 +143,7 @@ const Footer = ({}: FooterProps) => {
       </div>
 
       <div
-        className={`border-t-2 w-full border-white flex flex-col lg:flex-row lg:justify-between items-center py-4 gap-2`}
+        className={`flex w-full flex-col items-center gap-2 border-t-2 border-white py-4 lg:flex-row lg:justify-between`}
       >
         <p className={`${isDL ? "text-[#333]" : "text-white"}`}>
           {currentYear} © Copyright - DinVinguide.se

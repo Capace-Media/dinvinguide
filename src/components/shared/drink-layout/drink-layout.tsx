@@ -30,12 +30,12 @@ const DrinkLayout = ({
 }: DrinkLayoutProps) => {
   return (
     <article
-      className={`lg:grid-cols-2 grid gap-8 lg:gap-0 relative z-10 ${className ?? ""}`}
+      className={`relative z-10 grid gap-8 lg:grid-cols-2 lg:gap-0 ${className ?? ""}`}
     >
       <div className="relative">
         {image?.mediaItemUrl && (
           <Link href={uri ?? ""} className="flex justify-center">
-            <figure className="relative w-50 h-130.5">
+            <figure className="relative h-130.5 w-50">
               <Image
                 src={image.mediaItemUrl}
                 fill
@@ -48,19 +48,19 @@ const DrinkLayout = ({
         )}
       </div>
 
-      <div className="flex justify-center items-center min-w-0">
-        <div className="flex flex-col gap-16 min-w-0 max-w-full">
+      <div className="flex min-w-0 items-center justify-center">
+        <div className="flex max-w-full min-w-0 flex-col gap-16">
           <div className="flex flex-col gap-1">
             {eyebrow}
-            <Heading className="normal-case text-[38px] leading-10">
+            <Heading className="text-[38px] leading-10 normal-case">
               {title}
             </Heading>
             {importer && (
               <div className="flex items-center gap-2 py-2">
-                <h2 className="uppercase text-base">Importör: </h2>
+                <h2 className="text-base uppercase">Importör: </h2>
                 <Link
                   href={`/importorer/${importer.slug}`}
-                  className="underline text-brand-primary"
+                  className="text-brand-primary underline"
                 >
                   <span className="sr-only">Läs mer om </span>
                   {importer.title}

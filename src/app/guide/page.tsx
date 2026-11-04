@@ -13,9 +13,9 @@ import PageHero from "@/components/shared/heroes/page-hero";
 import ExploreGuides from "@/components/shared/explore-guides";
 
 type Props = {
-  params: Promise<{ id: string }>
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
 async function getGuidePage() {
   const data = await getPage("/guide");
@@ -24,7 +24,7 @@ async function getGuidePage() {
 
 export async function generateMetadata(
   _props: Props,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const page = await getGuidePage();
   if (!page) return {};

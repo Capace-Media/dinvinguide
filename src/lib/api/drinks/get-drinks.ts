@@ -61,7 +61,9 @@ type Toplist = Extract<
   >[number],
   { __typename: "Toplist" }
 >;
-type ToplistDrinkEdge = NonNullable<ToplistDrinksQuery["drinks"]>["edges"][number];
+type ToplistDrinkEdge = NonNullable<
+  ToplistDrinksQuery["drinks"]
+>["edges"][number];
 
 export interface ExtendedToplist {
   toplist: Toplist;

@@ -69,7 +69,7 @@ export default function SuppliersList() {
           before: null,
           page: String(currentPage + 1),
         })}`,
-        { scroll: false }
+        { scroll: false },
       );
     }
   };
@@ -83,7 +83,7 @@ export default function SuppliersList() {
           before: data.pageInfo.startCursor,
           page: String(currentPage - 1),
         })}`,
-        { scroll: false }
+        { scroll: false },
       );
     }
   };
@@ -96,20 +96,20 @@ export default function SuppliersList() {
         after: null,
         before: null,
         page: "1", // Reset to page 1 when changing page size
-      })}`
+      })}`,
     );
   };
 
   if (status === "pending")
     return (
-      <section className="bg-white layout contain">
+      <section className="layout contain bg-white">
         <div>
-          <h2 className="text-[2rem] font-bold pb-10">
+          <h2 className="pb-10 text-[2rem] font-bold">
             Utforska våra importörer
           </h2>
         </div>
 
-        <ul className="grid md:grid-cols-2 gap-4 lg:grid-cols-4">
+        <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {Array(pageSize)
             .fill(0)
             .map((_, index) => (
@@ -119,34 +119,34 @@ export default function SuppliersList() {
             ))}
         </ul>
 
-        <div className="flex justify-center items-center gap-2 py-10">
+        <div className="flex items-center justify-center gap-2 py-10">
           {/* Skeleton pagination */}
-          <div className="p-2.5 bg-gray-200 rounded-xs"></div>
-          <div className="flex justify-center items-center gap-3">
-            <div className="w-7 h-7 bg-gray-200 rounded-xs"></div>
+          <div className="rounded-xs bg-gray-200 p-2.5"></div>
+          <div className="flex items-center justify-center gap-3">
+            <div className="h-7 w-7 rounded-xs bg-gray-200"></div>
           </div>
-          <div className="p-2.5 bg-gray-200 rounded-xs"></div>
+          <div className="rounded-xs bg-gray-200 p-2.5"></div>
         </div>
       </section>
     );
   if (status === "error") return <div>Error: {error.message}</div>;
 
   return (
-    <section className="bg-white layout contain">
+    <section className="layout contain bg-white">
       <div>
-        <h2 className="text-[2rem] font-bold pb-10">
+        <h2 className="pb-10 text-[2rem] font-bold">
           Utforska våra importörer
         </h2>
       </div>
 
-      <ul className="grid md:grid-cols-2 gap-4 lg:grid-cols-4">
+      <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {data?.edges?.map((supplier) => (
           <li
             key={supplier.node.id}
-            className="group lg:hover:-translate-y-1.75 lg:ease-in-out lg:duration-200"
+            className="group lg:duration-200 lg:ease-in-out lg:hover:-translate-y-1.75"
           >
             <Link href={`/importorer/${supplier.node.slug}`}>
-              <div className="relative h-50 w-full bg-[#F5F5F5] rounded-t-[10px]">
+              <div className="relative h-50 w-full rounded-t-[10px] bg-[#F5F5F5]">
                 {supplier.node.featuredImage?.node?.mediaItemUrl ? (
                   <Image
                     src={supplier.node.featuredImage.node.mediaItemUrl}
@@ -161,12 +161,12 @@ export default function SuppliersList() {
                     }}
                   />
                 ) : (
-                  <div className="flex items-center justify-center h-full w-full">
+                  <div className="flex h-full w-full items-center justify-center">
                     <span className="text-gray-400">Ingen bild</span>
                   </div>
                 )}
               </div>
-              <div className="h-22.25 w-full bg-[#F5F5F5] p-2 rounded-b-[10px]">
+              <div className="h-22.25 w-full rounded-b-[10px] bg-[#F5F5F5] p-2">
                 <h3 className="text-[18px] md:group-hover:underline">
                   {supplier.node.title}
                 </h3>
@@ -179,11 +179,11 @@ export default function SuppliersList() {
         ))}
       </ul>
 
-      <div className="flex justify-center items-center gap-2 py-10">
+      <div className="flex items-center justify-center gap-2 py-10">
         <button
           onClick={handlePreviousPage}
           disabled={!data?.pageInfo?.hasPreviousPage || isFetching}
-          className="p-2.5 flex items-center justify-center"
+          className="flex items-center justify-center p-2.5"
         >
           {!data?.pageInfo?.hasPreviousPage || isFetching ? (
             <ArrowPrevDis />
@@ -193,12 +193,12 @@ export default function SuppliersList() {
           <span className="sr-only">Föregående i listan</span>
         </button>
 
-        <div className="flex justify-center items-center gap-3">
+        <div className="flex items-center justify-center gap-3">
           {/* Show previous page number if available */}
           {currentPage > 1 && (
             <button
               onClick={handlePreviousPage}
-              className="w-7 flex justify-center items-center h-7 text-gray-600 hover:bg-gray-100 rounded-xs"
+              className="flex h-7 w-7 items-center justify-center rounded-xs text-gray-600 hover:bg-gray-100"
               disabled={!data?.pageInfo?.hasPreviousPage || isFetching}
             >
               {currentPage - 1}
@@ -206,7 +206,7 @@ export default function SuppliersList() {
           )}
 
           {/* Current page */}
-          <span className="w-7 flex justify-center items-center h-7 text-white bg-brand-secondary">
+          <span className="flex h-7 w-7 items-center justify-center bg-brand-secondary text-white">
             {currentPage}
           </span>
 
@@ -214,7 +214,7 @@ export default function SuppliersList() {
           {data?.pageInfo?.hasNextPage && (
             <button
               onClick={handleNextPage}
-              className="w-7 flex justify-center items-center h-7 text-gray-600 hover:bg-gray-100 rounded-xs"
+              className="flex h-7 w-7 items-center justify-center rounded-xs text-gray-600 hover:bg-gray-100"
               disabled={isFetching}
             >
               {currentPage + 1}
@@ -225,7 +225,7 @@ export default function SuppliersList() {
         <button
           onClick={handleNextPage}
           disabled={!data?.pageInfo?.hasNextPage || isFetching}
-          className="p-2.5 flex items-center justify-center"
+          className="flex items-center justify-center p-2.5"
         >
           {!data?.pageInfo?.hasNextPage || isFetching ? (
             <ArrowNextDis />
@@ -241,11 +241,11 @@ export default function SuppliersList() {
 
 const SkeletonCard = () => (
   <div className="animate-pulse">
-    <div className="h-50 w-full bg-gray-300 rounded-t-[10px]"></div>
-    <div className="h-22.25 w-full bg-gray-200 p-2 rounded-b-[10px]">
-      <div className="h-5 bg-gray-300 rounded-sm w-3/4 mb-2"></div>
-      <div className="h-3 bg-gray-300 rounded-sm w-full mb-1"></div>
-      <div className="h-3 bg-gray-300 rounded-sm w-2/3"></div>
+    <div className="h-50 w-full rounded-t-[10px] bg-gray-300"></div>
+    <div className="h-22.25 w-full rounded-b-[10px] bg-gray-200 p-2">
+      <div className="mb-2 h-5 w-3/4 rounded-sm bg-gray-300"></div>
+      <div className="mb-1 h-3 w-full rounded-sm bg-gray-300"></div>
+      <div className="h-3 w-2/3 rounded-sm bg-gray-300"></div>
     </div>
   </div>
 );

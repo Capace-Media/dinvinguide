@@ -15,7 +15,7 @@ import TopListCategories from "@/components/features/dryckeslistan/top-list-cate
 
 export async function generateMetadata(
   _props: unknown,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const page = await getPage("/topplistor");
 

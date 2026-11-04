@@ -37,7 +37,7 @@ const StorBild = ({ content }: StorBildProps) => {
         alt={altText}
         width={img.mediaDetails?.width}
         height={img.mediaDetails?.height}
-        className="object-cover w-full h-full"
+        className="h-full w-full object-cover"
         sizes="(max-width: 1024px) 93vw, (max-width: 1790px) 50vw, 952px"
         priority={false}
       />

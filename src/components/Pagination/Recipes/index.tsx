@@ -16,8 +16,8 @@ const RecipePagination = ({ data, idString }: RecipePaginationProps) => {
   }, [data, idString]);
   return (
     <>
-      <div className="layout bg-white contain">
-        <ul id={idString} className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
+      <div className="layout contain bg-white">
+        <ul id={idString} className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {data &&
             data.map((recipe: any, index: number) => {
               return (

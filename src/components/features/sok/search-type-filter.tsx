@@ -27,18 +27,27 @@ function FilterChip({ label, count, isActive, onClick }: FilterChipProps) {
         "inline-flex min-h-11 items-center gap-1.5 rounded-full border px-4 py-1.5 text-sm transition-colors outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
         isActive
           ? "border-brand-primary bg-brand-primary text-white"
-          : "border-brand-light bg-white text-brand-dark hover:border-brand-primary"
+          : "border-brand-light bg-white text-brand-dark hover:border-brand-primary",
       )}
     >
       {label}
-      <span className={isActive ? "text-white/90" : "text-brand-gray"}>{count}</span>
+      <span className={isActive ? "text-white/90" : "text-brand-gray"}>
+        {count}
+      </span>
     </button>
   );
 }
 
 // Types without hits are hidden rather than disabled, so the row stays short.
-export function SearchTypeFilter({ counts, total, value, onChange }: SearchTypeFilterProps) {
-  const visibleTypes = SEARCH_TYPES.filter((type) => counts[type] > 0 || type === value);
+export function SearchTypeFilter({
+  counts,
+  total,
+  value,
+  onChange,
+}: SearchTypeFilterProps) {
+  const visibleTypes = SEARCH_TYPES.filter(
+    (type) => counts[type] > 0 || type === value,
+  );
 
   return (
     <div

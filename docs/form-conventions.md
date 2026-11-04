@@ -4,6 +4,7 @@
   adapter package).
 
 - **Schema lives in `lib/schemas/form/`, not inline in the component:**
+
   ```ts
   // lib/schemas/form/contact-us.ts
   import { z } from 'zod';
@@ -16,7 +17,6 @@
   ```
 
 - **Split the loading state from the form.** Only mount the form after the query data is available, so `useForm` can receive the query data as its initial `defaultValues`. Don’t populate `defaultValues` later with `useEffect`.
-
 
 - **Use `useSelector`, not `useStore`, for form-state subscriptions outside `form.Field`** (e.g. buttons and banners). Fields already subscribe to their own state internally.
 
@@ -46,6 +46,7 @@
       />
     )}
   </form.Field>
+  ```
 ```
 
 - **Use local `useState` only for UI state outside the form** (for example, whether an unrelated
@@ -55,3 +56,4 @@
 - **Out of scope for now:** share Zod schemas between forms and API input types, and migrate the
   remaining `useState` + `useEffect` form screens. Migrate a screen when you’re already changing
   it, following this document rather than its existing pattern.
+```

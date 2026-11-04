@@ -56,13 +56,13 @@ const TopListItem = ({ drink, index }: TopListItemProps) => {
   const medalClassName = getMedalClassName(index, acf?.forpackningar?.name);
 
   return (
-    <li className="lg:grid-cols-2 grid gap-8">
+    <li className="grid gap-8 lg:grid-cols-2">
       <div
         className={`relative ${index % 2 === 0 ? "lg:order-1" : "lg:order-0"}`}
       >
         {drink.featuredImage?.node.mediaItemUrl && (
           <Link href={`/drycker/${drink.slug}`} className="flex justify-center">
-            <figure className="relative w-50 h-130.5">
+            <figure className="relative h-130.5 w-50">
               <Image
                 src={drink.featuredImage.node.mediaItemUrl}
                 fill
@@ -87,27 +87,27 @@ const TopListItem = ({ drink, index }: TopListItemProps) => {
         )}
       </div>
 
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <div className="flex flex-col gap-16">
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline gap-1">
-              <p className="font-bold text-[18px] uppercase">Nr {index}</p>
+              <p className="text-[18px] font-bold uppercase">Nr {index}</p>
               <p className="text-[14px] text-brand-gray">
                 {"-"} {PrettyDate(drink.date)}
               </p>
             </div>
 
             <Link href={`/drycker/${drink.slug}`}>
-              <h2 className="normal-case text-[38px] leading-10">
+              <h2 className="text-[38px] leading-10 normal-case">
                 {drink.title}
               </h2>
             </Link>
             {importer && (
               <div className="flex items-center gap-2 py-2">
-                <h3 className="uppercase text-base">Importör: </h3>
+                <h3 className="text-base uppercase">Importör: </h3>
                 <Link
                   href={`/importorer/${importer.slug}`}
-                  className="underline text-brand-primary"
+                  className="text-brand-primary underline"
                 >
                   <span className="sr-only">Läs mer om </span>
                   {importer.title}

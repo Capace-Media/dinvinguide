@@ -24,8 +24,13 @@ const RecipesByCategory = async ({
   params,
   mainSlug,
 }: RecipesByCategoryProps) => {
-  const { after, before, first, last, search = "" } =
-    parsePaginationSearchParams(searchParams, RECIPES_PER_PAGE);
+  const {
+    after,
+    before,
+    first,
+    last,
+    search = "",
+  } = parsePaginationSearchParams(searchParams, RECIPES_PER_PAGE);
 
   const idURI = mainSlug
     ? `/receptkategorier/${mainSlug}/${params.slug}`
@@ -49,7 +54,7 @@ const RecipesByCategory = async ({
     return (
       <div className="layout bg-white">
         <div>
-          <p className="uppercase text-[14px]">{mainSlug}</p>
+          <p className="text-[14px] uppercase">{mainSlug}</p>
           <h1 className="capitalize">{title}</h1>
         </div>
         <p>Inga recept hittades...</p>
@@ -58,9 +63,9 @@ const RecipesByCategory = async ({
   }
   return (
     <section>
-      <div className="layout bg-white flex justify-between items-center">
+      <div className="layout flex items-center justify-between bg-white">
         <div>
-          <p className="uppercase text-[14px]">{mainSlug}</p>
+          <p className="text-[14px] uppercase">{mainSlug}</p>
           <h1 className="capitalize">{title}</h1>
         </div>
 

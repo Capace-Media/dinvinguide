@@ -38,7 +38,7 @@ const Mellanbild = ({ content }: MellanbildProps) => {
         width={img.mediaDetails?.width}
         height={img.mediaDetails?.height}
         sizes="(max-width: 1024px) 93vw, (max-width: 1790px) 50vw, 952px"
-        className="object-cover max-w-full h-full"
+        className="h-full max-w-full object-cover"
         priority={false}
       />
     </section>

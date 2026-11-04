@@ -16,7 +16,11 @@ const node = {
   acf_ads: {
     link: "https://example.com",
     desktop: image,
-    mobile: { ...image, id: "img-2", mediaItemUrl: "https://cms.example/m.jpg" },
+    mobile: {
+      ...image,
+      id: "img-2",
+      mediaItemUrl: "https://cms.example/m.jpg",
+    },
   },
 };
 
@@ -43,13 +47,17 @@ describe("toAd", () => {
   });
 
   test("returns null when the link is missing", () => {
-    expect(toAd({ ...node, acf_ads: { ...node.acf_ads, link: null } })).toBeNull();
-    expect(toAd({ ...node, acf_ads: { ...node.acf_ads, link: "" } })).toBeNull();
+    expect(
+      toAd({ ...node, acf_ads: { ...node.acf_ads, link: null } }),
+    ).toBeNull();
+    expect(
+      toAd({ ...node, acf_ads: { ...node.acf_ads, link: "" } }),
+    ).toBeNull();
   });
 
   test("returns null when the desktop image is missing", () => {
     expect(
-      toAd({ ...node, acf_ads: { ...node.acf_ads, desktop: null } })
+      toAd({ ...node, acf_ads: { ...node.acf_ads, desktop: null } }),
     ).toBeNull();
   });
 
@@ -58,7 +66,7 @@ describe("toAd", () => {
       toAd({
         ...node,
         acf_ads: { ...node.acf_ads, desktop: { ...image, mediaItemUrl: "" } },
-      })
+      }),
     ).toBeNull();
   });
 

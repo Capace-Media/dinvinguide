@@ -26,7 +26,7 @@ const SocialMedia = ({ index, social }: SocialMediaProps) => {
           target="_blank"
           rel="noreferrer"
           aria-label="gå till facebook"
-          className="h-10 w-6 flex justify-center items-center"
+          className="flex h-10 w-6 items-center justify-center"
           href={social.facebook}
         >
           <FacebookIcon />
@@ -37,7 +37,7 @@ const SocialMedia = ({ index, social }: SocialMediaProps) => {
           target="_blank"
           rel="noreferrer"
           aria-label="gå till instagram"
-          className="h-10 w-6 flex justify-center items-center"
+          className="flex h-10 w-6 items-center justify-center"
           href={social.instagram}
         >
           <InstagramIcon />
@@ -48,7 +48,7 @@ const SocialMedia = ({ index, social }: SocialMediaProps) => {
           target="_blank"
           rel="noreferrer"
           aria-label="skicka mail"
-          className="h-10 w-6 flex justify-center items-center"
+          className="flex h-10 w-6 items-center justify-center"
           href={`mailto:${social.email}`}
         >
           <MailIcon />

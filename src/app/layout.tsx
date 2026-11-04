@@ -94,7 +94,6 @@ export default async function RootLayout({
       />
       <body>
         <div className="relative">
-
           <Header />
           <main className="">
             <Provider>{children}</Provider>

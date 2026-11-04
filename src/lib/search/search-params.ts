@@ -13,15 +13,18 @@ const firstValue = (value: unknown) =>
 
 const positiveInt = z.preprocess(
   firstValue,
-  z.coerce.number().int().positive().optional().catch(undefined)
+  z.coerce.number().int().positive().optional().catch(undefined),
 );
 
 const searchParamsSchema = z.object({
   q: z.preprocess(
     firstValue,
-    z.string().transform(normalizeQuery).catch(null).default(null)
+    z.string().transform(normalizeQuery).catch(null).default(null),
   ),
-  type: z.preprocess(firstValue, z.enum(SEARCH_TYPES).optional().catch(undefined)),
+  type: z.preprocess(
+    firstValue,
+    z.enum(SEARCH_TYPES).optional().catch(undefined),
+  ),
   page: positiveInt,
   limit: positiveInt,
 });
@@ -36,7 +39,7 @@ export interface SiteSearchParams {
 // Normalizes search input from the URL. Never throws: anything invalid falls
 // back to its default, so the result is safe to use as a cache key.
 export function parseSearchParams(
-  searchParams: RouteSearchParams
+  searchParams: RouteSearchParams,
 ): SiteSearchParams {
   const { q, type, page, limit } = searchParamsSchema.parse(searchParams);
   return {

@@ -7,11 +7,16 @@ import { notFound } from "next/navigation";
 import { MetaInfo } from "../../../types/MetaInfoTypes";
 
 type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | any | undefined | null }>;
+  searchParams: Promise<{
+    [key: string]: string | string[] | any | undefined | null;
+  }>;
   params: Promise<{ slug: string[] }>;
 };
 
-export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  props: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const params = await props.params;
   if (isWordPressInternalPath(params?.slug ?? [])) {
     notFound();

@@ -21,8 +21,13 @@ const ChefRecipes = async ({
   params,
   mainSlug,
 }: ChefRecipesProps) => {
-  const { after, before, first, last, search = "" } =
-    parsePaginationSearchParams(searchParams, RECIPES_PER_PAGE);
+  const {
+    after,
+    before,
+    first,
+    last,
+    search = "",
+  } = parsePaginationSearchParams(searchParams, RECIPES_PER_PAGE);
 
   const idURI = `/gastskribent/${params.slug}`;
 
@@ -40,11 +45,11 @@ const ChefRecipes = async ({
 
   return (
     <section>
-      <div className="layout bg-white flex justify-between items-center">
+      <div className="layout flex items-center justify-between bg-white">
         <div>
           {chef?.name && (
             <>
-              <p className="uppercase text-[14px]">{mainSlug}</p>
+              <p className="text-[14px] uppercase">{mainSlug}</p>
               <h1 className="capitalize">{chef.name}</h1>
             </>
           )}
@@ -54,9 +59,7 @@ const ChefRecipes = async ({
           <Search placeholder="sök efter recept" />
         </div>
       </div>
-      {chef?.recipes?.edges && (
-        <RecipePagination data={chef.recipes.edges} />
-      )}
+      {chef?.recipes?.edges && <RecipePagination data={chef.recipes.edges} />}
 
       {chef?.recipes?.pageInfo?.hasNextPage === true ||
       chef?.recipes?.pageInfo?.hasPreviousPage === true ? (

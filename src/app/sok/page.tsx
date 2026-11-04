@@ -29,7 +29,11 @@ interface SearchPageProps {
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const { search, type } = await searchParams;
   // The page keeps `?search=` in its URL; the search itself takes `q`.
-  const params = parseSearchParams({ q: search, type, limit: String(SEARCH_PAGE_SIZE) });
+  const params = parseSearchParams({
+    q: search,
+    type,
+    limit: String(SEARCH_PAGE_SIZE),
+  });
 
   const queryClient = getQueryClient();
   if (params.q && !isSearchIndexReady()) {
@@ -44,7 +48,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         queryFn: () => searchSite({ ...params, page: 1 }),
         initialPageParam: 1,
       })
-      .catch((error: unknown) => console.error("Search prefetch failed:", error));
+      .catch((error: unknown) =>
+        console.error("Search prefetch failed:", error),
+      );
   }
 
   return (
@@ -58,7 +64,10 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
       <div className="pb-16">
         <HydrationBoundary state={dehydrate(queryClient)}>
-          <SiteSearch initialSearch={params.q ?? ""} initialType={params.type} />
+          <SiteSearch
+            initialSearch={params.q ?? ""}
+            initialType={params.type}
+          />
         </HydrationBoundary>
       </div>
 

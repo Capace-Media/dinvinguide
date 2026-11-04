@@ -9,8 +9,8 @@ const Nutritions = ({ nutritions }: NutritionsProps) => {
     return null;
   }
   return (
-    <section className="bg-[#F5F5F5] p-4 rounded-[8px]">
-      <h2 className="text-[28px] pb-5">Näringsinnehåll</h2>
+    <section className="rounded-[8px] bg-[#F5F5F5] p-4">
+      <h2 className="pb-5 text-[28px]">Näringsinnehåll</h2>
 
       <ul className="flex flex-col gap-3">
         <li>

@@ -8,8 +8,8 @@ const Drinks = async () => {
 
   return (
     <div>
-      <div className="layout bg-white contain">
-        <div className="py-5 flex justify-between items-center">
+      <div className="layout contain bg-white">
+        <div className="flex items-center justify-between py-5">
           <h2>Drycker</h2>
           <Link
             href="/recept/drycker"
@@ -19,14 +19,14 @@ const Drinks = async () => {
             <MoveRight className="size-6" strokeWidth={1} aria-hidden />
           </Link>
         </div>
-        <ul className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
+        <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {recipes.map((recipe) => {
-              return (
-                <li key={recipe?.id} className="relative">
-                  <Recipe recipe={recipe} />
-                </li>
-              );
-            })}
+            return (
+              <li key={recipe?.id} className="relative">
+                <Recipe recipe={recipe} />
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

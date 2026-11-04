@@ -16,19 +16,19 @@ const ExclusiveDrinks = ({ latest, highlighted }: ExclusiveDrinksProps) => {
 
   return (
     <div className="layout contain bg-white">
-      <div className="flex justify-between  pb-6">
+      <div className="flex justify-between pb-6">
         <div>
           <h2 className="heading">Exklusiva dryckestips</h2>
-          <p className="text-sm max-w-[500px]">
+          <p className="max-w-[500px] text-sm">
             Dyk in i vårt exklusiva utbud av dryckestips och högkvalitativa
             viner. Varje vin är granskat av våra experter och betygsatt 0-100.
           </p>
         </div>
-        <div className="md:block hidden">
+        <div className="hidden md:block">
           <Link
             href={`/dryckestips`}
             aria-label={`Utforska alla våra dryckestips`}
-            className="flex items-center gap-3 py-4 lg:hover:underline text-brand-secondary"
+            className="flex items-center gap-3 py-4 text-brand-secondary lg:hover:underline"
           >
             <span>Utforska alla våra dryckestips</span>
             <MoveRight className="size-6" strokeWidth={1} aria-hidden />
@@ -37,7 +37,7 @@ const ExclusiveDrinks = ({ latest, highlighted }: ExclusiveDrinksProps) => {
       </div>
 
       <div className="pb-6">
-        <ul className="grid xl:grid-cols-4 md:grid-cols-2 gap-[4.3rem] pb-10 layout bg-white shadow-lg border-[#F0F0CC] border-b-18 ">
+        <ul className="layout grid gap-[4.3rem] border-b-18 border-[#F0F0CC] bg-white pb-10 shadow-lg md:grid-cols-2 xl:grid-cols-4">
           {drinks.map((wine) => {
             const image = wine.featuredImage?.node;
             return (
@@ -47,7 +47,7 @@ const ExclusiveDrinks = ({ latest, highlighted }: ExclusiveDrinksProps) => {
                   className="flex"
                   aria-label={`läs mer om ${wine.title}`}
                 >
-                  <div className="min-w-[100px] h-[160px] relative lg:group-hover:animate-shake">
+                  <div className="relative h-[160px] min-w-[100px] lg:group-hover:animate-shake">
                     {image?.mediaItemUrl && (
                       <Image
                         src={image.mediaItemUrl}
@@ -55,11 +55,11 @@ const ExclusiveDrinks = ({ latest, highlighted }: ExclusiveDrinksProps) => {
                         width={image.mediaDetails?.width ?? 400}
                         height={image.mediaDetails?.height ?? 269}
                         sizes="(max-width: 768px) 26vw, (max-width: 1024px) 15vw, (max-width: 1790px) 10vw, 102px"
-                        className="object-contain w-full h-full"
+                        className="h-full w-full object-contain"
                       />
                     )}
                   </div>
-                  <div className=" flex gap-2 flex-col justify-center w-full p-4 ">
+                  <div className="flex w-full flex-col justify-center gap-2 p-4">
                     <h2 className="text-[17px] lg:group-hover:underline">
                       {wine.title}
                     </h2>
@@ -70,7 +70,7 @@ const ExclusiveDrinks = ({ latest, highlighted }: ExclusiveDrinksProps) => {
                       </p>
                     ) : null}
 
-                    <p className="text-[14px] flex">
+                    <p className="flex text-[14px]">
                       {wine.acf_dryckestips?.dryckestyper} -{" "}
                       {wine.acf_dryckestips?.forpackningar}
                     </p>
