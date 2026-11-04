@@ -1,10 +1,10 @@
-import * as React from "react";
 const SvgWhiteWine = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={26}
     height={75}
     fill="none"
+    aria-hidden="true"
     {...props}
   >
     <path

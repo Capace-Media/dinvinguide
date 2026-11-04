@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { FC, useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import {
   ArrowNextActive,
   ArrowNextDis,
@@ -55,6 +55,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
   return (
     <div className="flex items-center justify-center gap-2 py-10">
       <button
+        type="button"
         aria-label="föregående sida för posterna"
         className={`flex items-center justify-center p-[10px] ${
           !hasPreviousPage
@@ -88,6 +89,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
       </div>
 
       <button
+        type="button"
         aria-label="nästa sida för posterna"
         className={`flex items-center justify-center p-[10px] ${
           !hasNextPage

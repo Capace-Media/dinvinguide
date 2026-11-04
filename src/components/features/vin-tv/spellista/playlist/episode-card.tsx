@@ -13,10 +13,7 @@ const EpisodeCard = ({ episode, index, onSelect }: EpisodeCardProps) => {
   const videoId = episode.acf_episode?.videoId;
 
   return (
-    <li
-      onClick={() => onSelect(index)}
-      className="group ring-brand-red relative grid cursor-pointer overflow-hidden rounded-sm bg-white transition-all hover:ring-2 md:grid-cols-[150px_1fr_100px] md:gap-5 lg:grid-cols-[250px_1fr_100px]"
-    >
+    <li className="group ring-brand-red relative grid cursor-pointer overflow-hidden rounded-sm bg-white transition-all hover:ring-2 md:grid-cols-[150px_1fr_100px] md:gap-5 lg:grid-cols-[250px_1fr_100px]">
       <figure className="relative">
         {thumbnail && (
           <Image
@@ -36,8 +33,15 @@ const EpisodeCard = ({ episode, index, onSelect }: EpisodeCardProps) => {
         ) : null}
       </figure>
       <div className="flex flex-col justify-center p-5 lg:p-5">
-        <h2 className="text-brand-red text-base normal-case md:line-clamp-1 lg:text-xl">
-          {episode.title}
+        <h2 className="text-brand-red text-base normal-case lg:text-xl">
+          {/* The ::after covers the whole card, so a click anywhere selects the episode while keyboard users get a real button. */}
+          <button
+            type="button"
+            onClick={() => onSelect(index)}
+            className="block w-full cursor-pointer text-left after:absolute after:inset-0 after:z-10 md:line-clamp-1"
+          >
+            {episode.title}
+          </button>
         </h2>
       </div>
       <div className="absolute top-3 left-3 md:relative md:top-0 md:left-0 md:flex md:items-center md:justify-center md:p-5">

@@ -14,6 +14,11 @@ interface WordArticleProps {
 const WordArticle = ({ word }: WordArticleProps) => {
   const usage = word.GQL_Word_Content?.hurAndvandsOrdet;
   const relatedTerms = word.GQL_Word_Content?.relateradTermer;
+  const usageExamples = [
+    { field: "alternativ1", text: usage?.alternativ1 },
+    { field: "alternativ2", text: usage?.alternativ2 },
+    { field: "alternativ3", text: usage?.alternativ3 },
+  ];
 
   return (
     <article className="layout gap-10 bg-white pt-30 lg:grid lg:grid-cols-5">
@@ -63,14 +68,14 @@ const WordArticle = ({ word }: WordArticleProps) => {
           )}
 
           <ul>
-            {[usage?.alternativ1, usage?.alternativ2, usage?.alternativ3].map(
-              (example, i) =>
-                example && (
-                  <li key={i} className="flex gap-2 pb-7">
+            {usageExamples.map(
+              ({ field, text }, i) =>
+                text && (
+                  <li key={field} className="flex gap-2 pb-7">
                     <span className="pr-4 font-sub text-[32px] font-bold">
                       {i + 1}.
                     </span>
-                    <span className="pt-3">{example}</span>
+                    <span className="pt-3">{text}</span>
                   </li>
                 ),
             )}

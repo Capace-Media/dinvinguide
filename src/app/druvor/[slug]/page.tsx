@@ -1,7 +1,7 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 import { getGrape, getGrapeSlugs } from "@/lib/api/grapes/get-grapes";
-import { Metadata, ResolvingMetadata } from "next";
-import { MetaInfo } from "../../../../types/MetaInfoTypes";
+import type { Metadata, ResolvingMetadata } from "next";
+import type { MetaInfo } from "../../../../types/MetaInfoTypes";
 import Newsletter from "@/components/shared/newsletter/newsletter";
 import ExploreGuides from "@/components/shared/explore-guides";
 import PageHero from "@/components/shared/heroes/page-hero";

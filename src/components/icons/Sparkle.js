@@ -1,10 +1,10 @@
-import * as React from "react";
 const SvgSparkle = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={74}
     height={74}
     fill="none"
+    aria-hidden="true"
     {...props}
   >
     <g fill="#000" clipPath="url(#sparkle_svg__a)">

@@ -1,9 +1,12 @@
-import parse, { DOMNode, HTMLReactParserOptions } from "html-react-parser";
+import parse, {
+  type DOMNode,
+  type HTMLReactParserOptions,
+} from "html-react-parser";
 import Image from "next/image";
 
 // Helper function to check if a node contains block elements (recursively)
 function containsBlockElements(node: any): boolean {
-  if (!node || !node.children) return false;
+  if (!node?.children) return false;
 
   const blockElements = [
     "div",
@@ -94,6 +97,7 @@ export default function handleParse(
         // the image rather than crash the whole page.
         let src: string | undefined =
           domNode.attribs?.src || domNode.attribs?.["data-src"];
+        // biome-ignore lint/complexity/noUselessFragments: html-react-parser only accepts a React element here; returning null would keep the default <img>
         if (!src) return <></>;
 
         // Fix URL if needed
@@ -117,10 +121,10 @@ export default function handleParse(
 
         // Parse width and height, provide defaults if not available
         const width = domNode.attribs.width
-          ? parseInt(domNode.attribs.width)
+          ? parseInt(domNode.attribs.width, 10)
           : 800;
         const height = domNode.attribs.height
-          ? parseInt(domNode.attribs.height)
+          ? parseInt(domNode.attribs.height, 10)
           : 600;
 
         // Check if the image is inside a paragraph

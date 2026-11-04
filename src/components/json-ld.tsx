@@ -14,6 +14,7 @@ export default function JsonLd({ json, id }: JsonLdProps) {
     <script
       id={id}
       type="application/ld+json"
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON is serialized and "<" is escaped by safeJsonLdString
       dangerouslySetInnerHTML={{ __html: safeJsonLdString(json) }}
     />
   );

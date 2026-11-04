@@ -9,7 +9,7 @@ interface PagePathParams {
   pid: string;
 }
 
-export async function GET(request: Request): Promise<Response | void> {
+export async function GET(request: Request): Promise<Response> {
   const { searchParams } = new URL(request.url);
   const secret = searchParams.get("secret");
   const type = searchParams.get("type");

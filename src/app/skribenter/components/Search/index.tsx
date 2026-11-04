@@ -24,7 +24,7 @@ const Search = ({ word, uri }: { word?: string; uri?: string }) => {
     } else {
       router.push(`/skribenter/${uri}?search=${query}`);
     }
-  }, [query]);
+  }, [query, router, uri]);
 
   const scrollWithSearch = () => {
     const element = document.getElementById("searchScroll");

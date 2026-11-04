@@ -7,9 +7,9 @@ import {
 } from "@/lib/api/posts/get-posts";
 import generateArticleSchema from "@/lib/utils/json-LD-Schemas/generateArticleSchema";
 
-import { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { draftMode } from "next/headers";
-import { MetaInfo } from "../../../../../types/MetaInfoTypes";
+import type { MetaInfo } from "../../../../../types/MetaInfoTypes";
 type Props = {
   params: Promise<{ slug: string; post: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | any | undefined }>;
@@ -27,7 +27,7 @@ async function getPostData(params: { post: string; slug: string }) {
   const { post, slug } = params;
 
   if (isEnabled) {
-    const preview = await getPreviewPost(parseInt(post));
+    const preview = await getPreviewPost(parseInt(post, 10));
     return preview
       ? { ...preview, type: "preview", author: preview.author?.node }
       : null;
@@ -86,6 +86,7 @@ const Articlepost = async (props: Props) => {
     <article className="layout bg-white">
       <script
         type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD built by generateArticleSchema
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 

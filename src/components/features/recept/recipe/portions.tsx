@@ -65,12 +65,18 @@ const Portions = ({ ingredients, others, portions }: PortionsProps) => {
           <ul className="flex flex-col gap-4">
             {adjustedQuantities.map((node, index) => {
               return (
-                <li key={`${index}${node.rubrik}`}>
+                <li
+                  // biome-ignore lint/suspicious/noArrayIndexKey: section titles can repeat and have no id
+                  key={`${index}${node.rubrik}`}
+                >
                   <h3 className="pb-4 text-[23px]">{node.rubrik}</h3>
                   <ol className="flex flex-col gap-1">
                     {node.ingredienser.map((ing, i) => {
                       return (
-                        <li key={`${i}${ing.namn}`}>
+                        <li
+                          // biome-ignore lint/suspicious/noArrayIndexKey: ingredient names can repeat and have no id
+                          key={`${i}${ing.namn}`}
+                        >
                           <label
                             className={checkboxLabelClasses}
                             htmlFor={`${node.rubrik}${i}`}

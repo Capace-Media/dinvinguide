@@ -1,8 +1,8 @@
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
 
 import { getPage } from "@/lib/api/pages/get-pages";
-import { Metadata, ResolvingMetadata } from "next";
-import { MetaInfo } from "../../../types/MetaInfoTypes";
+import type { Metadata, ResolvingMetadata } from "next";
+import type { MetaInfo } from "../../../types/MetaInfoTypes";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import DlTop from "@/shared/components/ads/dl/top";
 import DlMid from "@/shared/components/ads/dl/mid";

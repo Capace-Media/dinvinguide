@@ -1,5 +1,14 @@
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+
+// Base paths that use the drink list (DL) styling
+const basePaths = [
+  "/dryckeslistan",
+  "/topplistan",
+  "/dryckesutforskaren",
+  "/topplistor",
+  "/drycker",
+];
 
 const useRouteStyle = (): boolean => {
   const path = usePathname();
@@ -7,28 +16,8 @@ const useRouteStyle = (): boolean => {
   const [isDL, setDL] = useState<boolean>(false);
 
   useEffect(() => {
-    // Function to check if the path is one of the specific routes
-    const checkPath = () => {
-      if (typeof window !== "undefined") {
-        const path = window.location.pathname;
-
-        // Base paths that you want to match
-        const basePaths = [
-          "/dryckeslistan",
-          "/topplistan",
-          "/dryckesutforskaren",
-          "/topplistor",
-          "/drycker",
-        ];
-
-        // Check if the current path starts with any of the base paths
-        return basePaths.some((basePath) => path.startsWith(basePath));
-      }
-      return false;
-    };
-
-    const isSpecificRoute = checkPath();
-    setDL(isSpecificRoute ? true : false);
+    // Check if the current path starts with any of the base paths
+    setDL(basePaths.some((basePath) => path.startsWith(basePath)));
 
     return () => {
       setDL(false);

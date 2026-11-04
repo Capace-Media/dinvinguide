@@ -1,10 +1,10 @@
-import * as React from "react";
 const SvgDarkDvgLogo = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={316}
     height={55}
     fill="none"
+    aria-hidden="true"
     {...props}
   >
     <path

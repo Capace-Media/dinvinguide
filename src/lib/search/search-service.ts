@@ -39,7 +39,8 @@ interface IndexStore {
 // the routes, each with its own copy of this module; the preload there and
 // the searches here must share one index.
 const globalStore = globalThis as { __dvgSearchIndex?: IndexStore };
-const store = (globalStore.__dvgSearchIndex ??= { state: null, pending: null });
+globalStore.__dvgSearchIndex ??= { state: null, pending: null };
+const store = globalStore.__dvgSearchIndex;
 
 function saveSnapshot(
   version: string,
@@ -165,13 +166,15 @@ async function getSearchIndex(): Promise<SearchIndex> {
   }
 
   // Concurrent requests share one load instead of each building an index.
-  const pending = (store.pending ??= (
-    current ? recheckIndex(current) : loadInitialIndex()
-  )
-    .then((next) => (store.state = next))
+  store.pending ??= (current ? recheckIndex(current) : loadInitialIndex())
+    .then((next) => {
+      store.state = next;
+      return next;
+    })
     .finally(() => {
       store.pending = null;
-    }));
+    });
+  const pending = store.pending;
 
   if (!current) return (await pending).index;
 

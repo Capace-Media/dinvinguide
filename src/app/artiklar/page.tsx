@@ -4,8 +4,8 @@ import { getQueryClient } from "@/lib/get-query-client";
 import { getPage } from "@/lib/api/pages/get-pages";
 import { getPosts } from "@/lib/api/posts/get-posts";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { Metadata, ResolvingMetadata } from "next";
-import { MetaInfo } from "../../../types/MetaInfoTypes";
+import type { Metadata, ResolvingMetadata } from "next";
+import type { MetaInfo } from "../../../types/MetaInfoTypes";
 import Newsletter from "@/components/shared/newsletter/newsletter";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdTop from "@/shared/components/ads/default/top";
@@ -21,7 +21,7 @@ type Props = {
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  _props: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const page = await getPage("/artiklar");
@@ -50,8 +50,7 @@ async function fetchPosts({ pageParam }: { pageParam: string }) {
   return { posts };
 }
 
-const Articles = async (props: Props) => {
-  // const searchParams = await props.searchParams;
+const Articles = async () => {
   const queryClient = getQueryClient();
 
   // Prefetch the initial page of articles on the server

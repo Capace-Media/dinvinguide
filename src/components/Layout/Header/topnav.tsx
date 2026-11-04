@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Avbrytare,
   BcTopNav,
   DarkBcLogo,
   DarkDlLogo,

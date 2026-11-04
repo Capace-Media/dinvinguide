@@ -85,6 +85,7 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
                   </li>
                 );
               }
+              return null;
             })}
           </ul>
 
@@ -132,6 +133,7 @@ const Supplier = async (props: { params: Promise<{ slug: string }> }) => {
                   </li>
                 );
               }
+              return null;
             })}
           </ul>
         </div>

@@ -11,5 +11,5 @@ export function truncateText(text: string, maxLength: number = 20): string {
     return text;
   }
 
-  return text.substring(0, maxLength) + "[...]";
+  return `${text.substring(0, maxLength)}[...]`;
 }

@@ -3,7 +3,6 @@ import Image from "next/image";
 
 import handleParse from "@/lib/utils/handleParse";
 import heroImage from "../../../../../public/Images/Vinsamling-korkar.jpeg";
-import Search from "../Search";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useEffect, useState } from "react";

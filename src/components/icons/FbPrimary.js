@@ -1,10 +1,10 @@
-import * as React from "react";
 const SvgFbPrimary = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={8}
     height={16}
     fill="none"
+    aria-hidden="true"
     {...props}
   >
     <path

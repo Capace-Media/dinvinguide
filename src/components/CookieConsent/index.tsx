@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import Script from "next/script";
 
 declare global {
@@ -136,7 +136,7 @@ export default function CookieConsent() {
     }
   }, []);
 
-  const initializeBanner = () => {
+  const initializeBanner = useCallback(() => {
     if (
       initializedRef.current ||
       typeof window === "undefined" ||
@@ -153,7 +153,7 @@ export default function CookieConsent() {
     } catch (error) {
       console.error("Error initializing cookie banner:", error);
     }
-  };
+  }, []);
 
   useEffect(() => {
     // Try to initialize if script is already loaded
@@ -178,7 +178,7 @@ export default function CookieConsent() {
       clearInterval(checkInterval);
       clearTimeout(timeout);
     };
-  }, []);
+  }, [initializeBanner]);
 
   return (
     <>

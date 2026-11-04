@@ -1,5 +1,8 @@
 "use client";
-import parse, { DOMNode, HTMLReactParserOptions } from "html-react-parser";
+import parse, {
+  type DOMNode,
+  type HTMLReactParserOptions,
+} from "html-react-parser";
 
 export default function handleParseClient(content?: string) {
   if (!content) return null;

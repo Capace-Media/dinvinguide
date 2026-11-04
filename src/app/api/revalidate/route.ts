@@ -1,5 +1,5 @@
 import { revalidatePath, revalidateTag } from "next/cache";
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 import { isValidSecret } from "@/lib/auth/secret";
 
 export async function GET(request: NextRequest) {

@@ -15,20 +15,17 @@ const RecipePagination = ({ data, idString }: RecipePaginationProps) => {
     }
   }, [data, idString]);
   return (
-    <>
-      <div className="layout contain bg-white">
-        <ul id={idString} className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {data &&
-            data.map((recipe: any, index: number) => {
-              return (
-                <li key={recipe?.node?.id} className="relative">
-                  <Recipe recipe={recipe?.node} />
-                </li>
-              );
-            })}
-        </ul>
-      </div>
-    </>
+    <div className="layout contain bg-white">
+      <ul id={idString} className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {data?.map((recipe: any) => {
+          return (
+            <li key={recipe?.node?.id} className="relative">
+              <Recipe recipe={recipe?.node} />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 

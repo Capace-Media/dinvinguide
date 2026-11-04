@@ -73,7 +73,7 @@ const generateRecipeSchema = ({
   //     `${ingredient.antal} ${ingredient.enhet.name} ${ingredient.namn}`
   // );
 
-  let formattedIngredients: string[] = [];
+  const formattedIngredients: string[] = [];
 
   ingredients?.forEach((section) => {
     // Add the section heading

@@ -1,7 +1,7 @@
 import { getPage } from "@/lib/api/pages/get-pages";
 import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdTop from "@/shared/components/ads/default/top";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import Loading from "../loading";
 import AuthorsHero from "./components/AuthorsHero";

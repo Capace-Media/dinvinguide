@@ -28,7 +28,7 @@ export default function AuthorCard(props: AuthorComponentProps) {
               alt={
                 props.author?.acf_user?.bildExtra?.altText
                   ? props.author.acf_user.bildExtra.altText
-                  : "Bild på " + props.author.name
+                  : `Bild på ${props.author.name}`
               }
               width={
                 props.author.acf_user.bildExtra?.mediaDetails?.width ??
@@ -94,10 +94,9 @@ export default function AuthorCard(props: AuthorComponentProps) {
             </Link>
           </div>
           <ul className="grid gap-2 md:grid-cols-2 md:gap-0 lg:grid-cols-4">
-            {props.author?.posts?.nodes &&
-              props.author.posts.nodes.map((post) => {
-                return <PostCard key={post.id} post={post} />;
-              })}
+            {props.author?.posts?.nodes?.map((post) => {
+              return <PostCard key={post.id} post={post} />;
+            })}
           </ul>
         </div>
       ) : null}

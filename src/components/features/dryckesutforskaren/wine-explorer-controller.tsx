@@ -25,6 +25,7 @@ const WineExplorerController = ({ pageInfo }: WineExplorerControllerProps) => {
   return (
     <div className="flex items-center justify-center gap-2 py-10">
       <button
+        type="button"
         aria-label="föregående sida för posterna"
         className={`flex items-center justify-center p-2.5 ${
           !hasPreviousPage
@@ -53,6 +54,7 @@ const WineExplorerController = ({ pageInfo }: WineExplorerControllerProps) => {
       </div>
 
       <button
+        type="button"
         aria-label="nästa sida för posterna"
         className={`flex items-center justify-center p-2.5 ${
           !hasNextPage

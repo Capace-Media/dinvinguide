@@ -4,12 +4,12 @@ import {
   getRecipe,
   getRecipeSlugs,
 } from "@/lib/api/recipes/get-recipes";
-import { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
 import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import { MetaInfo } from "../../../../types/MetaInfoTypes";
+import type { MetaInfo } from "../../../../types/MetaInfoTypes";
 import buildRecipeSchema from "@/lib/utils/seo/schema/build-recipe-schema";
 import JsonLd from "@/components/json-ld";
 
@@ -51,7 +51,7 @@ export async function generateStaticParams() {
 async function getRecipeData(params: { slug: string }) {
   const { isEnabled } = await draftMode();
   if (isEnabled) {
-    return getPreviewRecipe(parseInt(params.slug));
+    return getPreviewRecipe(parseInt(params.slug, 10));
   }
   return getRecipe(`/recept/${params.slug}`);
 }

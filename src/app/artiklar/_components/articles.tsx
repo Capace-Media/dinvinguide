@@ -11,11 +11,13 @@ import { useDebounceValue } from "@/hooks/useDebounce";
 import { useState } from "react";
 
 const currentYear = new Date().getFullYear();
+// biome-ignore lint/correctness/noUnusedVariables: used by the year filter that is commented out in the JSX below until it is re-enabled
 const years = Array.from(
   { length: currentYear - 2009 + 1 },
   (_, i) => currentYear - i,
 );
 
+// biome-ignore lint/correctness/noUnusedVariables: used by the author filter that is commented out in the JSX below until it is re-enabled
 const authors = [
   { name: "Alla skribenter", value: "" },
   { name: "Fredrik Schelin", value: "fredrikschelin" }, // 1603
@@ -175,14 +177,20 @@ export default function AllArticles(props: Props) {
       >
         {isLoading &&
           Array.from({ length: 16 }).map((_, i) => (
-            <PostCardSkeleton key={i} />
+            <PostCardSkeleton
+              // biome-ignore lint/suspicious/noArrayIndexKey: static skeleton placeholders have no identity
+              key={i}
+            />
           ))}
         {articles.map((article) => (
           <PostCard key={article.node.id} post={article.node} />
         ))}
         {isFetchingNextPage &&
           Array.from({ length: 16 }).map((_, i) => (
-            <PostCardSkeleton key={`next-${i}`} />
+            <PostCardSkeleton
+              // biome-ignore lint/suspicious/noArrayIndexKey: static skeleton placeholders have no identity
+              key={`next-${i}`}
+            />
           ))}
       </ul>
 

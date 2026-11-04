@@ -1,10 +1,10 @@
-import * as React from "react";
 const SvgRedWine = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={75}
     height={75}
     fill="none"
+    aria-hidden="true"
     {...props}
   >
     <g fill="#000" clipPath="url(#red_wine_svg__a)">

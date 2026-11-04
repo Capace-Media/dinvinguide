@@ -2,7 +2,8 @@
 
 "use client";
 
-import React, { useEffect } from "react";
+import type React from "react";
+import { useEffect } from "react";
 
 // Define the types for the error and reset props
 interface ErrorProps {
@@ -36,6 +37,7 @@ const ErrorPage: React.FC<ErrorProps> = ({ error, reset }) => {
           så snabbt som möjligt.
         </p>
         <button
+          type="button"
           onClick={reset} // Attempt to reload the page when the button is clicked
           className="rounded-sm bg-brand-primary px-4 py-2 text-white hover:bg-brand-primary/70"
         >

@@ -25,6 +25,7 @@ const Video = ({ content }: VideoProps) => {
         <iframe
           className="aspect-video w-full"
           src={embedUrl}
+          title="Video från YouTube"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
@@ -33,6 +34,7 @@ const Video = ({ content }: VideoProps) => {
     } else {
       // For direct video links, use a video tag
       return (
+        // biome-ignore lint/a11y/useMediaCaption: videos come from WordPress and have no caption files
         <video className="aspect-video w-full" controls preload="none">
           <source src={url} type="video/mp4" />
           Your browser does not support the video tag.
@@ -41,7 +43,7 @@ const Video = ({ content }: VideoProps) => {
     }
   };
 
-  return content && content.url ? (
+  return content?.url ? (
     renderVideoContent(content.url)
   ) : (
     <div>No video content available.</div>

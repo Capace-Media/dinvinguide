@@ -1,10 +1,10 @@
-import * as React from "react";
 const SvgFacebook = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={12}
     height={23}
     fill="none"
+    aria-hidden="true"
     {...props}
   >
     <path

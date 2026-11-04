@@ -1,10 +1,10 @@
-import * as React from "react";
 const SvgEfterratter = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={34}
     height={40}
     fill="none"
+    aria-hidden="true"
     {...props}
   >
     <g clipPath="url(#efterratter_svg__a)">

@@ -15,9 +15,7 @@ import menuItems from "@/components/Layout/MenuItems.json";
 import useRouteStyle from "@/hooks/useRouteStyle";
 import Link from "next/link";
 
-interface FooterProps {}
-
-const Footer = ({}: FooterProps) => {
+const Footer = () => {
   const isDL = useRouteStyle();
   const currentYear = new Date().getFullYear();
 
@@ -69,6 +67,7 @@ const Footer = ({}: FooterProps) => {
               isDL ? "text-[#333]" : "text-white"
             }`}
             aria-label="besök vår Instagram"
+            rel="noopener noreferrer"
           >
             {isDL ? <DarkInstagram /> : <InstagramSm />}
             <span>Instagram</span>
@@ -80,6 +79,7 @@ const Footer = ({}: FooterProps) => {
               isDL ? "text-[#333]" : "text-white"
             }`}
             aria-label="besök vår facebook"
+            rel="noopener noreferrer"
           >
             {isDL ? <DarkFacebook /> : <FacebookSm />}
             <span>Facebook</span>
@@ -127,6 +127,7 @@ const Footer = ({}: FooterProps) => {
               href="https://www.instagram.com/dinvinguide.se/"
               target="_blank"
               aria-label="besök vår Instagram"
+              rel="noopener noreferrer"
             >
               {isDL ? <DarkInstagram className="scale-150" /> : <Instagram />}
             </a>
@@ -135,6 +136,7 @@ const Footer = ({}: FooterProps) => {
               href="https://www.facebook.com/dinvinguide"
               target="_blank"
               aria-label="besök vår facebook"
+              rel="noopener noreferrer"
             >
               {isDL ? <DarkFacebook className="scale-150" /> : <Facebook />}
             </a>
@@ -154,6 +156,7 @@ const Footer = ({}: FooterProps) => {
             href="https://capace.se/"
             className={`${isDL ? "text-[#333]" : "text-white"}`}
             target="_blank"
+            rel="noopener noreferrer"
           >
             Capace Media
           </a>
