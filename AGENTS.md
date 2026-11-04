@@ -24,7 +24,12 @@ implementation task, ask whether to continue on the current branch or create a n
 * For new or changed behavior involving validation, data transformations, persistence, or integration boundaries, add or update tests unless existing tests already adequately cover the behavior.
 * Do not add tests merely because a file changed. Follow docs/testing.md for test scope, placement, and commands.
 * Before handoff, run the applicable checks and tests. Briefly report the results and explain any decision not to add tests for changed behavior.
+* Run all checks with `bun run fmt:check`, `bun run lint`, `bun run typecheck` and `bun run test`. CI (the required `ci` check) runs the same four.
+* Every API route under `src/app/api` must be protected by its secret (see `src/lib/auth/secret.ts`) unless it is listed in `PUBLIC_ROUTES` in `tests/integration/api-auth.test.ts`. Never add a route to that list without the repository owner's approval.
 
+## Operations
+
+* Deploy flow, rollback, secrets, backups, monitoring and contacts are in `docs/runbook.md`.
 
 ## Linting
 

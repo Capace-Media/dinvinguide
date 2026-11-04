@@ -1,5 +1,6 @@
 import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
+import { isValidSecret } from "@/lib/auth/secret";
 
 interface PagePathParams {
   parent1?: string | null;
@@ -18,13 +19,15 @@ export async function GET(request: Request): Promise<Response | void> {
   const parent2 = searchParams.get("parent2");
   const parent3 = searchParams.get("parent3");
 
+  // Check the secret before anything else, so a caller without it learns
+  // nothing about which parameters the route expects.
+  if (!isValidSecret(secret, process.env.PREVIEW_TOKEN)) {
+    return new Response("Invalid token", { status: 401 });
+  }
+
   // Ensure required parameters are present
   if (!pid || !type) {
     return new Response("Missing required parameters", { status: 400 });
-  }
-
-  if (secret !== process.env.PREVIEW_TOKEN) {
-    return new Response("Invalid token", { status: 401 });
   }
 
   (await draftMode()).enable();

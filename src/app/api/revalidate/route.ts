@@ -1,17 +1,19 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest } from "next/server";
+import { isValidSecret } from "@/lib/auth/secret";
 
 export async function GET(request: NextRequest) {
   const path = request.nextUrl.searchParams.get("path");
-  const secret = request.nextUrl.searchParams.get("secret");
+  // The header is preferred; `?secret=` stays until WordPress sends the header.
+  const secret =
+    request.headers.get("x-revalidate-secret") ??
+    request.nextUrl.searchParams.get("secret");
 
-  if (secret !== process.env.REVALIDATION_SECRET_TOKEN) {
-    return Response.json({
-      revalidated: false,
-      now: Date.now(),
-      message: "Invalid token",
-      status: 404,
-    });
+  if (!isValidSecret(secret, process.env.REVALIDATION_SECRET_TOKEN)) {
+    return Response.json(
+      { revalidated: false, now: Date.now(), message: "Invalid token" },
+      { status: 401 },
+    );
   }
 
   // Lists, the front page and sitemaps are cached under `collections`, so any

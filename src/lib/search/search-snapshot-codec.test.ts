@@ -1,4 +1,4 @@
-import { expect, test } from "bun:test";
+import { expect, test } from "vitest";
 import { gzipSync } from "node:zlib";
 import {
   decodeSnapshot,
@@ -51,7 +51,7 @@ test("the stored form is gzipped", async () => {
 
 test("a file that is not a snapshot is rejected", async () => {
   const notASnapshot = gzipJson({ version: "1", records: "nope" });
-  expect(decodeSnapshot(notASnapshot)).rejects.toThrow();
+  await expect(decodeSnapshot(notASnapshot)).rejects.toThrow();
 });
 
 // Only the first record is validated (see `decodeSnapshot`), so a format
@@ -61,9 +61,11 @@ test("a first record with an unknown type is rejected", async () => {
     ...snapshot,
     records: [{ ...snapshot.records[0], type: "podcast" }],
   };
-  expect(decodeSnapshot(gzipJson(outdated))).rejects.toThrow();
+  await expect(decodeSnapshot(gzipJson(outdated))).rejects.toThrow();
 });
 
 test("bytes that are not gzip are rejected", async () => {
-  expect(decodeSnapshot(new TextEncoder().encode("{}"))).rejects.toThrow();
+  await expect(
+    decodeSnapshot(new TextEncoder().encode("{}")),
+  ).rejects.toThrow();
 });

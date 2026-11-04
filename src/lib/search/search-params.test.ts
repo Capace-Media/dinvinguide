@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { parseSearchParams, SEARCH_TYPES } from "./search-params";
 
 describe("parseSearchParams q", () => {
