@@ -1,5 +1,6 @@
 "use client";
 import { type FC, Suspense, memo } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { componentsMap, extractComponentKey } from "./componentConfig";
 
 interface Section {
@@ -37,7 +38,7 @@ const Block: FC<BlockProps> = memo(({ section }) => {
     | undefined;
 
   return Component ? (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<Skeleton className="h-40 w-full" />}>
       <Component content={section} />
     </Suspense>
   ) : (
