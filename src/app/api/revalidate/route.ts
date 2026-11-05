@@ -1,9 +1,9 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import type { NextRequest } from "next/server";
 import { isValidSecret } from "@/lib/auth/secret";
+import { parseRevalidatePath } from "@/lib/revalidate/revalidate-params";
 
 export async function GET(request: NextRequest) {
-  const path = request.nextUrl.searchParams.get("path");
   // The header is preferred; `?secret=` stays until WordPress sends the header.
   const secret =
     request.headers.get("x-revalidate-secret") ??
@@ -15,6 +15,15 @@ export async function GET(request: NextRequest) {
       { status: 401 },
     );
   }
+
+  const target = parseRevalidatePath(request.nextUrl.searchParams.get("path"));
+  if (!target.ok) {
+    return Response.json(
+      { revalidated: false, now: Date.now(), message: "Invalid path" },
+      { status: 400 },
+    );
+  }
+  const { path } = target;
 
   // Lists, the front page and sitemaps are cached under `collections`, so any
   // content update must refresh them too.
@@ -70,7 +79,11 @@ export async function GET(request: NextRequest) {
     });
   }
   if (path) {
-    revalidatePath(path);
+    // Only a literal path can be revalidated. Any other word has already
+    // refreshed `collections` above.
+    if (path.startsWith("/")) {
+      revalidatePath(path);
+    }
     return Response.json({ revalidated: true, now: Date.now(), status: 200 });
   }
 
