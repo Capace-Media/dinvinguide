@@ -14,8 +14,8 @@ import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { MetaInfo } from "../../../../types/MetaInfoTypes";
-import AuthorHero from "../components/AuthorHero";
-import AllArticles from "@/app/artiklar/_components/articles";
+import AuthorHero from "@/components/features/skribenter/skribent/author-hero";
+import AllArticles from "@/components/shared/post/articles";
 
 export async function generateStaticParams() {
   return [

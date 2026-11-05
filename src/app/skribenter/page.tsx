@@ -4,8 +4,8 @@ import AdTop from "@/shared/components/ads/default/top";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Loading from "../loading";
-import AuthorsHero from "./components/AuthorsHero";
-import AllAuthors from "./components/authors";
+import AuthorsHero from "@/components/features/skribenter/authors-hero";
+import AllAuthors from "@/components/features/skribenter/authors";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getPage("skribenter");

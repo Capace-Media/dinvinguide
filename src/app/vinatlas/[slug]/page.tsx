@@ -1,7 +1,7 @@
 import PostTemplate from "@/components/shared/post/post-template";
 import { getWineAtlasPage } from "@/lib/api/pages/get-pages";
 import { notFound } from "next/navigation";
-import MorePosts from "./MorePost";
+import MorePosts from "@/components/features/vinatlas/more-posts";
 
 type Props = {
   params: Promise<{ slug: string }>;

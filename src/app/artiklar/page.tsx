@@ -11,7 +11,7 @@ import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdTop from "@/shared/components/ads/default/top";
 import AdMid from "@/shared/components/ads/default/mid";
 import { Suspense } from "react";
-import AllArticles from "./_components/articles";
+import AllArticles from "@/components/shared/post/articles";
 
 type Props = {
   searchParams: Promise<{
