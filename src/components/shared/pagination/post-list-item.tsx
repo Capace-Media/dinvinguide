@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight } from "@/components/icons";
-import PrettyDate from "@/lib/utils/prettyDate";
+import PrettyDate from "@/lib/utils/pretty-date";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";

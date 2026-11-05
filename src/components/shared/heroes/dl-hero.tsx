@@ -1,4 +1,4 @@
-import handleParse from "@/lib/utils/handleParse";
+import handleParse from "@/lib/utils/handle-parse";
 import Image, { type StaticImageData } from "next/image";
 
 import champagne from "../../../../public/Images/champagne.webp";

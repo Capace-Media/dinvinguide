@@ -7,7 +7,7 @@ import { SearchInput } from "@/components/ui/search-input";
 import { Spinner } from "@/components/ui/spinner";
 import type { PostsResponse } from "@/app/api/posts/route";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useDebounceValue } from "@/hooks/useDebounce";
+import { useDebounceValue } from "@/hooks/use-debounce";
 import { useState } from "react";
 
 const currentYear = new Date().getFullYear();

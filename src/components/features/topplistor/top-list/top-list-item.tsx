@@ -1,7 +1,7 @@
 import { Bronz, Guld, Silver } from "@/components/icons";
 import type { ExtendedToplist } from "@/lib/api/drinks/get-drinks";
-import PrettyDate from "@/lib/utils/prettyDate";
-import { cleanUrl } from "@/lib/utils/urlUtils";
+import PrettyDate from "@/lib/utils/pretty-date";
+import { cleanUrl } from "@/lib/utils/url-utils";
 import Image from "next/image";
 import Link from "next/link";
 import type { JSX } from "react";

@@ -1,5 +1,5 @@
 "use client";
-import { scrollToPosts } from "@/lib/utils/scrollToPosts";
+import { scrollToPosts } from "@/lib/utils/scroll-to-posts";
 import { useEffect } from "react";
 import Recipe from "./recipe-list-item";
 

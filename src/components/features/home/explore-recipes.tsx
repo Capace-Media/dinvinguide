@@ -1,7 +1,7 @@
 import HandleImage from "@/components/shared/handle-image";
 import type { FrontPageRecipe } from "@/lib/api/pages/get-pages";
 import { cn } from "@/lib/utils";
-import handleParse from "@/lib/utils/handleParse";
+import handleParse from "@/lib/utils/handle-parse";
 import { mergeLatestWithHighlighted } from "@/lib/utils/merge-latest-with-highlighted";
 import Link from "next/link";
 

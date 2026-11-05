@@ -1,7 +1,7 @@
 "use client";
 import Line from "@/components/shared/line";
-import handleParse from "@/lib/utils/handleParse";
-import PrettyDate from "@/lib/utils/prettyDate";
+import handleParse from "@/lib/utils/handle-parse";
+import PrettyDate from "@/lib/utils/pretty-date";
 import Image from "next/image";
 import Link from "next/link";
 import Blocks from "@/components/shared/post/blocks/post-blocks";

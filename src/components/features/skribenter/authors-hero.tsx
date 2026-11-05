@@ -1,4 +1,4 @@
-import handleParse from "@/lib/utils/handleParse";
+import handleParse from "@/lib/utils/handle-parse";
 import Image from "next/image";
 import Link from "next/link";
 import links from "./authors-hero-links.json";

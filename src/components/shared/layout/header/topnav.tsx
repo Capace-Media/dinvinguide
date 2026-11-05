@@ -9,7 +9,7 @@ import {
   DlTopNav,
 } from "@/components/icons";
 import { Separator } from "@/components/ui/separator";
-import useRouteStyle from "@/hooks/useRouteStyle";
+import useRouteStyle from "@/hooks/use-route-style";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Fragment } from "react";

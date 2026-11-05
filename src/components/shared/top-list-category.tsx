@@ -1,6 +1,6 @@
 "use client";
 import { RedWine, Sparkle, WhiteWine } from "@/components/icons";
-import useWindowSize from "@/hooks/useWindowSize";
+import useWindowSize from "@/hooks/use-window-size";
 import Image from "next/image";
 import Link from "next/link";
 import type { ActiveTopList } from "@/lib/api/pages/get-pages";

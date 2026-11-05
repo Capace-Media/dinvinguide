@@ -6,7 +6,7 @@ import { ArrowRight, DvLogoWhiteMini } from "@/components/icons";
 
 import { Badge } from "@/components/ui/badge";
 import Overlay from "@/components/shared/overlay";
-import PrettyDate from "@/lib/utils/prettyDate";
+import PrettyDate from "@/lib/utils/pretty-date";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import type { PostCardFieldsFragment } from "@/lib/wp/gql/graphql";

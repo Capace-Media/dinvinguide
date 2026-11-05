@@ -1,4 +1,4 @@
-import handleParse from "@/lib/utils/handleParse";
+import handleParse from "@/lib/utils/handle-parse";
 
 interface CitatProps {
   content: any;

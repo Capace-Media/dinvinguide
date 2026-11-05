@@ -1,7 +1,7 @@
 import type { getWord } from "@/lib/api/words/get-words";
-import handleParse from "@/lib/utils/handleParse";
+import handleParse from "@/lib/utils/handle-parse";
 import { isPresent } from "@/lib/utils/is-present";
-import PrettyDate from "@/lib/utils/prettyDate";
+import PrettyDate from "@/lib/utils/pretty-date";
 import Image from "next/image";
 import Link from "next/link";
 
