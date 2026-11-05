@@ -1,5 +1,5 @@
 import { Biggermail, Facebook, Instagram } from "@/components/icons";
-import PostCard from "@/components/post-card";
+import PostCard from "@/components/shared/post/post-card";
 import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
 import type { ComponentProps } from "react";

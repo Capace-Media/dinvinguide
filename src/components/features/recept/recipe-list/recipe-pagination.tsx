@@ -1,7 +1,7 @@
 "use client";
 import { scrollToPosts } from "@/lib/utils/scrollToPosts";
 import { useEffect } from "react";
-import Recipe from "./Recipe";
+import Recipe from "./recipe-list-item";
 
 interface RecipePaginationProps {
   data: any[];

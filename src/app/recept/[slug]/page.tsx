@@ -8,10 +8,10 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
-import { dynamicSeo } from "@/components/SEO/dynamicSEO";
+import { dynamicSeo } from "@/lib/utils/seo/dynamic-seo";
 import type { MetaInfo } from "../../../../types/MetaInfoTypes";
 import buildRecipeSchema from "@/lib/utils/seo/schema/build-recipe-schema";
-import JsonLd from "@/components/json-ld";
+import JsonLd from "@/components/shared/json-ld";
 
 interface RecipeProps {
   params: Promise<{ slug: string }>;

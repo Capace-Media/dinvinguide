@@ -11,7 +11,7 @@ import {
   Instagram,
   InstagramSm,
 } from "@/components/icons";
-import menuItems from "@/components/Layout/MenuItems.json";
+import menuItems from "@/components/shared/layout/menu-items.json";
 import useRouteStyle from "@/hooks/useRouteStyle";
 import Link from "next/link";
 

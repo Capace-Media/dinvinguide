@@ -2,7 +2,7 @@ import HandleImage from "@/components/shared/handle-image";
 import handleParse from "@/lib/utils/handleParse";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import links from "./recipeTax.json";
+import links from "./recipe-start-hero-links.json";
 interface RecipeHeroProps {
   promise?: any;
 }

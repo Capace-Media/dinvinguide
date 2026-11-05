@@ -1,4 +1,4 @@
-import PaginationController from "@/components/Pagination/Controller";
+import PaginationController from "@/components/shared/pagination/pagination-controller";
 import { getDrinkTips } from "@/lib/api/drink-tips/get-drink-tips";
 import {
   parsePaginationSearchParams,

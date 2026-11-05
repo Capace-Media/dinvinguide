@@ -1,5 +1,5 @@
-import Footer from "@/components/Layout/Footer";
-import Header from "@/components/Layout/Header";
+import Footer from "@/components/shared/layout/footer";
+import Header from "@/components/shared/layout/header/header";
 import CookieConsent from "@/components/CookieConsent";
 import Provider from "@/lib/Provider";
 import { GoogleTagManager } from "@next/third-parties/google";
@@ -10,7 +10,7 @@ import DraftModeBanner from "@/components/shared/draft-mode-banner";
 import "./styles/globals.css";
 import { cn } from "@/lib/utils";
 import Script from "next/script";
-import ScrollToTopButton from "@/components/scroll-to-top-button";
+import ScrollToTopButton from "@/components/shared/scroll-to-top-button";
 
 const abrilFatface = Abril_Fatface({
   subsets: ["latin"],

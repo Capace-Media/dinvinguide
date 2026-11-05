@@ -1,4 +1,4 @@
-import DrinkListLayout from "@/components/Layout/DrinkList";
+import DrinkListLayout from "@/components/shared/drink-layout/drink-list-layout";
 
 export default function TopListLayout({
   children,

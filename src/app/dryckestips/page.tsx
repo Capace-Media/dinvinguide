@@ -1,11 +1,11 @@
-import { dynamicSeo } from "@/components/SEO/dynamicSEO";
+import { dynamicSeo } from "@/lib/utils/seo/dynamic-seo";
 import { getPage } from "@/lib/api/pages/get-pages";
 import type { Metadata, ResolvingMetadata } from "next";
 import type { MetaInfo } from "../../../types/MetaInfoTypes";
 import Newsletter from "@/components/shared/newsletter/newsletter";
-import { BannerSkeleton } from "@/shared/components/ads/banner";
-import DlTop from "@/shared/components/ads/dl/top";
-import DlMid from "@/shared/components/ads/dl/mid";
+import { BannerSkeleton } from "@/components/shared/ads/banner";
+import DlTop from "@/components/shared/ads/dl/top";
+import DlMid from "@/components/shared/ads/dl/mid";
 import { Suspense } from "react";
 import DrinkTipsHero from "@/components/features/dryckestips/drink-tips-hero";
 import ExploreWineTips from "@/components/features/dryckestips/explore-wine-tips";

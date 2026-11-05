@@ -1,12 +1,12 @@
-import { dynamicSeo } from "@/components/SEO/dynamicSEO";
+import { dynamicSeo } from "@/lib/utils/seo/dynamic-seo";
 
 import { getPage } from "@/lib/api/pages/get-pages";
 import type { Metadata, ResolvingMetadata } from "next";
 import type { MetaInfo } from "../../../types/MetaInfoTypes";
-import { BannerSkeleton } from "@/shared/components/ads/banner";
-import DlTop from "@/shared/components/ads/dl/top";
-import DlMid from "@/shared/components/ads/dl/mid";
-import DlBottom from "@/shared/components/ads/dl/bottom";
+import { BannerSkeleton } from "@/components/shared/ads/banner";
+import DlTop from "@/components/shared/ads/dl/top";
+import DlMid from "@/components/shared/ads/dl/mid";
+import DlBottom from "@/components/shared/ads/dl/bottom";
 import { Suspense } from "react";
 import DLHero from "@/components/shared/heroes/dl-hero";
 import TopListLinks from "@/components/shared/top-list-links";

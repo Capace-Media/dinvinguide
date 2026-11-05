@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import Newsletter from "@/components/shared/newsletter/newsletter";
-import { BannerSkeleton } from "@/shared/components/ads/banner";
-import AdTop from "@/shared/components/ads/default/top";
-import AdMid from "@/shared/components/ads/default/mid";
-import AdBottom from "@/shared/components/ads/default/bottom";
+import { BannerSkeleton } from "@/components/shared/ads/banner";
+import AdTop from "@/components/shared/ads/default/top";
+import AdMid from "@/components/shared/ads/default/mid";
+import AdBottom from "@/components/shared/ads/default/bottom";
 import PageHero from "@/components/shared/heroes/page-hero";
 import { guideLinks } from "@/components/shared/heroes/guide-links";
 import WineAtlasPagination from "@/components/features/vinatlas/wine-atlas-pagination";

@@ -2,7 +2,7 @@
 import { DvLogoBlackMini } from "@/components/icons";
 import Link from "next/link";
 import MobileMenu from "./mobile-menu";
-import menuItems from "@/components/Layout/MenuItems.json";
+import menuItems from "@/components/shared/layout/menu-items.json";
 import { cn } from "@/lib/utils";
 import TopNav from "./topnav";
 import {

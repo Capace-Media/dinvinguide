@@ -1,5 +1,5 @@
 import type { WithContext, Recipe } from "schema-dts";
-import type { SeoMeta } from "@/components/SEO/dynamicSEO";
+import type { SeoMeta } from "@/lib/utils/seo/dynamic-seo";
 import type { RecipeFieldsFragment } from "@/lib/wp/gql/graphql";
 
 // Published recipes carry SEO and a modified date; draft previews don't.

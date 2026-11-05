@@ -1,4 +1,4 @@
-import { dynamicSeo } from "@/components/SEO/dynamicSEO";
+import { dynamicSeo } from "@/lib/utils/seo/dynamic-seo";
 import RecipeCategoryTemplate from "@/components/features/recept/category/recipe-category-template";
 import { getPage } from "@/lib/api/pages/get-pages";
 import type { Metadata, ResolvingMetadata } from "next";

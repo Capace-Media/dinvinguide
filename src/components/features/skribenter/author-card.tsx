@@ -4,9 +4,9 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import PostCard from "@/components/post-card";
+import PostCard from "@/components/shared/post/post-card";
 import type { Writer } from "@/lib/api/authors/get-authors";
-import SocialMedia from "@/components/Blocks/skribenter/SocialMedia";
+import SocialMedia from "@/components/features/skribenter/social-media";
 
 type AuthorComponentProps = {
   author: Writer;
