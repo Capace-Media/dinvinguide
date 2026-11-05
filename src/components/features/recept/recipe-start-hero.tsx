@@ -1,5 +1,5 @@
 import HandleImage from "@/components/shared/handle-image";
-import handleParse from "@/lib/utils/handleParse";
+import handleParse from "@/lib/utils/handle-parse";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import links from "./recipe-start-hero-links.json";

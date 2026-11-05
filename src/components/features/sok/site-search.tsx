@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { SearchInput } from "@/components/ui/search-input";
 import { Spinner } from "@/components/ui/spinner";
 import { CircleAlert, SearchX } from "lucide-react";
-import { useDebounceValue } from "@/hooks/useDebounce";
+import { useDebounceValue } from "@/hooks/use-debounce";
 import { normalizeQuery, type SearchType } from "@/lib/search/search-types";
 import {
   SearchResultItem,

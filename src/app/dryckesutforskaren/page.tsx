@@ -11,7 +11,7 @@ import { Suspense } from "react";
 import DLHero from "@/components/shared/heroes/dl-hero";
 import TopListLinks from "@/components/shared/top-list-links";
 import WineExplorer from "@/components/features/dryckesutforskaren/wine-explorer";
-import handleParse from "@/lib/utils/handleParse";
+import handleParse from "@/lib/utils/handle-parse";
 import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";
 async function getSEO() {
   const data = await getPage("/dryckesutforskaren");

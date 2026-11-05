@@ -1,6 +1,6 @@
 import DrinkLayout from "@/components/shared/drink-layout/drink-layout";
-import handleParse from "@/lib/utils/handleParse";
-import PrettyDate from "@/lib/utils/prettyDate";
+import handleParse from "@/lib/utils/handle-parse";
+import PrettyDate from "@/lib/utils/pretty-date";
 import Link from "next/link";
 import type { Drink } from "./types";
 

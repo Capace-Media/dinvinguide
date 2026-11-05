@@ -6,7 +6,7 @@ import Newsletter from "@/components/shared/newsletter/newsletter";
 import ExploreGuides from "@/components/shared/explore-guides";
 import PageHero from "@/components/shared/heroes/page-hero";
 import { guideLinks } from "@/components/shared/heroes/guide-links";
-import handleParse from "@/lib/utils/handleParse";
+import handleParse from "@/lib/utils/handle-parse";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {

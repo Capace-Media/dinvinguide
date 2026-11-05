@@ -1,5 +1,5 @@
 "use client";
-import useWindowSize from "@/hooks/useWindowSize";
+import useWindowSize from "@/hooks/use-window-size";
 import SuitableWines from "./suitable-wines";
 import Nutritions from "./nutritions";
 import Recipe from "./recipe";

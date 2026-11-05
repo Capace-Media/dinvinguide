@@ -5,7 +5,7 @@ import {
   getPostPaths,
   getPreviewPost,
 } from "@/lib/api/posts/get-posts";
-import generateArticleSchema from "@/lib/utils/json-LD-Schemas/generateArticleSchema";
+import generateArticleSchema from "@/lib/utils/json-ld-schemas/generate-article-schema";
 
 import type { Metadata, ResolvingMetadata } from "next";
 import { draftMode } from "next/headers";

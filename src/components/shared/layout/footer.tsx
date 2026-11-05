@@ -12,7 +12,7 @@ import {
   InstagramSm,
 } from "@/components/icons";
 import menuItems from "@/components/shared/layout/menu-items.json";
-import useRouteStyle from "@/hooks/useRouteStyle";
+import useRouteStyle from "@/hooks/use-route-style";
 import Link from "next/link";
 
 const Footer = () => {

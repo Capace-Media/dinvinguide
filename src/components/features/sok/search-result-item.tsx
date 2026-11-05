@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { SearchRecord } from "@/lib/search/search-records";
-import PrettyDate from "@/lib/utils/prettyDate";
+import PrettyDate from "@/lib/utils/pretty-date";
 import { SEARCH_TYPE_ITEM_LABELS } from "./search-query";
 import { SearchResultThumbnail } from "./search-result-thumbnail";
 

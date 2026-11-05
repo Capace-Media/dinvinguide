@@ -1,6 +1,6 @@
 {
   "name": "dvg",
-  "version": "4.3.4",
+  "version": "4.3.5",
   "private": true,
   "author": "Rick Centerhall - https://www.linkedin.com/in/rickcenterhall/",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome lint .",
-    "svg": "svgr --jsx-runtime automatic --svg-props aria-hidden=true -d src/components/icons src/components/icons/svgs",
+    "svg": "svgr --jsx-runtime automatic --filename-case kebab --svg-props aria-hidden=true -d src/components/icons src/components/icons/svgs",
     "test": "vitest run",
     "test:smoke": "vitest run --config vitest.smoke.config.mts",
     "test:unit": "vitest run src",

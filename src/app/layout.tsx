@@ -1,7 +1,7 @@
 import Footer from "@/components/shared/layout/footer";
 import Header from "@/components/shared/layout/header/header";
-import CookieConsent from "@/components/CookieConsent";
-import Provider from "@/lib/Provider";
+import CookieConsent from "@/components/shared/cookie-consent";
+import Provider from "@/lib/provider";
 import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Abril_Fatface, Poppins } from "next/font/google";

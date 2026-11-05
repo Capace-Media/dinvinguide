@@ -1,7 +1,7 @@
 import Newsletter from "@/components/shared/newsletter/newsletter";
 import PageHero from "@/components/shared/heroes/page-hero";
 import { getSupplier } from "@/lib/api/suppliers/get-suppliers";
-import handleParse from "@/lib/utils/handleParse";
+import handleParse from "@/lib/utils/handle-parse";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";

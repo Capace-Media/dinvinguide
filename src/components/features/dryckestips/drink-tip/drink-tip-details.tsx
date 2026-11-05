@@ -1,7 +1,7 @@
 import type { getDrinkTip } from "@/lib/api/drink-tips/get-drink-tips";
 import DrinkLayout from "@/components/shared/drink-layout/drink-layout";
-import handleParse from "@/lib/utils/handleParse";
-import PrettyDate from "@/lib/utils/prettyDate";
+import handleParse from "@/lib/utils/handle-parse";
+import PrettyDate from "@/lib/utils/pretty-date";
 import Link from "next/link";
 
 export type DrinkTip = NonNullable<Awaited<ReturnType<typeof getDrinkTip>>>;

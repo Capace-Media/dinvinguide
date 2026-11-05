@@ -8,7 +8,7 @@ import {
   ArrowPrevActive,
   ArrowPrevDis,
 } from "@/components/icons";
-import handleParse from "@/lib/utils/handleParse";
+import handleParse from "@/lib/utils/handle-parse";
 import { truncateText } from "@/lib/utils/utils";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";

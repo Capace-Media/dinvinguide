@@ -3,7 +3,7 @@
 import { ArrowRight } from "@/components/icons";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import handleParsed from "@/lib/utils/handleParse";
+import handleParsed from "@/lib/utils/handle-parse";
 
 import Image from "next/image";
 import Link from "next/link";

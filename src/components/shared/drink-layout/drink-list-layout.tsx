@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 
-import useWindowSize from "@/hooks/useWindowSize";
+import useWindowSize from "@/hooks/use-window-size";
 import leftImg from "../../../../public/Images/left_dl_bg.png";
 import rightImg from "../../../../public/Images/right_dl_bg.png";
 
