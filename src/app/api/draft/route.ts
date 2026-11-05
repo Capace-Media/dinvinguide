@@ -1,38 +1,33 @@
 import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 import { isValidSecret } from "@/lib/auth/secret";
+import { type DraftType, parseDraftParams } from "@/lib/draft/draft-params";
 
 interface PagePathParams {
-  parent1?: string | null;
-  parent2?: string | null;
-  parent3?: string | null;
+  parent1?: string;
+  parent2?: string;
+  parent3?: string;
   pid: string;
 }
 
 export async function GET(request: Request): Promise<Response> {
   const { searchParams } = new URL(request.url);
-  const secret = searchParams.get("secret");
-  const type = searchParams.get("type");
-  const pid = searchParams.get("pid");
-  const author = searchParams.get("author");
-  const parent1 = searchParams.get("parent1");
-  const parent2 = searchParams.get("parent2");
-  const parent3 = searchParams.get("parent3");
 
   // Check the secret before anything else, so a caller without it learns
   // nothing about which parameters the route expects.
-  if (!isValidSecret(secret, process.env.PREVIEW_TOKEN)) {
+  if (!isValidSecret(searchParams.get("secret"), process.env.PREVIEW_TOKEN)) {
     return new Response("Invalid token", { status: 401 });
   }
 
-  // Ensure required parameters are present
-  if (!pid || !type) {
-    return new Response("Missing required parameters", { status: 400 });
+  const params = parseDraftParams(Object.fromEntries(searchParams));
+  if (!params.success) {
+    return new Response("Invalid parameters", { status: 400 });
   }
+  const { type, pid, author, parent1, parent2, parent3 } = params.data;
 
   (await draftMode()).enable();
 
-  const basePathMapping: { [key: string]: () => string | undefined } = {
+  const basePathMapping: Record<DraftType, () => string | undefined> = {
     post: () => (author ? `/skribenter/${author}/${pid}` : undefined),
     recipe: () => `/recept/${pid}`,
     dryck: () => `/drycker/${pid}`,
@@ -41,13 +36,13 @@ export async function GET(request: Request): Promise<Response> {
     page: () => getPagePath({ parent1, parent2, parent3, pid }),
   };
 
-  const basePath = basePathMapping[type]?.();
+  const basePath = basePathMapping[type]();
   if (basePath) {
     redirect(basePath);
   }
 
-  // Handle unsupported types or missing basePath with an appropriate response
-  return new Response("Unsupported type or missing information", {
+  // A post preview without an author has no path to go to
+  return new Response("Missing information for this type", {
     status: 400,
   });
 }
