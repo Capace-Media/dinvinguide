@@ -17,7 +17,7 @@ import AdBottom from "@/shared/components/ads/default/bottom";
 import { Suspense } from "react";
 import Newsletter from "@/components/shared/newsletter/newsletter";
 import { getSuppliers } from "../actions/suppliers";
-import SuppliersList from "./_components/SuppliersList";
+import SuppliersList from "@/components/features/importorer/suppliers-list";
 
 type Props = {
   searchParams: Promise<{

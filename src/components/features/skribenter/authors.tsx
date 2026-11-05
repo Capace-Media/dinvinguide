@@ -3,7 +3,7 @@ import { BannerSkeleton } from "@/shared/components/ads/banner";
 import AdMid from "@/shared/components/ads/default/mid";
 import AdBottom from "@/shared/components/ads/default/bottom";
 import { Suspense } from "react";
-import AuthorCard from "./author-card";
+import AuthorCard from "@/components/features/skribenter/author-card";
 
 export default async function AllAuthors() {
   const skribenter = await getWriters();

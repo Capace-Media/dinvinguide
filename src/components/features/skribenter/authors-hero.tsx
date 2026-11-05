@@ -1,7 +1,7 @@
 import handleParse from "@/lib/utils/handleParse";
 import Image from "next/image";
 import Link from "next/link";
-import links from "./authors.json";
+import links from "./authors-hero-links.json";
 interface AuthorsHeroProps {
   promise?: any;
 }
