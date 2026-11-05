@@ -1,10 +1,10 @@
 "use client";
-import Line from "@/components/graphic/Line";
+import Line from "@/components/shared/line";
 import handleParse from "@/lib/utils/handleParse";
 import PrettyDate from "@/lib/utils/prettyDate";
 import Image from "next/image";
 import Link from "next/link";
-import Blocks from "@/components/Blocks/PostBlocks";
+import Blocks from "@/components/shared/post/blocks/post-blocks";
 import Aside, { type PostAuthor, type RelatedPost } from "./post-aside";
 
 interface PostSection {

@@ -1,11 +1,11 @@
 import Newsletter from "@/components/shared/newsletter/newsletter";
 import SectionSeparator from "@/components/shared/section-separator";
-import { BannerSkeleton } from "@/shared/components/ads/banner";
-import AdTop from "@/shared/components/ads/default/top";
-import AdMid from "@/shared/components/ads/default/mid";
-import AdBottom from "@/shared/components/ads/default/bottom";
+import { BannerSkeleton } from "@/components/shared/ads/banner";
+import AdTop from "@/components/shared/ads/default/top";
+import AdMid from "@/components/shared/ads/default/mid";
+import AdBottom from "@/components/shared/ads/default/bottom";
 import { Suspense } from "react";
-import Line from "@/components/graphic/Line";
+import Line from "@/components/shared/line";
 import Ingredients from "@/components/features/recept/ingredients";
 import Meals from "@/components/features/recept/meals";
 import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";

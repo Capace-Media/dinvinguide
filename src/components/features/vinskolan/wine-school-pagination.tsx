@@ -1,6 +1,6 @@
-import Search from "@/components/Blocks/Search";
-import PaginationController from "@/components/Pagination/Controller";
-import PaginationForGuides from "@/components/Pagination/Guider";
+import Search from "@/components/shared/search-bar";
+import PaginationController from "@/components/shared/pagination/pagination-controller";
+import PaginationForGuides from "@/components/shared/pagination/guide-pagination";
 
 import { getWineSchools } from "@/lib/api/guides/get-guides";
 

@@ -1,4 +1,4 @@
-import Recipe from "@/components/Pagination/Recipes/Recipe";
+import Recipe from "@/components/features/recept/recipe-list/recipe-list-item";
 import { getDrinkRecipes } from "@/lib/api/recipes/get-recipes";
 import { MoveRight } from "lucide-react";
 import Link from "next/link";

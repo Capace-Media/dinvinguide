@@ -1,4 +1,4 @@
-import PaginationController from "@/components/Pagination/Controller";
+import PaginationController from "@/components/shared/pagination/pagination-controller";
 import { getWordsByLetter } from "@/lib/api/words/get-words";
 import {
   parsePaginationSearchParams,

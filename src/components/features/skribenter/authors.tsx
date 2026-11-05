@@ -1,7 +1,7 @@
 import { getWriters } from "@/lib/api/authors/get-authors";
-import { BannerSkeleton } from "@/shared/components/ads/banner";
-import AdMid from "@/shared/components/ads/default/mid";
-import AdBottom from "@/shared/components/ads/default/bottom";
+import { BannerSkeleton } from "@/components/shared/ads/banner";
+import AdMid from "@/components/shared/ads/default/mid";
+import AdBottom from "@/components/shared/ads/default/bottom";
 import { Suspense } from "react";
 import AuthorCard from "@/components/features/skribenter/author-card";
 

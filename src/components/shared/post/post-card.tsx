@@ -1,14 +1,14 @@
 "use client";
 import Image from "next/image";
-import { Card, CardContent, CardHeader } from "./ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
-import { ArrowRight, DvLogoWhiteMini } from "./icons";
+import { ArrowRight, DvLogoWhiteMini } from "@/components/icons";
 
-import { Badge } from "./ui/badge";
-import Overlay from "./graphic/overlay";
+import { Badge } from "@/components/ui/badge";
+import Overlay from "@/components/shared/overlay";
 import PrettyDate from "@/lib/utils/prettyDate";
-import { Skeleton } from "./ui/skeleton";
-import { Button } from "./ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
 import type { PostCardFieldsFragment } from "@/lib/wp/gql/graphql";
 
 export function PostCardSkeleton() {

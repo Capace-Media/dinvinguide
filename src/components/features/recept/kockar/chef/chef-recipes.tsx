@@ -1,7 +1,7 @@
-import Search from "@/components/Blocks/Search";
-import PaginationController from "@/components/Pagination/Controller";
+import Search from "@/components/shared/search-bar";
+import PaginationController from "@/components/shared/pagination/pagination-controller";
 
-import RecipePagination from "@/components/Pagination/Recipes";
+import RecipePagination from "@/components/features/recept/recipe-list/recipe-pagination";
 import { getChefRecipes } from "@/lib/api/recipes/get-recipes";
 import {
   parsePaginationSearchParams,

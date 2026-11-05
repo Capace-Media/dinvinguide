@@ -5,7 +5,7 @@ import TopListCategory from "./top-list-category";
 
 import drinks from "../../../public/Images/dryckesutforskaren.jpeg";
 import recipes from "../../../public/Images/receptutforskaren.jpeg";
-import Overlay from "@/components/graphic/overlay";
+import Overlay from "@/components/shared/overlay";
 
 const TopListLinks = async () => {
   const topLists = await getTopLists();

@@ -1,7 +1,7 @@
 "use client";
 import { type FC, Suspense, memo } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { componentsMap, extractComponentKey } from "./componentConfig";
+import { componentsMap, extractComponentKey } from "./component-config";
 
 interface Section {
   fieldGroupName: string;

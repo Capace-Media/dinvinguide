@@ -1,7 +1,7 @@
 import { getChildPages } from "@/lib/api/guides/get-guides";
 
-import PaginationController from "@/components/Pagination/Controller";
-import PaginationForGuides from "@/components/Pagination/Guider";
+import PaginationController from "@/components/shared/pagination/pagination-controller";
+import PaginationForGuides from "@/components/shared/pagination/guide-pagination";
 
 type Props = {
   params: { slug: string };

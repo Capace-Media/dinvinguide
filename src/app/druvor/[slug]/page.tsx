@@ -1,4 +1,4 @@
-import { dynamicSeo } from "@/components/SEO/dynamicSEO";
+import { dynamicSeo } from "@/lib/utils/seo/dynamic-seo";
 import { getGrape, getGrapeSlugs } from "@/lib/api/grapes/get-grapes";
 import type { Metadata, ResolvingMetadata } from "next";
 import type { MetaInfo } from "../../../../types/MetaInfoTypes";

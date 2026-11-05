@@ -1,10 +1,10 @@
 import { getToplistPaths } from "@/lib/api/drinks/get-drinks";
 import { getToplistBySlug } from "@/lib/api/drinks/get-toplist-by-slug";
 import { notFound } from "next/navigation";
-import { BannerSkeleton } from "@/shared/components/ads/banner";
-import DlTop from "@/shared/components/ads/dl/top";
-import DlMid from "@/shared/components/ads/dl/mid";
-import DlBottom from "@/shared/components/ads/dl/bottom";
+import { BannerSkeleton } from "@/components/shared/ads/banner";
+import DlTop from "@/components/shared/ads/dl/top";
+import DlMid from "@/components/shared/ads/dl/mid";
+import DlBottom from "@/components/shared/ads/dl/bottom";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { NewsletterSkeleton } from "@/components/shared/newsletter/newsletter-skeleton";

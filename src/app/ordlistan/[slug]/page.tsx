@@ -1,9 +1,9 @@
 import Newsletter from "@/components/shared/newsletter/newsletter";
 
-import { BannerSkeleton } from "@/shared/components/ads/banner";
-import AdMid from "@/shared/components/ads/default/mid";
+import { BannerSkeleton } from "@/components/shared/ads/banner";
+import AdMid from "@/components/shared/ads/default/mid";
 import { Suspense } from "react";
-import { dynamicSeo } from "@/components/SEO/dynamicSEO";
+import { dynamicSeo } from "@/lib/utils/seo/dynamic-seo";
 import { getWord } from "@/lib/api/words/get-words";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";

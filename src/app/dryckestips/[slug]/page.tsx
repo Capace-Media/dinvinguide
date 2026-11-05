@@ -1,14 +1,14 @@
-import { dynamicSeo } from "@/components/SEO/dynamicSEO";
+import { dynamicSeo } from "@/lib/utils/seo/dynamic-seo";
 import { getDrinkTip } from "@/lib/api/drink-tips/get-drink-tips";
 import type { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import type { MetaInfo } from "../../../../types/MetaInfoTypes";
 import Newsletter from "@/components/shared/newsletter/newsletter";
-import { BannerSkeleton } from "@/shared/components/ads/banner";
-import DlTop from "@/shared/components/ads/dl/top";
-import DlMid from "@/shared/components/ads/dl/mid";
+import { BannerSkeleton } from "@/components/shared/ads/banner";
+import DlTop from "@/components/shared/ads/dl/top";
+import DlMid from "@/components/shared/ads/dl/mid";
 import { Suspense } from "react";
-import Line from "@/components/graphic/Line";
+import Line from "@/components/shared/line";
 import DrinkTipDetails from "@/components/features/dryckestips/drink-tip/drink-tip-details";
 
 type Props = {

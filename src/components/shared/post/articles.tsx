@@ -1,6 +1,6 @@
 "use client";
 
-import PostCard, { PostCardSkeleton } from "@/components/post-card";
+import PostCard, { PostCardSkeleton } from "@/components/shared/post/post-card";
 import { Button } from "@/components/ui/button";
 // import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select";
 import { SearchInput } from "@/components/ui/search-input";

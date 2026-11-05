@@ -1,6 +1,6 @@
 "use client";
 import { ArrowUp } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import useScrollPastThreshold from "@/hooks/use-scroll-past-threshold";
 
 export default function ScrollToTopButton() {

@@ -1,5 +1,5 @@
-import { dynamicSeo } from "@/components/SEO/dynamicSEO";
-import Line from "@/components/graphic/Line";
+import { dynamicSeo } from "@/lib/utils/seo/dynamic-seo";
+import Line from "@/components/shared/line";
 import { getQueryClient } from "@/lib/get-query-client";
 import { getPage } from "@/lib/api/pages/get-pages";
 import { getPosts } from "@/lib/api/posts/get-posts";
@@ -7,9 +7,9 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import type { Metadata, ResolvingMetadata } from "next";
 import type { MetaInfo } from "../../../types/MetaInfoTypes";
 import Newsletter from "@/components/shared/newsletter/newsletter";
-import { BannerSkeleton } from "@/shared/components/ads/banner";
-import AdTop from "@/shared/components/ads/default/top";
-import AdMid from "@/shared/components/ads/default/mid";
+import { BannerSkeleton } from "@/components/shared/ads/banner";
+import AdTop from "@/components/shared/ads/default/top";
+import AdMid from "@/components/shared/ads/default/mid";
 import { Suspense } from "react";
 import AllArticles from "@/components/shared/post/articles";
 

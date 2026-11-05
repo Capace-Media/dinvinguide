@@ -1,4 +1,4 @@
-import { dynamicSeo } from "@/components/SEO/dynamicSEO";
+import { dynamicSeo } from "@/lib/utils/seo/dynamic-seo";
 import PostTemplate from "@/components/shared/post/post-template";
 import {
   getPost,

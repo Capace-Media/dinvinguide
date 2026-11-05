@@ -1,13 +1,13 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import { getPage } from "@/lib/api/pages/get-pages";
 import { notFound } from "next/navigation";
-import { dynamicSeo } from "@/components/SEO/dynamicSEO";
+import { dynamicSeo } from "@/lib/utils/seo/dynamic-seo";
 import type { MetaInfo } from "../../../types/MetaInfoTypes";
 import Newsletter from "@/components/shared/newsletter/newsletter";
-import { BannerSkeleton } from "@/shared/components/ads/banner";
-import AdTop from "@/shared/components/ads/default/top";
-import AdMid from "@/shared/components/ads/default/mid";
-import AdBottom from "@/shared/components/ads/default/bottom";
+import { BannerSkeleton } from "@/components/shared/ads/banner";
+import AdTop from "@/components/shared/ads/default/top";
+import AdMid from "@/components/shared/ads/default/mid";
+import AdBottom from "@/components/shared/ads/default/bottom";
 import { Suspense } from "react";
 import PageHero from "@/components/shared/heroes/page-hero";
 import ExploreGuides from "@/components/shared/explore-guides";
