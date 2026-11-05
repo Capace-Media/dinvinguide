@@ -80,7 +80,7 @@ export default function AuthorCard(props: AuthorComponentProps) {
       </div>
 
       {props.author?.posts?.nodes ? (
-        <div className="layout contain bg-white pt-4! lg:pt-10!">
+        <div className="layout bg-white py-4 md:pb-11 lg:pt-10 lg:pb-20">
           <div className="mb-5 flex items-center justify-between md:mx-3">
             <h3 className="text-xl">{props.author?.name}s senaste artiklar</h3>
             <Link
