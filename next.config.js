@@ -33,6 +33,14 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Temporary (307) while verifying; switch to permanent: true (308) afterwards.
+      // Matches host AND path, so the destination (dinvinguide.se/dryckeslistan) can't re-trigger it.
+      {
+        source: "/",
+        has: [{ type: "host", value: "(www\\.)?dryckeslistan\\.se" }],
+        destination: "https://dinvinguide.se/dryckeslistan",
+        permanent: false,
+      },
       {
         source: "/vinguide/vinatlas",
         destination: "/vinatlas",
