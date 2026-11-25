@@ -24,12 +24,10 @@ const PaginationController = ({
   search,
   identifier,
 }: PaginationControllerProps) => {
-  const { endCursor, hasNextPage, hasPreviousPage, startCursor, total } =
-    pageInfo;
+  const { endCursor, hasNextPage, hasPreviousPage, startCursor } = pageInfo;
 
   const router = useRouter();
   const searchParams: any = useSearchParams();
-  const first = "16";
 
   const page = searchParams.get("page") ?? "1";
 
@@ -63,9 +61,7 @@ const PaginationController = ({
       <div className="flex items-center justify-center gap-3">
         <span className="flex h-[28px] w-[28px] items-center justify-center bg-brand-secondary text-white">
           {page}
-        </span>{" "}
-        av {""}
-        {Math.ceil(parseInt(total, 10) / parseInt(first, 10))}
+        </span>
       </div>
 
       <button

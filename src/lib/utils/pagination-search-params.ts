@@ -29,5 +29,11 @@ export function parsePaginationSearchParams(
 ) {
   const { first, last, ...rest } =
     paginationSearchParamsSchema.parse(searchParams);
-  return { ...rest, first: first ?? defaultFirst, last: last ?? null };
+  // WPGraphQL rejects `first` and `last` together. Backward pagination
+  // (`last`) wins, and the default page size only applies going forward.
+  return {
+    ...rest,
+    first: last === undefined ? (first ?? defaultFirst) : undefined,
+    last: last ?? null,
+  };
 }
