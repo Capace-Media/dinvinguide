@@ -18,13 +18,10 @@ interface WineSchoolPaginationProps {
 const WineSchoolPagination = async ({
   searchParams,
 }: WineSchoolPaginationProps) => {
-  const {
-    after,
-    before,
-    first,
-    last,
-    search = "",
-  } = parsePaginationSearchParams(searchParams, GUIDES_PER_PAGE);
+  const { after, before, first, last, search } = parsePaginationSearchParams(
+    searchParams,
+    GUIDES_PER_PAGE,
+  );
 
   const wineSchools = await getWineSchools({
     after,

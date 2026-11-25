@@ -13,7 +13,13 @@ export async function getChildPages(
   parent: string,
   variables: PageListVariables,
 ) {
-  const data = await wpQuery(ChildPagesQuery, { ...variables, parent });
+  // WordPress drops the `parent` filter when `search` is an empty string, so
+  // an empty search must be omitted rather than sent.
+  const data = await wpQuery(ChildPagesQuery, {
+    ...variables,
+    parent,
+    search: variables.search || undefined,
+  });
   return data?.pages ?? null;
 }
 
