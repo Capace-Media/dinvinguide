@@ -18,14 +18,8 @@ interface WineAtlasPaginationProps {
 const WineAtlasPagination = async ({
   searchParams,
 }: WineAtlasPaginationProps) => {
-  const {
-    after,
-    before,
-    first,
-    last,
-    search = "",
-    page,
-  } = parsePaginationSearchParams(searchParams, GUIDES_PER_PAGE);
+  const { after, before, first, last, search, page } =
+    parsePaginationSearchParams(searchParams, GUIDES_PER_PAGE);
 
   const wineAtlases = await getWineAtlases({
     after,
