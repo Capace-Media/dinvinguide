@@ -6,16 +6,10 @@ import AdMid from "@/components/shared/ads/default/mid";
 import AdBottom from "@/components/shared/ads/default/bottom";
 import PageHero from "@/components/shared/heroes/page-hero";
 import { guideLinks } from "@/components/shared/heroes/guide-links";
-import WineSchoolPagination from "@/components/features/vinskolan/wine-school-pagination";
+import GuideListing from "@/components/features/guides/guide-listing";
 import { getPage } from "@/lib/api/pages/get-pages";
-import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";
 
-type Props = {
-  searchParams: Promise<RouteSearchParams>;
-};
-
-const WineSchools = async (props: Props) => {
-  const searchParams = await props.searchParams;
+const WineSchools = async () => {
   const page = await getPage("/skolor");
 
   return (
@@ -24,7 +18,12 @@ const WineSchools = async (props: Props) => {
       <Suspense fallback={<BannerSkeleton />}>
         <AdTop />
       </Suspense>
-      <WineSchoolPagination searchParams={searchParams} />
+      <GuideListing
+        guide="school"
+        title="Skolor hos DinVinguide"
+        uri="/vinskolan"
+        idString="wineSchool"
+      />
       <Suspense fallback={<BannerSkeleton />}>
         <AdMid />
       </Suspense>
