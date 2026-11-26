@@ -6,15 +6,9 @@ import AdMid from "@/components/shared/ads/default/mid";
 import AdBottom from "@/components/shared/ads/default/bottom";
 import PageHero from "@/components/shared/heroes/page-hero";
 import { guideLinks } from "@/components/shared/heroes/guide-links";
-import WineAtlasPagination from "@/components/features/vinatlas/wine-atlas-pagination";
+import GuideListing from "@/components/features/guides/guide-listing";
 import { getPage } from "@/lib/api/pages/get-pages";
-import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";
-type Props = {
-  searchParams: Promise<RouteSearchParams>;
-};
-
-const WineAtlases = async (props: Props) => {
-  const searchParams = await props.searchParams;
+const WineAtlases = async () => {
   const page = await getPage("/vinguide/vinatlas");
 
   return (
@@ -23,7 +17,12 @@ const WineAtlases = async (props: Props) => {
       <Suspense fallback={<BannerSkeleton />}>
         <AdTop />
       </Suspense>
-      <WineAtlasPagination searchParams={searchParams} />
+      <GuideListing
+        guide="atlas"
+        title="Skolor hos DinVinguide"
+        uri="/vinatlas"
+        idString="wineAtlas"
+      />
       <Suspense fallback={<BannerSkeleton />}>
         <AdMid />
       </Suspense>

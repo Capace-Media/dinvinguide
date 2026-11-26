@@ -27,6 +27,19 @@ implementation task, ask whether to continue on the current branch or create a n
 * Run all checks with `bun run fmt:check`, `bun run lint`, `bun run typecheck` and `bun run test`. CI (the required `ci` check) runs the same four.
 * Every API route under `src/app/api` must be protected by its secret (see `src/lib/auth/secret.ts`) unless it is listed in `PUBLIC_ROUTES` in `tests/integration/api-auth.test.ts`. Never add a route to that list without the repository owner's approval.
 
+## Design decisions
+
+* Always choose the best-practice design for the task. Do not use a workaround to get around a rule, a review step, a test or an approval requirement in this file.
+* If the best-practice design conflicts with a rule in this file or in `docs/`, stop and ask what to do before implementing. Explain the conflict, the best-practice option and the alternatives, and recommend one.
+* If you cannot do the best-practice design without an approval (for example a new entry in `PUBLIC_ROUTES`), say so and ask. Do not pick a different design only to avoid the approval.
+
+## Server Actions
+
+* Only use Server Actions for what Next.js recommends them for: mutations, such as creating, updating or deleting data, form submissions and cache invalidation.
+* Never use a Server Action to read data: lists, pagination, "load more", search or filters. Read in a Server Component, or in a Route Handler under `src/app/api` when a client component needs the data (for example with TanStack Query). Server Actions are POST requests that the client runs one at a time and that are not cached. See `node_modules/next/dist/docs/01-app/02-guides/server-actions.md`.
+* A Server Action is as publicly reachable as a route, so it needs the same input validation and authorization as one.
+* If a Route Handler would need a `PUBLIC_ROUTES` entry, ask for approval. Do not switch to a Server Action to avoid it.
+
 ## Operations
 
 * Deploy flow, rollback, secrets, backups, monitoring and contacts are in `docs/runbook.md`.
