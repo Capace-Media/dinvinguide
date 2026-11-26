@@ -14,7 +14,22 @@ import {
   GUIDES_PER_PAGE,
   type GuideKey,
 } from "@/lib/api/guides/guide-list-params";
-import { guideListQuery } from "./guide-list-query";
+import type { GuideListResponse } from "@/app/api/guides/route";
+import { type GuideListFetcher, guideListQuery } from "./guide-list-query";
+
+const fetchGuideListPage: GuideListFetcher = async ({
+  guide,
+  after,
+  search,
+}) => {
+  const params = new URLSearchParams({ guide });
+  if (after) params.set("after", after);
+  if (search) params.set("search", search);
+
+  const res = await fetch(`/api/guides?${params.toString()}`);
+  if (!res.ok) throw new Error("Kunde inte hämta guiderna");
+  return ((await res.json()) as GuideListResponse).guides;
+};
 
 export interface GuideListProps {
   guide: GuideKey;
@@ -43,7 +58,7 @@ export default function GuideList({
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery(guideListQuery(guide, term));
+  } = useInfiniteQuery(guideListQuery(guide, term, fetchGuideListPage));
 
   const edges = data?.pages.flatMap((page) => page.edges) ?? [];
   // Only the first page, which has no cursor, carries the overall count.

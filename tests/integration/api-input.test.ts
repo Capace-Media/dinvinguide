@@ -101,6 +101,74 @@ describe("/api/posts input", () => {
   });
 });
 
+describe("/api/guides input", () => {
+  async function guides(params: Record<string, string>) {
+    const { GET } = await import("../../src/app/api/guides/route");
+    resetBackend();
+    const response = await GET(get("/api/guides", params));
+    const [call] = backend.wpQuery.mock.calls as unknown as unknown[][];
+    return { status: response.status, variables: call?.[1] };
+  }
+
+  const ATLAS_PARENT = "cG9zdDo0NzcyMQ==";
+  const SCHOOL_PARENT = "cG9zdDo0Nzc0Mg==";
+
+  test("asks for the first 16 children of the wine atlas page", async () => {
+    const { variables } = await guides({ guide: "atlas" });
+    expect(variables).toEqual({
+      first: 16,
+      parent: ATLAS_PARENT,
+      after: undefined,
+      search: undefined,
+    });
+  });
+
+  test("uses the wine school page for the school guide", async () => {
+    const { variables } = await guides({ guide: "school" });
+    expect(variables).toMatchObject({ first: 16, parent: SCHOOL_PARENT });
+  });
+
+  test("passes the cursor on", async () => {
+    const { variables } = await guides({ guide: "atlas", after: "cursor-a" });
+    expect(variables).toMatchObject({ first: 16, after: "cursor-a" });
+  });
+
+  // WordPress ignores `parent` when it searches, so a search never reaches it.
+  test("reads all children for a search instead of sending it", async () => {
+    const { variables } = await guides({ guide: "school", search: "alsace" });
+    expect(variables).toEqual({
+      first: 100,
+      parent: SCHOOL_PARENT,
+      after: undefined,
+      search: undefined,
+    });
+  });
+
+  test("never sends an empty search, which makes WordPress drop the parent", async () => {
+    const { variables } = await guides({ guide: "atlas", search: "" });
+    expect(variables).toMatchObject({ first: 16, search: undefined });
+  });
+
+  test("ignores a page size or parent sent by the client", async () => {
+    const { variables } = await guides({
+      guide: "atlas",
+      first: "5000",
+      parent: SCHOOL_PARENT,
+    });
+    expect(variables).toMatchObject({ first: 16, parent: ATLAS_PARENT });
+  });
+
+  test.each<Record<string, string>>([
+    {},
+    { guide: "other" },
+    { guide: ATLAS_PARENT },
+  ])("answers 400 without asking WordPress for %j", async (params) => {
+    const { status, variables } = await guides(params);
+    expect(status).toBe(400);
+    expect(variables).toBeUndefined();
+  });
+});
+
 describe("/api/draft input", () => {
   const secret = { secret: TEST_ENV.PREVIEW_TOKEN };
 

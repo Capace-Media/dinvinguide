@@ -43,6 +43,7 @@ const METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE"] as const;
  */
 const PUBLIC_ROUTES: Readonly<Record<string, string>> = {
   "/api/posts": "Read-only list of published posts for the article feed.",
+  "/api/guides": "Read-only list of the wine atlas and wine school pages.",
   "/api/search": "Read-only site search over published content.",
   "/api/disable-draft": "Only turns draft mode off; grants nothing.",
 };

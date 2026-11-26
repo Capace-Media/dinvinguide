@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { RouteSearchParams } from "@/lib/utils/pagination-search-params";
 
 export const GUIDES_PER_PAGE = 16;
 
@@ -8,7 +9,7 @@ export type GuideKey = (typeof GUIDE_KEYS)[number];
 
 const MAX_SEARCH_LENGTH = 100;
 
-const guideListInputSchema = z.object({
+const guideListParamsSchema = z.object({
   guide: z.enum(GUIDE_KEYS),
   after: z.string().min(1).max(200).optional(),
   // An empty search becomes `undefined`: WordPress ignores the parent filter
@@ -19,8 +20,14 @@ const guideListInputSchema = z.object({
     .optional(),
 });
 
-// Validates the input of the guide list server action. Server actions can be
-// called directly, so anything that is not a known guide throws.
-export function parseGuideListInput(input: unknown) {
-  return guideListInputSchema.parse(input);
+export type GuideListParams = z.output<typeof guideListParamsSchema>;
+
+// Turns the query string of `/api/guides` into validated params, or `null`
+// when they are not valid (the route answers 400). The route is public, so
+// the client can neither pick a WordPress page nor the page size.
+export function parseGuideListParams(
+  searchParams: RouteSearchParams,
+): GuideListParams | null {
+  const result = guideListParamsSchema.safeParse(searchParams);
+  return result.success ? result.data : null;
 }
