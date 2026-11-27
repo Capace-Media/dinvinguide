@@ -47,6 +47,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         queryKey: searchQueryKey(params.q, params.type),
         queryFn: () => searchSite({ ...params, page: 1 }),
         initialPageParam: 1,
+        getNextPageParam: (lastPage) =>
+          lastPage.page < lastPage.pageCount ? lastPage.page + 1 : undefined,
       })
       .catch((error: unknown) =>
         console.error("Search prefetch failed:", error),
