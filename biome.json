@@ -9,6 +9,7 @@
     "includes": [
       "**",
       "!**/.next",
+      "!**/.agents",
       "!**/node_modules",
       "!**/public",
       "!**/src/lib/wp/gql",
